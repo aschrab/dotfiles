@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.97 $'
+rcvers='$Revision: 1.98 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -630,6 +630,18 @@ fi
 
 mynames=(aarons bofh root)
 
+
+if [[ $HOST == *.mx.voyager.net ]]
+then
+  function mailfile ()
+  {
+    for u in "$@"
+    do
+      findmail "$u"
+    done
+  }
+  true
+fi
 
 case "$host" in
    "methos")
