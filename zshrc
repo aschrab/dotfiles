@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.86 $'
+rcvers='$Revision: 1.87 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -751,6 +751,15 @@ compctl -x \
   -- telnet
 
 compctl -K __hosts ping trt traceroute
+
+compctl -x 'p[1]' -k '(add gencaches showpkg stats dump dumpavail unmet check search show depends pkgnames dotty)' -- apt-cache
+compctl -x 'p[1]' -k \
+  '(update upgrade install dist-upgrade clean remove autoclean check)' \
+  -  'p[2]' -K __debpkgs -- apt-get
+
+function __debpkgs {
+  reply=(`sed -ne 's/^Package: //p' /var/lib/dpkg/available`)
+}
 
 function __cdmatch () {
 # Start of cdmatch.
