@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.40 $'
+rcvers='$Revision: 1.41 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -107,6 +107,7 @@ case "$TERM" in
         TERM=xterm
         ;;
     esac
+    alias telnet='TERMCAP= telnet'
     ;;
   linux)
     stty erase '^?'
@@ -394,6 +395,26 @@ tz () {
   TZ="$t" "$@"
 }
 
+vdiff () {
+  local cvs='' opt=''
+  if [[ -d CVS ]]
+  then
+    if [[ "$1" == '!c' || "$1" == '!cvs' ]]
+    then
+      shift
+    else
+      cvs="cvs"
+    fi
+  fi
+  if [[ "$cvs" == '' ]]
+  then
+    opt='-u'
+  fi
+  $cvs diff $opt "$@" > $TMPDIR/$host.$$.diff
+  vi -R $TMPDIR/$host.$$.diff
+  rm -f $TMPDIR/$host.$$.diff
+}
+
 fignore=(.o .bak .swp \~)
 compctl -g '*' -x 'S[.]','C[0,*/.*]' -g '*(D)' -- rm
 compctl -g '*(-/)' + -g '.*(-/)' + -k '(..)' cd rmdir
@@ -532,7 +553,6 @@ case "$host" in
       alias quota='quota -v'
       alias help='/usr/local/adm/execpc/help'
       alias nx='nice -20 /usr/local/adm/execpc/nx'
-      alias lu=lookup
       unalias ps   # ps wrapper accepts either BSD or SYSV style options if
                    # not given explicit path
 
