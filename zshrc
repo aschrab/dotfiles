@@ -1,4 +1,5 @@
 #!/bin/zsh -f
+# vim: fdm=marker
 
 # reset signal handlers
 trap -
@@ -31,7 +32,7 @@ then
   TERM=xterm
 fi
 
-# Try making directory, don't care if it fails (may be there already)
+# Try making directory, don't care if it fails (may be there already) {{{
 mkdir "/tmp/$LOGNAME" >& /dev/null
 # On some systems $LOGNAME stays the same across su, so check if TMPDIR for
 # non-root user was created by root, and fix it if necessary
@@ -51,7 +52,7 @@ else
   echo "TMPDIR not secure" >&2
   echo "TMPDIR not secure" >&2
   echo "TMPDIR not secure" >&2
-fi
+fi #}}}
 
 if [[ ,$(grep -c "^$USERNAME:x:$GID:$" /etc/group 2> /dev/null), == ",1,"
       && ",`grep -c :$GID: /etc/passwd 2> /dev/null`," == ",1," ]]
@@ -135,10 +136,12 @@ setopt EXTENDED_GLOB
 unset LC_CTYPE
 # Check if we're on a Unicode terminal {{{
 # Based on perl script by Jan-Pieter Cornet <johnpc@xs4all.nl>
+# http://lists.debian.org/debian-mentors/2003/debian-mentors-200312/msg00144.html
 # Converted to zsh with clues from promptnl script that comes with zsh
 
 # Make sure there's no typeahead, or it'll confuse things.  Remove
-# this block entirely to use this function in 3.0.x at your own risk. {{{
+# this block entirely to use this function in 3.0.x at your own risk.
+# {{{
 while read -t -k 1
 do
   RECV=$RECV$REPLY
