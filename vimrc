@@ -119,6 +119,7 @@ au BufNewFile,BufRead *.c,*.h,*.pl,*.pm set cindent showmatch shiftwidth=2 textw
 au BufNewFile,BufRead /usr/src/linux* set tags=/usr/src/linux/tags
 au FileType sm  set noexpandtab
 au FileType zone  set noexpandtab
+au FileType cpp set noexpandtab ai si cindent
 au BufNewFile,BufRead */zone/* set ft=zone
 
 set bs=2
