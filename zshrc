@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.6 $'
+rcvers='$Revision: 1.7 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -87,19 +87,19 @@ case "$TERM" in
     print -P "${green}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${white}"
     PS1='%{]1;%(#.#.$)$host]2;%(#.#.$)$host:%~%}'
     PS1="$PS1"'%{$pColor%}%1v%!)$host%(#.#.$)%{$white%} '
-    RPS1='%{$pColor%} %T%{$white%}'
+    RPS1='%{$pColor%} %~%{$white%}'
     ;;
   linux)
     stty erase '^?'
     print -P "${magenta}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${white}"
-    PS1='%{$pColor%}%1v%!)$host:%~%(#.#.$)%{$white%} '
-    RPS1='%{$pColor%} %T%{$white%}'
+    PS1='%{$pColor%}%1v%!)$host%(#.#.$)%{$white%} '
+    RPS1='%{$pColor%} %~%{$white%}'
     ;;
   *)
     stty erase '^H' kill '^X'
     print -P "%U%Szsh $ZSH_VERSION, .zshrc $rcvers%s%u"
-    PS1='%U%1v%!)%(#..%u)$host:%~%(#.#.$)%(#.%u.) '
-    RPS1='%U%T%u'
+    PS1='%U%1v%!)%(#..%u)$host%(#.#.$)%(#.%u.) '
+    RPS1='%U%~%u'
     ;;
 esac
 
