@@ -124,6 +124,12 @@ xtitle () {
   print -n "\E]2;$*"
 }
 
+if [[ -r /etc/debian_chroot ]]; then
+  DEBCHROOT="(`cat /etc/debian_chroot`)"
+else
+  DEBCHROOT=''
+fi
+
 case "$TERM" in
   xterm|xtermc|xterm-debian|xterm-color|rxvt|gnome|Eterm)
     if [[ $TERM == xterm && $OSTYPE == freebsd* ]]
@@ -147,14 +153,14 @@ case "$TERM" in
     fi
     stty erase '^?'
     print -P "${green}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${fColor}"
-    PS1='%{]1;%(#.#.$)$host]2;%(#.#.$)$host:%~%}'
-    PS1="$PS1"'%{$pColor%}%1v%!)$host%(#.#.$)%{$fColor%} '
+    PS1='%{]1;%(#.#.$)$host$DEBCHROOT]2;%(#.#.$)$host$DEBCHROOT:%~%}'
+    PS1="$PS1"'%{$pColor%}%1v%!)$host$DEBCHROOT%(#.#.$)%{$fColor%} '
     RPS1='%{$pColor%} %~%{$fColor%}'
     ;;
   screen*)
     print -P "${yellow}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${fColor}"
-    PS1='%{]1;%(#.#.$)$host]2;n %(#.#.$)$host!%~k$host%(#.#.$)%.\%}'
-    PS1="$PS1"'%{$pColor%}%1v%!)$host%(#.#.$)%{$fColor%} '
+    PS1='%{]1;%(#.#.$)$host$DEBCHROOT]2;n %(#.#.$)$host$DEBCHROOT!%~k$host$DEBCHROOT%(#.#.$)%.\%}'
+    PS1="$PS1"'%{$pColor%}%1v%!)$host$DEBCHROOT%(#.#.$)%{$fColor%} '
     RPS1='%{$pColor%} %~%{$fColor%}'
     case "$OSTYPE" in
       solaris*)
@@ -169,7 +175,7 @@ case "$TERM" in
     }
 
     preexec () {
-      print -n "\Ek$host:$1\E\\"
+      print -n "\Ek$host$DEBCHROOT:$1\E\\"
     }
 
     ;;
@@ -178,7 +184,7 @@ case "$TERM" in
     fColor=$normal
     stty erase '^?'
     print -P "${magenta}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${fColor}"
-    PS1='%{$pColor%}%1v%!)$host%(#.#.$)%{$fColor%} '
+    PS1='%{$pColor%}%1v%!)$host$DEBCHROOT%(#.#.$)%{$fColor%} '
     RPS1='%{$pColor%} %~%{$fColor%}'
 
     xtitle () {
@@ -187,7 +193,7 @@ case "$TERM" in
   *)
     stty erase '^H' kill '^U'
     print -P "%U%Szsh $ZSH_VERSION, .zshrc $rcvers%s%u"
-    PS1='%U%1v%!)%(#..%u)$host%(#.#.$)%(#.%u.) '
+    PS1='%U%1v%!)%(#..%u)$host$DEBCHROOT%(#.#.$)%(#.%u.) '
     RPS1='%U%~%u'
     xtitle () {
     }
