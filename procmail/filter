@@ -27,6 +27,17 @@
   /dev/null
 }
 
+:0
+* ^From:.*<root@mail\.kcl\.ac\.uk>
+* ^To: manager@execpc\.com
+* ^Subject: Missing/incorrect DNS entry
+{
+  LOG="$TIME: Missing DNS entry notification TRASHED$NL"
+
+  :0
+  /dev/null
+}
+
 # Save any of my posts to =posted
 # Put newsgroup name in To: header
 # mark as read
