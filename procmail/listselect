@@ -93,6 +93,7 @@ SUBJ
 * ^Return-Path: <owner-securelinux@
 {
   LIST=Lists/securelinux/
+  EXPIRE="5 days"
   SUBJ='\[Secure Linux\] '
 }
 
