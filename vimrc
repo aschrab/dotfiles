@@ -97,10 +97,9 @@ map <c-J> gqip
 map <C-N> <C-W>j<C-W>_
 map <C-P> <C-W>k<C-W>_
 inoremap  
-inoremap  
-inoremap  
-"inoremap  
-inoremap  
+inoremap <C-]> <C-X><C-]>
+inoremap <C-F> <C-X><C-F>
+inoremap <C-L> <C-X><C-L>
 inoremap <C-e> <esc>
 
 map ,ad aAaron Schrab <aaron@schrab.com>
@@ -130,7 +129,7 @@ map <M-Esc>[65~ <S-MouseUp>
 map! <M-Esc>[65~ <S-MouseUp>
 
 "map ,x :perl chmod(01600, $curwin->Buffer->Name):wq!
-map ,x :w:r!chmod +x %:w!
+map ,x :w<C-M>:r!chmod +x %<C-M>:w!<C-M>
 map ,, /^> *$
 map ,l 1G}jyGGp:.,$!wc -ld0iLines: dd1G}P
 map ,q :%s/^\(> \)*$//
