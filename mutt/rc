@@ -10,7 +10,7 @@ alternative_order text/enriched text/plain text application/postscript image/*
 set sendmail="/home/aarons/bin/sendmail.pl -oi -oem"
 set ispell="/home/aarons/bin/spell"
 
-set alternates='((aarons|(aaron\.|a_)schrab|ats|lsm|bofh|procmail|list(admin|master))@([a-z0-9-]+\.)*execpc\.com|postmaster@(comet|lists)\.execpc\.com|aaron@warrior\.mscs\.mu\.edu|(aaron.*|root|.*master|ats|bofh)@schrab\.com)'
+set alternates='((aarons|(aaron\.|a_)schrab|ats|lsm|bofh|procmail|list(admin|master))@([a-z0-9-]+\.)*execpc\.com|postmaster@(comet|lists)\.execpc\.com|aaron@warrior\.mscs\.mu\.edu|(aaron.*|root|.*master|ats|bofh)@schrab\.com|.*@pug\.qqx\.org)'
 
 hdr_order From: Subject: Date: To: Newsgroups: Cc: X-Mailer: User-Agent: Content-Type: Content-Transfer-Encoding: X-Procmail: X-Suspect-reason:
 
@@ -458,6 +458,7 @@ fcc-save-hook unicorn@execpc     "=cathyann"
 fcc-save-hook cert\.org          "=cert"
 fcc-save-hook internic\.net      "=internic"
 fcc-save-hook morwen             "=lam"
+fcc-save-hook lori@compulsive    "=lam"
 fcc-save-hook shadows@execpc     "=davisb"
 fcc-save-hook warrior\.mscs      "=mcs"
 fcc-save-hook joegreco           "=jgreco"
