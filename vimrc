@@ -1,5 +1,10 @@
 :version 4.0
 
+let perl_extended_vars = 1
+let perl_highlight_matches = 1
+"let perl_want_scope_in_variables = 1
+"let perl_embedded_pod = 1
+
 set t_Co=8
 set t_Sf=[3%p1%dm
 set t_Sb=[4%p1%dm
@@ -27,6 +32,10 @@ set cpoptions=BceFs$
 set cmdheight=2
 set laststatus=2
 
+" Tell vim to use visual beep then disable visual beep, to keep it silent
+set vb
+set t_vb=
+
 iab teh the
 iab adn and
 iab nad and
@@ -40,7 +49,8 @@ iab lenght length
 iab ube unsolicited bulk email
 iab UBE Unsolicited Bulk Email
 
-autocmd BufRead mutt* set tw=72
+au BufNewFile,BufRead muttrc                 so $VIM/syntax/muttrc.vim
+autocmd BufRead mutt-* set tw=72
 " autocmd BufRead mutt* /^$
 " autocmd BufRead mutt* .+1
 autocmd BufRead .article* set tw=72
@@ -50,6 +60,10 @@ autocmd BufRead .article* set tw=72
 "noremap <C-A> <Home>
 noremap <C-E> <End>
 inoremap  
+inoremap  
+inoremap  
+inoremap  
+inoremap  
 
 map ,ad aAaron Schrab <aaron@schrab.com>
 map ,af 1G/^From:WD
