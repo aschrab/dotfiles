@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.28 $'
+rcvers='$Revision: 1.29 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -30,7 +30,7 @@ if chown "$LOGNAME" "/tmp/$LOGNAME" >& /dev/null &&
    chmod 0700 "/tmp/$LOGNAME" >& /dev/null
 then
   export TMPDIR="/tmp/$LOGNAME"
-  TMPPREFIX="$LOGNAME/zsh"
+  export TMPPREFIX="$TMPDIR/zsh"
 else
   echo "TMPDIR not secure" >&2
   echo "TMPDIR not secure" >&2
