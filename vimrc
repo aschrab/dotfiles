@@ -47,6 +47,7 @@ inoremap  
 
 map ,ad aAaron Schrab <aaron@schrab.com>
 map ,af 1G/^From:WD
+map ,al aAaron Schrab <listmaster@execpc.com>
 map ,ap aAaron Schrab <ats@execpc.com>
 map ,aw aAaron Schrab <aarons@execpc.com>
 
