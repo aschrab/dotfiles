@@ -52,7 +52,7 @@ map l oi-- :r~/.sigs/lsm
 map m oi-- :r~/.sigs/mega
 map p oi-- :r~/.sigs/personal:r!~/bin/fortune
 map q :%s/^\(> \)*$//
-map ,r :%!formail -fbY -IX-Envelope: -IX-spamrc: -IX-Suspect-Reason: -IX-procmail: -IReceived:
+map ,r :.,/^$/!formail -fbY -IX-Envelope: -IX-spamrc: -IX-Suspect-Reason: -IX-procmail: -IReceived: -IReturn-Path: -IResent- -IContent-Length: -IX-Loop: -ILines: -IPrecedence:
 map s :r~/.sigs/spamreply
 map w oi-- :r~/.sigs/work
 map x :r~/.sigs/lsm.luser
