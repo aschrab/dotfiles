@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.91 $'
+rcvers='$Revision: 1.92 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -762,9 +762,9 @@ compctl -x \
 compctl -K __hosts ping trt traceroute
 
 compctl -x 'p[1]' -k '(add gencaches showpkg stats dump dumpavail unmet check search show depends pkgnames dotty)' -- apt-cache
-compctl -x 'p[1]' -k \
+compctl -K __debpkgs -x 'p[1]' -k \
   '(update upgrade install source dist-upgrade clean remove autoclean check)' \
-  -  'p[2]' -K __debpkgs -- apt-get aget
+  -- apt-get
 
 function __debpkgs {
   reply=(`sed -ne 's/^Package: //p' /var/state/apt/lists/*_Packages`)
