@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.107 $'
+rcvers='$Revision: 1.108 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -121,8 +121,7 @@ case "$TERM" in
     if [[ $OSTYPE == linux* ]]
     then
       langset="no"
-      # en_US.utf8
-      for l in en_GB en_US.iso885915 en_US.iso88591 en_US
+      for l in en_US.utf8 en_GB en_US.iso885915 en_US.iso88591 en_US
       do
         if [[ $langset == no && -d /usr/lib/locale/$l ]]
         then
@@ -205,7 +204,6 @@ ppath=(
   /usr/X11R6/bin
   /usr/X11/bin
   /usr/share/bin
-  /usr/openwin/bin
   /usr/local/pkg/guru
   /usr/local/pkg/dnvs
   /usr/local/adm/voyager
@@ -214,6 +212,7 @@ ppath=(
   /usr/local/pilot/bin
   /usr/ccs/bin
   /usr/ccs/lib
+  /usr/games
 )
 
 for d in $ppath
@@ -292,16 +291,16 @@ if [[ -d "/usr/local/lib/site_perl" ]]; then
   export PERL5LIB="/usr/local/lib/site_perl"
 fi
 
-EDITOR=$(whence color-vim)
-EDITOR=${EDITOR:=$(whence vim)}
-VISUAL=${EDITOR:=$(whence vi)}
-export EDITOR VISUAL
-alias vi=$VISUAL
-
-if [[ $EDITOR == *vim* && -d $HOME/share/vim ]]
+if whence vim >& /dev/null
 then
-  export VIM=$HOME/share/vim
+  [[ -d $HOME/share/vim ]] && export VIM=$HOME/share/vim
+  EDITOR=vim
+  alias vi=vim
+else
+  EDITOR=vi
 fi
+VISUAL="$EDITOR"
+export EDITOR VISUAL
 
 FOO=$(whence lessfile)
 FOO=${FOO:=$(whence lesspipe)}
@@ -441,8 +440,16 @@ pw () {
   grep $* /etc/passwd
 }
 
+screen-title () {
+  print -n "\E\"$*\E\134"
+}
+
 utf8-enable () {
   echo -e '\e%G'
+}
+
+utf8-disable () {
+  echo -e '\e%@'
 }
 
 precmd () {
@@ -505,7 +512,7 @@ vdiff () {
       ;;
     1)
       echo "\n\n\n\n\n\nvim: ft=diff" >> $TMPDIR/$host.$$.diff
-      vi -R $TMPDIR/$host.$$.diff
+      $EDITOR -R $TMPDIR/$host.$$.diff
       ;;
     *)
       ;;
