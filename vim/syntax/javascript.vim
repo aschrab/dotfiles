@@ -39,7 +39,7 @@ syn keyword javaScriptBoolean		true false
 syn match   javaScriptBraces		"[{}]"
 
 " catch errors caused by wrong parenthesis
-syn match   javaScriptInParen     contained "[{}]"
+"syn match   javaScriptInParen     contained "[{}]"
 syn region  javaScriptParen       transparent start="(" end=")" contains=javaScriptParen,javaScript.*
 syn match   javaScrParenError  ")"
 
