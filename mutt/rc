@@ -177,6 +177,7 @@ folder-hook spool     "set move=no"
 folder-hook Lists/inet          "source ~/cvs/dotfiles/mutt.expire"
 folder-hook Lists/allgurus      "source ~/cvs/dotfiles/mutt.expire"
 folder-hook Lists/yesno         "source ~/cvs/dotfiles/mutt.expire"
+folder-hook Lists/user-account  "source ~/cvs/dotfiles/mutt.expire"
 folder-hook Lists/securelinux   "source ~/cvs/dotfiles/mutt.expire"
 
 folder-hook (procmail|smartlist) \
@@ -242,6 +243,10 @@ send-hook list-managers my_hdr From: Aaron Schrab <aaron+lm@schrab.com>
 mailboxes =Lists/yesno
 lists yesno
 mbox-hook Lists/yesno "=Read/yesno"
+
+mailboxes =Lists/user-accounting
+lists user-accounting
+mbox-hook Lists/user-accounting "=Read/user-accounting"
 
 mailboxes =Lists/billsys
 lists billsys
