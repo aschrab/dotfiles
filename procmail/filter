@@ -6,6 +6,14 @@
 * B ?? ^/usr/local/adm/execpc/sum.pl -m modem-reports
 ! pfriedel@execpc.com
 
+:0fhw
+* ^From:.*@\/(aol|hotmail|msn|lycos|yahoo)\.com
+* $ ! ^Received: from .*$\MATCH \[.*by [a-z0-9.-]+\.((execpc|schrab|core)\.com|voyager\.net|qqx\.org)
+| formail -A"X-suspect-reason: Fake free webmail"
+
+  :0A:
+  suspect
+
 # handle voyager status messages
 :0
 * ^From: maillist@(VOYAGER\.NET|SEE\.MESSAGE\.FOR\.ADDRESS)
@@ -112,6 +120,7 @@ backup
                (editor|owner-newsletter)@keynote\.com|\
                davenet-world@scripting\.com)|\
     To:.*modem-reports@execpc\.com|\
+    X-procmail: lsm virus|\
     From:.*(\
             (hostmaster|reassign|netmod)@arin\.net|\
             dave@userland\.com|\

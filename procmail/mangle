@@ -1,11 +1,12 @@
 # At least one mailer uses the In-Reply-To: header like a References: header
-:0fhw
-* ! ^X-Mailer: ((ex)?MH|Mail User's Shell)
-*   ^In-Reply-To:.*<.*>.*<.*>
-* ! ^In-Reply-To:.* from ()
-* ! ^References:
-| formail -I "X-Procmail: Renamed In-Reply-To: to References:" \
-	  -R In-Reply-To: References:
+#  But this shouldn't matter for recent versions of mutt.
+#:0fhw
+#* ! ^X-Mailer: ((ex)?MH|Mail User's Shell)
+#*   ^In-Reply-To:.*<.*>.*<.*>
+#* ! ^In-Reply-To:.* from ()
+#* ! ^References:
+#| formail -I "X-Procmail: Renamed In-Reply-To: to References:" \
+#	  -R In-Reply-To: References:
 
 # Add a Message-ID: header if there isn't one
 #  (formail will create the actual message ID)
@@ -30,22 +31,25 @@
 | formail -IStatus: -IX-Status:
 
 ## Strip out M$'s damn winmail.dat
-:0fw
-* ^X-MS-Attachment:
-| $HOME/bin/trim-winmail
+#:0fw
+#* ^X-MS-Attachment:
+#| $HOME/bin/trim-winmail
 
 ## Convert messages from Suns lame mailtool into MIME messages
 :0 fw
 * ^Content-Type: x-sun
-| /usr/local/bin/emil -B BA -F MIME
+| emil -B BA -F MIME
 
-:0Bbfw
-* ! H ?? From:.*majordomo
-* ! PGP
-* ^--$
-| sed 's/^--$/-- /'
-  :0afhw
-  | formail -A "X-Procmail: $HOST fixed sigdashes"
+#:0Bbfw
+#* -1^0   H ?? ^Content-Type:.*text/plain
+#*  2^0 ! H ?? ^Content-Type:.*text/plain
+#*      ! H ?? ^From:.*majordomo
+#*      ! H ?? ^Subject:.*dilbert
+#* ! PGP
+#* ^--$
+#| sed 's/^--$/-- /'
+#  :0afhw
+#  | formail -A "X-Procmail: $HOST fixed sigdashes"
 
 # Add a content length header (procmail will figure out the actual length)
 # Also remove X-UIDL header, and eliminate all but one CTE header
@@ -53,19 +57,21 @@
 | formail -I"X-UIDL:" -I"Content-Length:                       0" \
           -uContent-Transfer-Encoding:
 
-:0
-* ^In-Reply-To:[^<]*<[^>]*[ 	]
-{
-  :0c
-  fixeud/
-
-  :0
-  * ^X-Mailer:\/.*
-  { LOG="$TIME: Fixed In-Reply-To: header from $MATCH$NL" }
-
-  :0fhw
-  | formail -A"X-Procmail: $HOST fixed In-Reply-To header" | $HOME/bin/fixeud
-}
+# Newer versions of mutt apparently work around this stupidity
+#
+#:0
+#* ^In-Reply-To:[^<]*<[^>]*[ 	]
+#{
+#  :0c
+#  fixeud/
+#
+#  :0
+#  * ^X-Mailer:\/.*
+#  { LOG="$TIME: Fixed In-Reply-To: header from $MATCH$NL" }
+#
+#  :0fhw
+#  | formail -A"X-Procmail: $HOST fixed In-Reply-To header" | $HOME/bin/fixeud
+#}
 
 ## Make sure that all messages have a Lines: header
 # Done again in manglemore, in case it's changed
@@ -85,6 +91,9 @@
   | formail -a "Lines: $LINES"
 }
 
+:0
+* ^^Fucksadfadsf
+{
 # Set content type of pgp messages so mutt will recognize them
 # if plain text, can wipe out current content-type
 :0
@@ -114,13 +123,15 @@
   * ^-----BEGIN PGP SIGNED MESSAGE-----
   |formail -a"Content-Type: application/pgp; format=text; x-action=sign"
 }
+}
 
 # Skip this part for messages that aren't plaintext, or are pgp signed
 :0
 *   1^0
 *  -5^0 ^Content-type:
 *  10^0 ^Content-type:.*text/plain
-* -15^0 ^Content-type:.*pgp
+* -9876543421^0 ^Content-type:.*pgp
+* -15^0 B ?? ^-----BEGIN PGP MESSAGE-----
 {
   # Remove stupid juno adds
   :0fbiw

@@ -1,3 +1,9 @@
+:0
+* ^X-Mailing-List:.*debian
+* ^Subject: Antigen found
+* ^From:.*antigen
+idiot/
+
 # Remove duplicates (keep separate cache for each list)
 :0
 * FETCHED ?? y

@@ -5,132 +5,18 @@ EXPIRE
 SUBJ
 
 :0
-* ^Sender: crypto-gram-return
+* ^Return-Path: <crypto-gram-return
 { FIXLINKS=yes }
 
 :0
-* From:.*hot-news-request@augi
-{ LIST=Lists/hot-news/ }
-
-:0
-* ^X-Mailing-List:.*<gurus@
-{ LIST=Lists/gurus/ }
-
-:0
-* ^Sender: gurus-admin@lists\.core\.com
-{ LIST=Lists/gurus/ }
-
-:0
-* List-Id: <sysops.lists.(core.com|voyager.net)>
-{
-  LIST=Lists/sysops/
-  SUBJ='\[Sysops\] '
-}
-
-:0
-* ^Sender: owner-listserv@lists.corecomm.net
-{
-  LIST=Lists/listserv/
-  SUBJ='\[LISTSERV\] '
-}
-
-:0
-* ^Sender: listserv-admin@lists.corecomm.net
-{
-  LIST=Lists/listserv/
-  SUBJ='\[Listserv\] '
-}
-
-:0
-* ^Sender: mailteam-admin@lists\.(core\.com|voyager\.net)
-{
-  LIST=Lists/mailteam/
-  SUBJ='\[Mailteam\] '
-}
-
-:0
-* ^List-Id: <allgurus\.lists\.core\.com>
-{
-  EXPIRE="7 days"
-  LIST=Lists/allgurus/
-}
-
-:0
-* ^X-Mailing-List: <lsm-workers@lists
+* ^Return-Path: <lsm-workers-admin@lists
 { LIST=Lists/lsm-workers/ }
 
 :0
-* ^Return-Path: <net-eng-admin@lists\.core\.com>
+* ^List-ID: <ibook\.lists\.themacintoshguy\.com>
 {
-  LIST=Lists/net-eng/
-  SUBJ='\[Net-eng\] '
-}
-
-:0
-* ^Return-Path: <net-eng-request@
-{ LIST=Lists/net-eng/ }
-
-:0
-* ^X-Mailing-List: <tech@lists\.execpc\.com>
-{
-  LIST=Lists/tech/
-  MHONARC=$WEB/tech
-}
-
-:0
-* ^X-Mailing-List:.*\<funstaff@
-{
-  :0fhw
-  * ^From:.*sovitzky@execpc
-  * ^Subject:.*Weather Forecast
-  | formail -I "Status: RO"
-
-  LIST=Lists/funstaff/
-}
-
-:0
-* ^X-Mailing-List: <(all|voyn)?staff@lists\.execpc\.com
-{ LIST=Lists/staff/ }
-
-:0
-* ^Sender: (all|voyn)?staff-admin@lists\.core\.com
-{ LIST=Lists/staff/ }
-
-:0
-* ^X-Mailing-List: <noc-staff@lists\.execpc\.com
-{ LIST=Lists/noc-staff/ }
-
-:0
-* ^X-Mailing-List: <billsys@lists
-{ LIST=Lists/billsys/ }
-
-:0
-* ^X-Mailing-List: <user-accounting@lists
-{
-  EXPIRE="14 days"
-  LIST=Lists/user-accounting/
-}
-
-:0
-* ^X-Mailing-List: <dnvs-list@lists\.execpc\.com>
-{
-  REPLYTO="dnvs-list@lists.execpc.com"
-  LIST=Lists/dnvs/
-}
-
-:0
-* ^(Sender: owner-|Delivered-To: )list@inet-access\.net
-{
-  EXPIRE="3 days"
-  REPLYTO="list@inet-access.net"
-  LIST=Lists/inet/
-}
-
-:0
-* ^Sender: owner-nanog@merit\.edu
-{
-  LIST=Lists/nanog/
-  SETREAD=y
+  LIST=Lists/ibook/
+  REPLYTO="ibook@lists\.themacintoshguy\.com"
 }
 
 :0
@@ -148,11 +34,21 @@ SUBJ
 { LIST=Lists/macosx-talk/ }
 
 :0
-* ^Mailing-List: list mkesklyarov@yahoogroups\.com
+* ^Mailing-List: list milwpm@yahoogroups\.com
 {
-  LIST=Lists/mkesklyarov/
-  SUBJ='\[mkesklyarov\] '
-  REPLYTO="mkesklyarov@yahoogroups.com"
+  LIST=Lists/milwpm/
+  SUBJ='\[milwpm\] '
+  REPLYTO="milwpm@yahoogroups.com"
+  EGROUPS=yes
+}
+
+:0
+* ^Mailing-List: list Jeremiah_Series@yahoogroups\.com
+{
+  LIST=Lists/jeremiah/
+  SUBJ='\[Jeremiah\] '
+  REPLYTO="Jeremiah_Series@yahoogroups.com"
+  EGROUPS=yes
 }
 
 :0
@@ -165,7 +61,10 @@ SUBJ
 
 :0
 * ^Mailing-List: list gnu-screen@(yahoo|e)groups.com
-{ LIST=Lists/screen/ }
+{
+  LIST=Lists/screen/
+  EGROUPS=yes
+}
 
 :0
 * ^Return-Path: <security-audit-return-
@@ -180,8 +79,25 @@ SUBJ
 }
 
 :0
-* ^Return-Path: <bounce-debian-powerpc
-{ LIST=Lists/debian-powerpc/ }
+* Return-Path: <mol-general-(admin@|return-)
+{
+  LIST=Lists/mol-general/
+  REPLYTO="mol-general@lists\.maconlinux\.org"
+}
+
+:0
+* ^Return-Path: <bounce-debian-\/[a-z0-9._-]+
+{
+  LIST=Lists/debian-$MATCH/
+
+  :0
+  * ^From:[ 	]*spam_filter@linuxfreemail.com
+  /dev/null
+}
+
+:0
+* ^X-PTS-Package:
+{ LIST=Lists/debian-pts/ }
 
 :0
 * ^Sender: owner-linuxppc-dev@
@@ -190,13 +106,6 @@ SUBJ
 :0
 * ^Sender: owner-linuxppc-user@
 { LIST=Lists/linux-ppc-user/ }
-
-:0
-* ^Sender: viewcvs-admin@lyra
-{
-  LIST=Lists/viewcvs/
-  SUBJ='\[ViewCVS\] '
-}
 
 :0
 *  ^Mailing-List: list talk-dc@
@@ -225,84 +134,10 @@ SUBJ
 }
 
 :0
-* ^Mailing-List:.*discuss-help@linmodems\.org
-{ LIST=Lists/linmodems/ }
-
-:0
-* ^Return-Path: <owner-sawmill@
-{
-  REPLYTO="sawmill@aarg\.net"
-  SUBJ='\[Sawmill\] '
-  EXPIRE="5 days"
-  LIST=Lists/sawmill/
-}
-
-:0
-* ^Sender: .*usr-tc@(lists\.)?xmission
-{
-  REPLYTO="usr-tc@(lists|mail)\.xmission\.com"
-
-  SUBJ="(usr-tc) "
-  LIST=Lists/usrtc
-}
-
-:0
-* ^Sender: *owner-portmaster-radius@livingston
-{
-  :0fhw
-  * ^From:.*megazone
-  * ^Subject:.*\(fwd\)
-  | sed -e '/^Subject:/s/ (fwd)//'
-
-  SUBJ="(RADIUS) "
-  LIST=Lists/livingston-radius/
-}
-
-:0
-* ^(Return-path: <|Sender: )owner-vnc-list@
-{
-  :0
-  * ^From:.*<anton@srel.edu>
-  idiot/
-
-  REPLYTO=vnc-list
-  LIST=Lists/vnc/
-}
-
-:0
 * ^Sender: *owner-ietf-radius@(livingston|portmasters)
 {
   SUBJ='(radius) '
   LIST=Lists/radius-ietf/
-}
-
-:0
-* ^X-Loop: redhat-devel-list@redhat
-{
-  REPLYTO=redhat-devel-list
-  LIST=Lists/rawhide/
-}
-
-:0
-* ^Return-Path: <redhat-devel-list-admin@redhat
-{
-  REPLYTO=redhat-devel-list
-  SUBJ='\[Redhat-devel-list\] '
-  LIST=Lists/rawhide/
-}
-
-:0
-* ^X-Loop: contrib-list@redhat
-{
-  REPLYTO=contrib-list
-  LIST=Lists/contrib/
-}
-
-:0
-* X-Mailing-List: <lorax-list@redhat
-{
-  REPLYTO=lorax-list
-  LIST=Lists/lorax/
 }
 
 :0
@@ -311,10 +146,6 @@ SUBJ
   SUBJ='\[linux-\(alert\|security\)\] '
   LIST=Lists/linux-security/
 }
-
-:0
-* ^X-Loop: scud@lists\.execpc\.com
-{ LIST=Lists/scud/ }
 
 :0
 * ^Resent-Sender:.*procmail-dev-request
@@ -351,7 +182,7 @@ SUBJ
 { LIST=Lists/zsh }
 
 :0
-* ^Return-Path: <bugtraq-return-[0-9]+-aarons=execpc\.com@securityfocus\.com>
+* ^Return-Path: <bugtraq-return-[0-9]+-aaron=schrab\.com@securityfocus\.com>
 { LIST=Lists/bugtraq/ }
 
 :0
@@ -374,10 +205,6 @@ SUBJ
 { LIST=Lists/linux-pmac/ }
 
 :0
-* ^Sender:.*owner-milw-linux@serreyn\.ml\.org
-{ LIST=Lists/milw-linux/ }
-
-:0
 * ^Sender: .*mlug-list
 {
   REPLYTO=mlug-list
@@ -396,10 +223,6 @@ SUBJ
 { LIST=Lists/redhat/ }
 
 :0
-* ^Resent-Sender:.*dingus-request
-{ LIST=Lists/dingus/ }
-
-:0
 * ^Return-Path:.*btlist-owner
 { LIST=Lists/bt/ }
 
@@ -414,7 +237,12 @@ SUBJ
 
 :0
 * ^Return-Path: <bounce-black-cat-
-{ LIST=Lists/black-cat/ }
+{
+  LIST=Lists/black-cat/
+
+  :0fhw
+  | rethread
+}
 
 :0
 * ^List-Subscribe: <mailto:tidbits-on@tidbits
@@ -428,62 +256,24 @@ SUBJ
 { LIST=Lists/tidbits/ }
 
 :0
-* ^(Sender: owner-linux-mac68k@|X-Envelope-To:.*linux-68k@schrab.com)
+* ^Sender: owner-spamtools@(lists\.)?abuse\.net
 {
-  SUBJ='\[linux-mac68k] '
-  LIST=Lists/linux-68k/
-}
-
-:0
-* ^(Return-Path|Sender): <?listar-(announce|support|dev)-bounce@listar
-{
-  SUBJ='\[[Ll]istar\(\|-announce\|-support\|-dev\)] '
-  LIST=Lists/listar/
-}
-
-:0
-* ^Sender: mailman-users-admin@python
-{
-  SUBJ='\[Mailman-\(Developers\|Users\)] '
-  LIST=Lists/mailman/
-}
-
-:0
-* ^List-Post: <mailto:sympa-users
-{
-  SUBJ='\[sympa-users] '
-  LIST=Lists/sympa-users/
-}
-
-:0
-* ^Return-Path: <raven-admin@ietf
-{
-  SUBJ='\[Raven] '
-  LIST=Lists/raven/
-}
-
-:0
-* ^Sender: owner-spamtools@abuse\.net
-{
-  REPLYTO=spamtools@abuse.net
+  REPLYTO=spamtools@(lists\.)?abuse.net
   SUBJ='\[spamtools] '
   LIST=Lists/spamtools/
 }
 
 :0
-* Sender: owner-hfs-interest
+* ^X-BeenThere: hfs-user@
 {
-  REPLYTO=hfs-interest@ccs.neu.edu
+  #REPLYTO=hfs-interest@ccs.neu.edu
   LIST=Lists/hfs/
+  SUBJ='\[hfs-user] '
 }
 
 :0
 * (X-Mailing-List|List-Id):.*<lirc
 { LIST=Lists/lirc/ }
-
-:0
-* Sender:.*<mpg123@
-{ LIST=Lists/mpg123/ }
 
 :0
 * ^Sender: owner-irmp3@

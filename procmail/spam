@@ -58,18 +58,37 @@
 #* ^Subject:.*[	 ][	 ][a-z0-9]+$
 #| formail -A"X-suspect-reason: multiple spaces"
 
-:0fhw
-* ^X-Mailer: Dynamic Opt-In Emailer
-| formail -A"X-suspect-reason: X-Mailer"
+#:0fhw
+#* ^X-Mailer: (Dynamic Opt-In Emailer|Aureate Group Mail Free Edition)
+#| formail -A"X-suspect-reason: X-Mailer"
+
+#:0Bfhw
+#* ^^Below is the result of your feedback form
+#| formail -A"X-suspect-reason: formmail"
+
+#:0fhw
+#* ! ^From: MAILER-DAEMON@pug\.qqx\.org
+#* ! ^Message-ID: <(listmanager|LYRIS)
+#* ! ^X-ListServer: CommuniGate
+#* 1^1 ^Received:\/.*
+#* MATCH ?? by ([a-z]\.mx\.execpc\.com|pug\.qqx\.org|mx[0-9]+\.mx\.voyager\.net)
+#* ! MATCH ?? from userid
+#| formail -A"X-suspect-reason: No non-local Received: header"
+
+#:0fhw
+#* ^Message-ID:.*<>
+#| formail -A"X-suspect-reason: Message-ID"
+
+#:0fhw
+#* ^(From|Subject):.*=\?ks_c_5601-1987\?
+#| formail -A"X-suspect-reason: header charset"
 
 :0fhw
-* 1^1 ^Received:\/.*
-* MATCH ?? by ([a-z]\.mx\.execpc\.com|pug\.qqx\.org)
-* ! MATCH ?? from userid
-| formail -A"X-suspect-reason: No non-local Received: header"
+* ^From:.*@(pocketstuffer|all-?execs)\.com
+| formail -A"X-suspect-reason: From: domain"
 
 :0
-* ^X-(suspect-reason:|procmail: lsm spam)
+* ^X-(suspect-reason:|procmail: lsm spam|Spam-Flag: YES)
 {
   LOGABSTRACT=no
   :0:

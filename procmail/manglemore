@@ -27,7 +27,7 @@
   * 987654321^0 MATCH ?? Re\[
   * 1^1 MATCH ?? Re
   {
-    :0chwi
+    :0hwi
     NSUBJ=| echo $OSUBJ | sed \
         -e 's,^[ 	]*\([Rr][Ee]\(\[[0-9]\+]\)\?:[ 	]*\)*,,' \
         -e 's,\([	 ]*-[Rr][Ee][Pp][Ll][Yy]\)*[ 	]*$,,'
@@ -72,9 +72,15 @@ EXPIRE
 * FIXLINKS ?? y
 | fixlinks
 
+# Rearrange stuff like output from lynx -dump to be more readable
+#:0fbw
+#* ^X-Mailing-List: <debian-news@lists\.debian\.org>
+#* ^Subject: Debian Weekly News
+#| reformlynx
+
 :0fbw
 * EGROUPS ?? y
-| sed -e '/^-----*-- Yahoo! Groups Sponsor -----*-~-~> *$/,$d'
+| sed -e '/^-----*-- Yahoo! Groups Sponsor -----*-~--> *$/,$d'
 
 # Count number of lines
 :0B
