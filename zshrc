@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.30 $'
+rcvers='$Revision: 1.31 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -133,10 +133,10 @@ if [[ -n $PZSH ]]; then
 fi
 
 HISTSIZE=250
-manpath=(/usr/man /usr/local/man/ /usr/X11/man $HOME/man)
 export PS1 RPS1 HISTSIZE
 
 path=()
+manpath=()
 ppath=(
   ~/bin
   /usr/local/bin
@@ -145,7 +145,6 @@ ppath=(
   /usr/local/sbin
   /usr/sbin
   /sbin
-  /etc
   /usr/ccs/bin
   /usr/ccs/lib
   /usr/X11R6/bin
@@ -155,6 +154,7 @@ ppath=(
   /usr/local/pkg/dnvs
   /usr/local/adm/execpc
   /usr/adm/bin
+  /usr/local/pilot/bin
 )
 
 for d in $ppath
@@ -163,8 +163,18 @@ do
   then
     path=($path $d)
   fi
+
+  m=${d%/bin}
+  if [[ $d == $m ]]
+    m="$m/man"
+    if [[ -d $m ]]
+    then
+      manpath=($manpath $m)
+    fi
+  then
+  fi
 done
-unset ppath d
+unset ppath d m
 
 setopt \
   Always_Last_Prompt \
