@@ -13,7 +13,7 @@
   { RBL="$RBL,MAPS" }
 
   :0
-  * RBLCHECK ?? dul\.orca\.bc\.ca
+  * RBLCHECK ?? dul\.maps\.vix\.com
   { RBL="$RBL,DUL" }
 
   :0
