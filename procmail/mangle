@@ -1,3 +1,33 @@
+# Fix reply indicators from stupid mailers
+#  * Any /-reply$/
+#  * Any /Re[\d+]:/
+#  * More than one /^Re:/
+:0
+* $ ^Subject:[ 	]\/[^ 	].*
+{
+  SUBJ=$MATCH
+
+  :0
+  * $ 987654321^0 SUBJ ?? -reply[ 	]*$
+  * -1^0
+  * $ SUBJ ?? ^^\/(Re(\[[0-9]+])?:[ 	]*)*
+  * 987654321^0 MATCH ?? Re\[
+  * 1^1 MATCH ?? Re
+  {
+    :0chwi
+    NSUBJ=| echo $SUBJ | sed \
+        -e 's,^[ 	]*\([Rr][Ee]\(\[[0-9]\+]\)\?:[ 	]*\)*,,' \
+        -e 's,\([	 ]*-[Rr][Ee][Pp][Ll][Yy]\)*[ 	]*$,,'
+
+    SUBJ=$NSUBJ
+    NSUBJ
+
+    :0afhw
+    | formail -i"Subject: Re: $SUBJ"
+  }
+}
+
+
 # At least one mailer uses the In-Reply-To: header like a References: header
 :0fhw
 * ! ^X-Mailer: Mail User's Shell
