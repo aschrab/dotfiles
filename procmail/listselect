@@ -5,6 +5,11 @@ EXPIRE
 SUBJ
 
 :0
+* ^To:.*aaron\+rss-subs@schrab\.com
+* ^User-Agent:.*rss2email
+rss/
+
+:0
 * ^Return-Path: <crypto-gram-return
 { FIXLINKS=yes }
 
@@ -27,10 +32,41 @@ SUBJ
 }
 
 :0
+* ^List-Id:.*<ruby-dbi-devel\.rubyforge\.org>
+{
+  LIST=Lists/ruby-dbi/
+  SUBJ='\[Ruby-DBI-devel] '
+}
+
+:0
 * ^(List-Subscribe: <mailto:ruby-talk-|List-Id: ruby-talk\.ruby-lang\.org)
 {
   LIST=Lists/ruby-talk/
   REPLYTO="ruby-talk@ruby-lang\.org"
+}
+
+:0
+* ^List-Id:.*<asterisk-dev
+{
+  LIST=Lists/asterisk-dev/
+  SUBJ='\[Asterisk-Dev] '
+  REPLYTO="asterisk-dev@lists\.digium\.com"
+}
+
+:0
+* ^List-Id:.*<asterisk-users
+{
+  LIST=Lists/asterisk-users/
+  SUBJ='\[Asterisk-Users] '
+  REPLYTO="asterisk-users@lists\.digium\.com"
+}
+
+:0
+* ^List-Id:.*<narf-lib-devel\.lists\.sourceforge\.net>
+{
+  LIST=Lists/narf/
+  SUBJ='\[Narf-lib-devel] '
+  REPLYTO="narf-lib-devel@lists\.sourceforge\.net"
 }
 
 :0
@@ -245,7 +281,23 @@ SUBJ
 * ^Sender: linux-pmac
 { LIST=Lists/linux-pmac/ }
 
-#VERBOSE=yes
+:0
+* ^List-Id: <mlug-board\..*milwaukeelug\.org>
+{
+  SUBJ='\[Mlug-board] '
+  REPLYTO=mlug-board
+  LIST=Lists/mlug-board/
+}
+
+:0
+* List-Id:.*<mb-d\/[12]\.mlug\.milwaukeelug\.org>
+* MATCH ?? ^\/.
+{
+  SUBJ='\[MB-D[12]] '
+  REPLYTO=mb-d[12]
+  LIST="Lists/mlug-board-d$MATCH/"
+}
+
 :0
 * ^List-Id: <mlug-org\..*milwaukeelug\.org>
 {
@@ -253,11 +305,11 @@ SUBJ
   REPLYTO=mlug-org
   LIST=Lists/mlug-org/
 }
-#VERBOSE=no
 
 :0
 * ^Sender: .*mlug-list
 {
+  SUBJ='\[MLUG] '
   REPLYTO=mlug-list
   LIST=Lists/mlug/
 }
