@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.83 $'
+rcvers='$Revision: 1.84 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -196,6 +196,7 @@ ppath=(
   /usr/openwin/bin
   /usr/local/pkg/guru
   /usr/local/pkg/dnvs
+  /usr/local/adm/voyager
   /usr/local/adm/execpc
   /usr/adm/bin
   /usr/local/pilot/bin
