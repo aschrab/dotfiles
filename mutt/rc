@@ -190,6 +190,10 @@ lists lsm-workers nsmacapi-talk slickwli-beta
 mbox-hook spool =IN
 mbox-hook backup =Read/backup
 
+mailboxes =Lists/gurus
+lists gurus
+mbox-hook Lists/gurus "=Read/gurus/`date '+%Y%m'`"
+
 mailboxes =Lists/tech
 lists tech
 mbox-hook Lists/tech "=Read/tech/`date '+%Y%m'`"
