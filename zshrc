@@ -717,6 +717,11 @@ vdiff () {
   rm -f $TMPDIR/$host.$$.diff
 }
 
+mcd () {
+  mkdir "$@"
+  cd "$argv[-1]"
+}
+
 fignore=(.o .bak .swp \~)
 compctl -g '*' -x 'S[.]','C[0,*/.*]' -g '*(D)' -- rm
 #compctl -g '*(-/)' + -g '.*(-/)' + -k '(..)' cd rmdir
