@@ -227,11 +227,6 @@ lists list-managers
 mbox-hook Lists/list-managers "=Read/list-managers"
 send-hook list-managers my_hdr From: Aaron Schrab <aaron+lm@schrab.com>
 
-mailboxes =Lists/smartlist
-lists smartlist
-mbox-hook Lists/smartlist "=Read/smartlist"
-send-hook smartlist my_hdr From: Aaron Schrab <aaron+smartlist@schrab.com>
-
 mailboxes =Lists/billsys
 lists billsys
 mbox-hook Lists/billsys "=Read/billsys"
@@ -325,11 +320,6 @@ lists zsh-users zsh-workers
 mbox-hook Lists/zsh "=Read/zsh"
 send-hook zsh 'my_hdr From: Aaron Schrab <aaron+zsh@schrab.com>'
 
-mailboxes =Lists/procmail
-lists procmail
-mbox-hook Lists/procmail "=Read/procmail"
-send-hook procmail 'my_hdr From: Aaron Schrab <aaron+procmail@schrab.com>'
-
 mailboxes =Lists/procmail-dev
 lists procmail-dev
 mbox-hook Lists/procmail-dev "=Read/procmail-dev"
@@ -339,6 +329,16 @@ mailboxes =Lists/smartlist-dev
 lists smartlist-dev
 mbox-hook Lists/smartlist-dev "=Read/smartlist-dev"
 send-hook smartlist-dev 'my_hdr From: Aaron Schrab <aaron+procmail@schrab.com>'
+
+mailboxes =Lists/smartlist
+lists smartlist
+mbox-hook Lists/smartlist "=Read/smartlist"
+send-hook smartlist my_hdr From: Aaron Schrab <aaron+smartlist@schrab.com>
+
+mailboxes =Lists/procmail
+lists procmail
+mbox-hook Lists/procmail "=Read/procmail"
+send-hook procmail 'my_hdr From: Aaron Schrab <aaron+procmail@schrab.com>'
 
 mailboxes =Lists/starbuck
 lists starbuck-list
