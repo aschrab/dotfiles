@@ -249,6 +249,11 @@ lists milw-linux
 mbox-hook Lists/milw-linux "=Read/milw-linux"
 send-hook milw-linux 'my_hdr From: Aaron Schrab <aaron@schrab.com>'
 
+mailboxes =Lists/mpg123
+lists mpg123
+mbox-hook Lists/mpg123 "=Read/mpg123"
+send-hook mpg123 'my_hdr From: Aaron Schrab <aaron+mpg123@schrab.com>'
+
 mailboxes =Lists/hfs
 lists hfs-interest
 mbox-hook Lists/hfs "=Read/hfs"
