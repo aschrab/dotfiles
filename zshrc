@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.85 $'
+rcvers='$Revision: 1.86 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -638,7 +638,7 @@ case "$host" in
       export CYLIB=/var/backup/tapes
       ;;
 
-   "pug")
+   "pug"|"milamber")
       export TRNINIT=~/.trn/rc
       export CVSROOT=/home/aarons/.cvsroot
 
