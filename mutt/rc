@@ -478,6 +478,7 @@ fcc-save-hook ferguson@execpc    "=wayne"
 fcc-save-hook stephenh@execpc    "=stephen"
 fcc-save-hook abuse\.net         "=abuse.net"
 fcc-save-hook @orbs\.org         "=orbs"
+fcc-save-hook relays@radparker   "=rrss"
 fcc-save-hook eric@bernafamily   "=eric@bernafamily.com"
 
 save-hook mlug-list          "=mlug"
