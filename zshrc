@@ -7,7 +7,7 @@ umask 022
 
 export BAUD=0
 
-rcvers='$Revision: 1.127 $'
+rcvers='$Revision: 1.128 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -194,7 +194,7 @@ case "$TERM" in
 esac
 
 # Make sure the prompt begins on a new line
-PS1="%{%S$%s${(pl:COLUMNS-4:: ::\r:)}%}$PS1"
+PS1="%{%S$%s${(pl:COLUMNS:: ::\r:)}%}$PS1"
 
 ZSH_MAJOR_VERSION="${${(s:.:)ZSH_VERSION}[0]}"
 
