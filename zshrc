@@ -701,7 +701,7 @@ vdiff () {
       *:1|svn:0)
         case "$EDITOR" in
           *vim*)
-            $EDITOR +'set ft=diff' -R $TMPDIR/$host.$$.diff
+            $EDITOR +'set ft=diff fdm=diff' -R $TMPDIR/$host.$$.diff
             ;;
           *)
             $EDITOR -R $TMPDIR/$host.$$.diff
