@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.32 $'
+rcvers='$Revision: 1.33 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -218,6 +218,7 @@ alias pwd=/bin/pwd
 export NULLCMD=:
 export HISTORY=${ZDOTDIR:=$HOME}/.zsh-history
 export CVS_RSH=ssh
+export RSYNC_RSH=ssh
 export MPAGE="-2m50t"
 export COLORFGBG='default;default'
 export WORDCHARS='*?_-.[]~/&|;!#$%^(){}<>,'
