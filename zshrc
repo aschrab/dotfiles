@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.117 $'
+rcvers='$Revision: 1.118 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -463,10 +463,13 @@ kpathword () {
       ;;
     /)
       found=1
-      if [[ $((num -= 1)) -le 0 ]]
+      if [[ "$inword" -eq 1 ]]
       then
-	cur=$((cur - 1))
-	break
+	if [[ $((num -= 1)) -le 0 ]]
+	then
+	  #cur=$((cur - 1))
+	  break
+	fi
       fi
       ;;
     *)
@@ -484,6 +487,7 @@ kpathword () {
       LBUFFER="${LBUFFER[0,$cur]}$post"
       #CURSOR=$((CURSOR - $#post))
     else
+      #CURSOR=$((cur + 1))
       CURSOR=$cur
     fi
   fi
