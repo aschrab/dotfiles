@@ -4,7 +4,7 @@ set postponed=+Postponed       # where to save postponed messages
 set record=+Misc               # save copies of outgoing mail
 set mbox=+Misc
 
-set quote_regexp='^([]:})>|!%] ?|([~<]|-+)[|>]| {0,4}[:>|]|[a-z]+[>|]+ ?|=([^=0-9]|$))'
+set quote_regexp='^([]})>|!%>] ?|[|>]| {0,4}[:>] ?| ?[a-z]+>+ ?)'
 
 # Settings for sending mail
 set use_domain
@@ -17,7 +17,7 @@ set dsn_notify=failure         # notify on transmission failure
 set dsn_return=full            #   include full message
 set reverse_name               # use address mail was sent to when replying
 set forw_format='Fwd: %s (from %a)'
-set alternates='((aarons|(aaron\.|a_)schrab|ats|lsm|bofh|procmail|list(admin|master))@([a-z0-9-]+\.)*execpc\.com|postmaster@(comet|lists)\.execpc\.com|aaron\.schrab@voyager\.net|(aaron.*|root|.*master|ats|bofh)@schrab\.com|.*@pug\.qqx\.org)'
+set alternates='((aarons|(aaron\.|a_)schrab|ats|lsm|bofh|procmail|list(admin|master))@([a-z0-9-]+\.)*execpc\.com|postmaster@(comet|lists)\.execpc\.com|aaron\.schrab@(voyager\.net|core(comm)?\.com)|(aaron.*|root|.*master|ats|bofh)@schrab\.com|.*@pug\.qqx\.org)'
 
 # Editing related settings
 set recall=no       # don't ask about recalling when mailing
@@ -38,22 +38,23 @@ set reverse_alias              # show aliases in message lists
 set nomark_old                 # all unread mail is marked as new
 set status_chars=" *%"
 set sort=threads
-set sort_aux=last-date-received
-set status_format=" %r Mutt:%-25.25f [Msgs:%?M?%M/?%m New:%n%?F? Flag:%F?%?t? Tag:%t? In:%b%?p? Post:%p?]  (%s/%S)%| "
+set sort_aux=last-date
+set status_format=" %r Mutt:%-25.25f [Msgs:%?M?%M/?%m New:%n%?F? Flag:%F?%?t? Tag:%t? In:%b%?p? Post:%p?]%> (%s/%S)"
 
 # Settings for viewing messages
 set pager_index_lines=8
 set pager_context=1            # show 1 line from prev. page
 set nomarkers
 set tilde                      # pad end of messages
-set implicit_autoview
+#set implicit_autoview
+set mailcap_path="$HOME/.mailcap"
 #set pager_stop
 hdr_order From: Subject: Date: To: Newsgroups: Cc: X-Mailer: User-Agent: \
   Content-Type: Content-Transfer-Encoding: X-Procmail: X-Suspect-reason:
 alternative_order text/enriched text/plain text application/postscript image/* 
-#auto_view text/html application/pgp-keys application/x-tar-gz \
-#  text/x-internet-signup application/x-sh application/x-patch \
-#  application/octet-stream
+auto_view text/html application/pgp-keys application/x-tar-gz \
+  text/x-internet-signup application/x-sh application/x-patch text/x-patch \
+  application/octet-stream
 charset-hook windows-1251 cp1251
 
 
@@ -82,7 +83,7 @@ bind  pager     G       bottom
 bind  pager	<Up>	previous-line
 bind  pager	<Down>	next-line
 bind  pager     "\Cn"   search-next
-bind  pager     n       next-unread
+#bind  pager     n       next-unread
 macro pager     "\Ck"	"|pgp -kaf\n"
 macro pager     "\Cb"   "|urlview\n"
 macro pager "\eh" "<view-attachments><next-entry><edit-type><bol><delete-char><enter><exit><exit><display-message>" "View alternative"
@@ -93,7 +94,7 @@ macro pager '#' ,@r13on       "Toggle ROT13 decoding"
 
 macro index "\eh" "<view-attachments><next-entry><edit-type><bol><delete-char><enter><exit><display-message>" "View alternative"
 bind  index	B	bounce-message
-bind  index     n       next-entry
+#bind  index     n       next-entry
 macro index     A       "c+Lists/inet\n"
 macro index     "\Ck"	"|pgp -kaf\n"
 macro index	G	"!fetchmail\n"
@@ -116,7 +117,7 @@ color body  yellow	default	\
 
 color body magenta default '^-----(BEGIN|END) PGP .*'
 
-set reply_regexp="^(re|aw)(\\[[0-9]+])?:[        ]*"
+set reply_regexp="^((re|aw)(\\[[0-9]+])?:[        ]*)+"
 
 color normal            white   default
 color status		black   green
