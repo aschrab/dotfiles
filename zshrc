@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.46 $'
+rcvers='$Revision: 1.47 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -230,6 +230,7 @@ fi
 unlimit core
 
 alias pwd=/bin/pwd
+alias grep=egrep
 
 export NULLCMD=:
 export HISTORY=${ZDOTDIR:=$HOME}/.zsh-history
