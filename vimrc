@@ -90,6 +90,18 @@ set t_vb=
 set list
 set guicursor=n-v-c:block-Cursor-blinkon0,ve:ver35-Cursor-blinkon0,o:hor50-Cursor-blinkon0,i-ci:ver25-Cursor-blinkon0,r-cr:hor20-Cursor-blinkon0,sm:block-Cursor-blinkon0
 
+" If requested file is already open, just open it readonly
+func CheckSwap()
+  swapname
+  if v:statusmsg =~ '\.sw[^p]$'
+    set ro
+  endif
+endfunc
+if &swf
+  set shm+=A
+  au BufReadPre * call CheckSwap()
+endif 
+
 iab teh the
 iab adn and
 iab nad and
