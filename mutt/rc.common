@@ -17,7 +17,7 @@ set dsn_notify=failure         # notify on transmission failure
 set dsn_return=full            #   include full message
 set reverse_name               # use address mail was sent to when replying
 set forw_format='Fwd: %s (from %a)'
-set alternates='((aarons|(aaron\.|a_)schrab|ats|lsm|bofh|procmail|list(admin|master))@([a-z0-9-]+\.)*execpc\.com|postmaster@(comet|lists)\.execpc\.com|aaron\.schrab@(voyager\.net|core(comm)?\.com)|(aaron.*|root|.*master|ats|bofh)@schrab\.com|.*@pug\.qqx\.org)'
+set alternates='(aschrab@copweb\.com|(aarons|(aaron\.|a_)schrab|ats|lsm|bofh)@([a-z0-9-]+\.)*execpc\.com|aaron\.schrab@(voyager\.net|core(comm)?\.com)|(aaron.*|root|.*master|ats|bofh)@schrab\.com|.*@pug\.qqx\.org)'
 
 # Editing related settings
 set recall=no       # don't ask about recalling when mailing
