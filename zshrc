@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.98 $'
+rcvers='$Revision: 1.99 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -119,11 +119,11 @@ case "$TERM" in
     if [[ $OSTYPE == linux* ]]
     then
       langset="no"
-      for l in en_US.iso885915 en_US.iso88591 en_US
+      for l in en_GB en_US.iso885915 en_US.iso88591 en_US
       do
         if [[ $langset == no && -d /usr/lib/locale/$l ]]
         then
-          export LANG="$l"
+          export LC_CTYPE="$l"
           langset="yes"
         fi
       done
