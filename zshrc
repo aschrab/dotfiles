@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.15 $'
+rcvers='$Revision: 1.16 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -212,6 +212,7 @@ PAGER=$(whence less)
 if [ -n "$PAGER" ]; then
   PAGER="less"
   export LESS="-aCMj3"
+  export LESSCHARSET=latin1
 else
   PAGER="more"
 fi
