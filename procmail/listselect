@@ -31,7 +31,7 @@ SUBJ
   * ^Subject:.*Weather Forecast
   | formail -I "Status: RO"
 
-  LIST=Lists/funstaff
+  LIST=Lists/funstaff/
 }
 
 :0
