@@ -17,6 +17,10 @@
   { RBL="$RBL,DUL" }
 
   :0
+  * RBLCHECK ?? mr-out\.imrss\.org
+  { RBL="$RBL,IMRSS" }
+
+  :0
   * RBLCHECK ?? dssl\.imrss\.org
   { RBL="$RBL,DSSL" }
 
