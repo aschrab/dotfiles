@@ -957,6 +957,15 @@ function __cdmatch () {
    return
 }
 
+# shell functions
+if [ -d $HOME/.fbin ]; then
+  fpath=($fpath $HOME/.fbin)
+  for AF in $HOME/.fbin/*(N); do
+        typeset -fu $AF:t
+  done
+  unset AF || :
+fi
+
 if [[ $ZSH_MAJOR_VERSION -ge 4 ]]; then
   local d
   for d in /usr/share /usr/local/share
@@ -1014,13 +1023,4 @@ if [[ $ZSH_MAJOR_VERSION -ge 4 ]]; then
       reply=( $reply "ats@$h" )
     done
   }
-fi
-
-# shell functions
-if [ -d $HOME/.fbin ]; then
-  fpath=($fpath $HOME/.fbin)
-  for AF in $HOME/.fbin/*(N); do
-        typeset -fu $AF:t
-  done
-  unset AF || :
 fi
