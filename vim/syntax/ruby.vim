@@ -148,9 +148,9 @@ if !exists("ruby_no_expensive")
   syn region  rubyBlock  start="^\s*def\s\+"rs=s matchgroup=rubyDefine end="\<end\>" contains=ALLBUT,rubyExprSubst,rubyTodo nextgroup=rubyFunction
   syn region  rubyBlock  start="^\s*\(class\|module\)\>"rs=s matchgroup=rubyDefine end="\<end\>" contains=ALLBUT,rubyExprSubst,rubyTodo nextgroup=rubyClassOrModule
   " modifiers + redundant *do*
-  syn match   rubyControl  "\<\(if\|unless\|while\|until\|do\)\>"
+  syn match   rubyControl  "\(^\|\s\|)\)\zs\(if\|unless\|while\|until\|do\)\>"
   " *do* requiring *end*
-  syn region  rubyDoBlock  matchgroup=rubyControl start="\<do\>" end="\<end\>" contains=ALLBUT,rubyExprSubst,rubyTodo
+  syn region  rubyDoBlock  matchgroup=rubyControl start="\(^\|\s\|)\)\zsdo\>" end="\<end\>" contains=ALLBUT,rubyExprSubst,rubyTodo
   " statements without *do*
   syn region  rubyNoDoBlock  matchgroup=rubyControl start="\<\(case\|begin\)\>" start="^\s*\(if\|unless\)\>" start=";\s*\(if\|unless\)\>"hs=s+1 end="\<end\>" contains=ALLBUT,rubyExprSubst,rubyTodo
   " statement with optional *do*
