@@ -175,9 +175,9 @@ folder-hook spool     "set hdr_format='%4C %Z %[%m/%d] %-15.15L (%4l) %s'"
 folder-hook spool     "set move=no"
 
 folder-hook Lists/inet          "source ~/cvs/dotfiles/mutt.expire"
-folder-hook Lists/allgurus      "source ~/cvs/dotfiles/mutt.expire"
-folder-hook Lists/yesno         "source ~/cvs/dotfiles/mutt.expire"
-folder-hook Lists/user-account  "source ~/cvs/dotfiles/mutt.expire"
+folder-hook Lists/allgurus      "set move=no"
+folder-hook Lists/yesno         "set move=no"
+folder-hook Lists/user-account  "set move=no"
 folder-hook Lists/securelinux   "source ~/cvs/dotfiles/mutt.expire"
 
 folder-hook (procmail|smartlist) \
