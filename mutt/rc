@@ -147,7 +147,7 @@ macro index     "\Cb"   "|urlview\n"
 
 macro attach    "\Ck"	"|pgp -kaf\n"
 
-bind  compose   E       edit-file
+macro  compose   E       "Ge"
 macro compose S "Fpgp +verbose=0 -fast +clearsig=on\ny^T^Uapplication/pgp; +format=text; x-action=sign\n" # To pgp-sign the old way :)
 
 send-hook   .         "unmy_hdr From"
@@ -166,7 +166,7 @@ folder-hook Lists     "set hdr_format='%4C %Z %[%m/%d] %-15.15F (%4l) %s'"
 folder-hook Lists     "set save_empty"
 
 folder-hook spool     "set hdr_format='%4C %Z %[%m/%d] %-15.15L (%4l) %s'"
-folder-hook spool     "set move=yes"
+folder-hook spool     "set move=no"
 
 folder-hook Lists/inet "set move=no"
 folder-hook Lists/inet 'push "T~E !(~O|~N|~F)\n"'
@@ -228,6 +228,11 @@ mailboxes =Lists/scud =scud.req
 lists scud
 mbox-hook Lists/scud "=Read/scud"
 send-hook scud my_hdr From: Aaron Schrab <aaron@schrab.com>
+
+mailboxes =Lists/lirc
+lists lirc
+mbox-hook Lists/lirc "=Read/lirc"
+send-hook lirc my_hdr From: Aaron Schrab <aaron+lirc@schrab.com>
 
 mailboxes =Lists/mlug
 lists mlug-list
@@ -340,9 +345,10 @@ send-hook schrab             "my_hdr From: Aaron Schrab <aaron@schrab.com>"
 send-hook abuse\.net         "my_hdr From: Aaron Schrab <aarons@execpc.com>"
 
 save-hook "~C manager@execpc" "=manager"
+fcc-save-hook "~C modem-report"       "=modem"
 
-fcc-save-hook imdb\.com      "=imdb"
-fcc-save-hook d(avid@)?schrab            "=david@schrab.com"
+fcc-save-hook imdb\.com          "=imdb"
+fcc-save-hook d(avid@)?schrab    "=david@schrab.com"
 fcc-save-hook jschrab            "=j_schrab"
 fcc-save-hook sschrab@royle      "=steven@schrab.com"
 fcc-save-hook ryan@inc.net       "=ryan@inc.net"
@@ -350,7 +356,6 @@ fcc-save-hook gamegrotto         "=deannah"
 fcc-save-hook unicorn@execpc     "=cathyann"
 fcc-save-hook cert\.org          "=cert"
 fcc-save-hook internic\.net      "=internic"
-fcc-save-hook modem-report  "=modem"
 fcc-save-hook morwen             "=lam"
 fcc-save-hook shadows@execpc     "=davisb"
 fcc-save-hook warrior\.mscs      "=mcs"
