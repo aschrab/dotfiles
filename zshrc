@@ -965,13 +965,17 @@ function __cdmatch () {
 }
 
 if [[ $ZSH_MAJOR_VERSION -ge 4 ]]; then
-  if [[ -d /usr/share/zsh/$ZSH_VERSION/functions/Completion ]]; then
-    fpath=( $fpath /usr/share/zsh/$ZSH_VERSION/functions/{Completion,Misc} )
-  elif [[ -d /usr/local/share/zsh/$ZSH_VERSION/functions/Completion ]]; then
-    fpath=( $fpath /usr/local/share/zsh/$ZSH_VERSION/functions/{Completion,Misc} )
-  elif [[ -d /usr/local/share/zsh/$ZSH_VERSION/functions ]]; then
-    fpath=( $fpath /usr/local/share/zsh/$ZSH_VERSION/functions )
-  fi
+  local d
+  for d in /usr/share /usr/local/share
+  do
+    if [[ -d $d/zsh/$ZSH_VERSION/functions/Completion ]]; then
+      fpath=( $fpath $d/zsh/$ZSH_VERSION/functions/{Completion,Misc} )
+      break
+    elif [[ -f $d/zsh/$ZSH_VERSION/functions/compinit ]]; then
+      fpath=( $fpath $d/zsh/$ZSH_VERSION/functions )
+      break
+    fi
+  done
 
   zle -N insert-last-word ins-last-word
   zle -N kpathword
