@@ -359,7 +359,15 @@ fi
 
 unlimit core
 
-alias pwd=/bin/pwd
+# Have `pwd` show both the real path and what the shell thinks it is {{{
+function pwd () {
+  local real=`/bin/pwd`
+  if [[ $real == $PWD ]]; then
+    echo $PWD
+  else
+    echo "$PWD ($real)"
+  fi
+} #}}}
 alias grep=egrep
 
 export NULLCMD=:
