@@ -154,3 +154,15 @@
    -ex -ep
 }
 
+# Remove some noise from mirror reports
+:0
+* ^From: (aarons@execpc.com|.*Cron Daemon)
+* ^To: aarons@execpc.com
+* ^Subject: (mirror update|Cron.*@greaseslapper>.*mirror\.pl)
+{
+  :0fbw
+  | sed '/^Got \([^ ]*\/\)*ls-lR\(\.gz\)\? /d'
+
+  :0afhw
+  | formail -ILines:
+}
