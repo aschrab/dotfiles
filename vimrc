@@ -33,6 +33,9 @@ highlight rubyStringDelimiter ctermfg=Blue
 highlight rubyInterpolation ctermbg=Cyan ctermfg=DarkYellow
 highlight rubyEscape ctermbg=Cyan ctermfg=DarkBlue
 
+highlight diffRemoved ctermfg=Red
+highlight diffAdded ctermfg=Blue
+
 set shiftwidth=2
 set autoindent
 set nobackup
