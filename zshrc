@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.9 $'
+rcvers='$Revision: 1.10 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -370,10 +370,16 @@ compctl -x \
  -- tz
 
 __groups=($(cut -d: -f1 /etc/group))
-compctl -f -x 'C[-1,chgrp][-1,-*] S[-]' \
+compctl -f -x 'C[-1,*chgrp][-1,-*] S[-]' \
                      -k "( -c -h -f -R -v --changes --no-dereference --silent
                            --quiet --recursive --verbose --help --version )" \
-            - 'C[-1,chgrp][-1,-*]' -k __groups -- chgrp
+            - 'p[1],C[-1,-*]' -k __groups -- chgrp
+
+compctl -f -x 'C[-1,*chown][-1,-*] S[-]' \
+                     -k "( -c -h -f -R -v --changes --no-dereference --silent
+                           --quiet --recursive --verbose --help --version )" \
+            - 'N[1,.:]' -k __groups \
+            - 'p[1],C[-1,-*]' -u -- chown
 
 if [ -x /usr/ucb/ps ] ; then
   alias ps=/usr/ucb/ps
