@@ -1,6 +1,6 @@
 :0
-* ! schrab\.com
-* ^TOmanager@execpc\.com
+* ! ^TO_schrab\.com
+* ^TO_manager@execpc\.com
 * ^From:.*((hst|dom)reg|notify|rereg|invoice|(fax|host)mast(er)?)@internic\.net
 {
   LOG="$TIME: internic -> manager TRASHED$NL"
@@ -47,7 +47,7 @@ idiot/
 backup
 
 :0
-* ^(Sender:.*(\
+* ^((Return-Path|Sender):.*(\
                infoalley@listproc\.info\.apple\.com|\
                aladdinnews|\
                owner-egcs-announce@(egcs\.)?cygnus|\
