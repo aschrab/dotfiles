@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.106 $'
+rcvers='$Revision: 1.107 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -121,6 +121,7 @@ case "$TERM" in
     if [[ $OSTYPE == linux* ]]
     then
       langset="no"
+      # en_US.utf8
       for l in en_GB en_US.iso885915 en_US.iso88591 en_US
       do
         if [[ $langset == no && -d /usr/lib/locale/$l ]]
@@ -297,24 +298,6 @@ VISUAL=${EDITOR:=$(whence vi)}
 export EDITOR VISUAL
 alias vi=$VISUAL
 
-GSED=$(whence gsed)
-if [[ -n "$GSED" ]]; then
-  alias sed=gsed
-fi
-unset GSED
-
-GMAKE=$(whence gmake)
-if [[ -n "$GMAKE" ]]; then
-  alias make=gmake
-fi
-unset GMAKE
-
-GCC=$(whence gcc)
-if [[ -z "$GCC" ]]; then
-  alias gcc=cc
-fi
-unset GCC
-
 if [[ $EDITOR == *vim* && -d $HOME/share/vim ]]
 then
   export VIM=$HOME/share/vim
@@ -361,6 +344,12 @@ else
 fi
 unset LS
 
+[[ -z $(whence gcc)    ]] && alias gcc=cc
+[[ -n $(whence gsed)   ]] && alias sed=gsed
+[[ -n $(whence gmake)  ]] && alias make=gmake
+[[ -n $(whence pinfo)  ]] && alias info=pinfo
+[[ -n $(whence screen) ]] && alias screen='screen -a -A'
+
 export HOSTALIASES=~/.hostaliases
 
 alias cls='clear'
@@ -377,7 +366,6 @@ else
 fi
 alias bc='bc -ql'
 alias trt=traceroute
-alias screen='screen -a -A'
 
 [ -x /usr/lib/sendmail ] && alias sendmail=/usr/lib/sendmail
 
@@ -451,6 +439,10 @@ fi
 
 pw () {
   grep $* /etc/passwd
+}
+
+utf8-enable () {
+  echo -e '\e%G'
 }
 
 precmd () {
