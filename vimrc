@@ -9,6 +9,10 @@ highlight Constant ctermfg=DarkMagenta
 highlight procmailAction ctermfg=DarkGreen
 highlight procmailCondition ctermfg=DarkBlue
 
+highlight NonText ctermfg=Blue cterm=NONE
+highlight StatusLine ctermfg=Blue ctermbg=Yellow cterm=reverse,bold
+highlight StatusLineNC ctermfg=Blue cterm=reverse
+
 set shiftwidth=2
 set autoindent
 set nobackup
@@ -20,6 +24,7 @@ set ruler
 set showmatch
 set formatoptions=tcrq2
 set cpoptions=BceFs$
+set cmdheight=2
 
 iab teh the
 iab adn and
