@@ -351,23 +351,23 @@ unset FOO
 PAGER=${PAGER:=$(whence less)}
 if [ -n "$PAGER" ]; then
   PAGER="less"
-  export LESS="-aCMj3"
-  case "$LC_CTYPE" in
-    *utf8)
-      LESSCHARSET="utf-8"
-      ;;
-    *)
-      LESSCHARSET=latin1
-      ;;
-  esac
-  export LESSCHARSET
-
 else
   PAGER="more"
   alias less=$PAGER
 fi
 alias les=less
 alias lss=less
+
+export LESS="-aCMj3"
+case "$LC_CTYPE" in
+  *utf8)
+    LESSCHARSET="utf-8"
+    ;;
+  *)
+    LESSCHARSET=latin1
+    ;;
+esac
+export LESSCHARSET
 
 # Set aliases
 LS=$(whence gnuls)
@@ -556,10 +556,15 @@ pw () {
 
 utf8-enable () {
   echo -e '\e%G'
+  LANG=en_US.utf8
+  unset LC_CTYPE
+  LESSCHARSET="utf-8"
 }
 
 utf8-disable () {
   echo -e '\e%@'
+  LANG=en_US
+  LESSCHARSET=latin1
 }
 
 precmd () {
