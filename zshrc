@@ -7,7 +7,7 @@ umask 022
 
 export BAUD=0
 
-rcvers='$Revision: 1.128 $'
+rcvers='$Revision: 1.129 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -91,9 +91,10 @@ then
   export magenta="%{$(echo -n '\e[0;35m')%}"
   export    cyan="%{$(echo -n '\e[0;36m')%}"
   export   white="%{$(echo -n '\e[0;37m')%}"
+  export  normal="%{$(echo -n '\e[0;22m')%}"
 fi
 
-fColor=$black
+fColor=$normal
 pColor=$green
 case "$USERNAME" in
   aarons|ats)
@@ -174,7 +175,7 @@ case "$TERM" in
     ;;
 
   linux)
-    fColor=$white
+    fColor=$normal
     stty erase '^?'
     print -P "${magenta}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${fColor}"
     PS1='%{$pColor%}%1v%!)$host%(#.#.$)%{$fColor%} '
