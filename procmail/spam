@@ -9,9 +9,10 @@
 * ! MATCH ?? ^^204\.107\.138\.1^^
 * ! MATCH ?? ^^216\.93\.66\.8[01]^^
 * ! MATCH ?? ^^169\.207\.[123]\.7[89]^^
+* ! MATCH ?? ^^212\.125\.143\.1^^
 {
   RELAYIP="$MATCH"
-  RBLCHECK=`rblcheck -p "$MATCH"`
+  RBLCHECK=`/home/aarons/bin/rblcheck -p "$MATCH"`
  
   :0
   * RBLCHECK ?? rbl\.maps\.vix\.com
