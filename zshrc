@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.113 $'
+rcvers='$Revision: 1.114 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -150,7 +150,7 @@ case "$TERM" in
     PS1="$PS1"'%{$pColor%}%1v%!)$host%(#.#.$)%{$fColor%} '
     RPS1='%{$pColor%} %~%{$fColor%}'
     ;;
-  screen)
+  screen*)
     print -P "${yellow}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${fColor}"
     PS1='%{]1;%(#.#.$)$host]2;n %(#.#.$)$host!%~k$host%(#.#.$)%.\%}'
     PS1="$PS1"'%{$pColor%}%1v%!)$host%(#.#.$)%{$fColor%} '
