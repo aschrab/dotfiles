@@ -1006,7 +1006,7 @@ then
   zstyle :compinstall filename $HOME/zcomp
 
   autoload -U compinit
-  compinit
+  compinit -u
 
   zstyle -e ':completion:*:hosts' hosts __hosts
   zstyle -e ':completion:*:complete:ssh:*:hosts' hosts __sshhosts
