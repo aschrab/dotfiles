@@ -8,8 +8,9 @@
 
 :0
 * ! ^TO_schrab\.com
+* ! HB ?? idtf\.org
 * ^TO_manager@execpc\.com
-* ^From:.*((hst|dom)reg|notify|rereg|invoice|(fax|host)mast(er)?)@internic\.net
+* ^(From|To):.*((hst|dom)reg|notify|rereg|invoice|(fax|host)mast(er)?)@internic\.net
 {
   LOG="$TIME: internic -> manager TRASHED$NL"
   LOGABSTRACT=no
@@ -87,6 +88,7 @@ backup
     To:.*modem-reports@execpc\.com|\
     From:.*(\
             (hostmaster|reassign|netmod)@arin\.net|\
+            dave@userland\.com|\
 	    nobody@uu\.net|\
 	    MAILER-DAEMON|\
 	    autoreply|\
@@ -94,7 +96,7 @@ backup
 	    webmaster@execpc|\
             sans@sans\.org|\
             enotify@usenix\.org|\
-            training@netopia.com|\
+            @netopia.com|\
 	    Cron Daemon)|\
     X-Envelope-To: (\
             js@schrab\.com|\
