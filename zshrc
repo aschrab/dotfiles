@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.101 $'
+rcvers='$Revision: 1.102 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -305,6 +305,12 @@ if [[ -n "$GSED" ]]; then
   alias sed=gsed
 fi
 unset GSED
+
+GMAKE=$(whence gmake)
+if [[ -n "$GMAKE" ]]; then
+  alias make=gmake
+fi
+unset GMAKE
 
 GCC=$(whence gcc)
 if [[ -z "$GCC" ]]; then
