@@ -1,0 +1,65 @@
+hostname "execpc.com"
+set username "aarons"
+set realname "Aaron Schrab"
+set quote_string "> "
+set reject_long_lines 0
+
+set followup_string "On %d, %r <%f> wrote:"
+set reply_string "On %d, %r <%f> wrote:"
+
+set non_Xbrowser "url_handler.sh %s"
+set Xbrowser "url_handler.sh %s"
+
+set unsubscribe_new_groups 1
+set mouse 1
+
+set query_next_article 0
+set confirm_actions 0
+
+set write_newsrc_flags 1
+
+set cc_followup -1
+set cc_followup_string "[This message has also been posted.]"
+
+set use_tilde 1
+set editor_command "vim +%d %s"
+set use_tmpdir 1
+set sorting_method 3
+set uncollapse_threads 1
+set read_active 0
+set wrap_flags 0
+set query_read_group_cutoff 0
+
+set spoiler_display_mode 1
+set spoiler_char '*'
+
+setkey article    article_lineup              "\e[A"
+setkey article    article_linedn              "\e[B"
+
+color header_number     "green"         "default"
+color header_name       "green"         "default"
+color normal            "default"     "default"
+color error             "red"           "default"
+color status            "black"         "green"
+color group             "lightgray"     "default"
+color article           "lightgray"     "default"
+color cursor            "green"         "default"
+color author            "cyan"          "default"
+color subject           "lightgray"     "default"
+color headers           "cyan"          "default"
+color menu              "black"         "green"
+color menu_press        "green"         "default"
+color tree              "blue"          "default"
+color quotes            "green"         "default"
+color thread_number     "blue"          "default"
+color high_score        "red"           "default"
+color signature         "cyan"          "default"
+color description       "blue"          "default"
+color tilde             "green"         "default"
+color response_char     "green"         "default"
+color box               "magenta"       "cyan"
+
+interpret ".slrn.sl"
+interpret ".trn.sl"
+
+% vim: ai si
