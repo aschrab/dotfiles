@@ -87,6 +87,17 @@
 * ^From:.*@(pocketstuffer|all-?execs)\.com
 | formail -A"X-suspect-reason: From: domain"
 
+# Spam with a high score goes directly to the spam folder
+:0
+* ^X-Spam-Status: Yes, hits=\/-?[0-9.]+
+{
+  :0:
+  * $$MATCH^0
+  * -10^0
+  spam
+}
+
+# Other spam just gets filed as suspect
 :0
 * ^X-(suspect-reason:|procmail: lsm spam|Spam-Flag: YES)
 {
