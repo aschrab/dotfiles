@@ -10,6 +10,7 @@ export BAUD=0
 
 rcvers='$Rev$'
 rcvers=$rcvers[(w)2]
+ZSH_MAJOR_VERSION="${${(s:.:)ZSH_VERSION}[0]}"
 
 if [[ "$TERM" == "linux" ]]
 then
@@ -250,8 +251,6 @@ case "$TERM" in
     }
     ;;
 esac
-
-ZSH_MAJOR_VERSION="${${(s:.:)ZSH_VERSION}[0]}"
 
 if [[ "${DISPLAY#${HOST}:}" != "$DISPLAY" ]]
 then
