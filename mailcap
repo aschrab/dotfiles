@@ -10,6 +10,7 @@ image/jpeg; ; x-mozilla-flags=internal
 application/x-gunzip;/bin/gunzip -c %s; copiousoutput
 application/x-tar-gz; tar tzvf %s 2>/dev/null; copiousoutput
 application/x-sh; cat %s; copiousoutput
+application/x-patch; cat %s; copiousoutput
 
 application/msword; wordview %s
 

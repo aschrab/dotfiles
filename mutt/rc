@@ -74,7 +74,7 @@ color quoted		green	default
 
 #mono  subject		underline
 
-auto_view text/html application/pgp-keys application/x-tar-gz text/x-internet-signup application/x-sh
+auto_view text/html application/pgp-keys application/x-tar-gz text/x-internet-signup application/x-sh application/x-patch
 
 source /home/aarons/.Mutt/aliases
 
