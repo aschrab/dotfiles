@@ -45,7 +45,8 @@ set fileformats=unix,dos,mac
 " set fileencodings=ucs-bom,iso-2022-jp,euc,sjis,latin1
 set pastetoggle=<F4>
 set modelines=5
-set wildmode=longest,full
+set wildmenu
+set wildmode=longest:full
 set wildignore+=*.o,*~
 
 set foldopen=mark,quickfix,tag,block,hor,search,jump
