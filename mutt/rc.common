@@ -87,8 +87,8 @@ macro pager     "\Ck"	"|pgp -kaf\n"
 macro pager     "\Cb"   "|urlview\n"
 macro pager "\eh" "<view-attachments><next-entry><edit-type><bol><delete-char><enter><exit><exit><display-message>" "View alternative"
 
-macro pager ,@r13on "<enter-command>set display_filter='tr A-Za-z N-ZA-Mn-za-m'; macro pager '#' ,@r13off 'Toggle ROT13 decoding'\n<display-toggle-weed><display-toggle-weed>"
-macro pager ,@r13off "<enter-command>set display_filter=''; macro pager '#' ,@r13on 'Toggle ROT13 decoding'\n<display-toggle-weed><display-toggle-weed>"
+macro pager ,@r13on "<enter-command>set display_filter='tr A-Za-z N-ZA-Mn-za-m'; macro pager '#' ,@r13off 'Toggle ROT13 decoding'\n<display-toggle-weed><display-toggle-weed><enter-command>unset display_filter\n"  "Turn on ROT13 decoding"
+macro pager ,@r13off "<enter-command>macro pager '#' ,@r13on 'Toggle ROT13 decoding'\n<display-toggle-weed><display-toggle-weed>"  "Turn off ROT13 decoding"
 macro pager '#' ,@r13on       "Toggle ROT13 decoding"
 
 macro index "\eh" "<view-attachments><next-entry><edit-type><bol><delete-char><enter><exit><display-message>" "View alternative"
