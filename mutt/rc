@@ -255,6 +255,11 @@ lists security-audit
 mbox-hook Lists/audit "=Read/audit"
 send-hook security-audit my_hdr From: Aaron Schrab <aaron+lsa@schrab.com>
 
+mailboxes =Lists/securelinux
+lists securelinux
+mbox-hook Lists/securelinux "=Read/securelinux"
+send-hook securelinux my_hdr From: Aaron Schrab <aaron+sl@schrab.com>
+
 mailboxes =Lists/spamtools
 lists spamtools
 mbox-hook Lists/spamtools "=Read/spamtools"
