@@ -182,3 +182,7 @@ SUBJ
   REPLYTO=hfs-interest@ccs.neu.edu
   LIST=Lists/hfs/
 }
+
+:0
+* X-Mailing-List: <lirc@
+{ LIST=Lists/lirc/ }
