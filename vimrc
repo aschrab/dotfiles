@@ -41,6 +41,7 @@ set cmdheight=2
 set laststatus=2
 set matchpairs=(:),{:},[:],<:>
 set fileformats=unix,dos,mac
+" set fileencodings=ucs-bom,iso-2022-jp,euc,sjis,latin1
 set pastetoggle=<F4>
 set modelines=5
 set wildmode=longest,full
