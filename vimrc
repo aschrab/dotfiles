@@ -45,21 +45,29 @@ noremap <C-A> <Home>
 noremap <C-E> <End>
 inoremap  
 
-map a aAaron Schrab <aaron@schrab.com>
-map d oi-- :r~/.sigs/schrab:r!~/bin/fortune
-map f :r!~/bin/fortune
-map l oi-- :r~/.sigs/lsm
-map m oi-- :r~/.sigs/mega
-map p oi-- :r~/.sigs/personal:r!~/bin/fortune
-map q :%s/^\(> \)*$//
+map ,ad aAaron Schrab <aaron@schrab.com>
+map ,af 1G/^From:WD
+map ,ap aAaron Schrab <ats@execpc.com>
+map ,aw aAaron Schrab <aarons@execpc.com>
+
+" signature stuff
+map ,sd oi-- :r~/.sigs/schrab:r!~/bin/fortune
+map ,sf :r!~/bin/fortune
+map ,sl oi-- :r~/.sigs/lsm
+map ,sm oi-- :r~/.sigs/mega
+map ,sp oi-- :r~/.sigs/personal:r!~/bin/fortune
+map ,ss :r~/.sigs/spamreply
+map ,sw oi-- :r~/.sigs/work
+map ,sx :r~/.sigs/lsm.luser
+
+map ,q :%s/^\(> \)*$//
 map ,r :.,/^$/!formail -fbY -IX-Envelope -IX-spamrc: -IX-Suspect-Reason: -IX-procmail: -IReceived: -IReturn-Path: -IResent- -IContent-Length: -IX-Loop: -ILines: -IPrecedence:
-map s :r~/.sigs/spamreply
-map w oi-- :r~/.sigs/work
-map x :r~/.sigs/lsm.luser
 
 
 map <F2> <ESC>`>a<CR>_<ESC>`<i_<CR><ESC>:s/\(.\)/\1<C-V><C-H>\1/g<CR>J2xkJxX            
 dig 00 176
+dig !! 161
+dig ?? 191
 
 autocmd BufRead Makefile set nosmarttab noexpandtab noautoindent
 
@@ -67,6 +75,6 @@ autocmd BufRead Makefile set nosmarttab noexpandtab noautoindent
 " ME's C settings
 set cinoptions=>2,t0,(0,=2
 set cinkeys=0{,0}:,!^F,o,O,e
-au BufNewFile,BufRead *.c,*.h set cindent showmatch shiftwidth=2 textwidth=0
+au BufNewFile,BufRead *.c,*.h,*.pl,*.pm set cindent showmatch shiftwidth=2 textwidth=0
 
 set bs=2
