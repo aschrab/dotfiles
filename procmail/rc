@@ -10,13 +10,23 @@ S="[ 	]"
 NL="
 "
 
-RCVERSION="$Id: rc,v 1.7 1999/05/03 21:57:45 aarons Exp $"
+RCVERSION="$Id: rc,v 1.8 1999/07/17 00:01:15 aarons Exp $"
 
 LOCALSERVER="(pug\.(schrab\.com|qqx\.org)|(vm[0-9]+|[abcyz])\.mx\.execpc\.com)"
 
 :0
 * ^X-Mailer: ccMail Link to SMTP R8.00.00
 * ^Subject: cc:Mail Link to SMTP Undeliverable Message
+idiot/
+
+# This idiot is sending vacation notices to the MLUG list.
+:0
+* ^From:.*<nwolfe@agmc\.org>
+* B ?? ^^I will be out of town
+idiot/
+
+:0
+* ^InterScan-Notification: yes
 idiot/
 
 :0
