@@ -413,6 +413,20 @@ case "$LANG" in
 esac
 export LESSCHARSET
 
+if [[ -n "$(whence ri1.8)" ]]; then
+  function ___ri () {
+    # Locally tell less to:
+    #   -F: quit if the entire file fits on the screen
+    #   -f: pass through terminal control characters
+    #   -R: not complain about binary files
+    local -x LESS="${LESS:?-}fR"
+    ri1.8 -fansi "$@"
+  }
+  # Turn off globbing for arguments to ri, since glob characters are
+  # common in names of ruby methods
+  alias ri='noglob ___ri'
+fi
+
 # Set aliases
 LS=$(whence gnuls)
 if [[ -n $LS ]]; then
