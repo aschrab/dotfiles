@@ -45,6 +45,7 @@ backup
 :0
 * ^(Sender:.*<(\
                infoalley@listproc\.info\.apple\.com|\
+               aladdinnews|\
                davenet-world@scripting\.com)|\
     To:.*modem-reports@execpc\.com|\
     From:.*(\
