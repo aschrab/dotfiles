@@ -44,6 +44,13 @@ if( /header-cache/ ) {
   print "set maildir_cache='/home/junk/cache/mutt'\n";
 }
 
+my $spam_fmt = '';
+if( $mutt_version ge "v1.5.6" ) {
+  print "spam '^X-Spam-Status: (Yes|No), hits=(-?[0-9.]+)' '%2'\n";
+  print "folder-hook 'suspect' 'set sort=spam'\n";
+  $spam_fmt = ' <%4.4H>';
+}
+
 if( /date_conditional/ ) {
   $date_fmt = '%?[1y?%\\\\?[1d\\\\?%[%H:%M ]\\\\&%[%d/%b]\\\\?&%[%b %y]?';
 }
@@ -60,8 +67,10 @@ my $index_format = <<'';
   set hdr_format='%4C %Z $date_fmt  %-15.15L (%5l) %s'
   folder-hook '(INBOX|Mail|spool)'	"set hdr_format=\'%4C %Z $date_fmt  %-15.15L (%5l) %s\'"
   folder-hook '(Lists|Read)'		"set hdr_format=\'%4C %Z $date_fmt  %-15.15F (%5l) %s\'"
+  folder-hook '(suspect|spam)'		"set hdr_format=\'%4C %Z $date_fmt  %-15.15F (%5l)$spam_fmt %s\'"
 
 $index_format =~ s/\$date_fmt/$date_fmt/g;
+$index_format =~ s/\$spam_fmt/$spam_fmt/g;
 print $index_format;
 
 if( /mark_old/i ) {
