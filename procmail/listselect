@@ -57,6 +57,13 @@ SUBJ
 }
 
 :0
+* ^X-Mailing-List: <user-accounting@lists
+{
+  EXPIRE="14 days"
+  LIST=Lists/user-accounting/
+}
+
+:0
 * ^X-Mailing-List: <dnvs-list@lists\.execpc\.com>
 {
   REPLYTO="dnvs-list@lists.execpc.com"
