@@ -1,0 +1,73 @@
+:0
+* ! schrab\.com
+* ^TOmanager@execpc\.com
+* ^From:.*(domreg|notify|rereg|invoice|hostmast(er)?)@internic\.net
+{
+  LOG="$TIME: internic -> manager TRASHED$NL"
+
+  :0
+  /dev/null
+}
+
+# Save any of my posts to =posted
+# Put newsgroup name in To: header
+# mark as read
+:0w:
+* ^From:.*\<(((aarons|ats)@([a-z0-9-]+\.)*execpc.com)|aaron(\+.+)?@schrab.com)
+* ^(Newsgroups|X-Also-Posted-To): *\/[^ ].*
+| formail -ITo: -I"Status: RO" | formail -I"To: $MATCH" >> posted
+
+:0
+* ^Subject: RCPT:
+* B ?? ^^Return Receipt Notification
+{
+  LOG="$TIME: Return Receipt sent to idiots mailbox$NL"
+
+  :0
+  idiot/
+}
+
+:0
+* ^Subject: Read:
+* B ?? ^^Your message
+* B ?? ^was read on
+{
+  LOG="$TIME: Read Receipt sent to idiots mailbox$NL"
+
+  :0
+  idiot/
+}
+
+:0:
+* ^From:.*backup@execpc
+backup
+
+:0
+* ^(Sender:.*<(\
+               infoalley@listproc\.info\.apple\.com|\
+               davenet-world@scripting\.com)|\
+    To:.*modem-reports@execpc\.com|\
+    From:.*(\
+	    nobody@uu\.net|\
+	    MAILER-DAEMON@abuse\.net|\
+	    autoreply|\
+            headlines@cisco|\
+	    webmaster@execpc|\
+	    Cron Daemon)|\
+    Subject: (\
+              Output from "cron" command|\
+	      mirror update))
+misc/
+
+:0
+* ^From:.*josh@stonecottage
+* ^Subject: Scripting News Headlines
+misc/
+
+:0
+* ^TO.*@internic.net
+misc/
+
+:0:
+* ^To:.*scud-request@lists
+scud.req

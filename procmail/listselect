@@ -1,0 +1,177 @@
+MHONARC
+LIST
+REPLYTO
+EXPIRE
+SUBJ
+
+:0
+* ^X-Envelope: tech-request@lists\.execpc\.com
+{
+  LIST=Lists/tech/
+  MHONARC=$WEB/tech
+}
+
+:0
+* ^X-Mailing-List:.*\<funstaff@
+{
+  :0fhw
+  * ^From:.*sovitzky@execpc
+  * ^Subject:.*Weather Forecast
+  | formail -I "Status: RO"
+
+  LIST=Lists/funstaff
+}
+
+:0
+* ^X-Envelope: staff-request@lists\.execpc\.com
+{
+  MHONARC=$WEB/staff
+  LIST=Lists/staff/
+}
+
+:0
+* ^X-Envelope: noc-staff-request@lists\.execpc\.com
+{ LIST=Lists/noc-staff/ }
+
+:0
+* ^X-Envelope: billing-l-request@lists\.execpc\.com
+{ MHONARC=$WEB/billing-l/ }
+
+:0
+* ^X-Envelope: bizserv-request@lists\.execpc\.com
+{ MHONARC=$WEB/bizserv/ }
+
+:0
+* ^X-Envelope: sales-request@lists\.execpc\.com
+{ MHONARC=$WEB/sales/ }
+
+:0
+* ^Sender: owner-list@inet-access\.net
+{
+  EXPIRE="3 days"
+  REPLYTO="list@inet-access.net"
+  LIST=Lists/inet/
+}
+
+:0
+* ^(X-Mailing-List: <mutt|Sender: owner-mutt)
+{
+  LIST=Lists/mutt
+  
+  :0
+  * ^Subject:.*\/()\[mutt-(users|dev|announce)]
+  { SUBJ="$\MATCH" }
+}
+
+:0
+* ^Sender: .*usr-tc@(lists\.)?xmission
+{
+  REPLYTO="usr-tc@(lists|mail)\.xmission\.com"
+
+  SUBJ="(usr-tc) "
+  LIST=Lists/usrtc
+}
+
+:0
+* ^Sender: *owner-portmaster-radius@livingston
+{
+  :0fhw
+  * ^From:.*megazone
+  * ^Subject:.*\(fwd\)
+  | sed -e '/^Subject:/s/ (fwd)//'
+
+  SUBJ="(RADIUS) "
+  LIST=Lists/livingston-radius/
+}
+
+:0
+* ^Sender: *owner-ietf-radius@livingston
+{
+  SUBJ='(radius) '
+  LIST=Lists/radius-ietf
+}
+
+:0
+* ^X-Loop: linux-(alert|security)@redhat
+{
+  SUBJ='\[linux-\(alert\|security\)\] '
+  LIST=Lists/linux-security/
+}
+
+:0
+* ^X-Envelope-To: aaron\+home@schrab\.com
+{ LIST=Lists/linux-athome/ }
+
+:0
+* ^X-Loop: scud@lists\.execpc\.com
+{ LIST=Lists/scud/ }
+
+:0
+* ^Resent-Sender:.*procmail-request
+{ LIST=Lists/procmail/ }
+
+:0
+* ^Resent-Sender:.*SmartList-request
+{ LIST=Lists/smartlist }
+
+:0
+* ^Sender:.*list-managers-owner@GreatCircle
+{ LIST=Lists/list-managers/ }
+
+:0
+* ^X-Mailing-List:.*zsh-(users|workers|announce)
+{ LIST=Lists/zsh }
+
+:0
+* ^Sender: .*bugtraq@netspace
+{ LIST=Lists/bugtraq/ }
+
+:0
+* ^X-Envelope-To:[      ]*aaron\+trn@schrab\.com
+{ LIST=Lists/trn/ }
+
+:0
+* ^Sender: linux-pmac
+{ LIST=Lists/linux-pmac/ }
+
+:0
+* ^Sender:.*owner-milw-linux@serreyn\.ml\.org
+{ LIST=Lists/milw-linux/ }
+
+:0
+* ^Sender: .*mlug-list
+{
+  REPLYTO=mlug-list
+  LIST=Lists/mlug/
+}
+
+:0
+* ^X-Envelope-To: rha@schrab\.com\>
+{ LIST=Lists/redhat/ }
+
+:0
+* ^Resent-Sender:.*dingus-request
+{ LIST=Lists/dingus/ }
+
+:0
+* ^Return-Path:.*btlist-owner
+{ LIST=Lists/bt/ }
+
+:0
+* ^List-Subscribe: <mailto:tidbits(-talk)?-on@tidbits
+{ LIST=Lists/tidbits/ }
+
+:0
+* ^X-Envelope-To:.*linux-68k@schrab.com
+{
+  SUBJ='\[linux-mac68k] '
+  LIST=Lists/linux-68k/
+}
+
+:0
+* ^Sender: owner-spamtools@abuse\.net
+{
+  REPLYTO=spamtools@abuse.net
+  SUBJ='\[spamtools] '
+  LIST=Lists/spamtools/
+}

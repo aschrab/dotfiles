@@ -1,0 +1,74 @@
+# vim: ai si shiftwidth=2 noexpandtab tw=0 wm=0
+#VERBOSE=y
+DEFAULT="/var/spool/mail/aarons/"
+MAILDIR="$HOME/Mail"
+LOGABSTRACT="no"
+WEB="/home/web"
+#COMSAT="@localhost"
+COMSAT=no
+S="[ 	]"
+NL="
+"
+
+RCVERSION="$Id: rc,v 1.1 1998/08/19 01:51:26 aarons Exp $"
+
+LOCALSERVER="((vm[0-9]+|[abcyz])\.mx\.execpc\.com)"
+
+:0
+* ^X-Mailer: ccMail Link to SMTP R8.00.00
+* ^Subject: cc:Mail Link to SMTP Undeliverable Message
+idiot/
+
+TMP=$1
+:0
+* TMP ?? FETCHED
+{ FETCHED=yes }
+TMP
+
+:0
+* FETCHED ?? y
+{ LOGFILE=$HOME/.Procmail/log }
+
+INCLUDERC=$HOME/.Procmail/daterc
+TIME="${MN}/${DATE}/${YEAR} ${HOUR}:${MINUTES}"
+MONTH="${YEAR}${MN}"
+
+:0:
+* X-Envelope-To: rc5@schrab\.com
+rc5
+
+# Make a backup copy of messages except ones from some high volume mail lists
+:0wc
+* FETCHED ?? y
+* !^Resent-From:.*(inet-acces|procmail)
+$MAILDIR/BACKUP/
+
+:0
+* FETCHED ?? y
+{
+  INCLUDERC=$HOME/.procmail/spam
+  INCLUDERC=$HOME/.procmail/mangle
+}
+
+INCLUDERC=$HOME/.procmail/listselect
+INCLUDERC=$HOME/.procmail/manglemore
+INCLUDERC=$HOME/.procmail/filter
+INCLUDERC=$HOME/.procmail/listsave
+
+LOCKFILE=msgid.lock
+:0H
+* FETCHED ?? y
+* ^Message-ID:
+* ! ^X-suspect-reason:
+* ? formail -D 81920 .msgid.cache
+{
+  LOG="$TIME: killed duplicate message$NL"
+
+  :0
+  dups/
+}
+LOCKFILE
+
+# Implicit save to default locks mailbox even if it's a MAILDIR
+:0
+/var/spool/mail/aarons/

@@ -1,0 +1,41 @@
+:0
+* SUBJ ?? .
+{
+  :0hw
+  SUBJECT=|formail -zx Subject: | sed -e "s/$SUBJ//"
+
+    :0afhw
+    * S ?? .
+    | formail -I"Subject: $SUBJECT"
+
+  SUBJECT
+}
+
+
+# Add Expires: header
+:0 fhw
+* EXPIRE ?? .
+* ! ^Expires:
+| formail -a "Expires: `date -R --date=\"$EXPIRE\"`"
+
+EXPIRE
+
+  
+# Make reply-to header point to sender not list
+:0
+* REPLYTO ?? .
+{
+  # If there's an X-Reply-To header do it all the time
+  :0 fhw
+  * ^Reply-To:
+  * ^X-Reply-To:
+  | formail -R "Reply-To:" "X-List-Reply-To:" -R "X-Reply-To:" "Reply-To:"
+
+  # otherwise, only if it's set to the list
+  :0Efhw
+  * REPLYTO ?? .
+  * $ ^Reply-to:.*$REPLYTO
+  | formail -R "Reply-to:" "X-List-Reply-to:"
+
+  REPLYTO
+}

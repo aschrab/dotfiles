@@ -1,0 +1,51 @@
+:0 cw:
+* ^TOgurus
+| formail -i "Status: RO" >> Read/gurus/$MONTH
+
+# Remove duplicates (keep separate cache for each list)
+:0
+* FETCHED ?? y
+* LIST ?? ()\/[^/]+/?$
+* MATCH ?? ^^[^/]+
+{
+  DUP="$HOME/.Procmail/dup/$MATCH"
+  LOCKFILE="$DUP.lock"
+  :0H
+  * ^Message-ID:
+  * ! ^X-suspect-reason:
+  * ? formail -D 4096 "$DUP"
+  {
+    LOG="$TIME: killed duplicate message$NL"
+  
+    :0
+    dups/
+  }
+  LOCKFILE
+}
+
+:0
+* MHONARC ?? .
+{
+  LOCKFILE=$MHONARC/lock
+  JUNK=`rm -f $MHONARC/.mhonarc.lck`
+  JUNK
+  COPY
+
+  :0
+  * LIST ?? .
+  { COPY=c }
+
+  :0w${COPY}
+  | mhonarc -add -outdir $MHONARC/$MONTH -rcfile $MHONARC/resources
+  LOCKFILE
+}
+
+# If $LIST ends in a slash, it's a maildir, so don't lock it
+:0
+* LIST ?? /^^
+$LIST
+
+# otherwise locking is required if it's set
+:0E:
+* LIST ?? .
+$LIST

@@ -1,0 +1,386 @@
+# vim: tw=0
+unlists *
+unalias *
+
+set forw_format='Fwd: %s (from %a)'
+set status_format=" %r Mutt:%-25.25f [Msgs:%?M?%M/?%m New:%n%?F? Flag:%F?%?t? Tag:%t? In:%b%?p? Post:%p?]  (%s)%| "
+
+alternative_order text/enriched text/plain text application/postscript image/* 
+
+set sendmail="/home/aarons/bin/sendmail.pl -oi -oem"
+
+set alternates='((aarons|(aaron\.|a_)schrab|ats|lsm|bofh|procmail|list(admin|master))@([a-z0-9-]+\.)*execpc\.com|postmaster@(comet|lists)\.execpc\.com|aaron@warrior\.mscs\.mu\.edu|(aaron.*|root|.*master|ats|bofh)@schrab\.com)'
+
+hdr_order From: Subject: Date: To: Newsgroups: Cc: X-Mailer: Content-Type: Content-Transfer-Encoding: X-Procmail: X-Suspect-reason:
+
+set pager_index_lines=8
+
+ignore *
+unignore From: To: Newsgroups: Subject: Date: CC:
+unignore Sender: X-Mailer: Expires:
+unignore Content-Type: Content-Transfer-Encoding: X-Diagnostic: X-Processed:
+unignore X-Procmail: X-Suspect-reason: X-Country: Mail-Followup-To:
+unignore X-Mailing-List:
+#unignore X-Envelope-To:
+
+set sort=threads
+set sort_aux=date
+
+set date_format = "!%H:%M %Z %d %b %Y"
+set status_chars=" *%"
+set attribution = "At %d, %f wrote:"
+set hdr_format="%4C %Z %[%m/%d] %-15.15L (%4l) %s"
+
+set quote_regexp='^([]})>|:!] ?| {0,4}[>|]|[a-z-]+[>|]+ ?)'
+
+color body  red	black	\
+ "((ftp|https?)://|(ftp|www[-a-z0-9]*)\\.)[^ \t\r\n\"<>]*[^].,:;!)? \t\r\n<>\"]"
+color body  yellow	black	\
+ '(mailto:)?[a-z0-9]([-+=._%!]?[a-z0-9])*@[-a-z0-9.]+\.[a-z][a-z]+'
+
+color body magenta black '^-----(BEGIN|END) PGP .*'
+
+set reply_regexp="^(re|aw)(\\[[0-9]+])?:[        ]*"
+
+color normal            white   black
+color status		black   green
+color indicator		yellow	black
+color tree		blue	black
+color error		red	black
+color attachment        blue	black
+
+color hdrdefault	cyan	black
+color header		red	black \
+      "^X-(Suspect-reason|spam-action|procmail|Diagnostic|Processed|Country):"
+
+color signature		cyan	black
+
+# continued line indicator
+color markers           blue    black
+color quoted		green	black
+#color quoted1		blue	black
+#color quoted2		magenta	black
+#color quoted3		brightgreen	black
+#color quoted4           brightblue      black
+#color quoted5           brightmagenta   black
+#color quoted6           brightwhite     black
+#color quoted7		brightcyan	black
+#color quoted8		brightyellow	black
+#color quoted9		brightred	black
+
+#mono  subject		underline
+
+auto_view text/html application/pgp-keys application/x-tar-gz text/x-internet-signup application/x-sh
+
+source /home/aarons/.Mutt/aliases
+
+set editor="vim '+/^$/+1'"
+#set editor="gnuclient -nw"
+set alias_file=~/.Mutt/aliases
+
+set nohelp
+
+set noconfirmappend
+set noconfirmcreate
+
+set print=ask-no    # confirm printing
+set delete=yes      # purge deleted messages? normally yes, but meaning differs
+                    # between 0.61 and 0.62
+set recall=no       # don't ask about recalling when mailing
+set copy=yes
+set move=yes        # automatically move read messages to read folder
+set include=yes     # include message in replies
+set postpone=no     # never postpone when quitting send menu
+set abort_unmodified=no
+set abort_nosubject=no
+
+#set autoedit                   # go straight to editor for messages
+set fast_reply                 # go straight to editor for replies
+set edit_hdrs                  #    include headers in editor
+set dsn_notify=failure         # notify on transmission failure
+set dsn_return=full            #   include full message
+set folder=~/Mail
+set header                     # include full header in replies
+set nomime_fwd                   # forward as attachment
+set pager_context=1            # show 1 line from prev. page
+set postponed=~/Mail/Postponed # where to save postponed messages
+set record=~/Mail/Misc         # save copies of outgoing mail
+set mbox=~/Mail/Misc
+set reverse_alias              # show aliases in message lists
+set reverse_name               # use address mail was sent to when replying
+set save_name                  # save messages in folder named for addressee
+set tilde                      # pad end of messages
+set timeout=30                 # seconds inactivity before looking for new mail
+#set web_browser="url_handler.sh"
+set nomark_old                 # all unread mail is marked as new
+set skip_old
+set pgp_sign_as="0xE8D1D751"
+set pgp_verify_sig=yes         # Verify signature automatically
+set pgp_replyencrypt
+set pgp_replysign
+unset use_domain
+set nopipe_decode              # don't decode MIME or weed headers when piping
+set nowait_key                 # don't wait for a key after running programs
+set nobeep
+#set pager_stop
+
+
+bind  pager 	b	previous-page
+bind  pager	B	bounce-message
+bind  pager     *       bottom
+bind  pager     G       bottom
+bind  pager	<Up>	previous-line
+bind  pager	<Down>	next-line
+macro pager     "\Ck"	"|pgp -kaf\n"
+macro pager     "\Cb"   "|urlview\n"
+
+bind  index	B	bounce-message
+bind  index     n       next-entry
+macro index     A       "c+Lists/inet\n"
+macro index     "\Ck"	"|pgp -kaf\n"
+macro index	G	"!fetchmail\n"
+macro index     i       ":set hdr_format='%4C %Z %[%m/%d] %-15.15F (%4l) %s'\n"
+macro index     I       ":set hdr_format='%4C %Z %[%m/%d] %-15.15L (%4l) %s'\n"
+macro index     "\Cb"   "|urlview\n"
+
+macro attach    "\Ck"	"|pgp -kaf\n"
+
+bind  compose   E       edit-file
+macro compose S "Fpgp +verbose=0 -fast +clearsig=on\ny^T^Uapplication/pgp; +format=text; x-action=sign\n" # To pgp-sign the old way :)
+
+send-hook   .         "unmy_hdr From"
+
+folder-hook .         "set nostrict_threads nosave_empty sort=threads"
+folder-hook .         "set mime_forward=ask-yes forward_decode nomark_old"
+folder-hook .         \
+      "set quote_regexp='^([]})>|:!] ?| {0,4}[>|]|[a-z-]+[>|]+ ?)'"
+
+folder-hook suspect   "set mime_forward=no noforward_decode"
+
+folder-hook Mail      "set move=yes"
+folder-hook Mail      "set hdr_format='%4C %Z %[%m/%d] %-15.15L (%4l) %s'"
+
+folder-hook Lists     "set hdr_format='%4C %Z %[%m/%d] %-15.15F (%4l) %s'"
+folder-hook Lists     "set save_empty"
+
+folder-hook spool     "set hdr_format='%4C %Z %[%m/%d] %-15.15L (%4l) %s'"
+folder-hook spool     "set move=yes"
+
+folder-hook Lists/inet "set move=no"
+folder-hook Lists/inet 'push "T~E !(~O|~N|~F)\n"'
+
+folder-hook (procmail|smartlist|mutt) \
+            'set quote_regexp="^([])>] ?| {0,4}>|[a-z-]+[>|]+ ?)"'
+
+folder-hook IN        "set move=no"
+folder-hook abuse.net "set move=no sort=date"
+folder-hook Read      "set hdr_format='%4C %Z %[%m/%d] %-15.15F (%4l) %s'"
+folder-hook exser     "set strict_threads"
+folder-hook frontpage "set strict_threads"
+
+folder-hook suspect   "set mark_old"
+
+folder-hook notsuspect "set move=no"
+
+mailboxes !
+lists lsm-workers nsmacapi-talk slickwli-beta
+mbox-hook spool =IN
+mbox-hook backup =Read/backup
+
+mailboxes =Lists/tech
+lists tech
+mbox-hook Lists/tech "=Read/tech/`date '+%Y%m'`"
+
+mailboxes =Lists/staff
+lists staff
+mbox-hook Lists/staff "=Read/staff/`date '+%Y%m'`"
+
+mailboxes =Lists/noc-staff
+lists noc-staff
+mbox-hook Lists/noc-staff "=Read/noc-staff/`date '+%Y%m'`"
+
+mailboxes =Lists/linux-security 
+lists linux-security linux-alert
+mbox-hook Lists/linux-security "=Read/linux-security"
+
+mailboxes =Lists/bugtraq
+lists bugtraq
+mbox-hook Lists/bugtraq "=Read/bugtraq"
+
+mailboxes =Lists/list-managers
+lists list-managers
+mbox-hook Lists/list-managers "=Read/list-managers"
+send-hook list-managers my_hdr From: Aaron Schrab <aaron+lm@schrab.com>
+
+mailboxes =Lists/smartlist
+lists smartlist
+mbox-hook Lists/smartlist "=Read/smartlist"
+send-hook smartlist my_hdr From: Aaron Schrab <aaron+smartlist@schrab.com>
+
+mailboxes =Lists/spamtools
+lists spamtools
+mbox-hook Lists/spamtools "=Read/spamtools"
+send-hook spamtools my_hdr From: Aaron Schrab <aaron+spamtools@schrab.com>
+
+mailboxes =Lists/scud =scud.req
+lists scud
+mbox-hook Lists/scud "=Read/scud"
+send-hook scud my_hdr From: Aaron Schrab <aaron@schrab.com>
+
+mailboxes =Lists/mlug
+lists mlug-list
+mbox-hook Lists/mlug "=Read/mlug"
+
+mailboxes =Lists/milw-linux
+lists milw-linux
+mbox-hook Lists/milw-linux "=Read/milw-linux"
+send-hook milw-linux 'my_hdr From: Aaron Schrab <aaron@schrab.com>'
+
+mailboxes =Lists/funstaff
+lists funstaff
+mbox-hook Lists/funstaff "=Read/funstaff"
+
+mailboxes =suspect
+mbox-hook suspect "=spam"
+
+mailboxes =Lists/mutt
+lists mutt-users mutt-dev
+mbox-hook Lists/mutt "=Read/mutt"
+send-hook mutt my_hdr From: Aaron Schrab <aaron+mutt@schrab.com>
+
+mailboxes =Lists/tidbits
+lists tidbits-talk
+mbox-hook Lists/tidbits "=Read/tidbits"
+send-hook tidbits my_hdr From: Aaron Schrab <aaron@schrab.com>
+
+mailboxes =misc
+
+mailboxes =Lists/cvs
+lists info-cvs
+mbox-hook Lists/cvs "=Read/cvs"
+send-hook cvs my_hdr From: Aaron Schrab <aaron+cvs@schrab.com>
+
+mailboxes =Lists/linux-68k
+lists linux-mac68k
+mbox-hook Lists/linux-68k "=Read/linux-68k"
+send-hook linux-mac68k my_hdr From: Aaron Schrab <aaron+linux-68k@schrab.com>
+
+mailboxes =Lists/trn
+lists trn-users
+mbox-hook Lists/trn "=Read/trn"
+send-hook trn my_hdr From: Aaron Schrab <aaron+trn@schrab.com>
+
+mailboxes =Lists/redhat
+
+mailboxes =Lists/zsh 
+lists zsh-users zsh-workers
+mbox-hook Lists/zsh "=Read/zsh"
+send-hook zsh my_hdr From: Aaron Schrab <aaron+zsh@schrab.com>
+
+mailboxes =Lists/procmail
+lists procmail
+mbox-hook Lists/procmail "=Read/procmail"
+send-hook procmail my_hdr From: Aaron Schrab <aaron+procmail@schrab.com>
+
+mailboxes =Lists/dingus
+lists dingus
+mbox-hook Lists/dingus "=Read/dingus"
+send-hook dingus my_hdr From: Aaron Schrab <aaron+dingus@schrab.com>
+
+mailboxes =Lists/linux-pmac
+lists linux-pmac
+mbox-hook Lists/linux-pmac "=Read/linux-pmac"
+send-hook linux-pmac my_hdr From: Aaron Schrab <aaron+pmac@schrab.com>
+
+mailboxes =Lists/crypto
+lists crypto
+mbox-hook Lists/crypto "=Read/crypto"
+
+#mailboxes =Lists/inet
+lists inet-access
+mbox-hook Lists/inet "=Read/inet"
+
+mailboxes =Lists/linux-athome
+lists linux-athome
+mbox-hook Lists/linux-athome "=Read/linux-athome"
+
+mailboxes =Lists/pipeline
+lists pipeline
+mbox-hook Lists/pipeline "=Read/pipeline"
+
+mailboxes =Lists/livingston-radius
+lists portmaster-radius
+mbox-hook Lists/livingston-radius "=Read/livingston-radius"
+mailboxes =Lists/radius-ietf
+lists radius-ietf
+mbox-hook Lists/radius-ietf "=Read/radius-ietf"
+send-hook radius my_hdr From: Aaron Schrab <aaron+radius@schrab.com>
+
+mailboxes =Lists/usrtc
+lists usr-tc
+mbox-hook Lists/usrtc "=Read/usrtc"
+send-hook usr-tc my_hdr From: Aaron Schrab <aaron+tc@schrab.com>
+
+mailboxes =Lists/axp
+lists axp-list
+mbox-hook Lists/axp =Read/axp
+
+mailboxes =Lists/bt
+lists bt-list
+mbox-hook Lists/bt =Read/bt
+
+send-hook warrior            "my_hdr From: Aaron Schrab <aaron@schrab.com>"
+send-hook schrab             "my_hdr From: Aaron Schrab <aaron@schrab.com>"
+
+save-hook imdb\.com          "=imdb"
+save-hook dschrab            "=david@schrab.com"
+save-hook dschrab            "=j_schrab"
+save-hook sschrab@royle      "=steven@schrab.com"
+save-hook ryan@inc.net       "=ryan@inc.net"
+save-hook gamegrotto         "=deannah"
+save-hook mlug-list          "=mlug"
+save-hook unicor@execpc      "=cathyann"
+save-hook cert\.org          "=cert"
+save-hook abuse\.net         "=abuse.net"
+save-hook internic\.net      "=internic"
+save-hook "~t modem-report"  "=modem"
+save-hook morwen             "=lam"
+save-hook shadows@execpc     "=davisb"
+save-hook warrior\.mscs      "=mcs"
+save-hook joegreco           "=jgreco"
+save-hook execpc-circuit-users "=execpc-circuit-users"
+save-hook jimpick\.com       "=jimpick"
+save-hook liw@iki\.fi        "=liw@iki.fi"
+save-hook merlen@triangle    "=merlen@triangle.org"
+save-hook mlb@pobox          "=mlb@pobox.com"
+save-hook steve@inc          "=steve@inc.net"
+save-hook tchrist            "=tchrist@perl.com"
+save-hook scud-request       "=scud.req"
+save-hook ferguson@execpc    "=wayne"
+save-hook stephenh@execpc    "=stephen"
+
+send-hook .                  "set record=+Misc"
+send-hook imdb\.com          "set record=+imdb"
+send-hook dschrab            "set record=+david@schrab.com"
+send-hook jschrab            "set record=+j_schrab"
+send-hook sschrab@royle      "set record=+steven@schrab.com"
+send-hook ryan@inc.net       "set record=+ryan@inc.net"
+send-hook gamegrotto         "set record=+deannah"
+send-hook unicor@execpc      "set record=+cathyann"
+send-hook cert\.org          "set record=+cert"
+send-hook abuse\.net         "set record=+abuse.net"
+send-hook abuse\.net         "my_hdr From: Aaron Schrab <aarons@execpc.com>"
+send-hook internic\.net      "set record=+internic"
+send-hook modem-report       "set record=+modem"
+send-hook morwen             "set record=+lam"
+send-hook shadows@execpc     "set record=+davisb"
+send-hook warrior\.mscs      "set record=+mcs"
+send-hook joegreco           "set record=+jgreco"
+send-hook jimpick\.com       "set record=+jimpick"
+send-hook liw@iki\.fi        "set record=+liw@iki.fi"
+send-hook merlen@triangle    "set record=+merlen@triangle.org"
+send-hook mlb@pobox          "set record=+mlb@pobox.com"
+send-hook steve@inc          "set record=+steve@inc.net"
+send-hook tchrist            "set record=+tchrist@perl.com"
+send-hook ferguson@execpc    "set record=+wayne"
+send-hook stephenh@execpc    "set record=+stephen"

@@ -1,0 +1,149 @@
+# At least one mailer uses the In-Reply-To: header like a References: header
+:0fhw
+* ^In-Reply-To:.*<.*>.*<.*>
+* ! ^References:
+| formail -I "X-Procmail: Renamed In-Reply-To: to References:" \
+	  -R In-Reply-To: References:
+
+# Add a Message-ID: header if there isn't one
+#  (formail will create the actual message ID)
+:0fwh
+* ! ^Message-ID:
+| formail -a Message-ID:
+
+### :0
+### * $ ^From:.*@[a-z0-9._-]+\.\/[a-z][a-z]([>,;]|$S|$)
+### * MATCH ?? ^^\/[a-z][a-z]
+### * ! MATCH ?? ^^(au|ca|ch|de|dk|es|fi|fr|it|jp|mx|n[louz]|ru|to|uk|us)
+### {
+###   LOG="$TIME: Looking up country $MATCH$NL"
+###   
+###   :0fhw
+###   | formail -A "X-Country: `country.pl $MATCH`"
+### }
+
+# Remove any Status: or X-Status: headers
+:0fwh
+* ^(X-)?Status:
+| formail -IStatus: -IX-Status:
+
+## Strip out M$'s damn winmail.dat
+:0fw
+* ^X-MS-Attachment:
+| $HOME/bin/trim-winmail
+
+## Convert messages from Suns lame mailtool into MIME messages
+:0 fw                                                                         
+* ^Content-Type: x-sun                                                        
+| /usr/local/bin/emil -B BA -F MIME                                           
+
+:0Bbfw
+* ! H ?? From:.*majordomo
+* ! PGP
+* ^--$
+| sed 's/^--$/-- /'
+  :0afhw
+  | formail -A "X-Procmail: $HOST fixed sigdashes"
+
+# Add a content length header (procmail will figure out the actual length)
+# Also remove X-UIDL header
+:0fwh
+| formail -I"X-UIDL:" -I"Content-Length:                       0"
+
+:0
+* ^In-Reply-To:[^<]*<[^>]*[ 	]
+{
+  #:0c
+  #fixeud/
+
+  :0
+  * ^X-Mailer:\/.*
+  { LOG="$TIME: Fixed In-Reply-To: header from $MATCH$NL" }
+
+  :0fhw
+  | formail -A"X-Procmail: $HOST fixed In-Reply-To header" | $HOME/bin/fixeud
+}
+
+## Make sure that all messages have a Lines: header
+:0
+* ! ^Lines:
+{
+  # Count number of lines
+  :0B
+  * -1^0 ^^
+  * 1^1 ^.*$
+  { LINES = $= }
+  :0E
+  { LINES = 0 }
+
+  # Add Lines: header
+  :0 fhw
+  | formail -a "Lines: $LINES"
+}
+
+# Set content type of pgp messages so mutt will recognize them
+# if plain text, can wipe out current content-type
+:0
+* $ ^Content-Type:$S*text(/plain($S*;$S*charset$S*=$S*"?us-ascii"?|$S*$)|$S*$)
+{
+  :0 fBw
+  * ^-----BEGIN PGP MESSAGE-----
+  * ! ^Hash: SHA1
+  |formail -I"Content-Type: application/pgp; format=text; x-action=encryptsign"
+
+  :0 EfBw
+  * ^-----BEGIN PGP SIGNED MESSAGE-----
+  * ! ^Hash: SHA1
+  |formail -I "Content-Type: application/pgp; format=text; x-action=sign"
+}
+# else only insert header if Content-type header not already present
+:0E
+* ! ^Content-Type:
+{
+  :0 fBw
+  * ^-----BEGIN PGP MESSAGE-----
+  * ! ^Hash: SHA1
+  |formail -a"Content-Type: application/pgp; format=text; x-action=encryptsign"
+
+  :0 EfBw
+  * ^-----BEGIN PGP SIGNED MESSAGE-----
+  * ! ^Hash: SHA1
+  |formail -a"Content-Type: application/pgp; format=text; x-action=sign"
+}
+
+:0
+* ! ^Content-type:.*pgp
+{
+  # Remove stupid juno adds
+  :0fbiw
+  * ^Message-ID:.*@juno\.com>
+  * B ?? ^You don't need to buy Internet access to use free Internet e-mail.
+  | sed -ne '1{' -eh -en -e '}' \
+   -e"/^You don't need to buy Internet access to use free Internet e-mail\./q"\
+   -ex -ep
+
+  # Remove stupid hotmail adds
+  :0Efbiw
+  * ^Message-ID:.*@hotmail\.com>
+  * B ?? ^Get Your Private, Free Email
+  | sed -ne '1{' -eh -en -e '}' \
+   -e"/^Get Your Private, Free Email/q"\
+   -ex -ep
+
+  # Remove stupid yahoo adds
+  :0Efbiw
+  * ^Message-ID:.*rocketmail@([a-z0-9_-]+\.)*yahoomail\.com>
+  * B ?? ^DO YOU YAHOO
+  | sed -ne '1{' -eh -en -e '}' \
+   -e"/^DO YOU YAHOO\!?/q"\
+   -ex -ep
+
+  # Remove stupid usa.net adds
+  :0Efbiw
+  * ^Message-ID:.*netaddress\.usa\.net>
+  * B ?? ^Get free e-mail and a permanent address at http://www\.netaddress
+  | sed -ne '1{' -eh -en -e '}' \
+   -e"/^Get free e-mail and a permanent address at http:\/\/www\.netaddress/q"\
+   -ex -ep
+}
+

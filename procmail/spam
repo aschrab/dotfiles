@@ -1,0 +1,13 @@
+:0:
+* ^X-suspect-reason:
+suspect
+
+# Using scoring forces procmail to use the last match
+:0fhw
+* $ 1^1 ^Received:.*\[\/[0-9.]+\]\)$S+by$S+${LOCALSERVER}
+* MATCH ?? ^^\/[0-9.]+
+* !? /home/aarons/bin/rblcheck -q $MATCH
+| formail -I"X-Suspect-Reason: $MATCH is rbl'd"
+
+  :0a:
+  suspect
