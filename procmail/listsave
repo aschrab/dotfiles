@@ -40,22 +40,22 @@
   NEWREPLYTO
 }
 
-:0
-* MHONARC ?? .
-{
-  LOCKFILE=$MHONARC/lock
-  JUNK=`rm -f $MHONARC/.mhonarc.lck`
-  JUNK
-  COPY
-
-  :0
-  * LIST ?? .
-  { COPY=c }
-
-  :0w${COPY}
-  | mhonarc -add -outdir $MHONARC/$MONTH -rcfile $MHONARC/resources
-  LOCKFILE
-}
+## :0
+## * MHONARC ?? .
+## {
+##   LOCKFILE=$MHONARC/lock
+##   JUNK=`rm -f $MHONARC/.mhonarc.lck`
+##   JUNK
+##   COPY
+## 
+##   :0
+##   * LIST ?? .
+##   { COPY=c }
+## 
+##   :0w${COPY}
+##   | mhonarc -add -outdir $MHONARC/$MONTH -rcfile $MHONARC/resources
+##   LOCKFILE
+## }
 
 # If $LIST ends in a slash, it's a maildir, so don't lock it
 :0
