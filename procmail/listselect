@@ -111,7 +111,7 @@ SUBJ
 * ^Sender: *owner-ietf-radius@livingston
 {
   SUBJ='(radius) '
-  LIST=Lists/radius-ietf
+  LIST=Lists/radius-ietf/
 }
 
 :0
