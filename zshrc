@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.79 $'
+rcvers='$Revision: 1.80 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -63,8 +63,13 @@ fi
 # - Split $HOST on '.'
 # - Remove $stripdom - 1 portions from the end
 # - Rejoin
-stripdom=3
-host=${(j:.:)${(s:.:)HOST}[1,-$stripdom]}
+if [[ "$HOST" = *.* ]]
+then
+  stripdom=3
+  host=${(j:.:)${(s:.:)HOST}[1,-$stripdom]}
+else
+  host="$HOST"
+fi
 
 [ "$USERNAME" = "aarons" -o "$USERNAME" = "root" ] && HOME=~aarons
 
