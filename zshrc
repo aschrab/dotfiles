@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.121 $'
+rcvers='$Revision: 1.122 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -316,6 +316,7 @@ export HOST_DEFAULTS='-R'
 
 export NNTPSERVER="news.execpc.com"
 export EMAIL="aaron@schrab.com"
+export DEBEMAIL="$EMAIL"
 
 if [[ -d "/usr/local/lib/site_perl" ]]; then
   export PERL5LIB="/usr/local/lib/site_perl"
@@ -502,6 +503,8 @@ kpathword () {
 }
 
 # bind keys
+bindkey "\M-/" kpathword
+bindkey "\e/" kpathword
 bindkey \^p up-history
 bindkey \^n down-history
 bindkey "\e[A" up-line-or-search
@@ -783,8 +786,8 @@ case "$host" in
       ;;
 
    "frell")
-      export http_proxy="http://localhost:3128/"
-      export ftp_proxy="http://localhost:3128/"
+      export http_proxy="http://proxy:8888/"
+      export ftp_proxy="$http_proxy"
       ;;
 
    "faboo")
@@ -1022,5 +1025,5 @@ if [ -d $HOME/.fbin ]; then
   for AF in $HOME/.fbin/*(N); do
         typeset -fu $AF:t
   done
-  unset AF
+  unset AF || :
 fi
