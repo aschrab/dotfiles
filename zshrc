@@ -130,26 +130,67 @@ else
   DEBCHROOT=''
 fi
 
-export LC_COLLATE="C"
+setopt EXTENDED_GLOB
+
+unset LC_CTYPE
+# Check if we're on a Unicode terminal {{{
+# Based on perl script by Jan-Pieter Cornet <johnpc@xs4all.nl>
+# Converted to zsh with clues from promptnl script that comes with zsh
+
+# Make sure there's no typeahead, or it'll confuse things.  Remove
+# this block entirely to use this function in 3.0.x at your own risk. {{{
+while read -t -k 1
+do
+  RECV=$RECV$REPLY
+done
+if [[ -n $RECV ]]
+then
+  print -z -r -- $RECV
+  RECV=''
+  REPLY=X
+fi #}}}
+
+# Send a sequence that valid UTF8 and ISO8859-1
+# then ask the terminal where the cursor is
+stty -echo
+print -b -n '\r\xC2\xA4\x1B[6n'
+
+# Wait for reply {{{
+integer WAIT=5
+integer N=$SECONDS
+while [[ $REPLY != R ]] && ((SECONDS - N <= WAIT))
+do
+    if read -t -k 1
+    then
+	((N=SECONDS))
+	RECV=$RECV$REPLY
+    fi
+done #}}}
+
+print -b -n '\r' # Clear the test sequence
+
+# Parse the column number out of the terminal response
+case ${${RECV#$(print -b -n '\x1B')\[[0-9]##;}%%R} in
+2)
+  echo "UTF terminal detected"
+  LANG=en_US.utf8
+  ;;
+3)
+  echo "Non-UTF terminal detected"
+  LANG=en_US
+  ;;
+*)
+  echo "Couldn\'t determine terminal encoding"
+  ;;
+esac
+#}}}
+export LANG LC_COLLATE="C"
+
 case "$TERM" in
   xterm|xtermc|xterm-debian|xterm-color|rxvt|gnome|Eterm)
     if [[ $TERM == xterm && $OSTYPE == freebsd* ]]
     then
       TERM=xterm-color
-    fi
-    if [[ -z "$LC_CTYPE" && $OSTYPE == linux* ]]
-    then
-      # en_US.utf8
-      langset="no"
-      for l in en_GB en_US.iso885915 en_US.iso88591 en_US
-      do
-        if [[ $langset == no && -d /usr/lib/locale/$l ]]
-        then
-          export LC_CTYPE="$l"
-          langset="yes"
-        fi
-      done
-      unset langset l
     fi
     stty erase '^?'
     print -P "${green}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${fColor}"
@@ -359,7 +400,7 @@ alias les=less
 alias lss=less
 
 export LESS="-aCMj3"
-case "$LC_CTYPE" in
+case "$LANG" in
   *utf8)
     LESSCHARSET="utf-8"
     ;;
@@ -552,19 +593,6 @@ fi
 
 pw () {
   grep $* /etc/passwd
-}
-
-utf8-enable () {
-  echo -e '\e%G'
-  LANG=en_US.utf8
-  unset LC_CTYPE
-  LESSCHARSET="utf-8"
-}
-
-utf8-disable () {
-  echo -e '\e%@'
-  LANG=en_US
-  LESSCHARSET=latin1
 }
 
 precmd () {
