@@ -113,8 +113,18 @@ map ,ss :r~/.sigs/spamreply
 map ,sw oi-- :r~/.sigs/work
 map ,sx :r~/.sigs/lsm.luser
 
+" Support for scroll wheel
+map <M-Esc>[62~ <MouseDown>
+map! <M-Esc>[62~ <MouseDown>
+map <M-Esc>[63~ <MouseUp>
+map! <M-Esc>[63~ <MouseUp>
+map <M-Esc>[64~ <S-MouseDown>
+map! <M-Esc>[64~ <S-MouseDown>
+map <M-Esc>[65~ <S-MouseUp>
+map! <M-Esc>[65~ <S-MouseUp>
+
 "map ,x :perl chmod(01600, $curwin->Buffer->Name):wq!
-map ,x :r!chmod +t %:wq!
+map ,x :w:r!chmod +x %:wq!
 map ,, /^> *$
 map ,l 1G}jyGGp:.,$!wc -ld0iLines: dd1G}P
 map ,q :%s/^\(> \)*$//
