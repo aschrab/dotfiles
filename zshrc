@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.112 $'
+rcvers='$Revision: 1.113 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -168,7 +168,7 @@ case "$TERM" in
     }
 
     preexec () {
-      print -n "\Ek$1\E\\"
+      print -n "\Ek$host:$1\E\\"
     }
 
     ;;
