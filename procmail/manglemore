@@ -54,5 +54,5 @@ EXPIRE
 
   # Add Lines: header
   :0 fhw
-  | formail -a "Lines: $LINES"
+  | formail -I "Lines: $LINES"
 }
