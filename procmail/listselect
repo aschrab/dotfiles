@@ -215,3 +215,11 @@ SUBJ
 :0
 * X-Mailing-List: <lirc@
 { LIST=Lists/lirc/ }
+
+:0
+* X-Envelope: owner-linux-tape
+{ LIST=Lists/linux-tape/ }
+
+:0
+* X-Envelope: owner-linux-scsi
+{ LIST=Lists/linux-scsi/ }
