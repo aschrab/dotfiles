@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.31 $'
+rcvers='$Revision: 1.32 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -386,7 +386,7 @@ compctl -g '*(-/)' + -g '.*(-/)' + -k '(..)' cd rmdir
 compctl -jP '%' kill fg bg disown
 compctl -vP '$' echo
 
-if [[ $OSTYPE == linux && -f /lib/modules/`uname -r`/modules.dep ]]
+if [[ $OSTYPE == linux && -r /lib/modules/`uname -r`/modules.dep ]]
 then
   __modules=($(sed -n -e 's,^[^:]*/,,' -e 's,\.o:.*$,,p' /lib/modules/`uname -r`/modules.dep))
   compctl -k __modules insmod modprobe
