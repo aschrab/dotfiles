@@ -12,11 +12,17 @@ idiot/
 {
   DUP="$HOME/.Procmail/dup/$MATCH"
 #  LOG="Using dupfile: $DUP$NL"
+
+  CACHESIZE=4096
+  :0
+  * LIST ?? /ruby-talk/
+  { CACHESIZE=12000 }
+
   LOCKFILE="$DUP.lock"
   :0H
   * ^Message-ID:
   * ! ^X-suspect-reason:
-  * ? formail -D 4096 "$DUP"
+  * ? formail -D $CACHESIZE "$DUP"
   {
     LOG="$TIME: killed duplicate message$NL"
   
