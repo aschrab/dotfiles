@@ -6,6 +6,9 @@ MAXHISTSIZE = 100
 
 IRB.conf[:AUTO_INDENT] = true
 
+# To use to_s instead of inspect for returned values
+# IRB.conf[:INSPECT_MODE] = false
+
 # Change the prompt {{{
 IRB.conf[:IRB_RC] = proc do |conf|
   leader = " " * conf.irb_name.length
