@@ -10,7 +10,7 @@ S="[ 	]"
 NL="
 "
 
-RCVERSION="$Id: rc,v 1.1 1998/08/19 01:51:26 aarons Exp $"
+RCVERSION="$Id: rc,v 1.2 1999/03/12 05:38:23 aarons Exp $"
 
 LOCALSERVER="((vm[0-9]+|[abcyz])\.mx\.execpc\.com)"
 
@@ -23,7 +23,15 @@ TMP=$1
 :0
 * TMP ?? FETCHED
 { FETCHED=yes }
+:0E
+* TMP ?? .
+* ! TMP ?? REFILTER
+{ FETCHED=yes }
 TMP
+
+:0
+* REFILTER ?? y
+{ FETCHED }
 
 :0
 * FETCHED ?? y
