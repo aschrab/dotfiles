@@ -844,6 +844,9 @@ case "$host" in
    "grok"|"gir"|"tamara"|"tanstaafl")
       PGHOST="fnord"
       ;;
+   "frell")
+      echo m | fc -R /proc/self/fd/0
+      ;;
 esac
 
 function __sshhosts () {
