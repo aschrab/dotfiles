@@ -44,6 +44,7 @@ set modelines=5
 
 ":if $DISPLAY == ":0"
   set mouse=a
+  set clipboard=unnamed,autoselect,exclude:cons\|linux
 ":endif
 
 " Not many filenames have = in them, so make completion easier
