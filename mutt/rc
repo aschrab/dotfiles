@@ -17,8 +17,6 @@ source /home/aarons/.Mutt/aliases
 
 set alias_file=~/.Mutt/aliases
 
-set nohelp
-
 set save_name                  # save messages in folder named for addressee
 set see_old
 #set skip_old

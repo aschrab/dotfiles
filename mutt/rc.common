@@ -56,6 +56,7 @@ charset-hook windows-1251 cp1251
 
 
 # Misc settings
+set nohelp
 set copy=yes
 set move=yes        # automatically move read messages to read folder
 set confirmappend=no
