@@ -28,6 +28,7 @@ set smarttab
 set expandtab
 set title
 set ignorecase
+set smartcase
 set incsearch
 set ruler
 set showmatch
