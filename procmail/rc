@@ -10,7 +10,7 @@ S="[ 	]"
 NL="
 "
 
-RCVERSION="$Id: rc,v 1.8 1999/07/17 00:01:15 aarons Exp $"
+RCVERSION="$Id: rc,v 1.9 1999/08/21 07:52:00 aarons Exp $"
 
 LOCALSERVER="(pug\.(schrab\.com|qqx\.org)|(vm[0-9]+|[abcyz])\.mx\.execpc\.com)"
 
@@ -85,8 +85,8 @@ $MAILDIR/BACKUP/
 
 INCLUDERC=$HOME/.procmail/listselect
 INCLUDERC=$HOME/.procmail/manglemore
-INCLUDERC=$HOME/.procmail/filter
 INCLUDERC=$HOME/.procmail/listsave
+INCLUDERC=$HOME/.procmail/filter
 
 LOCKFILE=msgid.lock
 :0H
