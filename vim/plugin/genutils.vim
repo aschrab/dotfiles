@@ -1,179 +1,959 @@
 "
 " Useful buffer, file and window related functions.
 "
-" Author: Hari Krishna Dara <hari_vim@yahoo.com>
-" Last Modified: 09-Aug-2002 @ 19:51
-" Requires: Vim-6.0, multvals.vim(2.0.5)
-" Version: 1.1.0
+" Author: Hari Krishna Dara <hari_vim at yahoo dot com>
+" Last Change: 30-Jun-2004 @ 09:13
+" Requires: Vim-6.3, multvals.vim(3.5)
+" Version: 1.13.1
+" Licence: This program is free software; you can redistribute it and/or
+"          modify it under the terms of the GNU General Public License.
+"          See http://www.gnu.org/copyleft/gpl.txt 
 " Download From:
-"     http://vim.sourceforge.net/scripts/script.php?script_id=197
+"     http://www.vim.org/script.php?script_id=197
 " Description:
-"   - Scriptlets, g:makeArgumentString and g:makeArgumentList, and a function
-"     CreateArgString() to work with and pass variable number of arguments to
-"     other functions.
+"   - Read the "Documentation With Function Prototypes" section below.
+"   - Functions MakeArgumentString(), MakeArgumentList() and CreateArgString()
+"     to work with and pass variable number of arguments to other functions.
+"     There is also an ExtractFuncListing() function that is used by the above
+"     functions to create snippets (see also breakpts.vim, ntservices.vim and
+"     ntprocesses.vim for interesting ideas on how to use this function).
 "   - Misc. window/buffer related functions, NumberOfWindows(),
-"     FindWindowForBuffer(), FindBufferForName(), MoveCursorToWindow(),
-"     MoveCurLineToWinLine(), SetupScratchBuffer(), MapAppendCascaded()
+"     FindBufferForName(), MoveCursorToWindow(), MoveCurLineToWinLine(),
+"     SetupScratchBuffer(), MapAppendCascaded()
 "   - Save/Restore all the window height/width settings to be restored later.
 "   - Save/Restore position in the buffer to be restored later. Works like the
 "     built-in marks feature, but has more to it.
-"   - NotifyWindowClose() to get notifications *after* a window with the
+"   - AddNotifyWindowClose() to get notifications *after* a window with the
 "     specified buffer has been closed or the buffer is unloaded. The built-in
 "     autocommands can only notify you *before* the window is closed. You can
 "     use this with the Save/Restore window settings feature to restore the
-"     user windows, after your window is closed. I have used this utility in
-"     selectbuf.vim to restore window dimensions after the browser window is
-"     closed. To add your function to be notified when a window is closed, use
-"     the function:
-"
-"         function! AddNotifyWindowClose(windowTitle, functionName)
-"
+"     dimensions of existing windows, after your window is closed (just like
+"     how Vim does while closing help windows). See selectbuf.vim or
+"     perforce.vim for examples.
 "     There is also a test function called RunNotifyWindowCloseTest() that
-"     demos the usage.
+"     demos the usage (you need to uncomment RunNotifyWindowCloseTest and
+"     NotifyWindowCloseF functions).
 "   - ShowLinesWithSyntax() function to echo lines with syntax coloring.
 "   - ShiftWordInSpace(), CenterWordInSpace() and
 "     AlignWordWithWordInPreviousLine() utility functions to move words in the
-"     space without changing the width of the field.
-"   - A quick-sort function that can sort a buffer contents by range. Adds
-"     utility commands SortByLength and RSortByLength to sort contents by line
-"     length.
-"   - A useful ExecMap() function to facilitate recovering from typing errors
-"     in normal mode mappings (see below for examples). Normally when you make
-"     mistakes in typing normal mode commands, vim beeps at you and aborts the
-"     command. But this method allows you to continue typing the command and
-"     even backspace on errors.
+"     space without changing the width of the field. A GetSpacer() function to
+"     return a spacer of specified width.
+"   - A quick-sort functions QSort() that can sort a buffer contents by range
+"     and QSort2() that can sort any arbitrary data and utility compare
+"     methods.  Binary search functions BinSearchForInsert() and
+"     BinSearchForInsert2() to find the location for a newline to be inserted
+"     in an already sorted buffer or arbitrary data.
+"   - ExecMap function has now been separated as a plugin called execmap.vim.
 "   - A sample function to extract the scriptId of a script.
 "   - New CommonPath() function to extract the common part of two paths, and
 "     RelPathFromFile() and RelPathFromDir() to find relative paths (useful
-"     HTML href's)
+"     HTML href's). A side effect is the CommonString() function to find the
+"     common string of two strings.
+"   - UnEscape() and DeEscape() functions to reverse and Escape() to compliment
+"     what built-in escape() does. There is also an EscapeCommand() function
+"     to escape external command strings.
+"   - Utility functions CurLineHasSign() and ClearAllSigns() to fill in the
+"     gaps left by Vim.
+"   - GetVimCmdOutput() function to capture the output of Vim built-in
+"     commands, in a safe manner.
+"   - OptClearBuffer() function to clear the contents and undo history of the
+"     current buffer in an optimal manner. Ideal to be used when plugins need
+"     to refresh their windows and don't care about preserving the current
+"     contents (which is the most usual case).
+"   - GetPreviewWinnr() function.
 "   - Functions to have persistent data, PutPersistentVar() and
 "     GetPersistentVar(). You don't need to worry about saving in files and
 "     reading them back. To disable, set g:genutilsNoPersist in your vimrc.
+"   - A function to emulate the default Vim behavior for |timestamp| changes.
+"     It also provides hooks to get call backs before and after handling the
+"     default FileChangedShell autocommand (effectively splitting it into a
+"     Pre and a Post event). Suggested usage is to use AddToFCShellPre() or
+"     AddToFCShell() and either install a default event handling mechanism for
+"     all files by calling DefFCShellInstall() or create your own autocommand on
+"     a matching pattern to call DefFileChangedShell() function. Most useful
+"     for the source control plugins to conditionally reload a file, while
+"     being able to default to the Vim's standard behavior of asking the user.
+"     See perforce.vim for usage examples.
+"   - Place the following in your vimrc if you find them useful:
+"
+"       command! DiffOff :call CleanDiffOptions()
+"       
+"       command! -nargs=0 -range=% SortByLength <line1>,<line2>call QSort(
+"           \ 'CmpByLengthNname', 1)
+"       command! -nargs=0 -range=% RSortByLength <line1>,<line2>call QSort(
+"           \ 'CmpByLineLengthNname', -1)
+"       command! -nargs=0 -range=% SortJavaImports <line1>,<line2>call QSort(
+"           \ 'CmpJavaImports', 1)
+"
+"       nnoremap <silent> <C-Space> :call ShiftWordInSpace(1)<CR>
+"       nnoremap <silent> <C-BS> :call ShiftWordInSpace(-1)<CR>
+"       nnoremap <silent> \cw :call CenterWordInSpace()<CR>
+"
+"       nnoremap <silent> \va :call AlignWordWithWordInPreviousLine()<CR>
+"
+" Function Prototypes:
+"     The types in prototypes of the functions mimic Java.
+"     This is just a full list for a quick reference, see
+"       "Documentation With Function Prototypes" for more information on the
+"       functions.
+"
+" String  MakeArgumentString(...)
+" String  MakeArgumentList(...)
+" String  CreateArgString(String argList, String sep, ...)
+" void    DebugShowArgs(...)
+" String  ExtractFuncListing(String funcName, String hLines, String tLines)
+" int     NumberOfWindows()
+" int     FindBufferForName(String fileName)
+" String  GetBufNameForAu(String bufName)
+" void    MoveCursorToWindow(int winno)
+" void    MoveCurLineToWinLine(int winLine)
+" void    IsOnlyVerticalWindow()
+" void    IsOnlyHorizontalWindow()
+" void    SetupScratchBuffer()
+" void    CleanDiffOptions()
+" boolean ArrayVarExists(String varName, int index)
+" void    MapAppendCascaded(String lhs, String rhs, String mapMode)
+" void    SaveWindowSettings()
+" void    RestoreWindowSettings()
+" void    ResetWindowSettings()
+" void    SaveWindowSettings2(String sid, boolean overwrite)
+" void    RestoreWindowSettings2(String scripid)
+" void    ResetWindowSettings2(String scripid)
+" void    SaveSoftPosition(String scriptid)
+" void    RestoreSoftPosition(String scriptid)
+" void    ResetSoftPosition(String scriptid)
+" void    SaveHardPosition(String scriptid)
+" void    RestoreHardPosition(String scriptid)
+" void    ResetHardPosition(String scriptid)
+" int     GetLinePosition(String scriptid)
+" int     GetColPosition(String scriptid)
+" boolean IsPositionSet(String scriptid)
+" String  CleanupFileName(String fileName)
+" boolean OnMS()
+" boolean PathIsAbsolute(String path)
+" boolean PathIsFileNameOnly(String path)
+" void    AddNotifyWindowClose(String windowTitle, String functionName)
+" void    RemoveNotifyWindowClose(String windowTitle)
+" void    CheckWindowClose()
+" void    ShowLinesWithSyntax() range
+" void    ShiftWordInSpace(int direction)
+" void    CenterWordInSpace()
+" void    QSort(String cmp, int direction) range
+" void    QSort2(int start, int end, String cmp, int direction,
+"                String accessor, String swapper, String context)
+" int     BinSearchForInsert(int start, int end, String line, String cmp,
+"                            int direction)
+" int     BinSearchForInsert2(int start, int end, line, String cmp,
+"                             int direction, String accessor, String context)
+" String  CommonPath(String path1, String path2)
+" String  CommonString(String str1, String str2)
+" String  RelPathFromFile(String srcFile, String tgtFile)
+" String  RelPathFromDir(String srcDir, String tgtFile)
+" String  Roman2Decimal(String str)
+" String  Escape(String str, String chars)
+" String  UnEscape(String str, String chars)
+" String  DeEscape(String str)
+" String  EscapeCommand(String cmd, String args, String pipe)
+" String  ExpandStr(String str)
+" String  QuoteStr(String str)
+" boolean CurLineHasSign()
+" void    ClearAllSigns()
+" String  UserFileComplete(String ArgLead, String CmdLine, String CursorPos,
+"                          String smartSlash, String searchPath)
+" String  UserFileExpand(String fileArgs)
+" String  GetVimCmdOutput(String cmd)
+" void    OptClearBuffer()
+" int     GetPreviewWinnr()
+" void    PutPersistentVar(String pluginName, String persistentVar,
+"                          String value)
+" void    GetPersistentVar(String pluginName, String persistentVar,
+"                          String default)
+" void    AddToFCShellPre(String funcName)
+" void    RemoveFromFCShellPre(String funcName)
+" void    AddToFCShell(String funcName)
+" void    RemoveFromFCShell(String funcName)
+" void    DefFCShellInstall()
+" void    DefFCShellUninstall()
+" boolean DefFileChangedShell()
+" void    SilentSubstitute(String pat, String cmd)
+" void    SilentDelete(String pat)
+" String  GetSpacer(int width)
+"
+" Documentation With Function Prototypes:
+" -----------------------
+" Execute the function return value to create a local variable called
+"   'argumentString' containsing all your variable number of arguments that
+"   are passed to your function, such a way that it can be passed further down
+"   to another function as arguments.
+" Uses __argCounter and __nextArg local variables, so make sure you don't have
+"   variables with the same name in your function. If you want to change the
+"   name of the resultant variable from the default 'argumentString' to
+"   something else, you can pass the new name as an argument.
+" Ex:
+"   fu! s:IF(...)
+"     exec MakeArgumentString()
+"     exec "call Impl(1, " . argumentString . ")"
+"   endfu
+"
+" String  MakeArgumentString(...)
+" -----------------------
+" Execute the function return value to create a local variable called
+"   'argumentList' containsing all your variable number of arguments that
+"   are passed to your function, such a way that it can manipulated as an
+"   array list separated by commas before passing further down to another
+"   function as arguments. Once manipulated, the string can be passed to
+"   CreateArgString() function to make an argument string which can be
+"   used just like the 'argumentString' as mentioned in the documentation on
+"   MakeArgumentString(). To manipulate 'argumentList' you can use
+"   multvals.vim script.
+" Unlike MakeArgumentString(), this doesn't preserve the argument types
+"   (string vs number).
+" Uses __argCounter and __argSeparator local variables, so make sure you don't
+"   have variables with the same name in your function. You can change the
+"   name of the resultant variable from the default 'argumentList' to
+"   something else, by passing the new name as the first argument. You can also pass in a
+"   second optional argument which is used as the argument separator instead
+"   of the default ','. You need to make sure that the separator string itself
+"   can't occur as part of arguments, or use a sequence of characters that is
+"   hard to occur as separator.
+" Ex: 
+"   fu! s:IF(...)
+"     exec MakeArgumentList()
+"     exec "call Impl(1, " . CreateArgString(argumentList, ',') . ")"
+"   endfu
+"
+" String  MakeArgumentList(...)
+" -----------------------
+" Useful to collect arguments into a soft-array (see multvals on vim.sf.net)
+"   and then pass them to a function later.
+" You should make sure that the separator itself doesn't exist in the
+"   arguments. You can use the return value same as the way argumentString
+"   created by the "exec g:makeArgumentString" above is used. If the separator
+"   is a pattern, you should pass in an optional additional argument, which
+"   is an arbitrary string that is guaranteed to match the pattern, as a
+"   sample separator (see multvals.vim for details).
+" Usage:
+"     let args = 'a b c' 
+"     exec "call F(" . CreateArgString(args, ' ') . ")"
+"
+" String  CreateArgString(String argList, String sep, ...)
+" -----------------------
+" Useful function to debug passing arguments to functions. See exactly what
+"   you would receive on the other side.
+" Ex: :exec 'call DebugShowArgs('. CreateArgString("a 'b' c", ' ') . ')' 
+"
+" void    DebugShowArgs(...)
+" -----------------------
+" This function returns the body of the specified function ( the name should be
+"   complete, including any scriptid prefix in case of a script local
+"   function), without the function header and tail. You can also pass in the
+"   number of additional lines to be removed from the head and or tail of the
+"   function.
+"
+" String  ExtractFuncListing(String funcName, String hLines, String tLines)
+" -----------------------
+" -----------------------
+" Return the number of windows open currently.
+"
+" int     NumberOfWindows()
+" -----------------------
+" Returns the buffer number of the given fileName if it is already loaded.
+" The fileName argument is treated literally, unlike the bufnr() which treats
+"   the argument as a filename-pattern, however it first removes one level of
+"   back-slashes from the bufferName.
+"
+" int     FindBufferForName(String fileName)
+" -----------------------
+" Returns the transformed buffer name that is suitable to be used in
+"   autocommands.
+"
+" String  GetBufNameForAu(String bufName)
+" -----------------------
+" Given the window number, moves the cursor to that window.
+"
+" void    MoveCursorToWindow(int winno)
+" -----------------------
+" Moves the current line such that it is going to be the nth line in the window
+"   without changing the column position.
+"
+" void    MoveCurLineToWinLine(int winLine)
+" -----------------------
+" Returns 1 if the current window is the only window vertically.
+"
+" void    IsOnlyVerticalWindow()
+" -----------------------
+" Returns 1 if the current window is the only window horizontally.
+"
+" void    IsOnlyHorizontalWindow()
+" -----------------------
+" Turn on some buffer settings that make it suitable to be a scratch buffer.
+"
+" void    SetupScratchBuffer()
+" -----------------------
+" Turns off those options that are set by diff to the current window.
+"   Also removes the 'hor' option from scrollopt (which is a global option).
+" Better alternative would be to close the window and reopen the buffer in a
+"   new window. 
+"
+" void    CleanDiffOptions()
+" -----------------------
+" This function is an alternative to exists() function, for those odd array
+"   index names for which the built-in function fails. The var should be
+"   accessible to this functions, so it shouldn't be a local or script local
+"   variable.
+"     if ArrayVarExists("array", id)
+"       let val = array{id}
+"     endif
+"
+" boolean ArrayVarExists(String varName, int index)
+" -----------------------
+" If lhs is already mapped, this function makes sure rhs is appended to it
+"   instead of overwriting it. If you are rhs has any script local functions,
+"   make sure you use the <SNR>\d\+_ prefix instead of the <SID> prefix (or the
+"   <SID> will be replaced by the SNR number of genutils script, instead of
+"   yours).
+" mapMode is used to prefix to "oremap" and used as the map command. E.g., if
+"   mapMode is 'n', then the function call results in the execution of noremap
+"   command.
+"
+" void    MapAppendCascaded(String lhs, String rhs, String mapMode)
+" -----------------------
+" -----------------------
+" Saves the heights and widths of the currently open windows for restoring
+"   later.
+"
+" void    SaveWindowSettings()
+" -----------------------
+" Restores the heights of the windows from the information that is saved by
+"  SaveWindowSettings(). Works only when the number of windows haven't changed
+"  since the SaveWindowSettings is called.
+"
+" void    RestoreWindowSettings()
+" -----------------------
+" Reset the previously saved window settings using SaveWindowSettings.
+"
+" void    ResetWindowSettings()
+" -----------------------
+" Same as SaveWindowSettings, but uses the passed in scriptid to create a
+"   private copy for the calling script. Pass in a unique scriptid to avoid
+"   conflicting with other callers. If overwrite is zero and if the settings
+"   are already stored for the passed in sid, it will overwrite previously
+"   saved settings.
+"
+" void    SaveWindowSettings2(String sid, boolean overwrite)
+" -----------------------
+" Same as RestoreWindowSettings, but uses the passed in scriptid to get the
+"   settings. The settings must have been previously saved using this
+"   scriptid.
+"
+" void    RestoreWindowSettings2(String scripid)
+" -----------------------
+" Reset the previously saved window settings using SaveWindowSettings2.
+"   Releases the variables.
+"
+" void    ResetWindowSettings2(String scripid)
+" -----------------------
+" -----------------------
+" This method tries to save the hard position along with the line context This
+"   is like the vim builtin marker. Pass in a unique scriptid to avoid
+"   conflicting with other callers.
+"
+" void    SaveSoftPosition(String scriptid)
+" -----------------------
+" Restore the cursor position using the information saved by the previous call
+"   to SaveSoftPosition. This first calls RestoreHardPosition() and then
+"   searches for the original line first in the forward direction and then in
+"   the backward and positions the cursor on the line if found. If the
+"   original line is not found it still behaves like a call to
+"   RestoreHardPosition. This is similar to the functionality of the built-in
+"   marker, as Vim is capable of maintaining the marker even when the line is
+"   moved up or down. However, if there are identical lines in the buffer and
+"   the original line has moved, this function might get confused.
+"
+" void    RestoreSoftPosition(String scriptid)
+" -----------------------
+" Reset the previously cursor position using SaveSoftPosition. Releases the
+"   variables.
+"
+" void    ResetSoftPosition(String scriptid)
+" -----------------------
+" Useful when you want to go to the exact (line, col), but marking will not
+"   work, or if you simply don't want to disturb the marks. Pass in a unique
+"   scriptid.
+"
+" void    SaveHardPosition(String scriptid)
+" -----------------------
+" Restore the cursor position using the information saved by the previous call
+"   to SaveHardPosition. 
+"
+" void    RestoreHardPosition(String scriptid)
+" -----------------------
+" Reset the previously cursor position using SaveHardPosition. Releases the
+"   variables.
+"
+" void    ResetHardPosition(String scriptid)
+" -----------------------
+" Return the line number of the previously saved position for the scriptid.
+"   This is like calling line() builtin function for a mark.
+"
+" int     GetLinePosition(String scriptid)
+" -----------------------
+" Return the column number of the previously saved position for the scriptid.
+"   This is like calling col() builtin function for a mark.
+"
+" int     GetColPosition(String scriptid)
+" -----------------------
+" A convenience function to check if a position has been saved (and not reset)
+"   using the scriptid given.
+"
+" boolean IsPositionSet(String scriptid)
+" -----------------------
+" -----------------------
+" Cleanup file name such that two *cleaned up* file names are easy to be
+"   compared. This probably works only on windows and unix platforms. Also
+"   recognizes UNC paths. Always returns paths with forward slashes only,
+"   irrespective of what your 'shellslash' setting is. The return path will
+"   always be a valid path for use in Vim, provided the original path itself
+"   was valid for the platform (a valid cygwin path after the cleanup will
+"   still be valid in a cygwin vim).
+"
+" String  CleanupFileName(String fileName)
+" -----------------------
+" Returns true if the current OS is any of the Microsoft OSes. Most useful to
+"   know if the path separator is "\".
+"
+" boolean OnMS()
+" -----------------------
+" Returns true if the given path could be an absolute path. Probably works
+"   only on Unix and Windows platforms.
+"
+" boolean PathIsAbsolute(String path)
+" -----------------------
+" Returns true if the given path doesn't have any directory components.
+"   Probably works only on Unix and Windows platforms.
+"
+" boolean PathIsFileNameOnly(String path)
+" -----------------------
+" -----------------------
+" Add a notification to know when a buffer with the given name (referred to as
+"   windowTitle) is no longer visible in any window. This by functionality is
+"   like a BufWinLeavePost event. The function functionName is called back
+"   with the title (buffer name) as an argument. The notification gets removed
+"   after excuting it, so for future notifications, you need to reregister
+"   your function. You can only have one notification for any buffer. The
+"   function should be accessible from the script's local context.
+"
+" void    AddNotifyWindowClose(String windowTitle, String functionName)
+" -----------------------
+" Remove the notification previously added using AddNotifyWindowClose
+"   function.
+"
+" void    RemoveNotifyWindowClose(String windowTitle)
+" -----------------------
+" Normally the plugin checks for closed windows for every WinEnter event, but
+"   you can force a check at anytime by calling this function.
+"
+" void    CheckWindowClose()
+" -----------------------
+" -----------------------
+" Displays the given line(s) from the current file in the command area (i.e.,
+"   echo), using that line's syntax highlighting (i.e., WYSIWYG).  If no line
+"   number is given, display the current line.
+" Originally,
+"   From: Gary Holloway "gary at castandcrew dot com"
+"   Date: Wed, 16 Jan 2002 14:31:56 -0800
+"
+" void    ShowLinesWithSyntax() range
+" -----------------------
+" This function shifts the current word in the space without changing the
+"   column position of the next word. Doesn't work for tabs.
+"
+" void    ShiftWordInSpace(int direction)
+" -----------------------
+" This function centers the current word in the space without changing the
+"   column position of the next word. Doesn't work for tabs.
+" 
+" void    CenterWordInSpace()
+" -----------------------
+" -----------------------
+" Sorts a range of lines in the current buffer, in the given range, using the
+"   comparator that is passed in. The comparator function should accept the
+"   two lines that needs to be compared and the direction as arguments and
+"   return -1, 0 or 1. Pass 1 or -1 for direction to mean asending or
+"   descending order. The function should be accessible from the script's
+"   local context. The plugin also defines the following comparators that you
+"   can use: CmpByString, CmpByStringIgnoreCase, CmpByNumber,
+"            CmpByLength, CmpByLineLengthNname, CmpJavaImports
+"
+" void    QSort(String cmp, int direction) range
+" -----------------------
+" This is a more generic version of QSort, that will let you provide your own
+"   accessor and swapper, so that you can extend the sorting to something
+"   beyond the current buffer lines. See multvals.vim plugin for example
+"   usage.
+"
+" void    QSort2(int start, int end, String cmp, int direction,
+"                String accessor, String swapper, String context)
+" -----------------------
+" Return the line number where given line can be inserted in the current
+"   buffer. This can also be interpreted as the line in the current buffer
+"   after which the new line should go.
+" Assumes that the lines are already sorted in the given direction using the
+"   given comparator.
+"
+" int     BinSearchForInsert(int start, int end, String line, String cmp,
+"                            int direction)
+" -----------------------
+" A more generic implementation of BinSearchForInsert, which doesn't restrict
+"   the search to the current buffer.
+"
+" int     BinSearchForInsert2(int start, int end, line, String cmp,
+"                             int direction, String accessor, String context)
+" -----------------------
+" -----------------------
+" Find common path component of two filenames.
+"   Based on the tread, "computing relative path".
+"   Date: Mon, 29 Jul 2002 21:30:56 +0200 (CEST)
+" Ex:
+"   CommonPath('/a/b/c/d.e', '/a/b/f/g/h.i') => '/a/b/'
+"
+" String  CommonPath(String path1, String path2)
+" -----------------------
+" Find common string component of two strings.
+"   Based on the tread, "computing relative path".
+"   Date: Mon, 29 Jul 2002 21:30:56 +0200 (CEST)
+" Ex:
+"   CommonString('abcde', 'abfghi') => 'ab'
+"
+" String  CommonString(String str1, String str2)
+" -----------------------
+" Find the relative path of tgtFile from the directory of srcFile.
+"   Based on the tread, "computing relative path".
+"   Date: Mon, 29 Jul 2002 21:30:56 +0200 (CEST)
+" Ex:
+"   RelPathFromFile('/a/b/c/d.html', '/a/b/e/f.html') => '../f/g.html'
+"
+" String  RelPathFromFile(String srcFile, String tgtFile)
+" -----------------------
+" Find the relative path of tgtFile from the srcDir.
+"   Based on the tread, "computing relative path".
+"   Date: Mon, 29 Jul 2002 21:30:56 +0200 (CEST)
+" Ex:
+"   RelPathFromDir('/a/b/c/d', '/a/b/e/f/g.html') => '../../e/f/g.html'
+"
+" String  RelPathFromDir(String srcDir, String tgtFile)
+" -----------------------
+" -----------------------
+" Convert Roman numerals to decimal. Doesn't detect format errors.
+" Originally,
+"   From: "Preben Peppe Guldberg" <c928400@student.dtu.dk>
+"   Date: Fri, 10 May 2002 14:28:19 +0200
+"
+" String  Roman2Decimal(String str)
+" -----------------------
+" -----------------------
+" Works like the built-in escape(), except that it escapes the passed in
+"   characters only if they are not already escaped, so something like
+"   Escape('a\bc\\bd', 'b') would give 'a\bc\\\bd'. The chars value directly
+"   goes into the [] collection, so it can be anything that is accepted in [].
+"
+" String  Escape(String str, String chars)
+" -----------------------
+" Works like the reverse of the builtin escape() function, but un-escapes the
+"   specified characters only if they are already escaped (essentially the
+"   opposite of Escape()). The chars value directly goes into the []
+"   collection, so it can be anything that is acceptable to [].
+"
+" String  UnEscape(String str, String chars)
+" -----------------------
+" Works like the reverse of the built-in escape() function. De-escapes all the
+"   escaped characters. Essentially removes one level of escaping from the
+"   string, so something like: 'a\b\\\\c\\d' would become 'ab\\c\d'.
+"
+" String  DeEscape(String str)
+" ----------------------- 
+" Escape the passed in shell command with quotes and backslashes such a way
+"   that the arguments reach the command literally (avoids shell
+"   interpretations). See the function header for the kind of escapings that
+"   are done. The first argument is the actual command name, the second
+"   argument is the arguments to the command and third argument is any pipe
+"   command that should be appended to the command. The reason the function
+"   requires them to be passed separately is that the escaping is minimized
+"   for the first and third arguments. It understand the protected spaces in
+"   the arguments.
+"   Usage:
+"     let fullCmd = EscapeCommand('ls', '-u '.expand('%:h'), '| grep xxx')
+"   Note:
+"     If the escaped command is used on Vim command-line (such as with ":w !",
+"     ":r !" and ":!"), you need to further protect '%', '#' and '!' chars,
+"     even if they are in quotes, to avoid getting expanded by Vim before
+"     invoking external cmd. However this is not required for using it with
+"     system() function. The easiest way to escape them is by using the
+"     Escape() function as in "Escape(fullCmd, '%#!')".
+" String  EscapeCommand(String cmd, String args, String pipe)
+" -----------------------
+"
+" Expands the string for the special characters. The return value should
+"   essentially be what you would see if it was a string constant with
+"   double-quotes.
+" Ex:
+"   ExpandStr('a\tA') => 'a     A'
+" String  ExpandStr(String str)
+" -----------------------
+" Quotes the passed in string such that it can be used as a string expression
+" in :execute. It sorrounds the passed in string with single-quotes while
+" escaping any existing single-quotes in the string.
+"
+" String  QuoteStr(String str)
+" -----------------------
+" -----------------------
+" Returns true if the current line has a sign placed.
+"
+" boolean CurLineHasSign()
+" -----------------------
+" Clears all signs in the current buffer.
+"
+" void    ClearAllSigns()
+" -----------------------
+" -----------------------
+" This function is suitable to be used by custom command completion functions
+"   for expanding filenames conditionally. The function could based on the
+"   context, decide whether to do a file completion or a different custom
+"   completion. See breakpts.vim and perforce.vim for examples.
+" If you pass non-zero value to smartSlash, the function decides to use
+"   backslash or forwardslash as the path separator based on the user settings
+"   and the ArgLead, but if you always want to use only forwardslash as the
+"   path separator, then pass 0. If you pass in a comma separated list of
+"   directories as searchPath, then the file expansion is limited to the files
+"   under these directories. This means, you can implement your own commands
+"   that don't expect the user to type in the full path name to the file
+"   (e.g., if the user types in the command while in the explorer window, you
+"   could assume that the path is relative to the directory being viewed). Most
+"   useful with a single directory, but also useful in combination with vim
+"   'runtimepath' in loading scripts etc. (see Runtime command in
+"   breakpts.vim).
+"
+" String  UserFileComplete(String ArgLead, String CmdLine, String CursorPos,
+"                          String smartSlash, String searchPath)
+" -----------------------
+" This is a convenience function to expand filename meta-sequences in the
+"   given arguments just as Vim would have if given to a user-defined command
+"   as arguments with completion mode set to "file". Useful
+"   if you set the completion mode of your command to anything
+"   other than the "file", and later conditionally expand arguments (for
+"   characters such as % and # and other sequences such as #10 and <cword>)
+"   after deciding which arguments represent filenames/patterns.
+"
+" String  UserFileExpand(String fileArgs)
+" -----------------------
+" This returns the output of the vim command as a string, without corrupting
+"   any registers. Returns empty string on errors. Check for v:errmsg after
+"   calling this function for any error messages.
+"
+" String  GetVimCmdOutput(String cmd)
+" -----------------------
+" Clear the contents of the current buffer in an optimum manner. For plugins
+" that keep redrawing the contents of its buffer, executing "1,$d" or its
+" equivalents result in overloading Vim's undo mechanism. Using this function
+" avoids that problem.
+"
+" void    OptClearBuffer()
+" -----------------------
+" Returns the window number of the preview window if open or -1 if not.
+" int     GetPreviewWinnr()
+" -----------------------
+" -----------------------
+" These functions provide a persistent storage mechanism.
 "
 "     Example: Put the following in a file called t.vim in your plugin
 "     directory and watch the magic. You can set new value using SetVar() and
 "     see that it returns the same value across session when GetVar() is
 "     called.
 "     >>>>t.vim<<<<
-"	au VimEnter * call LoadSettings()
-"	au VimLeavePre * call SaveSettings()
-"	
-"	function! LoadSettings()
-"	  let s:tVar = GetPersistentVar("T", "tVar", "defVal")
-"	endfunction
-"	
-"	function! SaveSettings()
-"	  call PutPersistentVar("T", "tVar", s:tVar)
-"	endfunction
-"	
-"	function! SetVar(val)
-"	  let s:tVar = a:val
-"	endfunction
-"	
-"	function! GetVar()
-"	  return s:tVar
-"	endfunction
+"       au VimEnter * call LoadSettings()
+"       au VimLeavePre * call SaveSettings()
+"       
+"       function! LoadSettings()
+"         let s:tVar = GetPersistentVar("T", "tVar", "defVal")
+"       endfunction
+"       
+"       function! SaveSettings()
+"         call PutPersistentVar("T", "tVar", s:tVar)
+"       endfunction
+"       
+"       function! SetVar(val)
+"         let s:tVar = a:val
+"       endfunction
+"       
+"       function! GetVar()
+"         return s:tVar
+"       endfunction
 "     <<<<t.vim>>>>
 "
-"   - Place the following  in your vimrc if you find them useful:
+" The pluginName and persistentVar have to be unique and are case insensitive.
+"   Ideally called from your VimLeavePre autocommand handler of your plugin.
+"   This simply creates a global variable which will be persisted by Vim
+"   through viminfo. The variable can be read back in the next session by the
+"   plugin using GetPersistentVar() function, ideally from your VimEnter
+"   autocommand handler. The pluginName is to provide a name space for
+"   different plugins, and avoid conflicts in using the same persistentVar
+"   name.
+" This feature uses the '!' option of viminfo, to avoid storing all the
+"   temporary and other plugin specific global variables getting saved.
 "
-"       command! DiffOff :call CleanDiffOptions()
-"       
-"       command! -nargs=0 -range=% SortByLength <line1>,<line2>call QSort(
-"           \ 's:CmpByLineLength', 1)
-"       command! -nargs=0 -range=% RSortByLength <line1>,<line2>call QSort(
-"           \ 's:CmpByLineLength', -1)
+" void    PutPersistentVar(String pluginName, String persistentVar,
+"                          String value)
+" -----------------------
+" Ideally called from VimEnter, this simply reads the value of the global
+"   variable for the persistentVar that is saved in the viminfo in a previous
+"   session using PutPersistentVar() and returns it (and default if the variable
+"   is not found). It removes the variable from global space before returning
+"   the value, so can be called only once. It also means that PutPersistentVar
+"   should be called again in the next VimLeavePre if the variable continues
+"   to be persisted.
 "
-"	nnoremap \ :call ExecMap('\')<CR>
-"	nnoremap _ :call ExecMap('_')<CR>
+" void    GetPersistentVar(String pluginName, String persistentVar,
+"                          String default)
+" -----------------------
+" -----------------------
+" These functions channel the FileChangedShell autocommand and extend it to
+" create an additional fictitious FileChangedShellPre and FileChangedShellPost
+" events.
 "
-"	nnoremap <silent> <C-Space> :call ShiftWordInSpace(1)<CR>
-"	nnoremap <silent> <C-BS> :call ShiftWordInSpace(-1)<CR>
-"	nnoremap <silent> \cw :call CenterWordInSpace()<CR>
+" Add the given noarg function to the list of functions that need to be
+"   notified before processing the FileChangedShell event. The function when
+"   called can expand "<abuf>" or "<afile>" to get the details of the buffer
+"   for which this autocommand got executed. It should return 0 to mean
+"   noautoread and 1 to mean autoread the current buffer. It can also return
+"   -1 to make its return value ignored and use default autoread mechanism
+"   (which could still be overridden by the return value of other functions).
+"   The return value of all the functions is ORed to determine the effective
+"   autoread value.
 "
-"	nnoremap <silent> \va :call AlignWordWithWordInPreviousLine()<CR>
+" void    AddToFCShellPre(String funcName)
+" -----------------------
+" Remove the given function previously added by calling AddToFCShellPre.
+"
+" void    RemoveFromFCShellPre(String funcName)
+" -----------------------
+" Same as AddToFCShellPre except that the function is called after the event
+"   is processed, so this is like a fictitious FileChangedShellPost event.
+"
+" void    AddToFCShell(String funcName)
+" -----------------------
+" Remove the given function previously added by calling AddToFCShell.
+"
+" void    RemoveFromFCShell(String funcName)
+" -----------------------
+" The plugin provides a default autocommand handler which can be installed
+"   by calling this function. 
+" 
+" void    DefFCShellInstall()
+" -----------------------
+" Uninstall the default autocommand handler that was previously installed
+"   using DefFCShellInstall. Calling this function may not actually result in
+"   removing the handler, in case there are other callers still dependent on
+"   it (which is kept track of by the number of times DefFCShellInstall has
+"   been called).
+"
+" void    DefFCShellUninstall()
+" -----------------------
+" This function emulates the Vim's default behavior when a |timestamp| change
+"   is detected. Register your functions by calling AddToFCShellPre or
+"   AddToFCShell and have this function called during the FileChangedShell event
+"   (or just install the default handler by calling DefFCShellInstall).
+"   From your callbacks, return 1 to mean autoread, 0 to mean noautoread and
+"   -1 to mean system default (or ignore). The return value of this method is
+"   1 if the file was reloaded and 0 otherwise. The return value of all the
+"   functions is ORed to determine the effective autoread value. See my
+"   perforce plugin for usage example.
+"
+" boolean DefFileChangedShell()
+" -----------------------
+" Execute a substitute command silently and without corrupting the search
+"   register.
+" Ex:
+"   To insert a tab infrontof all lines:
+"         call SilentSubstitute('^', '%s//\t/e')
+"   To remote all carriage returns at the line ending:
+"         call SilentSubstitute("\<CR>$", '%s///e')
+"
+" void    SilentSubstitute(String pat, String cmd)
+" -----------------------
+" Delete all lines matching the given pattern silently and without corrupting
+"   the search register.
+" Ex:
+"   To delete all lines that are empty:
+"         call SilentDelete("^\s*$")
+"
+" void    SilentDelete(String pat)
+" -----------------------
+" Can return a spacer from 0 to 80 characters width.
+"
+" String  GetSpacer(int width)
+" -----------------------
+" -----------------------
+" Deprecations:
+"   - The g:makeArgumentString and g:makeArgumentList are obsolete and are
+"     deprecated, please use MakeArgumentString() and MakeArgumentList()
+"     instead.
+"   - FindWindowForBuffer() function is now deprecated, as the corresponding
+"     Vim bugs are fixed. Use the below expr instead:
+"       bufwinnr(FindBufferForName(fileName))
 " TODO:
-"   - fnamemodify() on Unix doesn't expand to full name if a name containing
-"     path components is passed in.
+"   - fnamemodify() on Unix doesn't expand to full name if the filename doesn't
+"     really exist on the filesystem.
+"
+"   - Support specifying arguments (with spaces) enclosed in "" or '' for
+"     makeArgumentString. Just combine the arguments that are between "" or ''
+"     and strip the quotes off.
 "
 
-if exists("loaded_genutils")
+if exists('loaded_genutils')
   finish
 endif
-let loaded_genutils = 1
+if v:version < 603
+  echomsg 'genutils: You need at least Vim 6.3'
+  finish
+endif
 
-" Execute this following variable in your function to make a string containing
-"   all your arguments. The string can be used to pass the variable number of
-"   arguments received by your script further down into other functions.
-" Uses __argCounter and __nextArg variables, so make sure you don't have
-"   variables with the same name. 
-" Ex:
-"   fu! s:IF(...)
-"     exec g:makeArgumentString
-"     exec "call Impl(" . argumentString . ")"
-"   endfu
-let makeArgumentString = "
-    \  let __argCounter = 1\n
-    \  let argumentString = ''\n
-    \  while __argCounter <= a:0\n
-    \    let __nextArg = substitute(a:{__argCounter},
-             \ \"'\", \"' . \\\"'\\\" . '\", \"g\")\n
-    \    let argumentString = argumentString . \"'\" . __nextArg . \"'\" .
-             \ ((__argCounter == a:0) ? '' : ', ')\n
-    \    let __argCounter = __argCounter + 1\n
-    \  endwhile\n
-    \  unlet __argCounter\n
-    \  silent! exec 'unlet __nextArg'\n
-    \ "
+if !exists('loaded_multvals')
+  runtime plugin/multvals.vim
+endif
+if !exists('loaded_multvals') || loaded_multvals < 305
+  echomsg 'genutils: You need to have multvals version 3.4 or higher'
+  finish
+endif
+let loaded_genutils = 113
+
+" Make sure line-continuations won't cause any problem. This will be restored
+"   at the end
+let s:save_cpo = &cpo
+set cpo&vim
 
 
-" Creates a argumentList string containing all the arguments separated by
-"   commas.  You can then pass this string to CreateArgString() function below
-"   to make argumentString which can be used as mentioned above in
-"   "exec g:makeArgumentString". You can also use the scripts that let you
-"   handle arrays to manipulate this string (such as remove/insert args)
-"   before passing it on.
-" Uses __argCounter and __argSeparator variables, so make sure you don't have
-"   variables with the same name. You set the __argSeparator before executing
-"   this scriptlet to make it use a different separator.
-let makeArgumentList = "
-    \  let __argCounter = 1\n
-    \  if (! exists('__argSeparator'))\n
-    \    let __argSeparator = ','\n
-    \  endif\n
-    \  let argumentList = ''\n
-    \  while __argCounter <= a:0\n
-    \    let argumentList = argumentList . a:{__argCounter}\n
-    \    if __argCounter != a:0\n
-    \      let argumentList = argumentList . __argSeparator\n
-    \    endif\n
-    \    let __argCounter = __argCounter + 1\n
-    \  endwhile\n
-    \  unlet __argCounter\n
-    \  unlet __argSeparator\n
-    \ "
+let g:makeArgumentString = 'exec MakeArgumentString()'
+let g:makeArgumentList = 'exec MakeArgumentList()'
 
-
-" You should make sure that the separator doesn't exist in the argList. You
-" can use the return value the same as the argumentString created by the
-" "exec g:makeArgumentString" above.
-" Usage:
-"     let args = 'a b c' 
-"     exec "call F(" . ConvertToArgString(args, ' ') . ")"
-function! CreateArgString(argList, sep)
-  let argString = a:argList
-  if a:sep != "'"
-    let argString = substitute(argString, "'", "' . \"'\" . '", 'g')
+let s:makeArgumentString = ''
+function! MakeArgumentString(...)
+  if s:makeArgumentString == ''
+    let s:makeArgumentString = ExtractFuncListing(s:myScriptId.
+          \ '_makeArgumentString', 0, 0)
   endif
-  let argString = substitute(argString, a:sep . '\?\([^' . a:sep . ']*\)',
-	\ "'\\1', ", 'g')
-  return argString
+  if a:0 > 0 && a:1 != ''
+    return substitute(s:makeArgumentString, '\<argumentString\>', a:1, 'g')
+  else
+    return s:makeArgumentString
+  endif
 endfunction
 
 
-"
-" Return the number of windows open currently.
-"
+let s:makeArgumentList = ''
+function! MakeArgumentList(...)
+  if s:makeArgumentList == ''
+    let s:makeArgumentList = ExtractFuncListing(s:myScriptId.
+          \ '_makeArgumentList', 0, 0)
+  endif
+  if a:0 > 0 && a:1 != ''
+    let mkArgLst = substitute(s:makeArgumentList, '\<argumentList\>', a:1, 'g')
+    if a:0 > 1 && a:2 != ''
+      let mkArgLst = substitute(s:makeArgumentList,
+            \ '\(\s\+let __argSeparator = \)[^'."\n".']*', "\\1'".a:2."'", '')
+    endif
+    return mkArgLst
+  else
+    return s:makeArgumentList
+  endif
+endfunction
+
+function! ExtractFuncListing(funcName, hLines, tLines)
+  let listing = GetVimCmdOutput('func '.a:funcName)
+  let listing = substitute(listing,
+        \ '^\%(\s\|'."\n".'\)*function '.a:funcName.'([^)]*)'."\n", '', '')
+  "let listing = substitute(listing, '\%(\s\|'."\n".'\)*endfunction\%(\s\|'."\n".'\)*$', '', '')
+  " Leave the last newline character.
+  let listing = substitute(listing, '\%('."\n".'\)\@<=\s*endfunction\s*$', '', '')
+  let listing = substitute(listing, '\(\%(^\|'."\n".'\)\s*\)\@<=\d\+',
+        \ '', 'g')
+  if a:hLines > 0
+    let listing = substitute(listing, '^\%([^'."\n".']*'."\n".'\)\{'.
+          \ a:hLines.'}', '', '')
+  endif
+  if a:tLines > 0
+    let listing = substitute(listing, '\%([^'."\n".']*'."\n".'\)\{'.
+          \ a:tLines.'}$', '', '')
+  endif
+  return listing
+endfunction
+
+function! CreateArgString(argList, sep, ...)
+  let sep = (a:0 == 0) ? a:sep : a:1
+  call MvIterCreate(a:argList, a:sep, 'CreateArgString', sep)
+  let argString = "'"
+  while MvIterHasNext('CreateArgString')
+    let nextArg = MvIterNext('CreateArgString')
+    " FIXME: I think this check is not required. If "'" is the separator, we
+    "   don't expect to see them in the elements.
+    if a:sep != "'"
+      let nextArg = substitute(nextArg, "'", "' . \"'\" . '", 'g')
+    endif
+    let argString = argString . nextArg . "', '"
+  endwhile
+  let argString = strpart(argString, 0, strlen(argString) - 3)
+  call MvIterDestroy('CreateArgString')
+  return argString
+endfunction
+
+" {{{
+function! s:_makeArgumentString()
+  let __argCounter = 1
+  let argumentString = ''
+  while __argCounter <= a:0
+    if type(a:{__argCounter})
+      let __nextArg =  "'" .
+            \ substitute(a:{__argCounter}, "'", "' . \"'\" . '", "g") . "'"
+    else
+      let __nextArg = a:{__argCounter}
+    endif
+    let argumentString = argumentString. __nextArg .
+          \ ((__argCounter == a:0) ? '' : ', ')
+    let __argCounter = __argCounter + 1
+  endwhile
+  unlet __argCounter
+  if exists('__nextArg')
+    unlet __nextArg
+  endif
+endfunction
+
+function! s:_makeArgumentList()
+  let __argCounter = 1
+  let __argSeparator = ','
+  let argumentList = ''
+  while __argCounter <= a:0
+    let argumentList = argumentList . a:{__argCounter}
+    if __argCounter != a:0
+      let argumentList = argumentList . __argSeparator
+    endif
+    let __argCounter = __argCounter + 1
+  endwhile
+  unlet __argCounter
+  unlet __argSeparator
+endfunction
+" }}}
+
+
+function! DebugShowArgs(...)
+  let i = 0
+  let argString = ''
+  while i < a:0
+    let argString = argString . a:{i + 1} . ', '
+    let i = i + 1
+  endwhile
+  let argString = strpart(argString, 0, strlen(argString) - 2)
+  call input("Args: " . argString)
+endfunction
+
 function! NumberOfWindows()
   let i = 1
   while winbufnr(i) != -1
@@ -182,88 +962,120 @@ function! NumberOfWindows()
   return i - 1
 endfunction
 
-"
-" Find the window number for the buffer passed. If checkUnlisted is non-zero,
-"   then it searches for the buffer in the unlisted buffers, to work-around
-"   the vim bug that bufnr() doesn't work for unlisted buffers. It also
-"   unprotects any extra back-slashes from the bufferName, for the sake of
-"   comparision with the existing buffer names.
-"
+" Find the window number for the buffer passed.
+" The fileName argument is treated literally, unlike the bufnr() which treats
+"   the argument as a regex pattern.
 function! FindWindowForBuffer(bufferName, checkUnlisted)
-  let bufno = bufnr(a:bufferName)
-  " bufnr() will not find unlisted buffers.
-  if bufno == -1 && a:checkUnlisted
-    " Iterate over all the open windows for 
-
-    " The window name could be having extra backslashes to protect certain
-    " chars, so first expand them.
-    let bufName = DeEscape(a:bufferName)
-    let i = 1
-    while winbufnr(i) != -1
-      if bufname(winbufnr(i)) == bufName
-        return i;
-      endif
-      let i = i + 1
-    endwhile
-  endif
-  return bufwinnr(bufno)
+  return bufwinnr(FindBufferForName(a:bufferName))
 endfunction
 
-" Returns the buffer number of the given fileName if it is already loaded.
-" Works around the bug in bufnr().
 function! FindBufferForName(fileName)
-  let i = bufnr(a:fileName)
-  if i != -1
-    return i
-  endif
-
-  " If bufnr didn't work, the it probably is a hidden buffer, so check the
-  "   hidden buffers.
-  let i = 1
-  while i <= bufnr("$")
-    if bufexists(i) && ! buflisted(i) && (match(bufname(i), a:fileName) != -1)
-      break
-    endif
-    let i = i + 1
-  endwhile
-  if i <= bufnr("$")
-    return i
-  else
-    return -1
-  endif
+  " The name could be having extra backslashes to protect certain chars (such
+  "   as '#' and '%'), so first expand them.
+  return s:FindBufferForName(DeEscape(a:fileName))
 endfunction
 
+function! s:FindBufferForName(fileName)
+  let fileName = Escape(a:fileName, '[[,{\\]')
+  let _isf = &isfname
+  try
+    set isfname-=\
+    set isfname-=[
+    let i = bufnr('^' . fileName . '$')
+  finally
+    let &isfname = _isf
+  endtry
+  return i
+endfunction
 
-" Given the window number, moves the cursor to that window.
+function! GetBufNameForAu(bufName)
+  let bufName = a:bufName
+  " Autocommands always require forward-slashes.
+  let bufName = substitute(bufName, "\\\\", '/', 'g')
+  let bufName = escape(bufName, '*?,{}[ ')
+  return bufName
+endfunction
+
 function! MoveCursorToWindow(winno)
   if NumberOfWindows() != 1
     execute a:winno . " wincmd w"
   endif
 endfunction
 
-
-" Moves the current line such that it is going to be the nth line in the window
-"   without changing the column position.
 function! MoveCurLineToWinLine(n)
-  normal zt
-  execute "normal " . a:n . "\<C-Y>"
+  normal! zt
+  if a:n == 1
+    return
+  endif
+  let _wrap = &l:wrap
+  setl nowrap
+  let n = a:n
+  if n >= winheight(0)
+    let n = winheight(0)
+  endif
+  let n = n - 1
+  execute "normal! " . n . "\<C-Y>"
+  let &l:wrap = _wrap
 endfunction
 
+function! IsOnlyVerticalWindow()
+  let onlyVertWin = 1
+  let _eventignore = &eventignore
+  set eventignore+=WinEnter,WinLeave
+  try
+    let curWinnr = winnr()
+    wincmd j
+    if winnr() != curWinnr
+      wincmd k
+      let onlyVertWin = 0
+    else
+      wincmd k
+      if winnr() != curWinnr
+	wincmd j
+	let onlyVertWin = 0
+      endif
+    endif
+  finally
+    let &eventignore = _eventignore
+  endtry
+  return onlyVertWin
+endfunction
 
-" Turn on some buffer settings that make it suitable to be a scratch buffer.
+function! IsOnlyHorizontalWindow()
+  let onlyHorizWin = 1
+  let _eventignore = &eventignore
+  set eventignore+=WinEnter,WinLeave
+  try
+    let curWinnr = winnr()
+    wincmd l
+    if winnr() != curWinnr
+      wincmd h
+      let onlyHorizWin = 0
+    else
+      wincmd h
+      if winnr() != curWinnr
+	wincmd l
+	let onlyHorizWin = 0
+      endif
+    endif
+  finally
+    let &eventignore = _eventignore
+  endtry
+  return onlyHorizWin
+endfunction
+
 function! SetupScratchBuffer()
-  setlocal noswapfile
   setlocal nobuflisted
+  setlocal noswapfile
   setlocal buftype=nofile
   " Just in case, this will make sure we are always hidden.
   setlocal bufhidden=delete
+  setlocal nolist
+  setlocal nonumber
+  setlocal foldcolumn=0 nofoldenable
+  setlocal noreadonly
 endfunction
 
-
-" Turns off those options that are set by diff to the current window.
-"   Also removes the 'hor' option from scrollopt (which is a global option).
-" Better alternative would be to close the window and reopen the buffer in a
-"   new window. 
 function! CleanDiffOptions()
   setlocal nodiff
   setlocal noscrollbind
@@ -271,58 +1083,140 @@ function! CleanDiffOptions()
   setlocal wrap
   setlocal foldmethod=manual
   setlocal foldcolumn=0
+  normal zE
 endfunction
 
-
-" This function is an alternative to exists() function, for those odd array
-"   index names for which the built-in function fails. The var should be
-"   accessible to this functions, so it should be a global variable.
-"     if ArrayVarExists("array", id)
-"       let val = array{id}
-"     endif
 function! ArrayVarExists(varName, index)
-  let v:errmsg = ""
-  silent! exec "let test = " . a:varName . "{a:index}"
-  if !exists("test") || test == ""
+  try
+    exec "let test = " . a:varName . "{a:index}"
+  catch /^Vim\%((\a\+)\)\=:E121/
     return 0
-  endif
+  endtry
   return 1
 endfunction
 
-
-" Works like the reverse of the builtin escape() function.
-function! DeEscape(val)
-  exec "let val = \"" . a:val . "\"" 
-  return val
+function! Escape(str, chars)
+  return substitute(a:str, '\\\@<!\(\%(\\\\\)*\)\([' . a:chars .']\)', '\1\\\2',
+        \ 'g')
 endfunction
 
+function! UnEscape(str, chars)
+  return substitute(a:str, '\\\@<!\(\\\\\)*\\\([' . a:chars . ']\)',
+        \ '\1\2', 'g')
+endfunction
 
-" Returns 1 if preview window is open or 0 if not.
-function! IsPreviewWindowOpen()
-  let v:errmsg = ""
-  silent! exec "wincmd P"
-  if v:errmsg != ""
-    return 0
+function! DeEscape(str)
+  let str = a:str
+  let str = substitute(str, '\\\(\\\|[^\\]\)', '\1', 'g')
+  return str
+endfunction
+
+" - For windoze+native, use double-quotes to sorround the arguments and for
+"   embedded double-quotes, just double them.
+" - For windoze+sh, use single-quotes to sorround the aruments and for embedded
+"   single-quotes, just replace them with '""'""' (if 'shq' or 'sxq' is a
+"   double-quote) and just '"'"' otherwise. Embedded double-quotes also need
+"   to be doubled.
+" - For Unix+sh, use single-quotes to sorround the arguments and for embedded
+"   single-quotes, just replace them with '"'"'. 
+function! EscapeCommand(cmd, args, pipe)
+  let fullCmd = a:args
+  " I am only worried about passing arguments with spaces as they are to the
+  "   external commands, I currently don't care about back-slashes
+  "   (backslashes are normally expected only on windows when 'shellslash'
+  "   option is set, but even then the 'shell' is expected to take care of
+  "   them.). However, for cygwin bash, there is a loss of one level
+  "   of the back-slashes somewhere in the chain of execution (most probably
+  "   between CreateProcess() and cygwin?), so we need to double them.
+  let shellEnvType = s:GetShellEnvType()
+  if shellEnvType ==# s:ST_WIN_CMD
+    let quoteChar = '"'
+    " Escape the existing double-quotes (by doubling them).
+    let fullCmd = substitute(fullCmd, '"', '""', 'g')
   else
-    wincmd p
-    return 1
+    let quoteChar = "'"
+    if shellEnvType ==# s:ST_WIN_SH
+      " Escape the existing double-quotes (by doubling them).
+      let fullCmd = substitute(fullCmd, '"', '""', 'g')
+    endif
+    " Take care of existing single-quotes (by exposing them, as you can't have
+    "   single-quotes inside a single-quoted string).
+    if &shellquote == '"' || &shellxquote == '"'
+      let squoteRepl = "'\"\"'\"\"'"
+    else
+      let squoteRepl = "'\"'\"'"
+    endif
+    let fullCmd = substitute(fullCmd, "'", squoteRepl, 'g')
+  endif
+
+  " Now sorround the arguments with quotes, considering the protected
+  "   spaces.
+  let fullCmd = substitute(fullCmd, '\(\%([^ ]\|\\\@<=\%(\\\\\)* \)\+\)',
+        \ quoteChar.'\1'.quoteChar, 'g')
+  " We delay adding pipe part so that we can avoid the above processing.
+  if a:pipe !~# '^\s*$'
+    let fullCmd = fullCmd . ' ' . a:pipe
+  endif
+  let fullCmd = UnEscape(fullCmd, ' ') " Unescape just the spaces.
+  if a:cmd !~# '^\s*$'
+    let fullCmd = a:cmd . ' ' . fullCmd
+  endif
+  if shellEnvType ==# s:ST_WIN_SH && &shell =~# '\<bash\>'
+    let fullCmd = substitute(fullCmd, '\\', '\\\\', 'g')
+  endif
+  return fullCmd
+endfunction
+
+let s:ST_WIN_CMD = 0 | let s:ST_WIN_SH = 1 | let s:ST_UNIX = 2
+function! s:GetShellEnvType()
+  " When 'shellslash' option is available, then the platform must be one of
+  "     those that support '\' as a pathsep.
+  if exists('+shellslash')
+    if stridx(&shell, 'cmd.exe') != -1 ||
+          \ stridx(&shell, 'command.com') != -1
+      return s:ST_WIN_CMD
+    else
+      return s:ST_WIN_SH
+    endif
+  else
+    return s:ST_UNIX
   endif
 endfunction
 
+function! ExpandStr(str)
+  let str = substitute(a:str, '"', '\\"', 'g')
+  exec "let str = \"" . str . "\"" 
+  return str
+endfunction
 
-"
-" Saves the heights and widths of the currently open windows for restoring
-"   later.
-"
+function! QuoteStr(str)
+  return "'".substitute(a:str, "'", "'.\"'\".'", 'g')."'"
+endfunction
+
+function! GetPreviewWinnr()
+  let _eventignore = &eventignore
+  let curWinNr = winnr()
+  let winnr = -1
+  try
+    set eventignore+=WinLeave,WinEnter
+    exec "wincmd P"
+    let winnr = winnr()
+  catch /^Vim\%((\a\+)\)\=:E441/
+    " Ignore, winnr is already set to -1.
+  finally
+    if winnr() != curWinNr
+      exec curWinNr.'wincmd w'
+    endif
+    let &eventignore = _eventignore
+  endtry
+  return winnr
+endfunction
+
+" Save/Restore window settings {{{
 function! SaveWindowSettings()
   call SaveWindowSettings2(s:myScriptId, 1)
 endfunction
 
-
-"
-" Restores the heights of the windows from the information that is saved by
-"  SaveWindowSettings().
-"
 function! RestoreWindowSettings()
   call RestoreWindowSettings2(s:myScriptId)
 endfunction
@@ -332,12 +1226,6 @@ function! ResetWindowSettings()
   call ResetWindowSettings2(s:myScriptId)
 endfunction
 
-
-" Same as SaveWindowSettings, but uses the passed in scriptid to create a
-"   private copy for the calling script. Pass in a unique scriptid to avoid
-"   conflicting with other callers. If overwrite is zero and if the settings
-"   are already stored for the passed in sid, it will overwriting previously
-"   saved settings.
 function! SaveWindowSettings2(sid, overwrite)
   if ArrayVarExists("s:winSettings", a:sid) && ! a:overwrite
     return
@@ -360,9 +1248,6 @@ function! SaveWindowSettings2(sid, overwrite)
   "let g:savedWindowSettings = s:winSettings{a:sid} " Debug.
 endfunction
 
-
-" Same as RestoreWindowSettings, but uses the passed in scriptid to get the
-"   settings.
 function! RestoreWindowSettings2(sid)
   "if ! exists("s:winSettings" . a:sid)
   if ! ArrayVarExists("s:winSettings", a:sid)
@@ -399,46 +1284,52 @@ endfunction
 
 
 function! ResetWindowSettings2(sid)
-  if ! ArrayVarExists("s:winSettings", a:sid)
+  if ArrayVarExists("s:winSettings", a:sid)
     unlet s:winSettings{a:sid}
   endif
 endfunction
 
+" Save/Restore window settings }}}
 
-" Cleanup file name such that two *cleaned up* file names are easy to be
-"   compared. This probably works only on windows and unix platforms.
 function! CleanupFileName(fileName)
   let fileName = a:fileName
 
-  " If filename starts with an ~.
-  " The below case takes care of this also.
-  "if match(fileName, '^\~') == 0
-  "  let fileName = substitute(fileName, '^\~', escape($HOME, '\'), '')
-  "endif
-
-  " Expand relative paths and paths containing relative components.
+  " Expand relative paths and paths containing relative components (takes care
+  " of ~ also).
   if ! PathIsAbsolute(fileName)
-    let fileName = fnamemodify(fileName, ":p")
+    let fileName = fnamemodify(fileName, ':p')
+  endif
+
+  " I think we can have UNC paths on UNIX, if samba is installed.
+  if (match(fileName, '^//') == 0) || (OnMS() && match(fileName, '^\\\\') == 0)
+    let uncPath = 1
+  else
+    let uncPath = 0
   endif
 
   " Remove multiple path separators.
-  if has("win32")
-    let fileName=substitute(fileName, '\\', '/', "g")
+  if has('win32')
+    let fileName=substitute(fileName, '\\', '/', 'g')
   elseif OnMS()
-    let fileName=substitute(fileName, '\\\{2,}', '\', "g")
+    let fileName=substitute(fileName, '\\\{2,}', '\', 'g')
   endif
-  let fileName=substitute(fileName, '/\{2,}', '/', "g")
+  let fileName=substitute(fileName, '/\{2,}', '/', 'g')
 
   " Remove ending extra path separators.
-  let fileName=substitute(fileName, '/$', '', "")
-  let fileName=substitute(fileName, '\$', '', "")
+  let fileName=substitute(fileName, '/$', '', '')
+  let fileName=substitute(fileName, '\$', '', '')
+
+  " If it was an UNC path, add back an extra slash.
+  if uncPath
+    let fileName = '/'.fileName
+  endif
 
   if OnMS()
-    let fileName=substitute(fileName, '^[A-Z]:', '\L&', "")
+    let fileName=substitute(fileName, '^[A-Z]:', '\L&', '')
 
     " Add drive letter if missing (just in case).
-    if match(fileName, '^/') == 0
-      let curDrive = substitute(getcwd(), '^\([a-zA-Z]:\).*$', '\L\1', "")
+    if !uncPath && match(fileName, '^/') == 0
+      let curDrive = substitute(getcwd(), '^\([a-zA-Z]:\).*$', '\L\1', '')
       let fileName = curDrive . fileName
     endif
   endif
@@ -450,17 +1341,15 @@ endfunction
 "echo CleanupFileName('~/a/b/c\d')
 "echo CleanupFileName('~/a/b/../c\d')
 
-
 function! OnMS()
-  return has("win32") || has("dos32") || has("win16") || has("dos16") ||
-       \ has("win95")
+  return has('win32') || has('dos32') || has('win16') || has('dos16') ||
+       \ has('win95')
 endfunction
-
 
 function! PathIsAbsolute(path)
   let absolute=0
-  if has("unix") || OnMS()
-    if match(a:path, "^/") == 0
+  if has('unix') || OnMS()
+    if match(a:path, '^/') == 0
       let absolute=1
     endif
   endif
@@ -477,7 +1366,6 @@ function! PathIsAbsolute(path)
   return absolute
 endfunction
 
-
 function! PathIsFileNameOnly(path)
   return (match(a:path, "\\") < 0) && (match(a:path, "/") < 0)
 endfunction
@@ -485,82 +1373,70 @@ endfunction
 
 " Copy this method into your script and rename it to find the script id of the
 "   current script.
-function! SampleScriptIdFunction()
+function! s:MyScriptId()
   map <SID>xx <SID>xx
   let s:sid = maparg("<SID>xx")
   unmap <SID>xx
   return substitute(s:sid, "xx$", "", "")
 endfunction
-let s:myScriptId = SampleScriptIdFunction()
+let s:myScriptId = s:MyScriptId()
+delfunc s:MyScriptId " Not required any more.
 
 
-""
-"" --- START save/restore position.
-""
+"" --- START save/restore position. {{{
 
 " characters that must be escaped for a regular expression
-let s:escregexp = '/*^$.~\'
+let s:escregexp = '[/*^$.~\'
 
-
-" This method tries to save the position along with the line context if
-"   possible. This is like the vim builtin marker. Pass in a unique scriptid
-"   to avoid conflicting with other callers.
 function! SaveSoftPosition(scriptid)
   let s:startline_{a:scriptid} = getline(".")
   call SaveHardPosition(a:scriptid)
 endfunction
 
-
 function! RestoreSoftPosition(scriptid)
   0
-  if search('\m^'.escape(s:startline_{a:scriptid},s:escregexp),'W') <= 0
-    call RestoreHardPosition(a:scriptid)
-  else
-    execute "normal!" s:col_{a:scriptid} . "|"
-    call MoveCurLineToWinLine(s:winline_{a:scriptid})
+  call RestoreHardPosition(a:scriptid)
+  let stLine = s:startline_{a:scriptid}
+  if getline('.') !=# stLine
+    if ! search('\V\^'.escape(stLine, "\\").'\$', 'W') 
+      call search('\V\^'.escape(stLine, "\\").'\$', 'bW')
+    endif
   endif
+  call MoveCurLineToWinLine(s:winline_{a:scriptid})
 endfunction
-
 
 function! ResetSoftPosition(scriptid)
   unlet s:startline_{a:scriptid}
 endfunction
-
 
 " A synonym for SaveSoftPosition.
 function! SaveHardPositionWithContext(scriptid)
   call SaveSoftPosition(a:scriptid)
 endfunction
 
-
 " A synonym for RestoreSoftPosition.
 function! RestoreHardPositionWithContext(scriptid)
   call RestoreSoftPosition(a:scriptid)
 endfunction
-
 
 " A synonym for ResetSoftPosition.
 function! ResetHardPositionWithContext(scriptid)
   call ResetSoftPosition(a:scriptid)
 endfunction
 
-
-" Useful when you want to go to the exact (line, col), but marking will not
-"   work, or if you simply don't want to disturb the marks. Pass in a unique
-"   scriptid.
 function! SaveHardPosition(scriptid)
   let s:col_{a:scriptid} = virtcol(".")
   let s:lin_{a:scriptid} = line(".")
   let s:winline_{a:scriptid} = winline()
 endfunction
 
-
 function! RestoreHardPosition(scriptid)
+  " This doesn't take virtual column.
+  "call cursor(s:lin_{a:scriptid}, s:col_{a:scriptid})
   execute s:lin_{a:scriptid}
   execute "normal!" s:col_{a:scriptid} . "|"
   call MoveCurLineToWinLine(s:winline_{a:scriptid})
 endfunction
-
 
 function! ResetHardPosition(scriptid)
   unlet s:col_{a:scriptid}
@@ -568,26 +1444,28 @@ function! ResetHardPosition(scriptid)
   unlet s:winline_{a:scriptid}
 endfunction
 
-""
-"" --- END save/restore position.
-""
+function! GetLinePosition(scriptid)
+  return s:lin_{a:scriptid}
+endfunction
+
+function! GetColPosition(scriptid)
+  return s:col_{a:scriptid}
+endfunction
+
+function! IsPositionSet(scriptid)
+  return exists('s:col_' . a:scriptid)
+endfunction
+
+"" --- END save/restore position. }}}
 
 
 
 ""
-"" --- START: Notify window close --
+"" --- START: Notify window close -- {{{
 ""
 
-
-"
-" When the window with the title windowTitle is closed, the global function
-"   functionName is called with the title as an argument, and the entries are
-"   removed, so if you are still interested, you need to register again.
-"
 function! AddNotifyWindowClose(windowTitle, functionName)
-  " The window name could be having extra backslashes to protect certain
-  " chars, so first expand them.
-  let bufName = DeEscape(a:windowTitle)
+  let bufName = a:windowTitle
 
   " Make sure there is only one entry per window title.
   if exists("s:notifyWindowTitles") && s:notifyWindowTitles != ""
@@ -604,8 +1482,8 @@ function! AddNotifyWindowClose(windowTitle, functionName)
   let s:notifyWindowFunctions = MvAddElement(s:notifyWindowFunctions, ";",
           \ a:functionName)
 
-  let g:notifyWindowTitles = s:notifyWindowTitles " Debug.
-  let g:notifyWindowFunctions = s:notifyWindowFunctions " Debug.
+  "let g:notifyWindowTitles = s:notifyWindowTitles " Debug.
+  "let g:notifyWindowFunctions = s:notifyWindowFunctions " Debug.
 
   " Start listening to events.
   aug NotifyWindowClose
@@ -614,11 +1492,8 @@ function! AddNotifyWindowClose(windowTitle, functionName)
   aug END
 endfunction
 
-
 function! RemoveNotifyWindowClose(windowTitle)
-  " The window name could be having extra backslashes to protect certain
-  " chars, so first expand them.
-  let bufName = DeEscape(a:windowTitle)
+  let bufName = a:windowTitle
 
   if !exists("s:notifyWindowTitles")
     return
@@ -634,8 +1509,8 @@ function! RemoveNotifyWindowClose(windowTitle)
     if s:notifyWindowTitles == ""
       unlet s:notifyWindowTitles
       unlet s:notifyWindowFunctions
-      unlet g:notifyWindowTitles " Debug.
-      unlet g:notifyWindowFunctions " Debug.
+      "unlet g:notifyWindowTitles " Debug.
+      "unlet g:notifyWindowFunctions " Debug.
   
       aug NotifyWindowClose
         au!
@@ -644,92 +1519,63 @@ function! RemoveNotifyWindowClose(windowTitle)
   endif
 endfunction
 
-
 function! CheckWindowClose()
-  if !exists("s:notifyWindowTitles")
+  if !exists('s:notifyWindowTitles') || s:notifyWindowTitles == ''
     return
   endif
 
-  " First make an array with all the existing window titles.
-  let i = 1
-  let currentWindows = ""
-  while winbufnr(i) != -1
-    let bufname = bufname(winbufnr(i))
-    if bufname != ""
-      let currentWindows = MvAddElement(currentWindows, ";", bufname)
-    endif
-    let i = i+1
-  endwhile
-  "call input("currentWindows: " . currentWindows)
-
   " Now iterate over all the registered window titles and see which one's are
   "   closed.
+  " Take a copy and iterate over them, such that we can freely modify the main
+  "   arrays as needed (and the caller can also concurrently modify them)
+  let windowTitlesCopy = s:notifyWindowTitles
+  let windowFuncsCopy = s:notifyWindowFunctions
+  call MvIterCreate(windowTitlesCopy, ';', 'NotifyWindowClose')
   let i = 0 " To track the element index.
-  " Take a copy and modify these if needed, as we are not supposed to modify
-  "   the main arrays while iterating over them.
-  let processedElements = ""
-  call MvIterCreate(s:notifyWindowTitles, ";", "NotifyWindowClose")
-  while MvIterHasNext("NotifyWindowClose")
-    let nextWin = MvIterNext("NotifyWindowClose")
-    if ! MvContainsElement(currentWindows, ";", nextWin)
-      let funcName = MvElementAt(s:notifyWindowFunctions, ";", i)
-      let cmd = "call " . funcName . "(\"" . nextWin . "\")"
+  while MvIterHasNext('NotifyWindowClose')
+    let nextWin = MvIterNext('NotifyWindowClose')
+    if bufwinnr(s:FindBufferForName(nextWin)) == -1
+      let funcName = MvElementAt(windowFuncsCopy, ';', i)
+      let cmd = 'call ' . funcName . "('" . nextWin . "')"
+      " Remove these entries as these are going to be processed. This also
+      "   allows the caller to add them back if needed.
+      call RemoveNotifyWindowClose(nextWin)
       "call input("cmd: " . cmd)
       exec cmd
-
-      " Remove these entries as these are already processed.
-      let processedElements = MvAddElement(processedElements, ";", nextWin)
     endif
+    let i = i + 1
   endwhile
-  call MvIterDestroy("NotifyWindowClose")
-
-  call MvIterCreate(processedElements, ";", "NotifyWindowClose")
-  while MvIterHasNext("NotifyWindowClose")
-    let nextWin = MvIterNext("NotifyWindowClose")
-    call RemoveNotifyWindowClose(nextWin)
-  endwhile
-  call MvIterDestroy("NotifyWindowClose")
+  call MvIterDestroy('NotifyWindowClose')
 endfunction
-
 
 "function! NotifyWindowCloseF(title)
 "  call input(a:title . " closed")
 "endfunction
 "
 "function! RunNotifyWindowCloseTest()
+"  call input("Creating three windows, 'ABC', 'XYZ' and 'b':")
 "  split ABC
-"  split XYZ
+"  split X Y Z
+"  split b
+"  redraw
 "  call AddNotifyWindowClose("ABC", "NotifyWindowCloseF")
-"  call AddNotifyWindowClose("XYZ", "NotifyWindowCloseF")
+"  call AddNotifyWindowClose("X Y Z", "NotifyWindowCloseF")
 "  call input("notifyWindowTitles: " . s:notifyWindowTitles)
 "  call input("notifyWindowFunctions: " . s:notifyWindowFunctions)
-"  au WinEnter
-"  split b
-"  call input("Starting the tests, you should see two notifications:")
+"  au NotifyWindowClose WinEnter
+"  call input("Added notifications for 'ABC' and 'XYZ'\n".
+"       \ "Now closing the windows, you should see ONLY two notifications:")
 "  quit
 "  quit
 "  quit
 "endfunction
 
-
 ""
-"" --- END: Notify window close --
+"" --- END: Notify window close -- }}}
 ""
 
-
-
-"
 " TODO: For large ranges, the cmd can become too big, so make it one cmd per
-"         line.
-" Display the given line(s) from the current file in the command area (i.e.,
-" echo), using that line's syntax highlighting (i.e., WYSIWYG).
-"
-" If no line number is given, display the current line.
-"
-" Originally,
-" From: Gary Holloway <gary@castandcrew.com>
-" Date: Wed, 16 Jan 2002 14:31:56 -0800
-"
+"       line.
 function! ShowLinesWithSyntax() range
   " This makes sure we start (subsequent) echo's on the first line in the
   " command-line area.
@@ -742,10 +1588,7 @@ function! ShowLinesWithSyntax() range
   let show_line = a:firstline
   let isMultiLine = ((a:lastline - a:firstline) > 1)
   while show_line <= a:lastline
-    if (show_line - a:firstline) > 1
-      let cmd = cmd . '\n'
-    endif
-
+    let cmd = ''
     let length = strlen(getline(show_line))
     let column = 1
 
@@ -753,25 +1596,27 @@ function! ShowLinesWithSyntax() range
       let group = synIDattr(synID(show_line, column, 1), 'name')
       if group != prev_group
         if cmd != ''
-          let cmd = cmd . '"|'
+          let cmd = cmd . "'|"
         endif
-        let cmd = cmd . 'echohl ' . (group == '' ? 'NONE' : group) . '|echon "'
+        let cmd = cmd . 'echohl ' . (group == '' ? 'NONE' : group) . "|echon '"
         let prev_group = group
       endif
       let char = strpart(getline(show_line), column - 1, 1)
-      if char == '"'
-        let char = '\"'
+      if char == "'"
+        let char = "'."'".'"
       endif
       let cmd = cmd . char
       let column = column + 1
     endwhile
 
+    try
+      exec cmd."\n'"
+    catch
+      echo ''
+    endtry
     let show_line = show_line + 1
   endwhile
-  let cmd = cmd . '"|echohl NONE'
-
-  let g:firstone = cmd
-  exe cmd
+  echohl NONE
 endfunction
 
 
@@ -822,9 +1667,6 @@ function! AlignWordWithWordInPreviousLine()
   endif
 endfunction
 
-
-" This function shifts the word in the space without moving the following words.
-"   Doesn't work for tabs.
 function! ShiftWordInSpace(dir)
   if a:dir == 1 " forward.
     " If currently on <Space>...
@@ -853,7 +1695,7 @@ function! ShiftWordInSpace(dir)
   endif
 
   let savedCol = col(".")
-  exec "normal" move1
+  exec "normal!" move1
   let curCol = col(".")
   let possible = 0
   " Check if there is a space at the end.
@@ -861,18 +1703,18 @@ function! ShiftWordInSpace(dir)
     let possible = 1
   elseif getline(".")[curCol + offset] == " "
     " Remove the space from here.
-    exec "normal" removeCommand
+    exec "normal!" removeCommand
     let possible = 1
   endif
 
   " Move back into the word.
-  "exec "normal" savedCol . "|"
+  "exec "normal!" savedCol . "|"
   if possible == 1
-    exec "normal" pasteCommand
-    exec "normal" move2
+    exec "normal!" pasteCommand
+    exec "normal!" move2
   else
     " Move to the original location.
-    exec "normal" savedCol . "|"
+    exec "normal!" savedCol . "|"
   endif
 endfunction
 
@@ -909,74 +1751,9 @@ function! CenterWordInSpace()
   let newLine = strpart(line, 0, matchInd)
   let newLine = newLine . newStr
   let newLine = newLine . strpart (line, matchInd + strlen(matchStr))
-  call setline(line('.'), newLine)
+  silent! keepjumps call setline(line('.'), newLine)
 endfunction
 
-
-" Reads a normal mode mapping at the command line and executes it with the
-"   given prefix. Press <BS> to correct and <Esc> to cancel.
-function! ExecMap(prefix)
-  " Temporarily remove the mapping, otherwise it will interfere with the
-  " mapcheck call below:
-  let myMap = maparg(a:prefix, 'n')
-  exec "nunmap" a:prefix
-
-  " Generate a line with spaces to clear the previous message.
-  let i = 1
-  let clearLine = "\r"
-  while i < &columns
-    let clearLine = clearLine . ' '
-    let i = i + 1
-  endwhile
-
-  let mapCmd = a:prefix
-  let foundMap = 0
-  let breakLoop = 0
-  let curMatch = ''
-  echon "\rEnter Map: " . mapCmd
-  while !breakLoop
-    let char = getchar()
-    if char !~ '^\d\+$'
-      if char == "\<BS>"
-	let mapCmd = strpart(mapCmd, 0, strlen(mapCmd) - 1)
-      endif
-    else " It is the ascii code.
-      let char = nr2char(char)
-      if char == "\<Esc>"
-	let breakLoop = 1
-      "elseif char == "\<CR>"
-	"let mapCmd = curMatch
-	"let foundMap = 1
-	"let breakLoop = 1
-      else
-	let mapCmd = mapCmd . char
-	if maparg(mapCmd, 'n') != ""
-	  let foundMap = 1
-	  let breakLoop = 1
-	else
-	  let curMatch = mapcheck(mapCmd, 'n')
-	  if curMatch == ""
-	    let mapCmd = strpart(mapCmd, 0, strlen(mapCmd) - 1)
-	  endif
-	endif
-      endif
-    endif
-    echon clearLine
-    "echon "\rEnter Map: " . substitute(mapCmd, '.', ' ', 'g') . "\t" . curMatch
-    echon "\rEnter Map: " . mapCmd
-  endwhile
-  if foundMap
-    exec "normal" mapCmd
-  endif
-  exec "nnoremap" a:prefix myMap
-endfunction
-
-
-" If lhs is already mapped, this function makes sure rhs is appended to it
-"   instead of overwriting it.
-" mapMode is used to prefix to "oremap" and used as the map command. E.g., if
-"   mapMode is 'n', then the function call results in the execution of noremap
-"   command.
 function! MapAppendCascaded(lhs, rhs, mapMode)
 
   " Determine the map mode from the map command.
@@ -993,26 +1770,155 @@ function! MapAppendCascaded(lhs, rhs, mapMode)
   exec a:mapMode . "oremap" a:lhs self . a:rhs
 endfunction
 
+" smartSlash simply says whether to depend on shellslash and ArgLead for
+"   determining path separator. If it shouldn't depend, it will always assume
+"   that the required pathsep is forward-slash.
+function! UserFileComplete(ArgLead, CmdLine, CursorPos, smartSlash, searchPath)
+  let glob = ''
+  let opathsep = "\\"
+  let npathsep = '/'
+  if exists('+shellslash') && ! &shellslash && a:smartSlash &&
+        \ stridx(a:ArgLead, "\\") != -1
+    let opathsep = '/'
+    let npathsep = "\\"
+  endif
+  if a:searchPath !=# ''
+    call MvIterCreate(a:searchPath, MvCrUnProtectedCharsPattern(','),
+          \ 'UserFileComplete', ',')
+    while MvIterHasNext('UserFileComplete')
+      let nextPath = CleanupFileName(MvIterNext('UserFileComplete'))
+      let matches = glob(nextPath.'/'.a:ArgLead.'*')
+      if matches !~# '^\_s*$'
+        let matches = s:FixPathSep(matches, opathsep, npathsep)
+        let nextPath = substitute(nextPath, opathsep, npathsep, 'g')
+        let matches = substitute(matches, '\V'.escape(nextPath.npathsep, "\\"),
+              \ '', 'g')
+        let glob = glob . matches . "\n"
+      endif
+    endwhile
+    call MvIterDestroy('UserFileComplete')
+  else
+    let glob = s:FixPathSep(glob(a:ArgLead.'*'), opathsep, npathsep)
+  endif
+  return glob
+endfunction
 
-"" 
-"" Sort utilities.
+command! -complete=file -nargs=* GUDebugEcho :echo <q-args>
+function! UserFileExpand(fileArgs)
+  return substitute(GetVimCmdOutput(
+        \ 'GUDebugEcho ' . a:fileArgs), '^\_s\+\|\_s\+$', '', 'g')
+endfunction
+
+function! s:FixPathSep(matches, opathsep, npathsep)
+  let matches = a:matches
+  let matches = substitute(matches, a:opathsep, a:npathsep, 'g')
+  let matches = substitute(matches, "\\([^\n]\\+\\)", '\=submatch(1).'.
+        \ '(isdirectory(submatch(1)) ? a:npathsep : "")', 'g')
+  return matches
+endfunction
+
+function! GetVimCmdOutput(cmd)
+  let v:errmsg = ''
+  let output = ''
+  let _z = @z
+  let _shortmess = &shortmess
+  try
+    set shortmess=
+    redir @z
+    silent exec a:cmd
+  catch /.*/
+    let v:errmsg = substitute(v:exception, '^[^:]\+:', '', '')
+  finally
+    redir END
+    let &shortmess = _shortmess
+    if v:errmsg == ''
+      let output = @z
+    endif
+    let @z = _z
+  endtry
+  return output
+endfunction
+
+function! OptClearBuffer()
+  " Go as far as possible in the undo history to conserve Vim resources.
+  let _modifiable = &l:modifiable
+  let _undolevels = &undolevels
+  try
+    setl modifiable
+    set undolevels=-1
+    silent! keepjumps 0,$delete _
+  finally
+    let &undolevels = _undolevels
+    let &l:modifiable = _modifiable
+  endtry
+endfunction
+
+
+"" START: Sorting support. {{{
 ""
 
 "
 " Comapare functions.
 "
 
-function! s:CmpByLineLength(line1, line2, direction)
-  let len1 = strlen(a:line1)
-  let len2 = strlen(a:line2)
-  if (len1 == len2)
-    return s:CmpByName(a:line1, a:line2, a:direction)
-  else
-    return a:direction * (len1 - len2)
-  endif
+function! s:CmpByLineLengthNname(line1, line2, direction)
+  return CmpByLineLengthNname(a:line1, a:line2, a:direction)
 endfunction
 
-function! s:CmpByName(line1, line2, direction)
+function! CmpByLineLengthNname(line1, line2, direction)
+  let cmp = CmpByLength(a:line1, a:line2, a:direction)
+  if cmp == 0
+    let cmp = CmpByString(a:line1, a:line2, a:direction)
+  endif
+  return cmp
+endfunction
+
+function! s:CmpByLength(line1, line2, direction)
+  return CmpByLength(a:line1, a:line2, a:direction)
+endfunction
+
+
+function! CmpByLength(line1, line2, direction)
+  let len1 = strlen(a:line1)
+  let len2 = strlen(a:line2)
+  return a:direction * (len1 - len2)
+endfunction
+
+function! s:CmpJavaImports(line1, line2, direction)
+  return CmpJavaImports(a:line1, a:line2, a:direction)
+endfunction
+
+" Compare first by name and then by length.
+" Useful for sorting Java imports.
+function! CmpJavaImports(line1, line2, direction)
+  " FIXME: Simplify this.
+  if stridx(a:line1, '.') == -1
+    let pkg1 = ''
+    let cls1 = substitute(a:line1, '.* \(^[ ]\+\)', '\1', '')
+  else
+    let pkg1 = substitute(a:line1, '^\(.*\.\)[^. ;]\+.*$', '\1', '')
+    let cls1 = substitute(a:line1, '^.*\.\([^. ;]\+\).*$', '\1', '')
+  endif
+  if stridx(a:line2, '.') == -1
+    let pkg2 = ''
+    let cls2 = substitute(a:line2, '.* \(^[ ]\+\)', '\1', '')
+  else
+    let pkg2 = substitute(a:line2, '^\(.*\.\)[^. ;]\+.*$', '\1', '')
+    let cls2 = substitute(a:line2, '^.*\.\([^. ;]\+\).*$', '\1', '')
+  endif
+
+  let cmp = CmpByString(pkg1, pkg2, a:direction)
+  if cmp == 0
+    let cmp = CmpByLength(cls1, cls2, a:direction)
+  endif
+  return cmp
+endfunction
+
+function! s:CmpByString(line1, line2, direction)
+  return CmpByString(a:line1, a:line2, a:direction)
+endfunction
+
+function! CmpByString(line1, line2, direction)
   if a:line1 < a:line2
     return -a:direction
   elseif a:line1 > a:line2
@@ -1022,7 +1928,23 @@ function! s:CmpByName(line1, line2, direction)
   endif
 endfunction
 
+function! CmpByStringIgnoreCase(line1, line2, direction)
+  let line1 = substitute(a:line1, '.', '\u&', 'g')
+  let line2 = substitute(a:line2, '.', '\u&', 'g')
+  if line1 < line2
+    return -a:direction
+  elseif line1 > line2
+    return a:direction
+  else
+    return 0
+  endif
+endfunction
+
 function! s:CmpByNumber(line1, line2, direction)
+  return CmpByNumber(a:line1, a:line2, a:direction)
+endfunction
+
+function! CmpByNumber(line1, line2, direction)
   let num1 = a:line1 + 0
   let num2 = a:line2 + 0
 
@@ -1035,28 +1957,39 @@ function! s:CmpByNumber(line1, line2, direction)
   endif
 endfunction
 
-"" START: Sorting support. {{{
-""
-
-"
-" To Sort a range of lines, pass the range to QSort() along with the name of a
-" function that will compare two lines.
-"
-function! QSort(cmp,direction) range
-  call s:QSortR(a:firstline, a:lastline, a:cmp, a:direction)
+function! QSort(cmp, direction) range
+  call s:QSortR(a:firstline, a:lastline, a:cmp, a:direction,
+        \ 's:BufLineAccessor', 's:BufLineSwapper', '')
 endfunction
 
+function! QSort2(start, end, cmp, direction, accessor, swapper, context)
+  call s:QSortR(a:start, a:end, a:cmp, a:direction, a:accessor, a:swapper,
+        \ a:context)
+endfunction
+
+" The default swapper that swaps lines in the current buffer.
+function! s:BufLineSwapper(line1, line2, context)
+  let str2 = getline(a:line1)
+  silent! keepjumps call setline(a:line1, getline(a:line2))
+  silent! keepjumps call setline(a:line2, str2)
+endfunction
+
+" The default accessor that returns lines from the current buffer.
+function! s:BufLineAccessor(line, context)
+  return getline(a:line)
+endfunction
 
 "
-" Sort lines.  SortR() is called recursively.
+" Sort lines.  QSortR() is called recursively.
 "
-function! s:QSortR(start, end, cmp, direction)
+function! s:QSortR(start, end, cmp, direction, accessor, swapper, context)
   if a:end > a:start
     let low = a:start
     let high = a:end
 
     " Arbitrarily establish partition element at the midpoint of the data.
-    let midStr = getline((a:start + a:end) / 2)
+    exec "let midStr = " . a:accessor . "(" . ((a:start + a:end) / 2) .
+          \ ", a:context)"
 
     " Loop through the data until indices cross.
     while low <= high
@@ -1064,7 +1997,7 @@ function! s:QSortR(start, end, cmp, direction)
       " Find the first element that is greater than or equal to the partition
       "   element starting from the left Index.
       while low < a:end
-        let str = getline(low)
+        exec "let str = " . a:accessor . "(" . low .  ", a:context)"
         exec "let result = " . a:cmp . "(str, midStr, " . a:direction . ")"
         if result < 0
           let low = low + 1
@@ -1076,7 +2009,7 @@ function! s:QSortR(start, end, cmp, direction)
       " Find an element that is smaller than or equal to the partition element
       "   starting from the right Index.
       while high > a:start
-        let str = getline(high)
+        exec "let str = " . a:accessor . "(" . high .  ", a:context)"
         exec "let result = " . a:cmp . "(str, midStr, " . a:direction . ")"
         if result > 0
           let high = high - 1
@@ -1088,9 +2021,7 @@ function! s:QSortR(start, end, cmp, direction)
       " If the indexes have not crossed, swap.
       if low <= high
         " Swap lines low and high.
-        let str2 = getline(high)
-        call setline(high, getline(low))
-        call setline(low, str2)
+        exec "call " . a:swapper . "(" . high . ", " . low . ", a:context)"
         let low = low + 1
         let high = high - 1
       endif
@@ -1099,15 +2030,39 @@ function! s:QSortR(start, end, cmp, direction)
     " If the right index has not reached the left side of data must now sort
     "   the left partition.
     if a:start < high
-      call s:QSortR(a:start, high, a:cmp, a:direction)
+      call s:QSortR(a:start, high, a:cmp, a:direction, a:accessor, a:swapper,
+            \ a:context)
     endif
 
     " If the left index has not reached the right side of data must now sort
     "   the right partition.
     if low < a:end
-      call s:QSortR(low, a:end, a:cmp, a:direction)
+      call s:QSortR(low, a:end, a:cmp, a:direction, a:accessor, a:swapper,
+            \ a:context)
     endif
   endif
+endfunction
+
+function! BinSearchForInsert(start, end, line, cmp, direction)
+  return BinSearchForInsert2(a:start, a:end, a:line, a:cmp, a:direction,
+        \ 's:BufLineAccessor', '')
+endfunction
+
+function! BinSearchForInsert2(start, end, line, cmp, direction, accessor,
+      \ context)
+  let start = a:start - 1
+  let end = a:end
+  while start < end
+    let middle = (start + end + 1) / 2
+    exec "let str = " . a:accessor . "(" . middle .  ", a:context)"
+    exec "let result = " . a:cmp . "(str, a:line, " . a:direction . ")"
+    if result < 0
+      let start = middle
+    else
+      let end = middle - 1
+    endif
+  endwhile
+  return start
 endfunction
 
 """ END: Sorting support. }}}
@@ -1130,12 +2085,33 @@ function! EatChar(pat)
 endfun
 
 
-" Convert Roman numerals to decimal. Doesn't detect format errors.
-"
-" Originally,
-" From: "Preben Peppe Guldberg" <c928400@student.dtu.dk>
-" Date: Fri, 10 May 2002 14:28:19 +0200
-"
+" Can return a spacer from 0 to 80 characters width.
+let s:spacer= "                                                               ".
+      \ "                 "
+function! GetSpacer(width)
+  return strpart(s:spacer, 0, a:width)
+endfunction
+
+function! SilentSubstitute(pat, cmd)
+  let _search = @/
+  try
+    let @/ = a:pat
+    silent! exec a:cmd
+  finally
+    let @/ = _search
+  endtry
+endfunction
+
+function! SilentDelete(pat)
+  let _search = @/
+  try
+    let @/ = a:pat
+    silent! exec 'g//d'
+  finally
+    let @/ = _search
+  endtry
+endfunction
+
 " START: Roman2Decimal {{{
 let s:I = 1
 let s:V = 5
@@ -1145,61 +2121,62 @@ let s:C = 100
 let s:D = 500
 let s:M = 1000
 
-fun! s:Char2Num(c)
-    " A bit of magic on empty strings
-    if a:c == ""
-        return 0
-    endif
-    exec 'let n = s:' . toupper(a:c)
-    return n
+function! s:Char2Num(c)
+  " A bit of magic on empty strings
+  if a:c == ""
+    return 0
+  endif
+  exec 'let n = s:' . toupper(a:c)
+  return n
 endfun
 
-fun! Roman2Decimal(str)
-    if a:str !~? '^[IVXLCDM]\+$'
-        return a:str
+function! Roman2Decimal(str)
+  if a:str !~? '^[IVXLCDM]\+$'
+    return a:str
+  endif
+  let sum = 0
+  let i = 0
+  let n0 = s:Char2Num(a:str[i])
+  let len = strlen(a:str)
+  while i < len
+    let i = i + 1
+    let n1 = s:Char2Num(a:str[i])
+    " Magic: n1=0 when i exceeds len
+    if n1 > n0
+      let sum = sum - n0
+    else
+      let sum = sum + n0
     endif
-    let sum = 0
-    let i = 0
-    let n0 = s:Char2Num(a:str[i])
-    let len = strlen(a:str)
-    while i < len
-        let i = i + 1
-        let n1 = s:Char2Num(a:str[i])
-        " Magic: n1=0 when i exceeds len
-        if n1 > n0
-            let sum = sum - n0
-        else
-            let sum = sum + n0
-        endif
-        let n0 = n1
-    endwhile
-    return sum
+    let n0 = n1
+  endwhile
+  return sum
 endfun
 " END: Roman2Decimal }}}
 
 
 " BEGIN: Relative path {{{
-" Find common path component of two filenames, based on the tread, "computing
-" relative path".
-" Date: Mon, 29 Jul 2002 21:30:56 +0200 (CEST)
 function! CommonPath(path1, path2)
   let path1 = CleanupFileName(a:path1)
   let path2 = CleanupFileName(a:path2)
-  if path1 == path2
-    return path1
+  return CommonString(path1, path2)
+endfunction
+
+function! CommonString(str1, str2)
+  let str1 = a:str1
+  let str2 = a:str2
+  if str1 == str2
+    return str1
   endif
   let n = 0
-  while path1[n] == path2[n]
+  while str1[n] == str2[n]
     let n = n+1
   endwhile
-  return strpart(path1, 0, n)
+  return strpart(str1, 0, n)
 endfunction
-
 
 function! RelPathFromFile(srcFile, tgtFile)
-  return RelPathFromDir(fnamemodify(a:srcFile, ':r'), a:tgtFile)
+  return RelPathFromDir(fnamemodify(a:srcFile, ':h'), a:tgtFile)
 endfunction
-
 
 function! RelPathFromDir(srcDir, tgtFile)
   let cleanDir = CleanupFileName(a:srcDir)
@@ -1207,52 +2184,193 @@ function! RelPathFromDir(srcDir, tgtFile)
   let cmnPath = CommonPath(cleanDir, cleanFile)
   let shortDir = strpart(cleanDir, strlen(cmnPath))
   let shortFile = strpart(cleanFile, strlen(cmnPath))
-  let relPath = substitute(substitute(shortDir, '[^/]\+$', '', ''),
-	\ '[^/]\+', '..', 'g')
-  return relPath . shortFile
+  let relPath = substitute(shortDir, '[^/]\+', '..', 'g')
+  return relPath . '/' . shortFile
 endfunction
 
 " END: Relative path }}}
 
+
 " BEGIN: Persistent settings {{{
 if ! exists("g:genutilsNoPersist") || ! g:genutilsNoPersist
+  " Make sure the '!' option to store global variables that are upper cased are
+  "   stored in viminfo file.
+  " Make sure it is the first option, so that it will not interfere with the
+  "   'n' option ("Todd J. Cosgrove" (todd dot cosgrove at softechnics dot
+  "   com)).
+  " Also take care of empty value, when 'compatible' mode is on (Bram
+  "   Moolenar)
+  if &viminfo == ''
+    set viminfo=!,'20,"50,h
+  else
+    set viminfo^=!
+  endif
+endif
 
-" Make sure the '!' option to store global variables that are upper cased are
-" stored in viminfo file.
-set viminfo+=!
-
-" The pluginName and persistentVar have to be unique and are case insensitive.
-" Should be called from VimLeavePre. This simply creates a global variable which
-"   will be persisted by Vim through viminfo. The variable can be read back in
-"   the next session by the plugin using GetPersistentVar() function. The
-"   pluginName is to provide a name space for different plugins, and avoid
-"   conflicts in using the same persistentVar name.
-" This feature uses the '!' option of viminfo, to avoid storing all the
-"   temporary and other plugin specific global variables getting saved.
 function! PutPersistentVar(pluginName, persistentVar, value)
-  let globalVarName = s:PersistentVarName(a:pluginName, a:persistentVar)
-  exec 'let ' . globalVarName . " = '" . a:value . "'"
+  if ! exists("g:genutilsNoPersist") || ! g:genutilsNoPersist
+    let globalVarName = s:PersistentVarName(a:pluginName, a:persistentVar)
+    exec 'let ' . globalVarName . " = '" . a:value . "'"
+  endif
 endfunction
 
-" Should be called from VimEnter. Simply reads the gloval variable for the
-"   value and returns it. Removed the variable from global space before
-"   returning the value, so should be called only once.
 function! GetPersistentVar(pluginName, persistentVar, default)
-  let globalVarName = s:PersistentVarName(a:pluginName, a:persistentVar)
-  if (exists(globalVarName))
-    exec 'let value = ' . globalVarName
-    exec 'unlet ' . globalVarName
+  if ! exists("g:genutilsNoPersist") || ! g:genutilsNoPersist
+    let globalVarName = s:PersistentVarName(a:pluginName, a:persistentVar)
+    if (exists(globalVarName))
+      exec 'let value = ' . globalVarName
+      exec 'unlet ' . globalVarName
+    else
+      let value = a:default
+    endif
+    return value
   else
-    let value = a:default
+    return default
   endif
-  return value
 endfunction
 
 function! s:PersistentVarName(pluginName, persistentVar)
   return 'g:GU_' . toupper(a:pluginName) . '_' . toupper(a:persistentVar)
 endfunction
-
-endif
 " END: Persistent settings }}}
 
-" vim6:fdm=marker
+
+" FileChangedShell handling {{{
+if !exists('s:fcShellPreFuncs')
+  let s:fcShellPreFuncs = ''
+  let s:fcShellFuncs = ''
+endif
+
+function! AddToFCShellPre(funcName)
+  call RemoveFromFCShellPre(a:funcName)
+  let s:fcShellPreFuncs = MvAddElement(s:fcShellPreFuncs, ',', a:funcName)
+endfunction
+
+function! RemoveFromFCShellPre(funcName)
+  let s:fcShellPreFuncs = MvRemoveElement(s:fcShellPreFuncs, ',', a:funcName)
+endfunction
+
+function! AddToFCShell(funcName)
+  call RemoveFromFCShell(a:funcName)
+  let s:fcShellFuncs = MvAddElement(s:fcShellFuncs, ',', a:funcName)
+endfunction
+
+function! RemoveFromFCShell(funcName)
+  let s:fcShellFuncs = MvRemoveElement(s:fcShellFuncs, ',', a:funcName)
+endfunction
+
+let s:defFCShellInstalled = 0
+function! DefFCShellInstall()
+  if ! s:defFCShellInstalled
+    aug DefFCShell
+    au!
+    au FileChangedShell * nested call DefFileChangedShell()
+    aug END
+  endif
+  let s:defFCShellInstalled = s:defFCShellInstalled + 1
+endfunction
+
+function! DefFCShellUninstall()
+  if s:defFCShellInstalled <= 0
+    return
+  endif
+  let s:defFCShellInstalled = s:defFCShellInstalled - 1
+  if ! s:defFCShellInstalled
+    aug DefFCShell
+    au!
+    aug END
+  endif
+endfunction
+
+function! DefFileChangedShell()
+  let autoread = s:InvokeFuncs(s:fcShellPreFuncs)
+  let bufNo = expand('<abuf>') + 0
+  let fName = expand('<afile>')
+  let msg = ''
+  if getbufvar(bufNo, '&modified')
+    let msg = 'W12: Warning: File "' . fName .
+          \ '" has changed and the buffer was changed in Vim as well'
+  elseif ! autoread
+    if ! filereadable(fName)
+      let msg = 'E211: Warning: File "' . fName . '" no longer available'
+    elseif filewritable(fName) == getbufvar(bufNo, '&readonly')
+      let msg = 'W16: Warning: Mode of file "' . fName .
+            \ '" has changed since editing started'
+    else
+      let msg = 'W11: Warning: File "' . fName .
+            \ '" has changed since editing started'
+    endif
+  endif
+  if msg != ''
+    let option = confirm(msg, "&OK\n&Load File", 1, 'Warning')
+  else " if autoread
+    let option = 2
+  endif
+  if option == 2
+    let orgWin = winnr()
+    let orgBuf = bufnr('%')
+    let _eventignore = &eventignore
+    "set eventignore+=WinEnter,WinLeave,BufEnter,BufLeave
+    call SaveWindowSettings2('DefFileChangedShell', 1)
+    try
+      if bufNo != winbufnr(0)
+        exec 'split #' . bufNo
+      endif
+      call SaveSoftPosition('DefFileChangedShell')
+      edit!
+      call RestoreSoftPosition('DefFileChangedShell')
+    finally
+      if orgWin != winnr() || orgBuf != bufnr('%')
+        quit
+      endif
+      call RestoreWindowSettings2('DefFileChangedShell')
+      call ResetWindowSettings2('DefFileChangedShell')
+    endtry
+  endif
+  call s:InvokeFuncs(s:fcShellFuncs)
+  return (option == 2)
+endfunction
+
+function! s:InvokeFuncs(funcList)
+  let autoread = &autoread
+  if a:funcList != ''
+    call MvIterCreate(a:funcList, ',', 'InvokeFuncs')
+    while MvIterHasNext('InvokeFuncs') && ! autoread
+      exec "let result = " . MvIterNext('InvokeFuncs') . '()'
+      if result != -1
+        let autoread = autoread || result
+      endif
+    endwhile
+  endif
+  return autoread
+endfunction
+" FileChangedShell handling }}}
+
+
+" Sign related utilities {{{
+function! CurLineHasSign()
+  let signs = s:GetVimCmdOutput('sign place buffer=' . bufnr('%'), 1)
+  return (match(signs,
+        \ 'line=' . line('.') . '\s\+id=\d\+\s\+name=VimBreakPt') != -1)
+endfunction
+
+function! ClearAllSigns()
+  let signs = GetVimCmdOutput('sign place buffer=' . bufnr('%'), 1)
+  let curIdx = 0
+  let pat = 'line=\d\+\s\+id=\zs\d\+\ze\s\+name=VimBreakPt'
+  let id = 0
+  while curIdx != -1 && curIdx < strlen(signs)
+    let id = matchstr(signs, pat, curIdx)
+    if id != ''
+      exec 'sign unplace ' . id . ' buffer=' . bufnr('%')
+    endif
+    let curIdx = matchend(signs, pat, curIdx)
+  endwhile
+endfunction
+" }}}
+ 
+" Restore cpo.
+let &cpo = s:save_cpo
+unlet s:save_cpo
+
+" vim6:fdm=marker et
