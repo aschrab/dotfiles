@@ -4,15 +4,35 @@
 * $ 1^1 ^Received:.*\[\/[0-9.]+\]\)$S+by$S+${LOCALSERVER}
 * MATCH ?? ^^\/[0-9.]+
 {
-  RELAYIP=$MATCH
+  RBLCHECK=`rblcheck -p "$MATCH"`
+ 
+  :0
+  * RBLCHECK ?? rbl\.maps\.vix\.com
+  { RBL="$RBL,MAPS" }
+
+  :0
+  * RBLCHECK ?? dul\.orca\.bc\.ca
+  { RBL="$RBL,DUL" }
+
+  :0
+  * RBLCHECK ?? dssl\.imrss\.org
+  { RBL="$RBL,DSSL" }
+
+  :0
+  * RBLCHECK ?? relays\.orbs\.org
+  { RBL="$RBL,ORBS" }
+
+  :0
+  * RBLCHECK ?? relayips\.rbl\.shub-inter\.net
+  { RBL="$RBL,shub-relays" }
+
+  :0
+  * RBLCHECK ?? spamips\.rbl\.shub-inter\.net
+  { RBL="$RBL,shub-spammers" }
 
   :0fhw
-  * !? /home/aarons/bin/rblcheck -c -s rbl.maps.vix.com -q $MATCH
-  | formail -A"X-Suspect-Reason: $MATCH is blocked by rbl.maps.vix.com"
-
-  :0fhw
-  * !? /home/aarons/bin/rblcheck -c -s orbs.dorkslayers.com -q $MATCH
-  | formail -A"X-Suspect-Reason: $MATCH is blocked by orbs.dorkslayers.com"
+  * RBL ?? ^,\/.*
+  | formail -A"X-suspect-reason: listed on $MATCH"
 }
 
 :0:
