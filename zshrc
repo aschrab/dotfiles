@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.17 $'
+rcvers='$Revision: 1.18 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -526,6 +526,22 @@ compctl -f -K __scphostsandnames \
   -x 'p[1,-1] n[1,:]' -K __scpcomp \
   - 'p[1,-1] n[1,@]' -K __scphosts \
  -- scp
+
+function __hosts () {
+  __sshhosts
+  reply=($reply $(sed 's/^[0-9. 	]*//' /etc/hosts) )
+}
+
+function __ports () {
+  reply=($(sed -e 's/#.*//' \
+               -e 's,[ 	][0-9][0-9]*/[a-z][a-z]*[ 	], ,' \
+             /etc/services))
+}
+
+compctl -x \
+    'p[1]' -K __hosts - \
+    'p[2]' -K __ports \
+  -- telnet
 
 function __cdmatch () {
 # Start of cdmatch.
