@@ -71,3 +71,10 @@ begin
     } #}}}
   end
 end
+
+# Define "ri" command {{{
+# Tell less to pass control characters and not complain about binary files.
+ENV['LESS'] = '-fR'
+def ri( *names )
+  system %Q<ri -fansi #{names.map{|n| n.to_s} * ' '}>
+end #}}}
