@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.81 $'
+rcvers='$Revision: 1.82 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -221,6 +221,7 @@ do
   fi
 done
 unset ppath d m
+export PATH MANPATH
 
 setopt \
   Always_Last_Prompt \
