@@ -335,6 +335,11 @@ lists smartlist-dev
 mbox-hook Lists/smartlist-dev "=Read/smartlist-dev"
 send-hook smartlist-dev 'my_hdr From: Aaron Schrab <aaron+procmail@schrab.com>'
 
+mailboxes =Lists/starbuck
+lists starbuck-list
+mbox-hook Lists/starbuck "=Read/starbuck"
+send-hook starbuck-list 'my_hdr From: Aaron Schrab <aaron+starbuck@schrab.com>'
+
 mailboxes =Lists/rawhide
 lists redhat-devel-list
 mbox-hook Lists/rawhide "=Read/rawhide"
