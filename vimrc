@@ -36,6 +36,10 @@ set laststatus=2
 set vb
 set t_vb=
 
+set listchars=tab:»­,trail:·
+set list
+set guicursor=n-v-c:block-Cursor-blinkon0,ve:ver35-Cursor-blinkon0,o:hor50-Cursor-blinkon0,i-ci:ver25-Cursor-blinkon0,r-cr:hor20-Cursor-blinkon0,sm:block-Cursor-blinkon0
+
 iab teh the
 iab adn and
 iab nad and
@@ -90,6 +94,7 @@ map ,l 1G}jyGGp:.,$!wc -ld0iLines: dd1G}P
 map ,q :%s/^\(> \)*$//
 map ,r :.,/^$/!formail -fbY -IX-Envelope -IX-spamrc: -IX-Suspect-Reason: -IX-procmail: -IReceived: -IReturn-Path: -IResent- -IContent-Length: -IX-Loop: -ILines: -IPrecedence:
 
+map ,e :.w !sed -e 's/^\(..[^:(][^:(]*\)[:(]\([0-9][0-9]*\).*/:new +\2 \1/' > $HOME/temp.vim :so $HOME/temp.vim :!rm -f $HOME/temp.vim
 
 map <F2> <ESC>`>a<CR>_<ESC>`<i_<CR><ESC>:s/\(.\)/\1<C-V><C-H>\1/g<CR>J2xkJxX            
 dig 00 176
@@ -103,5 +108,6 @@ autocmd BufRead Makefile set nosmarttab noexpandtab noautoindent
 set cinoptions=>2,t0,(0,=2
 set cinkeys=0{,0}:,!^F,o,O,e
 au BufNewFile,BufRead *.c,*.h,*.pl,*.pm set cindent showmatch shiftwidth=2 textwidth=0
+au BufNewFile,BufRead /usr/src/linux* set tags=/usr/src/linux/tags
 
 set bs=2
