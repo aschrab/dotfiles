@@ -231,6 +231,11 @@ subscribe mutt-users mutt-dev
 mbox-hook Lists/mutt "=Read/mutt"
 send-hook mutt 'my_hdr From: Aaron Schrab <aaron+mutt@schrab.com>'
 
+mailboxes =Lists/secure-mua
+subscribe secure-mua
+mbox-hook Lists/secure-mua "=Read/secure-mua"
+send-hook secure-mua@egroups 'my_hdr From: <u.utkroyz34ius-h.700a5@pug.qqx.org>'
+
 mailboxes =Lists/screen
 subscribe gnu-screen@egroups.com
 mbox-hook Lists/screen "=Read/screen"
