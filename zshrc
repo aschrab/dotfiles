@@ -7,7 +7,7 @@ umask 022
 
 export BAUD=0
 
-rcvers='$Revision: 1.124 $'
+rcvers='$Revision: 1.125 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -743,7 +743,7 @@ if [ "$host" = "earth" ]; then
   # cd/pushd completion based on $watch
   compctl -x 'S[/][~][./][../]' -g '*(-/)' - \
     'n[-1,/], s[]' -K __cdmatch -S '/' + -n -k watch -P'~' + -- cd pushd
-elif [[ $ZSH_VERSION -ge 3 ]]
+elif [[ $ZSH_MAJOR_VERSION -ge 3 ]]
 then
   # cd/pushd completion for all users
   compctl -x 'S[/][~][./][../]' -g '*(-/)' - \
