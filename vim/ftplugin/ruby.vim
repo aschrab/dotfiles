@@ -9,10 +9,10 @@
 " in your .vimrc:
 " let loaded_ruby_ftplugin = 1
 
-if exists("b:did_ftplugin") | finish | endif
+if exists("b:did_ruby_ftplugin") | finish | endif
 if exists("loaded_ruby_ftplugin") | finish | endif
 
-let b:did_ftplugin = 1
+let b:did_ruby_ftplugin = 1
 
 " Make sure the continuation lines below do not cause problems in
 " compatibility mode.
