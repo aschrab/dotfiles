@@ -335,6 +335,11 @@ lists redhat-devel-list
 mbox-hook Lists/rawhide "=Read/rawhide"
 send-hook redhat-devel-l 'my_hdr From: Aaron Schrab <aaron+rawhide@schrab.com>'
 
+mailboxes =Lists/mailman
+lists mailman-users
+mbox-hook Lists/mailman "=Read/mailman"
+send-hook mailman-users 'my_hdr From: Aaron Schrab <aaron+mailman@schrab.com>'
+
 mailboxes =Lists/listar =Lists/listar
 lists listar-dev listar-support
 mbox-hook Lists/listar "=Read/listar"
