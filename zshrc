@@ -7,17 +7,13 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.102 $'
+rcvers='$Revision: 1.103 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
 then
   case "$OSTYPE:$HOST" in
-    linux*:*.schrab.com)
-      ;;
-    linux*:fnord.guru.execpc.com)
-      ;;
-    linux*:*.qqx.org)
+    linux*:*)
       ;;
     *bsd*:*)
       ;;
@@ -661,6 +657,11 @@ case "$host" in
    "grok"|"lafe"|"tamara"|"tanstaafl")
       export http_proxy="http://lafe.schrab.com:3128/"
       export ftp_proxy="http://lafe.schrab.com:3128/"
+      ;;
+
+   "spoiler")
+      export http_proxy="http://localhost:3128/"
+      export ftp_proxy="http://localhost:3128/"
       ;;
 
    "faboo")
