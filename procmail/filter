@@ -1,3 +1,11 @@
+# Send modem report errors to Pat
+:0
+* ^From: aarons@execpc.com
+* ^To: aarons@execpc.com
+* ^Subject: Output from "cron" command
+* B ?? ^/usr/local/adm/execpc/sum.pl -m modem-reports
+! pfriedel@execpc.com
+
 :0
 * ! ^TO_schrab\.com
 * ^TO_manager@execpc\.com
