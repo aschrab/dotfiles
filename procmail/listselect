@@ -10,7 +10,10 @@ SUBJ
 
 :0
 * ^X-Mailing-List: <allgurus@
-{ LIST=Lists/allgurus/ }
+{
+  EXPIRE="7 days"
+  LIST=Lists/allgurus/
+}
 
 :0
 * ^X-Mailing-List: <net-eng@
