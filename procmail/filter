@@ -18,6 +18,10 @@
 | formail -ITo: -I"Status: RO" | formail -I"To: $MATCH" >> posted
 
 :0
+* ^From:.*Luc\.Bussieres@DMI\.USherb\.CA
+idiot/
+
+:0
 * ^Subject: RCPT:
 * B ?? ^^Return Receipt Notification
 {
