@@ -46,7 +46,7 @@ set fileformats=unix,dos,mac
 set pastetoggle=<F4>
 set modelines=5
 set wildmenu
-set wildmode=longest:full
+set wildmode=longest:full,full
 set wildignore+=*.o,*~
 
 set foldopen=mark,quickfix,tag,block,hor,search,jump
