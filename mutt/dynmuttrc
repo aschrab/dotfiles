@@ -40,6 +40,10 @@ else {
   print "alternates '$alternates';\n"
 }
 
+if( /header-cache/ ) {
+  print "set maildir_cache='/home/junk/cache/mutt'\n";
+}
+
 if( /date_conditional/ ) {
   $date_fmt = '%?[1y?%\\\\?[1d\\\\?%[%H:%M ]\\\\&%[%d/%b]\\\\?&%[%b %y]?';
 }
