@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.108 $'
+rcvers='$Revision: 1.109 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -118,10 +118,11 @@ case "$TERM" in
     then
       TERM=xterm-color
     fi
-    if [[ $OSTYPE == linux* ]]
+    if [[ -z "$LC_CTYPE" && $OSTYPE == linux* ]]
     then
+      # en_US.utf8
       langset="no"
-      for l in en_US.utf8 en_GB en_US.iso885915 en_US.iso88591 en_US
+      for l in en_GB en_US.iso885915 en_US.iso88591 en_US
       do
         if [[ $langset == no && -d /usr/lib/locale/$l ]]
         then
@@ -150,7 +151,17 @@ case "$TERM" in
         ;;
     esac
     alias telnet='TERMCAP= telnet'
+
+    screen-title () {
+      print -n "\E\"$*\E\134"
+    }
+
+    preexec () {
+      print -n "\Ek$1\E\\"
+    }
+
     ;;
+
   linux)
     stty erase '^?'
     print -P "${magenta}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${fColor}"
@@ -440,10 +451,6 @@ pw () {
   grep $* /etc/passwd
 }
 
-screen-title () {
-  print -n "\E\"$*\E\134"
-}
-
 utf8-enable () {
   echo -e '\e%G'
 }
@@ -635,7 +642,6 @@ then
 fi
 
 mynames=(aarons bofh root)
-
 
 if [[ $HOST == *.mx.voyager.net ]]
 then
@@ -840,3 +846,54 @@ function __cdmatch () {
      
    return
 }
+
+case "$ZSH_VERSION" in
+4.*)
+  fpath=( $fpath /usr/share/zsh/$ZSH_VERSION/functions/{Completion,Misc} )
+
+  zstyle ':completion:*' auto-description 'specify: %d'
+  zstyle ':completion:*' completer _oldlist _expand _complete _ignored _match _correct _approximate _prefix
+  zstyle ':completion:*' completions 'NUMERIC==3'
+  zstyle ':completion:*' format "${blue}%SCompleting %d%s${fColor}"
+  zstyle ':completion:*' glob 'NUMERIC==1'
+  zstyle ':completion:*' group-name ''
+  zstyle ':completion:*' ignore-parents parent pwd
+  zstyle ':completion:*' insert-unambiguous true
+  zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+  zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+  zstyle ':completion:*' match-original both
+  zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=** r:|=**'
+  zstyle ':completion:*' max-errors 1
+  zstyle ':completion:*' menu select=10
+  zstyle ':completion:*' original true
+  zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+  zstyle ':completion:*' substitute 'NUMERIC==2'
+  zstyle :compinstall filename '/home/aarons/zcomp'
+
+  autoload -U compinit
+  compinit
+
+  zstyle -e ':completion:*:hosts' hosts __hosts
+  zstyle -e ':completion:*:complete:ssh:*:hosts' hosts __sshhosts
+  #zstyle ':completion:*:my-accounts' users-hosts $my_accounts
+  zstyle -e ':completion:*:my-accounts' users-hosts __ssh_users
+
+  autoload -U promptnl
+
+  precmd () {
+    promptnl
+  }
+
+  __ssh_users () {
+    local shosts
+    local h
+    __sshhosts
+    shosts=( $reply )
+    reply=( )
+    for h in $shosts
+    do
+      reply=( $reply "aarons@$h" )
+    done
+  }
+  ;;
+esac
