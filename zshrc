@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.35 $'
+rcvers='$Revision: 1.36 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -278,6 +278,7 @@ alias l='ls -F'
 alias ll='ls -lF'
 alias la='ls -aF'
 alias lla='ls -alF'
+alias bc='bc -ql'
 alias trt=traceroute
 alias screen='screen -a'
 
