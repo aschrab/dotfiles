@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.109 $'
+rcvers='$Revision: 1.110 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -70,6 +70,10 @@ if [[ "$HOST" = *.* ]]
 then
   stripdom=3
   host=${(j:.:)${(s:.:)HOST}[1,-$stripdom]}
+  if [[ -z "$host" ]]
+  then
+    host="$HOST"
+  fi
 else
   host="$HOST"
 fi
@@ -111,6 +115,12 @@ esac
 export pColor
 
 alias stty='noglob stty'
+
+screen-title () {
+}
+xtitle () {
+  print -n "\E]2;$*"
+}
 
 case "$TERM" in
   xterm|xtermc|xterm-debian|xterm-color|rxvt|gnome)
@@ -167,12 +177,17 @@ case "$TERM" in
     print -P "${magenta}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${fColor}"
     PS1='%{$pColor%}%1v%!)$host%(#.#.$)%{$fColor%} '
     RPS1='%{$pColor%} %~%{$fColor%}'
+
+    xtitle () {
+    }
     ;;
   *)
     stty erase '^H' kill '^U'
     print -P "%U%Szsh $ZSH_VERSION, .zshrc $rcvers%s%u"
     PS1='%U%1v%!)%(#..%u)$host%(#.#.$)%(#.%u.) '
     RPS1='%U%~%u'
+    xtitle () {
+    }
     ;;
 esac
 
@@ -465,6 +480,26 @@ precmd () {
   else
     psvar[1]=""
   fi
+}
+
+ssh () {
+  local foo
+  local bar
+  foo="$argv[$#]"
+  if [[ "$foo" = *.* ]]
+  then
+    stripdom=3
+    bar=${(j:.:)${(s:.:)foo}[1,-$stripdom]}
+    if [[ -z "$bar" ]]
+    then
+      bar="$foo"
+    fi
+  else
+    bar="$foo"
+  fi
+  xtitle "$bar"
+  screen-title "$bar"
+  command ssh "$@"
 }
 
 MYSU=$(whence mysu)
