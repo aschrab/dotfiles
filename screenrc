@@ -13,6 +13,10 @@ termcapinfo xterm 'hs:ts=\E]2;:fs=\007:ds=\E]2;screen@'"$host"'\007\E]1;screen@'
 termcapinfo gnome 'hs:ts=\E]2;:fs=\007:ds=\E]2;screen@'"$host"'\007\E]1;screen@'"$host"'\007'
 termcapinfo rxvt 'hs:ts=\E]2;:fs=\007:ds=\E]2;screen@'"$host"'\007\E]1;screen@'"$host"'\007'
 
+#termcapinfo xterm be
+# Make the output buffer large for (fast) xterms.
+#termcapinfo xterm* OL=10000
+
 defhstatus 'n t'
 bind m screen mutt
 bind w windowlist -b
@@ -23,3 +27,6 @@ bufferfile $HOME/.screen-exchange
 
 hardstatus on
 hardstatus string "%h"
+
+defbce on
+term screen-bce
