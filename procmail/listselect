@@ -107,8 +107,16 @@ SUBJ
 { LIST=Lists/scud/ }
 
 :0
+* ^Resent-Sender:.*procmail-dev-request
+{ LIST=Lists/procmail-dev/ }
+
+:0
 * ^Resent-Sender:.*procmail-request
 { LIST=Lists/procmail/ }
+
+:0
+* ^Resent-Sender:.*SmartList-dev-request
+{ LIST=Lists/smartlist-dev/ }
 
 :0
 * ^Resent-Sender:.*SmartList-request
