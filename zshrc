@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.104 $'
+rcvers='$Revision: 1.105 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -652,6 +652,10 @@ fi
 case "$host" in
    "methos")
       path=($path ~slist/.bin)
+      ;;
+
+   "pw0")
+      path=($path /passwd/bin)
       ;;
 
    "grok"|"lafe"|"tamara"|"tanstaafl")
