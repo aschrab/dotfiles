@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.5 $'
+rcvers='$Revision: 1.6 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -334,6 +334,13 @@ su () {
   fi
 }
 
+tz () {
+  local t
+  t="$1"
+  shift
+  TZ="$t" "$@"
+}
+
 fignore=(.o .bak .swp \~)
 compctl -g '*' -x 'S[.]','C[0,*/.*]' -g '*(D)' -- rm
 compctl -g '*(-/)' + -g '.*(-/)' + -k '(..)' cd rmdir
@@ -348,6 +355,20 @@ compctl -k "(fsf fsfm bsf bsfm fsr bsr fss eod seod rewind \
              defdrvbuffer defcompression datcompression)" \
         -x 'c[-1,-f],s[-f]' -g '/dev/*(%c)' \
    -- mt
+
+compctl -k '(if of conv ibs obs bs cbs files skip file seek count)' -S '=' \
+        -x 's[if=] , s[of=]' -f \
+        - 'C[0,conv=*,*] n[-1,,] , s[conv=]' -q -S , \
+          -k '(ascii ebcdic ibm block unblock lcase ucase swap noerror sync)' \
+        - 'n[-1,=]' -X '<number>' \
+  -- dd
+
+compctl -x \
+   'p[1,1] C[0,*/*]' -g '/usr/share/zoneinfo/**/*(:s,/usr/share/zoneinfo/,,)' \
+   - 'p[1,1]' -g '/usr/share/zoneinfo/*(:t)' \
+   - 'p[2,99]' -l '' \
+ -- tz
+
 
 if [ -x /usr/ucb/ps ] ; then
   alias ps=/usr/ucb/ps
