@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.42 $'
+rcvers='$Revision: 1.43 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -490,8 +490,8 @@ compctl -f -x 'C[-1,*chown][-1,-*] S[-]' \
 function __conf () {
   reply=($(./configure --help |
           sed -n -e '/-\(FEATURE\|PACKAGE\)/d' \
-                 -e 's/^[ 	]\+--\([^[ 	=]*\).*/--\1/p'))
-                 #-e 's/^[ 	]\+--\([^[ 	=]*\)\[\?\(=\?\).*/--\1\2/p'))
+                 -e 's/^[ 	]\+--\([^[ 	,=]*\)\(,[ 	]*\([^ 	,=]*\)\)\?.*/--\1 \3/p'))
+                 #-e 's/^[ 	]\+--\([^[ 	,=]*\).*/--\1/p'))
 }
 compctl -qQS= -K __conf -x 'n[-1,=]' -f -- configure
 
