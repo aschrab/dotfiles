@@ -278,7 +278,7 @@ mailboxes =Lists/funstaff
 lists funstaff
 mbox-hook Lists/funstaff "=Read/funstaff"
 
-mailboxes =suspect
+mailboxes =suspect =qqx.org
 mbox-hook suspect "=spam"
 
 mailboxes =Lists/mutt
