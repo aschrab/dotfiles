@@ -90,28 +90,28 @@
 :0
 * $ ^Content-Type:$S*text(/plain($S*;$S*charset$S*=$S*"?us-ascii"?|$S*$)|$S*$)
 {
+#  * ! ^Hash: SHA1
   :0 fBw
   * ^-----BEGIN PGP MESSAGE-----
-  * ! ^Hash: SHA1
   |formail -I"Content-Type: application/pgp; format=text; x-action=encryptsign"
 
+#  * ! ^Hash: SHA1
   :0 EfBw
   * ^-----BEGIN PGP SIGNED MESSAGE-----
-  * ! ^Hash: SHA1
   |formail -I "Content-Type: application/pgp; format=text; x-action=sign"
 }
 # else only insert header if Content-type header not already present
 :0E
 * ! ^Content-Type:
 {
+#  * ! ^Hash: SHA1
   :0 fBw
   * ^-----BEGIN PGP MESSAGE-----
-  * ! ^Hash: SHA1
   |formail -a"Content-Type: application/pgp; format=text; x-action=encryptsign"
 
+#  * ! ^Hash: SHA1
   :0 EfBw
   * ^-----BEGIN PGP SIGNED MESSAGE-----
-  * ! ^Hash: SHA1
   |formail -a"Content-Type: application/pgp; format=text; x-action=sign"
 }
 

@@ -67,23 +67,19 @@ EXPIRE
   REPLYTO
 }
 
-## Make sure that all messages have a Lines: header
-:0
-* ! ^Lines:
-{
-  # Count number of lines
-  :0B
-  * -1^0 ^^
-  * 1^1 ^.*$
-  { LINES = $= }
-  :0E
-  { LINES = 0 }
-
-  # Add Lines: header
-  :0 fhw
-  | formail -I "Lines: $LINES"
-}
-
 :0fbw
 * EGROUPS ?? y
-| '/^------*<e|-$/,$d'
+| sed -e '/^-----*-- Yahoo! Groups Sponsor -----*-~-~> *$/,$d'
+
+# Count number of lines
+:0B
+* -1^0 ^^
+* 1^1 ^.*$
+{ LINES = $= }
+:0E
+{ LINES = 0 }
+
+  # Add Lines: header if not present or incorrect
+  :0 fhw
+  * ! $ ^Lines:[ 	]*0*$LINES[ 	]*$
+  | formail -I "Lines: $LINES"

@@ -1,6 +1,7 @@
 
 # Using scoring forces procmail to use the last match
 :0
+* DO_STUPID_STUFF ?? y
 * $ 1^1 ^Received:.*\[\/[0-9.]+\]\)$S+by$S+${LOCALSERVER}
 * MATCH ?? ^^\/[0-9.]+
 * ! MATCH ?? ^^(198\.102\.244\.44|209\.46\.63\.4|192\.149\.252\.21)^^
@@ -8,7 +9,7 @@
 * ! MATCH ?? ^^206\.31\.32\.6^^
 * ! MATCH ?? ^^204\.107\.138\.1^^
 * ! MATCH ?? ^^216\.93\.66\.8[01]^^
-* ! MATCH ?? ^^169\.207\.[123]\.7[89]^^
+* ! MATCH ?? ^^169\.207\.[123]\.7[789]^^
 * ! MATCH ?? ^^212\.125\.143\.1^^
 {
   RELAYIP="$MATCH"
@@ -52,6 +53,10 @@
 
   RELAYIP
 }
+
+#:0fhw
+#* ^Subject:.*[	 ][	 ][a-z0-9]+$
+#| formail -A"X-suspect-reason: multiple spaces
 
 :0
 * ^X-suspect-reason:

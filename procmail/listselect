@@ -13,6 +13,20 @@ SUBJ
 { LIST=Lists/gurus/ }
 
 :0
+* List-Id: <sysops.lists.voyager.net>
+{
+  LIST=Lists/sysops/
+  SUBJ='\[Sysops\] '
+}
+
+:0
+* ^Sender: owner-listserv@lists.corecomm.net
+{
+  LIST=Lists/listserv/
+  SUBJ='\[LISTSERV\] '
+}
+
+:0
 * ^Sender: mailteam-admin@lists.voyager.net
 {
   LIST=Lists/mailteam/
@@ -53,7 +67,7 @@ SUBJ
 }
 
 :0
-* ^X-Mailing-List: <(all)?staff@lists\.execpc\.com
+* ^X-Mailing-List: <(all|voyn)?staff@lists\.execpc\.com
 { LIST=Lists/staff/ }
 
 :0
@@ -102,7 +116,10 @@ SUBJ
 
 :0
 * ^Sender: owner-nanog@merit\.edu
-{ LIST=Lists/nanog/ }
+{
+  LIST=Lists/nanog/
+  SETREAD=y
+}
 
 :0
 * ^Return-Path: <mutt-(users|dev|announce)-owner-aaron
@@ -165,6 +182,14 @@ SUBJ
   REPLYTO="secure-mua@(e|yahoo)groups\.com"
   SUBJ='\[secure-mua\] '
   EGROUPS=yes
+}
+
+:0
+* ^List-Id: <dev\.smime\.pyerotechnics\.com>
+{
+  LIST=Lists/secure-mua/
+  REPLYTO="dev@smime.pyerotechnics.com"
+  SUBJ='\[usmt dev\]'
 }
 
 :0
@@ -347,6 +372,15 @@ SUBJ
 { LIST=Lists/bt/ }
 
 :0
+* ^Mailing-List: list digitaltraveler
+{
+  LIST=Lists/digitaltraveler/
+  SUBJ='\[digitaltraveler] '
+  REPLYTO=digitaltraveler@yahoogroups.com
+  EGROUPS=yes
+}
+
+:0
 * ^List-Subscribe: <mailto:tidbits-on@tidbits
 {
   LIST=Lists/tidbits/
@@ -424,6 +458,13 @@ SUBJ
   #REPLYTO=irmp3@fasta.fh-dortmund.de
   REPLYTO=irmp3@dpotter.com
   SUBJ='\[irmp3] '
+  LIST=Lists/irmp3/
+}
+
+:0
+* ^Sender: irmp3-discussion-admin@lists\.sourceforge\.net
+{
+  SUBJ='\[Irmp3-discussion] '
   LIST=Lists/irmp3/
 }
 

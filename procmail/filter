@@ -144,3 +144,10 @@ misc/
 :0:
 * ^To:.*scud-request@lists
 scud.req
+
+:0
+* ^From: mailman-owner
+* ^X-Mailman-Version:
+* Subject: [a-z0-9.-]+ mailing list memberships reminder
+* B ?? ^^This is a reminder,
+misc/

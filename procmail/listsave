@@ -61,9 +61,30 @@
 # If $LIST ends in a slash, it's a maildir, so don't lock it
 :0
 * LIST ?? /^^
-$LIST
+{
+  COPY
 
-# otherwise locking is required if it's set
-:0E:
+  :0
+  * SETREAD ?? y
+  { COPY="c" }
+
+  :0${COPY}
+  $LIST
+
+  :0ia
+  * SETREAD ?? y
+  | mv "$LASTFOLDER" "$LIST/cur/"
+
+}
+
+# otherwise locking is required if $LIST is set
+:0E
 * LIST ?? .
-$LIST
+{
+  :0fhw
+  * SETREAD ?? y
+  | formail -I"Status: RO"
+
+  :0:
+  $LIST
+}

@@ -10,9 +10,9 @@ S="[ 	]"
 NL="
 "
 
-RCVERSION="$Id: rc,v 1.10 2000/10/06 22:04:11 aarons Exp $"
+RCVERSION="$Id: rc,v 1.11 2001/05/10 19:38:05 aarons Exp $"
 
-LOCALSERVER="(pug\.(schrab\.com|qqx\.org)|(vm[0-9]+|[abcyz])\.mx\.execpc\.com)"
+LOCALSERVER="(pug\.(schrab\.com|qqx\.org)|((vm[0-9]+|[abcyz])\.mx|smtpgate)\.execpc\.com)"
 
 :0
 * ^X-Mailer: ccMail Link to SMTP R8.00.00
