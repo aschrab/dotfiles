@@ -40,6 +40,7 @@ set laststatus=2
 set matchpairs=(:),{:},[:],<:>
 set fileformats=unix,dos,mac
 set pastetoggle=<F4>
+set modelines=5
 
 ":if $DISPLAY == ":0"
   set mouse=a
