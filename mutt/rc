@@ -11,7 +11,7 @@ set sendmail="/home/aarons/bin/sendmail.pl -oi -oem"
 
 set alternates='((aarons|(aaron\.|a_)schrab|ats|lsm|bofh|procmail|list(admin|master))@([a-z0-9-]+\.)*execpc\.com|postmaster@(comet|lists)\.execpc\.com|aaron@warrior\.mscs\.mu\.edu|(aaron.*|root|.*master|ats|bofh)@schrab\.com)'
 
-hdr_order From: Subject: Date: To: Newsgroups: Cc: X-Mailer: Content-Type: Content-Transfer-Encoding: X-Procmail: X-Suspect-reason:
+hdr_order From: Subject: Date: To: Newsgroups: Cc: X-Mailer: User-Agent: Content-Type: Content-Transfer-Encoding: X-Procmail: X-Suspect-reason:
 
 set pager_index_lines=8
 
@@ -20,7 +20,7 @@ unignore From: To: Newsgroups: Subject: Date: CC:
 unignore Sender: X-Mailer: Expires:
 unignore Content-Type: Content-Transfer-Encoding: X-Diagnostic: X-Processed:
 unignore X-Procmail: X-Suspect-reason: X-Country: Mail-Followup-To:
-unignore X-Mailing-List:
+unignore X-Mailing-List: User-Agent:
 #unignore X-Envelope-To:
 
 set sort=threads
