@@ -574,8 +574,6 @@ kpathword () {
 }
 
 # bind keys
-bindkey "\M-/" kpathword
-bindkey "\e/" kpathword
 bindkey \^p up-history
 bindkey \^n down-history
 bindkey "\e[A" up-line-or-search
@@ -980,6 +978,7 @@ if [[ $ZSH_MAJOR_VERSION -ge 4 ]]; then
   zle -N insert-last-word ins-last-word
   zle -N kpathword
   bindkey "\M-/" kpathword
+  bindkey "\e/" kpathword
 
   zstyle ':completion:*' auto-description 'specify: %d'
   zstyle ':completion:*' completer _oldlist _expand _complete _ignored _match _correct _approximate _prefix
