@@ -7,12 +7,20 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.1 $'
+rcvers='$Revision: 1.2 $'
 rcvers=$rcvers[(w)2]
 
-if [[ "$TERM" == "linux" && "$OSTYPE" != "linux" ]]
+if [[ "$TERM" == "linux" ]]
 then
-  export TERM=vt100
+  case "$OSTYPE:$HOSTNAME" in
+    linux:*.schrab.com)
+      ;;
+    linux:fnord.guru.execpc.com)
+      ;;
+    *)
+      TERM=vt100
+      ;;
+  esac
 fi
 
 # Try making directory, don't care if it fails (may be there already
