@@ -224,6 +224,10 @@ mailboxes =Lists/billsys
 lists billsys
 mbox-hook Lists/billsys "=Read/billsys"
 
+mailboxes =Lists/dnvs
+lists dnvs-list
+mbox-hook Lists/dnvs "=Read/dnvs"
+
 mailboxes =Lists/spamtools
 lists spamtools
 mbox-hook Lists/spamtools "=Read/spamtools"
