@@ -17,7 +17,7 @@ SUBJ
 { LIST=Lists/net-eng/ }
 
 :0
-* ^X-Envelope: tech-request@lists\.execpc\.com
+* ^X-Mailing-List: <tech@lists\.execpc\.com>
 {
   LIST=Lists/tech/
   MHONARC=$WEB/tech
@@ -35,34 +35,19 @@ SUBJ
 }
 
 :0
-* ^X-Envelope: (all)?staff-request@lists\.execpc\.com
-{
-  MHONARC=$WEB/staff
-  LIST=Lists/staff/
-}
+* ^X-Mailing-List: <(all)?staff@lists\.execpc\.com
+{ LIST=Lists/staff/ }
 
 :0
-* ^X-Envelope: noc-staff-request@lists\.execpc\.com
+* ^X-Mailing-List: <noc-staff@lists\.execpc\.com
 { LIST=Lists/noc-staff/ }
 
 :0
-* ^X-Envelope: billsys-request@lists
+* ^X-Mailing-List: <billsys@lists
 { LIST=Lists/billsys/ }
 
 :0
-* ^X-Envelope: billing-l-request@lists\.execpc\.com
-{ MHONARC=$WEB/billing-l/ }
-
-:0
-* ^X-Envelope: bizserv-request@lists\.execpc\.com
-{ MHONARC=$WEB/bizserv/ }
-
-:0
-* ^X-Envelope: sales-request@lists\.execpc\.com
-{ MHONARC=$WEB/sales/ }
-
-:0
-* ^X-Envelope: dnvs-list-request@lists\.execpc\.com
+* ^X-Mailing-List: <dnvs-list@lists\.execpc\.com>
 {
   REPLYTO="dnvs-list@lists.execpc.com"
   LIST=Lists/dnvs/
@@ -138,10 +123,6 @@ SUBJ
   SUBJ='\[linux-\(alert\|security\)\] '
   LIST=Lists/linux-security/
 }
-
-:0
-* ^X-Envelope-To: aaron\+home@schrab\.com
-{ LIST=Lists/linux-athome/ }
 
 :0
 * ^X-Loop: scud@lists\.execpc\.com
@@ -232,7 +213,7 @@ SUBJ
 { LIST=Lists/tidbits/ }
 
 :0
-* ^X-Envelope-To:.*linux-68k@schrab.com
+* ^(Sender: owner-linux-mac68k@|X-Envelope-To:.*linux-68k@schrab.com)
 {
   SUBJ='\[linux-mac68k] '
   LIST=Lists/linux-68k/
@@ -270,14 +251,6 @@ SUBJ
 :0
 * X-Mailing-List: <lirc@
 { LIST=Lists/lirc/ }
-
-:0
-* X-Envelope: owner-linux-tape
-{ LIST=Lists/linux-tape/ }
-
-:0
-* X-Envelope: owner-linux-scsi
-{ LIST=Lists/linux-scsi/ }
 
 :0
 * Sender:.*<mpg123@
