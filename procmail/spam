@@ -1,13 +1,20 @@
+
+# Using scoring forces procmail to use the last match
+:0
+* $ 1^1 ^Received:.*\[\/[0-9.]+\]\)$S+by$S+${LOCALSERVER}
+* MATCH ?? ^^\/[0-9.]+
+{
+  RELAYIP=$MATCH
+
+  :0fhw
+  * !? /home/aarons/bin/rblcheck -c -s rbl.maps.vix.com -q $MATCH
+  | formail -I"X-Suspect-Reason: $MATCH is blocked by rbl.maps.vix.com"
+
+  :0fhw
+  * !? /home/aarons/bin/rblcheck -c -s orbs.dorkslayers.com -q $MATCH
+  | formail -I"X-Suspect-Reason: $MATCH is blocked by orbs.dorkslayers.com"
+}
+
 :0:
 * ^X-suspect-reason:
 suspect
-
-# Using scoring forces procmail to use the last match
-:0fhw
-* $ 1^1 ^Received:.*\[\/[0-9.]+\]\)$S+by$S+${LOCALSERVER}
-* MATCH ?? ^^\/[0-9.]+
-* !? /home/aarons/bin/rblcheck -q $MATCH
-| formail -I"X-Suspect-Reason: $MATCH is rbl'd"
-
-  :0a:
-  suspect
