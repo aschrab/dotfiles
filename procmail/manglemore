@@ -39,3 +39,20 @@ EXPIRE
 
   REPLYTO
 }
+
+## Make sure that all messages have a Lines: header
+:0
+* ! ^Lines:
+{
+  # Count number of lines
+  :0B
+  * -1^0 ^^
+  * 1^1 ^.*$
+  { LINES = $= }
+  :0E
+  { LINES = 0 }
+
+  # Add Lines: header
+  :0 fhw
+  | formail -a "Lines: $LINES"
+}

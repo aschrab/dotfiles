@@ -162,7 +162,24 @@ SUBJ
 { LIST=Lists/bt/ }
 
 :0
-* ^List-Subscribe: <mailto:tidbits(-talk)?-on@tidbits
+* ^List-Subscribe: <mailto:tidbits-on@tidbits
+{
+  LIST=Lists/tidbits/
+
+  :0fbw
+  | sed -e '/^<\(http\|ftp\):[^>]*$/ {' \
+        -e 'N' \
+        -e 's/\
+//' \
+        -e '}'
+
+  # Remove Lines: header so it will be recalculated
+  :0afhw
+  | formail -ILines:
+}
+
+:0
+* ^List-Subscribe: <mailto:tidbits-talk-on@tidbits
 { LIST=Lists/tidbits/ }
 
 :0

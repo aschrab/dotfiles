@@ -66,6 +66,7 @@
 }
 
 ## Make sure that all messages have a Lines: header
+# Done again in manglemore, in case it's changed
 :0
 * ! ^Lines:
 {
