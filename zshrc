@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.44 $'
+rcvers='$Revision: 1.45 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -145,6 +145,7 @@ if [[ -n $PZSH ]]; then
   fi
 fi
 
+unset HISTFILE
 HISTSIZE=250
 export PS1 RPS1 HISTSIZE
 
