@@ -303,6 +303,11 @@ lists info-cvs
 mbox-hook Lists/cvs "=Read/cvs"
 send-hook cvs 'my_hdr From: Aaron Schrab <aaron+cvs@schrab.com>'
 
+mailboxes =Lists/vnc
+lists vnc-list
+mbox-hook Lists/vnc "=Read/vnc"
+send-hook vnc 'my_hdr From: Aaron Schrab <aaron+vnc@schrab.com>'
+
 mailboxes =Lists/linux-68k
 lists linux-mac68k
 mbox-hook Lists/linux-68k "=Read/linux-68k"

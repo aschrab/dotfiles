@@ -97,6 +97,13 @@ SUBJ
 }
 
 :0
+* ^Return-path: <owner-vnc-list@
+{
+  REPLYTO=vnc-list
+  LIST=Lists/vnc/
+}
+
+:0
 * ^Sender: *owner-ietf-radius@livingston
 {
   SUBJ='(radius) '
