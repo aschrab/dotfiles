@@ -200,7 +200,7 @@ SUBJ
 { LIST=Lists/zsh }
 
 :0
-* ^Sender: .*bugtraq@netspace
+* ^Sender: .*bugtraq@(netspace|securityfocus)
 { LIST=Lists/bugtraq/ }
 
 :0
