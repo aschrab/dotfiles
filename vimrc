@@ -1,6 +1,8 @@
 " $Id$
 :version 4.0
 
+set statusline=%<%F%h%m%r%w\ [%{&ft},%{&ff}]\ %=\ col:%c%V\ ascii:%B\ pos:%o\ lin:%l\/%L\ %P
+
 let perl_extended_vars = 1
 let perl_highlight_matches = 1
 "let perl_want_scope_in_variables = 1
