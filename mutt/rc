@@ -322,6 +322,12 @@ lists smartlist-dev
 mbox-hook Lists/smartlist-dev "=Read/smartlist-dev"
 send-hook smartlist-dev 'my_hdr From: Aaron Schrab <aaron+procmail@schrab.com>'
 
+mailboxes =Lists/listar-dev =Lists/listar-support
+lists listar-dev listar-support
+mbox-hook Lists/listar-dev "=Read/listar-dev"
+mbox-hook Lists/listar-support "=Read/listar-support"
+send-hook listar\.org 'my_hdr From: Aaron Schrab <aaron+listar@schrab.com>'
+
 mailboxes =Lists/linux-tape
 lists linux-tape
 mbox-hook Lists/linux-tape "=Read/linux-tape"

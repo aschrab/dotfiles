@@ -213,6 +213,20 @@ SUBJ
 }
 
 :0
+* ^Sender: listar-dev-bounce@listar
+{
+  SUBJ='\[listar-dev] '
+  LIST=Lists/listar-dev/
+}
+
+:0
+* ^Sender: listar-support-bounce@listar
+{
+  SUBJ='\[listar-support] '
+  LIST=Lists/listar-support/
+}
+
+:0
 * ^Sender: owner-spamtools@abuse\.net
 {
   REPLYTO=spamtools@abuse.net
