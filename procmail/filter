@@ -57,7 +57,7 @@ backup
     From:.*(\
             (hostmaster|reassign|netmod)@arin\.net|\
 	    nobody@uu\.net|\
-	    MAILER-DAEMON@abuse\.net|\
+	    MAILER-DAEMON|\
 	    autoreply|\
             headlines@cisco|\
 	    webmaster@execpc|\
