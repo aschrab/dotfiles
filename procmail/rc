@@ -4,19 +4,24 @@ MAILDIR="$HOME/Mail"
 DEFAULT="INBOX/"
 LOGABSTRACT="yes"
 WEB="/home/web"
-#COMSAT="@localhost"
-COMSAT=no
+COMSAT="2345@localhost"
+#COMSAT=no
 S="[ 	]"
 NL="
 "
 
-RCVERSION="$Id: rc,v 1.6 1999/04/23 21:44:05 aarons Exp $"
+RCVERSION="$Id: rc,v 1.7 1999/05/03 21:57:45 aarons Exp $"
 
 LOCALSERVER="(pug\.(schrab\.com|qqx\.org)|(vm[0-9]+|[abcyz])\.mx\.execpc\.com)"
 
 :0
 * ^X-Mailer: ccMail Link to SMTP R8.00.00
 * ^Subject: cc:Mail Link to SMTP Undeliverable Message
+idiot/
+
+:0
+* ^X-Mailer: Z-Mail
+* ^Subject: Confirm Read:
 idiot/
 
 TMP=$1
