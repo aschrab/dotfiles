@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.100 $'
+rcvers='$Revision: 1.101 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -55,6 +55,12 @@ else
   echo "TMPDIR not secure" >&2
   echo "TMPDIR not secure" >&2
   echo "TMPDIR not secure" >&2
+fi
+
+if [[ ,$(grep -c "^$USERNAME:x:$GID:$" /etc/group 2> /dev/null), == ",1,"
+      && ",`grep -c :$GID: /etc/passwd 2> /dev/null`," == ",1," ]]
+then
+  umask 007
 fi
 
 #  Set various shell variables
@@ -423,7 +429,6 @@ if [ ! -f .hushlogin ]; then
   esac
 fi
 
-umask 077
 export PS1 PATH TERM
 
 if [ -d /usr/share/zsh/functions ]; then
