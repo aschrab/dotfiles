@@ -7,7 +7,7 @@ umask 022
 
 export BAUD=0
 
-rcvers='$Revision: 1.129 $'
+rcvers='$Rev$'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
