@@ -19,7 +19,6 @@
 if exists("s:seen") && !exists("s:debug")
 	finish
 endif
-echo 'hi'
 let s:seen=1
 "let s:debug=1
 function! SudoRead(url)
