@@ -93,7 +93,7 @@ map <c-J> gqip
 inoremap  
 inoremap  
 inoremap  
-inoremap  
+"inoremap  
 inoremap  
 inoremap <C-e> <esc>
 
