@@ -39,6 +39,7 @@ set t_vb=
 iab teh the
 iab adn and
 iab nad and
+iab taht that
 iab tset test
 iab thsi this
 iab Thsi This
