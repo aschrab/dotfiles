@@ -30,7 +30,7 @@ set sort_aux=date-received
 
 set date_format = "!%H:%M %Z %d %b %Y"
 set status_chars=" *%"
-set attribution = "At %d, %f wrote:"
+set attribution="At %d, %?F?%f&I? wrote:"
 set hdr_format="%4C %Z %[%m/%d] %-15.15L (%4l) %s"
 
 set quote_regexp='^([]:})>|!%] ?|([~<]|-+)[|>]| {0,4}[:>|]|[a-z]+[>|]+ ?|=([^=0-9]|$))'
