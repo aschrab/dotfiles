@@ -13,6 +13,13 @@ SUBJ
 { LIST=Lists/gurus/ }
 
 :0
+* ^Sender: mailteam-admin@lists.voyager.net
+{
+  LIST=Lists/mailteam/
+  SUBJ='\[Mailteam\] '
+}
+
+:0
 * ^X-Mailing-List: <allgurus@
 {
   EXPIRE="7 days"
@@ -108,6 +115,10 @@ SUBJ
 }
 
 :0
+* ^Mailing-List: list gnu-screen@egroups.com
+{ LIST=Lists/screen/ }
+
+:0
 * ^Return-Path: <security-audit-return-
 { LIST=Lists/audit/ }
 
@@ -141,7 +152,7 @@ SUBJ
 :0
 *  ^Mailing-List: list talk-dc@
 {
-  LIST=Lists/double-click
+  LIST=Lists/double-click/
   REPLYTO="talk-dc@egroups\.com"
   SUBJ='\[talk-dc\] '
 }
@@ -192,7 +203,7 @@ SUBJ
 }
 
 :0
-* ^Sender: *owner-ietf-radius@livingston
+* ^Sender: *owner-ietf-radius@(livingston|portmasters)
 {
   SUBJ='(radius) '
   LIST=Lists/radius-ietf/
