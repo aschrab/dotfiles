@@ -38,6 +38,13 @@ set matchpairs=(:),{:},[:],<:>
 set fileformats=unix,dos,mac
 set pastetoggle=<F4>
 
+":if $DISPLAY == ":0"
+  set mouse=a
+":endif
+
+" Not many filenames have = in them, so make completion easier
+set isfname-==
+
 " Tell vim to use visual beep then disable visual beep, to keep it silent
 set vb
 set t_vb=
@@ -83,6 +90,7 @@ inoremap  
 inoremap  
 inoremap  
 inoremap  
+inoremap <C-e> <esc>
 
 map ,ad aAaron Schrab <aaron@schrab.com>
 map ,af 1G/^From:WD
@@ -115,7 +123,9 @@ dig !! 161
 dig ?? 191
 dig SS 167
 
-autocmd BufRead Makefile set nosmarttab noexpandtab noautoindent
+"autocmd BufRead Makefile set nosmarttab noexpandtab noautoindent
+filetype indent on
+filetype plugin on
 
 " autocmd BufRead *.[ch] set cindent
 " ME's C settings
