@@ -10,7 +10,7 @@
 * ! ^TO_schrab\.com
 * ! HB ?? idtf\.org
 * ^TO_manager@execpc\.com
-* ^(From|To):.*((hst|dom)reg|notify|rereg|invoice|(fax|host)mast(er)?)@internic\.net
+* ^(From|To):.*((hst|dom)reg|no(reg|tif)y|rereg|invoice|(fax|host)mast(er)?)@internic\.net
 {
   LOG="$TIME: internic -> manager TRASHED$NL"
   LOGABSTRACT=no
