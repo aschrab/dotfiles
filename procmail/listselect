@@ -168,7 +168,7 @@ SUBJ
 { LIST=Lists/bugtraq/ }
 
 :0
-* ^X-Envelope-To:[      ]*aaron\+trn@schrab\.com
+* ^X-Mailing-List: <trn-users@
 { LIST=Lists/trn/ }
 
 :0
