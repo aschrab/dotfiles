@@ -59,7 +59,7 @@ color tilde             "green"         "default"
 color response_char     "green"         "default"
 color box               "magenta"       "cyan"
 
-interpret "~/cvs/dotfiles/slrn/slrn.sl"
+interpret "cvs/dotfiles/slrn/slrn.sl"
 % interpret ".trn.sl"
 
 % vim: ai si
