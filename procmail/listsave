@@ -5,6 +5,7 @@
 * MATCH ?? ^^\/[^/]+
 {
   DUP="$HOME/.Procmail/dup/$MATCH"
+#  LOG="Using dupfile: $DUP$NL"
   LOCKFILE="$DUP.lock"
   :0H
   * ^Message-ID:
