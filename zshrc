@@ -783,8 +783,8 @@ case "$host" in
       ;;
 
    "frell")
-      export http_proxy="http://proxy:8888/"
-      export ftp_proxy="$http_proxy"
+      #export http_proxy="http://proxy:8888/"
+      #export ftp_proxy="$http_proxy"
       ;;
 
    "faboo")
