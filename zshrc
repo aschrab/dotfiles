@@ -81,7 +81,7 @@ export host
 
 #[ "$USERNAME" = "aarons" -o "$USERNAME" = "root" ] && HOME=~aarons
 
-if [[ -z "$pColor" ]]
+if [[ -z "$normal" ]]
 then
   export   black="%{$(echo -n '\e[0;30m')%}"
   export     red="%{$(echo -n '\e[0;31m')%}"
@@ -195,7 +195,9 @@ case "$TERM" in
 esac
 
 # Make sure the prompt begins on a new line
-PS1="%{%S$%s${(pl:COLUMNS:: ::\r:)}%}$PS1"
+function precmd () {
+  print -nP "%{${red}\$${normal}${(pl:COLUMNS:: ::\r:)}%}"
+}
 
 ZSH_MAJOR_VERSION="${${(s:.:)ZSH_VERSION}[0]}"
 
