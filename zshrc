@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.20 $'
+rcvers='$Revision: 1.21 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -202,8 +202,6 @@ alias pwd=/bin/pwd
 
 export NULLCMD=:
 export HISTORY=${ZDOTDIR:=$HOME}/.zsh-history
-export EDITOR=$(whence vim)
-export VISUAL=${EDITOR:=$(whence vi)}
 export CVS_RSH=ssh
 export MPAGE="-2m50t"
 export COLORFGBG='default;default'
@@ -214,6 +212,17 @@ if [ -r /etc/libsocks5.conf ]; then
 else
   export NNTPSERVER=news.execpc.com
 fi
+
+EDITOR=$(whence color-vim)
+if [ -z "$EDITOR" ]; then
+  EDITOR=$(whence vim)
+  if [ -z "$EDITOR" ]; then
+    EDITOR=$(whence vi)
+  fi
+fi
+export EDITOR
+export VISUAL=$EDITOR
+alias vi=$VISUAL
 
 PAGER=$(whence less)
 if [ -n "$PAGER" ]; then
@@ -247,8 +256,6 @@ alias la='ls -aF'
 alias lla='ls -alF'
 alias trt=traceroute
 alias screen='screen -a'
-
-alias vi=$VISUAL
 
 [ -x /usr/lib/sendmail ] && alias sendmail=/usr/lib/sendmail
 
