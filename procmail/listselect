@@ -146,7 +146,7 @@ SUBJ
 }
 
 :0
-* ^X-Envelope-To: rha@schrab\.com\>
+* ^X-Mailing-List: <redhat-watch-list@redhat
 { LIST=Lists/redhat/ }
 
 :0
