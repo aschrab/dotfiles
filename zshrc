@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.8 $'
+rcvers='$Revision: 1.9 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -233,8 +233,8 @@ alias f=finger
 alias sz='sz -e'
 alias l='ls -F'
 alias ll='ls -lF'
-alias la='ls -AF'
-alias lla='ls -AlF'
+alias la='ls -aF'
+alias lla='ls -alF'
 alias trt=traceroute
 
 alias vi=$VISUAL
@@ -369,6 +369,11 @@ compctl -x \
    - 'p[2,99]' -l '' \
  -- tz
 
+__groups=($(cut -d: -f1 /etc/group))
+compctl -f -x 'C[-1,chgrp][-1,-*] S[-]' \
+                     -k "( -c -h -f -R -v --changes --no-dereference --silent
+                           --quiet --recursive --verbose --help --version )" \
+            - 'C[-1,chgrp][-1,-*]' -k __groups -- chgrp
 
 if [ -x /usr/ucb/ps ] ; then
   alias ps=/usr/ucb/ps
