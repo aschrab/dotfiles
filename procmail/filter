@@ -46,6 +46,7 @@ backup
 * ^(Sender:.*<(\
                infoalley@listproc\.info\.apple\.com|\
                aladdinnews|\
+               owner-egcs-announce@cygnus|\
                davenet-world@scripting\.com)|\
     To:.*modem-reports@execpc\.com|\
     From:.*(\
