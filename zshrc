@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.95 $'
+rcvers='$Revision: 1.96 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -329,7 +329,7 @@ if [[ -n $LS ]]; then
   LS=gnuls
   alias ls=$LS
 fi
-if [[ "$TERM" == "emacs" || ( $OSTYPE == *bsd* && -z $LS ) ]]; then
+if [[ "$TERM" == "emacs" || ( $OSTYPE == *bsd* || $OSTYPE == *darwin* && -z $LS ) ]]; then
   # Using colorls under emacs sucks
   # The standard BSD ls breaks with --color=tty, but doesn't give an error
   :
