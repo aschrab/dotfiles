@@ -33,6 +33,7 @@ set cpoptions=BceFs$
 set cmdheight=2
 set laststatus=2
 set matchpairs=(:),{:},[:],<:>
+set fileformats=unix,dos,mac
 
 " Tell vim to use visual beep then disable visual beep, to keep it silent
 set vb
