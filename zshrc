@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.14 $'
+rcvers='$Revision: 1.15 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -353,6 +353,27 @@ compctl -g '*' -x 'S[.]','C[0,*/.*]' -g '*(D)' -- rm
 compctl -g '*(-/)' + -g '.*(-/)' + -k '(..)' cd rmdir
 compctl -jP '%' kill fg bg disown
 compctl -vP '$' echo
+
+function __chroot () {
+  read -cA args
+  
+  reply=($(cd "$args[2]";
+           find . -perm +0111 -print 2> /dev/null | sed 's:^./:/:' ))
+}
+
+compctl -x \
+    'p[1]' -g '*(/)' - \
+    'p[2]' -K __chroot - \
+    'p[2,99]' -l '' -- \
+  chroot
+
+compctl -x \
+    'p[1]' -g '*(/)' - \
+    'p[2]' -u - \
+    'p[3]' -K __chroot - \
+    'p[3,99]' -l '' -- \
+  chrootuid
+
 compctl -k "(fsf fsfm bsf bsfm fsr bsr fss eod seod rewind \
              offline retension weof eof wset erase \
              status seek tell setpartition partseek mkpartition \
