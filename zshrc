@@ -176,7 +176,7 @@ print -b -n '\r' # Clear the test sequence
 case ${${RECV#$(print -b -n '\x1B')\[[0-9]##;}%%R} in
 2)
   echo "UTF terminal detected"
-  LANG=en_US.utf8
+  LANG=en_US.UTF-8
   ;;
 3)
   echo "Non-UTF terminal detected"
@@ -404,7 +404,7 @@ alias lss=less
 
 export LESS="-aCMj3"
 case "$LANG" in
-  *utf8)
+  *[Uu][Tt][Ff]*)
     LESSCHARSET="utf-8"
     ;;
   *)
