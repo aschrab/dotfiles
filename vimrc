@@ -25,11 +25,13 @@ set shiftwidth=2
 set autoindent
 set nobackup
 set smarttab
-set noexpandtab
-set notitle
+set expandtab
+set title
+set ignorecase
 set incsearch
 set ruler
 set showmatch
+set showcmd
 set formatoptions=tcrq2
 set cpoptions=BceFs$
 set cmdheight=2
@@ -123,7 +125,7 @@ dig !! 161
 dig ?? 191
 dig SS 167
 
-"autocmd BufRead Makefile set nosmarttab noexpandtab noautoindent
+autocmd BufRead Makefile set nosmarttab noexpandtab noautoindent
 filetype indent on
 filetype plugin on
 
