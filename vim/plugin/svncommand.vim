@@ -340,7 +340,7 @@ function! s:SVNDiff(...)
     let revOptions = '-r' . a:1
     let caption = 'svndiff ' . a:1 . ' -> current'
   elseif a:0 == 2
-    let revOptions = '-r' . a:1 . ' -r' . a:2
+    let revOptions = '-r' . a:1 . ':' . a:2
     let caption = 'svndiff ' . a:1 . ' -> ' . a:2
   else
     let revOptions = ''
