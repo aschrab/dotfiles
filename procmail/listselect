@@ -115,6 +115,14 @@ SUBJ
 }
 
 :0
+* ^X-Loop: redhat-devel-list@redhat
+{
+  REPLYTO=redhat-devel-list
+  LIST=Lists/rawhide/
+}
+
+
+:0
 * ^X-Loop: linux-(alert|security)@redhat
 {
   SUBJ='\[linux-\(alert\|security\)\] '
