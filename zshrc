@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.39 $'
+rcvers='$Revision: 1.40 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -525,7 +525,6 @@ case "$host" in
 
    "earth")
       mesg n
-      stty erase '^H'
       ttyctl -f
 
       MAIL=$(mailfile)
