@@ -277,6 +277,11 @@ lists scud@lists.execpc.com
 mbox-hook Lists/scud "=Read/scud"
 send-hook scud my_hdr From: Aaron Schrab <aaron@schrab.com>
 
+mailboxes =Lists/irmp3
+lists irmp3
+mbox-hook Lists/irmp3 "=Read/irmp3"
+send-hook irmp3 my_hdr From: Aaron Schrab <aaron+irmp3@schrab.com>
+
 mailboxes =Lists/lirc
 lists lirc
 mbox-hook Lists/lirc "=Read/lirc"

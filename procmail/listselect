@@ -300,5 +300,13 @@ SUBJ
 { LIST=Lists/mpg123/ }
 
 :0
+* ^Sender: owner-irmp3@
+{
+  REPLYTO=irmp3@fasta.fh-dortmund.de
+  SUBJ='\[irmp3] '
+  LIST=Lists/irmp3/
+}
+
+:0
 * ^Delivered-To: mailing list suplist@whitefang.com
 { LIST=Lists/sup/ }
