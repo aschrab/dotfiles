@@ -314,3 +314,10 @@ SUBJ
 :0
 * ^Delivered-To: mailing list suplist@whitefang.com
 { LIST=Lists/sup/ }
+
+:0
+* ^Return-Path: <mp3stereo-return
+{
+  SUBJ='\[mp3stereo] '
+  LIST=Lists/mp3stereo/
+}

@@ -283,6 +283,11 @@ subscribe irmp3
 mbox-hook Lists/irmp3 "=Read/irmp3"
 send-hook irmp3 my_hdr From: Aaron Schrab <aaron+irmp3@schrab.com>
 
+mailboxes =Lists/mp3stereo
+subscribe mp3stereo
+mbox-hook Lists/mp3stereo "=Read/mp3stereo"
+send-hook mp3stereo my_hdr From: Aaron Schrab <aaron+mp3stereo@schrab.com>
+
 mailboxes =Lists/lirc
 subscribe lirc
 mbox-hook Lists/lirc "=Read/lirc"
