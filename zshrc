@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.12 $'
+rcvers='$Revision: 1.13 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -110,6 +110,7 @@ if [[ -n $PZSH ]]; then
   if [[ -n $PPWD && -d $PPWD ]]; then
     # cd to directory parent shell was in (see su function)
     cd $PPWD
+    unset PPWD
   fi
   if grep '^aarons:' /etc/passwd > /dev/null 2>&1; then
     if [ -r ~aarons/.Zsh-hist.$host.$PZSH ]; then
