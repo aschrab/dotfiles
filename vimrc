@@ -48,6 +48,8 @@ set modelines=5
 set wildmode=longest,full
 set wildignore+=*.o,*~
 
+set foldopen=mark,quickfix,tag,block,hor,search,jump
+
 ":if $DISPLAY == ":0"
   set mouse=a
   set clipboard=unnamed,autoselect,exclude:cons\|linux
