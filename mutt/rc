@@ -23,7 +23,7 @@ set pager_index_lines=8
 #unignore X-Procmail: X-Suspect-reason: X-Country: Mail-Followup-To:
 #unignore X-Mailing-List: User-Agent:
 #unignore X-Envelope-To:
-source /home/aarons/cvs/dotfiles/ignore
+source ~/.Mutt/ignore
 
 set sort=threads
 set sort_aux=date-received
@@ -118,7 +118,8 @@ set timeout=30                 # seconds inactivity before looking for new mail
 #set web_browser="url_handler.sh"
 set nomark_old                 # all unread mail is marked as new
 #set skip_old
-set pgp_default_version="pgp5"
+#set pgp_default_version="pgp5"
+source ~/.Mutt/pgp5.rc
 set pgp_sign_as="0xE8D1D751"
 set pgp_verify_sig=no          # Verify signature automatically
 set pgp_replyencrypt
