@@ -33,31 +33,31 @@ set hdr_format="%4C %Z %[%m/%d] %-15.15L (%4l) %s"
 
 set quote_regexp='^([]:})>|!%] ?|[<-]>| {0,4}[:>|]|[a-z]+[>|]+ ?|=([^=0-9]|$))'
 
-color body  red	black	\
+color body  red	default	\
  "((ftp|https?)://|(ftp|www[-a-z0-9]*)\\.)[^ \t\r\n\"<>]*[^].,:;!)? \t\r\n<>\"]"
-color body  yellow	black	\
+color body  yellow	default	\
  '(mailto:)?[a-z0-9]([-+=._%!]?[a-z0-9])*@[-a-z0-9.]+\.[a-z][a-z]+'
 
-color body magenta black '^-----(BEGIN|END) PGP .*'
+color body magenta default '^-----(BEGIN|END) PGP .*'
 
 set reply_regexp="^(re|aw)(\\[[0-9]+])?:[        ]*"
 
-color normal            white   black
+color normal            white   default
 color status		black   green
-color indicator		yellow	black
-color tree		blue	black
-color error		red	black
-color attachment        blue	black
+color indicator		yellow	default
+color tree		blue	default
+color error		red	default
+color attachment        blue	default
 
-color hdrdefault	cyan	black
-color header		red	black \
+color hdrdefault	cyan	default
+color header		red	default \
       "^X-(Suspect-reason|spam-action|procmail|Diagnostic|Processed|Country):"
 
-color signature		cyan	black
+color signature		cyan	default
 
 # continued line indicator
-color markers           blue    black
-color quoted		green	black
+color markers           blue    default
+color quoted		green	default
 #color quoted1		blue	black
 #color quoted2		magenta	black
 #color quoted3		brightgreen	black
