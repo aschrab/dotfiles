@@ -14,6 +14,8 @@ highlight Constant ctermfg=DarkMagenta
 highlight procmailAction ctermfg=DarkGreen
 highlight procmailCondition ctermfg=DarkBlue
 
+highlight Visual ctermfg=Yellow ctermbg=black
+highlight VisualNOS ctermfg=Yellow ctermbg=grey cterm=reverse
 "highlight NonText ctermfg=White cterm=bold guifg=grey gui=NONE
 highlight NonText ctermfg=DarkBlue guifg=grey gui=NONE
 highlight SpecialKey ctermfg=Yellow guifg=grey gui=NONE
@@ -124,7 +126,7 @@ map <M-Esc>[65~ <S-MouseUp>
 map! <M-Esc>[65~ <S-MouseUp>
 
 "map ,x :perl chmod(01600, $curwin->Buffer->Name):wq!
-map ,x :w:r!chmod +x %:wq!
+map ,x :w:r!chmod +x %:w!
 map ,, /^> *$
 map ,l 1G}jyGGp:.,$!wc -ld0iLines: dd1G}P
 map ,q :%s/^\(> \)*$//
