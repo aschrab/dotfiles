@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.21 $'
+rcvers='$Revision: 1.22 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -431,7 +431,7 @@ fi
 
 if [ "$host" = "earth" ]; then
   watch=(aarons meek jake mitch pfriedel bofh
-         pfingst lungfish j_schrab chilli)
+         pfingst lungfish j_schrab )
 
   # Limit username completion to users in $watch
   compctl -Tx  'C[0,*/*]' -f - 's[~]' -k watch -S/
