@@ -4,6 +4,11 @@
 HISTFILE = "~/.irb.hist"
 MAXHISTSIZE = 100
 
+begin # IRb shouldn't fail if can't get completion
+  require 'irb/completion'
+rescue Exception
+end
+
 begin
   if defined? Readline::HISTORY
     histfile = File::expand_path( HISTFILE )
