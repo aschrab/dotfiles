@@ -7,9 +7,19 @@ escape ^Oo
 
 defscrollback 500
 
-termcapinfo xterm 'hs:ts=\E]2;:fs=\007:ds=\E]2;screen@pug\007\E]1;screen@pug\007'
+#termcapinfo xterm 'hs:ts=\E]2;:fs=\007:ds=\E]2;screen@pug\007\E]1;screen@pug\007'
+termcapinfo linux 'hs:ts=\E]2;:fs=\007:ds='
+termcapinfo xterm 'hs:ts=\E]2;:fs=\007:ds=\E]2;screen@'"$host"'\007\E]1;screen@'"$host"'\007'
+termcapinfo gnome 'hs:ts=\E]2;:fs=\007:ds=\E]2;screen@'"$host"'\007\E]1;screen@'"$host"'\007'
+termcapinfo rxvt 'hs:ts=\E]2;:fs=\007:ds=\E]2;screen@'"$host"'\007\E]1;screen@'"$host"'\007'
 
 defhstatus 'n t'
 bind m screen mutt
-bind t screen trn
-bind s sessionname
+bind w windowlist -b
+bind '"' select
+#bind s sessionname
+
+bufferfile $HOME/.screen-exchange
+
+hardstatus on
+hardstatus string "%h"
