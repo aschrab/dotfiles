@@ -304,6 +304,16 @@ lists smartlist-dev
 mbox-hook Lists/smartlist-dev "=Read/smartlist-dev"
 send-hook smartlist-dev my_hdr From: Aaron Schrab <aaron+procmail@schrab.com>
 
+mailboxes =Lists/linux-tape
+lists linux-tape
+mbox-hook Lists/linux-tape "=Read/linux-tape"
+send-hook linux-tape my_hdr From: Aaron Schrab <aaron+lt@schrab.com>
+
+mailboxes =Lists/linux-scsi
+lists linux-scsi
+mbox-hook Lists/linux-scsi "=Read/linux-scsi"
+send-hook linux-scsi my_hdr From: Aaron Schrab <aaron+ls@schrab.com>
+
 mailboxes =Lists/dingus
 lists dingus
 mbox-hook Lists/dingus "=Read/dingus"
