@@ -389,7 +389,7 @@ unset LS
 
 [[ -z $(whence gcc)    ]] && alias gcc=cc
 [[ -n $(whence gsed)   ]] && alias sed=gsed
-[[ -n $(whence gmake)  ]] && alias make=gmake
+#[[ -n $(whence gmake)  ]] && alias make=gmake
 [[ -n $(whence pinfo)  ]] && alias info=pinfo
 [[ -n $(whence screen) ]] && alias screen='screen -a -A'
 
