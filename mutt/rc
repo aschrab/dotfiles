@@ -222,7 +222,8 @@ send-hook smartlist my_hdr From: Aaron Schrab <aaron+smartlist@schrab.com>
 mailboxes =Lists/spamtools
 lists spamtools
 mbox-hook Lists/spamtools "=Read/spamtools"
-send-hook spamtools my_hdr From: Aaron Schrab <aaron+spamtools@schrab.com>
+# This send-hook is later, after the general one for abuse.net
+#send-hook spamtools my_hdr From: Aaron Schrab <aaron+spamtools@schrab.com>
 
 mailboxes =Lists/scud =scud.req
 lists scud
@@ -343,6 +344,8 @@ mbox-hook Lists/bt =Read/bt
 send-hook warrior            "my_hdr From: Aaron Schrab <aaron@schrab.com>"
 send-hook schrab             "my_hdr From: Aaron Schrab <aaron@schrab.com>"
 send-hook abuse\.net         "my_hdr From: Aaron Schrab <aarons@execpc.com>"
+# send-hook for the spamtools list, here because of above send-hook
+send-hook spamtools my_hdr From: Aaron Schrab <aaron+spamtools@schrab.com>
 
 save-hook "~C manager@execpc" "=manager"
 fcc-save-hook "~C modem-report"       "=modem"
