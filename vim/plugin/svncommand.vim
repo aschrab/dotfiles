@@ -372,7 +372,7 @@ function! s:SVNFinishCommit(messageFile, targetDir, targetFile)
     let resultBufferName=s:SVNCreateCommandBuffer('0r!svn commit -F "' . a:messageFile . '" "'. a:targetFile . '"', 'svncommit', expand("%"))
     execute 'cd' escape(oldCwd, ' ')
     execute 'bw' escape(a:messageFile, ' *?\')
-    silent execute '!rm' a:messageFile
+    silent execute '!rm' escape(a:messageFile, ' ')
     return resultBufferName
   else
     echo "Can't read message file; no commit is possible."
