@@ -24,6 +24,27 @@
 }
 
 :0
+* LIST ?? mpg123
+{
+  :0hw
+  * Reply-To: The mpg123 MPEG Audio Player <MPG123@TU-CLAUSTHAL.DE>
+  NEWREPLYTO=| formail -XReply-To: | \
+  sed -e 's/Reply-To:[^,]*<MPG123@TU-CLAUSTHAL\.DE>,//'
+
+  :0a
+  {
+    :0
+    * NEWREPLYTO ?? ([ 	]|$)+\/[^ 	].*
+    { NEWREPLYTO=$MATCH }
+
+    :0fhw
+    | formail -i"Reply-To: $NEWREPLYTO"
+  }
+
+  NEWREPLYTO
+}
+
+:0
 * MHONARC ?? .
 {
   LOCKFILE=$MHONARC/lock
