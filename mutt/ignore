@@ -4,9 +4,7 @@ ignore Message-Id:
 ignore Apparently-To:
 ignore Comment:
 ignore Content-Length:
-ignore Reply-To:
 ignore Content-Transfer-Encoding:
-ignore Content-Type:
 ignore Errors-To:
 ignore Full-Name:
 ignore In-Reply-To:
@@ -19,18 +17,14 @@ ignore Status:
 ignore Version:
 ignore X-Comment:
 ignore X-Listprocessor-Version:
-ignore X-Mailer:
 ignore X-Nupop-Charset:
 ignore Priority:
 ignore X-Popmail-Charset:
 ignore X-Sun-Charset:
 ignore X-Vms-To:
-ignore Mailer:
-ignore X-Envelope-To:
 ignore X-Mail-Agent:
 ignore X-Minuet-Version:
 ignore X-Virtual-System-Name:
-ignore Date:
 ignore Organization:
 ignore X-Expires:
 ignore Resent-Message-Id:
@@ -62,7 +56,6 @@ ignore Path:
 ignore Lines:
 ignore Approved:
 ignore Nntp-Posting-Host:
-ignore X-Newsreader:
 ignore Xref:
 ignore Content-Description:
 ignore X-Total-Enclosures:
@@ -85,7 +78,6 @@ ignore A1-type:
 ignore Hop-count:
 ignore X-Juno-Line-Breaks:
 ignore Comments:
-ignore Followup-To:
 ignore X-Personal_name:
 ignore Sensitivity:
 ignore X400-Received:
@@ -111,7 +103,6 @@ ignore X-Mail-Gargler:
 ignore Old-X-Envelope-To:
 ignore X-MDaemon-Deliver-To:
 ignore X-MIME-Autoconverted:
-ignore Mail-Followup-To:
 ignore X-PMFLAGS:
 ignore X-X-Sender:
 ignore X-MTS-Ticket:
@@ -144,7 +135,6 @@ ignore X-Envid:
 ignore X-Mailerorigin:
 ignore Distribution:
 ignore X-Server-Date:
-ignore User-Agent:
 ignore X-Corel-MessageType:
 ignore X-Engine:
 ignore Confirm-receipt-to:
