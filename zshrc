@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.33 $'
+rcvers='$Revision: 1.34 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -23,10 +23,17 @@ then
   esac
 fi
 
-# Try making directory, don't care if it fails (may be there already
+# Try making directory, don't care if it fails (may be there already)
 mkdir "/tmp/$LOGNAME" >& /dev/null
-# Now try changing the permissions; if this works, it should be safe
-if chown "$LOGNAME" "/tmp/$LOGNAME" >& /dev/null &&
+# On some systems $LOGNAME stays the same across su, so check if TMPDIR for
+# non-root user was created by root, and fix it if necessary
+if [[ $EUID -eq 0 && "$LOGNAME" != root && -n "`echo /tm[p]/$LOGNAME(Nu0)`" ]]
+then
+  echo "TMPDIR owned by root, fixing" >&2
+  chown "$LOGNAME" "/tmp/$LOGNAME"
+fi
+# Check the ownership, and make sure the permisisons are correct
+if [[ "`echo /tm[p]/$LOGNAME(Nu:$LOGNAME:)`" == "/tmp/$LOGNAME" ]] &&
    chmod 0700 "/tmp/$LOGNAME" >& /dev/null
 then
   export TMPDIR="/tmp/$LOGNAME"
@@ -83,7 +90,7 @@ alias stty='noglob stty'
 case "$TERM" in
   xterm|xtermc|xterm-color)
     #TERM=xterm
-    stty erase '^H'
+    stty erase '^?'
     print -P "${green}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${white}"
     PS1='%{]1;%(#.#.$)$host]2;%(#.#.$)$host:%~%}'
     PS1="$PS1"'%{$pColor%}%1v%!)$host%(#.#.$)%{$white%} '
