@@ -146,7 +146,7 @@ bind  index	B	bounce-message
 bind  index     n       next-entry
 macro index     A       "c+Lists/inet\n"
 macro index     "\Ck"	"|pgp -kaf\n"
-macro index	G	"!fetchmail\n"
+#macro index	G	"!fetchmail\n"
 macro index     i       ":set hdr_format='%4C %Z %[%m/%d] %-15.15F (%4l) %s'\n"
 macro index     I       ":set hdr_format='%4C %Z %[%m/%d] %-15.15L (%4l) %s'\n"
 macro index     "\Cb"   "|urlview\n"
