@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.11 $'
+rcvers='$Revision: 1.12 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -199,6 +199,7 @@ export VISUAL=${EDITOR:=$(whence vi)}
 export CVS_RSH=ssh
 export MPAGE="-2m50t"
 export COLORFGBG='default;default'
+export WORDCHARS='*?_-.[]~/&|;!#$%^(){}<>,'
 
 if [ -r /etc/libsocks5.conf ]; then
   export NNTPSERVER=socks.execpc.com
