@@ -103,7 +103,7 @@ set folder=~/Mail
 set header                     # include full header in replies
 set nomime_fwd                   # forward as attachment
 set pager_context=1            # show 1 line from prev. page
-set postponed=~/Mail/Postponed # where to save postponed messages
+set postponed=+Postponed       # where to save postponed messages
 set record=+Misc               # save copies of outgoing mail
 set mbox=+Misc
 set reverse_alias              # show aliases in message lists
