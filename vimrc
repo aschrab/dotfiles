@@ -192,6 +192,9 @@ dig !! 161
 dig ?? 191
 dig SS 167
 
+au BufRead *
+	\ if getline(1) =~ '^RECORDTYPE:' | setf cade | endif
+
 autocmd BufRead Makefile set nosmarttab noexpandtab noautoindent
 filetype indent on
 filetype plugin on
