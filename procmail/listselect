@@ -58,7 +58,7 @@ SUBJ
 }
 
 :0
-* ^(X-Mailing-List: <mutt|Sender: owner-mutt)
+* ^(Sender: owner-mutt|X-Envelope-To: aaron\+mutt@schrab)
 {
   LIST=Lists/mutt
   
