@@ -126,7 +126,7 @@ SUBJ
 }
 
 :0
-* ^Return-path: <owner-vnc-list@
+* ^(Return-path: <|Sender: )owner-vnc-list@
 {
   :0
   * ^From:.*<anton@srel.edu>
