@@ -30,7 +30,7 @@
   { RBL="$RBL,ORBS" }
 
   :0
-  * RBLCHECK ?? relays\.radparker\.com
+  * RBLCHECK ?? relays\.(radparker\.com|mail-abuse\.org)
   { RBL="$RBL,RRSS" }
 
 #  :0
