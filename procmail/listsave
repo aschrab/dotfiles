@@ -6,7 +6,7 @@
 :0
 * FETCHED ?? y
 * LIST ?? ()\/[^/]+/?$
-* MATCH ?? ^^[^/]+
+* MATCH ?? ^^\/[^/]+
 {
   DUP="$HOME/.Procmail/dup/$MATCH"
   LOCKFILE="$DUP.lock"
