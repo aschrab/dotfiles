@@ -34,6 +34,10 @@ SUBJ
 { LIST=Lists/noc-staff/ }
 
 :0
+* ^X-Envelope: billsys-request@lists
+{ LIST=Lists/billsys/ }
+
+:0
 * ^X-Envelope: billing-l-request@lists\.execpc\.com
 { MHONARC=$WEB/billing-l/ }
 

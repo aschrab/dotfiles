@@ -114,6 +114,7 @@ set timeout=30                 # seconds inactivity before looking for new mail
 #set web_browser="url_handler.sh"
 set nomark_old                 # all unread mail is marked as new
 set skip_old
+set pgp_default_version="pgp5"
 set pgp_sign_as="0xE8D1D751"
 set pgp_verify_sig=yes         # Verify signature automatically
 set pgp_replyencrypt
@@ -218,6 +219,10 @@ mailboxes =Lists/smartlist
 lists smartlist
 mbox-hook Lists/smartlist "=Read/smartlist"
 send-hook smartlist my_hdr From: Aaron Schrab <aaron+smartlist@schrab.com>
+
+mailboxes =Lists/billsys
+lists billsys
+mbox-hook Lists/billsys "=Read/billsys"
 
 mailboxes =Lists/spamtools
 lists spamtools
