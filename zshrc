@@ -597,6 +597,9 @@ bindkey "\e\x20" magic-space
 # M-Q pushes all pending lines onto the stack, not just current line
 bindkey "\M-q" push-input
 bindkey "\eq" push-input
+# Autoconvert "~?" -> "~/" since I often hold down the shift key for too long
+# when trying to type the latter.
+bindkey -s '~?' '~/'
 
 #  Run a few informative commands
 if [[ ! -f .hushlogin && -n $PZSH ]]; then
