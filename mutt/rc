@@ -240,6 +240,11 @@ mailboxes =Lists/dnvs
 lists dnvs-list
 mbox-hook Lists/dnvs "=Read/dnvs"
 
+mailboxes =Lists/audit
+lists security-audit
+mbox-hook Lists/audit "=Read/audit"
+send-hook security-audit my_hdr From: Aaron Schrab <aaron+lsa@schrab.com>
+
 mailboxes =Lists/spamtools
 lists spamtools
 mbox-hook Lists/spamtools "=Read/spamtools"

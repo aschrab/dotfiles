@@ -87,6 +87,10 @@ SUBJ
 }
 
 :0
+* ^Return-Path: <security-audit-return-
+{ LIST=Lists/audit/ }
+
+:0
 * ^Sender: .*usr-tc@(lists\.)?xmission
 {
   REPLYTO="usr-tc@(lists|mail)\.xmission\.com"
@@ -229,7 +233,7 @@ SUBJ
 }
 
 :0
-* ^Sender: listar-(announce|support|dev)-bounce@listar
+* ^(Return-Path|Sender): <?listar-(announce|support|dev)-bounce@listar
 {
   SUBJ='\[[Ll]istar\(\|-announce\|-support\|-dev\)] '
   LIST=Lists/listar/
@@ -238,7 +242,7 @@ SUBJ
 :0
 * ^Sender: mailman-users-admin@python
 {
-  SUBJ='\[Mailman-Users] '
+  SUBJ='\[Mailman-\(Developers\|Users\)] '
   LIST=Lists/mailman/
 }
 
