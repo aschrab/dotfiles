@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.115 $'
+rcvers='$Revision: 1.116 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -174,6 +174,7 @@ case "$TERM" in
     ;;
 
   linux)
+    fColor=$white
     stty erase '^?'
     print -P "${magenta}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${fColor}"
     PS1='%{$pColor%}%1v%!)$host%(#.#.$)%{$fColor%} '
@@ -223,9 +224,11 @@ manpath=()
 ppath=(
   ~/bin
   /usr/local/bin
+  /sw/bin
   /usr/bin
   /bin
   /usr/local/sbin
+  /sw/sbin
   /usr/sbin
   /sbin
   /usr/X11R6/bin
@@ -556,7 +559,7 @@ vdiff () {
 
 fignore=(.o .bak .swp \~)
 compctl -g '*' -x 'S[.]','C[0,*/.*]' -g '*(D)' -- rm
-compctl -g '*(-/)' + -g '.*(-/)' + -k '(..)' cd rmdir
+#compctl -g '*(-/)' + -g '.*(-/)' + -k '(..)' cd rmdir
 compctl -jP '%' kill fg bg disown
 compctl -vP '$' echo
 
