@@ -47,9 +47,10 @@
   | formail -A "X-Procmail: $HOST fixed sigdashes"
 
 # Add a content length header (procmail will figure out the actual length)
-# Also remove X-UIDL header
+# Also remove X-UIDL header, and eliminate all but one CTE header
 :0fwh
-| formail -I"X-UIDL:" -I"Content-Length:                       0"
+| formail -I"X-UIDL:" -I"Content-Length:                       0" \
+          -uContent-Transfer-Encoding:
 
 :0
 * ^In-Reply-To:[^<]*<[^>]*[ 	]
