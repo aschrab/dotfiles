@@ -158,10 +158,10 @@ SUBJ
 }
 
 :0
-* X-Mailing-List: <starbuck-list@redhat
+* X-Mailing-List: <lorax-list@redhat
 {
-  REPLYTO=starbuck-list
-  LIST=Lists/starbuck/
+  REPLYTO=lorax-list
+  LIST=Lists/lorax/
 }
 
 :0
