@@ -247,7 +247,7 @@ mbox-hook Lists/spamtools "=Read/spamtools"
 #send-hook spamtools my_hdr From: Aaron Schrab <aaron+spamtools@schrab.com>
 
 mailboxes =Lists/scud =scud.req
-lists scud
+lists scud@lists.execpc.com
 mbox-hook Lists/scud "=Read/scud"
 send-hook scud my_hdr From: Aaron Schrab <aaron@schrab.com>
 
@@ -385,8 +385,9 @@ lists crypto
 mbox-hook Lists/crypto "=Read/crypto"
 
 #mailboxes =Lists/inet
-lists inet-access
+lists inet-access list@inet-access
 mbox-hook Lists/inet "=Read/inet"
+send-hook inet-access 'my_hdr From: Aaron Schrab <aaron+inet@schrab.com>'
 
 mailboxes =Lists/linux-athome
 lists linux-athome
@@ -449,6 +450,7 @@ fcc-save-hook ferguson@execpc    "=wayne"
 fcc-save-hook stephenh@execpc    "=stephen"
 fcc-save-hook abuse\.net         "=abuse.net"
 fcc-save-hook @orbs\.org         "=orbs"
+fcc-save-hook eric@bernafamily   "=eric@bernafamily.com"
 
 save-hook mlug-list          "=mlug"
 save-hook execpc-circuit-users "=execpc-circuit-users"
