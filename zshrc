@@ -194,11 +194,6 @@ case "$TERM" in
     ;;
 esac
 
-# Make sure the prompt begins on a new line
-function precmd () {
-  print -nP "%{${red}\$${normal}${(pl:COLUMNS:: ::\r:)}%}"
-}
-
 ZSH_MAJOR_VERSION="${${(s:.:)ZSH_VERSION}[0]}"
 
 if [[ "${DISPLAY#${HOST}:}" != "$DISPLAY" ]]
@@ -562,6 +557,9 @@ utf8-disable () {
 }
 
 precmd () {
+  # Make sure the prompt begins on a new line
+  print -nP "%{${red}\$${normal}${(pl:COLUMNS:: ::\r:)}%}"
+
   if jobs % >& /dev/null; then
     psvar[1]="*"
   else
