@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.10 $'
+rcvers='$Revision: 1.11 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -271,10 +271,12 @@ fi
 bindkey \^p up-history
 bindkey \^n down-history
 bindkey '\e[A' up-line-or-search
-bindkey '\M-i' copy-prev-word
+bindkey '\M-;' copy-prev-word
+bindkey '\e;' copy-prev-word
 # space (with or without meta) is magic-space
 bindkey    '\x20' magic-space
 bindkey '\M-\x20' magic-space
+bindkey '\e\x20' magic-space
 
 #  Run a few informative commands
 if [ ! -f .hushlogin ]; then
