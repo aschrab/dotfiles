@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.99 $'
+rcvers='$Revision: 1.100 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -154,7 +154,6 @@ case "$TERM" in
     print -P "${magenta}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${fColor}"
     PS1='%{$pColor%}%1v%!)$host%(#.#.$)%{$fColor%} '
     RPS1='%{$pColor%} %~%{$fColor%}'
-    export LANG="en_US.iso-8859-15"
     ;;
   *)
     stty erase '^H' kill '^U'
