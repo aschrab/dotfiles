@@ -3,5 +3,12 @@ startup_message off
 autodetach on
 setenv SCREENTERM $TERM
 escape ^Oo
+#debug on
 
-termcapinfo xterm 'hs:ts=\E]2;:fs=\007:ds=\E]2;screen@fnord\007\E]1;screen@fnord\007'
+defscrollback 500
+
+termcapinfo xterm 'hs:ts=\E]2;:fs=\007:ds=\E]2;screen@pug\007\E]1;screen@pug\007'
+
+bind m screen mutt
+bind t screen trn
+bind s sessionname

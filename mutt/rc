@@ -15,13 +15,14 @@ hdr_order From: Subject: Date: To: Newsgroups: Cc: X-Mailer: User-Agent: Content
 
 set pager_index_lines=8
 
-ignore *
-unignore From: To: Newsgroups: Subject: Date: CC:
-unignore Sender: X-Mailer: Expires:
-unignore Content-Type: Content-Transfer-Encoding: X-Diagnostic: X-Processed:
-unignore X-Procmail: X-Suspect-reason: X-Country: Mail-Followup-To:
-unignore X-Mailing-List: User-Agent:
+#ignore *
+#unignore From: To: Newsgroups: Subject: Date: CC:
+#unignore Sender: X-Mailer: Expires:
+#unignore Content-Type: Content-Transfer-Encoding: X-Diagnostic: X-Processed:
+#unignore X-Procmail: X-Suspect-reason: X-Country: Mail-Followup-To:
+#unignore X-Mailing-List: User-Agent:
 #unignore X-Envelope-To:
+source /home/aarons/cvs/dotfiles/ignore
 
 set sort=threads
 set sort_aux=date-received
