@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.88 $'
+rcvers='$Revision: 1.89 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -284,6 +284,12 @@ EDITOR=${EDITOR:=$(whence vim)}
 VISUAL=${EDITOR:=$(whence vi)}
 export EDITOR VISUAL
 alias vi=$VISUAL
+
+GSED=$(whence gsed)
+if [[ -n "$GSED" ]]; then
+  alias sed=gsed
+fi
+unset GSED
 
 GCC=$(whence gcc)
 if [[ -z "$GCC" ]]; then
@@ -646,7 +652,7 @@ case "$host" in
       ;;
 
    "fnord"|"fnord.guru")
-      export TRNINIT=~/.trnrc
+      export TRNINIT=~/.trn/rc
       export CVSROOT=/usr/local/cvsroot
 
       __rhosts=(greaseslapper) 
@@ -753,9 +759,9 @@ compctl -x \
 compctl -K __hosts ping trt traceroute
 
 compctl -x 'p[1]' -k '(add gencaches showpkg stats dump dumpavail unmet check search show depends pkgnames dotty)' -- apt-cache
-compctl -x 'p[1]' -k \
-  '(update upgrade install dist-upgrade clean remove autoclean check)' \
-  -  'p[2]' -K __debpkgs -- apt-get
+compctl -K __debpkgs -x 'p[1]' -k \
+  '(update upgrade install source dist-upgrade clean remove autoclean check)' \
+  -- apt-get
 
 function __debpkgs {
   reply=(`sed -ne 's/^Package: //p' /var/state/apt/lists/*_Packages`)
