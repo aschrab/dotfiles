@@ -26,6 +26,11 @@ highlight StatusLineNC ctermfg=DarkBlue ctermbg=grey cterm=reverse
 highlight StatusLine ctermfg=Blue cterm=reverse
 highlight link smVar Identifier
 
+highlight String ctermbg=Cyan ctermfg=Black
+highlight rubyStringDelimiter ctermfg=Blue
+highlight rubyInterpolation ctermbg=Cyan ctermfg=DarkYellow
+highlight rubyEscape ctermbg=Cyan ctermfg=DarkBlue
+
 set shiftwidth=2
 set autoindent
 set nobackup
@@ -40,7 +45,7 @@ set showmatch
 set showcmd
 set formatoptions=tcrq2
 set cpoptions=BceFs$
-set cmdheight=2
+"set cmdheight=2
 set laststatus=2
 set matchpairs=(:),{:},[:],<:>
 set fileformats=unix,dos,mac
