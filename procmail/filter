@@ -17,6 +17,16 @@
   /dev/null
 }
 
+:0
+* ^TO_manager@execpc\.com
+* ^From: (.*<)?reassign@arin\.net
+{
+  LOG="$TIME: ARIN -> manager TRASHED$NL"
+
+  :0
+  /dev/null
+}
+
 # Save any of my posts to =posted
 # Put newsgroup name in To: header
 # mark as read
@@ -69,6 +79,7 @@ backup
 	    autoreply|\
             headlines@cisco|\
 	    webmaster@execpc|\
+            sans@sans\.org|\
 	    Cron Daemon)|\
     X-Envelope-To: (\
             js@schrab\.com|\
