@@ -9,6 +9,7 @@ defscrollback 500
 
 termcapinfo xterm 'hs:ts=\E]2;:fs=\007:ds=\E]2;screen@pug\007\E]1;screen@pug\007'
 
+defhstatus 'n t'
 bind m screen mutt
 bind t screen trn
 bind s sessionname
