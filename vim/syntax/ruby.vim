@@ -134,12 +134,10 @@ syn region rubyString matchgroup=rubyStringDelimit start="`" end="`" skip="\\\\\
 syn region  rubyString  matchgroup=rubyStringDelimit start="\<if\s*/"lc=2 start="[\~=!|&(,]\s*/"lc=1 end="/[iopx]*" skip="\\\\\|\\/" contains=rubyExprSubst
 
 " Here Document:
-syn region  rubyString matchgroup=rubyStringDelimit start=+<<-\(\u\{3,}\|'\u\{3,}'\|"\u\{3,}"\|`\u\{3,}`\)+hs=s+2 end=+^\s*\u\{3,}$+
-syn region  rubyString matchgroup=rubyStringDelimit start=+<<-\(EOF\|'EOF'\|"EOF"\|`EOF`\)+hs=s+2 end=+^\s*EOF$+ contains=rubyExprSubst
-syn region  rubyString matchgroup=rubyStringDelimit start=+<<-\(EOS\|'EOS'\|"EOS"\|`EOS`\)+hs=s+2 end=+^\s*EOS$+ contains=rubyExprSubst
-syn region  rubyString matchgroup=rubyStringDelimit start=+<<\(\u\{3,}\|'\u\{3,}'\|"\u\{3,}"\|`\u\{3,}`\)+hs=s+2 end=+^\u\{3,}$+
-syn region  rubyString matchgroup=rubyStringDelimit start=+<<\(EOF\|'EOF'\|"EOF"\|`EOF`\)+hs=s+2 end=+^EOF$+ contains=rubyExprSubst
-syn region  rubyString matchgroup=rubyStringDelimit start=+<<\(EOS\|'EOS'\|"EOS"\|`EOS`\)+hs=s+2 end=+^EOS$+ contains=rubyExprSubst
+syn region  rubyString matchgroup=rubyStringDelimit start=+<<-\(['`"]\)\z(\u\{3,}\)\1+hs=s+2 end=+^\s*\z1$+
+syn region  rubyString matchgroup=rubyStringDelimit start=+<<-\z(\u\{3,}\)+hs=s+2 end=+^\s*\z1$+
+syn region  rubyString matchgroup=rubyStringDelimit start=+<<\(['`"]\)\z(\u\{3,}\)\1+hs=s+2 end=+^\z1$+
+syn region  rubyString matchgroup=rubyStringDelimit start=+<<\z(\u\{3,}\)+hs=s+2 end=+^\z1$+
 
 " Expensive Mode: colorize *end* according to opening statement
 if !exists("ruby_no_expensive")
