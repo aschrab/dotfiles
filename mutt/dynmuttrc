@@ -44,6 +44,14 @@ if( /header-cache/ ) {
   print "set maildir_cache='/home/junk/cache/mutt'\n";
 }
 
+if( /\+COMPRESSED/ ) {
+  print <<'';
+    open-hook   '\.gz$' "gzip -cd %f > %t"
+    close-hook  '\.gz$' "gzip -c %t > %f"
+    append-hook '\.gz$' "gzip -c %t >> %f"
+
+}
+
 my $spam_fmt = '';
 if( $mutt_version ge "v1.5.6" ) {
   print "spam '^X-Spam-Status: (Yes|No), hits=(-?[0-9.]+)' '%2'\n";
