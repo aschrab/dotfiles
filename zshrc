@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.103 $'
+rcvers='$Revision: 1.104 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -418,7 +418,7 @@ bindkey "\M-q" push-input
 bindkey "\eq" push-input
 
 #  Run a few informative commands
-if [ ! -f .hushlogin ]; then
+if [[ ! -f .hushlogin && -n $PZSH ]]; then
   case "$OSTYPE" in
   linux*|*bsd*)
     :
