@@ -55,6 +55,7 @@ backup
                davenet-world@scripting\.com)|\
     To:.*modem-reports@execpc\.com|\
     From:.*(\
+            reassign@arin\.net|\
 	    nobody@uu\.net|\
 	    MAILER-DAEMON@abuse\.net|\
 	    autoreply|\
