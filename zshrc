@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.4 $'
+rcvers='$Revision: 1.5 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -175,6 +175,7 @@ setopt \
   Prompt_Subst \
   rm_Star_Silent
 unsetopt \
+  Beep \
   Clobber \
   Correct_All \
   HUP \
