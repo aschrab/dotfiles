@@ -159,7 +159,7 @@ macro compose S "Fpgp +verbose=0 -fast +clearsig=on\ny^T^Uapplication/pgp; +form
 
 send-hook   .         "unmy_hdr From"
 
-folder-hook .         "set nostrict_threads nosave_empty sort=threads"
+folder-hook .         "set nostrict_threads nosave_empty sort=threads weed"
 folder-hook .         "set mime_forward=ask-yes forward_decode nomark_old"
 folder-hook .         \
  "set quote_regexp='^([]:})>|!%] ?|([~<]|-+)[|>]| {0,4}[:>|]|[a-z]+[>|]+ ?|=([^=0-9]|$))'"
@@ -382,10 +382,10 @@ subscribe procmail
 mbox-hook Lists/procmail "=Read/procmail"
 send-hook procmail 'my_hdr From: Aaron Schrab <aaron+procmail@schrab.com>'
 
-mailboxes =Lists/starbuck
-subscribe starbuck-list
-mbox-hook Lists/starbuck "=Read/starbuck"
-send-hook starbuck-list 'my_hdr From: Aaron Schrab <aaron+starbuck@schrab.com>'
+mailboxes =Lists/lorax
+subscribe lorax-list
+mbox-hook Lists/lorax "=Read/lorax"
+send-hook lorax-list 'my_hdr From: Aaron Schrab <aaron+lorax@schrab.com>'
 
 mailboxes =Lists/rawhide
 subscribe redhat-devel-list
