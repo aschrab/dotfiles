@@ -4,6 +4,8 @@
 HISTFILE = "~/.irb.hist"
 MAXHISTSIZE = 100
 
+IRB.conf[:AUTO_INDENT] = true
+
 begin # IRb shouldn't fail if can't get completion
   require 'irb/completion'
 rescue Exception
