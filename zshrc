@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.90 $'
+rcvers='$Revision: 1.91 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -117,7 +117,7 @@ case "$TERM" in
     fi
     if [[ $OSTYPE == linux* ]]
     then
-      export LANG="en_US.iso-8859-15"
+      export LANG="en_US"
       export LC_COLLATE="C"
     fi
     stty erase '^?'
