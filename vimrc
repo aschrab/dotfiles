@@ -43,6 +43,8 @@ set matchpairs=(:),{:},[:],<:>
 set fileformats=unix,dos,mac
 set pastetoggle=<F4>
 set modelines=5
+set wildmode=longest,full
+set wildignore+=*.o,*~
 
 ":if $DISPLAY == ":0"
   set mouse=a
@@ -92,6 +94,8 @@ iab UBE Unsolicited Bulk Email
 "noremap <C-A> <Home>
 noremap <C-E> <End>
 map <c-J> gqip
+map <C-N> <C-W>j<C-W>_
+map <C-P> <C-W>k<C-W>_
 inoremap  
 inoremap  
 inoremap  
