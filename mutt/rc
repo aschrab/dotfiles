@@ -119,7 +119,8 @@ set pgp_sign_as="0xE8D1D751"
 set pgp_verify_sig=no          # Verify signature automatically
 set pgp_replyencrypt
 set pgp_replysign
-unset use_domain
+set use_domain
+set hostname='execpc.com'
 set nopipe_decode              # don't decode MIME or weed headers when piping
 set nowait_key                 # don't wait for a key after running programs
 set nobeep
