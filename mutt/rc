@@ -194,6 +194,10 @@ mailboxes =Lists/gurus
 lists gurus
 mbox-hook Lists/gurus "=Read/gurus/`date '+%Y%m'`"
 
+mailboxes =Lists/net-eng
+lists net-eng
+mbox-hook Lists/net-eng "=Read/net-eng/`date '+%Y%m'`"
+
 mailboxes =Lists/allgurus
 lists allgurus
 mbox-hook Lists/allgurus "=Read/allgurus/`date '+%Y%m'`"
