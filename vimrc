@@ -9,6 +9,7 @@ let perl_highlight_matches = 1
 "let perl_embedded_pod = 1
 
 let g:xml_syntax_folding = 1
+let g:javaScript_fold = 1
 
 set t_Co=16
 "set t_Sf=[3%p1%dm
@@ -54,7 +55,7 @@ set cpoptions=BceFs$
 set laststatus=2
 set matchpairs=(:),{:},[:],<:>
 set fileformats=unix,dos,mac
-set fileencodings=ucs-bom,latin1,ucs,iso-2022-jp,euc,sjis
+set fileencodings=ucs-bom,ucs,latin1,iso-2022-jp,euc,sjis
 set pastetoggle=<F4>
 set modelines=5
 set wildmenu
