@@ -1,6 +1,7 @@
 # vim: tw=0
 unlists *
 unalias *
+unhook *
 
 source ~/.Mutt/rc.common
 
@@ -12,6 +13,9 @@ source ~/.Mutt/ignore
 set date_format = "!%H:%M %Z %d %b %Y"
 set attribution="At %d, %?F?%f&I? wrote:"
 set hdr_format="%4C %Z %?[?%[%H:%M]&%[%m/%d]? %-15.15L (%4l) %s"
+#set xterm_icon='Mutt:%f%r [Msgs:%?M?%M/?%m New:%n%?t? Tag:%t? In:%b%?p? Post:%p?]'
+#set xterm_title='%f%r [%?M?%M/%m ?%nn%?t? %tt? %bi%?p? %pp?]'
+#set xterm_set_titles
 
 source /home/aarons/.Mutt/aliases
 
@@ -22,7 +26,8 @@ set see_old
 #set skip_old
 #set pgp_default_version="pgp5"
 source ~/.Mutt/gpg.rc
-set pgp_sign_as="0xE8D1D751"
+#set pgp_sign_as="0xE8D1D751"
+set pgp_sign_as="0x0507D84E"
 set pgp_verify_sig=yes         # Verify signature automatically
 set pgp_replyencrypt
 set pgp_replysign
@@ -31,7 +36,7 @@ send-hook   .         "unmy_hdr From"
 
 folder-hook .         "set nostrict_threads nosave_empty sort=threads weed"
 folder-hook .         "set mime_forward=ask-yes forward_decode nomark_old"
-folder-hook .         'set sort_aux=date-received to_chars=" +TCFL"'
+folder-hook .         'set sort_aux=last-date-received to_chars=" +TCFL"'
 folder-hook .         \
  "set quote_regexp='^([]:})>|!%] ?|([~<]|-+)[|>]| {0,4}[:>|]|[a-z]+[>|]+ ?|=([^=0-9]|$))'"
 
@@ -51,6 +56,7 @@ folder-hook Lists/inet		"source ~/.Mutt/expire"
 folder-hook Lists/allgurus	"set move=no"
 folder-hook Lists/yesno		"set move=no"
 folder-hook Lists/user-account	"set move=no"
+folder-hook Lists/mutt		"set move=no"
 folder-hook Lists/securelinux	"source ~/.Mutt/expire"
 folder-hook Lists/sawmill	"source ~/.Mutt/expire"
 
@@ -58,7 +64,7 @@ folder-hook (procmail|smartlist) \
      'set quote_regexp="^([])>%] ?|([~<]|-+)[|>]| {0,4}>|[a-z]+[>|]+ ?|=([^=0-9]|$))"'
 
 folder-hook IN        "set move=no"
-folder-hook abuse.net "set move=no sort=date"
+folder-hook abuse.net "set move=no sort=last-date"
 folder-hook Read      "set hdr_format='%4C %Z %?[?%[%H:%M]&%[%m/%d]? %-15.15F (%4l) %s'"
 folder-hook exser     "set strict_threads"
 folder-hook frontpage "set strict_threads"
@@ -75,9 +81,19 @@ mailboxes =Lists/gurus
 subscribe gurus
 mbox-hook Lists/gurus "=Read/gurus/`date '+%Y%m'`"
 
+mailboxes =Lists/listserv
+subscribe listserv@lists.corecomm.net
+mbox-hook Lists/listserv "=Read/listserv"
+send-hook listserv my_hdr From: Aaron Schrab <aaron.schrab@voyager.net>
+
 mailboxes =Lists/mailteam
 subscribe mailteam@voyager.net mailteam@lists.voyager.net
 mbox-hook Lists/mailteam "=Read/mailteam"
+
+mailboxes =Lists/sysops
+subscribe sysops@voyager.net sysops@lists.voyager.net
+mbox-hook Lists/sysops "=Read/sysops"
+send-hook sysops my_hdr From: Aaron Schrab <aaron.schrab@voyager.net>
 
 mailboxes =Lists/net-eng
 subscribe net-eng
@@ -124,6 +140,16 @@ subscribe list-managers
 mbox-hook Lists/list-managers "=Read/list-managers"
 send-hook list-managers my_hdr From: Aaron Schrab <aaron+lm@schrab.com>
 
+mailboxes =Lists/digitaltraveler
+subscribe digitaltraveler
+mbox-hook Lists/digitaltraveler "=Read/digitaltraveler"
+send-hook digitaltraveler my_hdr From: Aaron Schrab <aaron@schrab.com>
+
+mailboxes =Lists/black-cat
+subscribe black-cat
+mbox-hook Lists/black-cat "=Read/black-cat"
+send-hook black-cat my_hdr From: Aaron Schrab <aaron@schrab.com>
+
 mailboxes =Lists/yesno
 subscribe yesno
 mbox-hook Lists/yesno "=Read/yesno"
@@ -159,6 +185,16 @@ subscribe securelinux
 mbox-hook Lists/securelinux "=Read/securelinux"
 send-hook securelinux my_hdr From: Aaron Schrab <aaron+sl@schrab.com>
 
+mailboxes =Lists/mkesklyarov
+subscribe mkesklyarov
+mbox-hook Lists/mkesklyarov "=Read/mkesklyarov"
+send-hook mkesklyarov my_hdr From: Aaron Schrab <aaron@schrab.com>
+
+mailboxes =Lists/rblcheck-users/
+subscribe rblcheck-users
+mbox-hook Lists/rblcheck-users "=Read/rblcheck-users"
+send-hook rblcheck-users 'my_hdr From: Aaron Schrab <aaron@schrab.com>'
+
 mailboxes =Lists/spamtools
 subscribe spamtools
 mbox-hook Lists/spamtools "=Read/spamtools"
@@ -168,7 +204,12 @@ mbox-hook Lists/spamtools "=Read/spamtools"
 mailboxes =Lists/double-click
 subscribe talk-dc
 mbox-hook Lists/double-click "=Read/double-click"
-send-hook talk-dc 'my_hdr From: Aaron Schrab <u.utkroyz34ius-h.700a5@pug.qqx.org>'
+send-hook talk-dc 'my_hdr From: Aaron Schrab <aaron@schrab.com>'
+
+mailboxes =Lists/galeon-user
+subscribe galeon-user
+mbox-hook Lists/galeon-user "=Read/galeon-user"
+send-hook galeon-user 'my_hdr From: Aaron Schrab <aaron+galeon@schrab.com>'
 
 mailboxes =Lists/scud =scud.req
 subscribe scud@lists.execpc.com
@@ -232,9 +273,10 @@ mbox-hook Lists/mutt "=Read/mutt"
 send-hook mutt 'my_hdr From: Aaron Schrab <aaron+mutt@schrab.com>'
 
 mailboxes =Lists/secure-mua
-subscribe secure-mua
+subscribe secure-mua dev@smime.pyerotechnics.com
 mbox-hook Lists/secure-mua "=Read/secure-mua"
 send-hook secure-mua@egroups 'my_hdr From: <u.utkroyz34ius-h.700a5@pug.qqx.org>'
+send-hook dev@smime 'my_hdr From: Aaron Schrab <aaron+mutt@schrab.com>'
 
 mailboxes =Lists/screen
 subscribe gnu-screen@egroups.com
@@ -245,7 +287,12 @@ mailboxes =Lists/tidbits
 subscribe tidbits-talk
 mbox-hook Lists/tidbits "=Read/tidbits"
 send-hook tidbits 'my_hdr From: Aaron Schrab <aaron@schrab.com>'
-folder-hook tidbits 'set sort_aux=date'
+folder-hook tidbits 'set sort_aux=last-date'
+
+mailboxes =Lists/macosx-talk
+subscribe macosx-talk
+mbox-hook Lists/macosx-talk "=Read/macosx-talk"
+send-hook macosx-talk 'my_hdr From: Aaron Schrab <aaron+osx@schrab.com>'
 
 mailboxes =Lists/debian-powerpc
 subscribe debian-powerpc
@@ -309,6 +356,11 @@ mailboxes =Lists/smartlist
 subscribe smartlist
 mbox-hook Lists/smartlist "=Read/smartlist"
 send-hook smartlist my_hdr From: Aaron Schrab <aaron+smartlist@schrab.com>
+
+mailboxes =Lists/sympa-users
+subscribe sympa-users@cru.fr
+mbox-hook Lists/sympa-users "=Read/sympa-users"
+send-hook sympa my_hdr From: Aaron Schrab <aaron+sympa@schrab.com>
 
 mailboxes =Lists/procmail
 subscribe procmail
@@ -412,6 +464,7 @@ send-hook spamtools my_hdr From: Aaron Schrab <aaron+spamtools@schrab.com>
 fcc-save-hook '~C imdb\.com'          "=imdb"
 save-hook "~C manager@execpc" "=manager"
 fcc-save-hook "~C modem-report"       "=modem"
+save-hook randy@thisistrue "=true"
 
 fcc-save-hook d(avid@)?schrab    "=david@schrab.com"
 fcc-save-hook jschrab            "=j_schrab"

@@ -12,6 +12,7 @@ set hostname='execpc.com'
 
 set allow_8bit=no
 set envelope_from
+set nobounce_delivered
 set dsn_notify=failure         # notify on transmission failure
 set dsn_return=full            #   include full message
 set reverse_name               # use address mail was sent to when replying
@@ -37,20 +38,22 @@ set reverse_alias              # show aliases in message lists
 set nomark_old                 # all unread mail is marked as new
 set status_chars=" *%"
 set sort=threads
-set status_format=" %r Mutt:%-25.25f [Msgs:%?M?%M/?%m New:%n%?F? Flag:%F?%?t? Tag:%t? In:%b%?p? Post:%p?]  (%s)%| "
+set sort_aux=last-date-received
+set status_format=" %r Mutt:%-25.25f [Msgs:%?M?%M/?%m New:%n%?F? Flag:%F?%?t? Tag:%t? In:%b%?p? Post:%p?]  (%s/%S)%| "
 
 # Settings for viewing messages
 set pager_index_lines=8
 set pager_context=1            # show 1 line from prev. page
 set nomarkers
 set tilde                      # pad end of messages
+set implicit_autoview
 #set pager_stop
 hdr_order From: Subject: Date: To: Newsgroups: Cc: X-Mailer: User-Agent: \
   Content-Type: Content-Transfer-Encoding: X-Procmail: X-Suspect-reason:
 alternative_order text/enriched text/plain text application/postscript image/* 
-auto_view text/html application/pgp-keys application/x-tar-gz \
-  text/x-internet-signup application/x-sh application/x-patch \
-  application/octet-stream
+#auto_view text/html application/pgp-keys application/x-tar-gz \
+#  text/x-internet-signup application/x-sh application/x-patch \
+#  application/octet-stream
 charset-hook windows-1251 cp1251
 
 
@@ -82,7 +85,9 @@ bind  pager     "\Cn"   search-next
 bind  pager     n       next-unread
 macro pager     "\Ck"	"|pgp -kaf\n"
 macro pager     "\Cb"   "|urlview\n"
+macro pager "\eh" "<view-attachments><next-entry><edit-type><bol><delete-char><enter><exit><exit><display-message>" "View alternative"
 
+macro index "\eh" "<view-attachments><next-entry><edit-type><bol><delete-char><enter><exit><display-message>" "View alternative"
 bind  index	B	bounce-message
 bind  index     n       next-entry
 macro index     A       "c+Lists/inet\n"
@@ -97,12 +102,13 @@ macro attach    "\Ck"	"|pgp -kaf\n"
 macro  compose   E       "Ge"
 macro compose S "Fpgp +verbose=0 -fast +clearsig=on\ny^T^Uapplication/pgp; +format=text; x-action=sign\n" # To pgp-sign the old way :)
 
+bind	editor	"\Ct"	transpose-chars
 
 # Colors
 color body  red	default	\
  "((ftp|https?)://|(ftp|www[-a-z0-9]*)\\.)[^ \t\r\n\"<>]*[^].,:;!)? \t\r\n<>\"]"
 color body  yellow	default	\
- '(mailto:)?[a-z0-9]([-+=._%!]?[a-z0-9])*@[-a-z0-9.]+\.[a-z][a-z]+'
+ '(mailto:)?[a-z0-9]([-+=._%!$#]?[a-z0-9])*@[-a-z0-9.]+\.[a-z][a-z]+'
 
 color body magenta default '^-----(BEGIN|END) PGP .*'
 
