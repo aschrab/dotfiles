@@ -8,7 +8,7 @@ set quote_regexp='^([]:})>|!%] ?|([~<]|-+)[|>]| {0,4}[:>|]|[a-z]+[>|]+ ?|=([^=0-
 
 # Settings for sending mail
 set use_domain
-set hostname='execpc.com'
+#set hostname='execpc.com'
 
 set allow_8bit=no
 set envelope_from
@@ -87,14 +87,18 @@ macro pager     "\Ck"	"|pgp -kaf\n"
 macro pager     "\Cb"   "|urlview\n"
 macro pager "\eh" "<view-attachments><next-entry><edit-type><bol><delete-char><enter><exit><exit><display-message>" "View alternative"
 
+macro pager ,@r13on "<enter-command>set display_filter='tr A-Za-z N-ZA-Mn-za-m'; macro pager '#' ,@r13off 'Toggle ROT13 decoding'\n<display-toggle-weed><display-toggle-weed>"
+macro pager ,@r13off "<enter-command>set display_filter=''; macro pager '#' ,@r13on 'Toggle ROT13 decoding'\n<display-toggle-weed><display-toggle-weed>"
+macro pager '#' ,@r13on       "Toggle ROT13 decoding"
+
 macro index "\eh" "<view-attachments><next-entry><edit-type><bol><delete-char><enter><exit><display-message>" "View alternative"
 bind  index	B	bounce-message
 bind  index     n       next-entry
 macro index     A       "c+Lists/inet\n"
 macro index     "\Ck"	"|pgp -kaf\n"
 macro index	G	"!fetchmail\n"
-macro index     i       ":set hdr_format='%4C %Z %?[?%[%H:%M]&%[%m/%d]? %-15.15F (%4l) %s'\n"
-macro index     I       ":set hdr_format='%4C %Z %?[?%[%H:%M]&%[%m/%d]? %-15.15L (%4l) %s'\n"
+macro index     i       ":set hdr_format='%4C %Z %?[?%[%H:%M]&%[%m/%d]? %-15.15F (%5l) %s'\n"
+macro index     I       ":set hdr_format='%4C %Z %?[?%[%H:%M]&%[%m/%d]? %-15.15L (%5l) %s'\n"
 macro index     "\Cb"   "|urlview\n"
 
 macro attach    "\Ck"	"|pgp -kaf\n"
