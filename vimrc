@@ -41,7 +41,7 @@ autocmd BufRead .article* set tw=72
 " autocmd BufRead .article* /^$
 " autocmd BufRead .article* .+1
 
-noremap <C-A> <Home>
+"noremap <C-A> <Home>
 noremap <C-E> <End>
 inoremap  
 
@@ -60,6 +60,8 @@ map ,ss :r~/.sigs/spamreply
 map ,sw oi-- :r~/.sigs/work
 map ,sx :r~/.sigs/lsm.luser
 
+map ,, /^> *$
+map ,l 1G}jyGGp:.,$!wc -ld0iLines: dd1G}P
 map ,q :%s/^\(> \)*$//
 map ,r :.,/^$/!formail -fbY -IX-Envelope -IX-spamrc: -IX-Suspect-Reason: -IX-procmail: -IReceived: -IReturn-Path: -IResent- -IContent-Length: -IX-Loop: -ILines: -IPrecedence:
 
