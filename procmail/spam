@@ -4,6 +4,7 @@
 * $ 1^1 ^Received:.*\[\/[0-9.]+\]\)$S+by$S+${LOCALSERVER}
 * MATCH ?? ^^\/[0-9.]+
 {
+  RELAYIP="$MATCH"
   RBLCHECK=`rblcheck -p "$MATCH"`
  
   :0
@@ -32,7 +33,9 @@
 
   :0fhw
   * RBL ?? ^,\/.*
-  | formail -A"X-suspect-reason: listed on $MATCH"
+  | formail -A"X-suspect-reason: $RELAYIP listed on $MATCH"
+
+  RELAYIP
 }
 
 :0:
