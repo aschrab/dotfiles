@@ -31,7 +31,7 @@ set sort_aux=date-received
 set date_format = "!%H:%M %Z %d %b %Y"
 set status_chars=" *%"
 set attribution="At %d, %?F?%f&I? wrote:"
-set hdr_format="%4C %Z %[%m/%d] %-15.15L (%4l) %s"
+set hdr_format="%4C %Z %?[?%[%H:%M]&%[%m/%d]? %-15.15L (%4l) %s"
 
 set quote_regexp='^([]:})>|!%] ?|([~<]|-+)[|>]| {0,4}[:>|]|[a-z]+[>|]+ ?|=([^=0-9]|$))'
 
@@ -148,8 +148,8 @@ bind  index     n       next-entry
 macro index     A       "c+Lists/inet\n"
 macro index     "\Ck"	"|pgp -kaf\n"
 #macro index	G	"!fetchmail\n"
-macro index     i       ":set hdr_format='%4C %Z %[%m/%d] %-15.15F (%4l) %s'\n"
-macro index     I       ":set hdr_format='%4C %Z %[%m/%d] %-15.15L (%4l) %s'\n"
+macro index     i       ":set hdr_format='%4C %Z %?[?%[%H:%M]&%[%m/%d]? %-15.15F (%4l) %s'\n"
+macro index     I       ":set hdr_format='%4C %Z %?[?%[%H:%M]&%[%m/%d]? %-15.15L (%4l) %s'\n"
 macro index     "\Cb"   "|urlview\n"
 
 macro attach    "\Ck"	"|pgp -kaf\n"
@@ -167,12 +167,12 @@ folder-hook .         \
 folder-hook suspect   "set mime_forward=no noforward_decode"
 
 folder-hook Mail      "set move=yes"
-folder-hook Mail      "set hdr_format='%4C %Z %[%m/%d] %-15.15L (%4l) %s'"
+folder-hook Mail      "set hdr_format='%4C %Z %?[?%[%H:%M]&%[%m/%d]? %-15.15L (%4l) %s'"
 
-folder-hook Lists     "set hdr_format='%4C %Z %[%m/%d] %-15.15F (%4l) %s'"
+folder-hook Lists     "set hdr_format='%4C %Z %?[?%[%H:%M]&%[%m/%d]? %-15.15F (%4l) %s'"
 folder-hook Lists     "set save_empty"
 
-folder-hook spool     "set hdr_format='%4C %Z %[%m/%d] %-15.15L (%4l) %s'"
+folder-hook spool     "set hdr_format='%4C %Z %?[?%[%H:%M]&%[%m/%d]? %-15.15L (%4l) %s'"
 folder-hook spool     "set move=no"
 
 folder-hook Lists/inet          "source ~/.Mutt/expire"
@@ -186,7 +186,7 @@ folder-hook (procmail|smartlist) \
 
 folder-hook IN        "set move=no"
 folder-hook abuse.net "set move=no sort=date"
-folder-hook Read      "set hdr_format='%4C %Z %[%m/%d] %-15.15F (%4l) %s'"
+folder-hook Read      "set hdr_format='%4C %Z %?[?%[%H:%M]&%[%m/%d]? %-15.15F (%4l) %s'"
 folder-hook exser     "set strict_threads"
 folder-hook frontpage "set strict_threads"
 
