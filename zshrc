@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.78 $'
+rcvers='$Revision: 1.79 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -111,6 +111,7 @@ case "$TERM" in
       TERM=xterm-color
     fi
     export LANG="en_US.iso-8859-15"
+    export LC_COLLATE="C"
     stty erase '^?'
     print -P "${green}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${fColor}"
     PS1='%{]1;%(#.#.$)$host]2;%(#.#.$)$host:%~%}'
