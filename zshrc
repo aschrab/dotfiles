@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.119 $'
+rcvers='$Revision: 1.120 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -447,7 +447,6 @@ ins-last-word () {
 
   zle .insert-last-word
 }
-zle -N insert-last-word ins-last-word
 
 # Add a zle widget to kill last N path components
 kpathword () {
@@ -501,10 +500,8 @@ kpathword () {
     fi
   fi
 }
-zle -N kpathword
 
 # bind keys
-bindkey "\M-/" kpathword
 bindkey \^p up-history
 bindkey \^n down-history
 bindkey "\e[A" up-line-or-search
@@ -968,6 +965,10 @@ if [[ $ZSH_MAJOR_VERSION -ge 4 &&
      -d /usr/share/zsh/$ZSH_VERSION/functions/Completion ]]
 then
   fpath=( $fpath /usr/share/zsh/$ZSH_VERSION/functions/{Completion,Misc} )
+
+  zle -N insert-last-word ins-last-word
+  zle -N kpathword
+  bindkey "\M-/" kpathword
 
   zstyle ':completion:*' auto-description 'specify: %d'
   zstyle ':completion:*' completer _oldlist _expand _complete _ignored _match _correct _approximate _prefix
