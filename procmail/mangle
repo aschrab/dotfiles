@@ -111,8 +111,12 @@
   |formail -a"Content-Type: application/pgp; format=text; x-action=sign"
 }
 
+# Skip this part for messages that aren't plaintext, or are pgp signed
 :0
-* ! ^Content-type:.*pgp
+*   1^0
+*  -5^0 ^Content-type:
+*  10^0 ^Content-type:.*text/plain
+* -15^0 ^Content-type:.*pgp
 {
   # Remove stupid juno adds
   :0fbiw
