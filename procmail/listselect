@@ -155,6 +155,7 @@ SUBJ
   LIST=Lists/double-click/
   REPLYTO="talk-dc@egroups\.com"
   SUBJ='\[talk-dc\] '
+  EGROUPS=yes
 }
 
 :0

@@ -83,3 +83,7 @@ EXPIRE
   :0 fhw
   | formail -I "Lines: $LINES"
 }
+
+:0fbw
+* EGROUPS ?? y
+| '/^------*<e|-$/,$d'
