@@ -25,6 +25,7 @@ set showmatch
 set formatoptions=tcrq2
 set cpoptions=BceFs$
 set cmdheight=2
+set laststatus=2
 
 iab teh the
 iab adn and
