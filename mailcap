@@ -13,6 +13,12 @@ application/x-sh; cat %s; copiousoutput
 
 application/msword; wordview %s
 
+message/external-body; lynx -dump ftp://%{site}/%{directory}/%{name} ; \
+  test=test %{access-type} = anon-ftp; copiousoutput
+
+#message/external-body; ncftp %{site}:%{directory}/%{name}\; cat %{name}; \
+#        test=test %{access-type} = anon-ftp; copiousoutput
+
 application/pgp-keys; pgp -f < %s ; copiousoutput
 application/pdf; /usr/local/bin/acroread "%s"; test=/home/aarons/bin/runningx
 #mailcap entry added by Netscape Helper
