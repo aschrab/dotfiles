@@ -10,12 +10,34 @@ IRB.conf[:AUTO_INDENT] = true
 # IRB.conf[:INSPECT_MODE] = false
 
 # Change the prompt {{{
+def term_color(color, rl_ignore=false) #{{{
+  color =
+  case color.to_sym
+  when :black:		30
+  when :red:		31
+  when :green:		32
+  when :yellow:		33
+  when :blue:		34
+  when :magenta:	35
+  when :cyan:		36
+  when :white:		37
+  when :normal:		22
+  else color
+  end
+
+  r = "\033[0;#{color}m"
+  r = "\001\001#{ r }\001\002" if rl_ignore
+  r
+end #}}}
+prompt_color = term_color :magenta, true
+reset_color  = term_color :normal, true
+
 IRB.conf[:IRB_RC] = proc do |conf|
-  leader = " " * conf.irb_name.length
-  conf.prompt_i = "#{conf.irb_name} --> "
-  conf.prompt_s = leader + ' \-%l '
-  conf.prompt_c = leader + ' \-+ '
-  conf.return_format = leader + " ==> %s\n\n"
+  lead = " " * conf.irb_name.length
+  conf.prompt_i      = "#{prompt_color}#{conf.irb_name} -->#{reset_color} "
+  conf.prompt_s      = lead + " #{prompt_color}\-%l #{reset_color}"
+  conf.prompt_c      = lead + " #{prompt_color}\-+ #{reset_color}"
+  conf.return_format = lead +" #{term_color :red}==>#{term_color :normal} %s\n"
 end #}}}
 
 begin # IRb shouldn't fail if can't get completion
