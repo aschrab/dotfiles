@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.92 $'
+rcvers='$Revision: 1.93 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -417,9 +417,15 @@ fi
 umask 077
 export PS1 PATH TERM
 
+if [ -d /usr/share/zsh/functions ]; then
+  fpath=( /usr/share/zsh/functions )
+else
+  fpath=()
+fi
+
 # shell functions
 if [ -d $HOME/.fbin ]; then
-  fpath=($HOME/.fbin)
+  fpath=($fpath $HOME/.fbin)
   for AF in $HOME/.fbin/*(N); do
         typeset -fu $AF:t
   done
