@@ -102,7 +102,7 @@ inoremap <C-]> <C-X><C-]>
 inoremap <C-F> <C-X><C-F>
 inoremap <C-L> <C-X><C-L>
 inoremap <C-e> <esc>
-noremap gf <C-W>sgf
+map gf :new <cfile>
 
 map ,ad aAaron Schrab <aaron@schrab.com>
 map ,af 1G/^From:WD
