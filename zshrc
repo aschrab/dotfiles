@@ -826,27 +826,6 @@ case "$host" in
       compctl -k __rhosts -x 's[-l],c[-1,-l]' -k mynames -- rlogin
       compctl -k __rhosts -x 'p[2,-1]' -l '' -- rsh
       ;;
-
-   "earth")
-      mesg n
-      ttyctl -f
-
-      MAIL=$(mailfile)
-
-      alias quota='quota -v'
-      alias help='/usr/local/adm/execpc/help'
-      alias nx='nice -20 /usr/local/adm/execpc/nx'
-      unalias ps   # ps wrapper accepts either BSD or SYSV style options if
-                   # not given explicit path
-
-      info=/usr/ftp/pub/info; hash -d info=$info
-      mac=/usr/ftp/pub/mac; hash -d mac=$mac
-      acct=/usr/local/adm/acct; hash -d acct=$acct
-      execpc=/usr/local/adm/execpc; hash -d execpc=$execpc
-      gurus=/usr/local/pkg/guru; hash -d gurus=$gurus
-
-      watch=($watch info mac acct execpc gurus)
-      ;;
 esac
 
 function __sshhosts () {
