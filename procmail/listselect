@@ -128,6 +128,10 @@ SUBJ
 :0
 * ^Return-path: <owner-vnc-list@
 {
+  :0
+  * ^From:.*<anton@srel.edu>
+  idiot/
+
   REPLYTO=vnc-list
   LIST=Lists/vnc/
 }
