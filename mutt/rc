@@ -131,6 +131,8 @@ bind  pager     *       bottom
 bind  pager     G       bottom
 bind  pager	<Up>	previous-line
 bind  pager	<Down>	next-line
+bind  pager     "\Cn"   search-next
+bind  pager     n       next-unread
 macro pager     "\Ck"	"|pgp -kaf\n"
 macro pager     "\Cb"   "|urlview\n"
 
