@@ -159,6 +159,15 @@ SUBJ
 }
 
 :0
+* ^Mailing-List: list secure-mua@egroups
+{
+  LIST=Lists/secure-mua/
+  REPLYTO="secure-mua@egroups\.com"
+  SUBJ='\[secure-mua\] '
+  EGROUPS=yes
+}
+
+:0
 * ^Mailing-List:.*discuss-help@linmodems\.org
 { LIST=Lists/linmodems/ }
 
