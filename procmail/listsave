@@ -1,5 +1,5 @@
 :0 cw:
-* ^TOgurus
+* ^X-Mailing-List:.*<gurus@
 | formail -i "Status: RO" >> Read/gurus/$MONTH
 
 # Remove duplicates (keep separate cache for each list)
