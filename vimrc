@@ -32,6 +32,7 @@ set formatoptions=tcrq2
 set cpoptions=BceFs$
 set cmdheight=2
 set laststatus=2
+set matchpairs=(:),{:},[:],<:>
 
 " Tell vim to use visual beep then disable visual beep, to keep it silent
 set vb
@@ -68,6 +69,7 @@ autocmd BufRead .article* set tw=72
 
 "noremap <C-A> <Home>
 noremap <C-E> <End>
+map <c-J> gqip
 inoremap  
 inoremap  
 inoremap  
@@ -123,14 +125,18 @@ set bs=2
 set secure
 
 
-" The File-Browser&Reader. Very handsome.
-"
-" map ,dau o~/.dau/"dddu__filelist
-"
-" start the file reader. Directory in register d.
-" map __filelist :split .!!ls -l d __LN-__mm
-" nn __LN- /[0-9] \K..  \=[0-9]<CR>3E2l
-" crate mapping for enter
-" noremap __mm :map <CR> __rm0__LN-mai:r d`a"ay$:q!@a
-" remove mapping
-" noremap __rm :unmap <CR><CR>
+"  " The File-Browser&Reader. Very handsome.
+"  
+"  " The DAU mappings (read std.-texts)
+"  " map ,dau o~/.sigs/^V^["dddu__filelist
+"  map ,dau o~/.sigs/"dddu__filelist
+"  
+"  " start the file reader. Directory in register d.
+"  "map __filelist :split .^V^M!!ls -l ^V^Rd^V^H ^V^M__LN-__mm
+"  map __filelist :split .!!ls -l d <CR>__LN-__mm
+"  nn __LN- /[0-9] \K..  \=[0-9]<CR>3E2l
+"  " crate mapping for enter
+"  " noremap __mm :map  __rm0__LN-mai:r ^V^Rd^V^H^V^V^V^[`a"ay$:q!^V^V^V^M@a^V^V^V^M^V^M
+"  noremap __mm :map -mai:r d`a"ay$:q!@a
+"  " remove mapping
+"  noremap __rm :unmap <CR><CR>
