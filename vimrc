@@ -14,16 +14,18 @@ highlight Constant ctermfg=DarkMagenta
 highlight procmailAction ctermfg=DarkGreen
 highlight procmailCondition ctermfg=DarkBlue
 
-highlight NonText ctermfg=Blue cterm=NONE guifg=grey gui=NONE
-highlight StatusLine ctermfg=Blue ctermbg=Yellow cterm=reverse,bold
-highlight StatusLineNC ctermfg=Blue cterm=reverse
+"highlight NonText ctermfg=White cterm=bold guifg=grey gui=NONE
+highlight NonText ctermfg=grey guifg=grey gui=NONE
+highlight SpecialKey ctermfg=grey guifg=grey gui=NONE
+highlight StatusLineNC ctermfg=Blue ctermbg=grey cterm=reverse
+highlight StatusLine ctermfg=Blue cterm=reverse
 highlight link smVar Identifier
 
 set shiftwidth=2
 set autoindent
 set nobackup
 set smarttab
-set expandtab
+set noexpandtab
 set notitle
 set incsearch
 set ruler
@@ -34,12 +36,17 @@ set cmdheight=2
 set laststatus=2
 set matchpairs=(:),{:},[:],<:>
 set fileformats=unix,dos,mac
+set pastetoggle=<F4>
 
 " Tell vim to use visual beep then disable visual beep, to keep it silent
 set vb
 set t_vb=
 
-set listchars=tab:»­,trail:·
+":if encoding = utf-8
+set listchars=tab:>-,trail:.
+":else
+"set listchars=tab:»­,trail:·
+":endif
 set list
 set guicursor=n-v-c:block-Cursor-blinkon0,ve:ver35-Cursor-blinkon0,o:hor50-Cursor-blinkon0,i-ci:ver25-Cursor-blinkon0,r-cr:hor20-Cursor-blinkon0,sm:block-Cursor-blinkon0
 
@@ -58,13 +65,13 @@ iab ube unsolicited bulk email
 iab UBE Unsolicited Bulk Email
 
 " .com files are *not* DCL
-au! syntax * *.com
+" au! syntax * *.com
 
-au BufNewFile,BufRead muttrc                 so $VIM/syntax/muttrc.vim
-autocmd BufRead mutt-* set tw=72
+" au BufNewFile,BufRead muttrc                 so $VIM/syntax/muttrc.vim
+" autocmd BufRead mutt-* set tw=72
 " autocmd BufRead mutt* /^$
 " autocmd BufRead mutt* .+1
-autocmd BufRead .article* set tw=72
+" autocmd BufRead .article* set tw=72
 " autocmd BufRead .article* /^$
 " autocmd BufRead .article* .+1
 
