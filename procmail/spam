@@ -3,7 +3,7 @@
 :0
 * $ 1^1 ^Received:.*\[\/[0-9.]+\]\)$S+by$S+${LOCALSERVER}
 * MATCH ?? ^^\/[0-9.]+
-* ! MATCH ?? ^^(208\.31\.42\.42|139\.174\.2\.33)^^
+* ! MATCH ?? ^^(194\.183\.100\.65|194\.153\.26\.61)^^
 {
   RELAYIP="$MATCH"
   RBLCHECK=`rblcheck -p "$MATCH"`
@@ -29,12 +29,16 @@
   { RBL="$RBL,ORBS" }
 
   :0
-  * RBLCHECK ?? relayips\.rbl\.shub-inter\.net
-  { RBL="$RBL,shub-relays" }
+  * RBLCHECK ?? relays\.radparker\.com
+  { RBL="$RBL,RRSS" }
 
-  :0
-  * RBLCHECK ?? spamips\.rbl\.shub-inter\.net
-  { RBL="$RBL,shub-spammers" }
+#  :0
+#  * RBLCHECK ?? relayips\.rbl\.shub-inter\.net
+#  { RBL="$RBL,shub-relays" }
+
+#  :0
+#  * RBLCHECK ?? spamips\.rbl\.shub-inter\.net
+#  { RBL="$RBL,shub-spammers" }
 
   :0fhw
   * RBL ?? ^,\/.*
