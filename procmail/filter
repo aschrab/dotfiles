@@ -18,6 +18,12 @@
 }
 
 :0
+* From:.*<postmaster@mwes\.com>
+* To: backup@execpc.com
+* ^Subject: Undeliverable: Operator Attention
+{ HOST }
+
+:0
 * ! ^TO_schrab\.com
 * ! HB ?? idtf\.org
 * ^TO_manager@execpc\.com
@@ -88,6 +94,15 @@ idiot/
 :0:
 * ^From:.*backup@execpc
 backup
+
+:0
+* ^To: <listmaster@lists\.execpc\.com>
+* ^From:.*<MAILER-DAEMON@
+* B ?? ^554 5.0.0 <help@voyager.net>... Service unavailable
+{
+  LOG="$TIME: discarding listmaster spam bounce$NL"
+  HOST
+}
 
 :0
 * ^((Return-Path|Sender):.*(\
