@@ -1,7 +1,7 @@
 " $Id$
 :version 4.0
 
-set statusline=%<%f%h%m%r%w\ [%{&ft},%{&ff},%{&fenc}]\ %=\ asc:%B\ pos:%o\ c:%c%V\ l:%l\/%L\ %P
+set statusline=%<%f%h%m%r%w\ [%{&ft},%{&ff},%{&fenc}]\ %=\ asc:%B\ pos:%o\ L:%l\/%L\ C:%c%V\ %P
 
 let perl_extended_vars = 1
 let perl_highlight_matches = 1
