@@ -347,10 +347,10 @@ send-hook abuse\.net         "my_hdr From: Aaron Schrab <aarons@execpc.com>"
 # send-hook for the spamtools list, here because of above send-hook
 send-hook spamtools my_hdr From: Aaron Schrab <aaron+spamtools@schrab.com>
 
+fcc-save-hook '~C imdb\.com'          "=imdb"
 save-hook "~C manager@execpc" "=manager"
 fcc-save-hook "~C modem-report"       "=modem"
 
-fcc-save-hook imdb\.com          "=imdb"
 fcc-save-hook d(avid@)?schrab    "=david@schrab.com"
 fcc-save-hook jschrab            "=j_schrab"
 fcc-save-hook sschrab@royle      "=steven@schrab.com"
