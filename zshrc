@@ -423,8 +423,8 @@ if [[ -n "$(whence ri1.8)" ]]; then
   function ___ri () {
     # Locally tell less to:
     #   -F: quit if the entire file fits on the screen
-    #   -f: pass through terminal control characters
-    #   -R: not complain about binary files
+    #   -f: not complain about binary files
+    #   -R: pass through terminal control characters
     local -x LESS="${LESS:?-}fR"
     ri1.8 -fansi "$@"
   }
