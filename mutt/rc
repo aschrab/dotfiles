@@ -7,10 +7,10 @@ set status_format=" %r Mutt:%-25.25f [Msgs:%?M?%M/?%m New:%n%?F? Flag:%F?%?t? Ta
 
 alternative_order text/enriched text/plain text application/postscript image/* 
 
-set sendmail="/home/aarons/bin/sendmail.pl -oi -oem"
+#set sendmail="/usr/lib/sendmail -oi -oem"
 set ispell="/home/aarons/bin/spell"
 
-set alternates='((aarons|(aaron\.|a_)schrab|ats|lsm|bofh|procmail|list(admin|master))@([a-z0-9-]+\.)*execpc\.com|postmaster@(comet|lists)\.execpc\.com|aaron@warrior\.mscs\.mu\.edu|(aaron.*|root|.*master|ats|bofh)@schrab\.com|.*@pug\.qqx\.org)'
+set alternates='((aarons|(aaron\.|a_)schrab|ats|lsm|bofh|procmail|list(admin|master))@([a-z0-9-]+\.)*execpc\.com|postmaster@(comet|lists)\.execpc\.com|aaron\.schrab@voyager\.net|(aaron.*|root|.*master|ats|bofh)@schrab\.com|.*@pug\.qqx\.org)'
 
 hdr_order From: Subject: Date: To: Newsgroups: Cc: X-Mailer: User-Agent: Content-Type: Content-Transfer-Encoding: X-Procmail: X-Suspect-reason:
 
@@ -26,7 +26,7 @@ set pager_index_lines=8
 source ~/.Mutt/ignore
 
 set sort=threads
-set sort_aux=date-received
+set nomarkers
 
 set date_format = "!%H:%M %Z %d %b %Y"
 set status_chars=" *%"
@@ -74,7 +74,7 @@ color quoted		green	default
 
 #mono  subject		underline
 
-auto_view text/html application/pgp-keys application/x-tar-gz text/x-internet-signup application/x-sh application/x-patch
+auto_view text/html application/pgp-keys application/x-tar-gz text/x-internet-signup application/x-sh application/x-patch application/octet-stream
 
 source /home/aarons/.Mutt/aliases
 
@@ -84,8 +84,8 @@ set alias_file=~/.Mutt/aliases
 
 set nohelp
 
-set noconfirmappend
-set noconfirmcreate
+set confirmappend=no
+set confirmcreate=no
 
 set print=ask-no    # confirm printing
 set delete=yes      # purge deleted messages? normally yes, but meaning differs
@@ -98,6 +98,7 @@ set postpone=no     # never postpone when quitting send menu
 set abort_unmodified=no
 set abort_nosubject=no
 
+set quit=ask-yes
 #set autoedit                   # go straight to editor for messages
 set fast_reply                 # go straight to editor for replies
 set edit_hdrs                  #    include headers in editor
@@ -117,9 +118,10 @@ set tilde                      # pad end of messages
 set timeout=30                 # seconds inactivity before looking for new mail
 #set web_browser="url_handler.sh"
 set nomark_old                 # all unread mail is marked as new
+set see_old
 #set skip_old
 #set pgp_default_version="pgp5"
-source ~/.Mutt/pgp5.rc
+source ~/.Mutt/gpg.rc
 set pgp_sign_as="0xE8D1D751"
 set pgp_verify_sig=yes         # Verify signature automatically
 set pgp_replyencrypt
@@ -130,7 +132,7 @@ set nopipe_decode              # don't decode MIME or weed headers when piping
 set nowait_key                 # don't wait for a key after running programs
 set nobeep
 #set pager_stop
-
+set allow_8bit=no
 
 bind  pager 	b	previous-page
 bind  pager	B	bounce-message
@@ -157,10 +159,13 @@ macro attach    "\Ck"	"|pgp -kaf\n"
 macro  compose   E       "Ge"
 macro compose S "Fpgp +verbose=0 -fast +clearsig=on\ny^T^Uapplication/pgp; +format=text; x-action=sign\n" # To pgp-sign the old way :)
 
+charset-hook windows-1251 cp1251
+
 send-hook   .         "unmy_hdr From"
 
 folder-hook .         "set nostrict_threads nosave_empty sort=threads weed"
 folder-hook .         "set mime_forward=ask-yes forward_decode nomark_old"
+folder-hook .         'set sort_aux=date-received to_chars=" +TCFL"'
 folder-hook .         \
  "set quote_regexp='^([]:})>|!%] ?|([~<]|-+)[|>]| {0,4}[:>|]|[a-z]+[>|]+ ?|=([^=0-9]|$))'"
 
@@ -170,17 +175,18 @@ folder-hook Mail      "set move=yes"
 folder-hook Mail      "set hdr_format='%4C %Z %?[?%[%H:%M]&%[%m/%d]? %-15.15L (%4l) %s'"
 
 folder-hook Lists     "set hdr_format='%4C %Z %?[?%[%H:%M]&%[%m/%d]? %-15.15F (%4l) %s'"
-folder-hook Lists     "set save_empty"
+folder-hook Lists     'set save_empty to_chars=" +TCF "'
 
 folder-hook spool     "set hdr_format='%4C %Z %?[?%[%H:%M]&%[%m/%d]? %-15.15L (%4l) %s'"
 folder-hook spool     "set move=no"
-folder-hook misc      "push 'D~t cricket\n'"
+#folder-hook misc      "push 'D~t cricket\n'"
 
-folder-hook Lists/inet          "source ~/.Mutt/expire"
-folder-hook Lists/allgurus      "set move=no"
-folder-hook Lists/yesno         "set move=no"
-folder-hook Lists/user-account  "set move=no"
-folder-hook Lists/securelinux   "source ~/.Mutt/expire"
+folder-hook Lists/inet		"source ~/.Mutt/expire"
+folder-hook Lists/allgurus	"set move=no"
+folder-hook Lists/yesno		"set move=no"
+folder-hook Lists/user-account	"set move=no"
+folder-hook Lists/securelinux	"source ~/.Mutt/expire"
+folder-hook Lists/sawmill	"source ~/.Mutt/expire"
 
 folder-hook (procmail|smartlist) \
      'set quote_regexp="^([])>%] ?|([~<]|-+)[|>]| {0,4}>|[a-z]+[>|]+ ?|=([^=0-9]|$))"'
@@ -195,8 +201,7 @@ folder-hook suspect   "set mark_old"
 
 folder-hook notsuspect "set move=no"
 
-mailboxes !
-subscribe lsm-workers
+mailboxes ! =Lists/hot-news
 mbox-hook spool =IN
 mbox-hook backup =Read/backup
 
@@ -215,6 +220,8 @@ mbox-hook Lists/allgurus "=Read/allgurus/`date '+%Y%m'`"
 mailboxes =Lists/tech
 subscribe tech
 mbox-hook Lists/tech "=Read/tech/`date '+%Y%m'`"
+
+mailboxes =Lists/status
 
 mailboxes =Lists/staff
 subscribe staff
@@ -237,6 +244,11 @@ subscribe nanog
 mbox-hook Lists/nanog "=Read/nanog"
 send-hook nanog my_hdr From: Aaron Schrab <aaron+nanog@schrab.com>
 
+mailboxes =Lists/lsm-workers
+subscribe lsm-workers
+mbox-hook Lists/lsm-workers "=Read/lsm-workers"
+folder-hook Lists/lsm-workers "set move=no"
+
 mailboxes =Lists/list-managers
 subscribe list-managers
 mbox-hook Lists/list-managers "=Read/list-managers"
@@ -258,10 +270,19 @@ mailboxes =Lists/dnvs
 subscribe dnvs-list
 mbox-hook Lists/dnvs "=Read/dnvs"
 
+mailboxes =Lists/psaphonic
+subscribe psaphonic
+mbox-hook Lists/psaphonic "=Read/psaphonic"
+
 mailboxes =Lists/audit
 subscribe security-audit
 mbox-hook Lists/audit "=Read/audit"
 send-hook security-audit my_hdr From: Aaron Schrab <aaron+lsa@schrab.com>
+
+mailboxes =Lists/secprog
+subscribe secprog@securityfocus.com
+mbox-hook Lists/secprog "=Read/secprog"
+send-hook secprog@securityfocus.com my_hdr From: Aaron Schrab <aaron@schrab.com>
 
 mailboxes =Lists/securelinux
 subscribe securelinux
@@ -297,6 +318,17 @@ send-hook lirc my_hdr From: Aaron Schrab <aaron+lirc@schrab.com>
 mailboxes =Lists/mlug
 subscribe mlug-list
 mbox-hook Lists/mlug "=Read/mlug"
+send-hook mlug-list my_hdr From: Aaron Schrab <aaron+mlug@schrab.com>
+
+mailboxes =Lists/muug
+subscribe muug
+mbox-hook Lists/muug "=Read/muug"
+send-hook muug my_hdr From: Aaron Schrab <aaron+muug@schrab.com>
+
+mailboxes =Lists/sawmill
+subscribe sawmill
+mbox-hook Lists/sawmill "=Read/sawmill"
+send-hook sawmill my_hdr From: Aaron Schrab <aaron+sawmill@schrab.com>
 
 mailboxes =Lists/milw-linux
 subscribe milw-linux
@@ -328,12 +360,17 @@ mailboxes =Lists/tidbits
 subscribe tidbits-talk
 mbox-hook Lists/tidbits "=Read/tidbits"
 send-hook tidbits 'my_hdr From: Aaron Schrab <aaron@schrab.com>'
+folder-hook tidbits 'set sort_aux=date'
 
 mailboxes =Lists/sup
 subscribe suplist
 mbox-hook Lists/sup "=Read/sup"
-send-hook sup my_hdr From: Aaron Schrab <aaron+sup@schrab.com>
+send-hook suplist@whitefang my_hdr From: Aaron Schrab <aaron+sup@schrab.com>
 
+mailboxes =Lists/linmodems
+subscribe discuss@linmodems.org
+mbox-hook Lists/linmodems "=Read/linmodems"
+send-hook linmodems my_hdr From: Aaron Schrab <aaron@schrab.com>
 mailboxes =misc
 
 mailboxes =Lists/cvs
@@ -392,6 +429,16 @@ mailboxes =Lists/rawhide
 subscribe redhat-devel-list
 mbox-hook Lists/rawhide "=Read/rawhide"
 send-hook redhat-devel-l 'my_hdr From: Aaron Schrab <aaron+rawhide@schrab.com>'
+
+mailboxes =Lists/linux-ppc-dev
+subscribe linux-ppc-dev
+mbox-hook Lists/linux-ppc-dev "=Read/linux-ppc-dev"
+send-hook linux-ppc-dev my_hdr From: Aaron Schrab <aaron@schrab.com>
+
+mailboxes =Lists/linux-ppc-user
+subscribe linuxppc-user
+mbox-hook Lists/linux-ppc-user "=Read/linux-ppc-user"
+send-hook linuxppc-user my_hdr From: Aaron Schrab <aaron+ppc@schrab.com>
 
 mailboxes =Lists/mailman
 subscribe mailman-users
@@ -501,3 +548,5 @@ fcc-save-hook eric@bernafamily   "=eric@bernafamily.com"
 save-hook mlug-list          "=mlug"
 save-hook execpc-circuit-users "=execpc-circuit-users"
 save-hook scud-request       "=scud.req"
+save-hook this-is-true-admin "=true"
+save-hook @netflix           "=netflix"

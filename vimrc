@@ -6,17 +6,18 @@ let perl_highlight_matches = 1
 "let perl_embedded_pod = 1
 
 set t_Co=8
-set t_Sf=[3%p1%dm
-set t_Sb=[4%p1%dm
+"set t_Sf=[3%p1%dm
+"set t_Sb=[4%p1%dm
 syntax on
 highlight Comment ctermfg=DarkRed
 highlight Constant ctermfg=DarkMagenta
 highlight procmailAction ctermfg=DarkGreen
 highlight procmailCondition ctermfg=DarkBlue
 
-highlight NonText ctermfg=Blue cterm=NONE
+highlight NonText ctermfg=Blue cterm=NONE guifg=grey gui=NONE
 highlight StatusLine ctermfg=Blue ctermbg=Yellow cterm=reverse,bold
 highlight StatusLineNC ctermfg=Blue cterm=reverse
+highlight link smVar Identifier
 
 set shiftwidth=2
 set autoindent
@@ -89,6 +90,8 @@ map ,ss :r~/.sigs/spamreply
 map ,sw oi-- :r~/.sigs/work
 map ,sx :r~/.sigs/lsm.luser
 
+"map ,x :perl chmod(01600, $curwin->Buffer->Name):wq!
+map ,x :r!chmod +t %:wq!
 map ,, /^> *$
 map ,l 1G}jyGGp:.,$!wc -ld0iLines: dd1G}P
 map ,q :%s/^\(> \)*$//
@@ -100,6 +103,7 @@ map <F2> <ESC>`>a<CR>_<ESC>`<i_<CR><ESC>:s/\(.\)/\1<C-V><C-H>\1/g<CR>J2xkJxX
 dig 00 176
 dig !! 161
 dig ?? 191
+dig SS 167
 
 autocmd BufRead Makefile set nosmarttab noexpandtab noautoindent
 
@@ -108,6 +112,25 @@ autocmd BufRead Makefile set nosmarttab noexpandtab noautoindent
 set cinoptions=>2,t0,(0,=2
 set cinkeys=0{,0}:,!^F,o,O,e
 au BufNewFile,BufRead *.c,*.h,*.pl,*.pm set cindent showmatch shiftwidth=2 textwidth=0
+"au BufNewFile,BufRead *.cf so $VIM/syntax/sm.vim
+"au BufNewFile,BufRead *.cf set noexpandtab ft=sm
 au BufNewFile,BufRead /usr/src/linux* set tags=/usr/src/linux/tags
+au FileType sm  set noexpandtab
+au FileType zone  set noexpandtab
+au BufNewFile,BufRead */zone/* set ft=zone
 
 set bs=2
+set secure
+
+
+" The File-Browser&Reader. Very handsome.
+"
+" map ,dau o~/.dau/"dddu__filelist
+"
+" start the file reader. Directory in register d.
+" map __filelist :split .!!ls -l d __LN-__mm
+" nn __LN- /[0-9] \K..  \=[0-9]<CR>3E2l
+" crate mapping for enter
+" noremap __mm :map <CR> __rm0__LN-mai:r d`a"ay$:q!@a
+" remove mapping
+" noremap __rm :unmap <CR><CR>

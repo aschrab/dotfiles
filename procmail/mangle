@@ -2,6 +2,7 @@
 :0fhw
 * ! ^X-Mailer: ((ex)?MH|Mail User's Shell)
 *   ^In-Reply-To:.*<.*>.*<.*>
+* ! ^In-Reply-To:.* from ()
 * ! ^References:
 | formail -I "X-Procmail: Renamed In-Reply-To: to References:" \
 	  -R In-Reply-To: References:
@@ -34,9 +35,9 @@
 | $HOME/bin/trim-winmail
 
 ## Convert messages from Suns lame mailtool into MIME messages
-:0 fw                                                                         
-* ^Content-Type: x-sun                                                        
-| /usr/local/bin/emil -B BA -F MIME                                           
+:0 fw
+* ^Content-Type: x-sun
+| /usr/local/bin/emil -B BA -F MIME
 
 :0Bbfw
 * ! H ?? From:.*majordomo
@@ -55,8 +56,8 @@
 :0
 * ^In-Reply-To:[^<]*<[^>]*[ 	]
 {
-  #:0c
-  #fixeud/
+  :0c
+  fixeud/
 
   :0
   * ^X-Mailer:\/.*

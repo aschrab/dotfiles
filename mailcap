@@ -1,5 +1,7 @@
 text/html; netscape -remote 'openURL('%s')'; test=/home/aarons/bin/runningnetscape
-text/html; lynx -dump -force_html %s; copiousoutput
+text/html; w3m -dump -T text/html %s; copiousoutput
+text/x-internet-signup; cat -v %s; copiousoutput
+text/on; cat -v %s; copiousoutput
 text/x-internet-signup; cat %s; copiousoutput
 text/on; cat %s; copiousoutput
 
@@ -9,8 +11,12 @@ image/jpeg; ; x-mozilla-flags=internal
 
 application/x-gunzip;/bin/gunzip -c %s; copiousoutput
 application/x-tar-gz; tar tzvf %s 2>/dev/null; copiousoutput
-application/x-sh; cat %s; copiousoutput
-application/x-patch; cat %s; copiousoutput
+application/x-tar; tar tvf %s 2>/dev/null; copiousoutput
+application/x-sh; cat -v %s; copiousoutput
+application/x-patch; cat -v %s; copiousoutput
+
+application/octet-stream; mutt.octet.filter %s; copiousoutput
+text/x-vcard; mutt.vcard.filter; copiousoutput
 
 application/msword; wordview %s
 

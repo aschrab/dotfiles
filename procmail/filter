@@ -6,11 +6,22 @@
 * B ?? ^/usr/local/adm/execpc/sum.pl -m modem-reports
 ! pfriedel@execpc.com
 
+# handle voyager status messages
+:0
+* ^From: maillist@(VOYAGER\.NET|SEE\.MESSAGE\.FOR\.ADDRESS)
+{
+  :0wf
+  | vstat
+
+  :0
+  Lists/status/
+}
+
 :0
 * ! ^TO_schrab\.com
 * ! HB ?? idtf\.org
 * ^TO_manager@execpc\.com
-* ^(From|To):.*((hst|dom)reg|no(reg|tif)y|rereg|invoice|(fax|host)mast(er)?)@internic\.net
+* ^(From|To):.*((hst|dom)reg|no(reg|tif)y|mts|rereg|invoice|(fax|host)mast(er)?)@(internic\.net|networksolutions.com)
 {
   LOG="$TIME: internic -> manager TRASHED$NL"
   LOGABSTRACT=no

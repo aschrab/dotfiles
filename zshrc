@@ -7,22 +7,32 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.48 $'
+rcvers='$Revision: 1.78 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
 then
-  case "$OSTYPE:$HOSTNAME" in
+  case "$OSTYPE:$HOST" in
     linux*:*.schrab.com)
       ;;
     linux*:fnord.guru.execpc.com)
       ;;
     linux*:*.qqx.org)
       ;;
+    *bsd*:*)
+      ;;
     *)
       TERM=vt100
       ;;
   esac
+elif [[ "$TERM" == "xterm-debian" && ! -f /etc/debian_version ]]
+then
+  TERM=xterm
+fi
+
+if [[ "$TERM" == "vt100" && "$OSTYPE" = darwin* ]]
+then
+  TERM=xterm
 fi
 
 # Try making directory, don't care if it fails (may be there already)
@@ -47,25 +57,30 @@ else
 fi
 
 #  Set various shell variables
-export host=`print -P %m`
-# if [[ ${#host} -le 4 && $host != grok ]]
-# then
-#   host=${(M)HOST##[a-z0-9-]##.[a-z0-9-]##}
-# fi
+#export host=`print -P %m`
+
+# Set $host by:
+# - Split $HOST on '.'
+# - Remove $stripdom - 1 portions from the end
+# - Rejoin
+stripdom=3
+host=${(j:.:)${(s:.:)HOST}[1,-$stripdom]}
 
 [ "$USERNAME" = "aarons" -o "$USERNAME" = "root" ] && HOME=~aarons
 
 if [[ -z "$pColor" ]]
 then
-  export red="%{$(echo -n '\e[0;31m')%}"
-  export white="%{$(echo -n '\e[0;37m')%}"
-  export blue="%{$(echo -n '\e[0;34m')%}"
-  export green="%{$(echo -n '\e[0;32m')%}"
-  export yellow="%{$(echo -n '\e[0;33m')%}"
+  #export   black="%{$(echo -n '\e[0;30m')%}"
+  export     red="%{$(echo -n '\e[0;31m')%}"
+  export   green="%{$(echo -n '\e[0;32m')%}"
+  export  yellow="%{$(echo -n '\e[0;33m')%}"
+  export    blue="%{$(echo -n '\e[0;34m')%}"
   export magenta="%{$(echo -n '\e[0;35m')%}"
-  export cyan="%{$(echo -n '\e[0;36m')%}"
+  export    cyan="%{$(echo -n '\e[0;36m')%}"
+  export   white="%{$(echo -n '\e[0;37m')%}"
 fi
 
+fColor=$white
 pColor=$green
 case "$USERNAME" in
   aarons)
@@ -90,19 +105,23 @@ export pColor
 alias stty='noglob stty'
 
 case "$TERM" in
-  xterm|xtermc|xterm-color)
-    #TERM=xterm
+  xterm|xtermc|xterm-debian|xterm-color|rxvt)
+    if [[ $TERM == xterm && $OSTYPE == freebsd* ]]
+    then
+      TERM=xterm-color
+    fi
+    export LANG="en_US.iso-8859-15"
     stty erase '^?'
-    print -P "${green}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${white}"
+    print -P "${green}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${fColor}"
     PS1='%{]1;%(#.#.$)$host]2;%(#.#.$)$host:%~%}'
-    PS1="$PS1"'%{$pColor%}%1v%!)$host%(#.#.$)%{$white%} '
-    RPS1='%{$pColor%} %~%{$white%}'
+    PS1="$PS1"'%{$pColor%}%1v%!)$host%(#.#.$)%{$fColor%} '
+    RPS1='%{$pColor%} %~%{$fColor%}'
     ;;
   screen)
-    print -P "${yellow}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${white}"
+    print -P "${yellow}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${fColor}"
     PS1='%{]1;%(#.#.$)$host]2;n %(#.#.$)$host!%~k$host%(#.#.$)%.\%}'
-    PS1="$PS1"'%{$pColor%}%1v%!)$host%(#.#.$)%{$white%} '
-    RPS1='%{$pColor%} %~%{$white%}'
+    PS1="$PS1"'%{$pColor%}%1v%!)$host%(#.#.$)%{$fColor%} '
+    RPS1='%{$pColor%} %~%{$fColor%}'
     case "$OSTYPE" in
       solaris*)
         # Solaris' usual termcap entry for screen sucks, so don't use it.
@@ -113,12 +132,13 @@ case "$TERM" in
     ;;
   linux)
     stty erase '^?'
-    print -P "${magenta}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${white}"
-    PS1='%{$pColor%}%1v%!)$host%(#.#.$)%{$white%} '
-    RPS1='%{$pColor%} %~%{$white%}'
+    print -P "${magenta}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${fColor}"
+    PS1='%{$pColor%}%1v%!)$host%(#.#.$)%{$fColor%} '
+    RPS1='%{$pColor%} %~%{$fColor%}'
+    export LANG="en_US.iso-8859-15"
     ;;
   *)
-    stty erase '^H' kill '^X'
+    stty erase '^H' kill '^U'
     print -P "%U%Szsh $ZSH_VERSION, .zshrc $rcvers%s%u"
     PS1='%U%1v%!)%(#..%u)$host%(#.#.$)%(#.%u.) '
     RPS1='%U%~%u'
@@ -163,6 +183,7 @@ ppath=(
   /sbin
   /usr/X11R6/bin
   /usr/X11/bin
+  /usr/share/bin
   /usr/openwin/bin
   /usr/local/pkg/guru
   /usr/local/pkg/dnvs
@@ -239,45 +260,71 @@ export RSYNC_RSH=ssh
 export MPAGE="-2m50t"
 export COLORFGBG='default;default'
 export WORDCHARS='*?_-.[]~/&|;!#$%^(){}<>,'
+export HOST_DEFAULTS='-R'
 
-if [ -r /etc/libsocks5.conf ]; then
-  export NNTPSERVER=socks.execpc.com
-else
-  export NNTPSERVER=news.execpc.com
+export NNTPSERVER="news.execpc.com"
+
+if [[ -d "/usr/local/lib/site_perl" ]]; then
+  export PERL5LIB="/usr/local/lib/site_perl"
 fi
 
 EDITOR=$(whence color-vim)
-if [ -z "$EDITOR" ]; then
-  EDITOR=$(whence vim)
-  if [ -z "$EDITOR" ]; then
-    EDITOR=$(whence vi)
-  fi
-fi
-export EDITOR
-export VISUAL=$EDITOR
+EDITOR=${EDITOR:=$(whence vim)}
+VISUAL=${EDITOR:=$(whence vi)}
+export EDITOR VISUAL
 alias vi=$VISUAL
 
-PAGER=$(whence less)
+GCC=$(whence gcc)
+if [[ -z "$GCC" ]]; then
+  alias gcc=cc
+fi
+unset GCC
+
+if [[ $EDITOR == *vim* && -d $HOME/share/vim ]]
+then
+  export VIM=$HOME/share/vim
+fi
+
+FOO=$(whence lessfile)
+FOO=${FOO:=$(whence lesspipe)}
+if [ -n FOO ]; then
+  eval $($FOO)
+else
+  PAGER=$(whence zless)
+fi
+unset FOO
+PAGER=${PAGER:=$(whence less)}
 if [ -n "$PAGER" ]; then
   PAGER="less"
   export LESS="-aCMj3"
   export LESSCHARSET=latin1
 else
   PAGER="more"
+  alias less=$PAGER
 fi
-alias less=$PAGER
 alias les=less
+alias lss=less
 
 # Set aliases
-if [[ "$TERM" != "emacs" && $OSTYPE != *bsd* ]]; then
-  if ls --color=tty / >/dev/null 2>&1; then
-    alias ls='ls --color=tty'
+LS=$(whence gnuls)
+if [[ -n $LS ]]; then
+  LS=gnuls
+  alias ls=$LS
+fi
+if [[ "$TERM" == "emacs" || ( $OSTYPE == *bsd* && -z $LS ) ]]; then
+  # Using colorls under emacs sucks
+  # The standard BSD ls breaks with --color=tty, but doesn't give an error
+  :
+else
+  if ${LS:=ls} --color=tty / >/dev/null 2>&1; then
+    alias ls="$LS --color=tty"
     LS_COLORS="di=34:ex=32:ln=35:so=33:bd=0:cd=0"
     LS_COLORS="${LS_COLORS}:*.zip=33:*.rpm=33:*.tar=33:*.tgz=33:*.gz=33"
     LS_COLORS="${LS_COLORS}:*.bz2=33:*.Z=33"
     export LS_COLORS
   fi
 fi
+unset LS
 
 export HOSTALIASES=~/.hostaliases
 
@@ -290,7 +337,7 @@ alias la='ls -aF'
 alias lla='ls -alF'
 alias bc='bc -ql'
 alias trt=traceroute
-alias screen='screen -a'
+alias screen='screen -a -A'
 
 [ -x /usr/lib/sendmail ] && alias sendmail=/usr/lib/sendmail
 
@@ -309,12 +356,6 @@ elif [ -x /usr/local/bin/tar ]; then
 fi
 unset gtar
 
-if [[ -n $(whence rtraceroute) ]]; then
-  alias ro=rtraceroute
-else
-  alias ro=traceroute
-fi
-
 if [[ $OSTYPE == solaris2* ]]; then
   alias ping='ping -s'
 fi
@@ -323,21 +364,24 @@ fi
 # bind keys
 bindkey \^p up-history
 bindkey \^n down-history
-bindkey '\e[A' up-line-or-search
-bindkey '\M-;' copy-prev-word
-bindkey '\e;' copy-prev-word
+bindkey "\e[A" up-line-or-search
+bindkey "\eOA" up-line-or-search
+bindkey "\eOD" backward-char
+bindkey "\eOC" forward-char
+bindkey "\M-;" copy-prev-word
+bindkey "\e;" copy-prev-word
 # space (with or without meta) is magic-space
-bindkey    '\x20' magic-space
-bindkey '\M-\x20' magic-space
-bindkey '\e\x20' magic-space
+bindkey    "\x20" magic-space
+bindkey "\M-\x20" magic-space
+bindkey "\e\x20" magic-space
 # M-Q pushes all pending lines onto the stack, not just current line
-bindkey '\M-q' push-input
-bindkey '\eq' push-input
+bindkey "\M-q" push-input
+bindkey "\eq" push-input
 
 #  Run a few informative commands
 if [ ! -f .hushlogin ]; then
   case "$OSTYPE" in
-  linux*|openbsd*)
+  linux*|*bsd*)
     :
     ;;
   *)
@@ -372,13 +416,16 @@ precmd () {
   fi
 }
 
+MYSU=$(whence mysu)
 su () {
   if [ $# -eq 0 ] ; then
         tmpfile=~aarons/.Zsh-hist.$host.$$
         fc -ln -10 -1 >! $tmpfile 2> /dev/null
         export PPWD=$PWD  # Save current directory,
         cd /              # cd to / so su isn't running in a mounted filesystem
-        if [[ $OSTYPE == solaris* ]] ; then
+        if [[ -n "$MYSU" ]] ; then
+          PZSH=$$ $MYSU
+        elif [[ $OSTYPE == solaris* ]] ; then
           PZSH=$$ command su root -c $SHELL
         else
           PZSH=$$ command su -m
@@ -415,7 +462,17 @@ vdiff () {
     opt='-u'
   fi
   $cvs diff $opt "$@" > $TMPDIR/$host.$$.diff
-  vi -R $TMPDIR/$host.$$.diff
+  case "$?" in
+    0)
+      echo "No differences"
+      ;;
+    1)
+      echo "\n\n\n\n\n\nvim: ft=diff" >> $TMPDIR/$host.$$.diff
+      vi -R $TMPDIR/$host.$$.diff
+      ;;
+    *)
+      ;;
+  esac
   rm -f $TMPDIR/$host.$$.diff
 }
 
@@ -485,12 +542,6 @@ compctl -f -x 'C[-1,*chgrp][-1,-*] S[-]' \
                            --quiet --recursive --verbose --help --version )" \
             - 'p[1],C[-1,-*]' -k __groups -- chgrp
 
-compctl -f -x 'C[-1,*chown][-1,-*] S[-]' \
-                     -k "( -c -h -f -R -v --changes --no-dereference --silent
-                           --quiet --recursive --verbose --help --version )" \
-            - 'p[1] N[1,.:],C[-1,-*] N[1,.:]' -k __groups \
-            - 'p[1],C[-1,-*]' -u -- chown
-
 function __conf () {
   reply=($(./configure --help |
           sed -n -e '/-\(FEATURE\|PACKAGE\)/d' \
@@ -504,11 +555,17 @@ if [ -x /usr/ucb/ps ] ; then
 fi
 
 if [ "$host" = "earth" ]; then
-  watch=(aarons meek jake mitch pfriedel bofh
-         pfingst lungfish j_schrab )
+  watch=(aarons ats lsm meek jake mitch pfriedel bofh
+         pfingst lungfish j_schrab root )
 
   # Limit username completion to users in $watch
   compctl -Tx  'C[0,*/*]' -f - 's[~]' -k watch -S/
+
+  compctl -f -x 'C[-1,*chown][-1,-*] S[-]' \
+                       -k "( -c -h -f -R -v --changes --no-dereference --silent
+                             --quiet --recursive --verbose --help --version )" \
+              - 'p[1] N[1,.:],C[-1,-*] N[1,.:]' -k __groups \
+              - 'p[1],C[-1,-*]' -k watch -- chown
 
   # hash directories of friends so cd completion still works
   for u in $watch; hash -d $u=~$u
@@ -521,6 +578,13 @@ then
   # cd/pushd completion for all users
   compctl -x 'S[/][~][./][../]' -g '*(-/)' - \
     'n[-1,/], s[]' -K __cdmatch -S '/' + -nuP'~' + -- cd pushd
+
+  compctl -f -x 'C[-1,*chown][-1,-*] S[-]' \
+                       -k "( -c -h -f -R -v --changes --no-dereference --silent
+                             --quiet --recursive --verbose --help --version )" \
+              - 'p[1] N[1,.:],C[-1,-*] N[1,.:]' -k __groups \
+              - 'p[1],C[-1,-*]' -u -- chown
+
 fi
 
 mynames=(aarons bofh root)
@@ -529,6 +593,25 @@ mynames=(aarons bofh root)
 case "$host" in
    "methos")
       path=($path ~slist/.bin)
+      ;;
+
+   "grok"|"lafe"|"tamara"|"tanstaafl")
+      export http_proxy="http://lafe.schrab.com:3128/"
+      export ftp_proxy="http://lafe.schrab.com:3128/"
+      ;;
+
+   "faboo")
+      if ifconfig | egrep 'inet addr:(169.207.53|192.168.42).' > /dev/null 2>&1
+      then
+        export http_proxy="http://lafe.schrab.com:3128/"
+        export ftp_proxy="http://lafe.schrab.com:3128/"
+      else
+        unset http_proxy
+        unset ftp_proxy
+      fi
+
+      export TRNINIT=~/.trn/rc
+      export CVSROOT=/home/aarons/.cvsroot
       ;;
 
    "lazarus")
@@ -579,13 +662,31 @@ case "$host" in
 esac
 
 function __sshhosts () {
-  reply=( $(awk '{ print $1 }' ~/.ssh/known_hosts) )
+  local __sshfiles
+  local __sshfiles2
+  [ -f ~/.ssh/known_hosts ] && __sshfiles="$HOME/.ssh/known_hosts"
+  [ -f ~/.ssh/known_hosts2 ] && __sshfiles2="$HOME/.ssh/known_hosts2"
+  if [ -z "${__sshfiles}" -a -z "${__sshfiles2}" ]
+  then
+    reply=()
+  else
+    reply=( $(sed 's/[, ].*//' ${__sshfiles} ${__sshfiles2} ) )
+  fi
 }
 compctl -K __sshhosts -x 'p[2,-1]' -l '' -- ssh
 compctl -K __sshhosts -x 's[-l],c[-1,-l]' -k mynames -- slogin
 
 function __scphosts () {
-  reply=( $(awk '{ print $1 ":" }' ~/.ssh/known_hosts) )
+  local __sshfiles
+  local __sshfiles2
+  [ -f ~/.ssh/known_hosts ] && __sshfiles="$HOME/.ssh/known_hosts"
+  [ -f ~/.ssh/known_hosts2 ] && __sshfiles2="$HOME/.ssh/known_hosts2"
+  if [ -z "${__sshfiles}" -a -z "${__sshfiles2}" ]
+  then
+    reply=()
+  else
+    reply=( $(sed 's/[, ].*/:/' ${__sshfiles} ${__sshfiles2} ) )
+  fi
 }
 function __scphostsandnames () {
   __scphosts "$@"
@@ -631,6 +732,8 @@ compctl -x \
     'p[1]' -K __hosts - \
     'p[2]' -K __ports \
   -- telnet
+
+compctl -K __hosts ping trt traceroute
 
 function __cdmatch () {
 # Start of cdmatch.

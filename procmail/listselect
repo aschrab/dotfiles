@@ -5,6 +5,10 @@ EXPIRE
 SUBJ
 
 :0
+* From:.*hot-news-request@augi
+{ LIST=Lists/hot-news/ }
+
+:0
 * ^X-Mailing-List:.*<gurus@
 { LIST=Lists/gurus/ }
 
@@ -16,7 +20,11 @@ SUBJ
 }
 
 :0
-* ^X-Mailing-List: <net-eng@
+* ^X-Mailing-List: <lsm-workers@lists
+{ LIST=Lists/lsm-workers/ }
+
+:0
+* ^Return-Path: <net-eng-request@
 { LIST=Lists/net-eng/ }
 
 :0
@@ -64,6 +72,13 @@ SUBJ
 }
 
 :0
+* ^X-Mailing-List: <psaphonic@lists
+{
+  EXPIRE="14 days"
+  LIST=Lists/psaphonic/
+}
+
+:0
 * ^X-Mailing-List: <dnvs-list@lists\.execpc\.com>
 {
   REPLYTO="dnvs-list@lists.execpc.com"
@@ -102,6 +117,35 @@ SUBJ
   LIST=Lists/securelinux/
   EXPIRE="5 days"
   SUBJ='\[Secure Linux\] '
+}
+
+:0
+* ^Sender: owner-linuxppc-dev@
+{ LIST=Lists/linux-ppc-dev/ }
+
+:0
+* ^Sender: owner-linuxppc-user@
+{ LIST=Lists/linux-ppc-user/ }
+
+:0
+*  ^Mailing-List: list talk-dc@
+{
+  LIST=Lists/double-click
+  REPLYTO="talk-dc@egroups\.com"
+  SUBJ='\[talk-dc\] '
+}
+
+:0
+* ^Mailing-List:.*discuss-help@linmodems\.org
+{ LIST=Lists/linmodems/ }
+
+:0
+* ^Return-Path: <owner-sawmill@
+{
+  REPLYTO="sawmill@aarg\.net"
+  SUBJ='\[Sawmill\] '
+  EXPIRE="5 days"
+  LIST=Lists/sawmill/
 }
 
 :0
@@ -151,6 +195,14 @@ SUBJ
 }
 
 :0
+* ^Return-Path: <redhat-devel-list-admin@redhat
+{
+  REPLYTO=redhat-devel-list
+  SUBJ='\[Redhat-devel-list\] '
+  LIST=Lists/rawhide/
+}
+
+:0
 * ^X-Loop: contrib-list@redhat
 {
   REPLYTO=contrib-list
@@ -180,15 +232,21 @@ SUBJ
 { LIST=Lists/procmail-dev/ }
 
 :0
-* ^Re(turn-Path|sent-Sender):.*procmail-request
-{ LIST=Lists/procmail/ }
+* ^Re(turn-Path|sent-Sender):.*procmail-(request|admin)
+{
+  LIST=Lists/procmail/
+
+  :0
+  * ^Subject:.*\[procmail
+  { SUBJ='\[procmail\] ' }
+}
 
 :0
-* ^Resent-Sender:.*SmartList-dev-request
+* ^Re(sent-Sender:.*SmartList-dev-request|turn-Path: <smartlist-admin@)
 { LIST=Lists/smartlist-dev/ }
 
 :0
-* ^Resent-Sender:.*SmartList-request
+* ^Re(sent-Sender:.*SmartList-request|turn-Path: <smartlist-admin@)
 { LIST=Lists/smartlist/ }
 
 :0
@@ -208,8 +266,19 @@ SUBJ
 { LIST=Lists/bugtraq/ }
 
 :0
+* ^Return-Path: <owner-secprog@
+{ LIST=Lists/secprog/ }
+
+:0
 * ^X-Mailing-List: <trn-users@
 { LIST=Lists/trn/ }
+
+:0
+* ^Return-Path: <trn-users-admin@
+{
+  LIST=Lists/trn/
+  SUBJ='\[Trn-users] '
+}
 
 :0
 * ^Sender: linux-pmac
@@ -227,7 +296,14 @@ SUBJ
 }
 
 :0
-* ^X-Mailing-List: <redhat-watch-list@redhat
+* ^Sender: muug-admin@tandem
+{
+  SUBJ='\[Muug] '
+  LIST=Lists/muug/
+}
+
+:0
+* ^(Return-Path|X-Mailing-List): <redhat-watch-list(-admin)?@redhat
 { LIST=Lists/redhat/ }
 
 :0
@@ -303,7 +379,7 @@ SUBJ
 }
 
 :0
-* X-Mailing-List: <lirc@
+* (X-Mailing-List|List-Id):.*<lirc
 { LIST=Lists/lirc/ }
 
 :0
@@ -313,7 +389,8 @@ SUBJ
 :0
 * ^Sender: owner-irmp3@
 {
-  REPLYTO=irmp3@fasta.fh-dortmund.de
+  #REPLYTO=irmp3@fasta.fh-dortmund.de
+  REPLYTO=irmp3@dpotter.com
   SUBJ='\[irmp3] '
   LIST=Lists/irmp3/
 }
@@ -328,3 +405,7 @@ SUBJ
   SUBJ='\[mp3stereo] '
   LIST=Lists/mp3stereo/
 }
+
+:0
+* Sender: adns-discuss
+{ LIST=Lists/adns/ }
