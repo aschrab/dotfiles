@@ -175,3 +175,10 @@ SUBJ
   SUBJ='\[spamtools] '
   LIST=Lists/spamtools/
 }
+
+:0
+* Sender: owner-hfs-interest
+{
+  REPLYTO=hfs-interest@ccs.neu.edu
+  LIST=Lists/hfs/
+}
