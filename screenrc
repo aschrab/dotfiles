@@ -1,0 +1,7 @@
+#shelltitle '$ |zsh'
+startup_message off
+autodetach on
+setenv SCREENTERM $TERM
+escape ^Oo
+
+termcapinfo xterm 'hs:ts=\E]2;:fs=\007:ds=\E]2;screen@fnord\007\E]1;screen@fnord\007'
