@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.93 $'
+rcvers='$Revision: 1.94 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -45,10 +45,11 @@ then
   chown "$LOGNAME" "/tmp/$LOGNAME"
 fi
 # Check the ownership, and make sure the permisisons are correct
-if [[ "`echo /tm[p]/$LOGNAME(Nu:$LOGNAME:)`" == "/tmp/$LOGNAME" ]] &&
+if [[ `echo /tm[p]/$LOGNAME(Nu:$LOGNAME:)` == /tmp/$LOGNAME(/|) ]] &&
    chmod 0700 "/tmp/$LOGNAME" >& /dev/null
 then
   export TMPDIR="/tmp/$LOGNAME"
+  export TMP="$TMPDIR"
   export TMPPREFIX="$TMPDIR/zsh"
 else
   echo "TMPDIR not secure" >&2
