@@ -157,7 +157,7 @@ then
   REPLY=X
 fi #}}}
 
-# Send a sequence that valid UTF8 and ISO8859-1
+# Send a sequence that's valid UTF8 and ISO8859-1
 # then ask the terminal where the cursor is
 stty -echo
 print -b -n '\r\xC2\xA4\x1B[6n'
