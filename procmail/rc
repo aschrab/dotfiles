@@ -10,7 +10,7 @@ S="[ 	]"
 NL="
 "
 
-RCVERSION="$Id: rc,v 1.11 2001/05/10 19:38:05 aarons Exp $"
+RCVERSION="$Id: rc,v 1.12 2001/09/16 09:21:24 aarons Exp $"
 
 LOCALSERVER="(pug\.(schrab\.com|qqx\.org)|((vm[0-9]+|[abcyz])\.mx|smtpgate)\.execpc\.com)"
 
@@ -34,6 +34,13 @@ idiot/
 * ^Subject: Confirm Read:
 idiot/
 
+:0
+* ^Return-Path: <procmail-admin@
+* ^From: dmdoyle@lucent\.com
+* ^Subject: Re: procmail digest,
+* > 10000
+idiot/
+
 TMP=$1
 :0
 * TMP ?? FETCHED
@@ -48,9 +55,9 @@ ARG1=$1
 * REFILTER ?? y
 { FETCHED }
 
-:0
-* FETCHED ?? y
-{ LOGFILE=$HOME/.Procmail/log }
+#:0
+#* FETCHED ?? y
+#{ LOGFILE=$HOME/.Procmail/log }
 
 INCLUDERC=$HOME/.procmail/daterc
 TIME="${MN}/${DATE}/${YEAR} ${HOUR}:${MINUTES}"

@@ -67,6 +67,11 @@ EXPIRE
   REPLYTO
 }
 
+# Fix URLs from some publications that insert line breaks in them
+:0fbw
+* FIXLINKS ?? y
+| fixlinks
+
 :0fbw
 * EGROUPS ?? y
 | sed -e '/^-----*-- Yahoo! Groups Sponsor -----*-~-~> *$/,$d'

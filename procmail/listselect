@@ -5,6 +5,10 @@ EXPIRE
 SUBJ
 
 :0
+* ^Sender: crypto-gram-return
+{ FIXLINKS=yes }
+
+:0
 * From:.*hot-news-request@augi
 { LIST=Lists/hot-news/ }
 
@@ -13,7 +17,11 @@ SUBJ
 { LIST=Lists/gurus/ }
 
 :0
-* List-Id: <sysops.lists.voyager.net>
+* ^Sender: gurus-admin@lists\.core\.com
+{ LIST=Lists/gurus/ }
+
+:0
+* List-Id: <sysops.lists.(core.com|voyager.net)>
 {
   LIST=Lists/sysops/
   SUBJ='\[Sysops\] '
@@ -27,14 +35,21 @@ SUBJ
 }
 
 :0
-* ^Sender: mailteam-admin@lists.voyager.net
+* ^Sender: listserv-admin@lists.corecomm.net
+{
+  LIST=Lists/listserv/
+  SUBJ='\[Listserv\] '
+}
+
+:0
+* ^Sender: mailteam-admin@lists\.(core\.com|voyager\.net)
 {
   LIST=Lists/mailteam/
   SUBJ='\[Mailteam\] '
 }
 
 :0
-* ^X-Mailing-List: <allgurus@
+* ^List-Id: <allgurus\.lists\.core\.com>
 {
   EXPIRE="7 days"
   LIST=Lists/allgurus/
@@ -43,6 +58,13 @@ SUBJ
 :0
 * ^X-Mailing-List: <lsm-workers@lists
 { LIST=Lists/lsm-workers/ }
+
+:0
+* ^Return-Path: <net-eng-admin@lists\.core\.com>
+{
+  LIST=Lists/net-eng/
+  SUBJ='\[Net-eng\] '
+}
 
 :0
 * ^Return-Path: <net-eng-request@
@@ -71,6 +93,10 @@ SUBJ
 { LIST=Lists/staff/ }
 
 :0
+* ^Sender: (all|voyn)?staff-admin@lists\.core\.com
+{ LIST=Lists/staff/ }
+
+:0
 * ^X-Mailing-List: <noc-staff@lists\.execpc\.com
 { LIST=Lists/noc-staff/ }
 
@@ -79,24 +105,10 @@ SUBJ
 { LIST=Lists/billsys/ }
 
 :0
-* ^X-Mailing-List: <yesno@lists
-{
-  LIST=Lists/yesno/
-  EXPIRE="14 days"
-}
-
-:0
 * ^X-Mailing-List: <user-accounting@lists
 {
   EXPIRE="14 days"
   LIST=Lists/user-accounting/
-}
-
-:0
-* ^X-Mailing-List: <psaphonic@lists
-{
-  EXPIRE="14 days"
-  LIST=Lists/psaphonic/
 }
 
 :0
@@ -129,6 +141,26 @@ SUBJ
   :0
   * ^Subject:.*\/()\[mutt-(users|dev|announce)]
   { SUBJ="$\MATCH" }
+}
+
+:0
+* ^Return-Path: <macosx-talk-admin@omnigroup
+{ LIST=Lists/macosx-talk/ }
+
+:0
+* ^Mailing-List: list mkesklyarov@yahoogroups\.com
+{
+  LIST=Lists/mkesklyarov/
+  SUBJ='\[mkesklyarov\] '
+  REPLYTO="mkesklyarov@yahoogroups.com"
+}
+
+:0
+* ^List-Id: <galeon-user.lists.sourceforge.net>
+{
+  LIST=Lists/galeon-user/
+  SUBJ='\[Galeon-user\] '
+  REPLYTO="galeon-user@lists.sourceforge.net"
 }
 
 :0
@@ -319,11 +351,11 @@ SUBJ
 { LIST=Lists/zsh }
 
 :0
-* ^Sender: .*bugtraq@(netspace|securityfocus)
+* ^Return-Path: <bugtraq-return-[0-9]+-aarons=execpc\.com@securityfocus\.com>
 { LIST=Lists/bugtraq/ }
 
 :0
-* ^Return-Path: <owner-secprog@
+* ^Return-Path: <secprog-return-[0-9]+-aaron=schrab\.com@securityfocus\.com>
 { LIST=Lists/secprog/ }
 
 :0
@@ -381,20 +413,14 @@ SUBJ
 }
 
 :0
+* ^Return-Path: <bounce-black-cat-
+{ LIST=Lists/black-cat/ }
+
+:0
 * ^List-Subscribe: <mailto:tidbits-on@tidbits
 {
   LIST=Lists/tidbits/
-
-  :0fbw
-  | sed -e '/^<\(http\|ftp\):[^>]*$/ {' \
-        -e 'N' \
-        -e 's/\
-//' \
-        -e '}'
-
-  # Remove Lines: header so it will be recalculated
-  :0afhw
-  | formail -ILines:
+  FIXLINKS=yes
 }
 
 :0
@@ -420,6 +446,13 @@ SUBJ
 {
   SUBJ='\[Mailman-\(Developers\|Users\)] '
   LIST=Lists/mailman/
+}
+
+:0
+* ^List-Post: <mailto:sympa-users
+{
+  SUBJ='\[sympa-users] '
+  LIST=Lists/sympa-users/
 }
 
 :0
@@ -459,6 +492,12 @@ SUBJ
   REPLYTO=irmp3@dpotter.com
   SUBJ='\[irmp3] '
   LIST=Lists/irmp3/
+}
+
+:0
+* ^X-BeenThere: rblcheck-users@lists\.sourceforge\.net
+{
+  LIST=Lists/rblcheck-users/
 }
 
 :0
