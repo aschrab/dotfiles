@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.94 $'
+rcvers='$Revision: 1.95 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -774,7 +774,12 @@ compctl -K __debpkgs -x 'p[1]' -k \
   -- apt-get
 
 function __debpkgs {
-  reply=(`sed -ne 's/^Package: //p' /var/state/apt/lists/*_Packages`)
+  if [ -d /var/lib/apt/lists ]
+  then
+    reply=(`sed -ne 's/^Package: //p' /var/lib/apt/lists/*_Packages`)
+  else
+    reply=(`sed -ne 's/^Package: //p' /var/state/apt/lists/*_Packages`)
+  fi
 }
 
 function __cdmatch () {
