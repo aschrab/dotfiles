@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.89 $'
+rcvers='$Revision: 1.90 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -590,7 +590,10 @@ if [ "$host" = "earth" ]; then
               - 'p[1],C[-1,-*]' -k watch -- chown
 
   # hash directories of friends so cd completion still works
-  for u in $watch; hash -d $u=~$u
+  for u in $watch
+  do
+    hash -d $u=~$u
+  done
 
   # cd/pushd completion based on $watch
   compctl -x 'S[/][~][./][../]' -g '*(-/)' - \
@@ -759,9 +762,9 @@ compctl -x \
 compctl -K __hosts ping trt traceroute
 
 compctl -x 'p[1]' -k '(add gencaches showpkg stats dump dumpavail unmet check search show depends pkgnames dotty)' -- apt-cache
-compctl -K __debpkgs -x 'p[1]' -k \
+compctl -x 'p[1]' -k \
   '(update upgrade install source dist-upgrade clean remove autoclean check)' \
-  -- apt-get
+  -  'p[2]' -K __debpkgs -- apt-get aget
 
 function __debpkgs {
   reply=(`sed -ne 's/^Package: //p' /var/state/apt/lists/*_Packages`)
