@@ -31,7 +31,7 @@ set status_chars=" *%"
 set attribution = "At %d, %f wrote:"
 set hdr_format="%4C %Z %[%m/%d] %-15.15L (%4l) %s"
 
-set quote_regexp='^([]:})>|!] ?|[<-]>| {0,4}[:>|]|[a-z]+[>|]+ ?|=([^=0-9]|$))'
+set quote_regexp='^([]:})>|!%] ?|[<-]>| {0,4}[:>|]|[a-z]+[>|]+ ?|=([^=0-9]|$))'
 
 color body  red	black	\
  "((ftp|https?)://|(ftp|www[-a-z0-9]*)\\.)[^ \t\r\n\"<>]*[^].,:;!)? \t\r\n<>\"]"
@@ -156,7 +156,7 @@ send-hook   .         "unmy_hdr From"
 folder-hook .         "set nostrict_threads nosave_empty sort=threads"
 folder-hook .         "set mime_forward=ask-yes forward_decode nomark_old"
 folder-hook .         \
- "set quote_regexp='^([]:})>|!] ?|[<-]>| {0,4}[:>|]|[a-z]+[>|]+ ?|=([^=0-9]|$))'"
+ "set quote_regexp='^([]:})>|!%] ?|[<-]>| {0,4}[:>|]|[a-z]+[>|]+ ?|=([^=0-9]|$))'"
 
 folder-hook suspect   "set mime_forward=no noforward_decode"
 
@@ -172,8 +172,8 @@ folder-hook spool     "set move=no"
 folder-hook Lists/inet "set move=no"
 folder-hook Lists/inet 'push "T~E !(~O|~N|~F)\n"'
 
-folder-hook (procmail|smartlist|mutt) \
-     'set quote_regexp="^([])>] ?|[<-]>| {0,4}>|[a-z]+[>|]+ ?|=([^=0-9]|$))"'
+folder-hook (procmail|smartlist) \
+     'set quote_regexp="^([])>%] ?|[<-]>| {0,4}>|[a-z]+[>|]+ ?|=([^=0-9]|$))"'
 
 folder-hook IN        "set move=no"
 folder-hook abuse.net "set move=no sort=date"
