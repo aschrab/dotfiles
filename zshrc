@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.82 $'
+rcvers='$Revision: 1.83 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -342,9 +342,14 @@ alias cls='clear'
 alias f=finger
 alias sz='sz -e'
 alias l='ls -F'
-alias ll='ls -lF'
 alias la='ls -aF'
-alias lla='ls -alF'
+if [[ $OSTYPE == *bsd* ]]; then
+  alias ll='ls -loF'
+  alias lla='ls -Foal'
+else
+  alias ll='ls -lF'
+  alias lla='ls -alF'
+fi
 alias bc='bc -ql'
 alias trt=traceroute
 alias screen='screen -a -A'
