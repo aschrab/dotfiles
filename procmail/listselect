@@ -50,7 +50,7 @@ SUBJ
 { MHONARC=$WEB/sales/ }
 
 :0
-* ^Sender: owner-list@inet-access\.net
+* ^(Sender: owner-|Delivered-To: )list@inet-access\.net
 {
   EXPIRE="3 days"
   REPLYTO="list@inet-access.net"
@@ -227,3 +227,7 @@ SUBJ
 :0
 * X-Envelope: owner-linux-scsi
 { LIST=Lists/linux-scsi/ }
+
+:0
+* Sender:.*<mpg123@
+{ LIST=Lists/mpg123/ }
