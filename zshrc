@@ -840,24 +840,11 @@ then
   true
 fi
 
-#case "$host" in
-#   "grok"|"lafe"|"tamara"|"tanstaafl")
-#      #export http_proxy="http://lafe.schrab.com:3128/"
-#      #export ftp_proxy="http://lafe.schrab.com:3128/"
-#      ;;
-#
-#   "frell")
-#      #export http_proxy="http://proxy:8888/"
-#      #export ftp_proxy="$http_proxy"
-#      ;;
-#
-#   "pug"|"milamber")
-#      export TRNINIT=~/.trn/rc
-#      export CVSROOT=~/.cvsroot
-#
-#      compctl -K __ncftp ncftp
-#      ;;
-#esac
+case "$host" in
+   "grok"|"gir"|"tamara"|"tanstaafl")
+      PGHOST="fnord"
+      ;;
+esac
 
 function __sshhosts () {
   local __sshfiles
