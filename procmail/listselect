@@ -120,12 +120,23 @@ SUBJ
 }
 
 :0
+* ^Return-Path: <bounce-debian-powerpc
+{ LIST=Lists/debian-powerpc/ }
+
+:0
 * ^Sender: owner-linuxppc-dev@
 { LIST=Lists/linux-ppc-dev/ }
 
 :0
 * ^Sender: owner-linuxppc-user@
 { LIST=Lists/linux-ppc-user/ }
+
+:0
+* ^Sender: viewcvs-admin@lyra
+{
+  LIST=Lists/viewcvs/
+  SUBJ='\[ViewCVS\] '
+}
 
 :0
 *  ^Mailing-List: list talk-dc@
@@ -217,7 +228,7 @@ SUBJ
 }
 
 :0
-* ^X-Loop: linux-(alert|security)@redhat
+* ^X-(Loop|BeenThere): linux-(alert|security)@redhat
 {
   SUBJ='\[linux-\(alert\|security\)\] '
   LIST=Lists/linux-security/
