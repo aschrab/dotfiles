@@ -62,6 +62,10 @@ SUBJ
 }
 
 :0
+* ^Sender: owner-nanog@merit\.edu
+{ LIST=Lists/nanog/ }
+
+:0
 * ^(Sender: owner-mutt|X-Envelope-To: aaron\+mutt@schrab)
 {
   LIST=Lists/mutt/

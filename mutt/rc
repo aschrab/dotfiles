@@ -224,6 +224,11 @@ mailboxes =Lists/bugtraq
 lists bugtraq
 mbox-hook Lists/bugtraq "=Read/bugtraq"
 
+mailboxes =Lists/nanog
+lists nanog
+mbox-hook Lists/nanog "=Read/nanog"
+send-hook nanog my_hdr From: Aaron Schrab <aaron+nanog@schrab.com>
+
 mailboxes =Lists/list-managers
 lists list-managers
 mbox-hook Lists/list-managers "=Read/list-managers"
