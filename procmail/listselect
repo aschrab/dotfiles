@@ -115,7 +115,7 @@ SUBJ
 }
 
 :0
-* ^Mailing-List: list gnu-screen@egroups.com
+* ^Mailing-List: list gnu-screen@(yahoo|e)groups.com
 { LIST=Lists/screen/ }
 
 :0
@@ -153,16 +153,16 @@ SUBJ
 *  ^Mailing-List: list talk-dc@
 {
   LIST=Lists/double-click/
-  REPLYTO="talk-dc@egroups\.com"
+  REPLYTO="talk-dc@(yahoo|e)groups\.com"
   SUBJ='\[talk-dc\] '
   EGROUPS=yes
 }
 
 :0
-* ^Mailing-List: list secure-mua@egroups
+* ^Mailing-List: list secure-mua@(e|yahoo)groups
 {
   LIST=Lists/secure-mua/
-  REPLYTO="secure-mua@egroups\.com"
+  REPLYTO="secure-mua@(e|yahoo)groups\.com"
   SUBJ='\[secure-mua\] '
   EGROUPS=yes
 }
