@@ -55,6 +55,8 @@ color hdrdefault	cyan	default
 color header		red	default \
       "^X-(Suspect-reason|spam-action|procmail|Diagnostic|Processed|Country):"
 
+color index             red     default ~T
+
 color signature		cyan	default
 
 # continued line indicator
@@ -115,7 +117,7 @@ set tilde                      # pad end of messages
 set timeout=30                 # seconds inactivity before looking for new mail
 #set web_browser="url_handler.sh"
 set nomark_old                 # all unread mail is marked as new
-set skip_old
+#set skip_old
 set pgp_default_version="pgp5"
 set pgp_sign_as="0xE8D1D751"
 set pgp_verify_sig=no          # Verify signature automatically
