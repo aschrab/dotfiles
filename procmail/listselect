@@ -5,6 +5,10 @@ EXPIRE
 SUBJ
 
 :0
+* ^X-Mailing-List:.*<gurus@
+{ LIST=Lists/gurus/ }
+
+:0
 * ^X-Envelope: tech-request@lists\.execpc\.com
 {
   LIST=Lists/tech/
@@ -23,7 +27,7 @@ SUBJ
 }
 
 :0
-* ^X-Envelope: staff-request@lists\.execpc\.com
+* ^X-Envelope: (all)?staff-request@lists\.execpc\.com
 {
   MHONARC=$WEB/staff
   LIST=Lists/staff/
@@ -50,6 +54,13 @@ SUBJ
 { MHONARC=$WEB/sales/ }
 
 :0
+* ^X-Envelope: dnvs-list-request@lists\.execpc\.com
+{
+  REPLYTO="dnvs-list@lists.execpc.com"
+  LIST=Lists/dnvs/
+}
+
+:0
 * ^(Sender: owner-|Delivered-To: )list@inet-access\.net
 {
   EXPIRE="3 days"
@@ -60,7 +71,7 @@ SUBJ
 :0
 * ^(Sender: owner-mutt|X-Envelope-To: aaron\+mutt@schrab)
 {
-  LIST=Lists/mutt
+  LIST=Lists/mutt/
   
   :0
   * ^Subject:.*\/()\[mutt-(users|dev|announce)]
