@@ -1,7 +1,7 @@
 " $Id$
 :version 4.0
 
-set statusline=%<%f%h%m%r%w\ [%{&ft},%{&ff}]\ %=\ asc:%B\ pos:%o\ c:%c%V\ l:%l\/%L\ %P
+set statusline=%<%f%h%m%r%w\ [%{&ft},%{&ff},%{&fenc}]\ %=\ asc:%B\ pos:%o\ c:%c%V\ l:%l\/%L\ %P
 
 let perl_extended_vars = 1
 let perl_highlight_matches = 1
@@ -49,7 +49,7 @@ set cpoptions=BceFs$
 set laststatus=2
 set matchpairs=(:),{:},[:],<:>
 set fileformats=unix,dos,mac
-" set fileencodings=ucs-bom,iso-2022-jp,euc,sjis,latin1
+set fileencodings=ucs-bom,latin1,ucs,iso-2022-jp,euc,sjis
 set pastetoggle=<F4>
 set modelines=5
 set wildmenu
