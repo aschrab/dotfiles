@@ -238,7 +238,7 @@ SUBJ
 :0
 * ^Sender: mailman-users-admin@python
 {
-  SUBJ='\[Mailman-Users]'
+  SUBJ='\[Mailman-Users] '
   LIST=Lists/mailman/
 }
 
