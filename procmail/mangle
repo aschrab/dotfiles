@@ -1,6 +1,6 @@
 # At least one mailer uses the In-Reply-To: header like a References: header
 :0fhw
-* ! ^X-Mailer: M(H|ail User's Shell)
+* ! ^X-Mailer: ((ex)?MH|Mail User's Shell)
 *   ^In-Reply-To:.*<.*>.*<.*>
 * ! ^References:
 | formail -I "X-Procmail: Renamed In-Reply-To: to References:" \
