@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.111 $'
+rcvers='$Revision: 1.112 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -77,6 +77,7 @@ then
 else
   host="$HOST"
 fi
+export host
 
 [ "$USERNAME" = "aarons" -o "$USERNAME" = "root" ] && HOME=~aarons
 
