@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.18 $'
+rcvers='$Revision: 1.19 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -86,6 +86,13 @@ case "$TERM" in
     stty erase '^H'
     print -P "${green}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${white}"
     PS1='%{]1;%(#.#.$)$host]2;%(#.#.$)$host:%~%}'
+    PS1="$PS1"'%{$pColor%}%1v%!)$host%(#.#.$)%{$white%} '
+    RPS1='%{$pColor%} %~%{$white%}'
+    ;;
+  screen)
+    print -P "${yellow}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${white}"
+    #PS1='%{k%(#.#.$)$host:%~\%}'
+    PS1=''
     PS1="$PS1"'%{$pColor%}%1v%!)$host%(#.#.$)%{$white%} '
     RPS1='%{$pColor%} %~%{$white%}'
     ;;
@@ -239,6 +246,7 @@ alias ll='ls -lF'
 alias la='ls -aF'
 alias lla='ls -alF'
 alias trt=traceroute
+alias screen='screen -a'
 
 alias vi=$VISUAL
 
