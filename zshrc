@@ -7,17 +7,17 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.47 $'
+rcvers='$Revision: 1.48 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
 then
   case "$OSTYPE:$HOSTNAME" in
-    linux:*.schrab.com)
+    linux*:*.schrab.com)
       ;;
-    linux:fnord.guru.execpc.com)
+    linux*:fnord.guru.execpc.com)
       ;;
-    linux:*.qqx.org)
+    linux*:*.qqx.org)
       ;;
     *)
       TERM=vt100
@@ -337,7 +337,7 @@ bindkey '\eq' push-input
 #  Run a few informative commands
 if [ ! -f .hushlogin ]; then
   case "$OSTYPE" in
-  linux|openbsd*)
+  linux*|openbsd*)
     :
     ;;
   *)
@@ -425,7 +425,7 @@ compctl -g '*(-/)' + -g '.*(-/)' + -k '(..)' cd rmdir
 compctl -jP '%' kill fg bg disown
 compctl -vP '$' echo
 
-if [[ $OSTYPE == linux && -r /lib/modules/`uname -r`/modules.dep ]]
+if [[ $OSTYPE == linux* && -r /lib/modules/`uname -r`/modules.dep ]]
 then
   __modules=($(sed -n -e 's,^[^:]*/,,' -e 's,\.o:.*$,,p' /lib/modules/`uname -r`/modules.dep))
   compctl -k __modules insmod modprobe
