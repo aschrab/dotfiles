@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.41 $'
+rcvers='$Revision: 1.42 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -486,6 +486,14 @@ compctl -f -x 'C[-1,*chown][-1,-*] S[-]' \
                            --quiet --recursive --verbose --help --version )" \
             - 'p[1] N[1,.:],C[-1,-*] N[1,.:]' -k __groups \
             - 'p[1],C[-1,-*]' -u -- chown
+
+function __conf () {
+  reply=($(./configure --help |
+          sed -n -e '/-\(FEATURE\|PACKAGE\)/d' \
+                 -e 's/^[ 	]\+--\([^[ 	=]*\).*/--\1/p'))
+                 #-e 's/^[ 	]\+--\([^[ 	=]*\)\[\?\(=\?\).*/--\1\2/p'))
+}
+compctl -qQS= -K __conf -x 'n[-1,=]' -f -- configure
 
 if [ -x /usr/ucb/ps ] ; then
   alias ps=/usr/ucb/ps
