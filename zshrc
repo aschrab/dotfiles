@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.26 $'
+rcvers='$Revision: 1.27 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -469,9 +469,11 @@ case "$host" in
       export CYLIB=/var/backup/tapes
       ;;
 
-   "milamber")
+   "pug")
       export TRNINIT=~/.trn/rc
       export CVSROOT=/home/aarons/.cvsroot
+
+      compctl -K __ncftp ncftp
       ;;
 
    "fnord"|"fnord.guru")
@@ -483,11 +485,6 @@ case "$host" in
       compctl -K __ncftp ncftp
       compctl -k __rhosts -x 's[-l],c[-1,-l]' -k mynames -- rlogin
       compctl -k __rhosts -x 'p[2,-1]' -l '' -- rsh
-
-      if [ "$USERNAME" = "root" ]; then
-         alias ipxon='ipx_interface add -p eth0 802.2'
-         alias ipxoff='ipx_interface delall'
-      fi
       ;;
 
    "earth")
