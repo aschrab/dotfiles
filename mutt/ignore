@@ -178,3 +178,12 @@ ignore X-Remote-IP:
 ignore Cache-Post-Path:
 ignore X-Cache:
 ignore Ip-From:
+ignore List-Software:
+ignore List-Subscribe:
+ignore List-Unsubscribe:
+ignore List-Digest:
+ignore List-Help:
+ignore List-Archive:
+ignore List-Owner:
+ignore List-Id:
+ignore List-Post:
