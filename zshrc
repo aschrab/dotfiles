@@ -130,6 +130,7 @@ else
   DEBCHROOT=''
 fi
 
+export LC_COLLATE="C"
 case "$TERM" in
   xterm|xtermc|xterm-debian|xterm-color|rxvt|gnome|Eterm)
     if [[ $TERM == xterm && $OSTYPE == freebsd* ]]
@@ -148,7 +149,6 @@ case "$TERM" in
           langset="yes"
         fi
       done
-      export LC_COLLATE="C"
       unset langset l
     fi
     stty erase '^?'
@@ -773,65 +773,24 @@ then
   true
 fi
 
-case "$host" in
-   "methos")
-      path=($path ~slist/.bin)
-      ;;
-
-   "pw0")
-      path=($path /passwd/bin)
-      ;;
-
-   "grok"|"lafe"|"tamara"|"tanstaafl")
-      export http_proxy="http://lafe.schrab.com:3128/"
-      export ftp_proxy="http://lafe.schrab.com:3128/"
-      ;;
-
-   "frell")
-      #export http_proxy="http://proxy:8888/"
-      #export ftp_proxy="$http_proxy"
-      ;;
-
-   "faboo")
-      if [ -z "$STY" ] && \
-        ifconfig | egrep 'inet addr:(169.207.53|192.168.42).' > /dev/null 2>&1
-      then
-        export http_proxy="http://lafe.schrab.com:3128/"
-        export ftp_proxy="http://lafe.schrab.com:3128/"
-      else
-        unset http_proxy
-        unset ftp_proxy
-      fi
-
-      export TRNINIT=~/.trn/rc
-      export CVSROOT=~/.cvsroot
-      ;;
-
-   "lazarus")
-      export TAPE=/dev/nst0
-      export CYRCS=/usr/bin/cyrcs
-      export CYSTACKER=/dev/sgc
-      export CYLIB=/var/backup/tapes
-      ;;
-
-   "pug"|"milamber")
-      export TRNINIT=~/.trn/rc
-      export CVSROOT=~/.cvsroot
-
-      compctl -K __ncftp ncftp
-      ;;
-
-   "fnord"|"fnord.guru")
-      export TRNINIT=~/.trn/rc
-      export CVSROOT=/usr/local/cvsroot
-
-      __rhosts=(greaseslapper) 
-      compctl -K __pmlist pm
-      compctl -K __ncftp ncftp
-      compctl -k __rhosts -x 's[-l],c[-1,-l]' -k mynames -- rlogin
-      compctl -k __rhosts -x 'p[2,-1]' -l '' -- rsh
-      ;;
-esac
+#case "$host" in
+#   "grok"|"lafe"|"tamara"|"tanstaafl")
+#      #export http_proxy="http://lafe.schrab.com:3128/"
+#      #export ftp_proxy="http://lafe.schrab.com:3128/"
+#      ;;
+#
+#   "frell")
+#      #export http_proxy="http://proxy:8888/"
+#      #export ftp_proxy="$http_proxy"
+#      ;;
+#
+#   "pug"|"milamber")
+#      export TRNINIT=~/.trn/rc
+#      export CVSROOT=~/.cvsroot
+#
+#      compctl -K __ncftp ncftp
+#      ;;
+#esac
 
 function __sshhosts () {
   local __sshfiles
