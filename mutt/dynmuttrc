@@ -1,0 +1,79 @@
+#!/usr/bin/perl -w
+
+use strict;
+use version;
+use vars qw( $exe $ppid $date_fmt $debug );
+
+if( defined $ARGV[0] and $ARGV[0] eq '-d' ) {
+  $debug = 1;
+  shift;
+}
+
+if( defined $ARGV[0] ) {
+  if( $ARGV[0] =~ /^\d+$/ ) {
+    $ppid = $ARGV[0];
+    $exe = "/proc/$ppid/exe";
+  }
+  else {
+    $exe = $ARGV[0];
+  }
+}
+else {
+  $ppid = getppid;
+  $exe = "/proc/$ppid/exe";
+}
+
+my $mutt = readlink $exe || $exe;
+exit 1 unless $debug or $mutt =~ m{mutt[^/]*$}i;
+
+$_ = `$mutt -F /dev/null -v 2> /dev/null`;
+
+/^Mutt ([\d.]+)i? /;
+my $mutt_version = new version $1;
+
+if( /date_conditional/ ) {
+  $date_fmt = '%?[1y?%\\\\?[1d\\\\?%[%H:%M ]\\\\&%[%d/%b]\\\\?&%[%b %y]?';
+}
+elsif( /date_optional/i ) {
+ $date_fmt = '%?[?%[%H:%M]&%[%m/%d]?';
+}
+else {
+  $date_fmt = '%[%m/%d]';
+}
+
+my $index_format = <<'';
+  macro index     i       ":set hdr_format=\'%4C %Z $date_fmt  %-15.15F (%5l) %s\'\n"
+  macro index     I       ":set hdr_format=\'%4C %Z $date_fmt  %-15.15L (%5l) %s\'\n"
+  set hdr_format='%4C %Z $date_fmt  %-15.15L (%5l) %s'
+  folder-hook '(INBOX|Mail|spool)'	"set hdr_format=\'%4C %Z $date_fmt  %-15.15L (%5l) %s\'"
+  folder-hook '(Lists|Read)'		"set hdr_format=\'%4C %Z $date_fmt  %-15.15F (%5l) %s\'"
+
+$index_format =~ s/\$date_fmt/$date_fmt/g;
+print $index_format;
+
+if( /mark_old/i ) {
+  print "set see_old\n";
+}
+elsif( $mutt_version ge "v1.5.6" ) {
+  print "set nomark_old\n";
+}
+else {
+  print "set mark_old read_only\n";
+}
+
+unless( /Mutt 1\.3/ ) {
+  print <<'';
+    set smime_default_key="12345678.0"
+    set crypt_verify_sig=no
+    set smime_certificates="~/.smime/certificates"
+    set smime_keys="~/.smime/keys"
+    set smime_pk7out_command="openssl smime -verify -in %f -noverify -pk7out"
+    set smime_get_cert_command="openssl pkcs7 -print_certs -in %f"
+    set smime_get_signer_cert_command="openssl smime -verify -in %f -noverify -signer %c -out /dev/null"
+    set smime_get_cert_email_command="openssl x509 -in  %f -noout -email"
+    set smime_import_cert_command="smime_keys add_cert %f"
+    set smime_decrypt_command="openssl smime -decrypt  -passin stdin -inform DER -in %f -inkey %k -recip %c"
+    set smime_verify_command="openssl smime -verify -inform DER -in %s %C -content %f"
+    set smime_verify_opaque_command="openssl smime -verify -inform DER -in %s %C"
+
+}
