@@ -20,7 +20,21 @@ SUBJ
 }
 
 :0
-* ^Return-Path: <mutt-(users|dev|announce)-owner-aaron
+* ^List-Id: ruby-core\.ruby-lang\.org
+{
+  LIST=Lists/ruby-core/
+  REPLYTO="ruby-core@ruby-lang\.org"
+}
+
+:0
+* ^(List-Subscribe: <mailto:ruby-talk-|List-Id: ruby-talk\.ruby-lang\.org)
+{
+  LIST=Lists/ruby-talk/
+  REPLYTO="ruby-talk@ruby-lang\.org"
+}
+
+:0
+* ^Return-Path: <(owner-)?mutt-(users|dev|announce)-(owner-)?aaron
 {
   LIST=Lists/mutt/
   
@@ -51,8 +65,9 @@ SUBJ
   EGROUPS=yes
 }
 
+# * ^List-Id: <galeon-user.lists.sourceforge.net>
 :0
-* ^List-Id: <galeon-user.lists.sourceforge.net>
+* ^Return-Path: <galeon-user-admin@lists.sourceforge.net>
 {
   LIST=Lists/galeon-user/
   SUBJ='\[Galeon-user\] '
@@ -60,10 +75,35 @@ SUBJ
 }
 
 :0
+* ^List-Id: <ifp-driver-common.lists.sourceforge.net>
+{
+  LIST=Lists/ifp/
+  SUBJ='\[Ifp-driver-common\] '
+}
+
+:0
 * ^Mailing-List: list gnu-screen@(yahoo|e)groups.com
 {
   LIST=Lists/screen/
   EGROUPS=yes
+}
+
+:0
+* ^List-Id: <fxruby-users\.lists\.sourceforge\.net>
+{
+  LIST=Lists/fxruby-users/
+  SUBJ='\[Fxruby-users\]'
+}
+
+:0
+* ^X-ML-Name: modruby
+{ LIST=Lists/modruby/ }
+
+:0
+* ^List-Id:.*<foxgui-users\.
+{
+  LIST=Lists/fox/
+  SUBJ='\[Foxgui-users\]'
 }
 
 :0
@@ -86,7 +126,8 @@ SUBJ
 }
 
 :0
-* ^Return-Path: <bounce-debian-\/[a-z0-9._-]+
+* ^List-Id: <debian-\/[a-z0-9_-]+\.lists\.debian\.org>
+* MATCH ?? ^^\/[^.]+
 {
   LIST=Lists/debian-$MATCH/
 
@@ -204,11 +245,45 @@ SUBJ
 * ^Sender: linux-pmac
 { LIST=Lists/linux-pmac/ }
 
+#VERBOSE=yes
+:0
+* ^List-Id: <mlug-org\..*milwaukeelug\.org>
+{
+  SUBJ='\[Mlug-org] '
+  REPLYTO=mlug-org
+  LIST=Lists/mlug-org/
+}
+#VERBOSE=no
+
 :0
 * ^Sender: .*mlug-list
 {
   REPLYTO=mlug-list
   LIST=Lists/mlug/
+}
+
+:0
+* ^Return-Path: <fdllug-wlugs-
+{
+  SUBJ='\[fdllug-wlugs] '
+  REPLYTO=fdllug-wlugs
+  LIST=Lists/wilugs/
+}
+
+:0
+* ^Return-Path: <owner-linuxhelp@wilugs.org>
+{
+  SUBJ='\[WILUGS-Help] '
+  REPLYTO=linuxhelp@wilugs
+  LIST=Lists/wilugs-help/
+}
+
+:0
+* ^Return-Path: <owner-members@wilugs.org>
+{
+  SUBJ='\[WILUGS] '
+  REPLYTO=members@wilugs
+  LIST=Lists/wilugs/
 }
 
 :0
@@ -252,7 +327,7 @@ SUBJ
 }
 
 :0
-* ^List-Subscribe: <mailto:tidbits-talk-on@tidbits
+* ^List-Id:.*<tbtalk\.tidbits\.com>
 { LIST=Lists/tidbits/ }
 
 :0
