@@ -3,7 +3,7 @@
 :0
 * $ 1^1 ^Received:.*\[\/[0-9.]+\]\)$S+by$S+${LOCALSERVER}
 * MATCH ?? ^^\/[0-9.]+
-* ! MATCH ?? ^^(208\.31\.42\.42)^^
+* ! MATCH ?? ^^(208\.31\.42\.42|139\.174\.2\.33)^^
 {
   RELAYIP="$MATCH"
   RBLCHECK=`rblcheck -p "$MATCH"`
