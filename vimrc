@@ -60,6 +60,12 @@ set wildignore+=*.o,*~
 
 set foldopen=mark,quickfix,tag,block,hor,search,jump
 
+" Don't force sync after writing swap files, to avoid spinning up disk
+:if $HOST =~ "frell"
+  set swapsync=
+  set cmdheight=4
+:endif
+
 ":if $DISPLAY == ":0"
   set mouse=a
   set clipboard=unnamed,autoselect,exclude:cons\|linux
