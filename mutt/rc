@@ -8,11 +8,15 @@ source ~/.Mutt/rc.common
 #set sendmail="/usr/lib/sendmail -oi -oem"
 set ispell="/home/aarons/bin/spell"
 
+set from="aarons@execpc.com"
+my_hdr Bcc: backup@schrab.com
+set hostname="frell.qqx.org"
+
 source ~/.Mutt/ignore
 
 set date_format = "!%H:%M %Z %d %b %Y"
 set attribution="At %d, %?F?%f&I? wrote:"
-set hdr_format="%4C %Z %?[?%[%H:%M]&%[%m/%d]? %-15.15L (%4l) %s"
+set hdr_format="%4C %Z %?[?%[%H:%M]&%[%m/%d]? %-15.15L (%5l) %s"
 #set xterm_icon='Mutt:%f%r [Msgs:%?M?%M/?%m New:%n%?t? Tag:%t? In:%b%?p? Post:%p?]'
 #set xterm_title='%f%r [%?M?%M/%m ?%nn%?t? %tt? %bi%?p? %pp?]'
 #set xterm_set_titles
@@ -31,6 +35,7 @@ set pgp_sign_as="0x0507D84E"
 set pgp_verify_sig=yes         # Verify signature automatically
 set pgp_replyencrypt
 set pgp_replysign
+set pgp_good_sign="^gpg: Good signature from"
 
 send-hook   .         "unmy_hdr From"
 
@@ -43,12 +48,12 @@ folder-hook .         \
 folder-hook suspect   "set mime_forward=no noforward_decode"
 
 folder-hook Mail      "set move=yes"
-folder-hook Mail      "set hdr_format='%4C %Z %?[?%[%H:%M]&%[%m/%d]? %-15.15L (%4l) %s'"
+folder-hook Mail      "set hdr_format='%4C %Z %?[?%[%H:%M]&%[%m/%d]? %-15.15L (%5l) %s'"
 
-folder-hook Lists     "set hdr_format='%4C %Z %?[?%[%H:%M]&%[%m/%d]? %-15.15F (%4l) %s'"
+folder-hook Lists     "set hdr_format='%4C %Z %?[?%[%H:%M]&%[%m/%d]? %-15.15F (%5l) %s'"
 folder-hook Lists     'set save_empty to_chars=" +TCF "'
 
-folder-hook spool     "set hdr_format='%4C %Z %?[?%[%H:%M]&%[%m/%d]? %-15.15L (%4l) %s'"
+folder-hook spool     "set hdr_format='%4C %Z %?[?%[%H:%M]&%[%m/%d]? %-15.15L (%5l) %s'"
 folder-hook spool     "set move=no"
 #folder-hook misc      "push 'D~t cricket\n'"
 
@@ -65,7 +70,7 @@ folder-hook (procmail|smartlist) \
 
 folder-hook IN        "set move=no"
 folder-hook abuse.net "set move=no sort=last-date"
-folder-hook Read      "set hdr_format='%4C %Z %?[?%[%H:%M]&%[%m/%d]? %-15.15F (%4l) %s'"
+folder-hook Read      "set hdr_format='%4C %Z %?[?%[%H:%M]&%[%m/%d]? %-15.15F (%5l) %s'"
 folder-hook exser     "set strict_threads"
 folder-hook frontpage "set strict_threads"
 
@@ -499,3 +504,4 @@ save-hook scud-request       "=scud.req"
 save-hook this-is-true-admin "=true"
 save-hook @netflix           "=netflix"
 save-hook '~C @lists\.debian\.org' "=debian"
+save-hook @billmanager.accountonline "=billmanager"
