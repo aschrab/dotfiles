@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.22 $'
+rcvers='$Revision: 1.23 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -233,6 +233,7 @@ else
   PAGER="more"
 fi
 alias less=$PAGER
+alias les=less
 
 # Set aliases
 if [[ "$TERM" != "emacs" && $OSTYPE != *bsd* ]]; then
