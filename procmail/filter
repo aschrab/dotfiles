@@ -15,7 +15,7 @@
 :0w:
 * ^From:.*\<(((aarons|ats)@([a-z0-9-]+\.)*execpc.com)|aaron(\+.+)?@schrab.com)
 * ^(Newsgroups|X-Also-Posted-To): *\/[^ ].*
-| formail -ITo: -I"Status: RO" | formail -I"To: $MATCH" >> posted
+| formail -I"To: $MATCH" -I"Status: RO" >> posted
 
 :0
 * ^From:.*Luc\.Bussieres@DMI\.USherb\.CA
