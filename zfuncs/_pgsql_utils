@@ -1,5 +1,6 @@
 #compdef psql pg_dump createdb dropdb
 
+# Source: http://happygiraffe.net/svn/public/trunk/zsh/_pgsql_utils
 #
 # zsh completion functions for PostgreSQL client programs.  Based on
 # _mysql_utils.
