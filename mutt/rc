@@ -276,71 +276,71 @@ mbox-hook suspect "=spam"
 mailboxes =Lists/mutt
 lists mutt-users mutt-dev
 mbox-hook Lists/mutt "=Read/mutt"
-send-hook mutt my_hdr From: Aaron Schrab <aaron+mutt@schrab.com>
+send-hook mutt 'my_hdr From: Aaron Schrab <aaron+mutt@schrab.com>'
 
 mailboxes =Lists/tidbits
 lists tidbits-talk
 mbox-hook Lists/tidbits "=Read/tidbits"
-send-hook tidbits my_hdr From: Aaron Schrab <aaron@schrab.com>
+send-hook tidbits 'my_hdr From: Aaron Schrab <aaron@schrab.com>'
 
 mailboxes =misc
 
 mailboxes =Lists/cvs
 lists info-cvs
 mbox-hook Lists/cvs "=Read/cvs"
-send-hook cvs my_hdr From: Aaron Schrab <aaron+cvs@schrab.com>
+send-hook cvs 'my_hdr From: Aaron Schrab <aaron+cvs@schrab.com>'
 
 mailboxes =Lists/linux-68k
 lists linux-mac68k
 mbox-hook Lists/linux-68k "=Read/linux-68k"
-send-hook linux-mac68k my_hdr From: Aaron Schrab <aaron+linux-68k@schrab.com>
+send-hook linux-mac68k 'my_hdr From: Aaron Schrab <aaron+linux-68k@schrab.com>'
 
 mailboxes =Lists/trn
 lists trn-users
 mbox-hook Lists/trn "=Read/trn"
-send-hook trn my_hdr From: Aaron Schrab <aaron+trn@schrab.com>
+send-hook trn 'my_hdr From: Aaron Schrab <aaron+trn@schrab.com>'
 
 mailboxes =Lists/redhat
 
 mailboxes =Lists/zsh 
 lists zsh-users zsh-workers
 mbox-hook Lists/zsh "=Read/zsh"
-send-hook zsh my_hdr From: Aaron Schrab <aaron+zsh@schrab.com>
+send-hook zsh 'my_hdr From: Aaron Schrab <aaron+zsh@schrab.com>'
 
 mailboxes =Lists/procmail
 lists procmail
 mbox-hook Lists/procmail "=Read/procmail"
-send-hook procmail my_hdr From: Aaron Schrab <aaron+procmail@schrab.com>
+send-hook procmail 'my_hdr From: Aaron Schrab <aaron+procmail@schrab.com>'
 
 mailboxes =Lists/procmail-dev
 lists procmail-dev
 mbox-hook Lists/procmail-dev "=Read/procmail-dev"
-send-hook procmail-dev my_hdr From: Aaron Schrab <aaron+procmail@schrab.com>
+send-hook procmail-dev 'my_hdr From: Aaron Schrab <aaron+procmail@schrab.com>'
 
 mailboxes =Lists/smartlist-dev
 lists smartlist-dev
 mbox-hook Lists/smartlist-dev "=Read/smartlist-dev"
-send-hook smartlist-dev my_hdr From: Aaron Schrab <aaron+procmail@schrab.com>
+send-hook smartlist-dev 'my_hdr From: Aaron Schrab <aaron+procmail@schrab.com>'
 
 mailboxes =Lists/linux-tape
 lists linux-tape
 mbox-hook Lists/linux-tape "=Read/linux-tape"
-send-hook linux-tape my_hdr From: Aaron Schrab <aaron+lt@schrab.com>
+send-hook linux-tape 'my_hdr From: Aaron Schrab <aaron+lt@schrab.com>'
 
 mailboxes =Lists/linux-scsi
 lists linux-scsi
 mbox-hook Lists/linux-scsi "=Read/linux-scsi"
-send-hook linux-scsi my_hdr From: Aaron Schrab <aaron+ls@schrab.com>
+send-hook linux-scsi 'my_hdr From: Aaron Schrab <aaron+ls@schrab.com>'
 
 mailboxes =Lists/dingus
 lists dingus
 mbox-hook Lists/dingus "=Read/dingus"
-send-hook dingus my_hdr From: Aaron Schrab <aaron+dingus@schrab.com>
+send-hook dingus 'my_hdr From: Aaron Schrab <aaron+dingus@schrab.com>'
 
 mailboxes =Lists/linux-pmac
 lists linux-pmac
 mbox-hook Lists/linux-pmac "=Read/linux-pmac"
-send-hook linux-pmac my_hdr From: Aaron Schrab <aaron+pmac@schrab.com>
+send-hook linux-pmac 'my_hdr From: Aaron Schrab <aaron+pmac@schrab.com>'
 
 mailboxes =Lists/crypto
 lists crypto
@@ -364,12 +364,12 @@ mbox-hook Lists/livingston-radius "=Read/livingston-radius"
 mailboxes =Lists/radius-ietf
 lists radius-ietf
 mbox-hook Lists/radius-ietf "=Read/radius-ietf"
-send-hook radius my_hdr From: Aaron Schrab <aaron+radius@schrab.com>
+send-hook radius 'my_hdr From: Aaron Schrab <aaron+radius@schrab.com>'
 
 mailboxes =Lists/usrtc
 lists usr-tc
 mbox-hook Lists/usrtc "=Read/usrtc"
-send-hook usr-tc my_hdr From: Aaron Schrab <aaron+tc@schrab.com>
+send-hook usr-tc 'my_hdr From: Aaron Schrab <aaron+tc@schrab.com>'
 
 mailboxes =Lists/axp
 lists axp-list
