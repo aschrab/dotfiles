@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.19 $'
+rcvers='$Revision: 1.20 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -82,7 +82,7 @@ alias stty='noglob stty'
 
 case "$TERM" in
   xterm|xtermc|xterm-color)
-    TERM=xterm
+    #TERM=xterm
     stty erase '^H'
     print -P "${green}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${white}"
     PS1='%{]1;%(#.#.$)$host]2;%(#.#.$)$host:%~%}'
