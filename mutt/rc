@@ -24,7 +24,7 @@ unignore X-Mailing-List:
 #unignore X-Envelope-To:
 
 set sort=threads
-set sort_aux=date
+set sort_aux=date-received
 
 set date_format = "!%H:%M %Z %d %b %Y"
 set status_chars=" *%"
