@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.45 $'
+rcvers='$Revision: 1.46 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -16,6 +16,8 @@ then
     linux:*.schrab.com)
       ;;
     linux:fnord.guru.execpc.com)
+      ;;
+    linux:*.qqx.org)
       ;;
     *)
       TERM=vt100
