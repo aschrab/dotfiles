@@ -27,7 +27,7 @@ syn match   rubyNumber  "?\(\\M-\\C-\|\\c\|\\C-\|\\M-\)\=\(\\\o\{3}\|\\x\x\{2}\|
 " Special Identifiers: instance, global, symbol, iterator, predefined
 if !exists("ruby_no_identifiers")
   syn match   rubyIdentifier  "\<\u\w*"
-  syn match   rubyIdentifier  "@\h\w*"
+  syn match   rubyIdentifier  "@\?@\h\w*"
   syn match   rubyIdentifier  "$\h\w*"
   syn match   rubyIdentifier  "\s:\h\w*"
   syn match   rubyIdentifier  "|[ ,a-zA-Z0-9_*]\+|"
