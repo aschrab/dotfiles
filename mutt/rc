@@ -4,11 +4,15 @@ unalias *
 unhook *
 
 source ~/.Mutt/rc.common
+set editor="xfix -s -- vim '+/^$/+1'"
+
+auto_view application/x-zip-compressed application/msword text/x-sh
+auto_view application/x-gtar application/x-tar application/x-tar-gz text/x-csrc
 
 #set sendmail="/usr/lib/sendmail -oi -oem"
 set ispell="/home/aarons/bin/spell"
 
-set from="aarons@execpc.com"
+set from="aaron@schrab.com"
 my_hdr Bcc: backup@schrab.com
 set hostname="frell.qqx.org"
 
@@ -16,17 +20,24 @@ source ~/.Mutt/ignore
 
 set date_format = "!%H:%M %Z %d %b %Y"
 set attribution="At %d, %?F?%f&I? wrote:"
-set hdr_format="%4C %Z %?[?%[%H:%M]&%[%m/%d]? %-15.15L (%5l) %s"
+#set hdr_format="%4C %Z %?[?%[%H:%M]&%[%m/%d]? %-15.15L (%5l) %s"
+#source "exec index_format|"
+source "exec dynmuttrc|"
 #set xterm_icon='Mutt:%f%r [Msgs:%?M?%M/?%m New:%n%?t? Tag:%t? In:%b%?p? Post:%p?]'
 #set xterm_title='%f%r [%?M?%M/%m ?%nn%?t? %tt? %bi%?p? %pp?]'
 #set xterm_set_titles
+
+set hide_top_missing hide_missing=no
 
 source /home/aarons/.Mutt/aliases
 
 set alias_file=~/.Mutt/aliases
 
+set tmpdir=/tmp/$USER
+
+set keep_flagged
 set save_name                  # save messages in folder named for addressee
-set see_old
+#set see_old
 #set skip_old
 #set pgp_default_version="pgp5"
 source ~/.Mutt/gpg.rc
@@ -41,19 +52,24 @@ send-hook   .         "unmy_hdr From"
 
 folder-hook .         "set nostrict_threads nosave_empty sort=threads weed"
 folder-hook .         "set mime_forward=ask-yes forward_decode nomark_old"
-folder-hook .         'set sort_aux=last-date-received to_chars=" +TCFL"'
-folder-hook .         \
- "set quote_regexp='^([]:})>|!%] ?|([~<]|-+)[|>]| {0,4}[:>|]|[a-z]+[>|]+ ?|=([^=0-9]|$))'"
+folder-hook .         'set sort_aux=last-date to_chars=" +TCFL"'
+#folder-hook .         \
+# "set quote_regexp='^([]:})>|!%] ?|([~<]|-+)[|>]| {0,4}[:>|]|[a-z]+[>|]+ ?|=([^=0-9]|$))'"
 
 folder-hook suspect   "set mime_forward=no noforward_decode"
 
-folder-hook Mail      "set move=yes"
-folder-hook Mail      "set hdr_format='%4C %Z %?[?%[%H:%M]&%[%m/%d]? %-15.15L (%5l) %s'"
+folder-hook .		'macro pager	S	"<save-message>=notsuspect<enter>"	"File spam"'
+folder-hook .		'macro index	S	"<save-message>=notsuspect<enter>"	"File spam"'
+folder-hook =suspect	'macro pager	S	"<pipe-message>spamassassin -d | refilter\n<delete-message>"	"Undo spamassassin"'
+folder-hook =suspect	'macro index	S	"<pipe-message>spamassassin -d | refilter\n<delete-message>"	"Undo spamassassin"'
 
-folder-hook Lists     "set hdr_format='%4C %Z %?[?%[%H:%M]&%[%m/%d]? %-15.15F (%5l) %s'"
+folder-hook Mail      "set move=yes"
+#folder-hook Mail      "set hdr_format='%4C %Z %?[?%[%H:%M]&%[%m/%d]? %-15.15L (%5l) %s'"
+
+#folder-hook Lists     "set hdr_format='%4C %Z %?[?%[%H:%M]&%[%m/%d]? %-15.15F (%5l) %s'"
 folder-hook Lists     'set save_empty to_chars=" +TCF "'
 
-folder-hook spool     "set hdr_format='%4C %Z %?[?%[%H:%M]&%[%m/%d]? %-15.15L (%5l) %s'"
+#folder-hook spool     "set hdr_format='%4C %Z %?[?%[%H:%M]&%[%m/%d]? %-15.15L (%5l) %s'"
 folder-hook spool     "set move=no"
 #folder-hook misc      "push 'D~t cricket\n'"
 
@@ -65,12 +81,12 @@ folder-hook Lists/mutt		"set move=no"
 folder-hook Lists/securelinux	"source ~/.Mutt/expire"
 folder-hook Lists/sawmill	"source ~/.Mutt/expire"
 
-folder-hook (procmail|smartlist) \
-     'set quote_regexp="^([])>%] ?|([~<]|-+)[|>]| {0,4}>|[a-z]+[>|]+ ?|=([^=0-9]|$))"'
+#folder-hook (procmail|smartlist) \
+#     'set quote_regexp="^([])>%] ?|([~<]|-+)[|>]| {0,4}>|[a-z]+[>|]+ ?|=([^=0-9]|$))"'
 
 folder-hook IN        "set move=no"
 folder-hook abuse.net "set move=no sort=last-date"
-folder-hook Read      "set hdr_format='%4C %Z %?[?%[%H:%M]&%[%m/%d]? %-15.15F (%5l) %s'"
+#folder-hook Read      "set hdr_format='%4C %Z %?[?%[%H:%M]&%[%m/%d]? %-15.15F (%5l) %s'"
 folder-hook exser     "set strict_threads"
 folder-hook frontpage "set strict_threads"
 
@@ -78,49 +94,13 @@ folder-hook suspect   "set mark_old"
 
 folder-hook notsuspect "set move=no"
 
-mailboxes ! =Lists/hot-news
+send-hook ~A 'unset pgp_autosign'
+
+mailboxes !
 mbox-hook spool =IN
 mbox-hook backup =Read/backup
 
-mailboxes =Lists/gurus
-subscribe gurus
-mbox-hook Lists/gurus "=Read/gurus/`date '+%Y%m'`"
-
-mailboxes =Lists/listserv
-subscribe listserv@lists.corecomm.net
-mbox-hook Lists/listserv "=Read/listserv"
-send-hook listserv my_hdr From: Aaron Schrab <aaron.schrab@voyager.net>
-
-mailboxes =Lists/mailteam
-subscribe mailteam@voyager.net mailteam@lists.voyager.net
-mbox-hook Lists/mailteam "=Read/mailteam"
-
-mailboxes =Lists/sysops
-subscribe sysops@voyager.net sysops@lists.voyager.net
-mbox-hook Lists/sysops "=Read/sysops"
-send-hook sysops my_hdr From: Aaron Schrab <aaron.schrab@voyager.net>
-
-mailboxes =Lists/net-eng
-subscribe net-eng
-mbox-hook Lists/net-eng "=Read/net-eng/`date '+%Y%m'`"
-
-mailboxes =Lists/allgurus
-subscribe allgurus
-mbox-hook Lists/allgurus "=Read/allgurus/`date '+%Y%m'`"
-
-mailboxes =Lists/tech
-subscribe tech
-mbox-hook Lists/tech "=Read/tech/`date '+%Y%m'`"
-
-mailboxes =Lists/status
-
-mailboxes =Lists/staff
-subscribe staff
-mbox-hook Lists/staff "=Read/staff/`date '+%Y%m'`"
-
-mailboxes =Lists/noc-staff
-subscribe noc-staff
-mbox-hook Lists/noc-staff "=Read/noc-staff/`date '+%Y%m'`"
+mailboxes =Lists/debian-security-announce
 
 mailboxes =Lists/linux-security 
 subscribe linux-security linux-alert
@@ -130,15 +110,36 @@ mailboxes =Lists/bugtraq
 subscribe bugtraq
 mbox-hook Lists/bugtraq "=Read/bugtraq"
 
-mailboxes =Lists/nanog
-subscribe nanog
-mbox-hook Lists/nanog "=Read/nanog"
-send-hook nanog my_hdr From: Aaron Schrab <aaron+nanog@schrab.com>
-
 mailboxes =Lists/lsm-workers
 subscribe lsm-workers
 mbox-hook Lists/lsm-workers "=Read/lsm-workers"
 folder-hook Lists/lsm-workers "set move=no"
+
+mailboxes =Lists/mlug
+subscribe mlug-list
+mbox-hook Lists/mlug "=Read/mlug"
+send-hook mlug-list my_hdr From: Aaron Schrab <aaron+mlug@schrab.com>
+
+mailboxes =Lists/milwpm
+subscribe milwpm@yahoogroups
+mbox-hook Lists/milwpm "=Read/milwpm"
+send-hook milwpm@yahoogroups my_hdr From: Aaron Schrab <aaron@schrab.com>
+
+mailboxes =Lists/double-click
+subscribe talk-dc
+mbox-hook Lists/double-click "=Read/double-click"
+send-hook talk-dc 'my_hdr From: Aaron Schrab <aaron@schrab.com>'
+
+mailboxes =Lists/muug
+subscribe muug
+mbox-hook Lists/muug "=Read/muug"
+send-hook muug my_hdr From: Aaron Schrab <aaron+muug@schrab.com>
+
+mailboxes =Lists/mutt
+subscribe mutt-users mutt-dev
+mbox-hook Lists/mutt "=Read/mutt"
+send-hook mutt 'my_hdr From: Aaron Schrab <aaron+mutt@schrab.com>'
+#send-hook mutt 'set pgp_autosign'
 
 mailboxes =Lists/list-managers
 subscribe list-managers
@@ -155,26 +156,6 @@ subscribe black-cat
 mbox-hook Lists/black-cat "=Read/black-cat"
 send-hook black-cat my_hdr From: Aaron Schrab <aaron@schrab.com>
 
-mailboxes =Lists/yesno
-subscribe yesno
-mbox-hook Lists/yesno "=Read/yesno"
-
-mailboxes =Lists/user-accounting
-subscribe user-accounting
-mbox-hook Lists/user-accounting "=Read/user-accounting"
-
-mailboxes =Lists/billsys
-subscribe billsys
-mbox-hook Lists/billsys "=Read/billsys"
-
-mailboxes =Lists/dnvs
-subscribe dnvs-list
-mbox-hook Lists/dnvs "=Read/dnvs"
-
-mailboxes =Lists/psaphonic
-subscribe psaphonic
-mbox-hook Lists/psaphonic "=Read/psaphonic"
-
 mailboxes =Lists/audit
 subscribe security-audit
 mbox-hook Lists/audit "=Read/audit"
@@ -190,12 +171,7 @@ subscribe securelinux
 mbox-hook Lists/securelinux "=Read/securelinux"
 send-hook securelinux my_hdr From: Aaron Schrab <aaron+sl@schrab.com>
 
-mailboxes =Lists/mkesklyarov
-subscribe mkesklyarov
-mbox-hook Lists/mkesklyarov "=Read/mkesklyarov"
-send-hook mkesklyarov my_hdr From: Aaron Schrab <aaron@schrab.com>
-
-mailboxes =Lists/rblcheck-users/
+mailboxes =Lists/rblcheck-users
 subscribe rblcheck-users
 mbox-hook Lists/rblcheck-users "=Read/rblcheck-users"
 send-hook rblcheck-users 'my_hdr From: Aaron Schrab <aaron@schrab.com>'
@@ -206,20 +182,10 @@ mbox-hook Lists/spamtools "=Read/spamtools"
 # This send-hook is later, after the general one for abuse.net
 #send-hook spamtools my_hdr From: Aaron Schrab <aaron+spamtools@schrab.com>
 
-mailboxes =Lists/double-click
-subscribe talk-dc
-mbox-hook Lists/double-click "=Read/double-click"
-send-hook talk-dc 'my_hdr From: Aaron Schrab <aaron@schrab.com>'
-
 mailboxes =Lists/galeon-user
 subscribe galeon-user
 mbox-hook Lists/galeon-user "=Read/galeon-user"
 send-hook galeon-user 'my_hdr From: Aaron Schrab <aaron+galeon@schrab.com>'
-
-mailboxes =Lists/scud =scud.req
-subscribe scud@lists.execpc.com
-mbox-hook Lists/scud "=Read/scud"
-send-hook scud my_hdr From: Aaron Schrab <aaron@schrab.com>
 
 mailboxes =Lists/irmp3
 subscribe irmp3
@@ -236,46 +202,9 @@ subscribe lirc
 mbox-hook Lists/lirc "=Read/lirc"
 send-hook lirc my_hdr From: Aaron Schrab <aaron+lirc@schrab.com>
 
-mailboxes =Lists/mlug
-subscribe mlug-list
-mbox-hook Lists/mlug "=Read/mlug"
-send-hook mlug-list my_hdr From: Aaron Schrab <aaron+mlug@schrab.com>
-
-mailboxes =Lists/muug
-subscribe muug
-mbox-hook Lists/muug "=Read/muug"
-send-hook muug my_hdr From: Aaron Schrab <aaron+muug@schrab.com>
-
-mailboxes =Lists/sawmill
-subscribe sawmill
-mbox-hook Lists/sawmill "=Read/sawmill"
-send-hook sawmill my_hdr From: Aaron Schrab <aaron+sawmill@schrab.com>
-
-mailboxes =Lists/milw-linux
-subscribe milw-linux
-mbox-hook Lists/milw-linux "=Read/milw-linux"
-send-hook milw-linux 'my_hdr From: Aaron Schrab <aaron@schrab.com>'
-
-mailboxes =Lists/mpg123
-subscribe mpg123
-mbox-hook Lists/mpg123 "=Read/mpg123"
-send-hook mpg123 'my_hdr From: Aaron Schrab <aaron+mpg123@schrab.com>'
-
 mailboxes =Lists/hfs
 subscribe hfs-interest
 mbox-hook Lists/hfs "=Read/hfs"
-
-mailboxes =Lists/funstaff
-subscribe funstaff
-mbox-hook Lists/funstaff "=Read/funstaff"
-
-mailboxes =suspect =qqx.org
-mbox-hook suspect "=spam"
-
-mailboxes =Lists/mutt
-subscribe mutt-users mutt-dev
-mbox-hook Lists/mutt "=Read/mutt"
-send-hook mutt 'my_hdr From: Aaron Schrab <aaron+mutt@schrab.com>'
 
 mailboxes =Lists/secure-mua
 subscribe secure-mua dev@smime.pyerotechnics.com
@@ -288,52 +217,38 @@ subscribe gnu-screen@egroups.com
 mbox-hook Lists/screen "=Read/screen"
 send-hook gnu-screen@egroups 'my_hdr From: <u.utkroyz34ius-h.700a5@pug.qqx.org>'
 
+mailboxes =Lists/jeremiah
+subscribe Jeremiah_Series@yahoogroups.com
+mailboxes Lists/jeremiah "=Read/jeremiah"
+
 mailboxes =Lists/tidbits
 subscribe tidbits-talk
 mbox-hook Lists/tidbits "=Read/tidbits"
 send-hook tidbits 'my_hdr From: Aaron Schrab <aaron@schrab.com>'
 folder-hook tidbits 'set sort_aux=last-date'
 
-mailboxes =Lists/macosx-talk
-subscribe macosx-talk
-mbox-hook Lists/macosx-talk "=Read/macosx-talk"
-send-hook macosx-talk 'my_hdr From: Aaron Schrab <aaron+osx@schrab.com>'
+mailboxes =Lists/mol-general
+subscribe mol-general
+mbox-hook Lists/mol-general "=Read/mol-general"
+send-hook maconlinux.org 'my_hdr From: Aaron Schrab <aaron@schrab.com>'
 
-mailboxes =Lists/debian-powerpc
-subscribe debian-powerpc
+mailboxes `ls -tCdw9999 ~/Mail/Lists/debian-*`
+mailboxes =Lists/debian-pts
+subscribe `ls -tCdw9999 ~/Mail/Lists/debian-* | sed -e 's,\(^\| \)[^ ]*/,,g'`
+lists debian-
+#subscribe debian-mentors debian-powerpc debian-devel
+mbox-hook Lists/debian-mentors "=Read/debian-mentors"
 mbox-hook Lists/debian-powerpc "=Read/debian-powerpc"
+mbox-hook Lists/debian-pts "=Read/debian-pts"
+mbox-hook Lists/debian-devel "=Read/debian-devel"
+mbox-hook Lists/debian-project "=Read/debian-project"
+mbox-hook Lists/debian "=Read/debian"
 send-hook debian.org 'my_hdr From: Aaron Schrab <aaron@schrab.com>'
-
-mailboxes =Lists/viewcvs
-subscribe viewcvs@lyra.org
-mbox-hook Lists/viewcvs "=Read/viewcvs"
-send-hook viewcvs@lyra 'my_hdr From: Aaron Schrab <aaron@schrab.com>'
 
 mailboxes =Lists/sup
 subscribe suplist
 mbox-hook Lists/sup "=Read/sup"
 send-hook suplist@whitefang my_hdr From: Aaron Schrab <aaron+sup@schrab.com>
-
-mailboxes =Lists/linmodems
-subscribe discuss@linmodems.org
-mbox-hook Lists/linmodems "=Read/linmodems"
-send-hook linmodems my_hdr From: Aaron Schrab <aaron@schrab.com>
-mailboxes =misc
-
-#mailboxes =Lists/cvs
-#subscribe info-cvs
-#mbox-hook Lists/cvs "=Read/cvs"
-#send-hook cvs 'my_hdr From: Aaron Schrab <aaron+cvs@schrab.com>'
-
-mailboxes =Lists/vnc
-subscribe vnc-list
-mbox-hook Lists/vnc "=Read/vnc"
-send-hook vnc 'my_hdr From: Aaron Schrab <aaron+vnc@schrab.com>'
-
-mailboxes =Lists/linux-68k
-subscribe linux-mac68k
-mbox-hook Lists/linux-68k "=Read/linux-68k"
-send-hook linux-mac68k 'my_hdr From: Aaron Schrab <aaron+linux-68k@schrab.com>'
 
 mailboxes =Lists/trn
 subscribe trn-users
@@ -372,51 +287,6 @@ subscribe procmail
 mbox-hook Lists/procmail "=Read/procmail"
 send-hook procmail 'my_hdr From: Aaron Schrab <aaron+procmail@schrab.com>'
 
-mailboxes =Lists/lorax
-subscribe lorax-list
-mbox-hook Lists/lorax "=Read/lorax"
-send-hook lorax-list 'my_hdr From: Aaron Schrab <aaron+lorax@schrab.com>'
-
-mailboxes =Lists/rawhide
-subscribe redhat-devel-list
-mbox-hook Lists/rawhide "=Read/rawhide"
-send-hook redhat-devel-l 'my_hdr From: Aaron Schrab <aaron+rawhide@schrab.com>'
-
-mailboxes =Lists/linux-ppc-dev
-subscribe linux-ppc-dev
-mbox-hook Lists/linux-ppc-dev "=Read/linux-ppc-dev"
-send-hook linux-ppc-dev my_hdr From: Aaron Schrab <aaron@schrab.com>
-
-mailboxes =Lists/linux-ppc-user
-subscribe linuxppc-user
-mbox-hook Lists/linux-ppc-user "=Read/linux-ppc-user"
-send-hook linuxppc-user my_hdr From: Aaron Schrab <aaron+ppc@schrab.com>
-
-mailboxes =Lists/mailman
-subscribe mailman-users
-mbox-hook Lists/mailman "=Read/mailman"
-send-hook mailman-users 'my_hdr From: Aaron Schrab <aaron+mailman@schrab.com>'
-
-mailboxes =Lists/listar =Lists/listar
-lists listar-dev listar-support
-mbox-hook Lists/listar "=Read/listar"
-send-hook listar\.org 'my_hdr From: Aaron Schrab <aaron+listar@schrab.com>'
-
-mailboxes =Lists/linux-tape
-lists linux-tape
-mbox-hook Lists/linux-tape "=Read/linux-tape"
-send-hook linux-tape 'my_hdr From: Aaron Schrab <aaron+lt@schrab.com>'
-
-mailboxes =Lists/linux-scsi
-lists linux-scsi
-mbox-hook Lists/linux-scsi "=Read/linux-scsi"
-send-hook linux-scsi 'my_hdr From: Aaron Schrab <aaron+ls@schrab.com>'
-
-mailboxes =Lists/dingus
-subscribe dingus
-mbox-hook Lists/dingus "=Read/dingus"
-send-hook dingus 'my_hdr From: Aaron Schrab <aaron+dingus@schrab.com>'
-
 mailboxes =Lists/linux-pmac
 lists linux-pmac
 mbox-hook Lists/linux-pmac "=Read/linux-pmac"
@@ -426,19 +296,6 @@ mailboxes =Lists/crypto
 subscribe crypto
 mbox-hook Lists/crypto "=Read/crypto"
 
-#mailboxes =Lists/inet
-subscribe inet-access list@inet-access
-mbox-hook Lists/inet "=Read/inet"
-send-hook inet-access 'my_hdr From: Aaron Schrab <aaron+inet@schrab.com>'
-
-mailboxes =Lists/linux-athome
-lists linux-athome
-mbox-hook Lists/linux-athome "=Read/linux-athome"
-
-mailboxes =Lists/pipeline
-lists pipeline
-mbox-hook Lists/pipeline "=Read/pipeline"
-
 mailboxes =Lists/livingston-radius
 lists portmaster-radius
 mbox-hook Lists/livingston-radius "=Read/livingston-radius"
@@ -447,18 +304,12 @@ subscribe radius-ietf
 mbox-hook Lists/radius-ietf "=Read/radius-ietf"
 send-hook radius 'my_hdr From: Aaron Schrab <aaron+radius@schrab.com>'
 
-mailboxes =Lists/usrtc
-lists usr-tc
-mbox-hook Lists/usrtc "=Read/usrtc"
-send-hook usr-tc 'my_hdr From: Aaron Schrab <aaron+tc@schrab.com>'
-
-mailboxes =Lists/axp
-lists axp-list
-mbox-hook Lists/axp =Read/axp
-
 mailboxes =Lists/bt
 lists bt-list
 mbox-hook Lists/bt =Read/bt
+
+mailboxes =misc =suspect =qqx.org
+mbox-hook suspect "=spam"
 
 send-hook warrior            "my_hdr From: Aaron Schrab <aaron@schrab.com>"
 send-hook schrab             "my_hdr From: Aaron Schrab <aaron@schrab.com>"
@@ -497,6 +348,7 @@ fcc-save-hook abuse\.net         "=abuse.net"
 fcc-save-hook @orbs\.org         "=orbs"
 fcc-save-hook relays@radparker   "=rrss"
 fcc-save-hook eric@bernafamily   "=eric@bernafamily.com"
+fcc-save-hook jbaker@police.wauwatosa.wi.us "=joebaker"
 
 save-hook mlug-list          "=mlug"
 save-hook execpc-circuit-users "=execpc-circuit-users"
@@ -505,3 +357,101 @@ save-hook this-is-true-admin "=true"
 save-hook @netflix           "=netflix"
 save-hook '~C @lists\.debian\.org' "=debian"
 save-hook @billmanager.accountonline "=billmanager"
+save-hook '~h ^list-unsubscribe:.*stellaaward' "=stellaawards"
+
+# -*-muttrc-*-
+## The following options are only available if you have
+## compiled in S/MIME support
+
+# If you compiled mutt with support for both PGP and S/MIME, PGP
+# will be the default method unless the following option is set
+#set smime_is_default
+
+# Uncoment this if you don't want to set labels for certificates you add.
+# unset smime_ask_cert_label
+
+# Passphrase expiration
+set smime_timeout=300
+
+# Global crypto options -- these affect PGP operations as well.
+#set crypt_autosign = yes
+set crypt_replyencrypt = yes
+set crypt_replysign = yes
+set crypt_replysignencrypted = yes
+set crypt_verify_sig = yes
+
+# Section A: Key Management.
+
+# The (default) keyfile for signing/decrypting.  Uncomment the following
+# line and replace the keyid with your own.
+set smime_default_key="12345678.0"
+
+# Uncommen to make mutt ask what key to use when trying to decrypt a message.
+# It will use the default key above (if that was set) else.
+# unset smime_decrypt_use_default_key
+
+# Path to a file or directory with trusted certificates
+set smime_ca_location="~/.smime/ca-bundle.crt"
+
+# Path to where all known certificates go. (must exist!)
+set smime_certificates="~/.smime/certificates"
+
+# Path to where all private keys go. (must exist!)
+set smime_keys="~/.smime/keys"
+
+# These are used to extract a certificate from a message.
+# First generate a PKCS#7 structure from the message.
+set smime_pk7out_command="openssl smime -verify -in %f -noverify -pk7out"
+
+# Extract the included certificate(s) from a PKCS#7 structure.
+set smime_get_cert_command="openssl pkcs7 -print_certs -in %f"
+
+# Extract the signer's certificate only from a S/MIME signature (sender verification)
+set smime_get_signer_cert_command="openssl smime -verify -in %f -noverify -signer %c -out /dev/null"
+
+# This is used to get the email address the certificate was issued to.
+set smime_get_cert_email_command="openssl x509 -in  %f -noout -email"
+
+# Add a certificate to the database using smime_keys.
+set smime_import_cert_command="smime_keys add_cert %f"
+
+
+
+# Sction B: Outgoing messages
+
+# Algorithm to use for encryption.
+# valid choices are rc2-40, rc2-64, rc2-128, des, des3
+set smime_encrypt_with="des3"
+
+# Encrypt a message. Input file is a MIME entity.
+set smime_encrypt_command="openssl smime -encrypt -%a -outform DER -in %f %c"
+
+# Sign.
+set smime_sign_command="openssl smime -sign -signer %c -inkey %k -passin stdin -in %f -certfile %i -outform DER"
+
+
+
+#Section C: Incoming messages
+
+# Decrypt a message. Output is a MIME entity.
+set smime_decrypt_command="openssl smime -decrypt  -passin stdin -inform DER -in %f -inkey %k -recip %c"
+
+# Verify a signature of type multipart/signed
+set smime_verify_command="openssl smime -verify -inform DER -in %s %C -content %f"
+
+# Verify a signature of type application/x-pkcs7-mime
+set smime_verify_opaque_command="openssl smime -verify -inform DER -in %s %C"
+
+
+
+# Section D: Alternatives
+
+# Sign.  If you wish to NOT include the certificate your CA used in signing
+# your public key, use this command instead.
+# set smime_sign_command="openssl smime -sign -signer %c -inkey %k -passin stdin -in %f -outform DER"
+#
+# In order to verify the signature only and skip checking the certificate  chain:
+#
+# set smime_verify_command="openssl smime -verify -inform DER -in %s -content %f -noverify"
+# set smime_verify_opaque_command="openssl smime -verify -inform DER -in %s -noverify"
+#

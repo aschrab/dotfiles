@@ -1,3 +1,4 @@
+ignore "From "
 ignore Return-Path:
 ignore Received:
 ignore Message-Id:
@@ -551,3 +552,21 @@ ignore DSA-
 ignore SEMS-RPK-
 ignore X-AntiAbuse:
 ignore X-QQX-Envelope-To:
+ignore X-Sponsor:
+ignore Content-Disposition:
+ignore X-Operation-System:
+ignore X-Geekcode:
+ignore X-Pubkey
+ignore X-Company:
+ignore X-Location:
+ignore X-Service:
+ignore X-Designation:
+ignore X-Best-Window-Manager
+ignore X-Auth:
+ignore X-Abuse-Info:
+ignore X-Zippy-
+ignore X-Reply-Permission:
+ignore X-Legal-Notice
+ignore X-No-Spam
+ignore X-Unsubscribe:
+ignore X-Habeas-SWE-

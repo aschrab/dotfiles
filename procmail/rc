@@ -1,4 +1,4 @@
-# vim: ai si shiftwidth=2 noexpandtab tw=0 wm=0
+# vim: ai si shiftwidth=2 noexpandtab tw=0 wm=0 ft=procmail
 #VERBOSE=y
 MAILDIR="$HOME/Mail"
 DEFAULT="INBOX/"
@@ -10,9 +10,15 @@ S="[ 	]"
 NL="
 "
 
-RCVERSION="$Id: rc,v 1.12 2001/09/16 09:21:24 aarons Exp $"
+RCVERSION="$Id: rc,v 1.13 2003/01/21 04:13:29 ats Exp $"
 
 LOCALSERVER="(pug\.(schrab\.com|qqx\.org)|((vm[0-9]+|[abcyz])\.mx|smtpgate)\.execpc\.com)"
+
+:0
+* ! REFILTER ?? y
+{
+  LOGFILE="$HOME/.Procmail/log"
+}
 
 :0
 * ^X-Mailer: ccMail Link to SMTP R8.00.00
