@@ -57,7 +57,7 @@ set vb
 set t_vb=
 
 :if &encoding == "utf-8"
-  set listchars=tab:>-,trail:.
+  set listchars=tab:Â»Â­,trail:Â·
 :else
   set listchars=tab:»­,trail:·
 :endif
