@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.105 $'
+rcvers='$Revision: 1.106 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -113,7 +113,7 @@ export pColor
 alias stty='noglob stty'
 
 case "$TERM" in
-  xterm|xtermc|xterm-debian|xterm-color|rxvt)
+  xterm|xtermc|xterm-debian|xterm-color|rxvt|gnome)
     if [[ $TERM == xterm && $OSTYPE == freebsd* ]]
     then
       TERM=xterm-color
@@ -285,6 +285,7 @@ export WORDCHARS='*?_-.[]~/&|;!#$%^(){}<>,'
 export HOST_DEFAULTS='-R'
 
 export NNTPSERVER="news.execpc.com"
+export EMAIL="aaron@schrab.com"
 
 if [[ -d "/usr/local/lib/site_perl" ]]; then
   export PERL5LIB="/usr/local/lib/site_perl"
@@ -663,7 +664,7 @@ case "$host" in
       export ftp_proxy="http://lafe.schrab.com:3128/"
       ;;
 
-   "spoiler")
+   "frell")
       export http_proxy="http://localhost:3128/"
       export ftp_proxy="http://localhost:3128/"
       ;;
