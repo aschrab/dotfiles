@@ -3,11 +3,11 @@
 # reset signal handlers
 trap -
 bindkey -em
-umask 077
+umask 022
 
 export BAUD=0
 
-rcvers='$Revision: 1.123 $'
+rcvers='$Revision: 1.124 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -56,7 +56,7 @@ fi
 if [[ ,$(grep -c "^$USERNAME:x:$GID:$" /etc/group 2> /dev/null), == ",1,"
       && ",`grep -c :$GID: /etc/passwd 2> /dev/null`," == ",1," ]]
 then
-  umask 007
+  umask 002
 fi
 
 #  Set various shell variables
@@ -193,6 +193,8 @@ case "$TERM" in
     ;;
 esac
 
+ZSH_MAJOR_VERSION="${${(s:.:)ZSH_VERSION}[0]}"
+
 if [[ "${DISPLAY#${HOST}:}" != "$DISPLAY" ]]
 then
   DISPLAY="localhost:${DISPLAY#${HOST}:}"
@@ -201,19 +203,17 @@ fi
 unset MAIL  # set it later in host specific portion
 unset MAILCHECK
 
-#if [[ -n $PZSH ]]; then
-#  if [[ -n $PPWD && -d $PPWD ]]; then
-#    # cd to directory parent shell was in (see su function)
-#    cd $PPWD
-#    unset PPWD
-#  fi
-#  if grep '^aarons:' /etc/passwd > /dev/null 2>&1; then
-#    if [ -r ~aarons/.Zsh-hist.$host.$PZSH ]; then
-#      fc -R ~aarons/.Zsh-hist.$host.$PZSH
-#      rm -f ~aarons/.Zsh-hist.$host.$PZSH
-#    fi
-#  fi
-#fi
+if [[ -n $PZSH ]]; then
+  if [[ -n $PPWD && -d $PPWD ]]; then
+    # cd to directory parent shell was in (see su function)
+    cd $PPWD
+    unset PPWD
+  fi
+  if [ -r $HOME/.Zsh-hist.$host.$PZSH ]; then
+    fc -R $HOME/.Zsh-hist.$host.$PZSH
+    rm -f $HOME/.Zsh-hist.$host.$PZSH
+  fi
+fi
 
 unset HISTFILE
 HISTSIZE=250
@@ -225,10 +225,10 @@ ppath=(
   ~/bin
   /usr/local/bin
   /sw/bin
+  /sw/sbin
   /usr/bin
   /bin
   /usr/local/sbin
-  /sw/sbin
   /usr/sbin
   /sbin
   /usr/X11R6/bin
@@ -294,7 +294,7 @@ unsetopt \
   Ignore_EOF \
   Prompt_CR
 
-if [[ "$ZSH_VERSION[1]" = "3" ]]; then
+if [[ $ZSH_MAJOR_VERSION -ge 3 ]]; then
   setopt Equals Function_ArgZero Mult_IOs
 else
   unsetopt No_Equals
@@ -743,7 +743,7 @@ if [ "$host" = "earth" ]; then
   # cd/pushd completion based on $watch
   compctl -x 'S[/][~][./][../]' -g '*(-/)' - \
     'n[-1,/], s[]' -K __cdmatch -S '/' + -n -k watch -P'~' + -- cd pushd
-elif [[ "$ZSH_VERSION[1]" = "3" ]]
+elif [[ $ZSH_VERSION -ge 3 ]]
 then
   # cd/pushd completion for all users
   compctl -x 'S[/][~][./][../]' -g '*(-/)' - \
@@ -963,7 +963,6 @@ function __cdmatch () {
    return
 }
 
-ZSH_MAJOR_VERSION="${${(s:.:)ZSH_VERSION}[0]}"
 if [[ $ZSH_MAJOR_VERSION -ge 4 &&
      -d /usr/share/zsh/$ZSH_VERSION/functions/Completion ]]
 then
