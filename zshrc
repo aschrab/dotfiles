@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.96 $'
+rcvers='$Revision: 1.97 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -118,8 +118,17 @@ case "$TERM" in
     fi
     if [[ $OSTYPE == linux* ]]
     then
-      export LANG="en_US"
+      langset="no"
+      for l in en_US.iso885915 en_US.iso88591 en_US
+      do
+        if [[ $langset == no && -d /usr/lib/locale/$l ]]
+        then
+          export LANG="$l"
+          langset="yes"
+        fi
+      done
       export LC_COLLATE="C"
+      unset langset l
     fi
     stty erase '^?'
     print -P "${green}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${fColor}"
