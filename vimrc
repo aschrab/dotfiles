@@ -1,4 +1,5 @@
 " $Id$
+" vim: fdm=marker
 :version 4.0
 
 set statusline=%<%f%h%m%r%w\ [%{&ft},%{&ff},%{&fenc}]\ %=\ L:%l\/%L\ C:%c%V\ pos:%o\ asc:%B\ %P
@@ -15,6 +16,7 @@ set t_Co=16
 "set t_Sf=[3%p1%dm
 "set t_Sb=[4%p1%dm
 syntax on
+" Custom colors {{{
 highlight Comment ctermfg=DarkRed
 highlight Constant ctermfg=DarkMagenta
 highlight procmailAction ctermfg=DarkGreen
@@ -36,7 +38,9 @@ highlight rubyEscape ctermbg=Cyan ctermfg=DarkBlue
 
 highlight diffRemoved ctermfg=Red
 highlight diffAdded ctermfg=Blue
+"}}}
 
+" Miscellaneous options {{{
 set shiftwidth=2
 set autoindent
 set nobackup
@@ -63,12 +67,14 @@ set wildmode=longest:full,full
 set wildignore+=*.o,*~
 
 set foldopen=mark,quickfix,tag,block,hor,search,jump
+"}}}
 
-" Don't force sync after writing swap files, to avoid spinning up disk
+" Don't force sync after writing swap files, to avoid spinning up disk {{{
 :if $HOST =~ "frell"
   set swapsync=
   set cmdheight=4
 :endif
+"}}}
 
 ":if $DISPLAY == ":0"
   set mouse=a
@@ -78,19 +84,23 @@ set foldopen=mark,quickfix,tag,block,hor,search,jump
 " Not many filenames have = in them, so make completion easier
 set isfname-==
 
-" Tell vim to use visual beep then disable visual beep, to keep it silent
+" Tell vim to use visual beep then disable visual beep, to keep it silent {{{
 set vb
 set t_vb=
+"}}}
 
+" Display tabs and trailing spaces {{{
 :if &encoding == "utf-8"
   set listchars=tab:Â»Â­,trail:Â·
 :else
   set listchars=tab:»­,trail:·
 :endif
 set list
+"}}}
+
 set guicursor=n-v-c:block-Cursor-blinkon0,ve:ver35-Cursor-blinkon0,o:hor50-Cursor-blinkon0,i-ci:ver25-Cursor-blinkon0,r-cr:hor20-Cursor-blinkon0,sm:block-Cursor-blinkon0
 
-" If requested file is already open, just open it readonly
+" If requested file is already open, just open it readonly {{{
 func CheckSwap()
   swapname
   if v:statusmsg =~ '\.sw[^p]$'
@@ -101,7 +111,9 @@ if &swf
   set shm+=A
   au BufReadPre * call CheckSwap()
 endif 
+"}}}
 
+" Abbreviations/automatic spelling correction {{{
 iab teh the
 iab adn and
 iab nad and
@@ -115,6 +127,7 @@ iab yoru your
 iab lenght length
 iab ube unsolicited bulk email
 iab UBE Unsolicited Bulk Email
+"}}}
 
 " .com files are *not* DCL
 " au! syntax * *.com
@@ -139,13 +152,15 @@ inoremap <C-L> <C-X><C-L>
 inoremap <C-e> <esc>
 map gf :new <cfile>
 
+" Mappings for email {{{
 map ,ad aAaron Schrab <aaron@schrab.com>
 map ,af 1G/^From:WD
 map ,al aAaron Schrab <listmaster@execpc.com>
 map ,ap aAaron Schrab <ats@execpc.com>
 map ,aw aAaron Schrab <aarons@execpc.com>
+"}}}
 
-" signature stuff
+" signature stuff {{{
 map ,sd oi-- :r~/.sigs/schrab:r!~/bin/fortune
 map ,sf :r!~/bin/fortune
 map ,sl oi-- :r~/.sigs/lsm
@@ -154,8 +169,9 @@ map ,sp oi-- :r~/.sigs/personal:r!~/bin/fortune
 map ,ss :r~/.sigs/spamreply
 map ,sw oi-- :r~/.sigs/work
 map ,sx :r~/.sigs/lsm.luser
+"}}}
 
-" Support for scroll wheel
+" Support for scroll wheel {{{
 map <M-Esc>[62~ <MouseDown>
 map! <M-Esc>[62~ <MouseDown>
 map <M-Esc>[63~ <MouseUp>
@@ -164,6 +180,7 @@ map <M-Esc>[64~ <S-MouseDown>
 map! <M-Esc>[64~ <S-MouseDown>
 map <M-Esc>[65~ <S-MouseUp>
 map! <M-Esc>[65~ <S-MouseUp>
+"}}}
 
 "map ,x :perl chmod(01600, $curwin->Buffer->Name):wq!
 map ,x :w<C-M>:r!chmod +x %<C-M>:w!<C-M>
