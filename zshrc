@@ -740,29 +740,7 @@ if [ -x /usr/ucb/ps ] ; then
   alias ps=/usr/ucb/ps
 fi
 
-if [ "$host" = "earth" ]; then
-  watch=(aarons ats lsm meek jake pfriedel bofh
-         pfingst lungfish j_schrab root )
-
-  # Limit username completion to users in $watch
-  compctl -Tx  'C[0,*/*]' -f - 's[~]' -k watch -S/
-
-  compctl -f -x 'C[-1,*chown][-1,-*] S[-]' \
-                       -k "( -c -h -f -R -v --changes --no-dereference --silent
-                             --quiet --recursive --verbose --help --version )" \
-              - 'p[1] N[1,.:],C[-1,-*] N[1,.:]' -k __groups \
-              - 'p[1],C[-1,-*]' -k watch -- chown
-
-  # hash directories of friends so cd completion still works
-  for u in $watch
-  do
-    hash -d $u=~$u
-  done
-
-  # cd/pushd completion based on $watch
-  compctl -x 'S[/][~][./][../]' -g '*(-/)' - \
-    'n[-1,/], s[]' -K __cdmatch -S '/' + -n -k watch -P'~' + -- cd pushd
-elif [[ $ZSH_MAJOR_VERSION -ge 3 ]]
+if [[ $ZSH_MAJOR_VERSION -ge 3 ]]
 then
   # cd/pushd completion for all users
   compctl -x 'S[/][~][./][../]' -g '*(-/)' - \
