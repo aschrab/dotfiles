@@ -31,6 +31,15 @@ $_ = `$mutt -F /dev/null -v 2> /dev/null`;
 /^Mutt ([\d.]+)i? /;
 my $mutt_version = new version $1;
 
+my $alternates = '(aschrab@copweb\.com|(aarons|(aaron\.|a_)schrab|ats|lsm|bofh)@([a-z0-9-]+\.)*execpc\.com|aaron\.schrab@(voyager\.net|core(comm)?\.com)|(aaron.*|root|.*master|ats|bofh)@schrab\.com|.*@pug\.qqx\.org)';
+
+if( $mutt_version lt "v1.5.6" ) {
+  print "set alternates = '$alternates';\n"
+}
+else {
+  print "alternates '$alternates';\n"
+}
+
 if( /date_conditional/ ) {
   $date_fmt = '%?[1y?%\\\\?[1d\\\\?%[%H:%M ]\\\\&%[%d/%b]\\\\?&%[%b %y]?';
 }
