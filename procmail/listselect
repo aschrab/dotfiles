@@ -83,7 +83,7 @@ SUBJ
 { LIST=Lists/nanog/ }
 
 :0
-* ^(Sender: owner-mutt|X-Envelope-To: aaron\+mutt@schrab)
+* ^Return-Path: <mutt-(users|dev|announce)-owner-aaron
 {
   LIST=Lists/mutt/
   
