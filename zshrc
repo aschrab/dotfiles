@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.36 $'
+rcvers='$Revision: 1.37 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -121,6 +121,8 @@ case "$TERM" in
     RPS1='%U%~%u'
     ;;
 esac
+
+DISPLAY="${DISPLAY#$HOST}"
 
 unset MAIL  # set it later in host specific portion
 unset MAILCHECK
