@@ -140,6 +140,13 @@ SUBJ
 }
 
 :0
+* ^X-Loop: contrib-list@redhat
+{
+  REPLYTO=contrib-list
+  LIST=Lists/contrib/
+}
+
+:0
 * X-Mailing-List: <starbuck-list@redhat
 {
   REPLYTO=starbuck-list
