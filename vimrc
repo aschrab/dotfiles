@@ -8,6 +8,8 @@ let perl_highlight_matches = 1
 "let perl_want_scope_in_variables = 1
 "let perl_embedded_pod = 1
 
+let g:xml_syntax_folding = 1
+
 set t_Co=16
 "set t_Sf=[3%p1%dm
 "set t_Sb=[4%p1%dm
