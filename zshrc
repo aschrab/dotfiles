@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.84 $'
+rcvers='$Revision: 1.85 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -617,7 +617,8 @@ case "$host" in
       ;;
 
    "faboo")
-      if ifconfig | egrep 'inet addr:(169.207.53|192.168.42).' > /dev/null 2>&1
+      if [ -z "$STY" ] && \
+        ifconfig | egrep 'inet addr:(169.207.53|192.168.42).' > /dev/null 2>&1
       then
         export http_proxy="http://lafe.schrab.com:3128/"
         export ftp_proxy="http://lafe.schrab.com:3128/"
