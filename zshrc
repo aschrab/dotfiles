@@ -961,6 +961,8 @@ function __cdmatch () {
 if [[ $ZSH_MAJOR_VERSION -ge 4 ]]; then
   if [[ -d /usr/share/zsh/$ZSH_VERSION/functions/Completion ]]; then
     fpath=( $fpath /usr/share/zsh/$ZSH_VERSION/functions/{Completion,Misc} )
+  elif [[ -d /usr/local/share/zsh/$ZSH_VERSION/functions/Completion ]]; then
+    fpath=( $fpath /usr/local/share/zsh/$ZSH_VERSION/functions/{Completion,Misc} )
   elif [[ -d /usr/local/share/zsh/$ZSH_VERSION/functions ]]; then
     fpath=( $fpath /usr/local/share/zsh/$ZSH_VERSION/functions )
   fi
