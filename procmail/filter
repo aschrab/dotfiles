@@ -1,7 +1,7 @@
 :0
 * ! schrab\.com
 * ^TOmanager@execpc\.com
-* ^From:.*(domreg|notify|rereg|invoice|hostmast(er)?)@internic\.net
+* ^From:.*((hst|dom)reg|notify|rereg|invoice|hostmast(er)?)@internic\.net
 {
   LOG="$TIME: internic -> manager TRASHED$NL"
 
