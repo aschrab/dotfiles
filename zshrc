@@ -641,24 +641,29 @@ vdiff () {
     opt='-u'
   fi
   $cvs diff $opt "$@" > $TMPDIR/$host.$$.diff
-  #case "$?" in
-  case "$cvs:$?" in
-    :0|cvs:0)
-      echo "No differences"
-      ;;
-    *:1|svn:0)
-      case "$EDITOR" in
-	*vim*)
-	  $EDITOR +'set ft=diff' -R $TMPDIR/$host.$$.diff
-	  ;;
-	*)
-	  $EDITOR -R $TMPDIR/$host.$$.diff
-	  ;;
-	esac
-      ;;
-    *)
-      ;;
-  esac
+  local dstat=$?
+
+  if [ -s $TMPDIR/$host.$$.diff ]; then
+    case "$cvs:$dstat" in
+      :0|cvs:0)
+        echo "No differences"
+        ;;
+      *:1|svn:0)
+        case "$EDITOR" in
+          *vim*)
+            $EDITOR +'set ft=diff' -R $TMPDIR/$host.$$.diff
+            ;;
+          *)
+            $EDITOR -R $TMPDIR/$host.$$.diff
+            ;;
+          esac
+        ;;
+      *)
+        ;;
+    esac
+  else
+    echo "No differences"
+  fi
   rm -f $TMPDIR/$host.$$.diff
 }
 
