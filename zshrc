@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.13 $'
+rcvers='$Revision: 1.14 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -279,6 +279,9 @@ bindkey '\e;' copy-prev-word
 bindkey    '\x20' magic-space
 bindkey '\M-\x20' magic-space
 bindkey '\e\x20' magic-space
+# M-Q pushes all pending lines onto the stack, not just current line
+bindkey '\M-q' push-input
+bindkey '\eq' push-input
 
 #  Run a few informative commands
 if [ ! -f .hushlogin ]; then
