@@ -7,7 +7,7 @@ umask 022
 
 export BAUD=0
 
-rcvers='$Revision: 1.126 $'
+rcvers='$Revision: 1.127 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -192,6 +192,9 @@ case "$TERM" in
     }
     ;;
 esac
+
+# Make sure the prompt begins on a new line
+PS1="%{%S$%s${(pl:COLUMNS-4:: ::\r:)}%}$PS1"
 
 ZSH_MAJOR_VERSION="${${(s:.:)ZSH_VERSION}[0]}"
 
@@ -535,7 +538,7 @@ if [[ ! -f .hushlogin && -n $PZSH ]]; then
   esac
 fi
 
-export PS1 PATH TERM
+export PATH TERM
 
 if [ -d /usr/share/zsh/functions ]; then
   fpath=( /usr/share/zsh/functions )
@@ -1008,12 +1011,6 @@ then
   zstyle -e ':completion:*:complete:ssh:*:hosts' hosts __sshhosts
   #zstyle ':completion:*:my-accounts' users-hosts $my_accounts
   zstyle -e ':completion:*:my-accounts' users-hosts __ssh_users
-
-  autoload -U promptnl
-
-  precmd () {
-    promptnl
-  }
 
   __ssh_users () {
     local shosts
