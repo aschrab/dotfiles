@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.29 $'
+rcvers='$Revision: 1.30 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -94,6 +94,12 @@ case "$TERM" in
     PS1='%{]1;%(#.#.$)$host]2;%(#.#.$)$host!%~%}'
     PS1="$PS1"'%{$pColor%}%1v%!)$host%(#.#.$)%{$white%} '
     RPS1='%{$pColor%} %~%{$white%}'
+    case "$OSTYPE" in
+      solaris*)
+        # Solaris' usual termcap entry for screen sucks, so don't use it.
+        TERM=xterm
+        ;;
+    esac
     ;;
   linux)
     stty erase '^?'
