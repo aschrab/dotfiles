@@ -1,22 +1,29 @@
-#text/html; xfix netscape -remote 'openURL('%s')'; test=xfix /home/aarons/bin/runningnetscape
+#text/html; xfix -s -- netscape -remote 'openURL('%s')'; test=xfix -s -- /home/aarons/bin/runningnetscape
 text/html; w3m -dump -T text/html %s; copiousoutput
 text/x-internet-signup; cat -v %s; copiousoutput
 text/on; cat -v %s; copiousoutput
+text/x-patch; cat -v %s; copiousoutput
+text/x-sh; cat -v %s; copiousoutput
+text/x-csrc; cat -v %s; copiousoutput
 
-image/*; xfix display %s; test=xfix /home/aarons/bin/runningx
+image/*; xfix -s -- display %s; test=xfix -s -- /home/aarons/bin/runningx
 image/gif;  ; x-mozilla-flags=internal
 image/jpeg; ; x-mozilla-flags=internal
 
+application/x-zip-compressed; unzip -l %s; copiousoutput
 application/x-gunzip;/bin/gunzip -c %s; copiousoutput
+application/x-gtar; tar tzvf %s 2>/dev/null; copiousoutput
 application/x-tar-gz; tar tzvf %s 2>/dev/null; copiousoutput
 application/x-tar; tar tvf %s 2>/dev/null; copiousoutput
 application/x-sh; cat -v %s; copiousoutput
+application/x-shellscript; cat -v %s; copiousoutput
+application/x-perl; cat -v %s; copiousoutput
 application/x-patch; cat -v %s; copiousoutput
 
 application/octet-stream; mutt.octet.filter %s; copiousoutput
-text/x-vcard; mutt.vcard.filter; copiousoutput
+#text/x-vcard; mutt.vcard.filter; copiousoutput
 
-application/vnd.ms-excel; xfix gnumeric %s
+application/vnd.ms-excel; xfix -s -- gnumeric %s
 
 application/msword; antiword %s; copiousoutput
 #application/msword; wvText %s; copiousoutput
@@ -29,7 +36,7 @@ message/external-body; lynx -dump ftp://%{site}/%{directory}/%{name} ; \
 
 #application/pgp-keys; pgp -f < %s ; copiousoutput
 application/pgp-keys; gpg -v %s ; copiousoutput
-application/pdf; xfix /usr/local/bin/acroread "%s"; test=xfix /home/aarons/bin/runningx
+application/pdf; xfix -s -- /usr/local/bin/acroread "%s"; test=xfix -s -- /home/aarons/bin/runningx
 #mailcap entry added by Netscape Helper
 audio/x-pn-realaudio;/usr/bin/rvplayer "%s"
 #mailcap entry added by Netscape Helper
