@@ -125,10 +125,10 @@ rss/
 }
 
 :0
-* ^List-Id: <fxruby-users\.lists\.sourceforge\.net>
+* ^List-Id: <?fxruby-users(\.lists)?\.(sourceforge\.net|rubyforge\.org)
 {
   LIST=Lists/fxruby-users/
-  SUBJ='\[Fxruby-users\]'
+  SUBJ='\[[Ff]xruby-users\]'
 }
 
 :0
