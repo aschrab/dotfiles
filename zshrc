@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.27 $'
+rcvers='$Revision: 1.28 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -91,12 +91,7 @@ case "$TERM" in
     ;;
   screen)
     print -P "${yellow}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${white}"
-    if [[ $SCREENTERM == "xterm" ]]
-    then
-      PS1='%{]1;%(#.#.$)$host]2;%(#.#.$)$host!%~%}'
-    else
-      PS1=''
-    fi
+    PS1='%{]1;%(#.#.$)$host]2;%(#.#.$)$host!%~%}'
     PS1="$PS1"'%{$pColor%}%1v%!)$host%(#.#.$)%{$white%} '
     RPS1='%{$pColor%} %~%{$white%}'
     ;;
@@ -374,6 +369,17 @@ compctl -g '*' -x 'S[.]','C[0,*/.*]' -g '*(D)' -- rm
 compctl -g '*(-/)' + -g '.*(-/)' + -k '(..)' cd rmdir
 compctl -jP '%' kill fg bg disown
 compctl -vP '$' echo
+
+if [[ $OSTYPE == linux && -f /lib/modules/`uname -r`/modules.dep ]]
+then
+  __modules=($(sed -n -e 's,^[^:]*/,,' -e 's,\.o:.*$,,p' /lib/modules/`uname -r`/modules.dep))
+  compctl -k __modules insmod modprobe
+
+  function __lsmod () {
+    reply=($(lsmod | awk '{if (NR > 1) print $1}'))
+  }
+  compctl -K __lsmod rmmod
+fi
 
 function __chroot () {
   read -cA args
