@@ -100,8 +100,6 @@ bind  index	B	bounce-message
 macro index     A       "c+Lists/inet\n"
 macro index     "\Ck"	"|pgp -kaf\n"
 macro index	G	"!fetchmail\n"
-macro index     i       ":set hdr_format='%4C %Z %?[?%[%H:%M]&%[%m/%d]? %-15.15F (%5l) %s'\n"
-macro index     I       ":set hdr_format='%4C %Z %?[?%[%H:%M]&%[%m/%d]? %-15.15L (%5l) %s'\n"
 macro index     "\Cb"   "|urlview\n"
 
 macro attach    "\Ck"	"|pgp -kaf\n"
@@ -127,6 +125,7 @@ color attachment        white blue #	default
 color hdrdefault	cyan	default
 color header		red	default \
       "^X-(Suspect-reason|spam-action|procmail|Diagnostic|Processed|Country):"
+color header		red	default "^X-Debian-PR-Package:"
 color index             red     default ~T
 color signature		cyan	default
 color markers           blue    default

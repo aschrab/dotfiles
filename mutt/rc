@@ -6,6 +6,10 @@ unhook *
 source ~/.Mutt/rc.common
 set editor="xfix -s -- vim '+/^$/+1'"
 
+# Since a lot of software claims that cp1252 encoded text is actually
+# iso-8859-1, and the former is a superset of the latter, just allow it.
+charset-hook iso-8859-1 cp1252
+
 auto_view application/x-zip-compressed application/msword text/x-sh
 auto_view application/x-gtar application/x-tar application/x-tar-gz text/x-csrc
 
@@ -78,6 +82,8 @@ folder-hook Lists/allgurus	"set move=no"
 folder-hook Lists/yesno		"set move=no"
 folder-hook Lists/user-account	"set move=no"
 folder-hook Lists/mutt		"set move=no"
+folder-hook Lists/mlug-org	"set move=no"
+folder-hook Lists/mlug-board	"set move=no"
 folder-hook Lists/securelinux	"source ~/.Mutt/expire"
 folder-hook Lists/sawmill	"source ~/.Mutt/expire"
 
@@ -101,6 +107,7 @@ mbox-hook spool =IN
 mbox-hook backup =Read/backup
 
 mailboxes =Lists/debian-security-announce
+mailboxes =Lists/mlug-board =Lists/mlug-board-d1 =Lists/mlug-board-d2
 
 mailboxes =Lists/linux-security 
 subscribe linux-security linux-alert
@@ -115,10 +122,21 @@ subscribe lsm-workers
 mbox-hook Lists/lsm-workers "=Read/lsm-workers"
 folder-hook Lists/lsm-workers "set move=no"
 
-mailboxes =Lists/mlug
-subscribe mlug-list
+mailboxes =Lists/mlug =Lists/mlug-org
+subscribe mlug-list mlug-org mlug-board mb-d1 mb-d2
+mbox-hook Lists/mlug-board-d1 "=Read/mlug-board-d1"
+mbox-hook Lists/mlug-board-d2 "=Read/mlug-board-d2"
+mbox-hook Lists/mlug-board "=Read/mlug-board"
+mbox-hook Lists/mlug-org "=Read/mlug-org"
 mbox-hook Lists/mlug "=Read/mlug"
-send-hook mlug-list my_hdr From: Aaron Schrab <aaron+mlug@schrab.com>
+send-hook mlug my_hdr From: Aaron Schrab <aaron+mlug@schrab.com>
+
+mailboxes =Lists/wilugs =Lists/wilugs-help
+subscribe fdllug-wlugs members@wilugs.org linuxhelp@wilugs.org
+mbox-hook Lists/wilugs-help "=Read/wilugs-help"
+mbox-hook Lists/wilugs "=Read/wilugs"
+send-hook fdllug-wlugs my_hdr From: Aaron Schrab <aaron@schrab.com>
+send-hook @wilugs.org my_hdr From: Aaron Schrab <aaron@schrab.com>
 
 mailboxes =Lists/milwpm
 subscribe milwpm@yahoogroups
@@ -135,11 +153,45 @@ subscribe muug
 mbox-hook Lists/muug "=Read/muug"
 send-hook muug my_hdr From: Aaron Schrab <aaron+muug@schrab.com>
 
+mailboxes =rss
+
 mailboxes =Lists/mutt
 subscribe mutt-users mutt-dev
 mbox-hook Lists/mutt "=Read/mutt"
 send-hook mutt 'my_hdr From: Aaron Schrab <aaron+mutt@schrab.com>'
 #send-hook mutt 'set pgp_autosign'
+
+mailboxes =Lists/fox
+subscribe foxgui-users
+mbox-hook Lists/fox =Read/fox
+
+mailboxes =Lists/fxruby-users
+subscribe fxruby-users
+mbox-hook Lists/fxruby-users =Read/fxruby-users
+
+mailboxes =Lists/ruby-dbi
+subscribe ruby-dbi-devel
+mbox-hook Lists/ruby-dbi =Read/ruby-dbi
+
+mailboxes =Lists/modruby
+subscribe modruby
+mbox-hook Lists/modruby =Read/modruby
+
+mailboxes =Lists/narf
+subscribe narf-lib-devel
+mbox-hook Lists/narf =Read/narf
+
+mailboxes =Lists/asterisk-dev
+subscribe asterisk-dev
+mbox-hook Lists/asterisk-dev =Read/asterisk-dev
+
+mailboxes =Lists/asterisk-users
+subscribe asterisk-users
+mbox-hook Lists/asterisk-users =Read/asterisk-users
+
+mailboxes =Lists/ifp
+subscribe ifp-driver-common
+mbox-hook Lists/ifp =Read/ifp
 
 mailboxes =Lists/list-managers
 subscribe list-managers
@@ -245,6 +297,14 @@ mbox-hook Lists/debian-project "=Read/debian-project"
 mbox-hook Lists/debian "=Read/debian"
 send-hook debian.org 'my_hdr From: Aaron Schrab <aaron@schrab.com>'
 
+mailboxes =Lists/ruby-core
+subscribe ruby-core
+mbox-hook Lists/ruby-core =Read/ruby-core
+
+mailboxes =Lists/ruby-talk
+subscribe ruby-talk
+mbox-hook Lists/ruby-talk =Read/ruby-talk
+
 mailboxes =Lists/sup
 subscribe suplist
 mbox-hook Lists/sup "=Read/sup"
@@ -349,6 +409,7 @@ fcc-save-hook @orbs\.org         "=orbs"
 fcc-save-hook relays@radparker   "=rrss"
 fcc-save-hook eric@bernafamily   "=eric@bernafamily.com"
 fcc-save-hook jbaker@police.wauwatosa.wi.us "=joebaker"
+fcc-save-hook skepticmag@aol.com "=skeptic.com"
 
 save-hook mlug-list          "=mlug"
 save-hook execpc-circuit-users "=execpc-circuit-users"
