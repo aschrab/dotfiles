@@ -7,7 +7,7 @@ umask 022
 
 export BAUD=0
 
-rcvers='$Revision: 1.125 $'
+rcvers='$Revision: 1.126 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -124,7 +124,7 @@ xtitle () {
 }
 
 case "$TERM" in
-  xterm|xtermc|xterm-debian|xterm-color|rxvt|gnome)
+  xterm|xtermc|xterm-debian|xterm-color|rxvt|gnome|Eterm)
     if [[ $TERM == xterm && $OSTYPE == freebsd* ]]
     then
       TERM=xterm-color
@@ -615,27 +615,36 @@ tz () {
 
 vdiff () {
   local cvs='' opt=''
-  if [[ -d CVS ]]
+  if [[ "$1" == '!c' || "$1" == '!cvs' ]]
   then
-    if [[ "$1" == '!c' || "$1" == '!cvs' ]]
-    then
-      shift
-    else
+    shift
+  else
+    if [[ -d .svn ]]; then
+      cvs="svn"
+    elif [[ -d CVS ]]; then
       cvs="cvs"
     fi
   fi
+
   if [[ "$cvs" == '' ]]
   then
     opt='-u'
   fi
   $cvs diff $opt "$@" > $TMPDIR/$host.$$.diff
-  case "$?" in
-    0)
+  #case "$?" in
+  case "$cvs:$?" in
+    :0|cvs:0)
       echo "No differences"
       ;;
-    1)
-      echo "\n\n\n\n\n\nvim: ft=diff" >> $TMPDIR/$host.$$.diff
-      $EDITOR -R $TMPDIR/$host.$$.diff
+    *:1|svn:0)
+      case "$EDITOR" in
+	*vim*)
+	  $EDITOR +'set ft=diff' -R $TMPDIR/$host.$$.diff
+	  ;;
+	*)
+	  $EDITOR -R $TMPDIR/$host.$$.diff
+	  ;;
+	esac
       ;;
     *)
       ;;
