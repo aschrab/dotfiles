@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.122 $'
+rcvers='$Revision: 1.123 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -79,7 +79,7 @@ else
 fi
 export host
 
-[ "$USERNAME" = "aarons" -o "$USERNAME" = "root" ] && HOME=~aarons
+#[ "$USERNAME" = "aarons" -o "$USERNAME" = "root" ] && HOME=~aarons
 
 if [[ -z "$pColor" ]]
 then
@@ -96,7 +96,7 @@ fi
 fColor=$black
 pColor=$green
 case "$USERNAME" in
-  aarons)
+  aarons|ats)
     pColor=$cyan
     ;;
   aaron)
@@ -201,19 +201,19 @@ fi
 unset MAIL  # set it later in host specific portion
 unset MAILCHECK
 
-if [[ -n $PZSH ]]; then
-  if [[ -n $PPWD && -d $PPWD ]]; then
-    # cd to directory parent shell was in (see su function)
-    cd $PPWD
-    unset PPWD
-  fi
-  if grep '^aarons:' /etc/passwd > /dev/null 2>&1; then
-    if [ -r ~aarons/.Zsh-hist.$host.$PZSH ]; then
-      fc -R ~aarons/.Zsh-hist.$host.$PZSH
-      rm -f ~aarons/.Zsh-hist.$host.$PZSH
-    fi
-  fi
-fi
+#if [[ -n $PZSH ]]; then
+#  if [[ -n $PPWD && -d $PPWD ]]; then
+#    # cd to directory parent shell was in (see su function)
+#    cd $PPWD
+#    unset PPWD
+#  fi
+#  if grep '^aarons:' /etc/passwd > /dev/null 2>&1; then
+#    if [ -r ~aarons/.Zsh-hist.$host.$PZSH ]; then
+#      fc -R ~aarons/.Zsh-hist.$host.$PZSH
+#      rm -f ~aarons/.Zsh-hist.$host.$PZSH
+#    fi
+#  fi
+#fi
 
 unset HISTFILE
 HISTSIZE=250
@@ -586,7 +586,7 @@ ssh () {
 MYSU=$(whence mysu)
 su () {
   if [ $# -eq 0 ] ; then
-        tmpfile=~aarons/.Zsh-hist.$host.$$
+        tmpfile=~/.Zsh-hist.$host.$$
         fc -ln -10 -1 >! $tmpfile 2> /dev/null
         export PPWD=$PWD  # Save current directory,
         cd /              # cd to / so su isn't running in a mounted filesystem
@@ -757,7 +757,7 @@ then
 
 fi
 
-mynames=(aarons bofh root)
+mynames=(ats aarons bofh root)
 
 if [[ $HOST == *.mx.voyager.net ]]
 then
@@ -802,7 +802,7 @@ case "$host" in
       fi
 
       export TRNINIT=~/.trn/rc
-      export CVSROOT=/home/aarons/.cvsroot
+      export CVSROOT=~/.cvsroot
       ;;
 
    "lazarus")
@@ -814,7 +814,7 @@ case "$host" in
 
    "pug"|"milamber")
       export TRNINIT=~/.trn/rc
-      export CVSROOT=/home/aarons/.cvsroot
+      export CVSROOT=~/.cvsroot
 
       compctl -K __ncftp ncftp
       ;;
@@ -990,7 +990,8 @@ then
   zstyle ':completion:*' original true
   zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
   zstyle ':completion:*' substitute 'NUMERIC==2'
-  zstyle :compinstall filename '/home/aarons/zcomp'
+  zstyle ':completion:*' ignored-patterns 'doc-base'
+  zstyle :compinstall filename $HOME/zcomp
 
   autoload -U compinit
   compinit
@@ -1014,7 +1015,7 @@ then
     reply=( )
     for h in $shosts
     do
-      reply=( $reply "aarons@$h" )
+      reply=( $reply "ats@$h" )
     done
   }
 fi
