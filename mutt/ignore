@@ -232,3 +232,13 @@ ignore X-File:
 ignore X-HelpDesk:
 ignore X-PGP-
 ignore X-MD5:
+ignore X-Organisation:
+ignore X-Address:
+ignore X-Phone:
+ignore X-Fax:
+ignore X-Filter:
+ignore X-Mutt-Fcc:
+ignore X-md5sum
+ignore X-NCSA-md5:
+ignore X-Trade-Organization-
+ignore X-Message:
