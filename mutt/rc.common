@@ -1,0 +1,140 @@
+# File locations
+set folder=~/Mail
+set postponed=+Postponed       # where to save postponed messages
+set record=+Misc               # save copies of outgoing mail
+set mbox=+Misc
+
+set quote_regexp='^([]:})>|!%] ?|([~<]|-+)[|>]| {0,4}[:>|]|[a-z]+[>|]+ ?|=([^=0-9]|$))'
+
+# Settings for sending mail
+set use_domain
+set hostname='execpc.com'
+
+set allow_8bit=no
+set envelope_from
+set dsn_notify=failure         # notify on transmission failure
+set dsn_return=full            #   include full message
+set reverse_name               # use address mail was sent to when replying
+set forw_format='Fwd: %s (from %a)'
+set alternates='((aarons|(aaron\.|a_)schrab|ats|lsm|bofh|procmail|list(admin|master))@([a-z0-9-]+\.)*execpc\.com|postmaster@(comet|lists)\.execpc\.com|aaron\.schrab@voyager\.net|(aaron.*|root|.*master|ats|bofh)@schrab\.com|.*@pug\.qqx\.org)'
+
+# Editing related settings
+set recall=no       # don't ask about recalling when mailing
+set fast_reply                 # go straight to editor for replies
+set nomime_fwd                 # forward as attachment
+set abort_unmodified=no
+set abort_nosubject=no
+set edit_hdrs                  # include headers in editor
+set header                     # include header in replies
+set include=yes                # include message in replies
+set editor="vim '+/^$/+1'"
+#set autoedit                  # go straight to editor for messages
+#set editor="gnuclient -nw"
+set postpone=no                # never postpone when quitting send menu
+
+# Index settings
+set reverse_alias              # show aliases in message lists
+set nomark_old                 # all unread mail is marked as new
+set status_chars=" *%"
+set sort=threads
+set status_format=" %r Mutt:%-25.25f [Msgs:%?M?%M/?%m New:%n%?F? Flag:%F?%?t? Tag:%t? In:%b%?p? Post:%p?]  (%s)%| "
+
+# Settings for viewing messages
+set pager_index_lines=8
+set pager_context=1            # show 1 line from prev. page
+set nomarkers
+set tilde                      # pad end of messages
+#set pager_stop
+hdr_order From: Subject: Date: To: Newsgroups: Cc: X-Mailer: User-Agent: \
+  Content-Type: Content-Transfer-Encoding: X-Procmail: X-Suspect-reason:
+alternative_order text/enriched text/plain text application/postscript image/* 
+auto_view text/html application/pgp-keys application/x-tar-gz \
+  text/x-internet-signup application/x-sh application/x-patch \
+  application/octet-stream
+charset-hook windows-1251 cp1251
+
+
+
+# Misc settings
+set copy=yes
+set move=yes        # automatically move read messages to read folder
+set confirmappend=no
+set confirmcreate=no
+set print=ask-no    # confirm printing
+set delete=yes      # purge deleted messages?
+set quit=ask-yes
+
+set nopipe_decode              # don't decode MIME or weed headers when piping
+set nowait_key                 # don't wait for a key after running programs
+set nobeep
+
+set timeout=30                 # seconds inactivity before looking for new mail
+
+# Bindings
+bind  pager 	b	previous-page
+bind  pager	B	bounce-message
+bind  pager     *       bottom
+bind  pager     G       bottom
+bind  pager	<Up>	previous-line
+bind  pager	<Down>	next-line
+bind  pager     "\Cn"   search-next
+bind  pager     n       next-unread
+macro pager     "\Ck"	"|pgp -kaf\n"
+macro pager     "\Cb"   "|urlview\n"
+
+bind  index	B	bounce-message
+bind  index     n       next-entry
+macro index     A       "c+Lists/inet\n"
+macro index     "\Ck"	"|pgp -kaf\n"
+macro index	G	"!fetchmail\n"
+macro index     i       ":set hdr_format='%4C %Z %?[?%[%H:%M]&%[%m/%d]? %-15.15F (%4l) %s'\n"
+macro index     I       ":set hdr_format='%4C %Z %?[?%[%H:%M]&%[%m/%d]? %-15.15L (%4l) %s'\n"
+macro index     "\Cb"   "|urlview\n"
+
+macro attach    "\Ck"	"|pgp -kaf\n"
+
+macro  compose   E       "Ge"
+macro compose S "Fpgp +verbose=0 -fast +clearsig=on\ny^T^Uapplication/pgp; +format=text; x-action=sign\n" # To pgp-sign the old way :)
+
+
+# Colors
+color body  red	default	\
+ "((ftp|https?)://|(ftp|www[-a-z0-9]*)\\.)[^ \t\r\n\"<>]*[^].,:;!)? \t\r\n<>\"]"
+color body  yellow	default	\
+ '(mailto:)?[a-z0-9]([-+=._%!]?[a-z0-9])*@[-a-z0-9.]+\.[a-z][a-z]+'
+
+color body magenta default '^-----(BEGIN|END) PGP .*'
+
+set reply_regexp="^(re|aw)(\\[[0-9]+])?:[        ]*"
+
+color normal            white   default
+color status		black   green
+color indicator		yellow	default
+color tree		blue	default
+color error		red	default
+color attachment        blue	default
+
+color hdrdefault	cyan	default
+color header		red	default \
+      "^X-(Suspect-reason|spam-action|procmail|Diagnostic|Processed|Country):"
+
+color index             red     default ~T
+
+color signature		cyan	default
+
+# continued line indicator
+color markers           blue    default
+color tilde             blue    default
+color quoted		green	default
+#color quoted1		blue	black
+#color quoted2		magenta	black
+#color quoted3		brightgreen	black
+#color quoted4           brightblue      black
+#color quoted5           brightmagenta   black
+#color quoted6           brightwhite     black
+#color quoted7		brightcyan	black
+#color quoted8		brightyellow	black
+#color quoted9		brightred	black
+
+#mono  subject		underline
+

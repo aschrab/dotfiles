@@ -2,124 +2,24 @@
 unlists *
 unalias *
 
-set forw_format='Fwd: %s (from %a)'
-set status_format=" %r Mutt:%-25.25f [Msgs:%?M?%M/?%m New:%n%?F? Flag:%F?%?t? Tag:%t? In:%b%?p? Post:%p?]  (%s)%| "
-
-alternative_order text/enriched text/plain text application/postscript image/* 
+source ~/.Mutt/rc.common
 
 #set sendmail="/usr/lib/sendmail -oi -oem"
-set envelope_from
 set ispell="/home/aarons/bin/spell"
 
-set alternates='((aarons|(aaron\.|a_)schrab|ats|lsm|bofh|procmail|list(admin|master))@([a-z0-9-]+\.)*execpc\.com|postmaster@(comet|lists)\.execpc\.com|aaron\.schrab@voyager\.net|(aaron.*|root|.*master|ats|bofh)@schrab\.com|.*@pug\.qqx\.org)'
-
-hdr_order From: Subject: Date: To: Newsgroups: Cc: X-Mailer: User-Agent: Content-Type: Content-Transfer-Encoding: X-Procmail: X-Suspect-reason:
-
-set pager_index_lines=8
-
-#ignore *
-#unignore From: To: Newsgroups: Subject: Date: CC:
-#unignore Sender: X-Mailer: Expires:
-#unignore Content-Type: Content-Transfer-Encoding: X-Diagnostic: X-Processed:
-#unignore X-Procmail: X-Suspect-reason: X-Country: Mail-Followup-To:
-#unignore X-Mailing-List: User-Agent:
-#unignore X-Envelope-To:
 source ~/.Mutt/ignore
 
-set sort=threads
-set nomarkers
-
 set date_format = "!%H:%M %Z %d %b %Y"
-set status_chars=" *%"
 set attribution="At %d, %?F?%f&I? wrote:"
 set hdr_format="%4C %Z %?[?%[%H:%M]&%[%m/%d]? %-15.15L (%4l) %s"
 
-set quote_regexp='^([]:})>|!%] ?|([~<]|-+)[|>]| {0,4}[:>|]|[a-z]+[>|]+ ?|=([^=0-9]|$))'
-
-color body  red	default	\
- "((ftp|https?)://|(ftp|www[-a-z0-9]*)\\.)[^ \t\r\n\"<>]*[^].,:;!)? \t\r\n<>\"]"
-color body  yellow	default	\
- '(mailto:)?[a-z0-9]([-+=._%!]?[a-z0-9])*@[-a-z0-9.]+\.[a-z][a-z]+'
-
-color body magenta default '^-----(BEGIN|END) PGP .*'
-
-set reply_regexp="^(re|aw)(\\[[0-9]+])?:[        ]*"
-
-color normal            white   default
-color status		black   green
-color indicator		yellow	default
-color tree		blue	default
-color error		red	default
-color attachment        blue	default
-
-color hdrdefault	cyan	default
-color header		red	default \
-      "^X-(Suspect-reason|spam-action|procmail|Diagnostic|Processed|Country):"
-
-color index             red     default ~T
-
-color signature		cyan	default
-
-# continued line indicator
-color markers           blue    default
-color tilde             blue    default
-color quoted		green	default
-#color quoted1		blue	black
-#color quoted2		magenta	black
-#color quoted3		brightgreen	black
-#color quoted4           brightblue      black
-#color quoted5           brightmagenta   black
-#color quoted6           brightwhite     black
-#color quoted7		brightcyan	black
-#color quoted8		brightyellow	black
-#color quoted9		brightred	black
-
-#mono  subject		underline
-
-auto_view text/html application/pgp-keys application/x-tar-gz text/x-internet-signup application/x-sh application/x-patch application/octet-stream
-
 source /home/aarons/.Mutt/aliases
 
-set editor="vim '+/^$/+1'"
-#set editor="gnuclient -nw"
 set alias_file=~/.Mutt/aliases
 
 set nohelp
 
-set confirmappend=no
-set confirmcreate=no
-
-set print=ask-no    # confirm printing
-set delete=yes      # purge deleted messages? normally yes, but meaning differs
-                    # between 0.61 and 0.62
-set recall=no       # don't ask about recalling when mailing
-set copy=yes
-set move=yes        # automatically move read messages to read folder
-set include=yes     # include message in replies
-set postpone=no     # never postpone when quitting send menu
-set abort_unmodified=no
-set abort_nosubject=no
-
-set quit=ask-yes
-#set autoedit                   # go straight to editor for messages
-set fast_reply                 # go straight to editor for replies
-set edit_hdrs                  #    include headers in editor
-set dsn_notify=failure         # notify on transmission failure
-set dsn_return=full            #   include full message
-set folder=~/Mail
-set header                     # include full header in replies
-set nomime_fwd                   # forward as attachment
-set pager_context=1            # show 1 line from prev. page
-set postponed=+Postponed       # where to save postponed messages
-set record=+Misc               # save copies of outgoing mail
-set mbox=+Misc
-set reverse_alias              # show aliases in message lists
-set reverse_name               # use address mail was sent to when replying
 set save_name                  # save messages in folder named for addressee
-set tilde                      # pad end of messages
-set timeout=30                 # seconds inactivity before looking for new mail
-#set web_browser="url_handler.sh"
-set nomark_old                 # all unread mail is marked as new
 set see_old
 #set skip_old
 #set pgp_default_version="pgp5"
@@ -128,40 +28,6 @@ set pgp_sign_as="0xE8D1D751"
 set pgp_verify_sig=yes         # Verify signature automatically
 set pgp_replyencrypt
 set pgp_replysign
-set use_domain
-set hostname='execpc.com'
-set nopipe_decode              # don't decode MIME or weed headers when piping
-set nowait_key                 # don't wait for a key after running programs
-set nobeep
-#set pager_stop
-set allow_8bit=no
-
-bind  pager 	b	previous-page
-bind  pager	B	bounce-message
-bind  pager     *       bottom
-bind  pager     G       bottom
-bind  pager	<Up>	previous-line
-bind  pager	<Down>	next-line
-bind  pager     "\Cn"   search-next
-bind  pager     n       next-unread
-macro pager     "\Ck"	"|pgp -kaf\n"
-macro pager     "\Cb"   "|urlview\n"
-
-bind  index	B	bounce-message
-bind  index     n       next-entry
-macro index     A       "c+Lists/inet\n"
-macro index     "\Ck"	"|pgp -kaf\n"
-macro index	G	"!fetchmail\n"
-macro index     i       ":set hdr_format='%4C %Z %?[?%[%H:%M]&%[%m/%d]? %-15.15F (%4l) %s'\n"
-macro index     I       ":set hdr_format='%4C %Z %?[?%[%H:%M]&%[%m/%d]? %-15.15L (%4l) %s'\n"
-macro index     "\Cb"   "|urlview\n"
-
-macro attach    "\Ck"	"|pgp -kaf\n"
-
-macro  compose   E       "Ge"
-macro compose S "Fpgp +verbose=0 -fast +clearsig=on\ny^T^Uapplication/pgp; +format=text; x-action=sign\n" # To pgp-sign the old way :)
-
-charset-hook windows-1251 cp1251
 
 send-hook   .         "unmy_hdr From"
 
