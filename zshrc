@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.116 $'
+rcvers='$Revision: 1.117 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -417,8 +417,81 @@ if [[ $OSTYPE == solaris2* ]]; then
   alias ping='ping -s'
 fi
 
+# Change behaviour of insert-last-word widget
+# $NUMERIC should be carried over between consecutive invocations
+ins-last-word () {
+  #echo $LASTWIDGET
+  if [[ ${+NUMERIC} == 1 ]]
+  then
+    insertlastwordsavenumeric=$NUMERIC
+  fi
+
+  if [[ $LASTWIDGET == insert-last-word ]]
+  then
+    if [[ ${+insertlastwordsavenumeric} == 1 ]]
+    then
+      NUMERIC=${insertlastwordsavenumeric}
+    fi
+  else
+    [[ ${+NUMERIC} == 1 ]] || unset insertlastwordsavenumeric
+  fi
+
+  zle .insert-last-word
+}
+zle -N insert-last-word ins-last-word
+
+# Add a zle widget to kill last N path components
+kpathword () {
+  local found neg inword post cur=$CURSOR num=$NUMERIC
+
+  if [[ $num -lt 0 ]]
+  then
+    neg=1
+    num=$((num * -1))
+  fi
+
+  while [[ $cur -ge 0 ]]
+  do
+    case $BUFFER[$cur] in
+    ' '|'	')
+      if [[ $inword -eq 1 ]]
+      then
+	break
+      else
+	post="$BUFFER[$cur]$post"
+      fi
+      ;;
+    /)
+      found=1
+      if [[ $((num -= 1)) -le 0 ]]
+      then
+	cur=$((cur - 1))
+	break
+      fi
+      ;;
+    *)
+      inword=1
+      ;;
+    esac
+
+    cur=$((cur - 1))
+  done
+
+  if [[ $found -eq 1 ]]
+  then
+    if [[ $neg -eq 1 ]]
+    then
+      LBUFFER="${LBUFFER[0,$cur]}$post"
+      #CURSOR=$((CURSOR - $#post))
+    else
+      CURSOR=$cur
+    fi
+  fi
+}
+zle -N kpathword
 
 # bind keys
+bindkey "\M-/" kpathword
 bindkey \^p up-history
 bindkey \^n down-history
 bindkey "\e[A" up-line-or-search
