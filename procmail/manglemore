@@ -11,6 +11,33 @@
   SUBJECT
 }
 
+# Fix reply indicators from stupid mailers
+#  * Any /-reply$/
+#  * Any /Re[\d+]:/
+#  * More than one /^Re:/
+:0
+* $ ^Subject:[ 	]\/[^ 	].*
+{
+  OSUBJ=$MATCH
+
+  :0
+  * $ 987654321^0 OSUBJ ?? -reply[ 	]*$
+  * -1^0
+  * $ OSUBJ ?? ^^\/(Re(\[[0-9]+])?:[ 	]*)*
+  * 987654321^0 MATCH ?? Re\[
+  * 1^1 MATCH ?? Re
+  {
+    :0chwi
+    NSUBJ=| echo $OSUBJ | sed \
+        -e 's,^[ 	]*\([Rr][Ee]\(\[[0-9]\+]\)\?:[ 	]*\)*,,' \
+        -e 's,\([	 ]*-[Rr][Ee][Pp][Ll][Yy]\)*[ 	]*$,,'
+
+    :0afhw
+    | formail -i"Subject: Re: $NSUBJ"
+  }
+  OSUBJ
+  NSUBJ
+}
 
 # Add Expires: header
 :0 fhw
