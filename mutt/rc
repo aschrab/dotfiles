@@ -222,11 +222,6 @@ mailboxes =Lists/bugtraq
 lists bugtraq
 mbox-hook Lists/bugtraq "=Read/bugtraq"
 
-mailboxes =Lists/sup
-lists suplist
-mbox-hook Lists/sup "=Read/sup"
-send-hook sup my_hdr From: Aaron Schrab <aaron+sup@schrab.com>
-
 mailboxes =Lists/list-managers
 lists list-managers
 mbox-hook Lists/list-managers "=Read/list-managers"
@@ -295,6 +290,11 @@ mailboxes =Lists/tidbits
 lists tidbits-talk
 mbox-hook Lists/tidbits "=Read/tidbits"
 send-hook tidbits 'my_hdr From: Aaron Schrab <aaron@schrab.com>'
+
+mailboxes =Lists/sup
+lists suplist
+mbox-hook Lists/sup "=Read/sup"
+send-hook sup my_hdr From: Aaron Schrab <aaron+sup@schrab.com>
 
 mailboxes =misc
 
