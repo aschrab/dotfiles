@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.38 $'
+rcvers='$Revision: 1.39 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -157,8 +157,6 @@ ppath=(
   /usr/local/sbin
   /usr/sbin
   /sbin
-  /usr/ccs/bin
-  /usr/ccs/lib
   /usr/X11R6/bin
   /usr/X11/bin
   /usr/openwin/bin
@@ -167,6 +165,8 @@ ppath=(
   /usr/local/adm/execpc
   /usr/adm/bin
   /usr/local/pilot/bin
+  /usr/ccs/bin
+  /usr/ccs/lib
 )
 
 for d in $ppath
