@@ -51,7 +51,7 @@ backup
                infoalley@listproc\.info\.apple\.com|\
                aladdinnews|\
                owner-egcs-announce@(egcs\.)?cygnus|\
-               owner-newsletter@keynote\.com|\
+               (editor|owner-newsletter)@keynote\.com|\
                davenet-world@scripting\.com)|\
     To:.*modem-reports@execpc\.com|\
     From:.*(\
