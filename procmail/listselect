@@ -9,6 +9,14 @@ SUBJ
 { LIST=Lists/gurus/ }
 
 :0
+* ^X-Mailing-List: <allgurus@
+{ LIST=Lists/allgurus/ }
+
+:0
+* ^X-Mailing-List: <net-eng@
+{ LIST=Lists/net-eng/ }
+
+:0
 * ^X-Envelope: tech-request@lists\.execpc\.com
 {
   LIST=Lists/tech/
@@ -215,7 +223,7 @@ SUBJ
 :0
 * ^Sender: listar-(announce|support|dev)-bounce@listar
 {
-  SUBJ='\[listar-\(announce\|support\|dev\)] '
+  SUBJ='\[[Ll]istar\(\|-announce\|-support\|-dev\)] '
   LIST=Lists/listar/
 }
 
