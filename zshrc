@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.23 $'
+rcvers='$Revision: 1.24 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -463,6 +463,11 @@ case "$host" in
       export CYRCS=/usr/bin/cyrcs
       export CYSTACKER=/dev/sgc
       export CYLIB=/var/backup/tapes
+      ;;
+
+   "athene")
+      export TRNINIT=~/.trn/rc
+      export CVSROOT=/home/aarons/.cvsroot
       ;;
 
    "fnord"|"fnord.guru")
