@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.110 $'
+rcvers='$Revision: 1.111 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -453,15 +453,6 @@ else
   fpath=()
 fi
 
-# shell functions
-if [ -d $HOME/.fbin ]; then
-  fpath=($fpath $HOME/.fbin)
-  for AF in $HOME/.fbin/*(N); do
-        typeset -fu $AF:t
-  done
-  unset AF
-fi
-
 pw () {
   grep $* /etc/passwd
 }
@@ -882,8 +873,10 @@ function __cdmatch () {
    return
 }
 
-case "$ZSH_VERSION" in
-4.*)
+ZSH_MAJOR_VERSION="${${(s:.:)ZSH_VERSION}[0]}"
+if [[ $ZSH_MAJOR_VERSION -ge 4 &&
+     -d /usr/share/zsh/$ZSH_VERSION/functions/Completion ]]
+then
   fpath=( $fpath /usr/share/zsh/$ZSH_VERSION/functions/{Completion,Misc} )
 
   zstyle ':completion:*' auto-description 'specify: %d'
@@ -930,5 +923,13 @@ case "$ZSH_VERSION" in
       reply=( $reply "aarons@$h" )
     done
   }
-  ;;
-esac
+fi
+
+# shell functions
+if [ -d $HOME/.fbin ]; then
+  fpath=($fpath $HOME/.fbin)
+  for AF in $HOME/.fbin/*(N); do
+        typeset -fu $AF:t
+  done
+  unset AF
+fi
