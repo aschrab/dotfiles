@@ -235,7 +235,7 @@ endfunction
 
 function! s:SVNEditFile(name)
   let v:errmsg = ""
-  execute 'edit' a:name
+  execute 'new' a:name
   if v:errmsg != ""
     if &modified && !&hidden
       echoerr "Unable to open command buffer because 'nohidden' is set and the current buffer is modified (see :help 'hidden')."
