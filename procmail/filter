@@ -50,18 +50,21 @@ backup
 * ^(Sender:.*(\
                infoalley@listproc\.info\.apple\.com|\
                aladdinnews|\
-               owner-egcs-announce@cygnus|\
+               owner-egcs-announce@(egcs\.)?cygnus|\
                owner-newsletter@keynote\.com|\
                davenet-world@scripting\.com)|\
     To:.*modem-reports@execpc\.com|\
     From:.*(\
-            reassign@arin\.net|\
+            (hostmaster|reassign|netmod)@arin\.net|\
 	    nobody@uu\.net|\
 	    MAILER-DAEMON@abuse\.net|\
 	    autoreply|\
             headlines@cisco|\
 	    webmaster@execpc|\
 	    Cron Daemon)|\
+    X-Envelope-To: (\
+            js@schrab\.com|\
+	    bar@schrab\.com)|\
     Subject: (\
               Output from "cron" command|\
 	      mirror update))
