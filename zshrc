@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.3 $'
+rcvers='$Revision: 1.4 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -85,7 +85,7 @@ case "$TERM" in
     TERM=xterm
     stty erase '^H'
     print -P "${green}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${white}"
-    PS1='%{]1;%1v%(#.#.$)$host]2;%1v%(#.#.$)$host:%~%}'
+    PS1='%{]1;%(#.#.$)$host]2;%(#.#.$)$host:%~%}'
     PS1="$PS1"'%{$pColor%}%1v%!)$host%(#.#.$)%{$white%} '
     RPS1='%{$pColor%} %T%{$white%}'
     ;;
@@ -452,9 +452,9 @@ function __scpcomp () {
     u=""
   fi
   h=${h#*@}
-  reply=(`ssh ${=u} $h ls -dF $p\*  2>/dev/null`)
+  reply=(`ssh -o 'BatchMode yes' ${=u} $h ls -dF $p\*  2>/dev/null`)
   if [[ ${#reply} -eq 1 ]]; then
-    reply2=(`ssh ${=u} $h ls -dF $p\*/\* 2>/dev/null`)
+    reply2=(`ssh -o 'BatchMode yes' ${=u} $h ls -dF $p\*/\* 2>/dev/null`)
     if [[ ${#reply2} -ne 0 ]]; then
       reply=($reply2)
     fi
