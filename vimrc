@@ -49,6 +49,9 @@ iab lenght length
 iab ube unsolicited bulk email
 iab UBE Unsolicited Bulk Email
 
+" .com files are *not* DCL
+au! syntax * *.com
+
 au BufNewFile,BufRead muttrc                 so $VIM/syntax/muttrc.vim
 autocmd BufRead mutt-* set tw=72
 " autocmd BufRead mutt* /^$
