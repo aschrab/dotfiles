@@ -1,13 +1,5 @@
 # vim: ft=procmail
 
-:0fhw
-* ^From:.*@\/(aol|hotmail|msn|lycos|yahoo)\.com
-* $ ! ^Received: from .*$\MATCH \[.*by [a-z0-9.-]+\.((execpc|schrab|core)\.com|voyager\.net|qqx\.org)
-| formail -A"X-suspect-reason: Fake free webmail"
-
-  :0A:
-  suspect
-
 #:0
 #* ^From:.*<aarons@execpc\.com>
 #* ^To: aarons@execpc\.com
