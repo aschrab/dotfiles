@@ -294,6 +294,16 @@ lists procmail
 mbox-hook Lists/procmail "=Read/procmail"
 send-hook procmail my_hdr From: Aaron Schrab <aaron+procmail@schrab.com>
 
+mailboxes =Lists/procmail-dev
+lists procmail-dev
+mbox-hook Lists/procmail-dev "=Read/procmail-dev"
+send-hook procmail-dev my_hdr From: Aaron Schrab <aaron+procmail@schrab.com>
+
+mailboxes =Lists/smartlist-dev
+lists smartlist-dev
+mbox-hook Lists/smartlist-dev "=Read/smartlist-dev"
+send-hook smartlist-dev my_hdr From: Aaron Schrab <aaron+procmail@schrab.com>
+
 mailboxes =Lists/dingus
 lists dingus
 mbox-hook Lists/dingus "=Read/dingus"
