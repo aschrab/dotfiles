@@ -11,6 +11,7 @@ NoBeep
 #########################################################
 MailFiles
 	/var/spool/mail/aarons
+        /home/aarons/Mail/Lists/gurus
         /home/aarons/Mail/Lists/staff
         /home/aarons/Mail/Lists/noc-staff
         /home/aarons/Mail/Lists/tech
