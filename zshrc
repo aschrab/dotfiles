@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.114 $'
+rcvers='$Revision: 1.115 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -83,7 +83,7 @@ export host
 
 if [[ -z "$pColor" ]]
 then
-  #export   black="%{$(echo -n '\e[0;30m')%}"
+  export   black="%{$(echo -n '\e[0;30m')%}"
   export     red="%{$(echo -n '\e[0;31m')%}"
   export   green="%{$(echo -n '\e[0;32m')%}"
   export  yellow="%{$(echo -n '\e[0;33m')%}"
@@ -93,7 +93,7 @@ then
   export   white="%{$(echo -n '\e[0;37m')%}"
 fi
 
-fColor=$white
+fColor=$black
 pColor=$green
 case "$USERNAME" in
   aarons)
