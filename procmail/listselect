@@ -50,6 +50,13 @@ SUBJ
 { LIST=Lists/billsys/ }
 
 :0
+* ^X-Mailing-List: <yesno@lists
+{
+  LIST=Lists/yesno/
+  EXPIRE="14 days"
+}
+
+:0
 * ^X-Mailing-List: <dnvs-list@lists\.execpc\.com>
 {
   REPLYTO="dnvs-list@lists.execpc.com"
