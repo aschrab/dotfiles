@@ -180,7 +180,7 @@ SUBJ
 { LIST=Lists/procmail-dev/ }
 
 :0
-* ^Resent-Sender:.*procmail-request
+* ^Re(turn-Path|sent-Sender):.*procmail-request
 { LIST=Lists/procmail/ }
 
 :0
