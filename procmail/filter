@@ -12,6 +12,7 @@
 * ^From:.*((hst|dom)reg|notify|rereg|invoice|(fax|host)mast(er)?)@internic\.net
 {
   LOG="$TIME: internic -> manager TRASHED$NL"
+  LOGABSTRACT=no
 
   :0
   /dev/null
@@ -22,6 +23,7 @@
 * ^From: (.*<)?reassign@arin\.net
 {
   LOG="$TIME: ARIN -> manager TRASHED$NL"
+  LOGABSTRACT=no
 
   :0
   /dev/null

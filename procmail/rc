@@ -2,7 +2,7 @@
 #VERBOSE=y
 MAILDIR="$HOME/Mail"
 DEFAULT="INBOX/"
-LOGABSTRACT="no"
+LOGABSTRACT="yes"
 WEB="/home/web"
 #COMSAT="@localhost"
 COMSAT=no
@@ -10,7 +10,7 @@ S="[ 	]"
 NL="
 "
 
-RCVERSION="$Id: rc,v 1.5 1999/04/21 05:16:38 aarons Exp $"
+RCVERSION="$Id: rc,v 1.6 1999/04/23 21:44:05 aarons Exp $"
 
 LOCALSERVER="(pug\.(schrab\.com|qqx\.org)|(vm[0-9]+|[abcyz])\.mx\.execpc\.com)"
 

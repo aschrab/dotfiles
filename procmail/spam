@@ -43,6 +43,10 @@
   RELAYIP
 }
 
-:0:
+:0
 * ^X-suspect-reason:
-suspect
+{
+  LOGABSTRACT=no
+  :0:
+  suspect
+}
