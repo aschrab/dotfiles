@@ -1,0 +1,36 @@
+-q
+-X
+-pp
+-G
+-B
+-e
+-F"> "
+-g5
++Hfrom
++hApproved
+-m=u
+-M
+-ENEWSHEADER="%(%[followup-to]=^$?:%(%[followup-to]=^%n$?:X-ORIGINAL-NEWSGROUPS: %n))Newsgroups: %(%F=^$?%C:%F)
+Subject: %(%S=^$?%\"
+
+Subject: \":Re: %S)
+From: Aaron Schrab <aarons@execpc.com>
+Summary: 
+Expires: 
+%(%R=^$?:References: %R
+)Sender: 
+Followup-To: 
+%(%{REPLYTO}=^$?:Reply-To: %{REPLYTO}
+)Distribution: %(%i=^$?%\"Distribution: \":%D)
+Organization: ExecPC Internet
+Keywords: %[keywords]
+Cc: aarons@execpc.com %(,%F=poster?%t:%(%F!=@?:%F))
+Mail-Copies-To: nobody
+X-No-Archive: no
+
+"
+-EKILLGLOBAL="%p/Kill/Global"
+-EKILLLOCAL="%p/Kill/%C"
+-EXTERMMOUSE=n
+-ESAVEDIR="%p"
+-ESAVENAME="%C"
