@@ -127,6 +127,8 @@ xtitle () {
 
 if [[ -r /etc/debian_chroot ]]; then
   DEBCHROOT="(`cat /etc/debian_chroot`)"
+elif [[ -r /etc/chroot_id ]]; then
+  DEBCHROOT="(`cat /etc/chroot_id`)"
 else
   DEBCHROOT=''
 fi
@@ -135,6 +137,7 @@ setopt EXTENDED_GLOB
 
 unset LC_CTYPE
 # Check if we're on a Unicode terminal {{{
+if [[ $ZSH_MAJOR_VERSION -ge 4 ]]; then
 # Based on perl script by Jan-Pieter Cornet <johnpc@xs4all.nl>
 # http://lists.debian.org/debian-mentors/2003/debian-mentors-200312/msg00144.html
 # Converted to zsh with clues from promptnl script that comes with zsh
@@ -186,6 +189,7 @@ case ${${RECV#$(print -b -n '\x1B')\[[0-9]##;}%%R} in
   echo "Couldn\'t determine terminal encoding"
   ;;
 esac
+fi
 #}}}
 export LANG LC_COLLATE="C"
 
