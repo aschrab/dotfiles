@@ -8,6 +8,7 @@ set status_format=" %r Mutt:%-25.25f [Msgs:%?M?%M/?%m New:%n%?F? Flag:%F?%?t? Ta
 alternative_order text/enriched text/plain text application/postscript image/* 
 
 #set sendmail="/usr/lib/sendmail -oi -oem"
+set envelope_from
 set ispell="/home/aarons/bin/spell"
 
 set alternates='((aarons|(aaron\.|a_)schrab|ats|lsm|bofh|procmail|list(admin|master))@([a-z0-9-]+\.)*execpc\.com|postmaster@(comet|lists)\.execpc\.com|aaron\.schrab@voyager\.net|(aaron.*|root|.*master|ats|bofh)@schrab\.com|.*@pug\.qqx\.org)'
@@ -61,6 +62,7 @@ color signature		cyan	default
 
 # continued line indicator
 color markers           blue    default
+color tilde             blue    default
 color quoted		green	default
 #color quoted1		blue	black
 #color quoted2		magenta	black
@@ -149,7 +151,7 @@ bind  index	B	bounce-message
 bind  index     n       next-entry
 macro index     A       "c+Lists/inet\n"
 macro index     "\Ck"	"|pgp -kaf\n"
-#macro index	G	"!fetchmail\n"
+macro index	G	"!fetchmail\n"
 macro index     i       ":set hdr_format='%4C %Z %?[?%[%H:%M]&%[%m/%d]? %-15.15F (%4l) %s'\n"
 macro index     I       ":set hdr_format='%4C %Z %?[?%[%H:%M]&%[%m/%d]? %-15.15L (%4l) %s'\n"
 macro index     "\Cb"   "|urlview\n"
@@ -208,6 +210,10 @@ mbox-hook backup =Read/backup
 mailboxes =Lists/gurus
 subscribe gurus
 mbox-hook Lists/gurus "=Read/gurus/`date '+%Y%m'`"
+
+mailboxes =Lists/mailteam
+subscribe mailteam@voyager.net mailteam@lists.voyager.net
+mbox-hook Lists/mailteam "=Read/mailteam"
 
 mailboxes =Lists/net-eng
 subscribe net-eng
@@ -356,11 +362,26 @@ subscribe mutt-users mutt-dev
 mbox-hook Lists/mutt "=Read/mutt"
 send-hook mutt 'my_hdr From: Aaron Schrab <aaron+mutt@schrab.com>'
 
+mailboxes =Lists/screen
+subscribe gnu-screen@egroups.com
+mbox-hook Lists/screen "=Read/screen"
+send-hook gnu-screen@egroups 'my_hdr From: <u.utkroyz34ius-h.700a5@pug.qqx.org>'
+
 mailboxes =Lists/tidbits
 subscribe tidbits-talk
 mbox-hook Lists/tidbits "=Read/tidbits"
 send-hook tidbits 'my_hdr From: Aaron Schrab <aaron@schrab.com>'
 folder-hook tidbits 'set sort_aux=date'
+
+mailboxes =Lists/debian-powerpc
+subscribe debian-powerpc
+mbox-hook Lists/debian-powerpc "=Read/debian-powerpc"
+send-hook debian.org 'my_hdr From: Aaron Schrab <aaron@schrab.com>'
+
+mailboxes =Lists/viewcvs
+subscribe viewcvs@lyra.org
+mbox-hook Lists/viewcvs "=Read/viewcvs"
+send-hook viewcvs@lyra 'my_hdr From: Aaron Schrab <aaron@schrab.com>'
 
 mailboxes =Lists/sup
 subscribe suplist
@@ -373,10 +394,10 @@ mbox-hook Lists/linmodems "=Read/linmodems"
 send-hook linmodems my_hdr From: Aaron Schrab <aaron@schrab.com>
 mailboxes =misc
 
-mailboxes =Lists/cvs
-subscribe info-cvs
-mbox-hook Lists/cvs "=Read/cvs"
-send-hook cvs 'my_hdr From: Aaron Schrab <aaron+cvs@schrab.com>'
+#mailboxes =Lists/cvs
+#subscribe info-cvs
+#mbox-hook Lists/cvs "=Read/cvs"
+#send-hook cvs 'my_hdr From: Aaron Schrab <aaron+cvs@schrab.com>'
 
 mailboxes =Lists/vnc
 subscribe vnc-list
@@ -550,3 +571,4 @@ save-hook execpc-circuit-users "=execpc-circuit-users"
 save-hook scud-request       "=scud.req"
 save-hook this-is-true-admin "=true"
 save-hook @netflix           "=netflix"
+save-hook '~C @lists\.debian\.org' "=debian"
