@@ -115,6 +115,10 @@ SUBJ
 { LIST=Lists/smartlist }
 
 :0
+* ^Resent-Sender:.*procmail-future-request
+{ LIST=Lists/procmail-future/ }
+
+:0
 * ^Sender:.*list-managers-owner@GreatCircle
 { LIST=Lists/list-managers/ }
 
