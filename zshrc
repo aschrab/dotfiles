@@ -7,7 +7,7 @@ umask 077
 
 export BAUD=0
 
-rcvers='$Revision: 1.80 $'
+rcvers='$Revision: 1.81 $'
 rcvers=$rcvers[(w)2]
 
 if [[ "$TERM" == "linux" ]]
@@ -115,8 +115,11 @@ case "$TERM" in
     then
       TERM=xterm-color
     fi
-    export LANG="en_US.iso-8859-15"
-    export LC_COLLATE="C"
+    if [[ $OSTYPE == linux* ]]
+    then
+      export LANG="en_US.iso-8859-15"
+      export LC_COLLATE="C"
+    fi
     stty erase '^?'
     print -P "${green}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${fColor}"
     PS1='%{]1;%(#.#.$)$host]2;%(#.#.$)$host:%~%}'
@@ -561,7 +564,7 @@ if [ -x /usr/ucb/ps ] ; then
 fi
 
 if [ "$host" = "earth" ]; then
-  watch=(aarons ats lsm meek jake mitch pfriedel bofh
+  watch=(aarons ats lsm meek jake pfriedel bofh
          pfingst lungfish j_schrab root )
 
   # Limit username completion to users in $watch
