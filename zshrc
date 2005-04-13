@@ -1020,6 +1020,12 @@ if [[ $ZSH_MAJOR_VERSION -ge 4 ]]; then
   #zstyle ':completion:*:my-accounts' users-hosts $my_accounts
   zstyle -e ':completion:*:my-accounts' users-hosts __ssh_users
 
+  # Try to avoid completion functions when completing command names.
+  zstyle ':completion:*:commands' ignored-patterns '_*'
+
+  # Color process list in ps completion
+  zstyle ':completion:*:*:kill:*:processes' list-colors "=(#b) #([0-9]#)*=36=31"
+
   __ssh_users () {
     local shosts
     local h
