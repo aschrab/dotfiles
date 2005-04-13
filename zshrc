@@ -415,6 +415,7 @@ else
 fi
 alias les=less
 alias lss=less
+alias -g L="| $PAGER"
 
 export LESS="-aCMj3"
 case "$LANG" in
