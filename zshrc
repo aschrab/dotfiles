@@ -415,7 +415,13 @@ else
 fi
 alias les=less
 alias lss=less
-alias -g L="| $PAGER"
+
+if [[ "$EDITOR" == 'vim' ]]
+then
+  alias -g L="| view -"
+else
+  alias -g L="| $PAGER"
+fi
 
 export LESS="-aCMj3"
 case "$LANG" in
