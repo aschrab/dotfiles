@@ -77,10 +77,10 @@ set foldopen=mark,quickfix,tag,block,hor,search,jump
 :endif
 "}}}
 
-":if $DISPLAY == ":0"
+:if $DISPLAY != ""
   set mouse=a
   set clipboard=unnamed,autoselect,exclude:cons\|linux
-":endif
+:endif
 
 " Not many filenames have = in them, so make completion easier
 set isfname-==
