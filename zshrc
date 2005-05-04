@@ -486,11 +486,11 @@ alias sz='sz -e'
 alias l='ls -F'
 alias la='ls -aF'
 if [[ $OSTYPE == *bsd* ]]; then
-  alias ll='ls -loF'
-  alias lla='ls -Foal'
+  alias ll='ls -lhoF'
+  alias lla='ls -Foalh'
 else
-  alias ll='ls -lF'
-  alias lla='ls -alF'
+  alias ll='ls -lhF'
+  alias lla='ls -halF'
 fi
 alias bc='bc -ql'
 alias trt=traceroute
