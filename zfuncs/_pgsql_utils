@@ -153,6 +153,7 @@ _createdb () {
         {-e,--echo}'[display SQL queries]' \
         {-q,--quiet}'[non verbose mode]' \
         {-D+,--location=}':database location:_directories' \
+        {-O+,--owner=}':database owner:_pgsql_users' \
         {-T+,--template=}':database template:_pgsql_databases' \
         {-E+,--encoding=}':database encoding:_values "encoding" $_pgsql_encodings[@]' \
         ':PostgreSQL database:' \
