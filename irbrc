@@ -4,6 +4,13 @@
 HISTFILE = "~/.irb.hist"
 MAXHISTSIZE = 100
 
+# Have :_ refer to value returned by previous command
+IRB.conf[:EVAL_HISTORY] = 1000
+
+# These were added sometime in ruby 1.9 series
+#IRB.conf[:SAVE_HISTORY] = 100
+#IRB.conf[:HISTORY_FILE] = "~/.irb.hist"
+
 IRB.conf[:AUTO_INDENT] = true
 
 # To use to_s instead of inspect for returned values
