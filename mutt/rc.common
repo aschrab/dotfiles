@@ -69,6 +69,7 @@ set delete=yes      # purge deleted messages?
 set quit=ask-yes
 
 set nopipe_decode              # don't decode MIME or weed headers when piping
+set thorough_search
 set nowait_key                 # don't wait for a key after running programs
 set nobeep
 
@@ -111,7 +112,7 @@ bind	editor	"\Ct"	transpose-chars
 set reply_regexp="^((re|aw)(\\[[0-9]+])?:[        ]*)+"
 
 color body  red	default	\
- "((ftp|https?)://|(ftp|www[-a-z0-9]*)\\.)[^ \t\r\n\"<>]*[^].,:;!)? \t\r\n<>\"]"
+ "((s?ftp|https?)://|(ftp|www[-a-z0-9]*)\\.)[^ \t\r\n\"<>]*[^].,:;!)? \t\r\n<>\"]"
 color body  magenta	default	\
  '(mailto:)?[a-z0-9]([-+=._%!$#]?[a-z0-9])*@[-a-z0-9.]+\.[a-z][a-z]+'
 #color body magenta default '^-----(BEGIN|END) PGP .*'

@@ -598,3 +598,13 @@ ignore X-Rc-Virus:
 ignore X-Virus-Scan:
 ignore X-Rc-Spam:
 ignore X-Mailbox-Line:
+ignore X-pstn-
+ignore X-Virus-
+ignore X-Apparently-From:
+ignore X-MyMilter:
+ignore Received-SPF:
+ignore X-Source
+ignore X-PopBeforeSMTP
+ignore X-AntiVirus
+ignore DomainKey-Signature:
+ignore X-Olympus-

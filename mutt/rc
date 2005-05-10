@@ -8,7 +8,7 @@ set editor="xfix -s -- vim '+/^$/+1'"
 
 # Since a lot of software claims that cp1252 encoded text is actually
 # iso-8859-1, and the former is a superset of the latter, just allow it.
-charset-hook iso-8859-1 cp1252
+charset-hook ^iso-8859-1$ cp1252
 
 auto_view application/x-zip-compressed application/msword text/x-sh
 auto_view application/x-gtar application/x-tar application/x-tar-gz text/x-csrc

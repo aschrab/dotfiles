@@ -54,7 +54,7 @@ if( /\+COMPRESSED/ ) {
 
 my $spam_fmt = '';
 if( $mutt_version ge "v1.5.6" ) {
-  print "spam '^X-Spam-Status: (Yes|No), hits=(-?[0-9.]+)' '%2'\n";
+  print "spam '^X-Spam-Status: (Yes|No), (score|hits)=(-?[0-9.]+)' '%3'\n";
   print "folder-hook 'suspect' 'set sort=spam'\n";
   $spam_fmt = ' <%4.4H>';
 }
