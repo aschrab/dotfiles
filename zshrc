@@ -119,6 +119,7 @@ esac
 export pColor
 
 alias stty='noglob stty'
+alias wget='noglob wget'
 
 screen-title () {
 }
