@@ -769,7 +769,7 @@ function! s:SVNCommit()
 
   silent put='--This line, and those below, will be ignored--'
 
-  let svnCommand = s:SVNGetOption("SVNCommandSVNExec", "svn") . " status " . escape(realFileName, ' *?\')
+  let svnCommand = s:SVNGetOption("SVNCommandSVNExec", "svn") . " status " . escape(realFilePath, ' *?\')
   let statustext=system(svnCommand)
 
   silent put=statustext
