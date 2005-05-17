@@ -13,6 +13,10 @@ let perl_highlight_matches = 1
 let g:xml_syntax_folding = 1
 let g:javaScript_fold = 1
 
+let SVNCommandEdit='split'
+let SVNCommandDeleteOnHide=1
+let SVNCommandEnableBufferSetup=1
+
 set t_Co=16
 "set t_Sf=[3%p1%dm
 "set t_Sb=[4%p1%dm
@@ -211,6 +215,9 @@ au FileType sm  set noexpandtab
 au FileType zone  set noexpandtab
 au FileType cpp set noexpandtab ai si cindent
 au BufNewFile,BufRead */zone/* set ft=zone
+
+au BufNewFile,BufRead  svn-commit.* setf svn
+au FileType svn map <Leader>sd :SVNCommitDiff<CR>
 
 set bs=2
 set secure
