@@ -217,7 +217,7 @@ au FileType cpp set noexpandtab ai si cindent
 au BufNewFile,BufRead */zone/* set ft=zone
 
 au BufNewFile,BufRead  svn-commit.* setf svn
-au FileType svn map <Leader>sd :SVNCommitDiff<CR>
+au FileType svn map <buffer> <Leader>sd :SVNCommitDiff<CR>
 
 set bs=2
 set secure
