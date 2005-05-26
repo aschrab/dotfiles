@@ -1040,6 +1040,10 @@ if [[ $ZSH_MAJOR_VERSION -ge 4 ]]; then
   # Try to avoid completion functions when completing command names.
   zstyle ':completion:*:commands' ignored-patterns '_*'
 
+  # Display list of processes even if there's only one match
+  zstyle ':completion:*:*:*:*:processes' menu yes select
+  zstyle ':completion:*:*:*:*:processes' force-list always
+
   # Color process list in ps completion
   zstyle ':completion:*:*:kill:*:processes' list-colors "=(#b) #([0-9]#)*=36=31"
 
