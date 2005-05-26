@@ -1013,7 +1013,10 @@ if [[ $ZSH_MAJOR_VERSION -ge 4 ]]; then
   zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
   zstyle ':completion:*' match-original both
   zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=** r:|=**'
-  zstyle ':completion:*' max-errors 1
+
+  # Allow one error for every 3 characters typed.
+  zstyle -e ':completion:*:approximate:*' max-errors 'reply=( $(( ($#PREFIX+$#SUFFIX)/3 )) numeric )'
+
   zstyle ':completion:*' menu select=10
   zstyle ':completion:*' original true
   zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
