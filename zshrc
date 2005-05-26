@@ -1040,6 +1040,13 @@ if [[ $ZSH_MAJOR_VERSION -ge 4 ]]; then
   # Try to avoid completion functions when completing command names.
   zstyle ':completion:*:commands' ignored-patterns '_*'
 
+  if [[ $USER == 'root' ]]; then
+    # Display all processes
+    zstyle ':completion:*:*:*:*:processes' 'command' 'ps ax'
+  else # Display all of current user's processes.
+    zstyle ':completion:*:*:*:*:processes' 'command' 'ps -u$USER'
+  fi
+
   # Display list of processes even if there's only one match
   zstyle ':completion:*:*:*:*:processes' menu yes select
   zstyle ':completion:*:*:*:*:processes' force-list always
