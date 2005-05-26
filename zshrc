@@ -751,8 +751,6 @@ mcd () {
 }
 
 fignore=(.o .bak .swp \~)
-compctl -g '*' -x 'S[.]','C[0,*/.*]' -g '*(D)' -- rm
-#compctl -g '*(-/)' + -g '.*(-/)' + -k '(..)' cd rmdir
 compctl -jP '%' kill fg bg disown
 compctl -vP '$' echo
 
@@ -1030,6 +1028,11 @@ if [[ $ZSH_MAJOR_VERSION -ge 4 ]]; then
   zstyle -e ':completion:*:complete:ssh:*:hosts' hosts __sshhosts
   #zstyle ':completion:*:my-accounts' users-hosts $my_accounts
   zstyle -e ':completion:*:my-accounts' users-hosts __ssh_users
+
+  # Don't complete "CVS" or "lost+found" directories
+  zstyle ':completion:*:(all-|)files' ignored-patterns '(|*/)CVS' '(*/)#lost+found'
+  zstyle ':completion:*:cd:*' ignored-patterns '(*/)#CVS' '(*/)#lost+found'
+
 
   # Try to avoid completion functions when completing command names.
   zstyle ':completion:*:commands' ignored-patterns '_*'
