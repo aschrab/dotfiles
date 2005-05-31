@@ -58,6 +58,7 @@ set incsearch
 set ruler
 set showmatch
 set showcmd
+set splitbelow
 set formatoptions=tcrq2
 set cpoptions=BceFs$
 "set cmdheight=2
