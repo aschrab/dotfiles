@@ -2,7 +2,7 @@
 " vim: fdm=marker
 :version 4.0
 
-set statusline=%<%f%h%m%r%w\ [%{&ft},%{&ff},%{&fenc}]\ %=\ L:%l\/%L\ C:%c%V\ pos:%o\ asc:%B\ %P
+set statusline=%<%f%h%m%r%w\ [%{&ft},%{&ff},%{&fenc}]\ %=\ L%l\/%LCol%c%V\ byt%o\ ch0x%B\ %P
 auto BufEnter * let &titlestring = "Vim@%{hostname()} : %{getcwd()}"
 
 let perl_extended_vars = 1
