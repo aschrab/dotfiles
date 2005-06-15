@@ -145,6 +145,9 @@ inoremap <C-L> <C-X><C-L>
 inoremap <C-e> <esc>
 map gf :new <cfile>
 
+" Allow backspace to remove digits from numeric prefix for commands
+map <BS> <Del>
+
 " Mappings for email {{{
 map ,ad aAaron Schrab <aaron@schrab.com>
 map ,af 1G/^From:WD
