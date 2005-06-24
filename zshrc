@@ -427,7 +427,8 @@ else
   alias -g L="| $PAGER"
 fi
 
-export LESS="-aCMj3"
+#export LESS="-aCMj3"
+export LESS="-FaMeX"
 case "$LANG" in
   *[Uu][Tt][Ff]*)
     LESSCHARSET="utf-8"
