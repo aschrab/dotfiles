@@ -148,6 +148,15 @@ map gf :new <cfile>
 " Allow backspace to remove digits from numeric prefix for commands
 map <BS> <Del>
 
+" Quote motions for operators: da" will delete a quoted string.
+" Built-in to Vim7
+:if version < 700
+omap i" :normal vT"ot"<CR>
+omap a" :normal vF"of"<CR>
+omap i' :normal vT'ot'<CR>
+omap a' :normal vF'of'<CR>
+:endif
+
 " Mappings for email {{{
 map ,ad aAaron Schrab <aaron@schrab.com>
 map ,af 1G/^From:WD
