@@ -809,6 +809,7 @@ function! s:SVNDiff(...)
   let resultBuffer = s:SVNDoCommand('diff ' . diffoptionstring . revOptions , 'svndiff', caption)
   if resultBuffer != -1 
     set filetype=diff
+    set foldmethod=diff
   endif
   return resultBuffer
 endfunction
