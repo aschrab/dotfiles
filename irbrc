@@ -92,7 +92,14 @@ end
 
 # Define "ri" command {{{
 # Tell less to pass control characters and not complain about binary files.
-ENV['LESS'] = '-fR'
+if ENV['LESS'].to_s[/^-/]
+  # If $LESS already set just make sure it contains options 'R' and 'f'.
+  ENV['LESS'] = ENV['LESS'].sub(/^-/, '-fR')
+else
+  ENV['LESS'] = '-EfFRX'
+end
+
 def ri( *names )
   system %Q<ri -fansi #{names.map{|n| n.to_s} * ' '}>
 end #}}}
+
