@@ -13,6 +13,12 @@ termcapinfo xterm 'hs:ts=\E]2;:fs=\007:ds=\E]2;screen@'"$host"'\007\E]1;screen@'
 termcapinfo gnome 'hs:ts=\E]2;:fs=\007:ds=\E]2;screen@'"$host"'\007\E]1;screen@'"$host"'\007'
 termcapinfo rxvt 'hs:ts=\E]2;:fs=\007:ds=\E]2;screen@'"$host"'\007\E]1;screen@'"$host"'\007'
 
+# tell screen that you term can scroll
+termcapinfo xterm ti@:te@
+# bind Shift+PgUp/PgDn
+bindkey -m "^[[5;2~" stuff ^b
+bindkey -m "^[[6;2~" stuff ^f
+
 #termcapinfo xterm be
 
 # ROT13 output
