@@ -1,68 +1,125 @@
-" Vim filetype plugin file
-" Language:     Ruby
-" Maintainer:   Ned Konz <ned@bike-nomad.com>
-" Last Change:  $Date: 2002/11/03 00:07:13 $
-" $Id: ruby.vim,v 1.1 2002/11/03 00:07:13 aarons Exp $
-" Current version is at http://bike-nomad.com/vim
+" Vim filetype plugin
+" Language:	Ruby
+" Maintainer:	Gavin Sinclair <gsinclair at soyabean.com.au>
+" Info:         $Id: ruby.vim,v 1.11 2005/09/11 12:02:53 dkearns Exp $
+" URL:          http://vim-ruby.sourceforge.net
+" Anon CVS:     See above site
+" Licence:      GPL (http://www.gnu.org)
+" Disclaimer:
+"    This program is distributed in the hope that it will be useful,
+"    but WITHOUT ANY WARRANTY; without even the implied warranty of
+"    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+"    GNU General Public License for more details.
+" ----------------------------------------------------------------------------
 "
-" To suppress loading of this plugin, just do this
-" in your .vimrc:
-" let loaded_ruby_ftplugin = 1
+" Original matchit support thanks to Ned Konz.  See his ftplugin/ruby.vim at
+"   http://bike-nomad.com/vim/ruby.vim.
+" ----------------------------------------------------------------------------
 
-if exists("b:did_ruby_ftplugin") | finish | endif
-if exists("loaded_ruby_ftplugin") | finish | endif
+" Only do this when not done yet for this buffer
+if (exists("b:did_ftplugin"))
+  finish
+endif
+let b:did_ftplugin = 1
 
-let b:did_ruby_ftplugin = 1
-
-" Make sure the continuation lines below do not cause problems in
-" compatibility mode.
-let s:save_cpo = &cpo
+let s:cpo_save = &cpo
 set cpo&vim
 
-" Set this once, globally.
-if !exists("rubypath")
+" Matchit support
+if exists("loaded_matchit") && !exists("b:match_words")
+  let b:match_ignorecase = 0
+
+ " TODO: improve optional do loops
+ let b:match_words =
+    \ '\%(' .
+    \     '\%(\%(\.\|\:\:\)\s*\)\@<!\<\%(class\|module\|begin\|def\|case\|for\|do\)\>' .
+    \   '\|' .
+    \     '\%(\%(^\|\.\.\.\=\|[\,;=([<>~\*/%!&^|+-]\)\s*\)\@<=\%(if\|unless\|until\|while\)\>' .
+    \ '\)' .
+    \ ':' .
+    \ '\%(' .
+    \     '\%(\%(\.\|\:\:\)\s*\)\@<!\<\%(else\|elsif\|ensure\|when\)\>' .
+    \   '\|' .
+    \     '\%(\%(^\|;\)\s*\)\@<=\<rescue\>' .
+    \ '\)' .
+    \ ':' .
+    \ '\%(\%(\.\|\:\:\)\s*\)\@<!\<end\>'
+
+  let b:match_skip =
+     \ "synIDattr(synID(line('.'),col('.'),0),'name') =~ '" .
+     \ "\\<ruby\\%(String\\|StringDelimiter\\|ASCIICode\\|Interpolation\\|" .
+     \ "NoInterpolation\\|Escape\\|Comment\\|Documentation\\)\\>'"
+
+endif
+
+setlocal formatoptions-=t formatoptions+=croql
+
+setlocal include=^\\s*\\<\\(load\\\|\w*require\\)\\>
+setlocal includeexpr=substitute(substitute(v:fname,'::','/','g'),'$','.rb','')
+setlocal suffixesadd=.rb
+
+" TODO:
+"setlocal define=^\\s*def
+
+setlocal comments=:#
+setlocal commentstring=#\ %s
+
+if !exists("s:rubypath")
   if executable("ruby")
     if &shellxquote == "'"
-      let rubypath = system('ruby -e "print $:.join(%q{,})"' )
+      let s:rubypath = system('ruby -e "puts (begin; require %q{rubygems}; Gem.all_load_paths; rescue LoadError; []; end + $:).join(%q{,})"')
     else
-      let rubypath = system("ruby -e 'print $:.join(%q{,})'" )
+      let s:rubypath = system("ruby -e 'puts (begin; require %q{rubygems}; Gem.all_load_paths; rescue LoadError; []; end + $:).join(%q{,})'")
     endif
-    let rubypath = substitute(rubypath,',.$',',,','')
+    let s:rubypath = substitute(s:rubypath,',.$',',,','')
   else
     " If we can't call ruby to get its path, just default to using the
     " current directory and the directory of the current file.
-    let rubypath = ".,,"
+    let s:rubypath = ".,,"
   endif
 endif
-let &l:path=rubypath
 
-" Set 'formatoptions' to break comment lines but not other lines,
-" and insert the comment leader when hitting <CR> or using "o".
-setlocal fo-=t fo+=croql
-setlocal include=^\\s*\\<\\(load\\\|require\\)\\>
-setlocal includeexpr=substitute(substitute(v:fname,'::','/','g'),'$','.rb','')
-setlocal iskeyword=48-57,_,A-Z,a-z,:
-setlocal comments=:#
-setlocal define=^\\s*
-setlocal suffixesadd=.rb
+let &l:path = s:rubypath
 
-" The problem with the usual tag browsing is that it doesn't know about
-" namespaces. i.e. ABC::def and def may be the same thing.
-map <buffer><unique><silent> <C-]> :exec ":tag /".expand("<cword>")<CR>
-
-" Change the browse dialog on Win32 or Motif to show mainly Ruby-related files
-if (has("gui_win32") || has("gui_motif")) && !exists("b:browsefilter")
+if has("gui_win32") && !exists("b:browsefilter")
   let b:browsefilter = "Ruby Source Files (*.rb)\t*.rb\n" .
                      \ "All Files (*.*)\t*.*\n"
 endif
 
-" Matchit support:
-if exists("loaded_matchit")
-    let b:match_ignorecase = 0
-    let b:match_words =
-\ '\%(\%(\%(^\|[;=]\)\s*\)\@<=\%(class\|module\|while\|begin\|until\|for\|if\|unless\|def\|case\)\|\%(^\|\s\)\@<=do\)\>:' .
-\ '\<\%(else\|elsif\|ensure\|rescue\|when\)\>:\%(^\|[^.]\)\@<=\<end\>'
-endif
-" \%(\%(^\|[;=]\)\s*\)\@<=
+let b:undo_ftplugin = "setl fo< inc< inex< sua< def< com< cms< path< "
+      \ "| unlet! b:browsefilter b:match_ignorecase b:match_words b:match_skip"
+
+let &cpo = s:cpo_save
+unlet s:cpo_save
+
 "
-let &cpo = s:save_cpo
+" Instructions for enabling "matchit" support:
+"
+" 1. Look for the latest "matchit" plugin at
+"
+"         http://www.vim.org/scripts/script.php?script_id=39
+"
+"    It is also packaged with Vim, in the $VIMRUNTIME/macros directory.
+"
+" 2. Copy "matchit.txt" into a "doc" directory (e.g. $HOME/.vim/doc).
+"
+" 3. Copy "matchit.vim" into a "plugin" directory (e.g. $HOME/.vim/plugin).
+"
+" 4. Ensure this file (ftplugin/ruby.vim) is installed.
+"
+" 5. Ensure you have this line in your $HOME/.vimrc:
+"         filetype plugin on
+"
+" 6. Restart Vim and create the matchit documentation:
+"
+"         :helptags ~/.vim/doc
+"
+"    Now you can do ":help matchit", and you should be able to use "%" on Ruby
+"    keywords.  Try ":echo b:match_words" to be sure.
+"
+" Thanks to Mark J. Reed for the instructions.  See ":help vimrc" for the
+" locations of plugin directories, etc., as there are several options, and it
+" differs on Windows.  Email gsinclair@soyabean.com.au if you need help.
+"
+
+" vim: nowrap sw=2 sts=2 ts=8 ff=unix:
