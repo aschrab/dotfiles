@@ -123,14 +123,14 @@ function! s:RiSetupBuffer(name)
 
   silent execute edit_cmd a:name
 
-  if v:errmsg != ""
-    if &modified && !&hidden
-      echoerr "Unable to open command buffer: 'nohidden' is set and the current buffer is modified (see :help 'hidden')."
-    else
-      echoerr "Unable to open command buffer:" v:errmsg
-    endif
-    return -1
-  endif
+"  if v:errmsg != ""
+"    if &modified && !&hidden
+"      echoerr "Unable to open command buffer: 'nohidden' is set and the current buffer is modified (see :help 'hidden')."
+"    else
+"      echoerr "Unable to open command buffer:" v:errmsg
+"    endif
+"    return -1
+"  endif
 
   " Define the environment and execute user-defined hooks.
   silent do Ri User RiBufferCreated
