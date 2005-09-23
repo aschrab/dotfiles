@@ -193,7 +193,7 @@ case ${${RECV#$(print -b -n '\x1B')\[[0-9]##;}%%R} in
 esac
 fi
 #}}}
-export LANG LC_COLLATE="C"
+export LANG LC_COLLATE="C" LC_TIME="C"
 
 esc=$(print -n "\E")
 beep=$(print -n "\C-g")
