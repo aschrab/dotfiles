@@ -695,6 +695,22 @@ su () {
   fi
 }
 
+sudo () {
+  if [ "$#" -eq 1 -a "$1" = "-s" ]; then
+    tmpfile=~/.Zsh-hist.$host.$$
+    fc -ln -10 -1 >! $tmpfile 2> /dev/null
+    export PPWD=$PWD
+    cd /
+    PZSH=$$ command sudo -s
+    cd $PPWD
+    unset PPWD
+    rm -f $tmpfile
+    unset tmpfile
+  else
+    command sudo "$@"
+  fi
+}
+
 tz () {
   local t
   t="$1"
