@@ -4,6 +4,11 @@
 HISTFILE = "~/.irb.hist"
 MAXHISTSIZE = 100
 
+begin # Try to load YAML
+  require 'yaml'
+rescue Exception
+end
+
 # Have :_ refer to value returned by previous command
 IRB.conf[:EVAL_HISTORY] = 1000
 
