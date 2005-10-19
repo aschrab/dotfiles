@@ -110,6 +110,7 @@ set guicursor=n-v-c:block-Cursor-blinkon0,ve:ver35-Cursor-blinkon0,o:hor50-Curso
 iab teh the
 iab adn and
 iab nad and
+iab anme name
 iab taht that
 iab tset test
 iab thsi this
