@@ -64,7 +64,6 @@ syn sync maxlines=100
 
 " catch errors caused by wrong parenthesis
 syn region  javaScriptParen       transparent start="(" end=")" contains=javaScriptParen,javaScriptComment,javaScriptSpecial,javaScriptStringD,javaScriptStringS,javaScriptSpecialCharacter,javaScriptNumber,javaScriptRegexpString,javaScriptBoolean,javaScriptBraces,javaScriptFunction,javaScriptFunctionFold,javaScriptConditional,javaScriptRepeat,javaScriptBranch,javaScriptOperator,javaScriptType,javaScriptStatement,javaScriptBoolean,javaScriptConstant
- syn region  javaScriptParen       transparent start="(" end=")" contains=javaScriptParen,javaScriptComment,javaScriptSpecial,javaScriptStringD,javaScriptStringS,javaScriptSpecialCharacter,javaScriptNumber,javaScriptRegexpString,javaScriptBoolean,javaScriptBraces
 syn match   javaScrParenError  ")"
 
 if main_syntax == "javascript"
