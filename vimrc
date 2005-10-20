@@ -237,6 +237,21 @@ au FileType svn map <buffer> <Leader>sd :SVNCommitDiff<CR>
 set bs=2
 set secure
 
+"=== evoke a web browser
+function! Browser ()
+    let line0 = getline (".")
+    let line = matchstr (line0, "http[^ ]*")
+    :if line==""
+      let line = matchstr (line0, "ftp[^ ]*")
+    :endif
+    :if line==""
+      let line = matchstr (line0, "file[^ ]*")
+    :endif
+    let line = escape (line, "#?&;|%")
+"   echo line
+    exec ":silent !firefox ".line
+endfunction 
+map \w :call Browser ()<CR> 
 
 "  " The File-Browser&Reader. Very handsome.
 "  
