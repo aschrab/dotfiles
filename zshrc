@@ -453,11 +453,6 @@ if [[ -n "$(whence ri1.8)" ]]; then
   alias ri='noglob ___ri'
 fi
 
-# doc function to display docs for a package, with completion
-doc() { cd /usr/share/doc/$1 && ls }
-_doc() { _files -W /usr/share/doc -/ }
-compdef _doc doc
-
 # Set aliases
 LS=$(whence gnuls)
 if [[ -n $LS ]]; then
@@ -1087,4 +1082,9 @@ if [[ $ZSH_MAJOR_VERSION -ge 4 ]]; then
       reply=( $reply "ats@$h" )
     done
   }
+
+  # doc function to display docs for a package, with completion
+  doc() { cd /usr/share/doc/$1 && ls }
+  _doc() { _files -W /usr/share/doc -/ }
+  compdef _doc doc
 fi
