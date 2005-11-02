@@ -876,7 +876,9 @@ case "$host" in
       PGHOST="fnord"
       ;;
    "frell")
-      echo m | fc -R /proc/self/fd/0
+      if [[ -n $SSH_CLIENT ]]; then
+        echo m | fc -R /proc/self/fd/0
+      fi
       ;;
 esac
 
