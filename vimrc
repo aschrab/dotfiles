@@ -95,6 +95,11 @@ set vb
 set t_vb=
 "}}}
 
+" Try to figure out if on a UTF terminal even if locale isn't known.
+:if $LANG =~ '\cUTF-\?8'
+  set termencoding=utf-8
+:endif
+
 " Display tabs and trailing spaces {{{
 :if &encoding == "utf-8"
   set listchars=tab:»­,trail:·
