@@ -3,6 +3,6 @@
 
 -- \set PROMPT1 '%[%27[0;35m%]%/@%m%R%#%[%27[0;22m%] ' 
 -- Version of the above that doesn't depend on psql 7.5 (or patched psql)
-\set PROMPT1 '%1%1''%27[0;35m''%1%2' '%/@%m%R%#' '%1%1''%27[0;22m''%1%2' ' ' 
+\set PROMPT1 '%001%001''%033[0;35m''%001%002' '%/@%m%R%#' '%001%001''%033[0;22m''%001%002' ' ' 
 
 \pset null '(null)'
