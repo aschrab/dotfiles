@@ -1,4 +1,3 @@
-# vim: ft=ruby fdm=marker
 # $Id$
 
 HISTFILE = "~/.irb.hist"
@@ -159,3 +158,4 @@ def class_tree(root, show_methods = true, colorize = true) #{{{
   recursePrint.call(root,"")
 end #}}}
 
+# vim: filetype=ruby foldmethod=marker
