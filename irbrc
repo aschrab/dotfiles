@@ -38,7 +38,7 @@ def term_color(color, rl_ignore=false) #{{{
   end
 
   r = "\033[0;#{color}m"
-  r = "\001\001#{ r }\001\002" if rl_ignore
+  r = "\001#{ r }\002" if rl_ignore
   r
 end #}}}
 prompt_color = term_color :magenta, true
