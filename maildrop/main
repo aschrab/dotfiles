@@ -1,0 +1,37 @@
+logfile $HOME/.mdlog
+PATH="$PATH:/home/ats/bin"
+MAILDROP=$HOME/.maildrop
+MDIR=$HOME/Mail
+DEFAULT=$MDIR
+DELIVER=$MAILDROP/deliver
+
+TODAY=`date +%Y/%m/%d`
+cc "$MDIR/.backup/$TODAY/"
+
+VERBOSE=2
+
+import EXTENSION
+import RECIPIENT
+if ( $EXTENSION )
+{
+  ENVTO=`reat $EXTENSION`
+}
+else
+{
+  if ( $RECIPIENT )
+    ENVTO="$RECIPIENT"
+}
+xfilter "reformail -I'X-QQX-Envelope-To: $ENVTO'"
+
+xfilter spamc
+
+if ( /^X-Spam-Flag: *YES/ )
+{
+  FOLDER=spam
+  include $DELIVER
+}
+
+include $MAILDROP/listselect
+include $MAILDROP/listsave
+
+include $DELIVER

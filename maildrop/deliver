@@ -1,0 +1,29 @@
+DEST="${MDIR}"
+
+if ($FOLDER)
+{
+  DEST="${DEST}/.${FOLDER}"
+}
+
+RETRY=1
+while ($RETRY)
+{
+  exception {
+    to $DEST
+  }
+  if ($MADE_DIR)
+  {
+    RETRY=0
+  }
+  else
+  {
+    log "Creating $MDIR"
+    `maildirmake $MDIR`
+    if ($FOLDER)
+    {
+      `maildirmake -f "${FOLDER}" "${MDIR}"`
+    }
+    MADE_DIR=1
+  }
+}
+

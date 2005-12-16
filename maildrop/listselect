@@ -1,0 +1,115 @@
+if ( /^Return-Path: <crypto-gram-return/ )
+{
+  FIXLINKS=yes
+}
+
+if ( /^Return-Path: <lsm-workers-admin@lists/ )
+{
+  LIST=lsm-workers
+}
+
+if ( /^List-Id: ruby-core\.ruby-lang\.org/ )
+{
+  LIST=ruby-core
+  REPLYTO="ruby-core@ruby-lang\.org"
+}
+
+if ( /^List-Id:.*<ruby-dbi-devel\.rubyforge\.org>/ )
+{
+  LIST=ruby-dbi
+  SUBJ='\[Ruby-DBI-devel] '
+}
+
+if ( /^(List-Subscribe: <mailto:ruby-talk-|List-Id: ruby-talk\.ruby-lang\.org)/ )
+{
+  LIST=ruby-talk
+  REPLYTO="ruby-talk@ruby-lang\.org"
+}
+
+if ( /^List-Id: *<offlineimap\.complete\.org>/ )
+{
+  LIST=offline-imap
+}
+
+if ( /^List-Unsubscribe:.*<mailto:mutt-dev-request@mutt\.org/ )
+{
+  LIST=mutt-dev
+}
+
+if ( /^Mailing-List: list milwpm@yahoogroups\.com/ )
+{
+  LIST=milwpm
+  SUBJ='\[milwpm\] '
+  REPLYTO="milwpm@yahoogroups.com"
+  EGROUPS=yes
+}
+
+if ( /^X-ML-Name: modruby/ )
+{
+  LIST=modruby
+}
+
+if ( /^List-Id: <debian-![a-z0-9_\-]+!\.lists\.debian\.org>/ )
+{
+  LIST=debian-$MATCH2
+}
+
+if ( /^X-PTS-Package:/ )
+{
+  LIST=debian-pts
+}
+
+if ( /^Mailing-List: list talk-dc@/ )
+{
+  LIST=double-click
+  REPLYTO="talk-dc@(yahoo|e)groups\.com"
+  SUBJ='\[talk-dc\] '
+  EGROUPS=yes
+}
+
+if ( /^Sender:.*list-managers-owner@GreatCircle/ )
+{
+  LIST=list-managers
+}
+
+if ( /^Return-Path: <bugtraq-return-[0-9]+-aaron=schrab\.com@securityfocus\.com>/ )
+{
+  LIST=bugtraq
+}
+
+if ( /^Return-Path: <secprog-return-[0-9]+-aaron=schrab\.com@securityfocus\.com>/ )
+{
+  LIST=secprog
+}
+
+if ( /^List-Id: <mlug-board\..*milwaukeelug\.org>/ )
+{
+  SUBJ='\[Mlug-board] '
+  REPLYTO=mlug-board
+  LIST=mlug-board
+}
+
+if ( /^List-Id:.*<mlug-list\..*\.milwaukeelug/ )
+{
+  SUBJ='\[MLUG] '
+  REPLYTO=mlug-list
+  LIST=mlug
+}
+
+if ( /^List-Subscribe: <mailto:tidbits-on@tidbits/ )
+{
+  LIST=tidbits
+  FIXLINKS=yes
+}
+
+if ( /^List-Id:.*<tbtalk\.tidbits\.com>/ )
+{
+  LIST=tidbits
+}
+
+if ( /^Sender: owner-spamtools@(lists\.)?abuse\.net/ )
+{
+  REPLYTO='spamtools@(lists\.)?abuse.net'
+  SUBJ='\[spamtools] '
+  LIST=spamtools
+}
