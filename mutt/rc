@@ -1,4 +1,4 @@
-# vim: tw=0
+# vim: tw=0 ft=muttrc
 unlists *
 unalias *
 unhook *
@@ -71,21 +71,23 @@ folder-hook Mail      "set move=yes"
 #folder-hook Mail      "set hdr_format='%4C %Z %?[?%[%H:%M]&%[%m/%d]? %-15.15L (%5l) %s'"
 
 #folder-hook Lists     "set hdr_format='%4C %Z %?[?%[%H:%M]&%[%m/%d]? %-15.15F (%5l) %s'"
-folder-hook Lists     'set save_empty to_chars=" +TCF "'
+folder-hook L(ists)?/     'set save_empty to_chars=" +TCF "'
 
 #folder-hook spool     "set hdr_format='%4C %Z %?[?%[%H:%M]&%[%m/%d]? %-15.15L (%5l) %s'"
 folder-hook spool     "set move=no"
 #folder-hook misc      "push 'D~t cricket\n'"
 
-folder-hook Lists/inet		"source ~/.Mutt/expire"
-folder-hook Lists/allgurus	"set move=no"
-folder-hook Lists/yesno		"set move=no"
-folder-hook Lists/user-account	"set move=no"
-folder-hook Lists/mutt		"set move=no"
-folder-hook Lists/mlug-org	"set move=no"
-folder-hook Lists/mlug-board	"set move=no"
-folder-hook Lists/securelinux	"source ~/.Mutt/expire"
-folder-hook Lists/sawmill	"source ~/.Mutt/expire"
+folder-hook L(ists)?/inet		"source ~/.Mutt/expire"
+folder-hook L(ists)?/allgurus		"set move=no"
+folder-hook L(ists)?/yesno		"set move=no"
+folder-hook L(ists)?/user-account	"set move=no"
+folder-hook L(ists)?/mutt		"set move=no"
+folder-hook L(ists)?/mlug-org		"set move=no"
+folder-hook L(ists)?/mlug-board		"set move=no"
+folder-hook L(ists)?/fdllug		"set move=no"
+folder-hook L(ists)?/rexml		"set move=no"
+folder-hook L(ists)?/securelinux	"source ~/.Mutt/expire"
+folder-hook L(ists)?/sawmill		"source ~/.Mutt/expire"
 
 #folder-hook (procmail|smartlist) \
 #     'set quote_regexp="^([])>%] ?|([~<]|-+)[|>]| {0,4}>|[a-z]+[>|]+ ?|=([^=0-9]|$))"'
@@ -106,267 +108,274 @@ mailboxes !
 mbox-hook spool =IN
 mbox-hook backup =Read/backup
 
-mailboxes =Lists/debian-security-announce
-mailboxes =Lists/mlug-board =Lists/mlug-board-d1 =Lists/mlug-board-d2
+mailboxes =L/debian-security-announce
+mailboxes =L/mlug-board =L/mlug-board-d1 =L/mlug-board-d2
 
-mailboxes =Lists/linux-security 
+mailboxes =L/linux-security 
 subscribe linux-security linux-alert
-mbox-hook Lists/linux-security "=Read/linux-security"
+mbox-hook L(ists)?/linux-security "=Read/linux-security"
 
-mailboxes =Lists/bugtraq
+mailboxes =L/bugtraq
 subscribe bugtraq
-mbox-hook Lists/bugtraq "=Read/bugtraq"
+mbox-hook L(ists)?/bugtraq "=Read/bugtraq"
 
-mailboxes =Lists/lsm-workers
+mailboxes =L/lsm-workers
 subscribe lsm-workers
-mbox-hook Lists/lsm-workers "=Read/lsm-workers"
-folder-hook Lists/lsm-workers "set move=no"
+mbox-hook L(ists)?/lsm-workers "=Read/lsm-workers"
+folder-hook L(ists)?/lsm-workers "set move=no"
 
-mailboxes =Lists/mlug =Lists/mlug-org
+mailboxes =L/mlug =L/mlug-org
 subscribe mlug-list mlug-org mlug-board mb-d1 mb-d2
-mbox-hook Lists/mlug-board-d1 "=Read/mlug-board-d1"
-mbox-hook Lists/mlug-board-d2 "=Read/mlug-board-d2"
-mbox-hook Lists/mlug-board "=Read/mlug-board"
-mbox-hook Lists/mlug-org "=Read/mlug-org"
-mbox-hook Lists/mlug "=Read/mlug"
-send-hook mlug my_hdr From: Aaron Schrab <aaron+mlug@schrab.com>
+mbox-hook L(ists)?/mlug-board-d1 "=Read/mlug-board-d1"
+mbox-hook L(ists)?/mlug-board-d2 "=Read/mlug-board-d2"
+mbox-hook L(ists)?/mlug-board "=Read/mlug-board"
+mbox-hook L(ists)?/mlug-org "=Read/mlug-org"
+mbox-hook L(ists)?/mlug "=Read/mlug"
+#send-hook mlug my_hdr From: Aaron Schrab <aaron+mlug@schrab.com>
 
-mailboxes =Lists/wilugs =Lists/wilugs-help
+mailboxes =L/wilugs =L/wilugs-help
 subscribe fdllug-wlugs members@wilugs.org linuxhelp@wilugs.org
-mbox-hook Lists/wilugs-help "=Read/wilugs-help"
-mbox-hook Lists/wilugs "=Read/wilugs"
+mbox-hook L(ists)?/wilugs-help "=Read/wilugs-help"
+mbox-hook L(ists)?/wilugs "=Read/wilugs"
 send-hook fdllug-wlugs my_hdr From: Aaron Schrab <aaron@schrab.com>
 send-hook @wilugs.org my_hdr From: Aaron Schrab <aaron@schrab.com>
 
-mailboxes =Lists/milwpm
+mailboxes =L/fdllug/
+subscribe fdllug-list
+mbox-hook L(ists)?/fdllug "=Read/fdllug"
+
+mailboxes =L/milwpm
 subscribe milwpm@yahoogroups
-mbox-hook Lists/milwpm "=Read/milwpm"
+mbox-hook L(ists)?/milwpm "=Read/milwpm"
 send-hook milwpm@yahoogroups my_hdr From: Aaron Schrab <aaron@schrab.com>
 
-mailboxes =Lists/double-click
+mailboxes =L/double-click
 subscribe talk-dc
-mbox-hook Lists/double-click "=Read/double-click"
+mbox-hook L(ists)?/double-click "=Read/double-click"
 send-hook talk-dc 'my_hdr From: Aaron Schrab <aaron@schrab.com>'
 
-mailboxes =Lists/muug
+mailboxes =L/muug
 subscribe muug
-mbox-hook Lists/muug "=Read/muug"
+mbox-hook L(ists)?/muug "=Read/muug"
 send-hook muug my_hdr From: Aaron Schrab <aaron+muug@schrab.com>
 
 mailboxes =rss
 
-mailboxes =Lists/mutt
+mailboxes =L/mutt
 subscribe mutt-users mutt-dev
-mbox-hook Lists/mutt "=Read/mutt"
+mbox-hook L(ists)?/mutt "=Read/mutt"
 send-hook mutt 'my_hdr From: Aaron Schrab <aaron+mutt@schrab.com>'
 #send-hook mutt 'set pgp_autosign'
 
-mailboxes =Lists/fox
+mailboxes =L/fox
 subscribe foxgui-users
-mbox-hook Lists/fox =Read/fox
+mbox-hook L(ists)?/fox =Read/fox
 
-mailboxes =Lists/fxruby-users
+mailboxes =L/fxruby-users
 subscribe fxruby-users
-mbox-hook Lists/fxruby-users =Read/fxruby-users
+mbox-hook L(ists)?/fxruby-users =Read/fxruby-users
 
-mailboxes =Lists/ruby-dbi
+mailboxes =L/ruby-dbi
 subscribe ruby-dbi-devel
-mbox-hook Lists/ruby-dbi =Read/ruby-dbi
+mbox-hook L(ists)?/ruby-dbi =Read/ruby-dbi
 
-mailboxes =Lists/modruby
+mailboxes =L/rexml
+subscribe ser-rexml@germane-software\.com
+
+mailboxes =L/modruby
 subscribe modruby
-mbox-hook Lists/modruby =Read/modruby
+mbox-hook L(ists)?/modruby =Read/modruby
 
-mailboxes =Lists/narf
+mailboxes =L/narf
 subscribe narf-lib-devel
-mbox-hook Lists/narf =Read/narf
+mbox-hook L(ists)?/narf =Read/narf
 
-mailboxes =Lists/asterisk-dev
+mailboxes =L/asterisk-dev
 subscribe asterisk-dev
-mbox-hook Lists/asterisk-dev =Read/asterisk-dev
+mbox-hook L(ists)?/asterisk-dev =Read/asterisk-dev
 
-mailboxes =Lists/asterisk-users
+mailboxes =L/asterisk-users
 subscribe asterisk-users
-mbox-hook Lists/asterisk-users =Read/asterisk-users
+mbox-hook L(ists)?/asterisk-users =Read/asterisk-users
 
-mailboxes =Lists/ifp
+mailboxes =L/ifp
 subscribe ifp-driver-common
-mbox-hook Lists/ifp =Read/ifp
+mbox-hook L(ists)?/ifp =Read/ifp
 
-mailboxes =Lists/list-managers
+mailboxes =L/list-managers
 subscribe list-managers
-mbox-hook Lists/list-managers "=Read/list-managers"
+mbox-hook L(ists)?/list-managers "=Read/list-managers"
 send-hook list-managers my_hdr From: Aaron Schrab <aaron+lm@schrab.com>
 
-mailboxes =Lists/digitaltraveler
+mailboxes =L/digitaltraveler
 subscribe digitaltraveler
-mbox-hook Lists/digitaltraveler "=Read/digitaltraveler"
+mbox-hook L(ists)?/digitaltraveler "=Read/digitaltraveler"
 send-hook digitaltraveler my_hdr From: Aaron Schrab <aaron@schrab.com>
 
-mailboxes =Lists/black-cat
+mailboxes =L/black-cat
 subscribe black-cat
-mbox-hook Lists/black-cat "=Read/black-cat"
+mbox-hook L(ists)?/black-cat "=Read/black-cat"
 send-hook black-cat my_hdr From: Aaron Schrab <aaron@schrab.com>
 
-mailboxes =Lists/audit
+mailboxes =L/audit
 subscribe security-audit
-mbox-hook Lists/audit "=Read/audit"
+mbox-hook L(ists)?/audit "=Read/audit"
 send-hook security-audit my_hdr From: Aaron Schrab <aaron+lsa@schrab.com>
 
-mailboxes =Lists/secprog
+mailboxes =L/secprog
 subscribe secprog@securityfocus.com
-mbox-hook Lists/secprog "=Read/secprog"
+mbox-hook L(ists)?/secprog "=Read/secprog"
 send-hook secprog@securityfocus.com my_hdr From: Aaron Schrab <aaron@schrab.com>
 
-mailboxes =Lists/securelinux
+mailboxes =L/securelinux
 subscribe securelinux
-mbox-hook Lists/securelinux "=Read/securelinux"
+mbox-hook L(ists)?/securelinux "=Read/securelinux"
 send-hook securelinux my_hdr From: Aaron Schrab <aaron+sl@schrab.com>
 
-mailboxes =Lists/rblcheck-users
+mailboxes =L/rblcheck-users
 subscribe rblcheck-users
-mbox-hook Lists/rblcheck-users "=Read/rblcheck-users"
+mbox-hook L(ists)?/rblcheck-users "=Read/rblcheck-users"
 send-hook rblcheck-users 'my_hdr From: Aaron Schrab <aaron@schrab.com>'
 
-mailboxes =Lists/spamtools
+mailboxes =L/spamtools
 subscribe spamtools
-mbox-hook Lists/spamtools "=Read/spamtools"
+mbox-hook L(ists)?/spamtools "=Read/spamtools"
 # This send-hook is later, after the general one for abuse.net
 #send-hook spamtools my_hdr From: Aaron Schrab <aaron+spamtools@schrab.com>
 
-mailboxes =Lists/galeon-user
+mailboxes =L/ruby-core
+subscribe ruby-core
+mbox-hook L(ists)?/ruby-core =Read/ruby-core
+
+mailboxes =L/ruby-talk
+subscribe ruby-talk
+mbox-hook L(ists)?/ruby-talk =Read/ruby-talk
+
+mailboxes =L/galeon-user
 subscribe galeon-user
-mbox-hook Lists/galeon-user "=Read/galeon-user"
+mbox-hook L(ists)?/galeon-user "=Read/galeon-user"
 send-hook galeon-user 'my_hdr From: Aaron Schrab <aaron+galeon@schrab.com>'
 
-mailboxes =Lists/irmp3
+mailboxes =L/irmp3
 subscribe irmp3
-mbox-hook Lists/irmp3 "=Read/irmp3"
+mbox-hook L(ists)?/irmp3 "=Read/irmp3"
 send-hook irmp3 my_hdr From: Aaron Schrab <aaron+irmp3@schrab.com>
 
-mailboxes =Lists/mp3stereo
+mailboxes =L/mp3stereo
 subscribe mp3stereo
-mbox-hook Lists/mp3stereo "=Read/mp3stereo"
+mbox-hook L(ists)?/mp3stereo "=Read/mp3stereo"
 send-hook mp3stereo my_hdr From: Aaron Schrab <aaron+mp3stereo@schrab.com>
 
-mailboxes =Lists/lirc
+mailboxes =L/lirc
 subscribe lirc
-mbox-hook Lists/lirc "=Read/lirc"
+mbox-hook L(ists)?/lirc "=Read/lirc"
 send-hook lirc my_hdr From: Aaron Schrab <aaron+lirc@schrab.com>
 
-mailboxes =Lists/hfs
+mailboxes =L/hfs
 subscribe hfs-interest
-mbox-hook Lists/hfs "=Read/hfs"
+mbox-hook L(ists)?/hfs "=Read/hfs"
 
-mailboxes =Lists/secure-mua
+mailboxes =L/secure-mua
 subscribe secure-mua dev@smime.pyerotechnics.com
-mbox-hook Lists/secure-mua "=Read/secure-mua"
+mbox-hook L(ists)?/secure-mua "=Read/secure-mua"
 send-hook secure-mua@egroups 'my_hdr From: <u.utkroyz34ius-h.700a5@pug.qqx.org>'
 send-hook dev@smime 'my_hdr From: Aaron Schrab <aaron+mutt@schrab.com>'
 
-mailboxes =Lists/screen
+mailboxes =L/screen
 subscribe gnu-screen@egroups.com
-mbox-hook Lists/screen "=Read/screen"
+mbox-hook L(ists)?/screen "=Read/screen"
 send-hook gnu-screen@egroups 'my_hdr From: <u.utkroyz34ius-h.700a5@pug.qqx.org>'
 
-mailboxes =Lists/jeremiah
+mailboxes =L/jeremiah
 subscribe Jeremiah_Series@yahoogroups.com
-mailboxes Lists/jeremiah "=Read/jeremiah"
+mailboxes L/jeremiah "=Read/jeremiah"
 
-mailboxes =Lists/tidbits
-subscribe tidbits-talk
-mbox-hook Lists/tidbits "=Read/tidbits"
-send-hook tidbits 'my_hdr From: Aaron Schrab <aaron@schrab.com>'
-folder-hook tidbits 'set sort_aux=last-date'
-
-mailboxes =Lists/mol-general
+mailboxes =L/mol-general
 subscribe mol-general
-mbox-hook Lists/mol-general "=Read/mol-general"
+mbox-hook L(ists)?/mol-general "=Read/mol-general"
 send-hook maconlinux.org 'my_hdr From: Aaron Schrab <aaron@schrab.com>'
 
-mailboxes `ls -tCdw9999 ~/Mail/Lists/debian-*`
-mailboxes =Lists/debian-pts
-subscribe `ls -tCdw9999 ~/Mail/Lists/debian-* | sed -e 's,\(^\| \)[^ ]*/,,g'`
+mailboxes `ls -tCdw9999 ~/Mail/L/debian-*`
+mailboxes =L/debian-pts
+subscribe `ls -tCdw9999 ~/Mail/L/debian-* | sed -e 's,\(^\| \)[^ ]*/,,g'`
 lists debian-
 #subscribe debian-mentors debian-powerpc debian-devel
-mbox-hook Lists/debian-mentors "=Read/debian-mentors"
-mbox-hook Lists/debian-powerpc "=Read/debian-powerpc"
-mbox-hook Lists/debian-pts "=Read/debian-pts"
-mbox-hook Lists/debian-devel "=Read/debian-devel"
-mbox-hook Lists/debian-project "=Read/debian-project"
-mbox-hook Lists/debian "=Read/debian"
+mbox-hook L(ists)?/debian-mentors "=Read/debian-mentors"
+mbox-hook L(ists)?/debian-powerpc "=Read/debian-powerpc"
+mbox-hook L(ists)?/debian-pts "=Read/debian-pts"
+mbox-hook L(ists)?/debian-devel "=Read/debian-devel"
+mbox-hook L(ists)?/debian-project "=Read/debian-project"
+mbox-hook L(ists)?/debian "=Read/debian"
 send-hook debian.org 'my_hdr From: Aaron Schrab <aaron@schrab.com>'
 
-mailboxes =Lists/ruby-core
-subscribe ruby-core
-mbox-hook Lists/ruby-core =Read/ruby-core
-
-mailboxes =Lists/ruby-talk
-subscribe ruby-talk
-mbox-hook Lists/ruby-talk =Read/ruby-talk
-
-mailboxes =Lists/sup
+mailboxes =L/sup
 subscribe suplist
-mbox-hook Lists/sup "=Read/sup"
+mbox-hook L(ists)?/sup "=Read/sup"
 send-hook suplist@whitefang my_hdr From: Aaron Schrab <aaron+sup@schrab.com>
 
-mailboxes =Lists/trn
+mailboxes =L/trn
 subscribe trn-users
-mbox-hook Lists/trn "=Read/trn"
+mbox-hook L(ists)?/trn "=Read/trn"
 send-hook trn 'my_hdr From: Aaron Schrab <aaron+trn@schrab.com>'
 
-mailboxes =Lists/redhat
+mailboxes =L/redhat
 
-mailboxes =Lists/zsh 
+mailboxes =L/zsh 
 subscribe zsh-users zsh-workers
-mbox-hook Lists/zsh "=Read/zsh"
+mbox-hook L(ists)?/zsh "=Read/zsh"
 send-hook zsh 'my_hdr From: Aaron Schrab <aaron+zsh@schrab.com>'
 
-mailboxes =Lists/procmail-dev
+mailboxes =L/procmail-dev
 subscribe procmail-dev
-mbox-hook Lists/procmail-dev "=Read/procmail-dev"
+mbox-hook L(ists)?/procmail-dev "=Read/procmail-dev"
 send-hook procmail-dev 'my_hdr From: Aaron Schrab <aaron+procmail@schrab.com>'
 
-mailboxes =Lists/smartlist-dev
+mailboxes =L/smartlist-dev
 subscribe smartlist-dev
-mbox-hook Lists/smartlist-dev "=Read/smartlist-dev"
+mbox-hook L(ists)?/smartlist-dev "=Read/smartlist-dev"
 send-hook smartlist-dev 'my_hdr From: Aaron Schrab <aaron+procmail@schrab.com>'
 
-mailboxes =Lists/smartlist
+mailboxes =L/smartlist
 subscribe smartlist
-mbox-hook Lists/smartlist "=Read/smartlist"
+mbox-hook L(ists)?/smartlist "=Read/smartlist"
 send-hook smartlist my_hdr From: Aaron Schrab <aaron+smartlist@schrab.com>
 
-mailboxes =Lists/sympa-users
+mailboxes =L/sympa-users
 subscribe sympa-users@cru.fr
-mbox-hook Lists/sympa-users "=Read/sympa-users"
+mbox-hook L(ists)?/sympa-users "=Read/sympa-users"
 send-hook sympa my_hdr From: Aaron Schrab <aaron+sympa@schrab.com>
 
-mailboxes =Lists/procmail
+mailboxes =L/procmail
 subscribe procmail
-mbox-hook Lists/procmail "=Read/procmail"
+mbox-hook L(ists)?/procmail "=Read/procmail"
 send-hook procmail 'my_hdr From: Aaron Schrab <aaron+procmail@schrab.com>'
 
-mailboxes =Lists/linux-pmac
+mailboxes =L/linux-pmac
 lists linux-pmac
-mbox-hook Lists/linux-pmac "=Read/linux-pmac"
+mbox-hook L(ists)?/linux-pmac "=Read/linux-pmac"
 send-hook linux-pmac 'my_hdr From: Aaron Schrab <aaron+pmac@schrab.com>'
 
-mailboxes =Lists/crypto
+mailboxes =L/crypto
 subscribe crypto
-mbox-hook Lists/crypto "=Read/crypto"
+mbox-hook L(ists)?/crypto "=Read/crypto"
 
-mailboxes =Lists/livingston-radius
+mailboxes =L/livingston-radius
 lists portmaster-radius
-mbox-hook Lists/livingston-radius "=Read/livingston-radius"
-mailboxes =Lists/radius-ietf
+mbox-hook L(ists)?/livingston-radius "=Read/livingston-radius"
+mailboxes =L/radius-ietf
 subscribe radius-ietf
-mbox-hook Lists/radius-ietf "=Read/radius-ietf"
+mbox-hook L(ists)?/radius-ietf "=Read/radius-ietf"
 send-hook radius 'my_hdr From: Aaron Schrab <aaron+radius@schrab.com>'
 
-mailboxes =Lists/bt
+mailboxes =L/bt
 lists bt-list
-mbox-hook Lists/bt =Read/bt
+mbox-hook L(ists)?/bt =Read/bt
+
+mailboxes =L/tidbits
+subscribe tidbits-talk
+mbox-hook L(ists)?/tidbits "=Read/tidbits"
+send-hook tidbits 'my_hdr From: Aaron Schrab <aaron@schrab.com>'
+folder-hook tidbits 'set sort_aux=last-date'
 
 mailboxes =misc =suspect =qqx.org
 mbox-hook suspect "=spam"
@@ -410,6 +419,7 @@ fcc-save-hook relays@radparker   "=rrss"
 fcc-save-hook eric@bernafamily   "=eric@bernafamily.com"
 fcc-save-hook jbaker@police.wauwatosa.wi.us "=joebaker"
 fcc-save-hook skepticmag@aol.com "=skeptic.com"
+fcc-save-hook support@paytrust.com "=billmanager"
 
 save-hook mlug-list          "=mlug"
 save-hook execpc-circuit-users "=execpc-circuit-users"

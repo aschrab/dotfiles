@@ -608,3 +608,4 @@ ignore X-PopBeforeSMTP
 ignore X-AntiVirus
 ignore DomainKey-Signature:
 ignore X-Olympus-
+ignore X-Bogosity:
