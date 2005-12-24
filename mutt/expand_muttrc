@@ -1,0 +1,18 @@
+#!/usr/bin/ruby -w
+# $Id$
+
+Dir.chdir( File.dirname($0) )
+
+require 'eruby'
+require 'muttrc'
+
+$compiler = ERuby::Compiler.new
+
+def mutt_include( fname )
+  code = File.open( fname ){ |fh| $compiler.compile_file( fh ) }
+  eval( code, nil, fname )
+end
+
+ARGV.each do |file|
+  mutt_include file
+end
