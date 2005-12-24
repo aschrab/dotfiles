@@ -1,8 +1,11 @@
 # File locations
-set folder=~/Mail
+set folder=imaps://ats@pug.qqx.org/
+set spoolfile=+INBOX
 set postponed=+Postponed       # where to save postponed messages
 set record=+Misc               # save copies of outgoing mail
 set mbox=+Misc
+set imap_headers="X-Spam-Status"
+set mail_check=60
 
 set quote_regexp='^([]})>|!%>] ?|[|>]| {0,4}[:>] ?| ?[a-z]+>+ ?)'
 
@@ -21,7 +24,8 @@ set forw_format='Fwd: %s (from %a)'
 # Editing related settings
 set recall=no       # don't ask about recalling when mailing
 set fast_reply                 # go straight to editor for replies
-set nomime_fwd                 # forward as attachment
+set mime_fwd=ask-yes           # maybe forward as attachment
+set forward_decode=no
 set abort_unmodified=no
 set abort_nosubject=no
 set edit_hdrs                  # include headers in editor
@@ -37,6 +41,7 @@ set reverse_alias              # show aliases in message lists
 set nomark_old                 # all unread mail is marked as new
 set status_chars=" *%"
 set sort=threads
+set nostrict_threads
 set sort_aux=last-date
 set status_format=" %r Mutt:%-25.25f [Msgs:%?M?%M/?%m New:%n%?F? Flag:%F?%?t? Tag:%t? In:%b%?p? Post:%p?]%> (%s/%S)"
 
@@ -61,7 +66,7 @@ charset-hook windows-1251 cp1251
 # Misc settings
 set nohelp
 set copy=yes
-set move=yes        # automatically move read messages to read folder
+set move=no         # Don't automatically move read messages to read folder
 set confirmappend=no
 set confirmcreate=no
 set print=ask-no    # confirm printing
