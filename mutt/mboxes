@@ -25,6 +25,8 @@ mailboxes =rss
 <%= mlist 'ruby/ruby-core' %>
 <%= mlist 'ruby/ruby-talk' %>
 
+<%= mlist 'mail/dovecot' %>
+
 # Debian lists
 <%= mlist 'debian/ruby' %>
 <%= mlist 'debian/devel' %>
