@@ -609,3 +609,7 @@ ignore X-AntiVirus
 ignore DomainKey-Signature:
 ignore X-Olympus-
 ignore X-Bogosity:
+ignore X-Hashcash:
+ignore X-CRM114-
+ignore X-SA-
+ignore X-Grey:
