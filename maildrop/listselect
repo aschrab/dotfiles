@@ -10,35 +10,42 @@ if ( /^Return-Path: <lsm-workers-admin@lists/ )
 
 if ( /^List-Id: ruby-core\.ruby-lang\.org/ )
 {
-  LIST=ruby-core
+  LIST=ruby.ruby-core
   REPLYTO="ruby-core@ruby-lang\.org"
 }
 
 if ( /^List-Id:.*<ruby-dbi-devel\.rubyforge\.org>/ )
 {
-  LIST=ruby-dbi
+  LIST=ruby.ruby-dbi
   SUBJ='\[Ruby-DBI-devel] '
 }
 
 if ( /^(List-Subscribe: <mailto:ruby-talk-|List-Id: ruby-talk\.ruby-lang\.org)/ )
 {
-  LIST=ruby-talk
+  LIST=ruby.ruby-talk
   REPLYTO="ruby-talk@ruby-lang\.org"
 }
 
 if ( /^List-Id: *<offlineimap\.complete\.org>/ )
 {
-  LIST=offline-imap
+  LIST=mail.offline-imap
 }
+
+if ( /^List-Id:.*<dovecot\.dovecot\.org>/ )
+{
+  LIST=mail.dovecot
+  SUBJ='\[Dovecot] '
+}
+
 
 if ( /^List-Unsubscribe:.*<mailto:mutt-dev-request@mutt\.org/ )
 {
-  LIST=mutt-dev
+  LIST=mail.mutt-dev
 }
 
 if ( /^Mailing-List: list milwpm@yahoogroups\.com/ )
 {
-  LIST=milwpm
+  LIST=ug.milwpm
   SUBJ='\[milwpm\] '
   REPLYTO="milwpm@yahoogroups.com"
   EGROUPS=yes
@@ -46,22 +53,22 @@ if ( /^Mailing-List: list milwpm@yahoogroups\.com/ )
 
 if ( /^X-ML-Name: modruby/ )
 {
-  LIST=modruby
+  LIST=ruby.modruby
 }
 
 if ( /^List-Id: <debian-![a-z0-9_\-]+!\.lists\.debian\.org>/ )
 {
-  LIST=debian-$MATCH2
+  LIST=debian.$MATCH2
 }
 
 if ( /^X-PTS-Package:/ )
 {
-  LIST=debian-pts
+  LIST=debian.pts
 }
 
 if ( /^Mailing-List: list talk-dc@/ )
 {
-  LIST=double-click
+  LIST=ug.double-click
   REPLYTO="talk-dc@(yahoo|e)groups\.com"
   SUBJ='\[talk-dc\] '
   EGROUPS=yes
@@ -69,7 +76,7 @@ if ( /^Mailing-List: list talk-dc@/ )
 
 if ( /^Sender:.*list-managers-owner@GreatCircle/ )
 {
-  LIST=list-managers
+  LIST=mail.list-managers
 }
 
 if ( /^Return-Path: <bugtraq-return-[0-9]+-aaron=schrab\.com@securityfocus\.com>/ )
@@ -86,14 +93,20 @@ if ( /^List-Id: <mlug-board\..*milwaukeelug\.org>/ )
 {
   SUBJ='\[Mlug-board] '
   REPLYTO=mlug-board
-  LIST=mlug-board
+  LIST=ug.mlug-board
 }
 
 if ( /^List-Id:.*<mlug-list\..*\.milwaukeelug/ )
 {
   SUBJ='\[MLUG] '
   REPLYTO=mlug-list
-  LIST=mlug
+  LIST=ug.mlug-list
+}
+
+if ( /^List-Id:.*<fdllug-list\.lists\.fdllug\.org>)
+{
+  SUBJ='\[fdllug] '
+  LIST=ug.fdllug-list
 }
 
 if ( /^List-Subscribe: <mailto:tidbits-on@tidbits/ )
@@ -111,5 +124,5 @@ if ( /^Sender: owner-spamtools@(lists\.)?abuse\.net/ )
 {
   REPLYTO='spamtools@(lists\.)?abuse.net'
   SUBJ='\[spamtools] '
-  LIST=spamtools
+  LIST=mail.spamtools
 }
