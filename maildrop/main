@@ -25,7 +25,7 @@ xfilter "reformail -I'X-QQX-Envelope-To: $ENVTO'"
 
 xfilter spamc
 
-if ( /^X-Spam-Flag: *YES/ )
+if ( /^X-Spam-Status: *YES/ )
 {
   FOLDER=spam
   include $DELIVER
