@@ -13,7 +13,7 @@
 
 mailboxes =rss
 
-<%= mlist 'mail.mutt-dev' %>
+<%= mlist 'mail/mutt-dev' %>
 
 <%= mlist 'mail/spamtools', :from => 'aaron+spamtools@schrab.com' %>
 
