@@ -103,7 +103,7 @@ if ( /^List-Id:.*<mlug-list\..*\.milwaukeelug/ )
   LIST=ug.mlug-list
 }
 
-if ( /^List-Id:.*<fdllug-list\.lists\.fdllug\.org>)
+if ( /^List-Id:.*<fdllug-list\.lists\.fdllug\.org>/ )
 {
   SUBJ='\[fdllug] '
   LIST=ug.fdllug-list
