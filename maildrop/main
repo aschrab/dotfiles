@@ -21,6 +21,12 @@ else
   if ( $RECIPIENT )
     ENVTO="$RECIPIENT"
 }
+
+if ( $ENVTO =~ /^backup(@|$)/)
+{
+  exit
+}
+
 xfilter "reformail -I'X-QQX-Envelope-To: $ENVTO'"
 
 xfilter spamc
