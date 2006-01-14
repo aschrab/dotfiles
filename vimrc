@@ -65,7 +65,7 @@ set cpoptions=BceFs$
 set laststatus=2
 set matchpairs=(:),{:},[:],<:>
 set fileformats=unix,dos,mac
-set fileencodings=ucs-bom,ucs,latin1,iso-2022-jp,euc,sjis
+set fileencodings=ucs-bom,utf-8,latin1,iso-2022-jp,euc,sjis
 set pastetoggle=<F4>
 set modelines=5
 set wildmenu
