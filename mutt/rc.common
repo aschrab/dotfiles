@@ -1,8 +1,8 @@
 # File locations
 set folder=imaps://ats@pug.qqx.org/
 set spoolfile=+INBOX
-set postponed=+Postponed       # where to save postponed messages
-set record=+Misc               # save copies of outgoing mail
+set postponed=+Drafts          # where to save postponed messages
+set record=+Sent               # save copies of outgoing mail
 set mbox=+Misc
 set imap_headers="X-Spam-Status"
 set mail_check=60
