@@ -29,7 +29,7 @@ set forward_decode=no
 set abort_unmodified=no
 set abort_nosubject=no
 set edit_hdrs                  # include headers in editor
-set header                     # include header in replies
+set noheader                   # don't quote header in replies
 set include=yes                # include message in replies
 set editor="vim '+/^$/+1'"
 #set autoedit                  # go straight to editor for messages
