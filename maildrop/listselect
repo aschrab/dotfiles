@@ -8,6 +8,11 @@ if ( /^Return-Path: <lsm-workers-admin@lists/ )
   LIST=lsm-workers
 }
 
+if ( /^Mailing-List:.*vim-dev/ )
+{
+  LIST=vim-dev
+}
+
 if ( /^List-Id: ruby-core\.ruby-lang\.org/ )
 {
   LIST=ruby.ruby-core
