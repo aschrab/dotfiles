@@ -13,7 +13,7 @@ if ( $LIST )
 if ( $SUBJ )
 {
   SUBJECT=`reformail -xSubject: | sed -e "s/$SUBJ//"`
-  xfilter "reformail -i'Subject: $SUBJECT'"
+  xfilter 'reformail -i"Subject: $SUBJECT"'
 }
 
 if ( $FIXLINKS )
