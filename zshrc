@@ -700,7 +700,7 @@ su () {
 }
 
 sudo () {
-  if [ "$#" -eq 1 -a "$1" = "-s" ]; then
+  if [ "$*" = "" -o "$*" = "-s" ]; then
     tmpfile=~/.Zsh-hist.$host.$$
     fc -ln -10 -1 >! $tmpfile 2> /dev/null
     export PPWD=$PWD
