@@ -428,7 +428,7 @@ else
 fi
 
 #export LESS="-aCMj3"
-export LESS="-FaMeX"
+export LESS="-aMeXj3"
 case "$LANG" in
   *[Uu][Tt][Ff]*)
     LESSCHARSET="utf-8"
@@ -445,7 +445,7 @@ if [[ -n "$(whence ri1.8)" ]]; then
     #   -F: quit if the entire file fits on the screen
     #   -f: not complain about binary files
     #   -R: pass through terminal control characters
-    local -x LESS="${LESS:?-}fR"
+    local -x LESS="${LESS:?-}FfR"
     ri1.8 -fansi "$@"
   }
   # Turn off globbing for arguments to ri, since glob characters are
