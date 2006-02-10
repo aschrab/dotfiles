@@ -46,6 +46,7 @@ highlight diffAdded ctermfg=Blue
 "}}}
 
 " Miscellaneous options {{{
+set display+=lastline
 set shiftwidth=2
 set autoindent
 set nobackup
@@ -59,8 +60,9 @@ set ruler
 set showmatch
 set showcmd
 set splitbelow
-set formatoptions=tcrq2
-set cpoptions=BceFs$
+set formatoptions+=r
+set formatoptions+=2
+set cpoptions+=$
 "set cmdheight=2
 set laststatus=2
 set matchpairs=(:),{:},[:],<:>
