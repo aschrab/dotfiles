@@ -22,6 +22,7 @@ set t_Co=16
 "set t_Sb=[4%p1%dm
 syntax on
 " Custom colors {{{
+if &bg == "light"
 highlight Comment ctermfg=DarkRed
 highlight Constant ctermfg=DarkMagenta
 highlight procmailAction ctermfg=DarkGreen
@@ -43,6 +44,7 @@ highlight rubyEscape ctermbg=Cyan ctermfg=DarkBlue
 
 highlight diffRemoved ctermfg=Red
 highlight diffAdded ctermfg=Blue
+end
 "}}}
 
 " Miscellaneous options {{{
