@@ -703,11 +703,7 @@ sudo () {
   if [ "$*" = "" -o "$*" = "-s" ]; then
     tmpfile=~/.Zsh-hist.$host.$$
     [ -w ~ ] && fc -ln -10 -1 >! $tmpfile 2> /dev/null
-    export PPWD=$PWD
-    cd /
     PZSH=$$ command sudo -s
-    cd $PPWD
-    unset PPWD
     rm -f $tmpfile
     unset tmpfile
   else
