@@ -680,7 +680,7 @@ MYSU=$(whence mysu)
 su () {
   if [ $# -eq 0 ] ; then
         tmpfile=~/.Zsh-hist.$host.$$
-        fc -ln -10 -1 >! $tmpfile 2> /dev/null
+        [ -w ~ ] && fc -ln -10 -1 >! $tmpfile 2> /dev/null
         export PPWD=$PWD  # Save current directory,
         cd /              # cd to / so su isn't running in a mounted filesystem
         if [[ -n "$MYSU" ]] ; then
@@ -702,7 +702,7 @@ su () {
 sudo () {
   if [ "$*" = "" -o "$*" = "-s" ]; then
     tmpfile=~/.Zsh-hist.$host.$$
-    fc -ln -10 -1 >! $tmpfile 2> /dev/null
+    [ -w ~ ] && fc -ln -10 -1 >! $tmpfile 2> /dev/null
     export PPWD=$PWD
     cd /
     PZSH=$$ command sudo -s
