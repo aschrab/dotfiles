@@ -171,6 +171,7 @@ end #}}}
 # Add Object#what? to list methods of the object that return the given values.
 # Example:
 #       "foo".what? == 3 ==> [ 'length', 'size' ]
+# From  http://redhanded.hobix.com/inspect/stickItInYourIrbrcMethodfinder.html
 #{{{
 class Object
   # Clone fails on numbers, but they're immutable anyway
