@@ -168,4 +168,50 @@ def class_tree(root, show_methods = true, colorize = true) #{{{
   recursePrint.call(root,"")
 end #}}}
 
+# Add Object#what? to list methods of the object that return the given values.
+# Example:
+#       "foo".what? == 3 ==> [ 'length', 'size' ]
+#{{{
+class Object
+  # Clone fails on numbers, but they're immutable anyway
+  def always_clone
+    self.clone rescue self
+  end
+  def what?(*a)
+    MethodFinder.new(self, *a)
+  end
+end
+
+class MethodFinder
+  # Find all methods on [anObject] which, when called with [args] return [expectedResult]
+  def self.find( anObject, expectedResult, *args )
+    oldwarn = $VERBOSE
+    $VERBOSE = nil
+    anObject.methods.select { |name| name}.
+                     select { |name| anObject.method(name).arity == args.size }.
+                     select { |name| anObject.always_clone.method( name ).call(*args) == expectedResult rescue nil }
+  ensure
+    $VERBOSE = oldwarn
+  end
+
+  # Pretty-prints the results of the previous method
+  def self.show( anObject, expectedResult, *args )
+    find( anObject, expectedResult, *args ).each { |name|
+      print "#{anObject.inspect}.#{name}" 
+      print "(" + args.map { |o| o.inspect }.join(", ") + ")" unless args.empty?
+      puts " == #{expectedResult.inspect}" 
+    }
+  end
+
+  def initialize( obj, *args )
+    @obj = obj
+    @args = args
+  end
+
+  def ==( val )
+    MethodFinder.show( @obj, val, *@args )
+  end
+end
+#}}}
+
 # vim: filetype=ruby foldmethod=marker
