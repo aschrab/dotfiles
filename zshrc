@@ -3,7 +3,7 @@
 
 # reset signal handlers
 trap -
-bindkey -em
+bindkey -e
 umask 022
 
 export BAUD=0
