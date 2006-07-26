@@ -872,7 +872,7 @@ then
 fi
 
 case "$host" in
-   "grok"|"gir"|"tamara"|"tanstaafl")
+   "grok"|"gir"|"tamara"|"tanstaafl"|"zim")
       PGHOST="fnord"
       ;;
    "frell")
@@ -880,6 +880,10 @@ case "$host" in
         echo m | fc -R /proc/self/fd/0
       fi
       ;;
+  "psn1")
+    PGHOST="verdande"
+    PGUSER="enforcer"
+    ;;
 esac
 
 function __sshhosts () {
