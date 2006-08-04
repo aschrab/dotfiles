@@ -1,5 +1,8 @@
 # $Id$
 % require 'muttrc.rb'
+
+mailboxes !
+
 <%# mlist 'sec/linux-security' %>
 <%= mlist 'bugtraq' %>
 <%= mlist 'lsm-workers' %>
@@ -16,6 +19,8 @@ mailboxes =rss
 <%= mlist 'mail/mutt-dev' %>
 
 <%= mlist 'mail/spamtools', :from => 'aaron+spamtools@schrab.com' %>
+
+<%= mlist 'vim-dev' %>
 
 # Ruby lists
 <%= mlist 'ruby/ruby-dbi' %>
