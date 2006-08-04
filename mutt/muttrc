@@ -5,6 +5,7 @@ unalias *
 unhook *
 
 source ~/.mutt/rc.common
+source ~/.mutt/save_hooks
 set editor="xfix -s -- vim '+/^$/+1'"
 
 # Since a lot of software claims that cp1252 encoded text is actually
@@ -17,7 +18,7 @@ auto_view application/x-gtar application/x-tar application/x-tar-gz text/x-csrc
 set ispell="spell"
 
 set from="aaron@schrab.com"
-my_hdr Bcc: backup@schrab.com
+#my_hdr Bcc: backup@schrab.com
 
 source ~/.mutt/ignore
 
