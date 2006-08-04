@@ -1,4 +1,5 @@
 # File locations
+set tunnel="dovecot --exec-mail imap"
 set folder=imaps://ats@pug.qqx.org/
 set spoolfile=+INBOX
 set postponed=+Drafts          # where to save postponed messages
@@ -42,7 +43,7 @@ set nomark_old                 # all unread mail is marked as new
 set status_chars=" *%"
 set sort=threads
 set nostrict_threads
-set sort_aux=last-date
+set sort_aux=last-date-received
 set status_format=" %r Mutt:%-25.25f [Msgs:%?M?%M/?%m New:%n%?F? Flag:%F?%?t? Tag:%t? In:%b%?p? Post:%p?]%> (%s/%S)"
 
 set folder_format="%2C%t %5N %8s %d %f"
@@ -61,8 +62,10 @@ alternative_order text/enriched text/plain text application/postscript image/*
 auto_view text/html application/pgp-keys application/x-tar-gz \
   text/x-internet-signup application/x-sh application/x-patch text/x-patch \
   application/octet-stream
-charset-hook windows-1251 cp1251
 
+charset-hook windows-1251 cp1251
+charset-hook ascii cp1251
+charset-hook iso8859-1 cp1251
 
 
 # Misc settings
