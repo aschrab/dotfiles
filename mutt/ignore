@@ -613,3 +613,5 @@ ignore X-Hashcash:
 ignore X-CRM114-
 ignore X-SA-
 ignore X-Grey:
+ignore X-DSPAM-
+ignore X-MultiKabel-
