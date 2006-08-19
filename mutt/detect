@@ -4,6 +4,7 @@
 % alternates = [ ]
 % alternates << '(aaron|root|master|ats|bofh)@sc[h]rab\.com'
 % alternates << '@pug\.qqx\.org'
+% alternates << '[hp]ostmaster@qqx\.org'
 % alternates << 'asc[h]rab@copweb\.com'
 % alternates << 'a[s]@publicsafetynet\.us'
 %
