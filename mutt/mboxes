@@ -10,6 +10,7 @@ mailboxes !
 # UG lists
 <%= mlist 'ug/mlug-board' %>
 <%= mlist 'ug/mlug-list' %>
+<%= mlist 'ug/trilug' %>
 <%= mlist 'ug/fdllug-list' %>
 <%= mlist 'ug/milwpm' %>
 <%= mlist 'ug/double-click' %>
@@ -25,12 +26,14 @@ mailboxes =rss
 # Ruby lists
 <%= mlist 'ruby/ruby-dbi' %>
 <%= mlist 'ruby/rexml', :address => 'ser-rexml' %>
+<%= mlist 'ruby/raleigh', :address => 'raleigh-rb-members' %>
 <%= mlist 'ruby/modruby' %>
 <%= mlist 'ruby/narf' %>
 <%= mlist 'ruby/ruby-core' %>
 <%= mlist 'ruby/ruby-talk' %>
 
 <%= mlist 'mail/dovecot' %>
+<%= mlist 'mail/offlineimap' %>
 
 # Debian lists
 <%= mlist 'debian/ruby' %>
