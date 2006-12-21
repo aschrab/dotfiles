@@ -1000,9 +1000,9 @@ function __cdmatch () {
 # shell functions
 if [ -d $HOME/.fbin ]; then
   fpath=($fpath $HOME/.fbin)
-  for AF in $HOME/.fbin/*(N); do
-        typeset -fu $AF:t
-  done
+#  for AF in $HOME/.fbin/*(N); do
+#        typeset -fu $AF:t
+#  done
   unset AF || :
 fi
 
