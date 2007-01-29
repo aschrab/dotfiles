@@ -86,7 +86,7 @@ if exists("b:tt2_syn_tags")
                         \ 'end=+' . s:st . '[-]\=\s*END+me=s-1 contains=@Perl keepend'
         endif
 
-        echo 'TAGS ' . s:st . ' ' . s:ed
+        "echo 'TAGS ' . s:st . ' ' . s:ed
         unlet s:st
         unlet s:ed
     endwhile
