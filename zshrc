@@ -99,7 +99,7 @@ fi
 fColor=$normal
 pColor=$green
 case "$USERNAME" in
-  aarons|ats)
+  aarons|ats|aschrab)
     pColor=$cyan
     ;;
   aaron)
