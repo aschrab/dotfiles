@@ -50,10 +50,11 @@ end
 " Miscellaneous options {{{
 set display+=lastline
 set shiftwidth=2
+set tabstop=2
 set autoindent
 set nobackup
 set smarttab
-set expandtab
+set noexpandtab
 set title
 set ignorecase
 set smartcase
@@ -242,6 +243,8 @@ au BufNewFile,BufRead */zone/* set ft=zone
 
 au BufNewFile,BufRead  svn-commit.* setf svn
 au FileType svn map <buffer> <Leader>sd :SVNCommitDiff<CR>
+
+au BufNewFile,BufRead *.tt setf tt2html
 
 set bs=2
 set secure
