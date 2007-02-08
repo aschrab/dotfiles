@@ -3,7 +3,14 @@
 :version 4.0
 
 set statusline=%<%f%h%m%r%w\ [%{&ft},%{&ff},%{&fenc}]\ %=\ L%l\/%LCol%c%V\ byt%o\ ch0x%B\ %P
-auto BufEnter * let &titlestring = "Vim@%{hostname()} : %{getcwd()}"
+function! CleanCWD ()
+	let cwd = getcwd()
+	"let home = '^/home/athena/aschrab'
+	let home = expand('~')
+	let cwd = substitute(cwd, home, '~', '')
+	return cwd
+endfunction
+auto BufEnter * let &titlestring = "%{CleanCWD()} : Vim@%{hostname()}"
 
 let perl_extended_vars = 1
 let perl_highlight_matches = 1
@@ -12,6 +19,7 @@ let perl_highlight_matches = 1
 
 let g:xml_syntax_folding = 1
 let g:javaScript_fold = 1
+let g:perl_fold = 1
 
 let SVNCommandEdit='split'
 let SVNCommandDeleteOnHide=1
