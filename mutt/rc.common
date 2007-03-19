@@ -58,6 +58,7 @@ set mailcap_path="$HOME/.mailcap"
 #set pager_stop
 hdr_order From: Subject: Date: To: Newsgroups: Cc: X-Mailer: User-Agent: \
   Content-Type: Content-Transfer-Encoding: X-Procmail: X-Suspect-reason:
+mime_lookup application/octet-stream
 alternative_order text/enriched text/plain text application/postscript image/* 
 auto_view text/html application/pgp-keys application/x-tar-gz \
   text/x-internet-signup application/x-sh application/x-patch text/x-patch \
