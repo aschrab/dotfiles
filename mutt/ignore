@@ -615,3 +615,6 @@ ignore X-SA-
 ignore X-Grey:
 ignore X-DSPAM-
 ignore X-MultiKabel-
+ignore X-Uniserve-Spam-
+ignore DKIM-Signature:
+ignore X-IronPort-
