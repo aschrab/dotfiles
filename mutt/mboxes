@@ -26,9 +26,11 @@ mailboxes =rss
 # Ruby lists
 <%= mlist 'ruby/ruby-dbi' %>
 <%= mlist 'ruby/rexml', :address => 'ser-rexml' %>
+<%= mlist 'ruby/mke', :address => 'MilwaukeeRuby@googlegroups.com' %>
 <%= mlist 'ruby/raleigh', :address => 'raleigh-rb-members' %>
 <%= mlist 'ruby/modruby' %>
 <%= mlist 'ruby/narf' %>
+<%= mlist 'ruby/rails-core' %>
 <%= mlist 'ruby/ruby-core' %>
 <%= mlist 'ruby/ruby-talk' %>
 
