@@ -1,6 +1,9 @@
 Message.maildir = '/srv/mail/pug.qqx.org/ats'
 Message.default_format = Maildir
 
+#require 'gdbm'
+#$dbfile = "#{Message.maildir}/dupcache"
+
 begin
   save Time.now.strftime('=.backup-%Y-%m-%d' )
 rescue Exception
@@ -9,8 +12,25 @@ end
 
 class ::Cropmail::Message
   def save_md mailbox
-    log "Saving message to #{mailbox}"
-    save mailbox.sub(/^=/,'=.').gsub(%r</>,'.')
+    dup = false
+#    GDBM.open( $dbfile, 0600, GDBM::WRCREAT|GDBM::SYNC ) do |dbm|
+#      key = "#{mailbox}:#{message_id}"
+#      if dbm[key]
+#        dup = true
+#      else
+#        dbm[key] = Time.now.to_i.to_s
+#      end
+#    end
+
+    if dup
+      log "Saving duplicate message"
+      save '=.dups'
+    else
+      log "Saving message to #{mailbox}"
+      save mailbox.sub(/^=/,'=.').gsub(%r</>,'.')
+    end
+
+    done
   end
 end
 
