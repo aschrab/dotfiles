@@ -37,10 +37,22 @@ if ( /^(List-Subscribe: <mailto:ruby-talk-|List-Id: ruby-talk\.ruby-lang\.org)/ 
   REPLYTO="ruby-talk@ruby-lang\.org"
 }
 
+if ( /^List-Id:.*<rubyonrails-core\.googlegroups\.com/ )
+{
+  LIST=ruby.rails-core
+  SUBJ='\[Rails-core\] '
+}
+
 if ( /^List-Id:.*<raleigh-rb-members/ )
 {
   LIST=ruby.raleigh
   SUBJ='\[raleigh\.rb\] '
+}
+
+if ( /^List-Id:.*<MilwaukeeRuby\.googlegroups\.com>/ )
+{
+  LIST=ruby.mke
+  REPLYTO="MilwaukeeRuby@googlegroups\.com"
 }
 
 if ( /^List-Id: *<offlineimap\.complete\.org>/ )
