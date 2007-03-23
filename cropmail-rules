@@ -106,12 +106,10 @@ when /list-managers-owner@greatc/i
 end unless list
 #}}}
 
-subject_re = /\[foo\]\s*/i
-
 begin
   subj = headers[:subject][0]
   log "Trying to clean up Subject: #{subj.inspect}"
-  modified = true if subject_re and subj.sub! subject_re, ''
+  modified = (subject_re and subj.sub! subject_re, '')
   reply = true if subj.sub! /(-reply\s*)+$/i, ''
   reply = true if subj.sub! /^(\s*Re(\[\d+\])?:)+/i, ''
   modified = subj = "Re: #{subj.strip}" if reply
