@@ -58,11 +58,9 @@ end
 " Miscellaneous options {{{
 set display+=lastline
 set shiftwidth=2
-set tabstop=2
 set autoindent
 set nobackup
 set smarttab
-set noexpandtab
 set title
 set ignorecase
 set smartcase
@@ -136,6 +134,8 @@ iab Thsi This
 iab THis This
 iab wtih with
 iab yoru your
+iab fiel file
+iab lable label
 iab lenght length
 iab ube unsolicited bulk email
 iab UBE Unsolicited Bulk Email
@@ -286,3 +286,8 @@ map \w :call Browser ()<CR>
 "  noremap __mm :map -mai:r d`a"ay$:q!@a
 "  " remove mapping
 "  noremap __rm :unmap <CR><CR>
+"
+
+:if filereadable(expand("~/.vim/local.vim"))
+	source ~/.vim/local.vim
+:endif
