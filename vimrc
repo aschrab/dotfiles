@@ -56,6 +56,7 @@ end
 "}}}
 
 " Miscellaneous options {{{
+set viminfo=!,s1,%,'20,f1,c,h,r/tmp,r/media,n~/.viminfo
 set display+=lastline
 set shiftwidth=2
 set autoindent
@@ -238,9 +239,9 @@ filetype plugin on
 
 " autocmd BufRead *.[ch] set cindent
 " ME's C settings
-set cinoptions=>2,t0,(0,=2
+"set cinoptions=>2,t0,(0,=2
 set cinkeys=0{,0}:,!^F,o,O,e
-au BufNewFile,BufRead *.c,*.h,*.pl,*.pm set cindent showmatch shiftwidth=2 textwidth=0
+au BufNewFile,BufRead *.c,*.h,*.pl,*.pm set cindent showmatch textwidth=0
 "au BufNewFile,BufRead *.cf so $VIM/syntax/sm.vim
 "au BufNewFile,BufRead *.cf set noexpandtab ft=sm
 au BufNewFile,BufRead /usr/src/linux* set tags=/usr/src/linux/tags
@@ -251,6 +252,33 @@ au BufNewFile,BufRead */zone/* set ft=zone
 
 au BufNewFile,BufRead  svn-commit.* setf svn
 au FileType svn map <buffer> <Leader>sd :SVNCommitDiff<CR>
+
+" Go to remembered position in file if it's on a valid line number
+"au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm `\"")|endif|endif
+augroup JumpCursorOnEdit
+  au!
+  autocmd BufReadPost *
+    \ if expand("<afile>:p:h") !=? $TEMP |
+    \   if line("'\"") > 1 && line("'\"") <= line("$") |
+    \     let JumpCursorOnEdit_foo = line("'\"") |
+    \     let b:doopenfold = 1 |
+    \     if (foldlevel(JumpCursorOnEdit_foo) > foldlevel(JumpCursorOnEdit_foo - 1)) |
+    \        let JumpCursorOnEdit_foo = JumpCursorOnEdit_foo - 1 |
+    \        let b:doopenfold = 2 |
+    \     endif |
+    \     exe JumpCursorOnEdit_foo |
+    \   endif |
+    \ endif
+  " Need to postpone using "zv" until after reading the modelines.
+  autocmd BufWinEnter *
+    \ if exists("b:doopenfold") |
+    \   exe "normal zv" |
+    \   if(b:doopenfold > 1) |
+    \       exe  "+".1 |
+    \   endif |
+    \   unlet b:doopenfold |
+    \ endif
+augroup END 
 
 set bs=2
 set secure
