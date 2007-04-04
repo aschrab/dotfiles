@@ -197,13 +197,6 @@ map ,sw oi-- :r~/.sigs/work
 map ,sx :r~/.sigs/lsm.luser
 "}}}
 
-" Set mappings for spellchecking to not conflict with SVN commands {{{
-nmap <silent> <unique> <Leader>Ss <Plug>SpellCheck
-nmap <silent> <unique> <Leader>SA <Plug>SpellAutoEnable
-nmap <silent> <unique> <Leader>S? <Plug>SpellProposeAlternatives
-nmap <silent> <unique> <Leader>Sl <Plug>SpellChangeLanguage
-"}}}
-
 " Support for scroll wheel {{{
 map <M-Esc>[62~ <MouseDown>
 map! <M-Esc>[62~ <MouseDown>
