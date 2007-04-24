@@ -1,19 +1,27 @@
 " Vim syntax file
 " Language: TT2 ( Perl Module Template-Toolkit 2.x )
-" Referencis: Template-Toolkit 2 
-"               http://search.cpan.org/~abw/Template-Toolkit/
-"               http://template-toolkit.org/
-" Last Change:  21 Nov 2003
+" References:   Template-Toolkit 2 
+"                   http://search.cpan.org/~abw/Template-Toolkit/
+"                   http://template-toolkit.org/
+"                   C:\> perldoc Template
+"                   C:\> perldoc Template::Manual::Directives
+" Last Change:  16 May 2007
 " Filenames:    *.tt2
-" Maintainar:   Atsushi Moriki <four@olive.freemail.ne.jp>
-"
-" Version:      0.1.1
-
-" Summary:      Syntax Highlight for Template Toolkit 2.x
-" Description:  Syntax Highlight for Template Toolkit 2.x
+" Maintainar:   Moriki, Atsushi <4woods+vim@gmail.com>
+" Version:      0.1.3
+" Summary:      Syntax Highlight for Template-Toolkit 2.x
+" Description:  Syntax Highlight for Template-Toolkit 2.x
+"       Contain Perl code in PERL/RAWPERL directive. (runtime sytax/perl.vim)
+"       No fold.
+"       HTML syntax for including TT2 syntax. ( tt2html.vim / unfinished )
+"       Can define START_TAG/END_TAG for your style.
 "
 " Instration:
-"   "filetype.vim"
+"   put tt2.vim and tt2html.vim in to your syntax diretory.
+"
+"   add below in your filetype.vim.
+"       au BufNewFile,BufRead *.tt2 setf tt2
+"           or
 "       au BufNewFile,BufRead *.tt2
 "           \ if ( getline(1) . getline(2) . getline(3) =~ '<\chtml' |
 "           \           && getline(1) . getline(2) . getline(3) !~ '<[%?]' ) |
@@ -23,24 +31,37 @@
 "           \   setf tt2 |
 "           \ endif
 "
-"   START_TAG, END_TAG
+"   define START_TAG, END_TAG
 "       "ASP"
-"       let b:tt2_syn_tags = '<% %>'
+"       :let b:tt2_syn_tags = '<% %>'
 "       "PHP"
-"       let b:tt2_syn_tags = '<? ?>'
-" 
+"       :let b:tt2_syn_tags = '<? ?>'
+"       "TT2 and HTML"
+"       :let b:tt2_syn_tags = '\[% %] <!-- -->'
 "
-" CHANGES
-"    0.1.2  full-directive comment ( start of '[%#' directive )
-"           lower case reserved words ( div mod and or not )
-"           upload zip-archive
-"    0.1.1  first release
+" Changes:
+"           0.1.3
+"               Changed fileformat from 'dos' to 'unix'
+"               Deleted 'echo' that print obstructive message
+"           0.1.2
+"               Added block comment syntax
+"               e.g. [%# COMMENT
+"                        COMMENT TOO %]
+"                    [%# IT'S SAFE %]  HERE IS OUTSIDE OF TT2 DIRECTIVE
+"                    [% # WRONG!! %]   HERE STILL BE COMMENT
+"           0.1.1
+"               Release
+"           0.1.0
+"               Internal
 "
-" TODO
-"    + INTERPOLATEd variable
+" License: follow Vim :help uganda
+"
 
-let b:tt2_syn_tags = '\[% %]'
-"let b:tt2_syn_tags = '\[% %] \[\* \*]'
+if !exists("b:tt2_syn_tags")
+    let b:tt2_syn_tags = '\[% %]'
+    "let b:tt2_syn_tags = '\[% %] \[\* \*]'
+endif
+
 let b:tt2_syn_inc_perl = 1
 
 if exists("b:current_syntax")
@@ -72,7 +93,7 @@ if exists("b:tt2_syn_tags")
                     \ 'end=+[-]\=\(' . s:ed . '\)+ '.
                     \ 'contains=@tt2_statement_cluster keepend extend'
 
-        exec 'syn region  tt2_comment_region '.
+        exec 'syn region  tt2_commentblock_region '.
                     \ 'matchgroup=tt2_tag '.
                     \ 'start=+\(' . s:st .'\)[-]\=\(#\)\@=+ '.
                     \ 'end=+[-]\=\(' . s:ed . '\)+ '.
@@ -99,9 +120,9 @@ else
                 \ end=+[-]\=%\]+
                 \ contains=@tt2_statement_cluster keepend extend
 
-    syn region  tt2_comment_region
+    syn region  tt2_commentblock_region
                 \ matchgroup=tt2_tag
-                \ start=+\(\[%\)[-]\=+
+                \ start=+\(\[%\)[-]\=#+
                 \ end=+[-]\=%\]+
                 \ keepend extend
 
@@ -124,7 +145,6 @@ syn keyword tt2_directive contained
             \ TRY FINAL RETURN LAST 
             \ CLEAR TO STEP AND OR NOT MOD DIV
             \ ELSE PERL RAWPERL END
-            \ and or not mod div
 syn match   tt2_directive +|+ contained
 syn keyword tt2_directive contained nextgroup=tt2_string_q,tt2_string_qq,tt2_blockname skipwhite skipempty
             \ INSERT INCLUDE PROCESS WRAPPER FILTER
@@ -172,7 +192,7 @@ syn sync minlines=50
 
 hi def link tt2_tag         Type
 hi def link tt2_tag_region  Type
-hi def link tt2_comment_region  Comment
+hi def link tt2_commentblock_region Comment
 hi def link tt2_directive   Statement
 hi def link tt2_variable    Identifier
 hi def link tt2_ivariable   Identifier
@@ -184,5 +204,10 @@ hi def link tt2_comment     Comment
 hi def link tt2_func        Function
 hi def link tt2_number      Number
 
+if exists("b:tt2_syn_tags")
+    unlet b:tt2_syn_tags
+endif
+
 let b:current_syntax = "tt2"
 
+" vim:ts=4:sw=4

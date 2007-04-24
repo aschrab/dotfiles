@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language: TT2 ( Inner HTML )
-" Last Change:  21 Nov 2003
-" Maintainar:   Atsushi Moriki <four@olive.freemail.ne.jp>
+" Last Change:  16 May 2007
+" Maintainar:   Atsushi Moriki <4woods+vim@gmail.com>
 
 runtime! syntax/html.vim
 unlet b:current_syntax
