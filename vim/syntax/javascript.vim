@@ -159,7 +159,7 @@ if exists("javaScript_fold")
     syntax region  javaScriptFuncBlock      contained matchgroup=javaScriptFuncBlock start="{" end="}" contains=@javaScriptAll,javaScriptParensErrA,javaScriptParensErrB,javaScriptParen,javaScriptBracket,javaScriptBlock fold
 
     "" Fold setting
-    setlocal foldlevel=6
+    "setlocal foldlevel=6
     setlocal foldmethod=syntax
 
     setlocal foldtext=FT_JavaScriptDoc()
