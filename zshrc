@@ -394,10 +394,10 @@ fi
 if whence vim >& /dev/null
 then
   [[ -d $HOME/share/vim ]] && export VIM=$HOME/share/vim
-  EDITOR=vim
+  EDITOR==vim
   alias vi=vim
 else
-  EDITOR=vi
+  EDITOR==vi
 fi
 VISUAL="$EDITOR"
 export EDITOR VISUAL
@@ -412,20 +412,22 @@ fi
 unset FOO
 PAGER=${PAGER:=$(whence less)}
 if [ -n "$PAGER" ]; then
-  PAGER="less"
+  PAGER="$PAGER"
 else
-  PAGER="more"
+  PAGER="$PAGER"
   alias less=$PAGER
 fi
 alias les=less
 alias lss=less
 
-if [[ "$EDITOR" == 'vim' ]]
-then
-  alias -g L="| view -"
-else
-  alias -g L="| $PAGER"
-fi
+case "$EDITOR" in
+	vim|*/vim)
+		alias -g L="| view -"
+		;;
+	*)
+		alias -g L="| $PAGER"
+		;;
+esac
 
 #export LESS="-aCMj3"
 export LESS="-aMeXj3"
