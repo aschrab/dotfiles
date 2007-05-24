@@ -45,9 +45,10 @@ function! Svn_diff_windows()
     setlocal nomodifiable
     goto 1
     redraw!
-    wincmd R
+    "wincmd R
     wincmd p
     goto 1
+	resize 10
     redraw!
 endfunction
 
