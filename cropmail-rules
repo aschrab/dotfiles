@@ -5,7 +5,7 @@ Message.default_format = Maildir
 #$dbfile = "#{Message.maildir}/dupcache"
 
 begin
-  save Time.now.strftime('=.backup-%Y-%m-%d' )
+  save Time.now.strftime('=.backup.%Y.%m.%d' )
 rescue Exception
   log "Couldn't write to backup file"
 end
@@ -41,6 +41,10 @@ elsif ENV['RECIPIENT']
 end
 headers.replace 'X-QQX-Envelope-To', $envelope_to
 
+if headers[:x_qqx_org_mailscanner_spamscore] =~ /s{5}/i
+	save_md '=spam'
+end
+
 # Mailing list detection {{{
 list = nil
 
@@ -50,15 +54,21 @@ list ||= 'subs/skeptic' if from =~ /<skepticsociety@skeptic.com>/i
 case headers[:list_id]
 when /<debian-([a-z0-9_-]+)\.lists\.debian\.org>/
   list = "debian/#$1".downcase
+when /<MilwaukeeRuby\.googlegroups\.com>/i
+	list = 'ruby/mke'
 when /<mlug-list\..*\.milwaukeelug/i
   subject_re = /\[MLUG\]\s*/
   list = 'ug/mlug'
+when /<blinux\.googlegroups\.com>/i
+  list = 'ug/blinux'
 when /<fdllug-list\./i
   subject_re = /\[fdllug-list\]\s*/i
+	list = 'ug/fdllug'
 when /<offlineimap\.complete/i
   list = 'mail/offlineimap'
 when /<dovecot\.dovecot/i
   list = 'mail/dovecot'
+  subject_re = /\[Dovecot\]\s*/i
 when /ruby-(talk|core)\.ruby-lang\.org/i
   list = "ruby/#{$1}"
 when /ruby-dbi-(next|devel)\./
@@ -66,6 +76,9 @@ when /ruby-dbi-(next|devel)\./
   list = "ruby/dbi"
 when /\bmodruby\./
   list = 'ruby/modruby'
+when /<rubyonrails-core\.googlegroups\.com>/i
+	subject_re = /\[Rails-core\]\s*/i
+	list = 'ruby/rails-core'
 when /<raleigh-rb-members/
   subject_re = /\[raleigh\.rb\]\s*/i
   list = 'ruby/raleigh'
@@ -79,6 +92,12 @@ when /list milwpm@yahoogroups\.com/
   subject_re = /\[milwpm\]/i
   egroups = true
   list = 'ug/milwpm'
+end unless list
+
+case headers[:list_post]
+when /<mailto:mutt-dev@/i
+  list = 'mail/mutt-dev'
+  # FIXME add subject demangling
 end unless list
 
 case headers[:list_unsubscribe]
