@@ -43,7 +43,7 @@ then
   chown "$LOGNAME" "/tmp/$LOGNAME"
 fi
 # Check the ownership, and make sure the permisisons are correct
-if [[ `echo /tm[p]/$LOGNAME(Nu:$LOGNAME:)` == /tmp/$LOGNAME(/|) ]] &&
+if [[ `echo /tmp/$LOGNAME(Nu:$LOGNAME:)` == /tmp/$LOGNAME(/|) ]] &&
    chmod 0700 "/tmp/$LOGNAME" >& /dev/null
 then
   export TMPDIR="/tmp/$LOGNAME"
