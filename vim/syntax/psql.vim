@@ -72,6 +72,8 @@ syn keyword psqlAggregate avg count max min stddev sum variance
 " Strings and characters:
 syn region psqlString		start=+"+  skip=+\\\\\|\\"+  end=+"+
 syn region psqlString		start=+'+  skip=+\\\\\|\\'+  end=+'+
+syn region psqlString		start=,\$\$, end=,\$\$,
+"syn region psqlString		start=,\$\z([A-Za-z]*\)\$, end=,\$\z1\$,
 
 " Numbers:
 syn match psqlNumber		"-\=\<\d*\.\=[0-9_]\>"
