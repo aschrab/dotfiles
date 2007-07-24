@@ -404,7 +404,7 @@ export EDITOR VISUAL
 
 FOO=$(whence lessfile)
 FOO=${FOO:=$(whence lesspipe)}
-if [ -n FOO ]; then
+if [ -n "$FOO" ]; then
   eval $($FOO)
 else
   PAGER=$(whence zless)
