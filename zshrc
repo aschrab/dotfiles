@@ -372,7 +372,11 @@ function pwd () {
     echo "$PWD ($real)"
   fi
 } #}}}
-alias grep=egrep
+if egrep --color=auto . /etc/passwd > /dev/null 2>&1; then
+	alias grep='egrep --color=auto'
+else
+	alias grep=egrep
+fi
 
 export NULLCMD=:
 export HISTORY=${ZDOTDIR:=$HOME}/.zsh-history
@@ -430,7 +434,8 @@ case "$EDITOR" in
 esac
 
 #export LESS="-aCMj3"
-export LESS="-aMeXj3"
+# Don't include -X in $LESS, remove smcups/rmcups settings from terminfo entry
+export LESS="-aMej3"
 case "$LANG" in
   *[Uu][Tt][Ff]*)
     LESSCHARSET="utf-8"
