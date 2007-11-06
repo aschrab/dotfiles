@@ -269,7 +269,7 @@ if [[ -n $PZSH ]]; then
   fi
   if [ -r $HOME/.Zsh-hist.$host.$PZSH ]; then
     fc -R $HOME/.Zsh-hist.$host.$PZSH
-    rm -f $HOME/.Zsh-hist.$host.$PZSH
+    rm -f $HOME/.Zsh-hist.$host.$PZSH 2> /dev/null
   fi
 fi
 
@@ -1028,8 +1028,6 @@ if [[ $ZSH_MAJOR_VERSION -ge 4 ]]; then
 
   zle -N insert-last-word ins-last-word
   zle -N kpathword
-  bindkey "\M-/" kpathword
-  bindkey "\e/" kpathword
 
   zstyle ':completion:*' auto-description 'specify: %d'
   zstyle ':completion:*' completer _oldlist _expand _complete _ignored _match _correct _approximate _prefix
@@ -1105,4 +1103,7 @@ if [[ $ZSH_MAJOR_VERSION -ge 4 ]]; then
     _doc() { _files -W /usr/share/doc -/ }
   fi
   compdef _doc doc
+
+  bindkey "\M-/" kpathword
+  bindkey "\e/" kpathword
 fi
