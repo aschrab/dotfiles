@@ -78,7 +78,6 @@ set confirmcreate=no
 set print=ask-no    # confirm printing
 set delete=yes      # purge deleted messages?
 set quit=ask-yes
-set list_reply=ask-no # When replying to a list message ask if it should go to entire list
 
 set nopipe_decode              # don't decode MIME or weed headers when piping
 set thorough_search

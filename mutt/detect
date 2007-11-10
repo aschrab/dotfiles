@@ -24,6 +24,10 @@
   set header_cache=<%= ENV['HOME'] %>/.cache/mutt
 % end
 
+% if mutt_variable list_replay
+  set list_reply=ask-no # When replying to a list message ask if it should go to entire list
+% end
+
 % if mutt_feature :compressed
   open-hook   '\.gz$' "gzip -cd %f > %t"
   close-hook  '\.gz$' "gzip -c %t > %f"
