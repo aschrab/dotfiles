@@ -1013,12 +1013,15 @@ if [ -d $HOME/.fbin ]; then
   unset AF || :
 fi
 
-if [[ $ZSH_MAJOR_VERSION -ge 4 ]]; then
+if [[ ${ZSH_VERSION%%.*} -ge 4 ]]; then
   local d
   for d in /usr/share /usr/local/share
   do
     if [[ -d $d/zsh/$ZSH_VERSION/functions/Completion ]]; then
       fpath=( $fpath $d/zsh/$ZSH_VERSION/functions/{Completion,Misc} )
+      break
+    elif [[ -d $d/zsh/functions/Completion ]]; then
+      fpath=( $fpath $d/zsh/functions/{Completion,Misc} )
       break
     elif [[ -f $d/zsh/$ZSH_VERSION/functions/compinit ]]; then
       fpath=( $fpath $d/zsh/$ZSH_VERSION/functions )
