@@ -638,12 +638,6 @@ fi
 
 export PATH TERM
 
-if [ -d /usr/share/zsh/functions ]; then
-  fpath=( /usr/share/zsh/functions )
-else
-  fpath=()
-fi
-
 pw () {
   grep $* /etc/passwd
 }
@@ -1004,31 +998,7 @@ function __cdmatch () {
    return
 }
 
-# shell functions
-if [ -d $HOME/.fbin ]; then
-  fpath=($fpath $HOME/.fbin)
-#  for AF in $HOME/.fbin/*(N); do
-#        typeset -fu $AF:t
-#  done
-  unset AF || :
-fi
-
 if [[ ${ZSH_VERSION%%.*} -ge 4 ]]; then
-  local d
-  for d in /usr/share /usr/local/share
-  do
-    if [[ -d $d/zsh/$ZSH_VERSION/functions/Completion ]]; then
-      fpath=( $fpath $d/zsh/$ZSH_VERSION/functions/{Completion,Misc} )
-      break
-    elif [[ -d $d/zsh/functions/Completion ]]; then
-      fpath=( $fpath $d/zsh/functions/{Completion,Misc} )
-      break
-    elif [[ -f $d/zsh/$ZSH_VERSION/functions/compinit ]]; then
-      fpath=( $fpath $d/zsh/$ZSH_VERSION/functions )
-      break
-    fi
-  done
-
   zle -N insert-last-word ins-last-word
   zle -N kpathword
 
