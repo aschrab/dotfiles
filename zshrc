@@ -197,6 +197,7 @@ export LANG LC_COLLATE="C" LC_TIME="C"
 
 esc=$(print -n "\E")
 beep=$(print -n "\C-g")
+tty=${TTY##/dev/}
 
 case "$TERM" in
   xterm|xtermc|xterm-debian|xterm-color|rxvt|gnome|Eterm)
@@ -206,13 +207,13 @@ case "$TERM" in
     fi
     stty erase '^?'
     print -P "${green}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${fColor}"
-    PS1='%{${esc}]1;%(#.#.$)$host$DEBCHROOT${beep}${esc}]2;%(#.#.$)$host$DEBCHROOT:%~${beep}%}'
+    PS1='%{${esc}]1;%(#.#.$)$host$DEBCHROOT${beep}${esc}]2;%(#.#.$)$host$DEBCHROOT($tty):%~${beep}%}'
     PS1="$PS1"'%{$pColor%}%1v%!)$host$DEBCHROOT%(#.#.$)%{$fColor%} '
     RPS1='%{$pColor%} %~%{$fColor%}'
     ;;
   screen*)
     print -P "${yellow}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${fColor}"
-    PS1='%{]1;%(#.#.$)$host$DEBCHROOT]2;n %(#.#.$)$host$DEBCHROOT!%~k$host$DEBCHROOT%(#.#.$)%.\%}'
+    PS1='%{]1;%(#.#.$)$host$DEBCHROOT]2;n %(#.#.$)$host$DEBCHROOT($tty)!%~k$host$DEBCHROOT%(#.#.$)%.\%}'
     PS1="$PS1"'%{$pColor%}%1v%!)$host$DEBCHROOT%(#.#.$)%{$fColor%} '
     RPS1='%{$pColor%} %~%{$fColor%}'
     case "$OSTYPE" in
