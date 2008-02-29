@@ -108,7 +108,7 @@ case "$USERNAME" in
   michael|backup|lsm|bofh)
     pColor=$yellow
     ;;
-  root)
+  root|administrator)
     pColor=$red
     ;;
   *)
