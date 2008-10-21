@@ -10,7 +10,12 @@ function! CleanCWD ()
 	let cwd = substitute(cwd, home, '~', '')
 	return cwd
 endfunction
-auto BufEnter * let &titlestring = "%{CleanCWD()} : Vim@%{hostname()}"
+function! CleanTTY ()
+  let tty = $TTY
+  let tty = substitute( tty, '/dev/', '', '')
+  return tty
+endfunction
+auto BufEnter * let &titlestring = "Vim@%{hostname()} : %{CleanTTY()} : %{CleanCWD()}"
 
 let perl_extended_vars = 1
 let perl_highlight_matches = 1
@@ -80,6 +85,7 @@ set fileformats=unix,dos,mac
 set fileencodings=ucs-bom,utf-8,latin1,iso-2022-jp,euc,sjis
 set pastetoggle=<F4>
 set modelines=5
+set modeline
 set wildmenu
 set wildmode=longest:full,full
 set wildignore+=*.o,*~
