@@ -5,7 +5,7 @@ Message.default_format = Maildir
 #$dbfile = "#{Message.maildir}/dupcache"
 
 begin
-  save Time.now.strftime('=.backup.%Y.%m.%d' )
+  save Time.now.strftime('/srv/mail/pug.qqx.org/backup_ats/%Y/%m/%d' )
 rescue Exception
   log "Couldn't write to backup file"
 end
@@ -41,9 +41,49 @@ elsif ENV['RECIPIENT']
 end
 headers.replace 'X-QQX-Envelope-To', $envelope_to
 
+fax_re = %r/Faxaway-\(([\d-]+).*\).*(<faxaway@faxaway\.com>)/i
+match = fax_re.match from
+if match
+  number = match[1]
+  headers.replace 'From', "#{match[1]} #{match[2]}"
+
+  area = nil
+  if npa = number[/^\d{3}/]
+    File.open( '/usr/share/misc/npa.txt' ) do |f|
+      f.each_line do |line|
+	next unless line[/^#{npa}:/]
+	info = line.chomp.split(':')
+	area = " (#{info[1]}, #{info[3]})"
+	break
+      end
+    end
+  end
+
+  if subject =~ /voice message/i
+    map! do |msg,typ|
+      if !typ and msg.content_type.type.downcase == 'text'
+	msg = Cropmail::Message.new "\n\nVoicemail message from #{number}#{area}\n\n"
+      end
+      msg
+    end
+  end
+  save Message.maildir
+  done
+end
+
+if to =~ /sympa-request|mlug-admin-editor/i
+  save_md '=INBOX/sympa'
+  done
+end
+
 if headers[:x_qqx_org_mailscanner_spamscore] =~ /s{5}/i
 	save_md '=spam'
 end
+
+exit if headers[:from] =~ /<sympa@mail\.milwaukeelug\.org>/i and
+  subject =~ /internal server error/i and
+  body =~ /No message found in archives matching/i
+
 
 # Mailing list detection {{{
 list = nil
@@ -56,6 +96,7 @@ when /<debian-([a-z0-9_-]+)\.lists\.debian\.org>/
   list = "debian/#$1".downcase
 when /<MilwaukeeRuby\.googlegroups\.com>/i
 	list = 'ruby/mke'
+	subject_re = /\[MKERB\]\s*/
 when /<mlug-list\..*\.milwaukeelug/i
   subject_re = /\[MLUG\]\s*/
   list = 'ug/mlug'
@@ -64,6 +105,9 @@ when /<blinux\.googlegroups\.com>/i
 when /<fdllug-list\./i
   subject_re = /\[fdllug-list\]\s*/i
 	list = 'ug/fdllug'
+when /<list\.sewaug\.org>/i
+  subject_re = /\[SEWAUG\]\s*/i
+  list = 'ug/sewaug'
 when /<offlineimap\.complete/i
   list = 'mail/offlineimap'
 when /<dovecot\.dovecot/i
@@ -82,9 +126,18 @@ when /<rubyonrails-core\.googlegroups\.com>/i
 when /<raleigh-rb-members/
   subject_re = /\[raleigh\.rb\]\s*/i
   list = 'ruby/raleigh'
+when /<raleigh-pm\.pm\.org>/i
+  subject_re = /\[Raleigh-pm\]\s*/i
+  list = 'ug/raleigh-pm'
 when /<trilug\.trilug\.org>/i
   subject_re = /\[TriLUG\]\s*/i
   list = 'ug/trilug'
+when /<trilug-ontopic\.trilug\.org>/i
+  subject_re = /\[TriLUG-ontopic\]\s*/i
+  list = 'ug/trilug'
+when /<dbix-class\.lists\.scsys\.co\.uk>/i
+  subject_re = /\[Dbix-class\]/i
+  list = 'perl/dbix'
 end unless list
 
 case headers[:mailing_list]
@@ -145,5 +198,6 @@ if list
 end
 
 save Message.maildir
+done
 
 # vim: ft=ruby fdm=marker
