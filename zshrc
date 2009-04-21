@@ -198,9 +198,10 @@ export LANG LC_COLLATE="C" LC_TIME="C"
 esc=$(print -n "\E")
 beep=$(print -n "\C-g")
 tty=${TTY##/dev/}
+export TTY
 
 case "$TERM" in
-  xterm|xtermc|xterm-debian|xterm-color|rxvt|gnome|Eterm)
+  xterm|xtermc|xterm-debian|xterm-color|rxvt-unicode|rxvt|gnome|Eterm)
     if [[ $TERM == xterm && $OSTYPE == freebsd* ]]
     then
       TERM=xterm-color
@@ -378,6 +379,7 @@ if egrep --color=auto . /etc/passwd > /dev/null 2>&1; then
 else
 	alias grep=egrep
 fi
+alias ack=ack-grep
 
 export NULLCMD=:
 export HISTORY=${ZDOTDIR:=$HOME}/.zsh-history
@@ -875,9 +877,9 @@ fi
 
 case "$host" in
    "grok"|"gir"|"tamara"|"tanstaafl"|"zim")
-      PGHOST="fnord"
+      PGHOST="atlas"
       ;;
-   "frell")
+   "frell"|"pug")
       if [[ -n $SSH_CLIENT ]]; then
         echo m | fc -R /proc/self/fd/0
       fi
@@ -1080,4 +1082,8 @@ if [[ ${ZSH_VERSION%%.*} -ge 4 ]]; then
 
   bindkey "\M-/" kpathword
   bindkey "\e/" kpathword
+fi
+
+if [[ -r ~/.zshrc.local ]]; then
+  . ~/.zshrc.local
 fi
