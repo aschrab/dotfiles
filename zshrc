@@ -68,7 +68,10 @@ fi
 # - Split $HOST on '.'
 # - Remove $stripdom - 1 portions from the end
 # - Rejoin
-if [[ "$HOST" = *.* ]]
+if [[ "$HOST" = *.local ]]
+then
+  host=${HOST/.*/}
+elif [[ "$HOST" = *.* ]]
 then
   stripdom=3
   host=${(j:.:)${(s:.:)HOST}[1,-$stripdom]}
