@@ -236,6 +236,20 @@ autocmd BufRead Makefile set nosmarttab noexpandtab noautoindent
 filetype indent on
 filetype plugin on
 
+fun! PerlPackageName()
+  let pack = expand('%:p')
+  if match( pack, '/lib/' ) == -1
+    return
+  endif
+  let pack = substitute( pack, '.*/lib/', '',   '' )
+  let pack = substitute( pack, '\.pm$',   '',   '' )
+  let pack = substitute( pack, '/',       '::', 'g' )
+
+  call setline( 1, 'package ' . pack . ';' )
+  call append(  1, [ '', '', '', '1;' ] )
+  call setpos( '.', [0, 3, 1, 1] )
+endf
+
 " autocmd BufRead *.[ch] set cindent
 " ME's C settings
 "set cinoptions=>2,t0,(0,=2
@@ -248,6 +262,7 @@ au FileType sm  set noexpandtab
 au FileType zone  set noexpandtab
 au FileType cpp set noexpandtab ai si cindent
 au BufNewFile,BufRead */zone/* set ft=zone
+au BufNewFile *.pm call PerlPackageName()
 
 au BufNewFile,BufRead  svn-commit.* setf svn
 au FileType svn map <buffer> <Leader>sd :SVNCommitDiff<CR>
