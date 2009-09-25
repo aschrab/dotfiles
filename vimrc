@@ -246,8 +246,8 @@ fun! PerlPackageName()
   let pack = substitute( pack, '/',       '::', 'g' )
 
   call setline( 1, 'package ' . pack . ';' )
-  call append(  1, [ '', '', '', '1;' ] )
-  call setpos( '.', [0, 3, 1, 1] )
+  call append(  1, [ '', 'use strict;', 'use warnings;', '', '', '', '1;' ] )
+  call setpos( '.', [0, 6, 1, 1] )
 endf
 
 " autocmd BufRead *.[ch] set cindent
