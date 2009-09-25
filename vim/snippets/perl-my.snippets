@@ -7,7 +7,7 @@ snippet dbit
 		${2:$1_id} => {
 			data_type => '${3:serial}',
 		},
-		${4:}
+		${4}
 	);
 
 	__PACKAGE__->set_primary_key('$2');
@@ -18,4 +18,4 @@ snippet dbic
 		size => ${3:undef},
 		is_nullable => ${4:0},
 	},
-	${5:}
+	${5}
