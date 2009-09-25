@@ -1,0 +1,21 @@
+# Table class for DBIx::Class
+snippet dbit
+	use base 'Blackjack::Schema::Result';
+
+	__PACKAGE__->table('${1:`CamelToUnderscore(Filename())`}');
+	__PACKAGE__->add_columns(
+		${2:$1_id} => {
+			data_type => '${3:serial}',
+		},
+		${4:}
+	);
+
+	__PACKAGE__->set_primary_key('$2');
+
+snippet dbic
+	${1:column} => {
+		data_type => '${2:}',
+		size => ${3:undef},
+		is_nullable => ${4:0},
+	},
+	${5:}
