@@ -1,0 +1,10 @@
+snippet tf
+	[% text_field( name='${1:name}', label='${2:$1}' ) %]
+snippet wrap
+	[% WRAPPER ${1:wrapper.tt} %]
+	${2:body}
+	[% END %]
+snippet for
+	[%- FOREACH ${2:var} IN ${1:list} %]
+		${3:body}
+	[%- END %]
