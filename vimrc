@@ -82,7 +82,7 @@ set cpoptions+=$
 set laststatus=2
 set matchpairs=(:),{:},[:],<:>
 set fileformats=unix,dos,mac
-set fileencodings=ucs-bom,utf-8,latin1,iso-2022-jp,euc,sjis
+set fileencodings=ucs-bom,utf-8,cp1252,latin1,iso-2022-jp,euc,sjis
 set pastetoggle=<F4>
 set modelines=5
 set modeline
@@ -224,7 +224,7 @@ map ,r :.,/^$/!formail -fbY -IX-Envelope -IX-spamrc: -IX-Suspect-Reason: -IX-pro
 map ,e :.w !sed -e 's/^\(..[^:(][^:(]*\)[:(]\([0-9][0-9]*\).*/:new +\2 \1/' > $HOME/temp.vim :so $HOME/temp.vim :!rm -f $HOME/temp.vim
 
 map <F2> <ESC>`>a<CR>_<ESC>`<i_<CR><ESC>:s/\(.\)/\1<C-V><C-H>\1/g<CR>J2xkJxX            
-dig 00 176
+"dig 00 176
 dig !! 161
 dig ?? 191
 dig SS 167
