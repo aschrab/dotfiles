@@ -147,6 +147,8 @@ syntax match   javaScriptParensErrA     contained "\]"
 syntax match   javaScriptParensErrB     contained ")"
 syntax match   javaScriptParensErrC     contained "}"
 
+syntax match   Error                    containedin=ALL /,\_s*[]})]/
+
 if main_syntax == "javascript"
   syntax sync clear
   syntax sync ccomment javaScriptComment minlines=200
