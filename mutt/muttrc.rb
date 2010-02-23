@@ -16,9 +16,9 @@ def mlist mbox, opts={} #{{{
   end
 
   out = []
-  out << "mailboxes =Lists/#{opts[:mbox]}"
+  out << "mailboxes =L/#{opts[:mbox]}"
   out << "subscribe #{opts[:address]}"
-  out << "mbox-hook Lists/#{opts[:mbox]} =Read/#{opts[:mbox]}"
+  out << "mbox-hook L/#{opts[:mbox]} =Read/#{opts[:mbox]}"
   if opts[:from]
     out << "send-hook #{opts[:address]} my_hdr From: #{opts[:from]}"
   end
@@ -48,7 +48,7 @@ end #}}}
 # Return a comparable version number for the given string.
 # If no string is given, uses version of #mutt_binary
 def mutt_version vers=nil #{{{
-  vers ||= mutt_verbose_version[/\AMutt\s+([\d.]+)\s/,1]
+  vers ||= mutt_verbose_version[/\AMutt\s+([\d.]+)(?:\+\d+)?\s/,1]
   vers = vers.split('.').map{ |x| x.to_i }
   vers.extend Comparable
 end #}}}

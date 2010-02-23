@@ -1,3 +1,4 @@
 # vim: ft=muttrc
 save-hook @netflix =INBOX/netflix
+save-hook blockbusteronline@blockbuster =INBOX/netflix
 save-hook @paytrust =INBOX/billmanager

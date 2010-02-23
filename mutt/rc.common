@@ -1,6 +1,7 @@
 # File locations
-set tunnel="dovecot --exec-mail imap"
 set folder=imaps://ats@pug.qqx.org/
+account-hook . 'set notunnel'
+account-hook ats@pug.qqx.org 'set tunnel="dovecot --exec-mail imap"'
 set spoolfile=+INBOX
 set postponed=+Drafts          # where to save postponed messages
 set record=+Sent               # save copies of outgoing mail
@@ -65,8 +66,11 @@ auto_view text/html application/pgp-keys application/x-tar-gz \
   application/octet-stream
 
 charset-hook windows-1251 cp1251
-charset-hook ascii cp1251
-charset-hook iso8859-1 cp1251
+#charset-hook ascii cp1251
+#charset-hook iso8859-1 cp1251
+charset-hook ascii cp1252
+charset-hook us-ascii cp1252
+charset-hook iso8859-1 cp1252
 
 
 # Misc settings
@@ -120,7 +124,8 @@ macro compose S "Fpgp +verbose=0 -fast +clearsig=on\ny^T^Uapplication/pgp; +form
 
 bind	editor	"\Ct"	transpose-chars
 
-set reply_regexp="^((re|aw)(\\[[0-9]+])?:[        ]*)+"
+# Deal with subjects in ruby-core mailing list having "[ruby-core:1234] prepended
+set reply_regexp="^(\[[a-z0-9:-]*\]|((re|aw)(\\[[0-9]+])?:)[        ]*)+"
 
 color body  red	default	\
  "((s?ftp|https?)://|(ftp|www[-a-z0-9]*)\\.)[^ \t\r\n\"<>]*[^].,:;!)? \t\r\n<>\"]"

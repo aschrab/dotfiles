@@ -1,6 +1,10 @@
 #!/usr/bin/ruby -w
 # $Id$
 
+#$debug_fh = File.open('/tmp/expand_muttrc.debug', 'w' )
+#$debug_fh.puts "I have PID #{Process.pid}"
+#$debug_fh.puts "My parent is #{ Process.ppid }"
+
 Dir.chdir( File.dirname($0) )
 
 require 'eruby'
@@ -9,7 +13,9 @@ require 'muttrc'
 $compiler = ERuby::Compiler.new
 
 def mutt_include( fname )
+  #$stderr.puts "Compiling #{fname}"
   code = File.open( fname ){ |fh| $compiler.compile_file( fh ) }
+  #$stderr.puts "Eval'ing #{fname}"
   eval( code, nil, fname )
 end
 

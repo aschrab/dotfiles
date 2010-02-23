@@ -16,6 +16,10 @@
 %   end
 % end
 
+% if mutt_variable :text_flowed
+  set text_flowed
+% end
+
 % if mutt_variable :imap_idle
   set imap_idle=no
 % end
@@ -24,7 +28,7 @@
   set header_cache=<%= ENV['HOME'] %>/.cache/mutt
 % end
 
-% if mutt_variable list_replay
+% if mutt_variable :list_reply
   set list_reply=ask-no # When replying to a list message ask if it should go to entire list
 % end
 
@@ -41,7 +45,9 @@
 
 % spam_fmt=''
 % if mutt_variable :spam_separator
-    spam '^X-Spam-Status: (Yes|No), (score|hits)=(-?[0-9.]+)' '%3'
+%#  spam '^X-Spam-Status: (Yes|No), (score|hits)=(-?[0-9.]+)' '%3'
+    spam '^X-qqx-org-MailScanner-SpamCheck:.*(score|hits)=(-?[0-9.]+)' '%2'
+    set imap_headers="X-qqx-org-MailScanner-SpamCheck"
     folder-hook 'suspect' 'set sort=spam'
 %   spam_fmt = ' <%4.4H>';
 % end

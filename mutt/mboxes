@@ -2,17 +2,21 @@
 % require 'muttrc.rb'
 
 mailboxes !
+mailboxes =INBOX/sympa
 
 <%# mlist 'sec/linux-security' %>
-<%= mlist 'bugtraq' %>
 <%= mlist 'lsm-workers' %>
 
 # UG lists
 <%= mlist 'ug/mlug-board' %>
-<%= mlist 'ug/mlug-list' %>
+<%= mlist 'ug/mlug' %>
+<%= mlist 'ug/blinux' %>
+<%= mlist 'ug/raleigh-pm' %>
+<%= mlist 'ruby/raleigh', :address => 'raleigh-rb-members' %>
 <%= mlist 'ug/trilug' %>
-<%= mlist 'ug/fdllug-list' %>
+<%= mlist 'ug/fdllug' %>
 <%= mlist 'ug/milwpm' %>
+<%= mlist 'ug/sewaug' %>
 <%= mlist 'ug/double-click' %>
 
 mailboxes =rss
@@ -24,31 +28,34 @@ mailboxes =rss
 <%= mlist 'vim-dev' %>
 
 # Ruby lists
-<%= mlist 'ruby/ruby-dbi' %>
+<%= mlist 'ruby/dbi' %>
 <%= mlist 'ruby/rexml', :address => 'ser-rexml' %>
 <%= mlist 'ruby/mke', :address => 'MilwaukeeRuby@googlegroups.com' %>
-<%= mlist 'ruby/raleigh', :address => 'raleigh-rb-members' %>
 <%= mlist 'ruby/modruby' %>
 <%= mlist 'ruby/narf' %>
 <%= mlist 'ruby/rails-core' %>
-<%= mlist 'ruby/ruby-core' %>
-<%= mlist 'ruby/ruby-talk' %>
+<%= mlist 'ruby/core' %>
+<%= mlist 'ruby/talk' %>
 
-<%= mlist 'mail/dovecot' %>
 <%= mlist 'mail/offlineimap' %>
+
+# Perl lists
+<%= mlist 'perl/dbix', :address => 'dbix-class' %>
 
 # Debian lists
 <%= mlist 'debian/ruby' %>
-<%= mlist 'debian/devel' %>
+<%= mlist 'debian/news' %>
 <%= mlist 'debian/devel-announce' %>
 <%= mlist 'debian/security-announce' %>
-<%= mlist 'debian/mentors' %>
-<%= mlist 'debian/news' %>
-<%= mlist 'debian/project' %>
 <%= mlist 'debian/pts' %>
+<%= mlist 'debian/devel' %>
+<%= mlist 'debian/mentors' %>
+<%= mlist 'debian/project' %>
 <%= mlist 'debian/qa' %>
 <%= mlist 'debian/qa-packages' %>
 <%= mlist 'debian/vote' %>
 lists debian-.*@lists\.debian\.org
 
+<%= mlist 'mail/dovecot' %>
 <%= mlist 'tidbits' %>
+<%= mlist 'bugtraq' %>
