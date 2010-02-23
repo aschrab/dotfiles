@@ -34,6 +34,10 @@ class ::Cropmail::Message
   end
 end
 
+if subject =~ /^Re: Mystery(secret.)?.shopper/i
+  done
+end
+
 if ENV['EXTENSION']
   $envelope_to = ENV['EXTENSION'].sub(/=([^=]*)/, '@\\1')
 elsif ENV['RECIPIENT']
@@ -69,6 +73,18 @@ if match
   end
   save Message.maildir
   done
+end
+
+if from =~ /root@mail\.milwaukeelug\.org/i and subject =~ %r<^/var/log/auth\.log>
+  filtered = ''
+  prefix = '^\w{3} +\d{1,2} \d\d:\d\d:\d\d localhost '
+  body.each do |line|
+    next if line =~ /#{prefix}CRON\[\d+\]: \(pam_unix\) session opened for user root by \(uid=0\)$/
+    next if line =~ /#{prefix}CRON\[\d+\]: \(pam_unix\) session closed for user root$/
+    filtered << line
+  end
+
+  body.replace filtered
 end
 
 if to =~ /sympa-request|mlug-admin-editor/i
@@ -126,7 +142,7 @@ when /<rubyonrails-core\.googlegroups\.com>/i
 when /<raleigh-rb-members/
   subject_re = /\[raleigh\.rb\]\s*/i
   list = 'ruby/raleigh'
-when /<raleigh-pm\.pm\.org>/i
+when /<raleigh-(talk|pm)\.pm\.org>/i
   subject_re = /\[Raleigh-pm\]\s*/i
   list = 'ug/raleigh-pm'
 when /<trilug\.trilug\.org>/i
