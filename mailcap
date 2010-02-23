@@ -29,7 +29,7 @@ text/x-sh; cat -v %s; copiousoutput
 text/x-csrc; cat -v %s; copiousoutput
 text/english; cat -v %s; copiousoutput
 
-image/*; xfix -s -- display %s; test=xfix -s -- /home/aarons/bin/runningx
+#image/*; xfix -s -- display %s; test=xfix -s -- /home/aarons/bin/runningx
 image/gif;  ; x-mozilla-flags=internal
 image/jpeg; ; x-mozilla-flags=internal
 
@@ -60,7 +60,7 @@ message/external-body; lynx -dump ftp://%{site}/%{directory}/%{name} ; \
 
 #application/pgp-keys; pgp -f < %s ; copiousoutput
 application/pgp-keys; gpg -v %s ; copiousoutput
-application/pdf; xfix -s -- /usr/local/bin/acroread "%s"; test=xfix -s -- /home/aarons/bin/runningx
+#application/pdf; xfix -s -- /usr/local/bin/acroread "%s"; test=xfix -s -- /home/aarons/bin/runningx
 #mailcap entry added by Netscape Helper
 audio/x-pn-realaudio;/usr/bin/rvplayer "%s"
 #mailcap entry added by Netscape Helper
