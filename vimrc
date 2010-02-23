@@ -236,6 +236,17 @@ autocmd BufRead Makefile set nosmarttab noexpandtab noautoindent
 filetype indent on
 filetype plugin on
 
+fun! UnderscoreToTitle(word)
+	let conv = a:word
+
+	" Remove prefix
+	let conv = substitute( conv, '.*:', '', '' )
+	let conv = substitute( conv, '_\(.\)', ' \u\1', 'g' )
+	let conv = substitute( conv, '^\(.\)', '\u\1', 'g' )
+
+	return conv . ':'
+endf
+
 fun! CamelToUnderscore(word)
 	let converted = ''
 	let pos = 0
