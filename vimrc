@@ -77,6 +77,7 @@ set showcmd
 set splitbelow
 set formatoptions+=r
 set formatoptions+=2
+set formatlistpat=^\\s*\\d\\+[\\]:.)}]\\s\\+
 set cpoptions+=$
 "set cmdheight=2
 set laststatus=2
@@ -84,6 +85,7 @@ set matchpairs=(:),{:},[:],<:>
 set fileformats=unix,dos,mac
 set fileencodings=ucs-bom,utf-8,cp1252,latin1,iso-2022-jp,euc,sjis
 set pastetoggle=<F4>
+set modeline
 set modelines=5
 set modeline
 set wildmenu
