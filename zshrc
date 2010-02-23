@@ -8,8 +8,7 @@ umask 022
 
 export BAUD=0
 
-rcvers='$Rev$'
-rcvers=$rcvers[(w)2]
+rcvers=git
 ZSH_MAJOR_VERSION="${${(s:.:)ZSH_VERSION}[0]}"
 
 if [[ "$TERM" == "linux" ]]
