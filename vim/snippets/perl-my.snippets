@@ -17,6 +17,18 @@ snippet dbic
 		data_type => '${2:varchar}',
 		size => ${3:undef},
 		is_nullable => ${4:0},
-	},
-	${5}
+	},${5}
 
+snippet action chained
+	sub ${1:method} : Chained(${2:/}) PathPart(${3:$1}) Allow${4:Anonymous} {
+		my ($self, $c) = @_;
+
+		${5}
+	}
+
+snippet action local
+	sub ${1:method} : Local Allow${2:Anonymous} {
+		my ($self, $c) = @_;
+
+		${3}
+	}
