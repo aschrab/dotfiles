@@ -8,7 +8,7 @@ umask 022
 
 export BAUD=0
 
-rcvers=',,Date: Wed Feb 24 15:31:40 2010,,'
+rcvers='%Date,,'
 rcvers=${rcvers#,,Date: }
 rcvers=${rcvers%,,}
 ZSH_MAJOR_VERSION="${${(s:.:)ZSH_VERSION}[0]}"
