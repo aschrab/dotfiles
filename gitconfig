@@ -1,0 +1,13 @@
+[user]
+	email = aaron@schrab.com
+	name = Aaron Schrab
+[core]
+	pager = less
+[alias]
+  co = checkout
+  ci = commit
+[push]
+	default = current
+[filter "date-prop"]
+	clean =  perl -pe 's/%Date[^%]*%/%Date%/i'
+	smudge = perl -pe 's/%Date[^%]*%/%Date: @{[scalar gmtime]}%/i'
