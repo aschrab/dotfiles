@@ -1,13 +1,13 @@
-# vim: ft=gitconfig
+# vim: ft=gitconfig tabstop=4 shiftwidth=4
 [user]
 	email = aaron@schrab.com
 	name = Aaron Schrab
 [core]
 	pager = less
 [alias]
-  co = checkout
-  ci = commit -v
-  st = status
+	co = checkout
+	ci = commit -v
+	st = status
 [push]
 	default = current
 [filter "date-prop"]
