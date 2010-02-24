@@ -1,3 +1,4 @@
+# vim: ft=gitconfig
 [user]
 	email = aaron@schrab.com
 	name = Aaron Schrab
