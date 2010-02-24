@@ -302,7 +302,7 @@ au FileType svn map <buffer> <Leader>sd :SVNCommitDiff<CR>
 augroup JumpCursorOnEdit
   au!
   autocmd BufReadPost *
-    \ if expand("<afile>:p:h") !=? $TEMP |
+    \ if !exists("b:nojump") && expand("<afile>:p:h") !=? $TEMP |
     \   if line("'\"") > 1 && line("'\"") <= line("$") |
     \     let JumpCursorOnEdit_foo = line("'\"") |
     \     let b:doopenfold = 1 |
