@@ -6,6 +6,7 @@
 [alias]
   co = checkout
   ci = commit
+  st = status
 [push]
 	default = current
 [filter "date-prop"]
