@@ -6,7 +6,7 @@
 	pager = less
 [alias]
   co = checkout
-  ci = commit
+  ci = commit -v
   st = status
 [push]
 	default = current
