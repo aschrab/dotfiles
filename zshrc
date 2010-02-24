@@ -442,7 +442,7 @@ esac
 
 #export LESS="-aCMj3"
 # Don't include -X in $LESS, remove smcups/rmcups settings from terminfo entry
-export LESS="-aMej3"
+export LESS="-FaMej3"
 case "$LANG" in
   *[Uu][Tt][Ff]*)
     LESSCHARSET="utf-8"
