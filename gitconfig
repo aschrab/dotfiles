@@ -9,6 +9,7 @@
 	ci = commit -v
 	cia = commit -v -a
 	st = status
+	up = pull
 	last = log -1 HEAD
 	unstage = reset HEAD --
 [push]
