@@ -7,6 +7,7 @@
 [alias]
 	co = checkout
 	ci = commit -v
+	cia = commit -v -a
 	st = status
 	last = log -1 HEAD
 	unstage = reset HEAD --
