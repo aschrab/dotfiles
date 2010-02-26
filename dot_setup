@@ -18,10 +18,14 @@ do
   case "$f" in
       dot_setup)
 	;;
+      USUAL)
+	$0 `cat ~/$dir/USUAL`
+	;;
       *)
 	dest=~/.$f
 	if [ -e $dest ]; then
 	  echo $f already exists
+	  :
 	else
 	  echo Setting up $f
 	  ln -s $dir/$f $dest
