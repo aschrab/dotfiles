@@ -1,0 +1,31 @@
+#!/bin/sh -e
+
+if [ "$PWD" = "$HOME" ]; then
+  dir=`dirname $0`
+  dir=`expr substr $dir 3 100`
+elif [ "x`dirname $0`" = "x." ]; then
+  len=`expr length "$HOME"`
+  len=`expr $len + 2`
+  dir="`expr substr $PWD $len 100`"
+else
+  echo Run from VC directory
+  exit 1
+fi
+
+for f in "$@"
+do
+  f=`basename $f`
+  case "$f" in
+      dot_setup)
+	;;
+      *)
+	dest=~/.$f
+	if [ -e $dest ]; then
+	  echo $f already exists
+	else
+	  echo Setting up $f
+	  ln -s $dir/$f $dest
+	fi
+	;;
+    esac
+done
