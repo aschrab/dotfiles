@@ -1,0 +1,231 @@
+#!/bin/zsh -f
+# vim: fdm=marker
+
+# reset signal handlers
+trap -
+
+unlimit core
+
+fignore=(.o .bak .swp \~)
+compctl -jP '%' kill fg bg disown
+compctl -vP '$' echo
+
+if [[ $OSTYPE == linux* && -r /lib/modules/`uname -r`/modules.dep ]]
+then
+  __modules=($(sed -n -e 's,^[^:]*/,,' -e 's,\.o:.*$,,p' /lib/modules/`uname -r`/modules.dep))
+  compctl -k __modules insmod modprobe
+
+  function __lsmod () {
+    reply=($(lsmod | awk '{if (NR > 1) print $1}'))
+  }
+  compctl -K __lsmod rmmod
+fi
+
+function __chroot () {
+  read -cA args
+  
+  reply=($(cd "$args[2]";
+           find . -perm +0111 -print 2> /dev/null | sed 's:^./:/:' ))
+}
+
+compctl -x \
+    'p[1]' -g '*(/)' - \
+    'p[2]' -K __chroot - \
+    'p[2,99]' -l '' -- \
+  chroot
+
+compctl -x \
+    'p[1]' -g '*(/)' - \
+    'p[2]' -u - \
+    'p[3]' -K __chroot - \
+    'p[3,99]' -l '' -- \
+  chrootuid
+
+compctl -k "(fsf fsfm bsf bsfm fsr bsr fss eod seod rewind \
+             offline retension weof eof wset erase \
+             status seek tell setpartition partseek mkpartition \
+             load lock unlock setblk setdensity densities \
+             drvbuffer compression stoptions stsetoptions \
+             stclearoptions stwrthreshold defblksize defdensity \
+             defdrvbuffer defcompression datcompression)" \
+        -x 'c[-1,-f],s[-f]' -g '/dev/*(%c)' \
+   -- mt
+
+compctl -k '(if of conv ibs obs bs cbs files skip file seek count)' -S '=' \
+        -x 's[if=] , s[of=]' -f \
+        - 'C[0,conv=*,*] n[-1,,] , s[conv=]' -q -S , \
+          -k '(ascii ebcdic ibm block unblock lcase ucase swap noerror sync)' \
+        - 'n[-1,=]' -X '<number>' \
+  -- dd
+
+__groups=($(cut -d: -f1 /etc/group))
+compctl -f -x 'C[-1,*chgrp][-1,-*] S[-]' \
+                     -k "( -c -h -f -R -v --changes --no-dereference --silent
+                           --quiet --recursive --verbose --help --version )" \
+            - 'p[1],C[-1,-*]' -k __groups -- chgrp
+
+function __conf () {
+  reply=($(./configure --help |
+          sed -n -e '/-\(FEATURE\|PACKAGE\)/d' \
+                 -e 's/^[ 	]\+--\([^[ 	,=]*\)\(,[ 	]*\([^ 	,=]*\)\)\?.*/--\1 \3/p'))
+                 #-e 's/^[ 	]\+--\([^[ 	,=]*\).*/--\1/p'))
+}
+compctl -qQS= -K __conf -x 'n[-1,=]' -f -- configure
+
+if [ -x /usr/ucb/ps ] ; then
+  alias ps=/usr/ucb/ps
+fi
+
+if [[ $ZSH_MAJOR_VERSION -ge 3 ]]
+then
+  # cd/pushd completion for all users
+  compctl -x 'S[/][~][./][../]' -g '*(-/)' - \
+    'n[-1,/], s[]' -K __cdmatch -S '/' + -nuP'~' + -- cd pushd
+
+  compctl -f -x 'C[-1,*chown][-1,-*] S[-]' \
+                       -k "( -c -h -f -R -v --changes --no-dereference --silent
+                             --quiet --recursive --verbose --help --version )" \
+              - 'p[1] N[1,.:],C[-1,-*] N[1,.:]' -k __groups \
+              - 'p[1],C[-1,-*]' -u -- chown
+
+fi
+
+mynames=(ats aarons bofh root)
+
+if [[ $HOST == *.mx.voyager.net ]]
+then
+  function mailfile ()
+  {
+    for u in "$@"
+    do
+      findmail "$u"
+    done
+  }
+  true
+fi
+
+case "$host" in
+   "grok"|"gir"|"tamara"|"tanstaafl"|"zim")
+      PGHOST="atlas"
+      ;;
+   "frell"|"pug")
+      if [[ -n $SSH_CLIENT ]]; then
+        echo m | fc -R /proc/self/fd/0
+      fi
+      ;;
+  "psn1")
+    PGHOST="verdande"
+    PGUSER="enforcer"
+    ;;
+esac
+
+function __sshhosts () {
+  local __sshfiles
+  local __sshfiles2
+  [ -f ~/.ssh/known_hosts ] && __sshfiles="$HOME/.ssh/known_hosts"
+  [ -f ~/.ssh/known_hosts2 ] && __sshfiles2="$HOME/.ssh/known_hosts2"
+  if [ -z "${__sshfiles}" -a -z "${__sshfiles2}" ]
+  then
+    reply=()
+  else
+    reply=( $(sed 's/[, ].*//' ${__sshfiles} ${__sshfiles2} ) )
+  fi
+}
+compctl -K __sshhosts -x 'p[2,-1]' -l '' -- ssh
+compctl -K __sshhosts -x 's[-l],c[-1,-l]' -k mynames -- slogin
+
+function __scphosts () {
+  local __sshfiles
+  local __sshfiles2
+  [ -f ~/.ssh/known_hosts ] && __sshfiles="$HOME/.ssh/known_hosts"
+  [ -f ~/.ssh/known_hosts2 ] && __sshfiles2="$HOME/.ssh/known_hosts2"
+  if [ -z "${__sshfiles}" -a -z "${__sshfiles2}" ]
+  then
+    reply=()
+  else
+    reply=( $(sed 's/[, ].*/:/' ${__sshfiles} ${__sshfiles2} ) )
+  fi
+}
+function __scphostsandnames () {
+  __scphosts "$@"
+  reply=($reply ${^mynames}@)
+}
+function __scpcomp () {
+  local a b h p u reply2
+  read -cA a
+  read -cn b
+  h=${a[$b]%:*}
+  p=${a[$b]#*:}
+  if [[ ${h%@*} != $h ]]; then
+    u="-l ${h%@*}"
+  else
+    u=""
+  fi
+  h=${h#*@}
+  reply=(`ssh -o 'BatchMode yes' ${=u} $h ls -dF $p\*  2>/dev/null`)
+  if [[ ${#reply} -eq 1 ]]; then
+    reply2=(`ssh -o 'BatchMode yes' ${=u} $h ls -dF $p\*/\* 2>/dev/null`)
+    if [[ ${#reply2} -ne 0 ]]; then
+      reply=($reply2)
+    fi
+  fi
+}
+compctl -f -K __scphostsandnames \
+  -x 'p[1,-1] n[1,:]' -K __scpcomp \
+  - 'p[1,-1] n[1,@]' -K __scphosts \
+ -- scp
+
+function __hosts () {
+  __sshhosts
+  reply=($reply $(sed 's/^[0-9. 	]*//' /etc/hosts) )
+}
+
+function __ports () {
+  reply=($(sed -e 's/#.*//' \
+               -e 's,[ 	][0-9][0-9]*/[a-z][a-z]*[ 	], ,' \
+             /etc/services))
+}
+
+compctl -x \
+    'p[1]' -K __hosts - \
+    'p[2]' -K __ports \
+  -- telnet
+
+compctl -K __hosts ping trt traceroute
+
+compctl -x 'p[1]' -k '(add gencaches showpkg stats dump dumpavail unmet check search show depends pkgnames dotty)' -- apt-cache
+compctl -K __debpkgs -x 'p[1]' -k \
+  '(update upgrade install source dist-upgrade clean remove autoclean check)' \
+  -- apt-get
+
+function __debpkgs {
+  if [ -d /var/lib/apt/lists ]
+  then
+    reply=(`sed -ne 's/^Package: //p' /var/lib/apt/lists/*_Packages`)
+  else
+    reply=(`sed -ne 's/^Package: //p' /var/state/apt/lists/*_Packages`)
+  fi
+}
+
+function __cdmatch () {
+# Start of cdmatch.
+# Save in your functions directory and autoload, then do
+# compctl -x 'S[/][~][./][../]' -g '*(-/)' - \
+#         'n[-1,/], s[]' -K cdmatch -S '/' -- cd pushd
+#
+# Completes directories for cd, pushd, ... anything that knows about cdpath
+# You do not have to include `.' in your cdpath.
+#
+# It works properly only if $ZSH_VERSION > 2.6-beta2. For erarlier versions
+# it still works if RC_EXPAND_PARAM is not set or when cdpath is empty.
+     
+   local narg pref cdp
+     
+   read -nc narg
+   read -Ac pref
+     
+   cdp=(. $cdpath)
+   reply=( ${^cdp}/${pref[$narg]%$2}*$2(-/DN^M:t:gs/ /\\\\ /) )
+     
+   return
+}
