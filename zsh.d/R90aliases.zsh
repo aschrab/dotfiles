@@ -38,6 +38,7 @@ alias bc='bc -ql'
 alias trt=traceroute
 
 [ -x /usr/lib/sendmail ] && alias sendmail=/usr/lib/sendmail
+[ -x /usr/ucb/ps ] && alias ps=/usr/ucb/ps
 
 [[ -z $(whence gcc)    ]] && alias gcc=cc
 [[ -n $(whence gsed)   ]] && alias sed=gsed

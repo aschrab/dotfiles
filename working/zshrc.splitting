@@ -15,10 +15,6 @@ function __conf () {
 }
 compctl -qQS= -K __conf -x 'n[-1,=]' -f -- configure
 
-if [ -x /usr/ucb/ps ] ; then
-  alias ps=/usr/ucb/ps
-fi
-
 mynames=(ats aarons bofh root)
 
 case "$host" in
