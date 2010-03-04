@@ -8,18 +8,3 @@ unlimit core
 fignore=(.o .bak .swp \~)
 
 mynames=(ats aarons bofh root)
-
-case "$host" in
-   "grok"|"gir"|"tamara"|"tanstaafl"|"zim")
-      PGHOST="atlas"
-      ;;
-   "frell"|"pug")
-      if [[ -n $SSH_CLIENT ]]; then
-        echo m | fc -R /proc/self/fd/0
-      fi
-      ;;
-  "psn1")
-    PGHOST="verdande"
-    PGUSER="enforcer"
-    ;;
-esac
