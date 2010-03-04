@@ -1,5 +1,7 @@
 # vim: ft=zsh fdm=marker
 
+[[ $LANG == *UTF* ]] && return
+
 unset LC_CTYPE
 
 # Check if we're on a Unicode terminal
