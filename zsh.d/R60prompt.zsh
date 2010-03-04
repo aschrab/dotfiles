@@ -28,6 +28,24 @@ beep=$(print -n "\C-g")
 tty=${TTY##/dev/}
 export TTY
 
+zset_title() {
+  case "$TERM" in
+    xterm|xtermc|xterm-debian|xterm-color|rxvt-unicode|rxvt|gnome|Eterm)
+      print -nP "\E]1;%(#.#.$)$host$DEBCHROOT\C-g"
+      print -nP "\E]2;%(#.#.$)$host$DEBCHROOT($tty):%~\C-g"
+      ;;
+    screen*)
+      print -nP
+      print -nP "\E]1;%(#.#.$)$host$DEBCHROOT\C-g"
+      print -nP "\E]2;\C-En %(#.#.$)$host$DEBCHROOT($tty)!%~\C-g\Ek$host$DEBCHROOT%(#.#.$)%.\E"
+      ;;
+  esac
+}
+precmd_functions+='zset_title'
+
+PS1='%{$pColor%}%1v%!)$host$DEBCHROOT%(#.#.$)%{$fColor%} '
+RPS1='%{$pColor%} %~$(git_prompt_info)%{$fColor%}'
+
 case "$TERM" in
   xterm|xtermc|xterm-debian|xterm-color|rxvt-unicode|rxvt|gnome|Eterm)
     if [[ $TERM == xterm && $OSTYPE == freebsd* ]]
@@ -36,15 +54,9 @@ case "$TERM" in
     fi
     stty erase '^?'
     print -P "${green}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${fColor}"
-    PS1='%{${esc}]1;%(#.#.$)$host$DEBCHROOT${beep}${esc}]2;%(#.#.$)$host$DEBCHROOT($tty):%~${beep}%}'
-    PS1="$PS1"'%{$pColor%}%1v%!)$host$DEBCHROOT%(#.#.$)%{$fColor%} '
-    RPS1='%{$pColor%} %~$(git_prompt_info)%{$fColor%}'
     ;;
   screen*)
     print -P "${yellow}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${fColor}"
-    PS1='%{]1;%(#.#.$)$host$DEBCHROOT]2;n %(#.#.$)$host$DEBCHROOT($tty)!%~k$host$DEBCHROOT%(#.#.$)%.\%}'
-    PS1="$PS1"'%{$pColor%}%1v%!)$host$DEBCHROOT%(#.#.$)%{$fColor%} '
-    RPS1='%{$pColor%} %~%{$fColor%}'
     case "$OSTYPE" in
       solaris*)
         # Solaris' usual termcap entry for screen sucks, so don't use it.
@@ -67,8 +79,6 @@ case "$TERM" in
     fColor=$normal
     stty erase '^?'
     print -P "${magenta}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${fColor}"
-    PS1='%{$pColor%}%1v%!)$host$DEBCHROOT%(#.#.$)%{$fColor%} '
-    RPS1='%{$pColor%} %~%{$fColor%}'
 
     xtitle () {
     }
@@ -82,5 +92,3 @@ case "$TERM" in
     }
     ;;
 esac
-
-export RPS1
