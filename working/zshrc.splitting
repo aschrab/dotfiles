@@ -1,6 +1,0 @@
-#!/bin/zsh -f
-# vim: fdm=marker
-
-fignore=(.o .bak .swp \~)
-
-mynames=(ats aarons bofh root)
