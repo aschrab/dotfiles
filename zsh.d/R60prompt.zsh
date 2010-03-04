@@ -23,8 +23,6 @@ else
   DEBCHROOT=''
 fi
 
-esc=$(print -n "\E")
-beep=$(print -n "\C-g")
 tty=${TTY##/dev/}
 export TTY
 
