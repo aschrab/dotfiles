@@ -25,9 +25,6 @@ zstyle ':completion:*' substitute 'NUMERIC==2'
 zstyle ':completion:*' ignored-patterns 'doc-base'
 zstyle :compinstall filename $HOME/zcomp
 
-autoload -U compinit
-compinit -u
-
 zstyle -e ':completion:*:hosts' hosts __hosts
 zstyle -e ':completion:*:complete:ssh:*:hosts' hosts __sshhosts
 #zstyle ':completion:*:my-accounts' users-hosts $my_accounts
