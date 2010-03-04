@@ -56,3 +56,4 @@ kpathword () {
 zle -N kpathword
 bindkey "\M-/" kpathword
 bindkey "\e/" kpathword
+bindkey "^[/" kpathword
