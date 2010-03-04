@@ -1,5 +1,3 @@
-# vim: ft=zsh
-
 # Have `pwd` show both the real path and what the shell thinks it is
 function pwd () {
   local real=`builtin pwd -r`

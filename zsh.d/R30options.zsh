@@ -1,5 +1,3 @@
-# vim: ft=zsh
-
 setopt \
   Always_Last_Prompt \
   All_Export \

@@ -1,5 +1,3 @@
-# vim: ft=zsh
-
 tz () {
   local t
   t="$1"

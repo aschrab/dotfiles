@@ -1,5 +1,3 @@
-# vim: ft=zsh
-
 if [[ -z "$normal" ]]
 then
   export   black="%{$(echo -n '\e[0;30m')%}"

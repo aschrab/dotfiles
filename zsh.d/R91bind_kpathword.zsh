@@ -1,4 +1,3 @@
-# vim: ft=zsh
 [[ $ZSH_MAJOR_VERSION -lt 4 ]] && return
 
 # Add a zle widget to kill last N path components

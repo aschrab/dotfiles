@@ -1,5 +1,3 @@
-# vim: ft=zsh
-
 if [[ -n "$(whence ri1.8)" ]]; then
   function ___ri () {
     # Locally tell less to:

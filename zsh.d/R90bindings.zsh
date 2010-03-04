@@ -1,5 +1,3 @@
-# vim: ft=zsh
-
 bindkey -e
 
 # bind keys

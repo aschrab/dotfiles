@@ -1,4 +1,3 @@
-# vim: ft=zsh
 [[ $ZSH_MAJOR_VERSION -lt 4 ]] && return
 
 # Change behaviour of insert-last-word widget

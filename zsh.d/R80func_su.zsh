@@ -1,5 +1,3 @@
-# vim: ft=zsh
-
 if [[ -n $PZSH ]]; then
   if [[ -n $PPWD && -d $PPWD ]]; then
     # cd to directory parent shell was in (see su function)

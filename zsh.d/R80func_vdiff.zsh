@@ -1,5 +1,3 @@
-# vim: ft=zsh
-
 vdiff () {
   local cvs='' opt=''
   if [[ "$1" == '!c' || "$1" == '!cvs' ]]

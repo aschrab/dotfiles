@@ -1,6 +1,3 @@
-# vim: ft=zsh
-
-
 path=()
 manpath=()
 ppath=(

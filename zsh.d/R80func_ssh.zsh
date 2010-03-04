@@ -1,5 +1,3 @@
-# vim: ft=zsh
-
 ssh () {
   local foo
   local bar

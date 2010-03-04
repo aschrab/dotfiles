@@ -1,5 +1,3 @@
-# vim: ft=zsh
-
 alias stty='noglob stty'
 alias wget='noglob wget'
 

@@ -1,5 +1,3 @@
-# vim: ft=zsh
-
 # doc function to display docs for a package, with completion
 if [[ -d /doc ]]; then
   doc() { cd /doc/$1 && ls }

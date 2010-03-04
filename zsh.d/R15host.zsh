@@ -1,5 +1,3 @@
-# vim: ft=zsh
-
 # Set $host by:
 # - Split $HOST on '.'
 # - Remove $stripdom - 1 portions from the end

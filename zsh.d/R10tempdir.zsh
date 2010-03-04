@@ -1,5 +1,3 @@
-# vim: ft=zsh
-
 # Try making directory, don't care if it fails (may be there already)
 mkdir "/tmp/$LOGNAME" >& /dev/null
 

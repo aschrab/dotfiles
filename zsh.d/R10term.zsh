@@ -1,5 +1,3 @@
-# vim: ft=zsh
-
 if [[ "$TERM" == "linux" ]]
 then
   case "$OSTYPE:$HOST" in

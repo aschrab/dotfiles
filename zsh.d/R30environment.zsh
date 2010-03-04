@@ -1,5 +1,3 @@
-# vim: ft=zsh
-
 export BAUD=0
 
 if [[ "${DISPLAY#${HOST}:}" != "$DISPLAY" ]]

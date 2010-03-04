@@ -1,5 +1,3 @@
-# vim: ft=zsh
-
 [[ $ZSH_MAJOR_VERSION -lt 4 ]] && return
 
 zstyle ':completion:*' auto-description 'specify: %d'

@@ -1,5 +1,3 @@
-# vim: ft=zsh
-
 precmd () {
   # Make sure the prompt begins on a new line
   print -nP "%{${red}\$${normal}${(pl:COLUMNS:: ::\r:)}%}"

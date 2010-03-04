@@ -1,5 +1,3 @@
-# vim: ft=zsh
-
 #  Run a few informative commands
 if [[ ! -f .hushlogin && -n $PZSH ]]; then
   case "$OSTYPE" in
