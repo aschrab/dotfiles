@@ -7,14 +7,6 @@ unlimit core
 
 fignore=(.o .bak .swp \~)
 
-function __conf () {
-  reply=($(./configure --help |
-          sed -n -e '/-\(FEATURE\|PACKAGE\)/d' \
-                 -e 's/^[ 	]\+--\([^[ 	,=]*\)\(,[ 	]*\([^ 	,=]*\)\)\?.*/--\1 \3/p'))
-                 #-e 's/^[ 	]\+--\([^[ 	,=]*\).*/--\1/p'))
-}
-compctl -qQS= -K __conf -x 'n[-1,=]' -f -- configure
-
 mynames=(ats aarons bofh root)
 
 case "$host" in
