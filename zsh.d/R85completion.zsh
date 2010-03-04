@@ -29,8 +29,10 @@ zstyle ':completion:*:ssh:*' users 'reply=()'
 zstyle ':completion:*:scp:*' users 'reply=()'
 
 # Don't complete "CVS" or "lost+found" directories
-zstyle ':completion:*:(all-|)files' ignored-patterns '(|*/)CVS' '(*/)#lost+found'
+zstyle ':completion:*:(all-|)files' ignored-patterns '(|*/)CVS' '(*/)#lost+found' \
+  '(|*/)*.bak' '(|*/)*.swp' '(|*/)*.o' '(|*/)*~'
 zstyle ':completion:*:cd:*' ignored-patterns '(*/)#CVS' '(*/)#lost+found'
+zstyle ':completion:*:rm:*' ignored-patterns
 
 
 # Try to avoid completion functions when completing command names.
