@@ -25,10 +25,8 @@ zstyle ':completion:*' substitute 'NUMERIC==2'
 zstyle ':completion:*' ignored-patterns 'doc-base'
 zstyle :compinstall filename $HOME/zcomp
 
-zstyle -e ':completion:*:hosts' hosts __hosts
-zstyle -e ':completion:*:complete:ssh:*:hosts' hosts __sshhosts
-#zstyle ':completion:*:my-accounts' users-hosts $my_accounts
-zstyle -e ':completion:*:my-accounts' users-hosts __ssh_users
+zstyle ':completion:*:ssh:*' users 'reply=()'
+zstyle ':completion:*:scp:*' users 'reply=()'
 
 # Don't complete "CVS" or "lost+found" directories
 zstyle ':completion:*:(all-|)files' ignored-patterns '(|*/)CVS' '(*/)#lost+found'
@@ -51,15 +49,3 @@ zstyle ':completion:*:*:*:*:processes' force-list always
 
 # Color process list in ps completion
 zstyle ':completion:*:*:kill:*:processes' list-colors "=(#b) #([0-9]#)*=36=31"
-
-__ssh_users () {
-  local shosts
-  local h
-  __sshhosts
-  shosts=( $reply )
-  reply=( )
-  for h in $shosts
-  do
-    reply=( $reply "ats@$h" )
-  done
-}
