@@ -14,7 +14,7 @@ case "$USERNAME" in
     pColor=$fg[yellow]
     ;;
   root|administrator)
-    pColor=$red
+    pColor=$fg[red]
     ;;
   *)
     pColor=$fg[green]
