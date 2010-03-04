@@ -22,16 +22,13 @@ sudo () {
   fi
 }
 
-MYSU=$(whence mysu)
 su () {
   if [ $# -eq 0 ] ; then
         tmpfile=~/.Zsh-hist.$host.$$
         [ -w ~ ] && fc -ln -10 -1 >! $tmpfile 2> /dev/null
         export PPWD=$PWD  # Save current directory,
         cd /              # cd to / so su isn't running in a mounted filesystem
-        if [[ -n "$MYSU" ]] ; then
-          PZSH=$$ $MYSU
-        elif [[ $OSTYPE == solaris* ]] ; then
+        if [[ $OSTYPE == solaris* ]] ; then
           PZSH=$$ command su root -c $SHELL
         else
           PZSH=$$ command su -m
