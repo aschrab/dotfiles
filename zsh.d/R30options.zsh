@@ -37,3 +37,7 @@ unset HISTFILE
 export HISTSIZE=250
 export NULLCMD=:
 export HISTORY=${ZDOTDIR:=$HOME}/.zsh-history
+
+typeset -ga preexec_functions
+typeset -ga precmd_functions
+typeset -ga chpwd_functions

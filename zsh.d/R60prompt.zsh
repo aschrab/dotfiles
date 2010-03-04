@@ -38,7 +38,7 @@ case "$TERM" in
     print -P "${green}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${fColor}"
     PS1='%{${esc}]1;%(#.#.$)$host$DEBCHROOT${beep}${esc}]2;%(#.#.$)$host$DEBCHROOT($tty):%~${beep}%}'
     PS1="$PS1"'%{$pColor%}%1v%!)$host$DEBCHROOT%(#.#.$)%{$fColor%} '
-    RPS1='%{$pColor%} %~%{$fColor%}'
+    RPS1='%{$pColor%} %~$(git_prompt_info)%{$fColor%}'
     ;;
   screen*)
     print -P "${yellow}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${fColor}"
