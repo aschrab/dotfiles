@@ -15,7 +15,10 @@ else
   done
 fi
 
+zshrc_dir=~/.zsh.d
+[ -d $zshrc_dir ] || zshrc_dir=$( dirname $(readlink ~/.zshrc) )/zsh.d
+
 setopt extended_glob
-for zshrc_snipplet in ~/.zsh.d/R[0-9][0-9]*.zsh ; do
+for zshrc_snipplet in $zshrc_dir/R[0-9][0-9]*.zsh ; do
   source $zshrc_snipplet
 done
