@@ -1,6 +1,6 @@
 precmd () {
   # Make sure the prompt begins on a new line
-  print -nP "%{${red}\$${normal}${(pl:COLUMNS:: ::\r:)}%}"
+  print -nP "%{${fg[red]}\$${reset_color}${(pl:COLUMNS:: ::\r:)}%}"
 
   if jobs % >& /dev/null; then
     psvar[1]="*"
@@ -53,10 +53,10 @@ case "$TERM" in
       TERM=xterm-color
     fi
     stty erase '^?'
-    print -P "${green}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${fColor}"
+    print -P "${fg[green]}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${fColor}"
     ;;
   screen*)
-    print -P "${yellow}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${fColor}"
+    print -P "${fg[yellow]}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${fColor}"
     case "$OSTYPE" in
       solaris*)
         # Solaris' usual termcap entry for screen sucks, so don't use it.
@@ -76,9 +76,9 @@ case "$TERM" in
     ;;
 
   linux)
-    fColor=$normal
+    fColor=$reset_color
     stty erase '^?'
-    print -P "${magenta}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${fColor}"
+    print -P "${fg[magenta]}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${fColor}"
 
     xtitle () {
     }
