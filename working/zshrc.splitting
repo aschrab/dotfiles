@@ -36,62 +36,6 @@ case "$host" in
     ;;
 esac
 
-function __sshhosts () {
-  local __sshfiles
-  local __sshfiles2
-  [ -f ~/.ssh/known_hosts ] && __sshfiles="$HOME/.ssh/known_hosts"
-  [ -f ~/.ssh/known_hosts2 ] && __sshfiles2="$HOME/.ssh/known_hosts2"
-  if [ -z "${__sshfiles}" -a -z "${__sshfiles2}" ]
-  then
-    reply=()
-  else
-    reply=( $(sed 's/[, ].*//' ${__sshfiles} ${__sshfiles2} ) )
-  fi
-}
-compctl -K __sshhosts -x 'p[2,-1]' -l '' -- ssh
-compctl -K __sshhosts -x 's[-l],c[-1,-l]' -k mynames -- slogin
-
-function __scphosts () {
-  local __sshfiles
-  local __sshfiles2
-  [ -f ~/.ssh/known_hosts ] && __sshfiles="$HOME/.ssh/known_hosts"
-  [ -f ~/.ssh/known_hosts2 ] && __sshfiles2="$HOME/.ssh/known_hosts2"
-  if [ -z "${__sshfiles}" -a -z "${__sshfiles2}" ]
-  then
-    reply=()
-  else
-    reply=( $(sed 's/[, ].*/:/' ${__sshfiles} ${__sshfiles2} ) )
-  fi
-}
-function __scphostsandnames () {
-  __scphosts "$@"
-  reply=($reply ${^mynames}@)
-}
-function __scpcomp () {
-  local a b h p u reply2
-  read -cA a
-  read -cn b
-  h=${a[$b]%:*}
-  p=${a[$b]#*:}
-  if [[ ${h%@*} != $h ]]; then
-    u="-l ${h%@*}"
-  else
-    u=""
-  fi
-  h=${h#*@}
-  reply=(`ssh -o 'BatchMode yes' ${=u} $h ls -dF $p\*  2>/dev/null`)
-  if [[ ${#reply} -eq 1 ]]; then
-    reply2=(`ssh -o 'BatchMode yes' ${=u} $h ls -dF $p\*/\* 2>/dev/null`)
-    if [[ ${#reply2} -ne 0 ]]; then
-      reply=($reply2)
-    fi
-  fi
-}
-compctl -f -K __scphostsandnames \
-  -x 'p[1,-1] n[1,:]' -K __scpcomp \
-  - 'p[1,-1] n[1,@]' -K __scphosts \
- -- scp
-
 function __cdmatch () {
 # Start of cdmatch.
 # Save in your functions directory and autoload, then do
