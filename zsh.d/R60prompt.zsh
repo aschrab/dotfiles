@@ -33,9 +33,8 @@ zset_title() {
       print -nP "\E]2;%(#.#.$)$host$DEBCHROOT($tty):%~\C-g"
       ;;
     screen*)
-      print -nP
       print -nP "\E]1;%(#.#.$)$host$DEBCHROOT\C-g"
-      print -nP "\E]2;\C-En %(#.#.$)$host$DEBCHROOT($tty)!%~\C-g\Ek$host$DEBCHROOT%(#.#.$)%.\E"
+      print -nP "\E]2;\En %(#.#.$)$host$DEBCHROOT($tty)!%~\C-g\Ek$host$DEBCHROOT%(#.#.$)%.\E\\"
       ;;
   esac
 }
