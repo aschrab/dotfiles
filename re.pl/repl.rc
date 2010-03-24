@@ -1,0 +1,7 @@
+# vim: ft=perl
+
+$ENV{NOPASTE_SERVICES} = 'Gist';
+
+foreach (qw{Timing DumpHistory OutputCache Interrupt Nopaste}) {
+	$_REPL->load_plugin($_);
+}
