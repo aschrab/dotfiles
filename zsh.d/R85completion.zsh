@@ -3,7 +3,7 @@
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _oldlist _expand _complete _ignored _match _correct _approximate _prefix
 zstyle ':completion:*' completions 'NUMERIC==3'
-zstyle ':completion:*' format "${fg[blue]}%SCompleting %d%s${fColor}"
+zstyle ':completion:*' format "%K{blue}%F{white}Completing %d%f%k"
 zstyle ':completion:*' glob 'NUMERIC==1'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' ignore-parents parent pwd
