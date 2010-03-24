@@ -1,7 +1,7 @@
 -- $Id$
-SET client_min_messages = notice;
 \set QUIET 1
 \set HISTCONTROL ignoredups
+SET client_min_messages = notice;
 
 \set SHELLHOST `echo $host`
 \set PROMPT1 '%[%033[0;35m%]%/ @%m @%:SHELLHOST:%R%#%[%033[0;22m%] ' 
