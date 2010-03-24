@@ -52,10 +52,10 @@ case "$TERM" in
       TERM=xterm-color
     fi
     stty erase '^?'
-    print -P "${fg[green]}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${fColor}"
+    print -P "%K{green}zsh $ZSH_VERSION, .zshrc $rcvers%k"
     ;;
   screen*)
-    print -P "${fg[yellow]}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${fColor}"
+    print -P "%K{yellow}zsh $ZSH_VERSION, .zshrc $rcvers%k"
     case "$OSTYPE" in
       solaris*)
         # Solaris' usual termcap entry for screen sucks, so don't use it.
@@ -75,9 +75,8 @@ case "$TERM" in
     ;;
 
   linux)
-    fColor=$reset_color
     stty erase '^?'
-    print -P "${fg[magenta]}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${fColor}"
+    print -P "%K{magenta}zsh $ZSH_VERSION, .zshrc $rcvers%k"
 
     xtitle () {
     }
