@@ -1,23 +1,19 @@
-autoload -U colors
-colors
-
-fColor=$reset_color
-pColor=$fg[green]
+pColor=green
 case "$USERNAME" in
   aarons|ats|aschrab)
-    pColor=$fg[cyan]
+    pColor=cyan
     ;;
   aaron)
-    pColor=$fg[magenta]
+    pColor=magenta
     ;;
   michael|backup|lsm|bofh)
-    pColor=$fg[yellow]
+    pColor=yellow
     ;;
   root|administrator)
-    pColor=$fg[red]
+    pColor=red
     ;;
   *)
-    pColor=$fg[green]
+    pColor=green
     ;;
 esac
 
