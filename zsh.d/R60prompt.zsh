@@ -40,8 +40,10 @@ zset_title() {
 }
 precmd_functions+='zset_title'
 
-PS1='%{$pColor%}%1v%!)$host$DEBCHROOT%(#.#.$)%{$fColor%} '
-RPS1='%{$pColor%} %~$(zgit_current_branch)%{$fColor%}'
+RPS1=''
+PS1='
+%U$pColor%1v%2m$DEBCHROOT  %~ $(zgit_current_branch)%E%u
+%!%(#.#.$)%{$fColor%} '
 
 case "$TERM" in
   xterm|xtermc|xterm-debian|xterm-color|rxvt-unicode|rxvt|gnome|Eterm)
