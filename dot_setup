@@ -24,10 +24,10 @@ do
       *)
 	dest=~/.$f
 	if [ -e $dest ]; then
-	  echo $f already exists
+	  echo ". $f"
 	  :
 	else
-	  echo Setting up $f
+	  echo + $f
 	  ln -s $dir/$f $dest
 	fi
 	;;
