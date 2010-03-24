@@ -3,7 +3,7 @@
 	email = aaron@schrab.com
 	name = Aaron Schrab
 [core]
-	pager = less
+	pager = less -R
 [alias]
 	co = checkout
 	ci = commit -v
@@ -19,6 +19,6 @@
 	smudge = perl -pe 's/,,Date[^,]*,,/,,Date: @{[scalar gmtime]},,/i'
 [color]
 	branch = auto
-	#diff = auto
+	diff = auto
 	interactive = auto
 	status = auto
