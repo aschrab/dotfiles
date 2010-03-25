@@ -2,6 +2,38 @@
 
 $ENV{NOPASTE_SERVICES} = 'Gist';
 
-foreach (qw{Timing DumpHistory OutputCache Interrupt Nopaste}) {
+foreach (qw{Timing DumpHistory OutputCache Interrupt Nopaste MultiLine::PPI Packages FancyPrompt}) {
 	$_REPL->load_plugin($_);
 }
+
+use Term::ANSIColor;
+
+sub col {
+	my ($str, $color) = @_;
+
+
+	my $r = '';
+	$r .= "\001" . color($color) . "\002";
+	$r .= $str;
+	$r .= "\001" . color('reset') . "\002";
+	$r;
+}
+
+$_REPL->fancy_prompt( sub {
+		my $self = shift;
+		my $prompt = '';
+		$prompt .= col( 're.pl', 'blue' );
+
+		$prompt .= '(' . col( $self->current_package, 'yellow' ) . ')'
+			if $self->can('current_package');
+
+		$prompt .= ':' . col( $self->lines_read, 'magenta' );
+
+		$prompt .= ':' . col( $self->line_depth, 'cyan' ) if $self->can('line_depth');
+
+		$prompt .= col( '> ', 'blue' );
+
+		$prompt;
+	});
+
+package main;
