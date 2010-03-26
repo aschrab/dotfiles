@@ -1,6 +1,6 @@
 precmd () {
   # Make sure the prompt begins on a new line
-  print -nP "%F{red}\$%f${(pl:COLUMNS:: ::\r:)}%}"
+  print -nP "%{${fg[red]}\$${reset_color}${(pl:COLUMNS:: ::\r:)}%}"
 
   if jobs % >& /dev/null; then
     psvar[1]="*"
