@@ -1,6 +1,6 @@
 precmd () {
   # Make sure the prompt begins on a new line
-  print -nP "%F{red}\$%f${(pl:COLUMNS:: ::\r:)}%}"
+  print -nP "%{${fg[red]}\$${reset_color}${(pl:COLUMNS:: ::\r:)}%}"
 
   if jobs % >& /dev/null; then
     psvar[1]="*"
@@ -40,29 +40,10 @@ zset_title() {
 }
 precmd_functions+='zset_title'
 
-export pColor=green
-case "$USERNAME" in
-  aarons|ats|aschrab)
-    pColor=cyan
-    ;;
-  aaron)
-    pColor=magenta
-    ;;
-  michael|backup|lsm|bofh)
-    pColor=yellow
-    ;;
-  root|administrator)
-    pColor=red
-    ;;
-  *)
-    pColor=green
-    ;;
-esac
-
 RPS1=''
 PS1='
-%U%F{$pColor}%1v%2m$DEBCHROOT  %~ $(zgit_current_branch)%E%u
-%!%(#.#.$)%f '
+%U%{$pColor%}%1v%2m$DEBCHROOT  %~ $(zgit_current_branch)%E%u
+%!%(#.#.$)%{$fColor%} '
 
 case "$TERM" in
   xterm|xtermc|xterm-debian|xterm-color|rxvt-unicode|rxvt|gnome|Eterm)
@@ -71,10 +52,10 @@ case "$TERM" in
       TERM=xterm-color
     fi
     stty erase '^?'
-    print -P "%K{green}zsh $ZSH_VERSION, .zshrc $rcvers%k"
+    print -P "${fg[green]}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${fColor}"
     ;;
   screen*)
-    print -P "%K{yellow}zsh $ZSH_VERSION, .zshrc $rcvers%k"
+    print -P "${fg[yellow]}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${fColor}"
     case "$OSTYPE" in
       solaris*)
         # Solaris' usual termcap entry for screen sucks, so don't use it.
@@ -94,8 +75,9 @@ case "$TERM" in
     ;;
 
   linux)
+    fColor=$reset_color
     stty erase '^?'
-    print -P "%K{magenta}zsh $ZSH_VERSION, .zshrc $rcvers%k"
+    print -P "${fg[magenta]}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${fColor}"
 
     xtitle () {
     }
