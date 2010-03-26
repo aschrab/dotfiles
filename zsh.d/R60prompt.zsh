@@ -40,25 +40,6 @@ zset_title() {
 }
 precmd_functions+='zset_title'
 
-export pColor=green
-case "$USERNAME" in
-  aarons|ats|aschrab)
-    pColor=cyan
-    ;;
-  aaron)
-    pColor=magenta
-    ;;
-  michael|backup|lsm|bofh)
-    pColor=yellow
-    ;;
-  root|administrator)
-    pColor=red
-    ;;
-  *)
-    pColor=green
-    ;;
-esac
-
 RPS1=''
 PS1='
 %U%F{$pColor}%1v%2m$DEBCHROOT  %~ $(zgit_current_branch)%E%u
