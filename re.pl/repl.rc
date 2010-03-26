@@ -34,6 +34,6 @@ $_REPL->fancy_prompt( sub {
 		$prompt .= col( '> ', 'blue' );
 
 		$prompt;
-	});
+	}) if $_REPL->can('fancy_prompt');
 
 package main;
