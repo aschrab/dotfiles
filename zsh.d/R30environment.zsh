@@ -14,6 +14,7 @@ export MPAGE="-2m50t"
 export COLORFGBG='default;default'
 export WORDCHARS='*?_-.[]~/&|;!#$%^(){}<>,'
 export HOST_DEFAULTS='-R'
+export NOPASTE_SERVICES='Gist'
 
 export NNTPSERVER="news.execpc.com"
 export EMAIL="aaron@schrab.com"
