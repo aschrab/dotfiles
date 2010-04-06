@@ -10,7 +10,7 @@ snippet dbit
 		${4}
 	);
 
-	__PACKAGE__->set_primary_key('$2');
+	__PACKAGE__->set_primary_key(qw{$2});
 
 snippet dbic
 	${1:column} => {
