@@ -8,19 +8,19 @@ my $home = dir( $ENV{HOME} );
 my $dir = file($0)->dir->relative($home);
 
 foreach my $f (@ARGV) {
-  chomp $f;
-  next if $f =~ /dot_setup/;
+	chomp $f;
+	next if $f =~ /dot_setup/;
 
-  if( $f =~ /USUAL/ ) {
-	push @ARGV, $home->subdir($dir)->file('USUAL')->slurp;
-	next;
-  }
+	if( $f =~ /USUAL/ ) {
+		push @ARGV, $home->subdir($dir)->file('USUAL')->slurp;
+		next;
+	}
 
-  my $dest = "$ENV{HOME}/.$f";
+	my $dest = "$ENV{HOME}/.$f";
 
-  my $status = -e $dest ? '.' : '+';
-  print "$status $f\n";
+	my $status = -e $dest ? '.' : '+';
+	print "$status $f\n";
 
-  next unless $status eq '+';
-  symlink "$dir/$f" => $dest or die;
+	next unless $status eq '+';
+	symlink "$dir/$f" => $dest or die;
 }
