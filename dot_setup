@@ -1,35 +1,45 @@
-#!/bin/sh -e
+#!/usr/bin/env perl
 
-if [ "$PWD" = "$HOME" ]; then
-  dir=`dirname $0`
-  dir=`expr substr $dir 3 100`
-elif [ "x`dirname $0`" = "x." ]; then
-  len=`expr length "$HOME"`
-  len=`expr $len + 2`
-  dir="`expr substr $PWD $len 100`"
-else
-  echo Run from VC directory
-  exit 1
-fi
+use strict;
+use warnings;
+use Cwd;
 
-for f in "$@"
-do
-  f=`basename $f`
-  case "$f" in
-      dot_setup)
-	;;
-      USUAL)
-	$0 `cat ~/$dir/USUAL`
-	;;
-      *)
-	dest=~/.$f
-	if [ -e $dest ]; then
-	  echo ". $f"
-	  :
-	else
-	  echo + $f
-	  ln -s $dir/$f $dest
-	fi
-	;;
-    esac
-done
+my $dir;
+my $progdir = $0;
+$progdir =~ s{/[^/]+$}{};
+
+my $pwd = getcwd;
+if( $pwd eq $ENV{HOME} ) {
+  $dir = $progdir;
+  $dir =~ s{^\./}{};
+}
+elsif( $progdir eq '.' or $progdir eq $pwd) {
+  $dir = $pwd;
+}
+else {
+  die "Run from home or VC directory";
+}
+
+$dir =~ s#^$ENV{HOME}/##;
+
+foreach my $f (@ARGV) {
+  next if $f =~ /dot_setup/;
+  if( $f =~ /USUAL/ ) {
+    my $file = "$ENV{HOME}/$dir/USUAL";
+    open FH, '<', $file or die "Can't open $file: $!\n";
+    while( <FH> ) {
+      chomp;
+      push @ARGV, $_;
+    }
+    next;
+  }
+
+  my $dest = "$ENV{HOME}/.$f";
+  if( -e $dest ) {
+    print ". $f\n";
+  }
+  else {
+    print "+ $f\n";
+    symlink "$dir/$f" => $dest or die;
+  }
+}
