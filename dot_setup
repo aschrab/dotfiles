@@ -10,17 +10,17 @@ my $dir = file($0)->dir->relative($home);
 foreach my $f (@ARGV) {
   chomp $f;
   next if $f =~ /dot_setup/;
+
   if( $f =~ /USUAL/ ) {
 	push @ARGV, $home->subdir($dir)->file('USUAL')->slurp;
 	next;
   }
 
   my $dest = "$ENV{HOME}/.$f";
-  if( -e $dest ) {
-    print ". $f\n";
-  }
-  else {
-    print "+ $f\n";
-    symlink "$dir/$f" => $dest or die;
-  }
+
+  my $status = -e $dest ? '.' : '+';
+  print "$status $f\n";
+
+  next unless $status eq '+';
+  symlink "$dir/$f" => $dest or die;
 }
