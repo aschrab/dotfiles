@@ -2,36 +2,17 @@
 
 use strict;
 use warnings;
-use Cwd;
+use Path::Class;
 
-my $dir;
-my $progdir = $0;
-$progdir =~ s{/[^/]+$}{};
-
-my $pwd = getcwd;
-if( $pwd eq $ENV{HOME} ) {
-  $dir = $progdir;
-  $dir =~ s{^\./}{};
-}
-elsif( $progdir eq '.' or $progdir eq $pwd) {
-  $dir = $pwd;
-}
-else {
-  die "Run from home or VC directory";
-}
-
-$dir =~ s#^$ENV{HOME}/##;
+my $home = dir( $ENV{HOME} );
+my $dir = file($0)->dir->relative($home);
 
 foreach my $f (@ARGV) {
+  chomp $f;
   next if $f =~ /dot_setup/;
   if( $f =~ /USUAL/ ) {
-    my $file = "$ENV{HOME}/$dir/USUAL";
-    open FH, '<', $file or die "Can't open $file: $!\n";
-    while( <FH> ) {
-      chomp;
-      push @ARGV, $_;
-    }
-    next;
+	push @ARGV, $home->subdir($dir)->file('USUAL')->slurp;
+	next;
   }
 
   my $dest = "$ENV{HOME}/.$f";
