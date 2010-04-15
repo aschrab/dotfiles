@@ -4,6 +4,8 @@
 	name = Aaron Schrab
 [core]
 	pager = less -R
+[diff]
+	renames = true
 [alias]
 	co = checkout
 	ci = commit -v
