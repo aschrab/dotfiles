@@ -172,7 +172,6 @@ inoremap <C-F> <C-X><C-F>
 inoremap <C-L> <C-X><C-L>
 inoremap <C-e> <esc>
 map gf :new <cfile>
-map ' `
 
 " Allow backspace to remove digits from numeric prefix for commands.
 " Unfortunately, it messes up things in insert mode.
