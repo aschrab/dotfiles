@@ -148,6 +148,7 @@ iab lable label
 iab lenght length
 iab ube unsolicited bulk email
 iab UBE Unsolicited Bulk Email
+cab ack Ack
 "}}}
 
 " .com files are *not* DCL
