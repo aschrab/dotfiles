@@ -1,0 +1,7 @@
+#--type-add tmpl=.tt
+--pager=less -R
+--sort-files
+#--ignore-case
+--smart-case
+
+--type-set=txt=.txt
