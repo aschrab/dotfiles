@@ -1,1 +1,2 @@
 alias l cls -Fh
+set cmd:prompt "\[\e[0;35m\]\s \U> \[\e[0;22m\]"

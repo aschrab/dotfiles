@@ -3,7 +3,10 @@ ssh () {
   local bar
   foo="$argv[$#]"
 
-  if [[ "$foo" = *.* ]]
+  if [[ "$foo" =~ '^([^@]+@)?[0-9.]+$' ]]
+  then
+    bar="$foo"
+  elif [[ "$foo" = *.* ]]
   then
     stripdom=3
     bar=${(j:.:)${(s:.:)foo}[1,-$stripdom]}

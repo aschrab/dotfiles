@@ -14,6 +14,7 @@ export MPAGE="-2m50t"
 export COLORFGBG='default;default'
 export WORDCHARS='*?_-.[]~/&|;!#$%^(){}<>,'
 export HOST_DEFAULTS='-R'
+export NOPASTE_SERVICES='Gist'
 
 export NNTPSERVER="news.execpc.com"
 export EMAIL="aaron@schrab.com"
@@ -52,7 +53,14 @@ fi
 
 #export LESS="-aCMj3"
 # Don't include -X in $LESS, remove smcups/rmcups settings from terminfo entry
-export LESS="-FaMeSj3"
+export LESS=""
+LESS="$LESS --quit-at-eof"
+LESS="$LESS --quit-if-one-screen"
+LESS="$LESS --search-skip-screen"
+LESS="$LESS --LONG-PROMPT"
+LESS="$LESS --chop-long-lines"
+LESS="$LESS --jump-target=3"
+
 case "$LANG" in
   *[Uu][Tt][Ff]*)
     LESSCHARSET="utf-8"

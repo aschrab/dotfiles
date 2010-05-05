@@ -148,6 +148,7 @@ iab lable label
 iab lenght length
 iab ube unsolicited bulk email
 iab UBE Unsolicited Bulk Email
+cab ack Ack
 "}}}
 
 " .com files are *not* DCL
@@ -172,7 +173,6 @@ inoremap <C-F> <C-X><C-F>
 inoremap <C-L> <C-X><C-L>
 inoremap <C-e> <esc>
 map gf :new <cfile>
-map ' `
 
 " Allow backspace to remove digits from numeric prefix for commands.
 " Unfortunately, it messes up things in insert mode.
