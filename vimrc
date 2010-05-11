@@ -328,6 +328,9 @@ augroup END
 set bs=2
 set secure
 
+" Show changes between buffer and the file on disk
+command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
+
 "=== evoke a web browser
 function! Browser ()
     let line0 = getline (".")
