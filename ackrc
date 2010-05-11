@@ -1,5 +1,5 @@
 #--type-add tmpl=.tt
---pager=less -R
+--pager=less --RAW-CONTROL-CHARS --quit-if-one-screen
 --sort-files
 #--ignore-case
 --smart-case
