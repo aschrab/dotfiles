@@ -1,3 +1,10 @@
+snippet debug
+	$c->log->debug( ${1} );${2}
+
+snippet dump
+	${1:use Data::Dumper;}
+	$c->log->debug( Dumper( ${2} ) );${3}
+
 # Table class for DBIx::Class
 snippet dbit
 	use base 'Blackjack::Schema::Result';
@@ -32,3 +39,19 @@ snippet action local
 
 		${3}
 	}
+
+snippet alcap view
+	AllowCapabilities(${1:appraisal}:${2}:${3:view})${4}
+
+snippet alcap add
+	AllowCapabilities(${1:appraisal}:${2}:${3:add})${4}
+
+snippet alcap execute
+	AllowCapabilities(${1:appraisal}:${2}:${3:execute})${4}
+
+snippet alcap change
+	AllowCapabilities(${1:appraisal}:${2}:${3:change})${4}
+
+snippet alcap delete
+	AllowCapabilities(${1:appraisal}:${2}:${3:delete})${4}
+

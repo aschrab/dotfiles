@@ -1,0 +1,7 @@
+#--type-add tmpl=.tt
+--pager=less --RAW-CONTROL-CHARS --quit-if-one-screen
+--sort-files
+#--ignore-case
+--smart-case
+
+--type-set=txt=.txt
