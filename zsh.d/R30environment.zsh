@@ -58,7 +58,7 @@ LESS="$LESS --quit-at-eof"
 LESS="$LESS --quit-if-one-screen"
 LESS="$LESS --search-skip-screen"
 LESS="$LESS --LONG-PROMPT"
-LESS="$LESS --chop-long-lines"
+#LESS="$LESS --chop-long-lines"
 LESS="$LESS --jump-target=3"
 
 case "$LANG" in
