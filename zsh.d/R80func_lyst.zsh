@@ -30,6 +30,9 @@ function lyst () {
 	project)
 	  sub="lib/$proj"
 	  ;;
+	view)
+	  sub="lib/$proj/View"
+	  ;;
 	controller)
 	  sub="lib/$proj/Controller"
 	  ;;
@@ -57,4 +60,4 @@ function lyst () {
   cd $dir/$sub
 }
 
-compctl -k "(base templates static js css lib project controller model schema)" lyst
+compctl -k "(base templates static js css lib project view controller model schema)" lyst
