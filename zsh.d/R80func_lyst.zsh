@@ -42,6 +42,12 @@ function lyst () {
 	schema)
 	  sub="lib/$proj/Schema"
 	  ;;
+	schema-result)
+	  sub="lib/$proj/Schema/Result"
+	  ;;
+	schema-resultset)
+	  sub="lib/$proj/Schema/ResultSet"
+	  ;;
 	*)
 	  echo "Unknown dir" >&2
 	  return 2
@@ -60,4 +66,4 @@ function lyst () {
   cd $dir/$sub
 }
 
-compctl -k "(base templates static js css lib project view controller model schema)" lyst
+compctl -k "(base templates static js css lib project view controller model schema schema-result schema-resultset)" lyst
