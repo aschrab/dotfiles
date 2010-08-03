@@ -4,6 +4,8 @@
 	name = Aaron Schrab
 [core]
 	pager = less -R
+	autocrlf = input
+	safecrlf = true
 [alias]
 	co = checkout
 	ci = commit -v
