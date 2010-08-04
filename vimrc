@@ -269,10 +269,14 @@ endf
 
 fun! PerlPackageName()
   let pack = expand('%:p')
-  if match( pack, '/lib/' ) == -1
+  let orig = pack
+
+  let pack = substitute( pack, '.*/perl\(/[0-9.]\+\)\?/', '',   '' )
+  let pack = substitute( pack, '.*/lib/', '',   '' )
+  if pack == orig
     return
   endif
-  let pack = substitute( pack, '.*/lib/', '',   '' )
+
   let pack = substitute( pack, '\.pm$',   '',   '' )
   let pack = substitute( pack, '/',       '::', 'g' )
 
