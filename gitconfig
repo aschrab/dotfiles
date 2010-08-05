@@ -13,7 +13,7 @@
 	cia = commit -v -a
 	st = status
 	up = pull
-	last = log -1 HEAD
+	last = log --stat -p -1 HEAD
 	unstage = reset HEAD --
 [push]
 	default = current
