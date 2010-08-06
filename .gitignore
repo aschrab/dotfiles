@@ -1,6 +1,7 @@
 .*.sw[op]
 vim/.netrwhist
 vim/doc/tags
+vim/spell
 lftp/cwd_history
 lftp/rl_history
 lftp/transfer_log

@@ -4,14 +4,21 @@
 	name = Aaron Schrab
 [core]
 	pager = less -R
+	autocrlf = input
+	safecrlf = true
+	excludesfile = ~/.gitignore
+[diff]
+	renames = true
 [alias]
 	co = checkout
 	ci = commit -v
 	cia = commit -v -a
 	st = status
 	up = pull
-	last = log -1 HEAD
+	last = log --stat -p -1 HEAD
 	unstage = reset HEAD --
+	dcommit = svn dcommit
+	dc = svn dcommit
 [push]
 	default = current
 [filter "date-prop"]
