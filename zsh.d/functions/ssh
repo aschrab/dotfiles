@@ -1,4 +1,5 @@
-ssh () {
+#autoload
+
   local foo
   local bar
   foo="$argv[$#]"
@@ -20,4 +21,3 @@ ssh () {
   xtitle "$bar"
   screen-title "$bar"
   command ssh "$@"
-}
