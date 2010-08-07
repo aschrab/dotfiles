@@ -42,6 +42,7 @@ do
   fi
 done
 
+typeset -aU fpath
 fpath=($zshrc_dir/completion $fpath)
 
 unset ppath d m
