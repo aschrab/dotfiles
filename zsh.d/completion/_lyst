@@ -1,0 +1,4 @@
+#compdef lyst
+
+_arguments \
+  '1:Catalyst directory:(base templates static js css lib project view controller model schema schema-result schema-resultset)'

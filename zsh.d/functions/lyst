@@ -1,4 +1,5 @@
-function lyst () {
+#autoload
+
   local dir=$(builtin pwd -L)
   local proj
   local sub
@@ -64,6 +65,3 @@ function lyst () {
   fi
 
   cd $dir/$sub
-}
-
-compctl -k "(base templates static js css lib project view controller model schema schema-result schema-resultset)" lyst
