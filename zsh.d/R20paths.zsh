@@ -42,7 +42,7 @@ do
   fi
 done
 
-fpath=($HOME/.zsh.d/completion $fpath)
+fpath=($zshrc_dir/completion $fpath)
 
 unset ppath d m
 export PATH MANPATH
