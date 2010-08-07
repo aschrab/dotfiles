@@ -1,0 +1,28 @@
+#compdef upto
+
+local context state line
+typeset -A opt_args
+
+local components
+components=()
+local cur=`builtin pwd -L`
+while [[ -n "$cur" ]]; do
+  cur="${cur%/*}"
+  components=($components ${cur##*/})
+done
+
+  #'1:Parent directory component:->component' \
+_arguments \
+  '1:Parent directory component:($components)' \
+  '2:Subdirectory:->subdir' \
+  && return 0
+
+case "$state" in
+  (component)
+    # Would be nice to be able to do component completion here
+  ;;
+  (subdir)
+    local cur=`builtin pwd -L`
+    _path_files -X Subdirectory -/ -W "${cur%/$line[1]/*}/$line[1]"
+  ;;
+esac
