@@ -1,12 +1,9 @@
--- $Id$
 \set QUIET 1
 \set HISTCONTROL ignoredups
 SET client_min_messages = notice;
 
 \set SHELLHOST `echo $host`
 \set PROMPT1 '%[%033[0;35m%]%/ @%m @%:SHELLHOST:%R%#%[%033[0;22m%] ' 
--- Version of the above that doesn't depend on psql 7.5 (or patched psql)
--- \set PROMPT1 '%001''%033[0;35m''%002' '%/@%m%R%#' '%001''%033[0;22m''%002' ' ' 
 
 \pset null '(null)'
 -- \pset pager always
