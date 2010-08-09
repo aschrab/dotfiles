@@ -4,6 +4,7 @@ SET client_min_messages = notice;
 
 \set SHELLHOST `echo $host`
 \set PROMPT1 '%[%033[0;35m%]%/ @%m @%:SHELLHOST:%R%#%[%033[0;22m%] ' 
+\set PROMPT2 '%[%033[0;35m%]%/%R#%[%033[0;22m%] ' 
 
 \pset null '(null)'
 -- \pset pager always
