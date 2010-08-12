@@ -82,3 +82,6 @@ alias rcsdiff='rcsdiff -kk'
 if [[ $OSTYPE == solaris2* ]]; then
   alias ping='ping -s'
 fi
+
+# Version of vared to edit array variables with each element on a separate line
+alias lvared="IFS=\$'\n' vared"
