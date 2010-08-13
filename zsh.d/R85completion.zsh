@@ -23,8 +23,8 @@ zstyle ':completion:*' substitute 'NUMERIC==2'
 zstyle ':completion:*' ignored-patterns 'doc-base'
 zstyle :compinstall filename $HOME/.zshrc
 
-zstyle ':completion:*:ssh:*' users 'reply=()'
-zstyle ':completion:*:scp:*' users 'reply=()'
+zstyle ':completion:*:ssh:*' tag-order '!users'
+zstyle ':completion:*:scp:*' tag-order '!users'
 
 # Don't complete "CVS" or "lost+found" directories
 zstyle ':completion:*:(all-|)files' ignored-patterns '(|*/)CVS' '(*/)#lost+found' \

@@ -1,4 +1,5 @@
-function lyst () {
+#autoload
+
   local dir=$(builtin pwd -L)
   local proj
   local sub
@@ -30,6 +31,9 @@ function lyst () {
 	project)
 	  sub="lib/$proj"
 	  ;;
+	view)
+	  sub="lib/$proj/View"
+	  ;;
 	controller)
 	  sub="lib/$proj/Controller"
 	  ;;
@@ -38,6 +42,12 @@ function lyst () {
 	  ;;
 	schema)
 	  sub="lib/$proj/Schema"
+	  ;;
+	schema-result)
+	  sub="lib/$proj/Schema/Result"
+	  ;;
+	schema-resultset)
+	  sub="lib/$proj/Schema/ResultSet"
 	  ;;
 	*)
 	  echo "Unknown dir" >&2
@@ -55,6 +65,3 @@ function lyst () {
   fi
 
   cd $dir/$sub
-}
-
-compctl -k "(base templates static js css lib project controller model schema)" lyst

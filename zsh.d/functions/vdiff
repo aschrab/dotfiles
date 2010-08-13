@@ -1,4 +1,5 @@
-vdiff () {
+#autoload
+
   local cvs='' opt=''
   if [[ "$1" == '!c' || "$1" == '!cvs' ]]
   then
@@ -40,4 +41,3 @@ vdiff () {
     echo "No differences"
   fi
   rm -f $TMPDIR/$host.$$.diff
-}

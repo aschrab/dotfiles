@@ -21,3 +21,8 @@ bindkey "\eq" push-input
 # Autoconvert "~?" -> "~/" since I often hold down the shift key for too long
 # when trying to type the latter.
 bindkey -s '~?' '~/'
+
+# Make ^F force file completion
+zle -C complete-file complete-word _generic
+zstyle ':completion:complete-file::::' completer _files
+bindkey '^F' complete-file
