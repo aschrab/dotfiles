@@ -1,0 +1,5 @@
+#autoload
+
+_git-help () {
+  _git_commands
+}
