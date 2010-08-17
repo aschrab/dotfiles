@@ -5,11 +5,27 @@ typeset -A opt_args
 local components
 
 _arguments \
-  '1:Catalyst directory:(base templates static js css lib project view controller model schema schema-result schema-resultset)' \
+  '1:Catalyst dir:->catdir' \
   '2:Subdirectory:->subdir' \
   && return 0
 
 case "$state" in
+  (catdir)
+    _values 'Catalyst dir' \
+      base \
+      templates \
+      static \
+      js \
+      css \
+      lib \
+      project \
+      view \
+      controller \
+      model \
+      schema \
+      schema-result \
+      schema-resultset
+    ;;
   (subdir)
     _path_files -/ -W "$(__lyst_dir $line[1])"
     ;;
