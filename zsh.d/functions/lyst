@@ -1,5 +1,3 @@
 #autoload
 
-  local target
-  target=$(__lyst_dir "$1")
-  cd $target
+  cd "$(__lyst_dir "$1")/$2"
