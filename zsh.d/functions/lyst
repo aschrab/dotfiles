@@ -1,5 +1,6 @@
 #autoload
 
+__lyst_dir() {
   local dir=$(builtin pwd -L)
   local proj
   local sub
@@ -64,4 +65,13 @@
     return 1
   fi
 
-  cd $dir/$sub
+  echo $dir/$sub
+}
+
+lyst() {
+  local target
+  target=$(__lyst_dir "$1")
+  cd $target
+}
+
+lyst "$@"
