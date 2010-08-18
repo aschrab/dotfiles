@@ -27,6 +27,7 @@ case "$state" in
       schema-resultset
     ;;
   (subdir)
-    _path_files -/ -W "$(__lyst_dir $line[1])"
+    local target="$(__lyst_dir $line[1])"
+    _path_files -/ -W "${target:-/fake/directory}"
     ;;
 esac

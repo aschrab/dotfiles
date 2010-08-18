@@ -50,7 +50,6 @@
 	  sub="lib/$proj/Schema/ResultSet"
 	  ;;
 	*)
-	  echo "Unknown dir" >&2
 	  return 2
 	  ;;
       esac
@@ -60,7 +59,6 @@
   done
 
   if [[ -z $proj ]]; then
-    echo "Not in a Catalyst project directory" >&2
     return 1
   fi
 

@@ -1,3 +1,16 @@
 #autoload
 
-  cd "$(__lyst_dir "$1")/$2"
+  __lyst_dir "$1" > /dev/null
+  case $? in
+    0)
+      cd "$(__lyst_dir "$1")/$2"
+      ;;
+    1)
+      echo "Not in a Catalyst project directory" >&2
+      return 1
+      ;;
+    2)
+      echo "Unknown dir" >&2
+      return 2
+      ;;
+  esac
