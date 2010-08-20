@@ -160,6 +160,8 @@ when /<trilug-ontopic\.trilug\.org>/i
 when /<dbix-class\.lists\.scsys\.co\.uk>/i
   subject_re = /\[Dbix-class\]/i
   list = 'perl/dbix'
+when /<zsh-(workers|users)\.zsh\.org>/i
+  list = 'dev/zsh'
 end unless list
 
 case headers[:mailing_list]
