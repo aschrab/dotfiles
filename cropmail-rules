@@ -96,6 +96,12 @@ if headers[:x_qqx_org_mailscanner_spamscore] =~ /s{5}/i
 	save_md '=spam'
 end
 
+if headers[:from] =~ /webmaster@milwaukeelug/i and
+  subject =~ /Wiki page .* (changed|created) by /i
+  save_md '=INBOX/wiki'
+  done
+end
+
 exit if headers[:from] =~ /<sympa@mail\.milwaukeelug\.org>/i and
   subject =~ /internal server error/i and
   body =~ /No message found in archives matching/i

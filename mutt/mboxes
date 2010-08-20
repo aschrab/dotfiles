@@ -2,6 +2,7 @@
 % require 'muttrc.rb'
 
 mailboxes !
+mailboxes =INBOX/wiki
 mailboxes =INBOX/sympa
 
 <%# mlist 'sec/linux-security' %>
