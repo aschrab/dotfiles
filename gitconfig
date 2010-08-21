@@ -32,3 +32,10 @@
 [github]
 	user = aschrab
 	token = cf786ff6aca4b1d93c0542662573d184
+[sendemail]
+	from = Aaron Schrab <aaron@schrab.com>
+	envelopesender = aaron@schrab.com
+	bcc = aaron@schrab.com
+	confirm = always
+	suppress-cc = self
+	chainreplyto = no
