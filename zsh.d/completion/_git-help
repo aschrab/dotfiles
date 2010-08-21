@@ -1,8 +1,0 @@
-#autoload
-
-_arguments -S \
-  {--all,-a}'[List all available commands]' \
-  {--info,-i}'[Display help in info format]' \
-  {--man,-m}'[Display help in man page format]' \
-  {--web,-w}'[Display help in web (HTML) format]' \
-  ':command:_git_commands' && ret=0
