@@ -2,6 +2,7 @@
 % require 'muttrc.rb'
 
 mailboxes !
+mailboxes =INBOX/wiki
 mailboxes =INBOX/sympa
 
 <%# mlist 'sec/linux-security' %>
@@ -22,6 +23,7 @@ mailboxes =INBOX/sympa
 mailboxes =rss
 
 <%= mlist 'mail/mutt-dev', :from => 'aaron+mutt@schrab.com' %>
+<%= mlist 'dev/zsh', :address => 'zsh-(users|workers)@zsh.org' %>
 
 <%= mlist 'mail/spamtools', :from => 'aaron+spamtools@schrab.com' %>
 
