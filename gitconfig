@@ -37,5 +37,5 @@
 	envelopesender = aaron@schrab.com
 	bcc = aaron@schrab.com
 	confirm = always
-	suppress-cc = self
+	suppresscc = self
 	chainreplyto = no
