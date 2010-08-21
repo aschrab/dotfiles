@@ -9,6 +9,9 @@ fi
 git submodule sync
 git submodule update
 
-(cd upstreams/zsh && git remote add upstream git://zsh.git.sf.net/gitroot/zsh/zsh)
+(cd upstreams/zsh &&
+  git config sendemail.to zsh-workers@zsh.org &&
+  git remote add upstream git://zsh.git.sf.net/gitroot/zsh/zsh
+)
 
 echo complete
