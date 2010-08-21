@@ -5,9 +5,8 @@ if [ ! -r dot_setup ]; then
   exit 1
 fi
 
-[ -r .gitmodules ] || git submodule init
-git submodule sync
-git submodule update
+#git submodule sync
+git submodule update --init
 
 (cd upstreams/zsh &&
   git config sendemail.to zsh-workers@zsh.org &&
