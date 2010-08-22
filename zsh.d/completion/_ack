@@ -44,7 +44,7 @@ _arguments -A '-*' -S -s \
   '(--no-smart-case --ignore-case -i)--smart-case[Ignore case if pattern contains no uppercase characters]' \
   '(--smart-case --ignore-case -i)--no-smart-case[Case sensitive matching even if pattern contains uppercase]' \
   '--sort-files[Sort found files]' \
-  '*--type=[Specify file types to include or exclude]:File type:->type' \
+  '*--type=[Specify file types to include or exclude]:File type:->filetype' \
   '*--type-add[Add a file type]:Type definition: ' \
   '*--type-set[Redefine a file type]:Type definition: ' \
   '(--unrestricted -u --ignore-dir)'{--unrestricted,-u}'[Search all files and directories]' \
@@ -64,7 +64,20 @@ case "$state" in
     #local bgcolor=(on_black on_red on_green on_yellow on_blue on_magenta on_cyan on_white)
     _values 'Color' black    red    green    yellow    blue    magenta    cyan    white
     ;;
-  (type)
-    # TODO
+  (filetype)
+    local types="$(
+      ack --help types | sed \
+	-e 's/^ *--\[no\]//' \
+	-e 't type' \
+	-e 'd' \
+	-e ':type' \
+	-e 's/:/\\:/g' \
+	-e 's/  */[/' \
+	-e 's/$/]/' \
+	-e 'p' \
+	-e 's/^/no/'
+      )"
+
+      _values -w 'File type' ${(f)types}
     ;;
 esac
