@@ -1,0 +1,16 @@
+#!/bin/sh -e
+
+if [ ! -r dot_setup ]; then
+  echo "Not in dotfiles directory" >&2
+  exit 1
+fi
+
+#git submodule sync
+git submodule update --init
+
+(cd upstreams/zsh &&
+  git config sendemail.to zsh-workers@zsh.org &&
+  git remote add upstream git://zsh.git.sf.net/gitroot/zsh/zsh
+)
+
+echo complete

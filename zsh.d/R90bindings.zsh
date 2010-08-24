@@ -22,7 +22,7 @@ bindkey "\eq" push-input
 # when trying to type the latter.
 bindkey -s '~?' '~/'
 
-# Make ^F force file completion
+# Make ^X^F force file completion
 zle -C complete-file complete-word _generic
 zstyle ':completion:complete-file::::' completer _files
-bindkey '^F' complete-file
+bindkey '^x^f' complete-file
