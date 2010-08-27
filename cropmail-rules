@@ -162,6 +162,8 @@ when /<dbix-class\.lists\.scsys\.co\.uk>/i
   list = 'perl/dbix'
 when /<zsh-(workers|users)\.zsh\.org>/i
   list = 'dev/zsh'
+when /<git\.vger\.kernel\.org>/i
+  list = 'dev/git'
 end unless list
 
 case headers[:mailing_list]
