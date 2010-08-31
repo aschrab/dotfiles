@@ -108,7 +108,7 @@ fu! SudoEdit#SudoWrite(file) range
 	    exe a:firstline . ',' . a:lastline . 'w ' . tmpfile
 	    let cmd=':!' . join(s:AuthTool, ' ') . '"mv ' . tmpfile . ' ' . a:file . '" --'
     else
-	let cmd='tee >/dev/null ' . a:file
+	let cmd='tee >/dev/null ' . shellescape(a:file,1)
 	let cmd=a:firstline . ',' . a:lastline . 'w !' . join(s:AuthTool, ' ') . cmd
     endif
     if exists("g:sudoDebug") && g:sudoDebug
@@ -121,7 +121,7 @@ fu! SudoEdit#SudoWrite(file) range
 	endif
 	throw "writeError"
     endif
-    exe ":f " . a:file
+    "exe ":f " . a:file
     set nomod
 endfu
 
