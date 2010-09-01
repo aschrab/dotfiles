@@ -318,39 +318,6 @@ set secure
 " Show changes between buffer and the file on disk
 command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
 
-"=== evoke a web browser
-function! Browser ()
-    let line0 = getline (".")
-    let line = matchstr (line0, "http[^ ]*")
-    :if line==""
-      let line = matchstr (line0, "ftp[^ ]*")
-    :endif
-    :if line==""
-      let line = matchstr (line0, "file[^ ]*")
-    :endif
-    let line = escape (line, "#?&;|%")
-"   echo line
-    exec ":silent !firefox ".line
-endfunction 
-map \w :call Browser ()<CR> 
-
-"  " The File-Browser&Reader. Very handsome.
-"  
-"  " The DAU mappings (read std.-texts)
-"  " map ,dau o~/.sigs/^V^["dddu__filelist
-"  map ,dau o~/.sigs/"dddu__filelist
-"  
-"  " start the file reader. Directory in register d.
-"  "map __filelist :split .^V^M!!ls -l ^V^Rd^V^H ^V^M__LN-__mm
-"  map __filelist :split .!!ls -l d <CR>__LN-__mm
-"  nn __LN- /[0-9] \K..  \=[0-9]<CR>3E2l
-"  " crate mapping for enter
-"  " noremap __mm :map  __rm0__LN-mai:r ^V^Rd^V^H^V^V^V^[`a"ay$:q!^V^V^V^M@a^V^V^V^M^V^M
-"  noremap __mm :map -mai:r d`a"ay$:q!@a
-"  " remove mapping
-"  noremap __rm :unmap <CR><CR>
-"
-
 :if filereadable(expand("~/.vim/local.vim"))
 	source ~/.vim/local.vim
 :endif
