@@ -2,6 +2,8 @@
 " vim: fdm=marker
 :version 4.0
 
+let mapleader=','
+
 set statusline=%<%f%h%m%r%w\ [%{&ft},%{&ff},%{&fenc}]\ %=\ L%l\/%LCol%c%V\ byt%o\ ch0x%B\ %P
 function! CleanCWD ()
 	let cwd = getcwd()

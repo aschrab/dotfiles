@@ -1,0 +1,83 @@
+#compdef ack ack-grep
+
+local context state line
+typeset -A opt_args
+
+_arguments -A '-*' -S -s \
+  '(--all -a)'{--all,-a}'[Operate on all files, regardless of type]' \
+  '(--after-context -A)'{--after-context=,-A+}'[Number of lines of context to include after matching lines]:Number: ' \
+  '(--before-context -B)'{--before-context=,-B+}'[Number of lines of context to include before matching lines]:Number: ' \
+  '(--context -C)'{--context=-,-C-}'[Number of context lines around matching lines]:Number: ' \
+  '(--nocolor)--color[Turn on color highlighting]' \
+  '(--color)--nocolor[Turn off color highlighting]' \
+  '--color-filename=[Set color used for filenames]:Color:->color' \
+  '--color-match=[Set color used for highlighting matches]:Color:->color' \
+  '--column[Show the column number of the first match on the line]' \
+  '(--env)--noenv[Disable environment processing and .ackrc]' \
+  '(--noenv)--env[Enable environment processing and .ackrc]' \
+  '--flush[Flush output immediately]' \
+  "(1)-f[Don't search, just list files that would be searched]" \
+  '(--nofollow)--follow[Follow symlinks not specified on command line]' \
+  "(--follow)--nofollow[Don't follow symlinks not specified on command line]" \
+  '-G+[Only search files with a pathname matching REGEX]:RegExp: ' \
+  '(1 -f -G)-g+[List files with a pathname matching REGEX]:RegExp: ' \
+  '(--nogroup)--group[Group matches by file, with filename on a line preceding each group]' \
+  '(--group)--nogroup[Print one result per line]' \
+  '(--with-filename --no-filename -H -h)'{--with-filename,-H}'[Print the filename for each match]' \
+  '(--with-filename --no-filename -H -h)'{--no-filename,-h}"[Don't prefix matches with filename]" \
+  '--help[Display help message]' \
+  '(--ignore-case -i --smart-case --no-smart-case)'{--ignore-case,-i}'[Ignore case in search strings]' \
+  '*--ignore-dir=[Ignore directory]:Directory:_path_files -/' \
+  '*--noignore-dir=[Remove directory from list of ignored directories]:Directory:_path_files -/' \
+  '--line=[Only print line NUM of each file]:NUM: ' \
+  '(--files-with-matches --files-without-matches -l -L)'{--files-with-matches,-l}'[Only print names of files with matching lines]' \
+  '(--files-with-matches --files-without-matches -l -L)'{--files-without-matches,-L}'[Only print names of files with no matching lines]' \
+  '(--max-count -m)'{--max-count=,-m+}'[Stop searching file after NUM matches]:Number: ' \
+  '--man[Display man page]' \
+  '-n[No descending into subdirectories]' \
+  '-o[Show only matching text, not entire lines]' \
+  '--output=[Output value of perl expression for each result line]:Perl Expression: ' \
+  '--pager=[Direct output through pager, without disabling coloring]:Pager:_command' \
+  '--passthru[Output all lines, regardless of match status]' \
+  '--print0[Separate listed files by null byte rather than newline]' \
+  '(--literal -Q)'{--literal,-Q}'[Search for literal pattern]' \
+  '(--no-smart-case --ignore-case -i)--smart-case[Ignore case if pattern contains no uppercase characters]' \
+  '(--smart-case --ignore-case -i)--no-smart-case[Case sensitive matching even if pattern contains uppercase]' \
+  '--sort-files[Sort found files]' \
+  '*--type=[Specify file types to include or exclude]:File type:->filetype' \
+  '*--type-add[Add a file type]:Type definition: ' \
+  '*--type-set[Redefine a file type]:Type definition: ' \
+  '(--unrestricted -u --ignore-dir)'{--unrestricted,-u}'[Search all files and directories]' \
+  '(--invert-match -v --passthru)'{--invert-match,-v}'[Select non-matching lines]' \
+  '--version[Display version and copyright information]' \
+  '(--word-regexp -w)'{--word-regexp,-w}'[Force pattern to match only whole words]' \
+  '-1[Stop after reporting first match of any kind]' \
+  '1:Pattern: ' \
+  '*:File:_path_files' \
+  && ret=0
+
+case "$state" in
+  (color)
+    # TODO complete combinations of the following parts separated by spaces
+    #local cattrs=(clear reset dark bold underline underscore blink reverse concealed)
+    #local fgcolor=(   black    red    green    yellow    blue    magenta    cyan    white)
+    #local bgcolor=(on_black on_red on_green on_yellow on_blue on_magenta on_cyan on_white)
+    _values 'Color' black    red    green    yellow    blue    magenta    cyan    white
+    ;;
+  (filetype)
+    local types="$(
+      ack --help types | sed \
+	-e 's/^ *--\[no\]//' \
+	-e 't type' \
+	-e 'd' \
+	-e ':type' \
+	-e 's/:/\\:/g' \
+	-e 's/  */[/' \
+	-e 's/$/]/' \
+	-e 'p' \
+	-e 's/^/no/'
+      )"
+
+      _values -w 'File type' ${(f)types}
+    ;;
+esac
