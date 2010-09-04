@@ -8,11 +8,6 @@ LocalForward 9102 0:9102
 LocalForward 9103 0:9103
 LocalForward 9104 0:9104
 
-Host *.brevient.net. *.brevient.net *.mixmeeting.com. *.mixmeeting.com *verbalsnap.com. *verbalsnap.com
-ForwardAgent yes
-ForwardX11 yes
-User aschrab
-
 Host *.deskarmor.com. *.deskarmor.com deskarmor.com. deskarmor.com corvisa.com. *.corvisa.com.
 ForwardAgent yes
 ForwardX11 yes
@@ -25,11 +20,6 @@ User aschrab
 Port 2222
 ForwardX11 yes
 ForwardAgent yes
-
-Host *.ejmsoftware.com. *.ejmsoftware.com *.ratespring.com. *.ratespring.com
-ForwardAgent yes
-ForwardX11 yes
-User aschrab
 
 Host *.qqx.org. *.qqx.org
 ForwardAgent yes
@@ -44,8 +34,3 @@ User root
 
 Host *.trilug.org. *.trilug.org
 User aschrab
-
-Host jyngle
-User aschrab
-#HostName 207.250.58.232
-HostName 208.78.5.139
