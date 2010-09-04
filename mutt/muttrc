@@ -6,7 +6,6 @@ unhook *
 
 source ~/.mutt/rc.common
 source ~/.mutt/save_hooks
-set editor="xfix -s -- vim '+/^$/+1'"
 
 # Since a lot of software claims that cp1252 encoded text is actually
 # iso-8859-1, and the former is a superset of the latter, just allow it.
