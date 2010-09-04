@@ -9,5 +9,6 @@ re.pl
 screenrc
 vim
 vimrc
+ssh
 zshrc
 zsh.d
