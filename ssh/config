@@ -34,3 +34,5 @@ User root
 
 Host *.trilug.org. *.trilug.org
 User aschrab
+
+# vim: ft=sshconfig
