@@ -8,7 +8,7 @@ LocalForward 9102 0:9102
 LocalForward 9103 0:9103
 LocalForward 9104 0:9104
 
-Host *.deskarmor.com. *.deskarmor.com deskarmor.com. deskarmor.com corvisa.com. *.corvisa.com.
+Host corvisa.com. *.corvisa.com.
 ForwardAgent yes
 ForwardX11 yes
 User aschrab
