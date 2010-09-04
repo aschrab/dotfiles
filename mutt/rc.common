@@ -1,7 +1,6 @@
 # File locations
 set folder=imaps://ats@pug.qqx.org/
 account-hook . 'set notunnel'
-account-hook ats@pug.qqx.org 'set tunnel="dovecot --exec-mail imap"'
 set spoolfile=+INBOX
 set postponed=+Drafts          # where to save postponed messages
 set record=+Sent               # save copies of outgoing mail
