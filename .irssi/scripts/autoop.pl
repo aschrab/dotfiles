@@ -44,12 +44,21 @@ sub cmd_autoop {
 		$masks = "<no-one>";
 		delete $opnicks{$channel};
 	} else {
-		$opnicks{$channel} = $masks;
+		my %nicks = map { $_ => 1 } split(" ", $opnicks{$channel});
+		foreach my $arg( split( " ", $masks ) ) {
+			if( $arg =~ /^-(.*)/ ) {
+				delete $nicks{$1};
+			}
+			else {
+				$nicks{$arg} = 1;
+			}
+		}
+		$opnicks{$channel} = join ' ', sort keys %nicks;
 	}
 	if ($channel eq "*") {
-		Irssi::print("Now auto-opping in all channels: $masks");
+		Irssi::print("Now auto-opping in all channels: $opnicks{'*'}");
 	} else {
-		Irssi::print("$channel: Now auto-opping: $masks");
+		Irssi::print("$channel: Now auto-opping: $opnicks{$channel}");
 	}
 }
 
@@ -62,7 +71,7 @@ sub autoop {
 		my $nick = $nickrec->{nick};
 		my $host = $nickrec->{host};
 
-                if (!$temp_opped{$nick} &&
+		if (!$temp_opped{$nick} &&
 		    $server->masks_match($masks, $nick, $host)) {
 			$channel->command("/op $nick");
 			$temp_opped{$nick} = 1;
