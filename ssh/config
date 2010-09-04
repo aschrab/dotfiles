@@ -13,14 +13,6 @@ ForwardAgent yes
 ForwardX11 yes
 User aschrab
 
-Host gaz
-HostName localhost
-HostKeyAlias gaz
-User aschrab
-Port 2222
-ForwardX11 yes
-ForwardAgent yes
-
 Host *.qqx.org. *.qqx.org
 ForwardAgent yes
 ForwardX11 yes
