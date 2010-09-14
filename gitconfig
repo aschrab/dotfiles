@@ -19,6 +19,8 @@
 	unstage = reset HEAD --
 	dcommit = svn dcommit
 	dc = svn dcommit
+	review = "!f() { for rev in $(git log --reverse --format=%H $@); do git show $rev; done; }; f"
+
 [push]
 	default = current
 [filter "date-prop"]
