@@ -97,7 +97,7 @@ if headers[:x_qqx_org_mailscanner_spamscore] =~ /s{5}/i
 end
 
 if headers[:from] =~ /webmaster@milwaukeelug/i and
-  subject =~ /Wiki page .* (changed|created) by /i
+  subject =~ /Wiki page .* (changed|created|deleted) by /i
   save_md '=INBOX/wiki'
   done
 end
