@@ -257,3 +257,72 @@ ignores = (
   },
   { level = "JOINS PARTS QUITS"; channels = ( "#trilug" ); }
 );
+windows = {
+  1 = {
+    immortal = "yes";
+    name = "(status)";
+    level = "ALL";
+    sticky = "yes";
+    parent = "3";
+  };
+  2 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#raleigh.pm";
+        tag = "perl";
+      }
+    );
+    sticky = "yes";
+  };
+  3 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#trilug";
+        tag = "freenode";
+      }
+    );
+    sticky = "yes";
+  };
+  4 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#mlug";
+        tag = "havoc";
+      }
+    );
+    sticky = "yes";
+    parent = "3";
+  };
+  5 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#jbs";
+        tag = "jbs";
+      }
+    );
+    sticky = "yes";
+    parent = "3";
+  };
+  6 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#raleigh.rb";
+        tag = "freenode";
+      }
+    );
+  };
+};
+mainwindows = {
+  2 = { first_line = "31"; lines = "30"; };
+  3 = { first_line = "0"; lines = "31"; };
+};
