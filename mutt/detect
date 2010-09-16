@@ -1,6 +1,11 @@
 # $Id$
 % require 'muttrc.rb'
-%
+
+% if ENV['host'] == 'pug'
+  account-hook ats@pug.qqx.org 'set tunnel="dovecot --exec-mail imap"'
+  set editor="xfix -s -- vim '+/^$/+1'"
+% end
+
 % alternates = [ ]
 % alternates << '(aaron|root|master|ats|bofh)@sc[h]rab\.com'
 % alternates << '@pug\.qqx\.org'

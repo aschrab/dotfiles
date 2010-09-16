@@ -1,0 +1,30 @@
+HashKnownHosts no
+
+Host ircproxy
+HostName pug.qqx.org
+LocalForward 9100 0:9100
+LocalForward 9101 0:9101
+LocalForward 9102 0:9102
+LocalForward 9103 0:9103
+LocalForward 9104 0:9104
+
+Host corvisa.com. *.corvisa.com.
+ForwardAgent yes
+ForwardX11 yes
+User aschrab
+
+Host *.qqx.org. *.qqx.org
+ForwardAgent yes
+ForwardX11 yes
+
+Host mlug.milwaukeelug.org. mlug.milwaukeelug.org
+ForwardAgent yes
+ForwardX11 yes
+
+Host iphone.qqx.org. iphone.qqx.org
+User root
+
+Host *.trilug.org. *.trilug.org
+User aschrab
+
+# vim: ft=sshconfig

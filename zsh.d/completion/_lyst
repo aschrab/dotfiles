@@ -23,8 +23,6 @@ case "$state" in
       controller \
       model \
       schema \
-      schema-result \
-      schema-resultset
     ;;
   (subdir)
     local target="$(__lyst_dir $line[1])"
