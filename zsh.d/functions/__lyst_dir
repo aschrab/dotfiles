@@ -43,6 +43,9 @@
 	schema)
 	  sub="lib/$proj/Schema"
 	  ;;
+	db)
+	  sub=db
+	  ;;
 	*)
 	  return 2
 	  ;;
