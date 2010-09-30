@@ -20,7 +20,7 @@
 	dcommit = svn dcommit
 	dc = svn dcommit
 	review = "!f() { for rev in $(git log --reverse --format=%H $@); do git show $rev; done; }; f"
-	for-svn = log remotes/trunk..
+	for-svn = log --reverse remotes/trunk..
 	show-commit = log -1 -p
 
 [push]
