@@ -16,6 +16,7 @@ User aschrab
 Host *.qqx.org. *.qqx.org
 ForwardAgent yes
 ForwardX11 yes
+ControlMaster auto
 
 Host mlug.milwaukeelug.org. mlug.milwaukeelug.org
 ForwardAgent yes
