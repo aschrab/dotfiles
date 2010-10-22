@@ -13,6 +13,16 @@ ForwardAgent yes
 ForwardX11 yes
 User aschrab
 
+Host mgmt.ord.corvisa.com
+ProxyCommand none
+
+Host *.ord.corvisa.com
+ProxyCommand ssh mgmt.ord.corvisa.com nc %h %p
+
+Host app1.ord.corvisa.com
+HostName 10.25.7.30
+HostKeyAlias app1.ord.corvisa.com
+
 Host *.qqx.org
 ForwardAgent yes
 ForwardX11 yes
