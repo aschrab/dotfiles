@@ -2,17 +2,21 @@
 
 use strict;
 use warnings;
-use Path::Class;
 
-my $home = dir( $ENV{HOME} );
-my $dir = file($0)->dir->relative($home);
+my $home = $ENV{HOME};
+my $dir = $0;
+$dir =~ s{^\./}{$ENV{PWD}/};
+$dir =~ s{/[^/]+$}{}; # Remove filename
+$dir =~ s{^$home/?}{}; # Convert to being relative to home
 
 foreach my $f (@ARGV) {
 	chomp $f;
 	next if $f =~ /dot_setup/;
 
 	if( $f =~ /USUAL/ ) {
-		push @ARGV, $home->subdir($dir)->file('USUAL')->slurp;
+		open USUAL, '<', "$dir/$f" or die $!;
+		push @ARGV, <USUAL>;
+		close USUAL;
 		next;
 	}
 
