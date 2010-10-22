@@ -9,6 +9,7 @@
 	excludesfile = ~/.gitignore
 [diff]
 	renames = true
+	mnemonicprefix = yes
 [alias]
 	co = checkout
 	ci = commit -v
