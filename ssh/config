@@ -1,4 +1,6 @@
 HashKnownHosts no
+ControlMaster auto
+ControlPath ~/.ssh/.master.%l-%r@%h:%p
 
 Host ircproxy
 HostName pug.qqx.org
