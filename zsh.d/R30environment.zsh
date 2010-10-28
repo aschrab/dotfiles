@@ -15,6 +15,7 @@ export COLORFGBG='default;default'
 export WORDCHARS='*?_-.[]~/&|;!#$%^(){}<>,'
 export HOST_DEFAULTS='-R'
 export NOPASTE_SERVICES='Gist'
+export MTR_OPTIONS="--order LSD NABMV"
 
 export NNTPSERVER="news.execpc.com"
 export EMAIL="aaron@schrab.com"
