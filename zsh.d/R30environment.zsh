@@ -16,6 +16,7 @@ export WORDCHARS='*?_-.[]~/&|;!#$%^(){}<>,'
 export HOST_DEFAULTS='-R'
 export NOPASTE_SERVICES='Gist'
 export MTR_OPTIONS="--order LSD NABMV"
+export DBIC_TRACE_PROFILE=console
 
 export NNTPSERVER="news.execpc.com"
 export EMAIL="aaron@schrab.com"
