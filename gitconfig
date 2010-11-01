@@ -18,6 +18,8 @@
 	up = pull
 	last = log --stat -p -1 HEAD
 	unstage = reset HEAD --
+	srebase = svn rebase
+	sr = svn rebase
 	dcommit = svn dcommit
 	dc = svn dcommit
 	review = "!f() { for rev in $(git log --reverse --format=%H $@); do git show $rev; done; }; f"
