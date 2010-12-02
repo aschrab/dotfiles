@@ -16,6 +16,7 @@
 	cia = commit -v -a
 	st = status
 	up = pull
+	l1 = log --pretty=oneline
 	last = log --stat -p -1 HEAD
 	unstage = reset HEAD --
 	srebase = svn rebase
