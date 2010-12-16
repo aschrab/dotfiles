@@ -14,6 +14,7 @@
 	co = checkout
 	ci = commit -v
 	cia = commit -v -a
+	ds = diff --staged
 	st = status
 	up = pull
 	l1 = log --pretty=oneline
