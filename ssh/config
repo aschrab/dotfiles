@@ -25,6 +25,10 @@ Host app1.ord.corvisa.com
 HostName 10.25.7.30
 HostKeyAlias app1.ord.corvisa.com
 
+Host aevo.qqx.org
+User root
+ForwardX11 no
+
 Host *.qqx.org
 ForwardAgent yes
 ForwardX11 yes
