@@ -178,8 +178,7 @@ inoremap <C-e> <esc>
 map gf :new <cfile>
 
 " Allow backspace to remove digits from numeric prefix for commands.
-" Unfortunately, it messes up things in insert mode.
-" omap <BS> <Del>
+omap <BS> <Del>
 
 " Quote motions for operators: da" will delete a quoted string.
 " Built-in to Vim7
