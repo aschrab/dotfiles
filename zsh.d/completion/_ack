@@ -66,7 +66,7 @@ case "$state" in
     ;;
   (filetype)
     local types="$(
-      ack --help types | sed \
+      ack-grep --help types | sed \
           -e 's/^ *--\[no\]//' \
           -e 't type' \
           -e 'd' \
