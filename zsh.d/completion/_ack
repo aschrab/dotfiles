@@ -67,15 +67,15 @@ case "$state" in
   (filetype)
     local types="$(
       ack --help types | sed \
-	-e 's/^ *--\[no\]//' \
-	-e 't type' \
-	-e 'd' \
-	-e ':type' \
-	-e 's/:/\\:/g' \
-	-e 's/  */[/' \
-	-e 's/$/]/' \
-	-e 'p' \
-	-e 's/^/no/'
+          -e 's/^ *--\[no\]//' \
+          -e 't type' \
+          -e 'd' \
+          -e ':type' \
+          -e 's/:/\\:/g' \
+          -e 's/  */[/' \
+          -e 's/$/]/' \
+          -e 'p' \
+          -e 's/^/no/'
       )"
 
       _values -w 'File type' ${(f)types}
