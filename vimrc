@@ -65,7 +65,8 @@ end
 " Miscellaneous options {{{
 set viminfo=!,s1,%,'20,f1,c,h,r/tmp,r/media,n~/.viminfo
 set display+=lastline
-set shiftwidth=2
+set shiftwidth=4
+set tabstop=4
 set autoindent
 set nobackup
 set smarttab
