@@ -6,3 +6,4 @@
 --smart-case
 
 --type-set=txt=.txt
+--type-set=xsl=.xslt
