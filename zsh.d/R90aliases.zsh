@@ -1,3 +1,5 @@
+alias g=git
+alias gi=git
 alias stty='noglob stty'
 alias wget='noglob wget'
 

@@ -9,16 +9,25 @@
 	excludesfile = ~/.gitignore
 [diff]
 	renames = true
+	mnemonicprefix = yes
 [alias]
 	co = checkout
 	ci = commit -v
 	cia = commit -v -a
+	ds = diff --staged
 	st = status
 	up = pull
+	l1 = log --pretty=oneline
 	last = log --stat -p -1 HEAD
 	unstage = reset HEAD --
+	srebase = svn rebase
+	sr = svn rebase
 	dcommit = svn dcommit
 	dc = svn dcommit
+	review = "!f() { for rev in $(git log --reverse --format=%H $@); do git show $rev; done; }; f"
+	for-svn = log --reverse remotes/trunk..
+	show-commit = log -1 -p
+
 [push]
 	default = current
 [filter "date-prop"]

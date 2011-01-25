@@ -64,7 +64,7 @@
 
 macro index i ":set hdr_format=\'%5C %Z <%=date_fmt%>  %-15.15F (%5l) %s\'\n"
 macro index I ":set hdr_format=\'%5C %Z <%=date_fmt%>  %-15.15L (%5l) %s\'\n"
-set hdr_format='%5C %Z <%=date_fmt%>  %-15.15L (%5l) %s'
+set hdr_format="%5C %Z <%=date_fmt%>  %-15.15L (%5l) %s"
 folder-hook '(INBOX|Mail|spool)'	"set hdr_format=\'%5C %Z <%=date_fmt%>  %-15.15L (%5l) %s\'"
 folder-hook '(L(ists)?|Read)'		"set hdr_format=\'%5C %Z <%=date_fmt%>  %-15.15F (%5l) %s\'"
 folder-hook '(suspect|spam)'		"set hdr_format=\'%5C %Z <%=date_fmt%>  %-15.15F (%5l)<%=spam_fmt%> %s\'"

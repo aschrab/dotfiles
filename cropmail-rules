@@ -87,7 +87,7 @@ if from =~ /root@mail\.milwaukeelug\.org/i and subject =~ %r<^/var/log/auth\.log
   body.replace filtered
 end
 
-if to =~ /sympa-request|mlug-admin-editor/i
+if to =~ /webmaster|sympa-request|mlug-admin-editor|mlug-list-request/i
   save_md '=INBOX/sympa'
   done
 end
@@ -97,7 +97,7 @@ if headers[:x_qqx_org_mailscanner_spamscore] =~ /s{5}/i
 end
 
 if headers[:from] =~ /webmaster@milwaukeelug/i and
-  subject =~ /Wiki page .* (changed|created) by /i
+  subject =~ /Wiki page .* (changed|created|deleted) by /i
   save_md '=INBOX/wiki'
   done
 end

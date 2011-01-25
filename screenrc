@@ -27,7 +27,7 @@ bindkey -m "^[[6;2~" stuff ^f
 # Make the output buffer large for (fast) xterms.
 #termcapinfo xterm* OL=10000
 
-defhstatus 'n t'
+defhstatus 't'
 bind m screen mutt
 bind w windowlist -b
 bind '"' select
@@ -36,7 +36,7 @@ bind '"' select
 bufferfile $HOME/.screen-exchange
 
 hardstatus on
-hardstatus string "%h"
+hardstatus string "%n %h"
 
 defbce on
 term screen-bce

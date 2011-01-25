@@ -1,4 +1,6 @@
 HashKnownHosts no
+ControlMaster auto
+ControlPath ~/.ssh/.master.%l-%r@%h:%p
 
 Host ircproxy
 HostName pug.qqx.org
@@ -8,23 +10,39 @@ LocalForward 9102 0:9102
 LocalForward 9103 0:9103
 LocalForward 9104 0:9104
 
-Host corvisa.com. *.corvisa.com.
+Host corvisa.com *.corvisa.com
 ForwardAgent yes
 ForwardX11 yes
 User aschrab
 
-Host *.qqx.org. *.qqx.org
+Host mgmt.ord.corvisa.com
+ProxyCommand none
+
+Host *.ord.corvisa.com
+ProxyCommand ssh mgmt.ord.corvisa.com nc %h %p
+#ProxyCommand ssh -q -W %h:%p mgmt.ord.corvisa.com
+
+Host app1.ord.corvisa.com
+HostName 10.25.7.30
+HostKeyAlias app1.ord.corvisa.com
+
+Host aevo.qqx.org
+User root
+ForwardX11 no
+
+Host *.qqx.org
+ForwardAgent yes
+ForwardX11 yes
+ControlMaster auto
+
+Host mlug.milwaukeelug.org
 ForwardAgent yes
 ForwardX11 yes
 
-Host mlug.milwaukeelug.org. mlug.milwaukeelug.org
-ForwardAgent yes
-ForwardX11 yes
-
-Host iphone.qqx.org. iphone.qqx.org
+Host iphone.qqx.org
 User root
 
-Host *.trilug.org. *.trilug.org
+Host *.trilug.org
 User aschrab
 
 # vim: ft=sshconfig

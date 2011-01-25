@@ -42,7 +42,7 @@ precmd_functions+='zset_title'
 
 RPS1=''
 PS1='
-%U%{$pColor%}%1v%2m$DEBCHROOT  %~ $(zgit_current_branch)%E%u%{$fColor%}
+%S%{$pColor%} %1v%2m$DEBCHROOT  %~ $(zgit_current_branch)%E%s%{$fColor%}
 %{$pColor%}%!%(#.#.$)%{$fColor%} '
 
 case "$TERM" in

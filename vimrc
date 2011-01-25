@@ -65,7 +65,8 @@ end
 " Miscellaneous options {{{
 set viminfo=!,s1,%,'20,f1,c,h,r/tmp,r/media,n~/.viminfo
 set display+=lastline
-set shiftwidth=2
+set shiftwidth=4
+set tabstop=4
 set autoindent
 set nobackup
 set smarttab
@@ -147,6 +148,7 @@ iab wtih with
 iab yoru your
 iab fiel file
 iab lable label
+iab shfit shift
 iab lenght length
 iab ube unsolicited bulk email
 iab UBE Unsolicited Bulk Email
@@ -177,8 +179,7 @@ inoremap <C-e> <esc>
 map gf :new <cfile>
 
 " Allow backspace to remove digits from numeric prefix for commands.
-" Unfortunately, it messes up things in insert mode.
-" omap <BS> <Del>
+omap <BS> <Del>
 
 " Quote motions for operators: da" will delete a quoted string.
 " Built-in to Vim7
@@ -227,6 +228,8 @@ map ,q :%s/^\(> \)*$//
 map ,r :.,/^$/!formail -fbY -IX-Envelope -IX-spamrc: -IX-Suspect-Reason: -IX-procmail: -IReceived: -IReturn-Path: -IResent- -IContent-Length: -IX-Loop: -ILines: -IPrecedence:
 
 map ,e :.w !sed -e 's/^\(..[^:(][^:(]*\)[:(]\([0-9][0-9]*\).*/:new +\2 \1/' > $HOME/temp.vim :so $HOME/temp.vim :!rm -f $HOME/temp.vim
+
+map ,t mt:%!fix-tables<CR>`t
 
 map <F2> <ESC>`>a<CR>_<ESC>`<i_<CR><ESC>:s/\(.\)/\1<C-V><C-H>\1/g<CR>J2xkJxX            
 "dig 00 176
@@ -317,39 +320,6 @@ set secure
 
 " Show changes between buffer and the file on disk
 command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
-
-"=== evoke a web browser
-function! Browser ()
-    let line0 = getline (".")
-    let line = matchstr (line0, "http[^ ]*")
-    :if line==""
-      let line = matchstr (line0, "ftp[^ ]*")
-    :endif
-    :if line==""
-      let line = matchstr (line0, "file[^ ]*")
-    :endif
-    let line = escape (line, "#?&;|%")
-"   echo line
-    exec ":silent !firefox ".line
-endfunction 
-map \w :call Browser ()<CR> 
-
-"  " The File-Browser&Reader. Very handsome.
-"  
-"  " The DAU mappings (read std.-texts)
-"  " map ,dau o~/.sigs/^V^["dddu__filelist
-"  map ,dau o~/.sigs/"dddu__filelist
-"  
-"  " start the file reader. Directory in register d.
-"  "map __filelist :split .^V^M!!ls -l ^V^Rd^V^H ^V^M__LN-__mm
-"  map __filelist :split .!!ls -l d <CR>__LN-__mm
-"  nn __LN- /[0-9] \K..  \=[0-9]<CR>3E2l
-"  " crate mapping for enter
-"  " noremap __mm :map  __rm0__LN-mai:r ^V^Rd^V^H^V^V^V^[`a"ay$:q!^V^V^V^M@a^V^V^V^M^V^M
-"  noremap __mm :map -mai:r d`a"ay$:q!@a
-"  " remove mapping
-"  noremap __rm :unmap <CR><CR>
-"
 
 :if filereadable(expand("~/.vim/local.vim"))
 	source ~/.vim/local.vim
