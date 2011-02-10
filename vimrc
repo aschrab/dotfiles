@@ -177,6 +177,7 @@ inoremap <C-F> <C-X><C-F>
 inoremap <C-L> <C-X><C-L>
 inoremap <C-e> <esc>
 map gf :new <cfile>
+nmap <silent> <Leader>f :CommandT<CR>
 
 " Allow backspace to remove digits from numeric prefix for commands.
 omap <BS> <Del>
