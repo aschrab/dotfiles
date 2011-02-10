@@ -241,6 +241,7 @@ au BufRead *
 	\ if getline(1) =~ '^RECORDTYPE:' | setf cade | endif
 
 autocmd BufRead Makefile set nosmarttab noexpandtab noautoindent
+call pathogen#runtime_append_all_bundles()
 filetype indent on
 filetype plugin on
 
