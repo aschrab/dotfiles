@@ -243,6 +243,8 @@ au BufRead *
 
 autocmd BufRead Makefile set nosmarttab noexpandtab noautoindent
 call pathogen#runtime_append_all_bundles()
+" Disable and reenable filetype support to support added paths
+filetype off
 filetype indent on
 filetype plugin on
 
