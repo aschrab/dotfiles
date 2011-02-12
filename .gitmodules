@@ -7,3 +7,6 @@
 [submodule "vim/bundle/syntax-coffeescript"]
 	path = vim/bundle/syntax-coffeescript
 	url = https://github.com/kchmck/vim-coffee-script.git
+[submodule "vim/bundle/syntax-markdown"]
+	path = vim/bundle/syntax-markdown
+	url = https://github.com/briangershon/vim-markdown.git
