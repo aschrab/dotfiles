@@ -1,5 +1,5 @@
 HashKnownHosts no
-ControlMaster auto
+#ControlMaster auto
 ControlPath ~/.ssh/.master.%l-%r@%h:%p
 
 Host ircproxy
