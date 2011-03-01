@@ -77,7 +77,7 @@ set incsearch
 set ruler
 set showmatch
 set showcmd
-set cursorcolumn
+"set cursorcolumn
 "set cursorline
 hi CursorLine   cterm=NONE ctermbg=darkred guibg=darkred guifg=white
 hi CursorColumn ctermbg=yellow
