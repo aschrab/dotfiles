@@ -24,7 +24,7 @@
 % end
 
 % if mutt_variable :imap_idle
-  set imap_idle=no
+  set imap_idle=yes
 % end
 
 % if mutt_variable :header_cache
