@@ -34,6 +34,12 @@ class ::Cropmail::Message
   end
 end
 
+if subject =~ /WARNING. Mail Delayed: hello$/
+  done
+end
+
+done if subject =~ /Undeliverable mail: hello$/
+
 if subject =~ /^Re: Mystery(secret.)?.shopper/i
   done
 end
@@ -87,7 +93,7 @@ if from =~ /root@mail\.milwaukeelug\.org/i and subject =~ %r<^/var/log/auth\.log
   body.replace filtered
 end
 
-if to =~ /webmaster|sympa-request|mlug-admin-editor|mlug-list-request/i
+if to =~ /(webmaster|sympa-request|mlug-admin-editor|mlug-list-request)@.*milwaukeelug\.org/i
   save_md '=INBOX/sympa'
   done
 end

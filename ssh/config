@@ -1,5 +1,5 @@
 HashKnownHosts no
-ControlMaster auto
+#ControlMaster auto
 ControlPath ~/.ssh/.master.%l-%r@%h:%p
 
 Host ircproxy
@@ -33,7 +33,9 @@ ForwardX11 no
 Host *.qqx.org
 ForwardAgent yes
 ForwardX11 yes
-ControlMaster auto
+
+Host milamber*
+Port 222
 
 Host mlug.milwaukeelug.org
 ForwardAgent yes

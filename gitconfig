@@ -14,6 +14,8 @@
 	co = checkout
 	ci = commit -v
 	cia = commit -v -a
+	d = diff
+	dif = diff
 	ds = diff --staged
 	st = status
 	up = pull

@@ -30,8 +30,6 @@ set hdr_format="%4C %Z %?[?%[%H:%M]&%[%m/%d]? %-15.15L (%5l) %s"
 
 set hide_top_missing hide_missing=no
 
-source ~/.mutt/aliases
-
 set alias_file=~/.mutt/aliases
 
 set tmpdir=/tmp/$USER

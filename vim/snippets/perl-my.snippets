@@ -11,9 +11,7 @@ snippet dbit
 
 	__PACKAGE__->table('${1:`CamelToUnderscore(Filename())`}');
 	__PACKAGE__->add_columns(
-		${2:$1_id} => {
-			data_type => '${3:serial}',
-		},
+		${2:$1_id} => { data_type => '${3:serial}', },
 		${4}
 	);
 

@@ -1,3 +1,12 @@
 [submodule "upstreams/zsh"]
 	path = upstreams/zsh
 	url = http://pug.qqx.org/git/zsh
+[submodule "vim/bundle/command-t"]
+	path = vim/bundle/command-t
+	url = git://git.wincent.com/command-t.git
+[submodule "vim/bundle/syntax-coffeescript"]
+	path = vim/bundle/syntax-coffeescript
+	url = https://github.com/kchmck/vim-coffee-script.git
+[submodule "vim/bundle/syntax-markdown"]
+	path = vim/bundle/syntax-markdown
+	url = https://github.com/briangershon/vim-markdown.git

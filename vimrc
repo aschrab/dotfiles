@@ -77,6 +77,10 @@ set incsearch
 set ruler
 set showmatch
 set showcmd
+"set cursorcolumn
+"set cursorline
+hi CursorLine   cterm=NONE ctermbg=darkred guibg=darkred guifg=white
+hi CursorColumn ctermbg=yellow
 set splitbelow
 set formatoptions+=r
 set formatoptions+=2
@@ -177,6 +181,7 @@ inoremap <C-F> <C-X><C-F>
 inoremap <C-L> <C-X><C-L>
 inoremap <C-e> <esc>
 map gf :new <cfile>
+nmap <silent> <Leader>f :CommandT<CR>
 
 " Allow backspace to remove digits from numeric prefix for commands.
 omap <BS> <Del>
@@ -241,6 +246,9 @@ au BufRead *
 	\ if getline(1) =~ '^RECORDTYPE:' | setf cade | endif
 
 autocmd BufRead Makefile set nosmarttab noexpandtab noautoindent
+call pathogen#runtime_append_all_bundles()
+" Disable and reenable filetype support to support added paths
+filetype off
 filetype indent on
 filetype plugin on
 

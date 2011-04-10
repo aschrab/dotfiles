@@ -1,7 +1,11 @@
 # $Id$
 % require 'muttrc.rb'
 
-% if ENV['host'] == 'pug'
+% if File.stat "#{ENV['HOME']}/.mutt/aliases"
+	source ~/.mutt/aliases
+% end
+
+% if %w(pug milamber).include? ENV['host']
   account-hook ats@pug.qqx.org 'set tunnel="dovecot --exec-mail imap"'
   set editor="xfix -s -- vim '+/^$/+1'"
 % end
@@ -24,7 +28,7 @@
 % end
 
 % if mutt_variable :imap_idle
-  set imap_idle=no
+  set imap_idle=yes
 % end
 
 % if mutt_variable :header_cache

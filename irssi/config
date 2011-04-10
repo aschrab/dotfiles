@@ -2,14 +2,6 @@ servers = (
   #  { address = "schala.wiscnet.net"; chatnet = "OPN"; port = "6667"; },
   { address = "irc.oftc.net"; chatnet = "oftc"; port = "6667"; },
   {
-    address = "daemonic.foonetic.net";
-    # "irc.havoc.org";
-    chatnet = "havoc";
-    port = "6697";
-    autoconnect = "yes";
-    use_ssl = "yes";
-  },
-  {
     address = "irc.jakesys.net";
     chatnet = "jbs";
     port = "6697";
@@ -44,7 +36,6 @@ chatnets = {
     nick = "qqx";
   };
   jbs = { type = "IRC"; nick = "ats"; };
-  havoc = { type = "IRC"; nick = "ats"; };
   freenode = {
     type = "IRC";
     nick = "qqx";
@@ -58,7 +49,6 @@ channels = (
   { name = "#raleigh.pm"; chatnet = "perl"; autojoin = "yes"; },
   { name = "#trilug"; chatnet = "freenode"; autojoin = "yes"; },
   { name = "#jbs"; chatnet = "jbs"; autojoin = "yes"; },
-  { name = "#mlug"; chatnet = "havoc"; autojoin = "yes"; },
   { name = "#tivo"; chatnet = "OPN"; },
   { name = "#havoc"; chatnet = "havoc"; },
   { name = "#irssi"; chatnet = "efnet"; }
@@ -292,18 +282,6 @@ windows = {
       {
         type = "CHANNEL";
         chat_type = "IRC";
-        name = "#mlug";
-        tag = "havoc";
-      }
-    );
-    sticky = "yes";
-    parent = "3";
-  };
-  5 = {
-    items = (
-      {
-        type = "CHANNEL";
-        chat_type = "IRC";
         name = "#jbs";
         tag = "jbs";
       }
@@ -311,7 +289,7 @@ windows = {
     sticky = "yes";
     parent = "3";
   };
-  6 = {
+  5 = {
     items = (
       {
         type = "CHANNEL";
