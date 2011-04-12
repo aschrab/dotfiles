@@ -34,7 +34,7 @@ Host *.qqx.org
 ForwardAgent yes
 ForwardX11 yes
 
-Host milamber*
+Host milamber* tanstaafl*
 Port 222
 
 Host mlug.milwaukeelug.org
