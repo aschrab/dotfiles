@@ -62,6 +62,7 @@ LESS="$LESS --search-skip-screen"
 LESS="$LESS --LONG-PROMPT"
 #LESS="$LESS --chop-long-lines"
 LESS="$LESS --jump-target=3"
+LESS="$LESS --ignore-case"
 
 case "$LANG" in
   *[Uu][Tt][Ff]*)
