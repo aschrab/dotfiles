@@ -20,6 +20,10 @@ ForwardAgent yes
 ForwardX11 yes
 User aschrab
 
+Host gw.mke.corvisa.com
+HostName 24.106.62.130
+HostKeyAlias gw.mke.corvisa.com
+
 Host mgmt.ord.corvisa.com
 ProxyCommand none
 
