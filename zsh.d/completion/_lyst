@@ -13,6 +13,7 @@ case "$state" in
   (catdir)
     _values 'Catalyst dir' \
       base \
+	  t \
       templates \
       static \
       js \
