@@ -1,19 +1,38 @@
 #!/usr/bin/env perl
 
+=head1 NAME
+
+dot_setup
+
+=head1 DESCRIPTION
+
+Create symlinks in home directory to files in directory which contains this
+script.  Symlink names will be same as the target name, but with a C<.>
+prepended.
+
+Files to be linked to are listed as command line arguments.  If the name
+C<USUAL> is given as an argument, that file in the target directory will be
+opened, and each line in it will be added to the files specified on the command
+line.
+
+=cut
+
 use strict;
 use warnings;
 
 my $home = $ENV{HOME};
-my $dir = $0;
-$dir =~ s{^\./}{$ENV{PWD}/};
-$dir =~ s{/[^/]+$}{}; # Remove filename
+
+my $dir = $0;                # Get location of files from script location
+$dir =~ s{^\./}{$ENV{PWD}/}; # Convert relative path to absolute
+$dir =~ s{/[^/]+$}{};        # Remove script filename to get just dir name
 my $src = $dir;
 $dir =~ s{^$home/?}{}; # Convert to being relative to home
 
 foreach my $f (@ARGV) {
 	chomp $f;
-	next if $f =~ /dot_setup/;
+	next if $f =~ /dot_setup/; # Never link this script
 
+	# IF "USUAL" is used as name to link, actually each line in that file as a name to link
 	if( $f =~ /USUAL/ ) {
 		open USUAL, '<', "$src/$f" or die $!;
 		push @ARGV, <USUAL>;
@@ -21,11 +40,12 @@ foreach my $f (@ARGV) {
 		next;
 	}
 
-	my $dest = "$ENV{HOME}/.$f";
+	my $dest = "$ENV{HOME}/.$f"; # Name of link to use
 
+	# Indicate what targets already exist and which are going to be created
 	my $status = -e $dest ? '.' : '+';
 	print "$status $f\n";
 
 	next unless $status eq '+';
-	symlink "$dir/$f" => $dest or die;
+	symlink "$dir/$f" => $dest or die; # Create the link
 }
