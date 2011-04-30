@@ -12,18 +12,19 @@ _arguments \
 case "$state" in
   (catdir)
     _values 'Catalyst dir' \
-      base \
-      templates \
-      static \
-      js \
-      css \
-      lib \
-      project \
-      view \
-      controller \
-      model \
-      schema \
-      db \
+      base'[Project base directory]' \
+	  t'[Tests]' \
+      templates'[Template directory]' \
+      static'[Directory with static files]' \
+      js'[Javascript base directory]' \
+      css'[CSS files]' \
+      lib'[Base directory for libraries]' \
+      project'[Directory for libraries specific to this project]' \
+      view'[Views]' \
+      controller'[Controllers]' \
+      model'[Models]' \
+      schema'[Schema]' \
+      db'[DB data]' \
     ;;
   (subdir)
     local target="$(__lyst_dir $line[1])"

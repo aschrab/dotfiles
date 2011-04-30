@@ -26,6 +26,7 @@
 	sr = svn rebase
 	dcommit = svn dcommit
 	dc = svn dcommit
+	sf = svn fetch
 	review = "!f() { for rev in $(git log --reverse --format=%H $@); do git show $rev; done; }; f"
 	for-svn = log --reverse remotes/trunk..
 	show-commit = log -1 -p

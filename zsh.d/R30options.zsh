@@ -18,6 +18,7 @@ setopt \
   Numeric_Glob_Sort \
   Print_Exit_Value \
   Prompt_Subst \
+  PushD_Ignore_Dups \
   rm_Star_Silent
 unsetopt \
   Beep \

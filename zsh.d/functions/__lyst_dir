@@ -28,6 +28,9 @@
 	lib)
 	  sub=lib
 	  ;;
+	t)
+	  sub=t
+	  ;;
 	project)
 	  sub="lib/$proj"
 	  ;;
