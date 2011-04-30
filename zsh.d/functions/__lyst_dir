@@ -43,6 +43,9 @@
 	model)
 	  sub="lib/$proj/Model"
 	  ;;
+	role)
+	  sub="lib/$proj/Role"
+	  ;;
 	schema)
 	  sub="lib/$proj/Schema"
 	  ;;
