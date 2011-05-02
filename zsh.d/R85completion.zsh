@@ -35,6 +35,8 @@ zstyle ':completion:*:rm:*' ignored-patterns
 
 # Try to avoid completion functions when completing command names.
 zstyle ':completion:*:commands' ignored-patterns '_*'
+# Also, don't suggest them as alternative if entered command wasn't found
+#export CORRECT_IGNORE='_*'
 
 if [[ $USER == 'root' ]]; then
   # Display all processes
