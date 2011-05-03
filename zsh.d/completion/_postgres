@@ -1,10 +1,13 @@
 #compdef psql pg_dump createdb dropdb
 
+# Source: http://happygiraffe.net/svn/public/trunk/zsh/_pgsql_utils
 #
 # zsh completion functions for PostgreSQL client programs.  Based on
 # _mysql_utils.
 #
-# Dominic Mitchell <dom+zsh@xxxxxxxxxxxxxxxx>
+# Dominic Mitchell <dom+zsh@happygiraffe.net>
+#
+# @(#) $Id$
 #
 
 _pgsql_get_identity () {
@@ -150,6 +153,7 @@ _createdb () {
         {-e,--echo}'[display SQL queries]' \
         {-q,--quiet}'[non verbose mode]' \
         {-D+,--location=}':database location:_directories' \
+        {-O+,--owner=}':database owner:_pgsql_users' \
         {-T+,--template=}':database template:_pgsql_databases' \
         {-E+,--encoding=}':database encoding:_values "encoding" $_pgsql_encodings[@]' \
         ':PostgreSQL database:' \
