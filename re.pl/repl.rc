@@ -1,4 +1,5 @@
 # vim: ft=perl
+# Config for re.pl from CPAN module Devel::REPL
 
 $ENV{NOPASTE_SERVICES} = 'Gist';
 
