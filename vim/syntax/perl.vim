@@ -398,6 +398,8 @@ if exists("perl_fold")
   endif
   if !exists("perl_nofold_subs")
     syn region perlSubFold     start="^\z(\s*\)\<sub\>.*[^};]$" end="^\z1}\s*\(#.*\)\=$" transparent fold keepend
+    " Moose method modifiers
+    syn region perlSubFold start="^\z(\s*\)\(around\|before\|after\)\s*'[^']\+'\s*=>\s*sub\s*[^};]$" end="^\z1}\s*;\s*$" transparent fold keepend
     syn region perlSubFold start="^\z(\s*\)\<\(BEGIN\|END\|CHECK\|INIT\)\>.*[^};]$" end="^\z1}\s*$" transparent fold keepend
   endif
 
