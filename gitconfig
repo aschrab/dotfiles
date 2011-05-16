@@ -18,7 +18,7 @@
 	dif = diff
 	ds = diff --staged
 	st = status
-	up = pull
+	up = "!echo Use pull >&2 ; exit 1"
 	l1 = log --pretty=oneline
 	last = log --stat -p -1 HEAD
 	unstage = reset HEAD --
