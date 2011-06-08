@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# Generate a personal terminfo entry for the supplied terminal (or $TERM)
+# with the attributes for switching to the alternate screen disabled
+
+term=${1:-$TERM}
+
+for dir in /etc/terminfo /lib/terminfo /usr/share/terminfo
+do
+	if infocmp -A $dir $term > /dev/null 2>&1
+	then
+		tmp=$(mktemp -d terminfo.XXXXX)
+		infocmp -1 -A $dir $term | sed -e '/^[ 	]*[sr]mcup=/d' > $tmp/$term
+		tic $tmp/$term
+		rm -rf $tmp
+		exit
+	fi
+done
