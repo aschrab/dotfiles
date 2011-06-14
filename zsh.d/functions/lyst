@@ -1,25 +1,16 @@
 #autoload
 
-local retry=yes
-while true; do
   __lyst_dir "$1" > /dev/null
   case $? in
     0)
       cd "$(__lyst_dir "$1")/$2"
-      return 0
       ;;
     1)
-      if [[ $retry == yes && -n $DEFAULT_CATALYST_DIR ]]; then
-        retry=no
-        cd $DEFAULT_CATALYST_DIR
-      else
-        echo "Not in a Catalyst project directory" >&2
-        return 1
-      fi
+      echo "Not in a Catalyst project directory" >&2
+      return 1
       ;;
     2)
       echo "Unknown dir" >&2
       return 2
       ;;
   esac
-done
