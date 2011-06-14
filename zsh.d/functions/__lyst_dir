@@ -10,51 +10,51 @@
       proj=$(sed -ne '/^name: /s///p' < $dir/META.yml)
 
       case "$1" in
-	base)
-	  sub=""
-	  ;;
-	templates)
-	  sub=templates
-	  ;;
-	static)
-	  sub=root/static
-	  ;;
-	js)
-	  sub=root/static/js
-	  ;;
-	css)
-	  sub=root/static/css
-	  ;;
-	lib)
-	  sub=lib
-	  ;;
-	t)
-	  sub=t
-	  ;;
-	project)
-	  sub="lib/$proj"
-	  ;;
-	view)
-	  sub="lib/$proj/View"
-	  ;;
-	controller)
-	  sub="lib/$proj/Controller"
-	  ;;
-	model)
-	  sub="lib/$proj/Model"
-	  ;;
-	role)
-	  sub="lib/$proj/Role"
-	  ;;
-	schema)
-	  sub="lib/$proj/Schema"
-	  ;;
-	db)
-	  sub=db
-	  ;;
-	*)
-	  return 2
-	  ;;
+        base)
+          sub=""
+          ;;
+        templates)
+          sub=templates
+          ;;
+        static)
+          sub=root/static
+          ;;
+        js)
+          sub=root/static/js
+          ;;
+        css)
+          sub=root/static/css
+          ;;
+        lib)
+          sub=lib
+          ;;
+        t)
+          sub=t
+          ;;
+        project)
+          sub="lib/$proj"
+          ;;
+        view)
+          sub="lib/$proj/View"
+          ;;
+        controller)
+          sub="lib/$proj/Controller"
+          ;;
+        model)
+          sub="lib/$proj/Model"
+          ;;
+        role)
+          sub="lib/$proj/Role"
+          ;;
+        schema)
+          sub="lib/$proj/Schema"
+          ;;
+        db)
+          sub=db
+          ;;
+        *)
+          return 2
+          ;;
       esac
     else
       dir=${dir%/*}
