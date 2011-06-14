@@ -1,3 +1,6 @@
+set tabstop=2
+set shiftwidth=2
+set expandtab
 if exists("loaded_matchit")
   if !exists("b:match_words")
     let s:sol = '\%(;\s*\|^\s*\)\@<='  " start of line
