@@ -66,7 +66,7 @@ case "$state" in
     ;;
   (filetype)
     local types="$(
-      ack-grep --help types | sed \
+      _call_program filetypes $service --help types | sed \
           -e 's/^ *--\[no\]//' \
           -e 't type' \
           -e 'd' \
