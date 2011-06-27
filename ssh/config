@@ -29,6 +29,7 @@ ProxyCommand none
 
 Host *.ord.corvisa.com
 ProxyCommand ssh mgmt.ord.corvisa.com nc %h %p
+ServerAliveInterval 300
 #ProxyCommand ssh -q -W %h:%p mgmt.ord.corvisa.com
 
 Host app1.ord.corvisa.com
