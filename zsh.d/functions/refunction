@@ -1,0 +1,2 @@
+#autoload
+unfunction $1 && typeset -fu $1
