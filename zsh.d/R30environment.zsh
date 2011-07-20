@@ -6,7 +6,7 @@ then
 fi
 
 # Set $TERMINFO to dir in original user's home
-if [[ -z $TERMINFO ]] && export TERMINFO=~${SUDO_USER}/.terminfo
+[[ -z $TERMINFO ]] && export TERMINFO=~${SUDO_USER}/.terminfo
 
 unset MAIL  # set it later in host specific portion
 unset MAILCHECK
