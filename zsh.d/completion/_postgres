@@ -14,11 +14,13 @@ _pgsql_get_identity () {
     _pgsql_user=${(v)opt_args[(i)-U|--username]}
     _pgsql_port=${(v)opt_args[(i)-p|--port]}
     _pgsql_host=${(v)opt_args[(i)-h|--host]}
+    _pgsql_cluster=${(v)opt_args[(i)--cluster]}
 
     _pgsql_params=(
         ${_pgsql_user:+"--username=$_pgsql_user"}
         ${_pgsql_port:+"--port=$_pgsql_port"}
         ${_pgsql_host:+"--host=$_pgsql_host"}
+        ${_pgsql_cluster:+"--cluster $_pgsql_cluster"}
     )
 }
 
