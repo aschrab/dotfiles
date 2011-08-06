@@ -3,6 +3,12 @@ alias gi=git
 alias stty='noglob stty'
 alias wget='noglob wget'
 
+for v in ri ri1.8 ri1.9; do
+  if [[ -n "$(whence $v)" ]]; then
+    alias $v='LESS="$LESS -fR"'" noglob command $v -fansi"
+  fi
+done
+
 case "$EDITOR" in
 	vim|*/vim)
 		alias -g L="| view -"
