@@ -32,6 +32,15 @@ _pgsql_host_or_dir() {
         'directories:directory:_directories'
 }
 
+_pgsql_clusters () {
+    local clusters
+
+    clusters=($(awk '{print $1"/"$2 }' ~/.postgresqlrc))
+    clusters=($clusters /etc/postgresql/*/*(#q/:s,/etc/postgresql/,,) )
+
+    compadd "$@" -a clusters
+}
+
 _pgsql_users () {
     local _pgsql_user _pgsql_port _pgsql_host _pgsql_params
     _pgsql_get_identity
@@ -185,6 +194,7 @@ _pgsql_utils () {
         {-p+,--port=}':database port number:'
         {-U+,--username=}':connect as user:_pgsql_users'
         {-W,--password}'[prompt for password]'
+        '--cluster:Database cluster:_pgsql_clusters'
     )
 
     # Taken from
