@@ -13,7 +13,7 @@ fun! PerlPackageTemplate()
 
   call setline( 1, 'package ' . pack . ';' )
   call append(  1, [ '', 'use strict;', 'use warnings;', '', '', '1;' ] )
-  call setpos( '.', [0, 5, 1, 1] )
+  call setpos( '.', [0, 6, 1, 1] )
 endf
 
 au BufNewFile *.pm call PerlPackageTemplate()
