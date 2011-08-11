@@ -10,6 +10,8 @@
 [diff]
 	renames = true
 	mnemonicprefix = yes
+[merge]
+	conflictstyle = diff3
 [alias]
 	co = checkout
 	ci = commit -v
