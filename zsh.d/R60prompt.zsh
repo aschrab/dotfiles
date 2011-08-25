@@ -27,16 +27,30 @@ tty=${TTY##/dev/}
 export TTY
 
 zset_title() {
+  local xterm screen
   case "$TERM" in
     xterm|xtermc|xterm-debian|xterm-color|rxvt-unicode|rxvt|gnome|Eterm)
-      print -nP "\E]1;%(#.#.$)$host$DEBCHROOT\C-g"
-      print -nP "\E]2;%(#.#.$)$host$DEBCHROOT($tty):%~\C-g"
+      xterm=y
       ;;
     screen*)
-      print -nP "\E]1;%(#.#.$)$host$DEBCHROOT\C-g"
-      print -nP "\E]2;\En %(#.#.$)$host$DEBCHROOT($tty)!%~\C-g\Ek$host$DEBCHROOT%(#.#.$)%.\E\\"
+      screen=y
       ;;
   esac
+
+  if [[ -n $TMUX ]]; then
+    xterm=y
+    screen=n
+  fi
+
+  if [[ $xterm == y ]]; then
+    print -nP "\E]1;%(#.#.$)$host$DEBCHROOT\C-g"
+    print -nP "\E]2;%(#.#.$)$host$DEBCHROOT($tty):%~\C-g"
+  fi
+
+  if [[ $screen == y ]]; then
+    print -nP "\E]1;%(#.#.$)$host$DEBCHROOT\C-g"
+    print -nP "\E]2;\En %(#.#.$)$host$DEBCHROOT($tty)!%~\C-g\Ek$host$DEBCHROOT%(#.#.$)%.\E\\"
+  fi
 }
 precmd_functions+='zset_title'
 
