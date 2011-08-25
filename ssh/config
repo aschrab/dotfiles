@@ -48,6 +48,7 @@ Host milamber* tanstaafl*
 Port 222
 
 Host mlug.milwaukeelug.org
+Port 222
 ForwardAgent yes
 ForwardX11 yes
 
