@@ -282,8 +282,7 @@ fun! CamelToUnderscore(word)
 endf
 
 " autocmd BufRead *.[ch] set cindent
-" ME's C settings
-"set cinoptions=>2,t0,(0,=2
+set cinoptions+=l1,(0,t0
 set cinkeys=0{,0}:,!^F,o,O,e
 au BufNewFile,BufRead *.c,*.h,*.pl,*.pm set cindent showmatch textwidth=0
 "au BufNewFile,BufRead *.cf so $VIM/syntax/sm.vim
