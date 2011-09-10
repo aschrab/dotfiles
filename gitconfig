@@ -4,7 +4,7 @@
 	name = Aaron Schrab
 [core]
 	pager = less -R
-	autocrlf = input
+	#autocrlf = input
 	safecrlf = true
 	excludesfile = ~/.gitignore
 [diff]
