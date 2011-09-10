@@ -1,0 +1,96 @@
+#compdef dig
+
+local context state line
+typeset -A opt_args
+
+_arguments -s : \
+  '-b+[Source IP address]:IP:_local_addresses' \
+  '-c+[Class]:DNS class:_dns_class' \
+  '-t+[Type]:DNS type:_dns_type' \
+  '-q+[Query name]:Name:_hosts' \
+  '-f+[Batch file]:Batch file:_path_files' \
+  '-m[Enable memory usage debugging]' \
+  '(-6)-4[Use only IPv4 for queries]' \
+  '(-4)-6[Use only IPv6 for queries]' \
+  '-p+:Server port:' \
+  '(+tcp +notcp +vc +novc)'+{tcp,vc}'[Use tcp virtual circuit]' \
+  '(+tcp +notcp +vc +novc)'+no{tcp,vc}'[Do not use tcp virtual circuit]' \
+  '(+noignore)+ignore[Ignore truncation in UDP responses]' \
+  '(+ignore)+noignore[Retry truncated response with TCP]' \
+  '+domain=-[Domain to use for search]:Domain: ' \
+  '(+nosearch)+search[Use search list]' \
+  '(+search)+nosearch[Do not use search list]' \
+  '(+noshowsearch)+showsearch[Show intermediate results]' \
+  '(+showsearch)+noshowsearch[Do not show intermediate results]' \
+  '(+aaonly +noaaonly +aaflag +noaaflag)'+aa{only,flag}'[Set AA flag in query]' \
+  '(+aaonly +noaaonly +aaflag +noaaflag)'+noaa{only,flag}'[Do not set AA flag in query]' \
+  '(+noadflag)+adflag[Set authentic data bit in query]' \
+  '(+adflag)+noadflag[Do not set authentic data bit in query]' \
+  '(+nocdflag)+cdflag[Set checking disabled bit in query]' \
+  '(+cdflag)+nocdflag[Do not set checking disabled bit in query]' \
+  '(+nocl)+cl[Display CLASS]' \
+  '(+cl)+nocl[Do not display CLASS]' \
+  '(+nottlid)+ttlid[Display TTL]' \
+  '(+ttlid)+nottlid[Do not display TTL]' \
+  '(+trace +nssearch +norecurse)+recurse[Set recursion desired bit in query]' \
+  '(+trace +nssearch +recurse)+norecurse[Do not set recursion desired bit in query]' \
+  '(+recurse +nonssearch)+nssearch[Display SOA from authoritative servers]' \
+  '(+nssearch)+nonssearch[Turn of +nssearch]' \
+  '(+recurse +notrace)+trace[Trace delegation path]' \
+  '(+trace)+notrace[Do not trace delegation path]' \
+  '(+nocmd)+cmd[Print dig version and options]' \
+  '(+cmd)+nocmd[Do not print dig version and options]' \
+  '(+noshort)+short[Provide terse answer]' \
+  '(+short)+noshort[Provide verbose answer]' \
+  '(+noidentify)+identify[Provide result source with +short]' \
+  '(+identify)+noidentify[Do not provide result source with +short]' \
+  '(+nocomments)+comments[Display comments in output]' \
+  '(+comments)+nocomments[Do not display comments in output]' \
+  '(+nostats)+stats[Display statistics]' \
+  '(+stats)+nostats[Do not display statistics]' \
+  '(+noqr)+qr[Display query]' \
+  '(+qr)+noqr[Do not display query]' \
+  '(+noquestion)+question[Display question section of query]' \
+  '(+question)+noquestion[Do not display question section of query]' \
+  '(+noanswer)+answer[Display answer section of reply]' \
+  '(+answer)+noanswer[Do not display answer section of reply]' \
+  '(+noauthority)+authority[Display authority section of reply]' \
+  '(+authority)+noauthority[Do not display authority section of reply]' \
+  '(+noadditional)+additional[Display additional section of reply]' \
+  '(+additional)+noadditional[Do not display additional section of reply]' \
+  '(+noall)+all[Set all display flags]' \
+  '(+all)+noall[Clear all display flags]' \
+  '+time=-[Timeout]:Timeout (seconds):' \
+  '(+tcp +vc +retry)+tries=-[Number of tries]:number:' \
+  '(+tcp +vc +tries)+retry=-[Number of times to retry]:number:' \
+  '+ndots=-[Number of dots in absolute name]:integer:' \
+  '(+tcp +vc +noedns)+bufsize=-[UDP buffer size to advertise]:integer:' \
+  '(+noedns)+edns=-[EDNS version]:integer:' \
+  '(+edns)+noedns[Do not use EDNS]' \
+  '(+nomultiline)+multiline[Allow multi-line record formats]' \
+  '(+multiline)+nomultiline[No multi-line record formats]' \
+  '(+nofail)+fail[Do not try next server after getting SERVFAIL]' \
+  '(+fail)+nofail[Try next server after getting SERVFAIL]' \
+  '(+nobesteffort)+besteffort[Attempt to display malformed messages]' \
+  '(+besteffort)+nobesteffort[Do not attempt to display malformed messages]' \
+  '(+nodnssec)+dnssec[Request DNSSEC records]' \
+  '(+dnssec)+nodnssec[Do not request DNSSEC records]' \
+  '(+nosigchase)+sigchase[Chase DNSSEC signature chains]' \
+  '(+sigchase)+nosigchase[Do not chase DNSSEC signature chains]' \
+  '+trusted-key=-[Set DNSSEC trusted key file]:DNSSEC key file:_path_files' \
+  '(+nosigchase +notopdown)+topdown[Do top-down validation on signature chains]' \
+  '(+topdown)+notopdown[Do not do top-down validation on signature chains]' \
+  '(+nonsid)+nsid[Include EDNS name server ID request in query]' \
+  '(+nsid)+nonsid[Do not include EDNS name server ID request in query]' \
+  '*:Argument:->arg' \
+  && ret=0
+
+case "$state" in
+  (arg)
+    _alternative \
+      'server:server:_dig_server' \
+      'host:host:_hosts' \
+      'class:class:_dns_class' \
+      'type:type:_dns_type'
+    ;;
+esac

@@ -1,0 +1,8 @@
+#autoload
+
+local addrs
+
+addrs=$( ifconfig | sed -n -e 's/^ *inet6\? addr: *\([0-9a-fA-F.:]*\).*/\1/p' )
+
+_wanted local_addresses expl 'Local address' \
+  compadd -- ${(f)addrs}
