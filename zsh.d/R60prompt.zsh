@@ -37,15 +37,15 @@ zset_title() {
   fi
 
   if [[ $xterm == y || $screen == y ]]; then
-    print -nP "\E]1;%(#.#.$)$host$DEBCHROOT\C-g"
+    print -nP "\E]1;${1:-%(#.#.$)$host$DEBCHROOT}\C-g"
   fi
 
   if [[ $xterm == y ]]; then
-    print -nP "\E]2;%(#.#.$)$host$DEBCHROOT($tty):%~\C-g"
+    print -nP "\E]2;${1:-%(#.#.$)$host$DEBCHROOT($tty):%~}\C-g"
   fi
 
   if [[ $screen == y ]]; then
-    print -nP "\E]2;\En %(#.#.$)$host$DEBCHROOT($tty)!%~\C-g\Ek$host$DEBCHROOT%(#.#.$)%.\E\\"
+    print -nP "\E]2;\En ${1:-%(#.#.$)$host$DEBCHROOT($tty)!%~}\C-g\Ek${1:-$host$DEBCHROOT%(#.#.$)%.}\E\\"
   fi
 }
 precmd_functions+='zset_title'
