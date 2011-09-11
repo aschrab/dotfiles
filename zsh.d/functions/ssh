@@ -18,6 +18,5 @@
   else
     bar="$foo"
   fi
-  xtitle "$bar"
-  screen-title "$bar"
+  zset_title "$bar"
   command ssh "$@"

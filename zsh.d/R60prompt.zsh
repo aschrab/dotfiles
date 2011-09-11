@@ -9,12 +9,6 @@ precmd () {
   fi
 }
 
-screen-title () {
-}
-xtitle () {
-  print -n "\E]2;$*"
-}
-
 if [[ -r /etc/debian_chroot ]]; then
   DEBCHROOT="(`cat /etc/debian_chroot`)"
 elif [[ -r /etc/chroot_id ]]; then
@@ -42,14 +36,16 @@ zset_title() {
     screen=n
   fi
 
+  if [[ $xterm == y || $screen == y ]]; then
+    print -nP "\E]1;${1:-%(#.#.$)$host$DEBCHROOT}\C-g"
+  fi
+
   if [[ $xterm == y ]]; then
-    print -nP "\E]1;%(#.#.$)$host$DEBCHROOT\C-g"
-    print -nP "\E]2;%(#.#.$)$host$DEBCHROOT($tty):%~\C-g"
+    print -nP "\E]2;${1:-%(#.#.$)$host$DEBCHROOT($tty):%~}\C-g"
   fi
 
   if [[ $screen == y ]]; then
-    print -nP "\E]1;%(#.#.$)$host$DEBCHROOT\C-g"
-    print -nP "\E]2;\En %(#.#.$)$host$DEBCHROOT($tty)!%~\C-g\Ek$host$DEBCHROOT%(#.#.$)%.\E\\"
+    print -nP "\E]2;\En ${1:-%(#.#.$)$host$DEBCHROOT($tty)!%~}\C-g\Ek${1:-$host$DEBCHROOT%(#.#.$)%.}\E\\"
   fi
 }
 precmd_functions+='zset_title'
@@ -78,10 +74,6 @@ case "$TERM" in
     esac
     alias telnet='TERMCAP= telnet'
 
-    screen-title () {
-      print -n "\E\"$*\E\134"
-    }
-
     preexec () {
       print -n "\Ek$host$DEBCHROOT:$1\E\\"
     }
@@ -93,15 +85,11 @@ case "$TERM" in
     stty erase '^?'
     print -P "${fg[magenta]}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${fColor}"
 
-    xtitle () {
-    }
     ;;
   *)
     stty erase '^H' kill '^U'
     print -P "%U%Szsh $ZSH_VERSION, .zshrc $rcvers%s%u"
     PS1='%U%1v%!)%(#..%u)$host$DEBCHROOT%(#.#.$)%(#.%u.) '
     RPS1='%U%~%u'
-    xtitle () {
-    }
     ;;
 esac
