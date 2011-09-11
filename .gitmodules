@@ -1,6 +1,6 @@
 [submodule "upstreams/zsh"]
 	path = upstreams/zsh
-	url = http://pug.qqx.org/git/zsh
+	url = http://git.qqx.org/zsh
 [submodule "vim/bundle/command-t"]
 	path = vim/bundle/command-t
 	url = git://git.wincent.com/command-t.git
