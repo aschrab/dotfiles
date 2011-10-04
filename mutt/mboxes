@@ -3,6 +3,7 @@
 
 mailboxes !
 mailboxes =INBOX/wiki
+mailboxes =INBOX/junk
 mailboxes =INBOX/sympa
 
 <%# mlist 'sec/linux-security' %>
