@@ -186,13 +186,6 @@ end unless list
 case headers[:list_post]
 when /<mailto:mutt-dev@/i
   list = 'mail/mutt-dev'
-  # FIXME add subject demangling
-end unless list
-
-case headers[:list_unsubscribe]
-when /<mailto:mutt-dev-request@/i
-  list = 'mail/mutt-dev'
-  # FIXME add subject demangling
 end unless list
 
 case headers[:return_path]
