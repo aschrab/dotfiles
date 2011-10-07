@@ -2,6 +2,7 @@ precmd () {
   # Make sure the prompt begins on a new line
   print -nP "%{${fg[red]}\$${reset_color}${(pl:COLUMNS:: ::\r:)}%}"
 
+  [[ $TERM == screen ]] && print -nP "\Ek$host$DEBCHROOT:%~\E\\"
   if jobs % >& /dev/null; then
     psvar[1]="*"
   else
