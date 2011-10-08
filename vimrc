@@ -332,3 +332,5 @@ command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | di
 :if filereadable(expand("~/.vim/local.vim"))
 	source ~/.vim/local.vim
 :endif
+
+source ~/.vim/projects.vim
