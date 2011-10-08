@@ -7,6 +7,7 @@ foreach (qw{Timing DumpHistory OutputCache Interrupt Nopaste MultiLine::PPI Pack
 	$_REPL->load_plugin($_);
 }
 
+use Term::ReadLine::Gnu;
 use Term::ANSIColor;
 
 sub col {
