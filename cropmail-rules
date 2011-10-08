@@ -174,6 +174,8 @@ when /<zsh-(workers|users)\.zsh\.org>/i
   list = 'dev/zsh'
 when /<git\.vger\.kernel\.org>/i
   list = 'dev/git'
+when /<tmux-users\.lists\.sourceforge\.net>/i
+  list = 'dev/tmux'
 end unless list
 
 case headers[:mailing_list]
