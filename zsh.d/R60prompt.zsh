@@ -57,40 +57,10 @@ PS1='
 %{$pColor%}%!%(#.#.$)%{$fColor%} '
 
 case "$TERM" in
-  xterm|xtermc|xterm-debian|xterm-color|rxvt-unicode|rxvt|gnome|Eterm)
-    if [[ $TERM == xterm && $OSTYPE == freebsd* ]]
-    then
-      TERM=xterm-color
-    fi
-    stty erase '^?'
-    print -P "${fg[green]}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${fColor}"
-    ;;
   screen*)
-    print -P "${fg[yellow]}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${fColor}"
-    case "$OSTYPE" in
-      solaris*)
-        # Solaris' usual termcap entry for screen sucks, so don't use it.
-        TERM=xterm
-        ;;
-    esac
-    alias telnet='TERMCAP= telnet'
-
-    preexec () {
+    zset_command_title () {
       print -n "\Ek$host$DEBCHROOT:$1\E\\"
     }
-
-    ;;
-
-  linux)
-    fColor=$reset_color
-    stty erase '^?'
-    print -P "${fg[magenta]}%Szsh $ZSH_VERSION, .zshrc $rcvers%s${fColor}"
-
-    ;;
-  *)
-    stty erase '^H' kill '^U'
-    print -P "%U%Szsh $ZSH_VERSION, .zshrc $rcvers%s%u"
-    PS1='%U%1v%!)%(#..%u)$host$DEBCHROOT%(#.#.$)%(#.%u.) '
-    RPS1='%U%~%u'
+    preexec_functions+='zset_command_title'
     ;;
 esac
