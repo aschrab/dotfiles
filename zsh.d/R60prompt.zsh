@@ -2,7 +2,6 @@ precmd () {
   # Make sure the prompt begins on a new line
   print -nP "%{${fg[red]}\$${reset_color}${(pl:COLUMNS:: ::\r:)}%}"
 
-  [[ $TERM == screen ]] && print -nP "\Ek$host$DEBCHROOT:%~\E\\"
   if jobs % >& /dev/null; then
     psvar[1]="*"
   else
@@ -22,7 +21,7 @@ tty=${TTY##/dev/}
 export TTY
 
 zset_title() {
-  local xterm screen
+  local xterm screen tmux
   case "$TERM" in
     xterm|xtermc|xterm-debian|xterm-color|rxvt-unicode|rxvt|gnome|Eterm)
       xterm=y
@@ -34,6 +33,7 @@ zset_title() {
 
   if [[ -n $TMUX ]]; then
     xterm=y
+    tmux=y
     screen=n
   fi
 
@@ -47,6 +47,10 @@ zset_title() {
 
   if [[ $screen == y ]]; then
     print -nP "\E]2;\En ${1:-%(#.#.$)$host$DEBCHROOT($tty)!%~}\C-g\Ek${1:-$host$DEBCHROOT%(#.#.$)%.}\E\\"
+  fi
+
+  if [[ $tmux == y ]]; then
+    print -nP "\Ek$host$DEBCHROOT:%~\E\\"
   fi
 }
 precmd_functions+='zset_title'
