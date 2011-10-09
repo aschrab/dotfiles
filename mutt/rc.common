@@ -107,6 +107,9 @@ macro pager ,@r13on "<enter-command>set display_filter='tr A-Za-z N-ZA-Mn-za-m';
 macro pager ,@r13off "<enter-command>macro pager '#' ,@r13on 'Toggle ROT13 decoding'\n<display-toggle-weed><display-toggle-weed>"  "Turn off ROT13 decoding"
 macro pager '#' ,@r13on       "Toggle ROT13 decoding"
 
+set my_wrap=100
+macro pager l "<enter-command>set my_save=\$my_wrap my_wrap=\$wrap wrap=\$my_save\n" "Toggle wrap"
+
 bind  index	<Tab>	next-new
 macro index "\eh" "<view-attachments><next-entry><edit-type><bol><delete-char><enter><exit><display-message>" "View alternative"
 bind  index	B	bounce-message
