@@ -139,6 +139,7 @@ set list
 set guicursor=n-v-c:block-Cursor-blinkon0,ve:ver35-Cursor-blinkon0,o:hor50-Cursor-blinkon0,i-ci:ver25-Cursor-blinkon0,r-cr:hor20-Cursor-blinkon0,sm:block-Cursor-blinkon0
 
 " Abbreviations/automatic spelling correction {{{
+iab fo of
 iab teh the
 iab adn and
 iab nad and
@@ -281,8 +282,7 @@ fun! CamelToUnderscore(word)
 endf
 
 " autocmd BufRead *.[ch] set cindent
-" ME's C settings
-"set cinoptions=>2,t0,(0,=2
+set cinoptions+=l1,(0,t0
 set cinkeys=0{,0}:,!^F,o,O,e
 au BufNewFile,BufRead *.c,*.h,*.pl,*.pm set cindent showmatch textwidth=0
 "au BufNewFile,BufRead *.cf so $VIM/syntax/sm.vim
@@ -332,3 +332,5 @@ command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | di
 :if filereadable(expand("~/.vim/local.vim"))
 	source ~/.vim/local.vim
 :endif
+
+source ~/.vim/projects.vim

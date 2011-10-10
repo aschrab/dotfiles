@@ -8,6 +8,7 @@ pinforc
 psqlrc
 re.pl
 screenrc
+tmux.conf
 vim
 vimrc
 zshrc

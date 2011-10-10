@@ -1,4 +1,4 @@
-# $Id$
+%# vim: ft=eruby
 % require 'muttrc.rb'
 
 % if File.stat "#{ENV['HOME']}/.mutt/aliases"

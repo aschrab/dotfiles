@@ -4,12 +4,14 @@
 	name = Aaron Schrab
 [core]
 	pager = less -R
-	autocrlf = input
+	#autocrlf = input
 	safecrlf = true
 	excludesfile = ~/.gitignore
 [diff]
 	renames = true
 	mnemonicprefix = yes
+[merge]
+	conflictstyle = diff3
 [alias]
 	co = checkout
 	ci = commit -v
@@ -18,7 +20,7 @@
 	dif = diff
 	ds = diff --staged
 	st = status
-	up = pull
+	up = "!echo Use pull >&2 ; exit 1"
 	l1 = log --pretty=oneline
 	last = log --stat -p -1 HEAD
 	unstage = reset HEAD --
@@ -28,7 +30,6 @@
 	dc = svn dcommit
 	sf = svn fetch
 	review = "!f() { for rev in $(git log --reverse --format=%H $@); do git show $rev; done; }; f"
-	for-svn = log --reverse remotes/trunk..
 	show-commit = log -1 -p
 
 [push]
@@ -43,7 +44,6 @@
 	status = auto
 [github]
 	user = aschrab
-	token = cf786ff6aca4b1d93c0542662573d184
 [sendemail]
 	from = Aaron Schrab <aaron@schrab.com>
 	envelopesender = aaron@schrab.com

@@ -23,6 +23,7 @@ case "$state" in
       view'[Views]' \
       controller'[Controllers]' \
       model'[Models]' \
+      role'[Roles]' \
       schema'[Schema]' \
       db'[DB data]' \
     ;;

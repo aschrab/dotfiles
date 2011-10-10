@@ -102,6 +102,10 @@ if headers[:x_qqx_org_mailscanner_spamscore] =~ /s{5}/i
 	save_md '=spam'
 end
 
+if headers[:from] =~ /postmaster@(pug\.)?qqx\.org/i
+  save_md '=INBOX/junk'
+end
+
 if headers[:from] =~ /webmaster@milwaukeelug/i and
   subject =~ /Wiki page .* (changed|created|deleted) by /i
   save_md '=INBOX/wiki'
@@ -170,6 +174,8 @@ when /<zsh-(workers|users)\.zsh\.org>/i
   list = 'dev/zsh'
 when /<git\.vger\.kernel\.org>/i
   list = 'dev/git'
+when /<tmux-users\.lists\.sourceforge\.net>/i
+  list = 'dev/tmux'
 end unless list
 
 case headers[:mailing_list]
@@ -182,13 +188,6 @@ end unless list
 case headers[:list_post]
 when /<mailto:mutt-dev@/i
   list = 'mail/mutt-dev'
-  # FIXME add subject demangling
-end unless list
-
-case headers[:list_unsubscribe]
-when /<mailto:mutt-dev-request@/i
-  list = 'mail/mutt-dev'
-  # FIXME add subject demangling
 end unless list
 
 case headers[:return_path]

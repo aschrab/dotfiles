@@ -1,7 +1,16 @@
 #!/bin/zsh
 
+__link_dir() {
+	local linkpath=$(readlink -f $1)
+	[[ -n $linkpath ]] && dirname $linkpath
+}
+
 zshrc_dir=~/.zsh.d
-[ -d $zshrc_dir ] || zshrc_dir=$( dirname $(readlink ~/.zshrc) )/zsh.d
+[[ -d $zshrc_dir ]] || zshrc_dir=$( __link_dir ~/.zshrc )/zsh.d
+[[ -d $zshrc_dir ]] || zshrc_dir=~${SUDO_USER}/.zsh.d
+[[ -d $zshrc_dir ]] || zshrc_dir=$( __link_dir ~${SUDO_USER}/.zshrc )/zsh.d
+
+unfunction __link_dir
 
 case "$zshrc_dir" in
   /*)

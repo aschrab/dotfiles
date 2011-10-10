@@ -58,4 +58,3 @@ if [[ $ZSH_MAJOR_VERSION -ge 4 ]]; then
       ;;
   esac #}}}
 fi
-export LANG LC_COLLATE="C" LC_TIME="C"

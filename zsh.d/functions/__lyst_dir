@@ -2,64 +2,77 @@
 
   local dir=$(builtin pwd -L)
   local proj
+  local found
   local sub
 
-  while [[ -z $proj && -n $dir ]]; do
+  # Look for base catalyst directory as parent of current
+  while [[ -z $found && -n $dir ]]; do
     if [[ (-f "$dir/META.yml") && (-d "$dir/lib") && (-d "$dir/script") ]];
     then
-      proj=$(sed -ne '/^name: /s///p' < $dir/META.yml)
-
-      case "$1" in
-	base)
-	  sub=""
-	  ;;
-	templates)
-	  sub=templates
-	  ;;
-	static)
-	  sub=root/static
-	  ;;
-	js)
-	  sub=root/static/js
-	  ;;
-	css)
-	  sub=root/static/css
-	  ;;
-	lib)
-	  sub=lib
-	  ;;
-	t)
-	  sub=t
-	  ;;
-	project)
-	  sub="lib/$proj"
-	  ;;
-	view)
-	  sub="lib/$proj/View"
-	  ;;
-	controller)
-	  sub="lib/$proj/Controller"
-	  ;;
-	model)
-	  sub="lib/$proj/Model"
-	  ;;
-	schema)
-	  sub="lib/$proj/Schema"
-	  ;;
-	db)
-	  sub=db
-	  ;;
-	*)
-	  return 2
-	  ;;
-      esac
+      found=yes
     else
       dir=${dir%/*}
     fi
   done
 
-  if [[ -z $proj ]]; then
-    return 1
+  # If no catalyst base directory found, use default or return error
+  if [[ -z $found ]]; then
+    if [[ -n $DEFAULT_CATALYST_DIR ]]; then
+      dir="$DEFAULT_CATALYST_DIR"
+    else
+      return 1
+    fi
   fi
+
+  # Determine sub directory
+  proj=$(sed -ne '/^name: /s///p' < $dir/META.yml)
+
+  case "$1" in
+    base)
+      sub=""
+      ;;
+    templates)
+      sub=templates
+      ;;
+    static)
+      sub=root/static
+      ;;
+    js)
+      sub=root/static/js
+      ;;
+    css)
+      sub=root/static/css
+      ;;
+    lib)
+      sub=lib
+      ;;
+    t)
+      sub=t
+      ;;
+    project)
+      sub="lib/$proj"
+      ;;
+    view)
+      sub="lib/$proj/View"
+      ;;
+    controller)
+      sub="lib/$proj/Controller"
+      ;;
+    model)
+      sub="lib/$proj/Model"
+      ;;
+    role)
+      sub="lib/$proj/Role"
+      ;;
+    schema)
+      sub="lib/$proj/Schema"
+      ;;
+    db)
+      sub=db
+      ;;
+    *)
+      return 2
+      ;;
+  esac
 
   echo $dir/$sub

@@ -1,0 +1,7 @@
+#autoload
+
+if [[ -n $TMUX ]]; then
+  eval $(tmux show-environment -s)
+else
+  echo "Not in tmux" >&2
+fi

@@ -1,0 +1,9 @@
+#compdef -value-,PGCLUSTER,-default-
+
+local clusters
+
+clusters=($(awk '{print $1"/"$2 }' ~/.postgresqlrc))
+clusters+=($clusters /etc/postgresql/*/*(#q/:s,/etc/postgresql/,,) )
+#clusters=${clusters/:/\\\\:}
+
+_values Cluster ${clusters/:/\\:}

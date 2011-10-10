@@ -9,6 +9,8 @@ Host ircproxy
 HostName pug.qqx.org
 HostKeyAlias pug.qqx.org
 Port 222
+ForwardX11 yes
+ForwardAgent yes
 LocalForward 9100 0:9100
 LocalForward 9101 0:9101
 LocalForward 9102 0:9102
@@ -29,6 +31,7 @@ ProxyCommand none
 
 Host *.ord.corvisa.com
 ProxyCommand ssh mgmt.ord.corvisa.com nc %h %p
+ServerAliveInterval 300
 #ProxyCommand ssh -q -W %h:%p mgmt.ord.corvisa.com
 
 Host app1.ord.corvisa.com
@@ -47,6 +50,7 @@ Host milamber* tanstaafl*
 Port 222
 
 Host mlug.milwaukeelug.org
+Port 222
 ForwardAgent yes
 ForwardX11 yes
 

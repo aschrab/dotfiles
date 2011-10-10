@@ -19,7 +19,8 @@ setopt \
   Print_Exit_Value \
   Prompt_Subst \
   PushD_Ignore_Dups \
-  rm_Star_Silent
+  rm_Star_Silent \
+  Typeset_Silent
 unsetopt \
   Beep \
   Clobber \

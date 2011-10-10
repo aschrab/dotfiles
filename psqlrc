@@ -1,5 +1,9 @@
 \set QUIET 1
 \set HISTCONTROL ignoredups
+
+\set ON_ERROR_STOP 1
+\set ON_ERROR_ROLLBACK interactive
+
 SET client_min_messages = notice;
 
 \set SHELLHOST `echo $host`

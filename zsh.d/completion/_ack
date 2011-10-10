@@ -1,9 +1,10 @@
 #compdef ack ack-grep
 
 local context state line
+integer NORMARG
 typeset -A opt_args
 
-_arguments -A '-*' -S -s \
+_arguments -n -S -s \
   '(--all -a)'{--all,-a}'[Operate on all files, regardless of type]' \
   '(--after-context -A)'{--after-context=,-A+}'[Number of lines of context to include after matching lines]:Number: ' \
   '(--before-context -B)'{--before-context=,-B+}'[Number of lines of context to include before matching lines]:Number: ' \
@@ -52,11 +53,22 @@ _arguments -A '-*' -S -s \
   '--version[Display version and copyright information]' \
   '(--word-regexp -w)'{--word-regexp,-w}'[Force pattern to match only whole words]' \
   '-1[Stop after reporting first match of any kind]' \
-  '1:Pattern: ' \
-  '*:File:_path_files' \
+  '--match=[Pattern]:Pattern: ' \
+  '*: :->arg' \
   && ret=0
 
 case "$state" in
+  (arg)
+    if [[ CURRENT -eq NORMARG && ${+opt_args[--match]} -eq 0 ]]
+    then
+      # If the current argument is the first non-option argument
+      # and --match isn't preset then the pattern should be entered
+      _message 'Pattern'
+    else
+      # All other non-option arguments will be files or directories
+      _files
+    fi
+    ;;
   (color)
     # TODO complete combinations of the following parts separated by spaces
     #local cattrs=(clear reset dark bold underline underscore blink reverse concealed)
@@ -66,7 +78,7 @@ case "$state" in
     ;;
   (filetype)
     local types="$(
-      ack-grep --help types | sed \
+      _call_program filetypes $service --help types | sed \
           -e 's/^ *--\[no\]//' \
           -e 't type' \
           -e 'd' \

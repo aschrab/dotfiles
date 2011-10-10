@@ -1,4 +1,4 @@
---all
+#--all
 #--type-add tmpl=.tt
 --pager=less --RAW-CONTROL-CHARS --quit-if-one-screen
 --sort-files

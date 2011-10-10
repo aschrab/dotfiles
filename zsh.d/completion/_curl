@@ -1,0 +1,163 @@
+#compdef curl
+
+local context state line
+typeset -A opt_args
+
+local auth_methods='(--anyauth --basic --ntlm --digest --negotiate)'
+local proxy_auth_methods='(--proxy-anyauth --proxy-basic --proxy-ntlm --proxy-digest --proxy-negotiate)'
+local proxy_methods='(--socks4 --socks4a --proxy -x --socks5-hostname --socks5)'
+local tls_versions='(--tlsv1 --sslv2 --sslv3 -1 -2 -3)'
+
+_arguments \
+  '(--append -a)'{--append,-a}'[Append uploaded data to target file]' \
+  '(--user-agent -A)'{--user-agent,-A}'[User-Agent string to send]:User agent' \
+  "$auth_methods"'--anyauth[Automatically determine auth method]' \
+  '*'{--cookie,-b}'[Set cookie]:Cookie' \
+  '(--use-ascii -B)'{--use-ascii,-B}'[Use ASCII transfer mode for FTP or LDAP]' \
+  "$auth_methods"'--basic[Use HTTP Basic authentication]' \
+  '--ciphers[SSL cipher methods to use]:Ciphers' \
+  '--compressed[Request a compressed HTTP response]' \
+  '--connect-timeout[Maximum connection time]:Seconds' \
+  '(--cookie-jar -c)'{--cookie-jar,-c}'[File to which cookies will be written]:File' \
+  '(--continue-at -C)'{--continue-at,-C}'[Resume previous transfer after X bytes]:Byte count' \
+  '--create-dirs[Create local directory hierarchy]' \
+  '--crlf[Convert LF to CRLF in upload]' \
+  '--crlfile[Certificate revocation list file]:File:_path_files' \
+  '*'{--data,-d}'[Send specified data in POST request]:Data:' \
+  '--data-binary[Send specified data with no conversion]:Data:' \
+  '--data-urlencode[Send URL encoded data]:Data:' \
+  "$auth_methods"'--digest[Use HTTP digest authentication]' \
+  '(--disable-eprt --no-eprt --eprt)'{--disable-eprt,--no-eprt}'[Disable EPRT and LPRT commands in FTP]' \
+  '(--disable-eprt --no-eprt --eprt)--eprt[Enable EPRT and LPRT commands in FTP]' \
+  '(--disable-epsv --no-epsv --epsv)'{--disable-epsv,--no-epsv}'[Disable EPSV command in FTP]' \
+  '(--disable-epsv --no-epsv --epsv)--epsv[Enable EPSV command in FTP]' \
+  '(--dump-header -D)'{--dump-header,-D}'[Write protocol headers to file]:File:_path_files' \
+  '(--referer -e)'{--referer,-e}'[Location to send as referer]:URL:' \
+  '--engine[OpenSSL crypto engine to use]:Engine:->engine' \
+  '--egd-file[Path to Entropy Gathering Daemon socket]:Socket:_path_files' \
+  '(--cert -E)'{--cert,-E}'[Certificate file to use]:Certificate file:_path_files' \
+  '--cert-type[Type of certificate file]:Certificate type:(PEM DER ENG)' \
+  '(--cacert --capath)--cacert[CA Certificate file]:Certificate file:_path_files' \
+  '(--cacert --capath)--capath[CA Certificate path]:Certificate path:_path_files -/' \
+  '(--fail -f)'{--fail,-f}'[Fail silently on server errors]' \
+  '--ftp-account[FTP account data]:Account data:' \
+  '--ftp-create-dirs[Create missing directories on FTP server]' \
+  '--ftp-method[How to reach files on FTP server]:Method:(multicwd nocwd singlecwd)' \
+  '--ftp-pasv[Use passive mode for data connections]' \
+  '--ftp-alternative-to-user[Alternative to USER command for FTP]:FTP Command:' \
+  "--ftp-skip-pasv-ip[Ignore IP address in FTP server\'s PASV response]" \
+  '--ftp-pret[Send PRET command before PASV]' \
+  '--ssl[Try to use SSL for connection]' \
+  '--ftp-ssl-control[Require SSL for FTP control connection, clear transfer]' \
+  '--ssl-reqd[Require SSL for all connections]' \
+  '--ftp-ssl-ccc[Shutdown SSL after authentication]' \
+  '--ftp-ssl-ccc-mode[Mode for shutting down SSL on command channel]:Mode:(active passive)' \
+  '*'{--form,-F}'[Form data]:Form data:' \
+  '--form-string[Literal form data]:Form data:' \
+  '(--globoff -g)'{--globoff,-g}'[Turn off URL globbing parser]' \
+  '(--get -G)'{--get,-G}'[Append data from --data or --data-binary to URL after ?]' \
+  '(--help -h)'{--help,-h}'[Usage help]' \
+  '*'{--header,-H}'[Extra header to send in request]:Header:' \
+  '--hostpubmd5[Abort connection unless server public key matches MD5]:MD5:' \
+  '--ignore-content-length[Ignore Content-Length header]' \
+  '(--include -i)'{--include,-i}'[Include HTTP header in output]' \
+  '--interface[Use specified interface name or IP]:Interface:' \
+  '(--head -I)'{--head,-I}'[Fetch the header only]' \
+  '(--junk-session-cookies -j)'{--junk-session-cookies,-j}'[Discard session cookies read from file]' \
+  '(--remote-header-name -J)'{--remote-header-name,-J}'[Use name from Content-Disposition for --remote-name]' \
+  '(--insecure -k)'{--insecure,-k}'[Allow insecure SSL connections]' \
+  '--keepalive-time[Seconds connection is idle before keepalive probes are sent]:seconds:' \
+  '--key[Private key file name]:key:_path_files' \
+  '--key-type[Type of private key file]:type:(DER PEM ENG)' \
+  '--krb[Level of Kerberos authentication]:Kerberos level:(clear safe confidential private)' \
+  '(--config -K)'{--config,-K}'[Read arguments from file]:config file:_path_files' \
+  '--libcurl[Write code for using libcurl to file]:source output file:_path_files' \
+  '--limit-rate[Limit speed to the given rate per second]:rate:' \
+  '--list-only[Force name-only view for FTP directories]' \
+  '--local-port[Range of local ports]:port range:' \
+  '(--location -L)'{--location,-L}'[Follow redirects specified by Location header]' \
+  '--location-trusted[Follow redirects, sending authentication info in all requests]' \
+  '--mail-rcpt[Address to which message should be sent]:recipient:_email_addresses' \
+  '--mail-from[Address to use as sender]:sender:_email_addresses' \
+  '--max-filesize[Maximum file size (in bytes) to download]:max size:' \
+  '(--max-time -m)'{--max-time,-m}'[Maximum time in seconds for the whol operation]:seconds:' \
+  '(--manual -M)'{--manual,-M}'[Display huge help text]' \
+  '(--user -u --netrc -n --netrc-optional)'{--netrc,--netrc-optional,-n}'[Scan .netrc file for login information]' \
+  "$auth_methods"'--negotiate[Enable GSS-Negotiate authentication]' \
+  '(--buffer --no-buffer -N)'{--no-buffer,-N}'[Disable buffering of output stream]' \
+  '(--buffer --no-buffer -N)--buffer[Ensure buffering of output stream]' \
+  '(--no-keepalive --keepalive)--keepalive[Ensure that keepalives are used for TCP connections]' \
+  '(--no-keepalive --keepalive)--no-keepalive[Disable keepalives for TCP connections]' \
+  '(--sessionid --no-sessionid)--sessionid[Disable SSL session-ID caching]' \
+  '(--sessionid --no-sessionid)--no-sessionid[Enforce SSL session-ID caching]' \
+  '--noproxy[Comma separated list of hosts for which proxy should not be used]:hosts: ' \
+  "$auth_methods"'--ntlm[Enable NTML authentication]' \
+  '*'{--output,-o}'[Write output to file]:output file:_path_files' \
+  '*'{--remote-name,-O}'[Write output to file with name from URL]' \
+  '--remote-name-all[Use remote name for all URLs]' \
+  '--pass[Passphrase for private key]:pass phrase: ' \
+  '--post301[Use POST request when following 301 redirect from a POST request]' \
+  '--post302[Use POST request when following 302 redirect from a POST request]' \
+  '--proto[Comma-separated list of protocols for initial retrieval]:protocols:' \
+  '--proto-redir[Comma-separated list of protocols used after a redirect]:protocols:' \
+  "$proxy_auth_methods"'--proxy-anyauth[Automatic authentication method for proxy]' \
+  "$proxy_auth_methods"'--proxy-basic[HTTP Basic authentication method for proxy]' \
+  "$proxy_auth_methods"'--proxy-digest[HTTP Digest authentication method for proxy]' \
+  "$proxy_auth_methods"'--proxy-negotiate[HTTP Negotiate authentication for proxy]' \
+  "$proxy_auth_methods"'--proxy-ntlm[HTTP NTLM authentication for proxy]' \
+  '--proxy1.0[Use specified host and port as HTTP 1.0 proxy]:proxy:' \
+  '(--proxytunnel -p)'{--proxytunnel,-p}'[Use CONNECT to proxy other protocols through HTTP proxy]' \
+  '--pubkey[Public key file]:public key:_path_files' \
+  '(--ftp-port -P)'{--ftp-port,-P}'[Use active FTP with specified address]:address:' \
+  '-q[Do not read curlrc file (must be first option)]' \
+  '*'{--quote,-Q}'[Send arbitrary FTP or SFTP command]:command: ' \
+  '--random-file[File from which to read random data for SSL]:file:_path_files' \
+  '(--range -r)'{--range,-r}'[Retreived byte range]:byte range:' \
+  '--raw[Disable decoding of HTTP content or transfer encodings]' \
+  '(--remote-time -R)'{--remote-time,-R}'[Try to make timestamp on local file match the remote timestamp]' \
+  '--retry[Retry up to specified number of times in case of transient errors]:retries: ' \
+  '--retry-delay[Sleep for specified number of seconds between attempts]:seconds: ' \
+  '--retry-max-time[Maximum time from inital request until final attempt is started]:seconds:' \
+  '(--silent -s)'{--silent,-s}'[Silent mode]' \
+  '(--show-error -S)'{--show-error,-S}'[Show error messages in silent mode]' \
+  "$proxy_methods"'--socks4[Use specified SOCKS4 proxy]:server:' \
+  "$proxy_methods"'--socks4a[Use specified SOCKS4a proxy]:server:' \
+  "$proxy_methods"--socks5{,-hostname}'[Use specified SOCKS5 proxy]:server:' \
+  '--socks5-gssapi-service[Service name to use for SOCKS authentication]:service:' \
+  '--socks5-gssapi-nec[Allow unprotected exchange of protection mode negotiation]' \
+  '--tcp-nodelay[Turn on TCP_NODELAY option]' \
+  '*'{--telnet-option,-t}'[Pass options to telnet protocol]:option:' \
+  '--tftp-blksize[Set block size for TFTP]:block size:' \
+  '*'{--upload-file,-T}'[Upload specified file to server]:file:_path_files' \
+  '(--trace-ascii --verbose -v)--trace[Write trace dump to specified file]:trace file:_path_files' \
+  '(--trace --verbose -v)--trace-ascii[Write ASCII trace dump to specified file]:trace file:_path_files' \
+  '--trace-time[Prepend timestamp to trace and verbose lines]' \
+  '(--user -u --netrc -n --netrc-optional)'{--user,-u}'[Specifiy user and password separated by colon]:user: ' \
+  '(--proxy-user -U)'{--proxy-user,-U}'[User and password for proxy separated by colon]:user:' \
+  '(--trace --trace-ascii --verbose -v)'{--verbose,-v}'[Verbose output]' \
+  '(--version -V)'{--version,-V}'[Display version information]' \
+  '(--write-out -w)'{--write-out,-w}'[Format to use for output after success]:format: ' \
+  "$proxy_methods"{--proxy,-x}'[HTTP proxy to use]:proxy: ' \
+  '(--request -X)'{--request,-X}'[Custom HTTP request method]:method: ' \
+  '(--speed-time -y)'{--speed-time,-y}'[Time for speed-limit]:seconds: ' \
+  '(--speed-limit -Y)'{--speed-limit,-Y}'[Abort connection if speed drops below given rate]:bytes per second: ' \
+  '(--time-cond -z)'{--time-cond,-z}'[Make request conditional on files modification time]:date:_path_files' \
+  '--max-redirs[Maximum number of redirections allowed]:number: ' \
+  '(--http1.0 -0)'{--http1.0,-0}'[Use HTTP 1.0]' \
+  "$tls_versions"{--tlsv1,-1}'[Use TLS version 1]' \
+  "$tls_versions"{--sslv2,-2}'[Use SSL version 2]' \
+  "$tls_versions"{--sslv3,-3}'[Use SSL version 3]' \
+  '(--ipv4 --ipv6 -4 -6)'{--ipv4,-4}'[Resolve names to IPv4 addresses only]' \
+  '(--ipv4 --ipv6 -4 -6)'{--ipv6,-6}'[Resolve names to IPv6 addresses only]' \
+  '(--progress-bar -#)'{--progress-bar,-#}'[Display progress bar instead of statistics]' \
+  '*:URL:_urls' \
+  && ret=0
+
+case "$state" in
+  (engine)
+    local engines="$(
+      _call_program engines $service --engine list | sed -n -e 's/^  *//p'
+    )"
+    _values -w 'Engine' ${(f)engines}
+    ;;
+esac

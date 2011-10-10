@@ -3,6 +3,17 @@ alias gi=git
 alias stty='noglob stty'
 alias wget='noglob wget'
 
+for v in ri ri1.8 ri1.9; do
+  if [[ -n "$(whence $v)" ]]; then
+    alias $v='LESS="$LESS -fR"'" noglob command $v -fansi"
+  fi
+done
+
+# Avoid epoll bug in libevent
+# Without this commands where stderr is redirected to /dev/null hang
+# http://sourceforge.net/mailarchive/message.php?msg_id=28004727
+alias tmux="EVENT_NOEPOLL=1 command tmux"
+
 case "$EDITOR" in
 	vim|*/vim)
 		alias -g L="| view -"

@@ -3,6 +3,7 @@
 
 mailboxes !
 mailboxes =INBOX/wiki
+mailboxes =INBOX/junk
 mailboxes =INBOX/sympa
 
 <%# mlist 'sec/linux-security' %>
@@ -25,6 +26,7 @@ mailboxes =rss
 <%= mlist 'mail/mutt-dev', :from => 'aaron+mutt@schrab.com' %>
 <%= mlist 'dev/zsh', :address => 'zsh-(users|workers)@zsh.org' %>
 <%= mlist 'dev/git', :address => 'git@vger.kernel.org' %>
+<%= mlist 'dev/tmux', :address => 'tmux-users@lists.sourceforge.net' %>
 
 <%= mlist 'mail/spamtools', :from => 'aaron+spamtools@schrab.com' %>
 

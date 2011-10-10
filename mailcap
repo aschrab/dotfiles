@@ -30,6 +30,7 @@ text/x-csrc; cat -v %s; copiousoutput
 text/english; cat -v %s; copiousoutput
 
 #image/*; xfix -s -- display %s; test=xfix -s -- /home/aarons/bin/runningx
+image/*; display %s
 image/gif;  ; x-mozilla-flags=internal
 image/jpeg; ; x-mozilla-flags=internal
 

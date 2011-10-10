@@ -14,11 +14,13 @@ _pgsql_get_identity () {
     _pgsql_user=${(v)opt_args[(i)-U|--username]}
     _pgsql_port=${(v)opt_args[(i)-p|--port]}
     _pgsql_host=${(v)opt_args[(i)-h|--host]}
+    _pgsql_cluster=${(v)opt_args[(i)--cluster]}
 
     _pgsql_params=(
         ${_pgsql_user:+"--username=$_pgsql_user"}
         ${_pgsql_port:+"--port=$_pgsql_port"}
         ${_pgsql_host:+"--host=$_pgsql_host"}
+        ${_pgsql_cluster:+"--cluster $_pgsql_cluster"}
     )
 }
 
@@ -28,6 +30,15 @@ _pgsql_host_or_dir() {
     _alternative \
         'hosts:host:_hosts' \
         'directories:directory:_directories'
+}
+
+_pgsql_clusters () {
+    local clusters
+
+    clusters=($(awk '{print $1"/"$2 }' ~/.postgresqlrc))
+    clusters=($clusters /etc/postgresql/*/*(#q/:s,/etc/postgresql/,,) )
+
+    compadd "$@" -a clusters
 }
 
 _pgsql_users () {
@@ -183,6 +194,7 @@ _pgsql_utils () {
         {-p+,--port=}':database port number:'
         {-U+,--username=}':connect as user:_pgsql_users'
         {-W,--password}'[prompt for password]'
+        '--cluster:Database cluster:_pgsql_clusters'
     )
 
     # Taken from

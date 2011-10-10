@@ -1,4 +1,5 @@
 # vim: ft=perl
+# Config for re.pl from CPAN module Devel::REPL
 
 $ENV{NOPASTE_SERVICES} = 'Gist';
 
@@ -6,6 +7,7 @@ foreach (qw{Timing DumpHistory OutputCache Interrupt Nopaste MultiLine::PPI Pack
 	$_REPL->load_plugin($_);
 }
 
+use Term::ReadLine::Gnu;
 use Term::ANSIColor;
 
 sub col {
