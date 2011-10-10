@@ -23,7 +23,7 @@ export TTY
 zset_title() {
   local xterm screen tmux
   case "$TERM" in
-    xterm|xtermc|xterm-debian|xterm-color|rxvt-unicode|rxvt|gnome|Eterm)
+    xterm*|rxvt*|gnome*|Eterm)
       xterm=y
       ;;
     screen*)

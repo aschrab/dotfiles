@@ -40,13 +40,12 @@ HostKeyAlias app1.ord.corvisa.com
 
 Host aevo.qqx.org
 User root
+Port 22
 ForwardX11 no
 
 Host *.qqx.org
 ForwardAgent yes
 ForwardX11 yes
-
-Host milamber* tanstaafl*
 Port 222
 
 Host mlug.milwaukeelug.org
