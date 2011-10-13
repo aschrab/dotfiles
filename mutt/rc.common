@@ -101,51 +101,50 @@ bind  pager     "\Cn"   search-next
 #bind  pager     n       next-unread
 macro pager     "\Ck"	"|gpg --import\n"
 macro pager     "\Cb"   "|urlview\n"
-macro pager "\eh" "<view-attachments><next-entry><edit-type><bol><delete-char><enter><exit><exit><display-message>" "View alternative"
+macro pager	"\eh"	"<view-attachments><next-entry><edit-type><bol><delete-char><enter><exit><exit><display-message>" "View alternative"
 
-macro pager ,@r13on "<enter-command>set display_filter='tr A-Za-z N-ZA-Mn-za-m'; macro pager '#' ,@r13off 'Toggle ROT13 decoding'\n<display-toggle-weed><display-toggle-weed><enter-command>unset display_filter\n"  "Turn on ROT13 decoding"
-macro pager ,@r13off "<enter-command>macro pager '#' ,@r13on 'Toggle ROT13 decoding'\n<display-toggle-weed><display-toggle-weed>"  "Turn off ROT13 decoding"
-macro pager '#' ,@r13on       "Toggle ROT13 decoding"
+macro pager	,@r13on	"<enter-command>set display_filter='tr A-Za-z N-ZA-Mn-za-m'; macro pager '#' ,@r13off 'Toggle ROT13 decoding'\n<display-toggle-weed><display-toggle-weed><enter-command>unset display_filter\n"  "Turn on ROT13 decoding"
+macro pager	,@r13off "<enter-command>macro pager '#' ,@r13on 'Toggle ROT13 decoding'\n<display-toggle-weed><display-toggle-weed>"  "Turn off ROT13 decoding"
+macro pager	'#'	,@r13on       "Toggle ROT13 decoding"
 
 set my_wrap=100
-macro pager l "<enter-command>set my_save=\$my_wrap my_wrap=\$wrap wrap=\$my_save\n" "Toggle wrap"
+macro pager	l	"<enter-command>set my_save=\$my_wrap my_wrap=\$wrap wrap=\$my_save\n" "Toggle wrap"
 
 bind  index	<Tab>	next-new
-macro index "\eh" "<view-attachments><next-entry><edit-type><bol><delete-char><enter><exit><display-message>" "View alternative"
+macro index	"\eh"	"<view-attachments><next-entry><edit-type><bol><delete-char><enter><exit><display-message>" "View alternative"
 bind  index	B	bounce-message
-#bind  index     n       next-entry
-macro index     A       "c+Lists/inet\n"
-macro index     "\Ck"	"|pgp -kaf\n"
+#bind  index	n	next-entry
+macro index	A	"c+Lists/inet\n"
+macro index	"\Ck"	"|pgp -kaf\n"
 macro index	G	"!fetchmail\n"
-macro index     "\Cb"   "|urlview\n"
+macro index	"\Cb"	"|urlview\n"
 
-macro attach    "\Ck"	"|pgp -kaf\n"
+macro attach	"\Ck"	"|pgp -kaf\n"
 
-macro  compose   E       "Ge"
-macro compose S "Fpgp +verbose=0 -fast +clearsig=on\ny^T^Uapplication/pgp; +format=text; x-action=sign\n" # To pgp-sign the old way :)
+macro compose	E	"Ge"
+macro compose	S	"Fpgp +verbose=0 -fast +clearsig=on\ny^T^Uapplication/pgp; +format=text; x-action=sign\n" # To pgp-sign the old way :)
 
-bind	editor	"\Ct"	transpose-chars
+bind  editor	"\Ct"	transpose-chars
 
 # Deal with subjects in ruby-core mailing list having "[ruby-core:1234] prepended
 set reply_regexp="^(\[[a-z0-9:-]*\]|((re|aw)(\\[[0-9]+])?:)[        ]*)+"
 
-color body  red	default	\
- "((s?ftp|https?)://|(ftp|www[-a-z0-9]*)\\.)[^ \t\r\n\"<>]*[^].,:;!)? \t\r\n<>\"]"
-color body  magenta	default	\
- '(mailto:)?[a-z0-9]([-+=._%!$#]?[a-z0-9])*@[-a-z0-9.]+\.[a-z][a-z]+'
-#color body magenta default '^-----(BEGIN|END) PGP .*'
-color normal            black   default
-color status		black   green
+color body		red	default	"((s?ftp|https?)://|(ftp|www[-a-z0-9]*)\\.)[^ \t\r\n\"<>]*[^].,:;!)? \t\r\n<>\"]"
+color body		magenta	default	'(mailto:)?[a-z0-9]([-+=._%!$#]?[a-z0-9])*@[-a-z0-9.]+\.[a-z][a-z]+'
+#color body		magenta	default '^-----(BEGIN|END) PGP .*'
+color normal		black	default
+color status		black	green
 color indicator		default	cyan
 color tree		blue	default
 color error		red	default
-color attachment        white blue #	default
+color attachment	white	blue #	default
 color hdrdefault	cyan	default
-color header		red	default \
-      "^X-(Suspect-reason|spam-action|procmail|Diagnostic|Processed|Country):"
+color header		red	default "^X-(Suspect-reason|spam-action|procmail|Diagnostic|Processed|Country):"
 color header		red	default "^X-Debian-PR-Package:"
-color index             red     default ~T
+color index		red	default ~T
 color signature		cyan	default
-color markers           blue    default
-color tilde             white    default
+color markers		blue	default
+color tilde		white	default
 color quoted		magenta	default
+
+# vim: tabstop=8
