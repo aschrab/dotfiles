@@ -132,7 +132,7 @@ set reply_regexp="^(\[[a-z0-9:-]*\]|((re|aw)(\\[[0-9]+])?:)[        ]*)+"
 color body		red	default	"((s?ftp|https?)://|(ftp|www[-a-z0-9]*)\\.)[^ \t\r\n\"<>]*[^].,:;!)? \t\r\n<>\"]"
 color body		magenta	default	'(mailto:)?[a-z0-9]([-+=._%!$#]?[a-z0-9])*@[-a-z0-9.]+\.[a-z][a-z]+'
 #color body		magenta	default '^-----(BEGIN|END) PGP .*'
-color normal		black	default
+color normal		default	default
 color status		black	green
 color indicator		default	cyan
 color tree		blue	default
@@ -141,6 +141,7 @@ color attachment	white	blue #	default
 color hdrdefault	cyan	default
 color header		red	default "^X-(Suspect-reason|spam-action|procmail|Diagnostic|Processed|Country):"
 color header		red	default "^X-Debian-PR-Package:"
+color index		default	default ~A
 color index		red	default ~T
 color signature		cyan	default
 color markers		blue	default
