@@ -34,6 +34,8 @@ image/*; display %s
 image/gif;  ; x-mozilla-flags=internal
 image/jpeg; ; x-mozilla-flags=internal
 
+application/pdf; pdftotext -layout %s -; copiousoutput
+
 application/debian-dt; recode %{charset}; copiousoutput
 application/x-zip-compressed; unzip -l %s; copiousoutput
 application/x-gunzip;/bin/gunzip -c %s; copiousoutput
