@@ -2,6 +2,8 @@
 [user]
 	email = aaron@schrab.com
 	name = Aaron Schrab
+[url "ssh://pug.qqx.org/srv/git/"]
+	pushInsteadOf = http://git.qqx.org/
 [core]
 	pager = less -R
 	#autocrlf = input
