@@ -9,12 +9,10 @@ defscrollback 500
 
 #termcapinfo xterm 'hs:ts=\E]2;:fs=\007:ds=\E]2;screen@pug\007\E]1;screen@pug\007'
 termcapinfo linux 'hs:ts=\E]2;:fs=\007:ds='
-termcapinfo xterm 'hs:ts=\E]2;:fs=\007:ds=\E]2;screen@'"$host"'\007\E]1;screen@'"$host"'\007'
-termcapinfo gnome 'hs:ts=\E]2;:fs=\007:ds=\E]2;screen@'"$host"'\007\E]1;screen@'"$host"'\007'
-termcapinfo rxvt 'hs:ts=\E]2;:fs=\007:ds=\E]2;screen@'"$host"'\007\E]1;screen@'"$host"'\007'
+termcapinfo xterm*|gnome*|rxvt* 'hs:ts=\E]2;:fs=\007:ds=\E]2;screen@'"$host"'\007\E]1;screen@'"$host"'\007'
 
 # tell screen that you term can scroll
-termcapinfo xterm ti@:te@
+termcapinfo xterm*|gnome*|rxvt* ti@:te@
 # bind Shift+PgUp/PgDn
 bindkey -m "^[[5;2~" stuff ^b
 bindkey -m "^[[6;2~" stuff ^f

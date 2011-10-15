@@ -23,19 +23,13 @@ export TTY
 zset_title() {
   local xterm screen tmux
   case "$TERM" in
-    xterm|xtermc|xterm-debian|xterm-color|rxvt-unicode|rxvt|gnome|Eterm)
+    xterm*|rxvt*|gnome*|Eterm)
       xterm=y
       ;;
     screen*)
       screen=y
       ;;
   esac
-
-  if [[ -n $TMUX ]]; then
-    xterm=y
-    tmux=y
-    screen=n
-  fi
 
   if [[ $xterm == y || $screen == y ]]; then
     print -nP "\E]1;${1:-%(#.#.$)$host$DEBCHROOT}\C-g"
@@ -46,11 +40,7 @@ zset_title() {
   fi
 
   if [[ $screen == y ]]; then
-    print -nP "\E]2;\En ${1:-%(#.#.$)$host$DEBCHROOT($tty)!%~}\C-g\Ek${1:-$host$DEBCHROOT%(#.#.$)%.}\E\\"
-  fi
-
-  if [[ $tmux == y ]]; then
-    print -nP "\Ek$host$DEBCHROOT:%~\E\\"
+    print -nP "\Ek${1:-$host$DEBCHROOT:%~}\E\\"
   fi
 }
 precmd_functions+='zset_title'

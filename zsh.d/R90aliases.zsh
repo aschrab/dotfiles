@@ -56,6 +56,7 @@ alias trt=traceroute
 #[[ -n $(whence gmake)  ]] && alias make=gmake
 [[ -n $(whence pinfo)  ]] && alias info=pinfo
 [[ -n $(whence screen) ]] && alias screen='screen -a -A'
+[[ -n $(whence htop) ]] && alias top=htop
 
 LS=$(whence gnuls)
 if [[ -n $LS ]]; then
