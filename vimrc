@@ -98,6 +98,7 @@ set modeline
 set wildmenu
 set wildmode=longest:full,full
 set wildignore+=*.o,*~
+set tags=tags,TAGS,./tags;,./TAGS;
 
 set foldopen=mark,quickfix,tag,block,hor,search,jump
 "}}}
