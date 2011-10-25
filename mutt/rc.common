@@ -15,6 +15,7 @@ set use_domain
 #set hostname='execpc.com'
 
 set allow_8bit=no
+set attach_charset="utf-8:iso-8859-1:iso-8859-15"
 set envelope_from
 set nobounce_delivered
 set dsn_notify=failure         # notify on transmission failure
