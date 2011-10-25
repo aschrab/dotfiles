@@ -130,7 +130,7 @@ set t_vb=
 :endif
 
 " Display tabs and trailing spaces {{{
-  set listchars=tab:»­,trail:·
+set listchars=tab:»­,trail:·
 set list
 "}}}
 
