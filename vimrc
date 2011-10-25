@@ -1,5 +1,6 @@
 " vim: fdm=marker
 :version 4.0
+scriptencoding utf-8
 
 let mapleader=','
 
@@ -129,11 +130,7 @@ set t_vb=
 :endif
 
 " Display tabs and trailing spaces {{{
-:if &encoding == "utf-8"
   set listchars=tab:Â»Â­,trail:Â·
-:else
-  set listchars=tab:»­,trail:·
-:endif
 set list
 "}}}
 
