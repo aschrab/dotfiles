@@ -241,6 +241,7 @@ map <F2> <ESC>`>a<CR>_<ESC>`<i_<CR><ESC>:s/\(.\)/\1<C-V><C-H>\1/g<CR>J2xkJxX
 dig !! 161
 dig ?? 191
 dig SS 167
+dig ?! 8253 " Interrobang
 
 au BufRead *
 	\ if getline(1) =~ '^RECORDTYPE:' | setf cade | endif
