@@ -13,7 +13,6 @@
 #   SECONDS seconds past the minute
 
 # Original version Aaron Schrab <aarons@execpc.com> 1998-05-07
-# $Id: daterc,v 1.1 1998/05/07 22:10:42 aarons Exp $
 
 # Assume there will be an error, clear error status before normal return
 ERR=no

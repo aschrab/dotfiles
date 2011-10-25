@@ -10,8 +10,6 @@ S="[ 	]"
 NL="
 "
 
-RCVERSION="$Id: rc,v 1.13 2003/01/21 04:13:29 ats Exp $"
-
 LOCALSERVER="(pug\.(schrab\.com|qqx\.org)|((vm[0-9]+|[abcyz])\.mx|smtpgate)\.execpc\.com)"
 
 :0

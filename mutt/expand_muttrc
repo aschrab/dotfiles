@@ -1,5 +1,4 @@
 #!/usr/bin/ruby -w
-# $Id$
 
 #$debug_fh = File.open('/tmp/expand_muttrc.debug', 'w' )
 #$debug_fh.puts "I have PID #{Process.pid}"
