@@ -89,7 +89,8 @@ set cpoptions+=$
 set laststatus=2
 set matchpairs=(:),{:},[:],<:>
 set fileformats=unix,dos,mac
-set fileencodings=ucs-bom,utf-8,cp1252,latin1,iso-2022-jp,euc,sjis
+set fileencoding=utf-8
+set fileencodings=ucs-bom,utf-8,euc-jp,latin1
 set pastetoggle=<F4>
 set modeline
 set modelines=5
