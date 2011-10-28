@@ -12,7 +12,12 @@ done
 # Avoid epoll bug in libevent
 # Without this commands where stderr is redirected to /dev/null hang
 # http://sourceforge.net/mailarchive/message.php?msg_id=28004727
-#alias tmux="EVENT_NOEPOLL=1 command tmux"
+# But with versions of libevent < 2.0 this exposes an even worse bug
+if ldd =tmux | grep -q libevent-1; then
+  :
+else
+  alias tmux="EVENT_NOEPOLL=1 command tmux"
+fi
 
 case "$EDITOR" in
 	vim|*/vim)
