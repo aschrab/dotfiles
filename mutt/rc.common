@@ -128,7 +128,7 @@ macro compose	S	"Fpgp +verbose=0 -fast +clearsig=on\ny^T^Uapplication/pgp; +form
 bind  editor	"\Ct"	transpose-chars
 
 # Deal with subjects in ruby-core mailing list having "[ruby-core:1234] prepended
-set reply_regexp="^(\[[a-z0-9:-]*\]|((re|aw)(\\[[0-9]+])?:)[        ]*)+"
+set reply_regexp="^(\[[a-z0-9:-]*\]|((re|a(nt)?w)(\\[[0-9]+])?:)[        ]*)+"
 
 color body		red	default	"((s?ftp|https?)://|(ftp|www[-a-z0-9]*)\\.)[^ \t\r\n\"<>]*[^].,:;!)? \t\r\n<>\"]"
 color body		magenta	default	'(mailto:)?[a-z0-9]([-+=._%!$#]?[a-z0-9])*@[-a-z0-9.]+\.[a-z][a-z]+'
