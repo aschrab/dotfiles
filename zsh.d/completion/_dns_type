@@ -1,4 +1,4 @@
 #autoload
 
 _wanted dns_type expl 'DNS Type' \
-  compadd - A AAAA MX CNAME NS SRV PTR SSHFP
+  compadd - A AAAA CNAME LOC MX NS PTR SOA SPF SRV SSHFP TXT
