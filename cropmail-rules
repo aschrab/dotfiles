@@ -176,6 +176,8 @@ when /<git\.vger\.kernel\.org>/i
   list = 'dev/git'
 when /<tmux-users\.lists\.sourceforge\.net>/i
   list = 'dev/tmux'
+when /<meld-list\.gnome\.org>/i
+  list = 'dev/meld'
 end unless list
 
 case headers[:mailing_list]
