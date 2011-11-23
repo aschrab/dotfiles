@@ -48,3 +48,4 @@ WORDCHARS='`~!@#$%^&*()-_+{}[]\|:;",.<>/?'\'
 typeset -gaU preexec_functions
 typeset -gaU precmd_functions
 typeset -gaU chpwd_functions
+typeset -gaU chpwd_functions
