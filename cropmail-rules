@@ -178,6 +178,8 @@ when /<tmux-users\.lists\.sourceforge\.net>/i
   list = 'dev/tmux'
 when /<meld-list\.gnome\.org>/i
   list = 'dev/meld'
+when /<sqlfairy-developers\.lists\.sourceforge\.net>/i
+  list = 'dev/sql-translator'
 end unless list
 
 case headers[:mailing_list]
