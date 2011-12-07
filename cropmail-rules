@@ -196,12 +196,12 @@ end unless list
 
 case headers[:return_path]
 when /<bugtraq-return-.*@securityfocus/i
-  list = bugtraq
+  list = 'bugtraq'
 when /<lsm-workers-admin@lists/i
   list = 'lsm-workers'
 when /<crypto-gram-return/i
   list = 'subs/crypto'
-  fixlinks = yes
+  fixlinks = true
 end unless list
 
 case headers[:sender]
