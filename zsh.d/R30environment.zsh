@@ -25,6 +25,8 @@ export NNTPSERVER="news.execpc.com"
 export EMAIL="aaron@schrab.com"
 export DEBEMAIL="$EMAIL"
 
+export PSQL_EDITOR="vim +'set ft=sql'"
+
 if [[ -d "/usr/local/lib/site_perl" ]]; then
   export PERL5LIB="/usr/local/lib/site_perl"
 fi
