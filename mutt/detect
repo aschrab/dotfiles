@@ -47,7 +47,7 @@
 
 % if mutt_variable :xterm_title
   set xterm_set_titles
-  set xterm_title="Mutt %f %?n?%n/?%m"
+  set xterm_title="Mutt %f %n/%m"
 % end
 
 % spam_fmt=''
