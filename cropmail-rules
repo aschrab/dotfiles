@@ -1,8 +1,9 @@
 Message.maildir = '/srv/mail/pug.qqx.org/ats'
 Message.default_format = Maildir
 
-#require 'gdbm'
-#$dbfile = "#{Message.maildir}/dupcache"
+require 'gdbm'
+$dbfile = "#{Message.maildir}/dupcache"
+$dupcheck = false
 
 begin
   save Time.now.strftime('/srv/mail/pug.qqx.org/backup_ats/%Y/%m/%d' )
@@ -13,14 +14,17 @@ end
 class ::Cropmail::Message
   def save_md mailbox
     dup = false
-#    GDBM.open( $dbfile, 0600, GDBM::WRCREAT|GDBM::SYNC ) do |dbm|
-#      key = "#{mailbox}:#{message_id}"
-#      if dbm[key]
-#        dup = true
-#      else
-#        dbm[key] = Time.now.to_i.to_s
-#      end
-#    end
+
+    if $dupcheck
+      GDBM.open( $dbfile, 0600, GDBM::WRCREAT|GDBM::SYNC ) do |dbm|
+        key = "#{mailbox}:#{message_id}"
+        if dbm[key]
+          dup = true
+        else
+          dbm[key] = Time.now.to_i.to_s
+        end
+      end
+    end
 
     if dup
       log "Saving duplicate message"
@@ -173,6 +177,7 @@ when /<dbix-class\.lists\.scsys\.co\.uk>/i
 when /<zsh-(workers|users)\.zsh\.org>/i
   list = 'dev/zsh'
 when /<git\.vger\.kernel\.org>/i
+  $dupcheck = true
   list = 'dev/git'
 when /<tmux-users\.lists\.sourceforge\.net>/i
   list = 'dev/tmux'
