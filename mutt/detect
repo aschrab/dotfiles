@@ -7,7 +7,7 @@
 
 % if %w(pug milamber).include? ENV['host']
   account-hook ats@pug.qqx.org 'set tunnel="dovecot --exec-mail imap"'
-  set editor="xfix -s -- vim '+/^$/+1'"
+  set editor="twrap vim '+/^$/+1'"
 % end
 
 % alternates = [ ]
@@ -47,7 +47,7 @@
 
 % if mutt_variable :xterm_title
   set xterm_set_titles
-  set xterm_title="Mutt %f %?n?%n/?%m"
+  set xterm_title="Mutt %f %n/%m"
 % end
 
 % spam_fmt=''

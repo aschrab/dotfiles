@@ -2,6 +2,8 @@
 [user]
 	email = aaron@schrab.com
 	name = Aaron Schrab
+[url "ssh://pug.qqx.org/srv/git/"]
+	pushInsteadOf = http://git.qqx.org/
 [core]
 	pager = less -R
 	#autocrlf = input
@@ -31,6 +33,7 @@
 	sf = svn fetch
 	review = "!f() { for rev in $(git log --reverse --format=%H $@); do git show $rev; done; }; f"
 	show-commit = log -1 -p
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit
 
 [push]
 	default = current

@@ -176,6 +176,10 @@ when /<git\.vger\.kernel\.org>/i
   list = 'dev/git'
 when /<tmux-users\.lists\.sourceforge\.net>/i
   list = 'dev/tmux'
+when /<meld-list\.gnome\.org>/i
+  list = 'dev/meld'
+when /<sqlfairy-developers\.lists\.sourceforge\.net>/i
+  list = 'dev/sql-translator'
 end unless list
 
 case headers[:mailing_list]
@@ -192,12 +196,12 @@ end unless list
 
 case headers[:return_path]
 when /<bugtraq-return-.*@securityfocus/i
-  list = bugtraq
+  list = 'bugtraq'
 when /<lsm-workers-admin@lists/i
   list = 'lsm-workers'
 when /<crypto-gram-return/i
   list = 'subs/crypto'
-  fixlinks = yes
+  fixlinks = true
 end unless list
 
 case headers[:sender]

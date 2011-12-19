@@ -1,5 +1,3 @@
-# $Id$
-
 # "\C-I" self-insert
 
 # isearch-terminators is a list of sequences that, when used in incremental

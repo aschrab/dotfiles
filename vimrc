@@ -1,6 +1,6 @@
-" $Id$
 " vim: fdm=marker
 :version 4.0
+scriptencoding utf-8
 
 let mapleader=','
 
@@ -90,7 +90,8 @@ set cpoptions+=$
 set laststatus=2
 set matchpairs=(:),{:},[:],<:>
 set fileformats=unix,dos,mac
-set fileencodings=ucs-bom,utf-8,cp1252,latin1,iso-2022-jp,euc,sjis
+set fileencoding=utf-8
+set fileencodings=ucs-bom,utf-8,euc-jp,latin1
 set pastetoggle=<F4>
 set modeline
 set modelines=5
@@ -98,6 +99,7 @@ set modeline
 set wildmenu
 set wildmode=longest:full,full
 set wildignore+=*.o,*~
+set tags=tags,TAGS,./tags;,./TAGS;
 
 set foldopen=mark,quickfix,tag,block,hor,search,jump
 "}}}
@@ -128,18 +130,15 @@ set t_vb=
 :endif
 
 " Display tabs and trailing spaces {{{
-:if &encoding == "utf-8"
-  set listchars=tab:»­,trail:·
-:else
-  set listchars=tab:��,trail:�
-:endif
+set listchars=tab:▶·,trail:∙,precedes:«,extends:»
+" eol:↲
 set list
 "}}}
 
 set guicursor=n-v-c:block-Cursor-blinkon0,ve:ver35-Cursor-blinkon0,o:hor50-Cursor-blinkon0,i-ci:ver25-Cursor-blinkon0,r-cr:hor20-Cursor-blinkon0,sm:block-Cursor-blinkon0
 
 " Abbreviations/automatic spelling correction {{{
-iab fo of
+"iab fo of " Too short, problematic when editing XSLT files for fop
 iab teh the
 iab adn and
 iab nad and
@@ -242,6 +241,7 @@ map <F2> <ESC>`>a<CR>_<ESC>`<i_<CR><ESC>:s/\(.\)/\1<C-V><C-H>\1/g<CR>J2xkJxX
 dig !! 161
 dig ?? 191
 dig SS 167
+dig ?! 8253 " Interrobang
 
 au BufRead *
 	\ if getline(1) =~ '^RECORDTYPE:' | setf cade | endif

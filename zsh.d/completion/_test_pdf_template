@@ -1,0 +1,3 @@
+#compdef test_pdf_template
+
+_path_files -g '*.pdf'

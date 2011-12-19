@@ -1,5 +1,3 @@
-# $Id$
-
 HISTFILE = "~/.irb.hist"
 MAXHISTSIZE = 100
 

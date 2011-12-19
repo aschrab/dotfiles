@@ -1,4 +1,3 @@
-# $Id$
 def mlist mbox, opts={} #{{{
   case mbox
   when Hash: opts = mbox
