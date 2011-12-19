@@ -253,11 +253,11 @@ _pgsql_utils () {
     )
 
     case "$service" in
-        psql)     _psql "$@"     ;;
-        pg_dump)  _pg_dump "$@"  ;;
+        psql)       _psql "$@"       ;;
+        pg_dump)    _pg_dump "$@"    ;;
         pg_restore) _pg_restore "$@" ;;
-        createdb) _createdb "$@" ;;
-        dropdb)   _dropdb "$@"   ;;
+        createdb)   _createdb "$@"   ;;
+        dropdb)     _dropdb "$@"     ;;
     esac
 }
 
