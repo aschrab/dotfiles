@@ -1,4 +1,4 @@
-#compdef psql pg_dump createdb dropdb
+#compdef psql pg_dump pg_restore createdb dropdb
 
 # Source: http://happygiraffe.net/svn/public/trunk/zsh/_pgsql_utils
 #
@@ -155,6 +155,42 @@ _pg_dump () {
         ':PostgreSQL database:_pgsql_databases'
 }
 
+_pg_restore () {
+    local curcontext="$curcontext" state line expl
+    typeset -A opt_args
+
+    _arguments -C -s \
+        "$_pgsql_common_opts[@]" \
+        {-a,--data-only}'[restore only data]' \
+        {-c,--clean}'[drop database objects before creating them]' \
+        {-C,--create}'[create database]' \
+        {-d,--dbname=}'[restore into the database]:database to restore into:_pgsql_databases' \
+        {-e,--exit-on-error}'[exit at the first error]' \
+        {-f,--file=}'[output file for generated script]:_files' \
+        {-F,--format=}'[format of the archive]:_values "format" "p[plain text]" "t[tar]" "c[custom]"' \
+        {-I,--index=}'[restore only the named index]' \
+        {-j,--number-of-jobs=}'[use multiple jobs fore restore]' \
+        {-l,--list}'[list archive contents]' \
+        {-L,--use-list=}'[restore only elements listed in file]:_files' \
+        {-n,--schema=}'[restore only elements from schema]:schema to restore:' \
+        {-O,--no-owner}'[do not restore ownership]' \
+        '--no-tablespaces[restore all objects to default tablespace]' \
+        '--no-security-label[do not restore security labels]' \
+        {-P,--function=}'[restore only the named function]:function name:' \
+        {-s,--schema-only}'[restore schema, not data]' \
+        {-S,--superuser=}'[account to use to disable triggers]' \
+        {-t,--table=}'[restore only the named table]:table to restore:' \
+        {-T,--trigger=}'[restore only the named trigger]:trigger to restore:' \
+        {-v,--verbose}'[verbose mode]' \
+        {-V,--version}'[display version of pg_restore]' \
+        {-x,--no-privileges,--no-acl}'[do not restore access privileges]' \
+        '--disable-triggers[disable triggers around data only restore]' \
+        '--use-set-session-authorization[use standard commands to set ownership]' \
+        '--no-data-for-failed-tables[skip data for tables not created]' \
+        {-1,--single-transaction}'[use a single transaction]' \
+        '1:Archive file:_files'
+}
+
 _createdb () {
     local curcontext="$curcontext" state line expl
     typeset -A opt_args
@@ -219,6 +255,7 @@ _pgsql_utils () {
     case "$service" in
         psql)     _psql "$@"     ;;
         pg_dump)  _pg_dump "$@"  ;;
+        pg_restore) _pg_restore "$@" ;;
         createdb) _createdb "$@" ;;
         dropdb)   _dropdb "$@"   ;;
     esac
