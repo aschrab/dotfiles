@@ -123,7 +123,7 @@ macro index	"\Cb"	"|urlview\n"
 macro attach	"\Ck"	"|pgp -kaf\n"
 
 macro compose	E	"Ge"
-macro compose	S	"Fpgp +verbose=0 -fast +clearsig=on\ny^T^Uapplication/pgp; +format=text; x-action=sign\n" # To pgp-sign the old way :)
+macro compose	"\eS"	"Fpgp +verbose=0 -fast +clearsig=on\ny^T^Uapplication/pgp; +format=text; x-action=sign\n" # To pgp-sign the old way :)
 
 bind  editor	"\Ct"	transpose-chars
 
