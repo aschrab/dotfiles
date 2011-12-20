@@ -132,6 +132,9 @@ set reply_regexp="^(\[[a-z0-9:-]*\]|((re|a(nt)?w(ort)?)(\\[[0-9]+])?:)[        ]
 
 color body		red	default	"((s?ftp|https?)://|(ftp|www[-a-z0-9]*)\\.)[^ \t\r\n\"<>]*[^].,:;!)? \t\r\n<>\"]"
 color body		magenta	default	'(mailto:)?[a-z0-9]([-+=._%!$#]?[a-z0-9])*@[-a-z0-9.]+\.[a-z][a-z]+'
+color body		green	default	'^gpg: Good signature.*'
+color body		red	yellow	'^gpg: BAD signature .*'
+color body		red	default	'^gpg: .*not certified.*'
 #color body		magenta	default '^-----(BEGIN|END) PGP .*'
 color normal		default	default
 color status		black	green
