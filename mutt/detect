@@ -83,7 +83,7 @@ folder-hook '(suspect|spam)'		"set hdr_format=\'%5C %Z <%=date_fmt%>  %-15.15F (
 
 % if mutt_version > mutt_version('1.4')
   set smime_default_key="12345678.0"
-  set crypt_verify_sig=no
+  set crypt_verify_sig=yes
   set smime_certificates="~/.smime/certificates"
   set smime_keys="~/.smime/keys"
   set smime_pk7out_command="openssl smime -verify -in %f -noverify -pk7out"
