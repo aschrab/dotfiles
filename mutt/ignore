@@ -622,3 +622,4 @@ ignore X-Spam-
 ignore X-CNFS-Analysis:
 ignore X_CMAE_Category:
 ignore X-CM-Score:
+unignore X-Seq:
