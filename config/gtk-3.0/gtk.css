@@ -1,0 +1,5 @@
+* {
+    -GtkWindow-resize-grip-default: false;
+    -GtkWindow-resize-grip-height: 0;
+    -GtkWindow-resize-grip-width: 0;
+}
