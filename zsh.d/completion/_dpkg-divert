@@ -1,0 +1,17 @@
+#compdef dpkg-divert
+
+_arguments \
+  '(--add --remove --list --listpackage --truename)--add[Add a diversion]:File:_files' \
+  '(--add --remove --list --listpackage --truename)--remove[Remove a diversion]:File:_files' \
+  '(--add --remove --list --listpackage --truename)--list[List diversions matching glob pattern]:Glob pattern:' \
+  '(--add --remove --list --listpackage --truename)--listpackage[Print name of package that diverts file]:File:_files' \
+  '(--add --remove --list --listpackage --truename)--truename[Print real name for diverted file]:File:_files' \
+  '--admindir[dpkg data directory]:Directory:_files -/' \
+  '--divert[Location to which file will be diverted]:Location:_files' \
+  '--local[Create local diversion]' \
+  '--package[Specify package for which file will not be diverted]:Package:_deb_packages avail' \
+  '--quiet[Quiet mode]' \
+  '--rename[Actually move the file]' \
+  '--test[Just show shat would be done]' \
+  '--help[Show usage message]' \
+  '--version[Show version]'
