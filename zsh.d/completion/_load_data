@@ -1,0 +1,9 @@
+#compdef load_data
+
+_arguments -s \
+  '*'{-v,--verbose}'[Be verbose]' \
+  '(-m --minimal)'{-m,--minimal}'[Only load base table data]' \
+  '(-n --dry_run)'{-n,--dry_run}'[Only show what would be loaded]' \
+  '(-f --force)'{-f,--force}'[Ignore version check]' \
+  '(-? --help)'{-?,--help}'[Display usage info]' \
+  '*:Data file:_path_files -W "(db/data)"'
