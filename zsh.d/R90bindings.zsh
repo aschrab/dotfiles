@@ -26,3 +26,7 @@ bindkey -s '~?' '~/'
 zle -C complete-file complete-word _generic
 zstyle ':completion:complete-file::::' completer _files
 bindkey '^x^f' complete-file
+
+# Automatically quote special characters in URLs
+autoload -Uz url-quote-magic
+zle -N self-insert url-quote-magic
