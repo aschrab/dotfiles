@@ -50,6 +50,8 @@ PS1='
 %S%{$pColor%} %D{%H:%M:%S}  %1v%2m$DEBCHROOT  %~ $(zgit_current_branch)%E%s%{$fColor%}
 %{$pColor%}%!%(#.#.$)%{$fColor%} '
 
+PS2='%{$pColor%}%_>%{$fColor%} '
+
 case "$TERM" in
   screen*)
     zset_command_title () {
