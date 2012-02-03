@@ -86,6 +86,7 @@ set formatoptions+=r
 set formatoptions+=2
 set formatlistpat=^\\s*\\d\\+[\\]:.)}]\\s\\+
 set cpoptions+=$
+set nrformats=hex
 "set cmdheight=2
 set laststatus=2
 set matchpairs=(:),{:},[:],<:>
