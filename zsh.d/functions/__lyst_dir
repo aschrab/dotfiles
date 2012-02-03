@@ -25,7 +25,7 @@
   fi
 
   # Determine sub directory
-  proj=$(sed -ne '/^name: /s///p' < $dir/META.yml)
+  proj=$(sed -ne '/^name: /s///p' < $dir/META.yml | tr - /)
 
   case "$1" in
     base)
