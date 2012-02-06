@@ -4,6 +4,9 @@
 	name = Aaron Schrab
 [url "ssh://pug.qqx.org/srv/git/"]
 	pushInsteadOf = http://git.qqx.org/
+[url "ssh://git@github.com/aschrab/"]
+	pushInsteadOf = git://github.com/aschrab/
+	pushInsteadOf = https://github.com/aschrab/
 [core]
 	pager = less -R
 	#autocrlf = input
