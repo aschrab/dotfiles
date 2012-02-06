@@ -57,3 +57,5 @@
 	confirm = always
 	suppresscc = self
 	chainreplyto = no
+[url "git@git.it.corp:"]
+	pushInsteadOf = git://git.it.corp/
