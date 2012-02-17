@@ -15,4 +15,4 @@
 	url = git://github.com/skammer/vim-css-color.git
 [submodule "vim/bundle/vcscommand"]
 	path = vim/bundle/vcscommand
-	url = git://repo.or.cz/vcscommand
+	url = http://git.qqx.org/vcscommand.vim
