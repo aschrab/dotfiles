@@ -39,8 +39,6 @@ if &term =~ '\(gnome-256color\|screen\)'
 endif
 
 set t_Co=16
-"set t_Sf=[3%p1%dm
-"set t_Sb=[4%p1%dm
 syntax on
 " Custom colors {{{
 if &bg == "light"
