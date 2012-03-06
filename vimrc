@@ -32,6 +32,12 @@ let SVNCommandEdit='split'
 let SVNCommandDeleteOnHide=1
 let SVNCommandEnableBufferSetup=1
 
+" Inform vim how to set window title for additional $TERM types
+if &term =~ '\(gnome-256color\|screen\)'
+	let &t_ts="\<Esc>]2;"
+	let &t_fs="\<C-G>"
+endif
+
 set t_Co=16
 "set t_Sf=[3%p1%dm
 "set t_Sb=[4%p1%dm
