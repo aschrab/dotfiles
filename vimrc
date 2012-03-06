@@ -295,9 +295,6 @@ au FileType zone  set noexpandtab
 au FileType cpp set noexpandtab ai si cindent
 au BufNewFile,BufRead */zone/* set ft=zone
 
-au BufNewFile,BufRead  svn-commit.* setf svn
-au FileType svn map <buffer> <Leader>sd :SVNCommitDiff<CR>
-
 " Go to remembered position in file if it's on a valid line number
 "au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm `\"")|endif|endif
 augroup JumpCursorOnEdit
