@@ -32,9 +32,13 @@ let SVNCommandEdit='split'
 let SVNCommandDeleteOnHide=1
 let SVNCommandEnableBufferSetup=1
 
+" Inform vim how to set window title for additional $TERM types
+if &term =~ '\(gnome-256color\|screen\)'
+	let &t_ts="\<Esc>]2;"
+	let &t_fs="\<C-G>"
+endif
+
 set t_Co=16
-"set t_Sf=[3%p1%dm
-"set t_Sb=[4%p1%dm
 syntax on
 " Custom colors {{{
 if &bg == "light"
@@ -235,8 +239,6 @@ map ,r :.,/^$/!formail -fbY -IX-Envelope -IX-spamrc: -IX-Suspect-Reason: -IX-pro
 
 map ,e :.w !sed -e 's/^\(..[^:(][^:(]*\)[:(]\([0-9][0-9]*\).*/:new +\2 \1/' > $HOME/temp.vim :so $HOME/temp.vim :!rm -f $HOME/temp.vim
 
-map ,t mt:%!fix-tables<CR>`t
-
 map <F2> <ESC>`>a<CR>_<ESC>`<i_<CR><ESC>:s/\(.\)/\1<C-V><C-H>\1/g<CR>J2xkJxX            
 "dig 00 176
 dig !! 161
@@ -244,10 +246,6 @@ dig ?? 191
 dig SS 167
 dig ?! 8253 " Interrobang
 
-au BufRead *
-	\ if getline(1) =~ '^RECORDTYPE:' | setf cade | endif
-
-autocmd BufRead Makefile set nosmarttab noexpandtab noautoindent
 call pathogen#runtime_append_all_bundles()
 " Disable and reenable filetype support to support added paths
 filetype off
@@ -293,9 +291,6 @@ au FileType sm  set noexpandtab
 au FileType zone  set noexpandtab
 au FileType cpp set noexpandtab ai si cindent
 au BufNewFile,BufRead */zone/* set ft=zone
-
-au BufNewFile,BufRead  svn-commit.* setf svn
-au FileType svn map <buffer> <Leader>sd :SVNCommitDiff<CR>
 
 " Go to remembered position in file if it's on a valid line number
 "au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm `\"")|endif|endif
