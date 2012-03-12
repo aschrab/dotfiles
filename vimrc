@@ -45,7 +45,6 @@ highlight procmailCondition ctermfg=DarkBlue
 
 highlight Visual ctermfg=Yellow ctermbg=black
 highlight VisualNOS ctermfg=Yellow ctermbg=grey cterm=reverse
-"highlight NonText ctermfg=White cterm=bold guifg=grey gui=NONE
 highlight NonText ctermfg=DarkBlue guifg=grey gui=NONE
 highlight SpecialKey ctermfg=Yellow guifg=grey gui=NONE
 highlight StatusLineNC ctermfg=DarkBlue ctermbg=grey cterm=reverse
@@ -160,18 +159,6 @@ iab UBE Unsolicited Bulk Email
 cab ack Ack
 "}}}
 
-" .com files are *not* DCL
-" au! syntax * *.com
-
-" au BufNewFile,BufRead muttrc                 so $VIM/syntax/muttrc.vim
-" autocmd BufRead mutt-* set tw=72
-" autocmd BufRead mutt* /^$
-" autocmd BufRead mutt* .+1
-" autocmd BufRead .article* set tw=72
-" autocmd BufRead .article* /^$
-" autocmd BufRead .article* .+1
-
-"noremap <C-A> <Home>
 noremap <C-E> <End>
 map <c-J> gqip
 map <C-N> <C-W>j<C-W>_
@@ -220,8 +207,6 @@ dig ?! 8253 " Interrobang
 set cinoptions+=l1,(0,t0
 set cinkeys=0{,0}:,!^F,o,O,e
 au BufNewFile,BufRead *.c,*.h,*.pl,*.pm set cindent showmatch textwidth=0
-"au BufNewFile,BufRead *.cf so $VIM/syntax/sm.vim
-"au BufNewFile,BufRead *.cf set noexpandtab ft=sm
 au BufNewFile,BufRead /usr/src/linux* set tags=/usr/src/linux/tags
 au FileType sm  set noexpandtab
 au FileType zone  set noexpandtab
