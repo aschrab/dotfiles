@@ -246,6 +246,7 @@ dig ?? 191
 dig SS 167
 dig ?! 8253 " Interrobang
 
+runtime bundle/pathogen/autoload/pathogen.vim
 call pathogen#runtime_append_all_bundles()
 " Disable and reenable filetype support to support added paths
 filetype off
