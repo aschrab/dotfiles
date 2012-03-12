@@ -181,15 +181,8 @@ dig SS 167
 dig ?! 8253 " Interrobang
 
 
-" autocmd BufRead *.[ch] set cindent
 set cinoptions+=l1,(0,t0
 set cinkeys=0{,0}:,!^F,o,O,e
-au BufNewFile,BufRead *.c,*.h,*.pl,*.pm set cindent showmatch textwidth=0
-au BufNewFile,BufRead /usr/src/linux* set tags=/usr/src/linux/tags
-au FileType sm  set noexpandtab
-au FileType zone  set noexpandtab
-au FileType cpp set noexpandtab ai si cindent
-au BufNewFile,BufRead */zone/* set ft=zone
 
 set bs=2
 set secure
