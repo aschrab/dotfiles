@@ -141,12 +141,11 @@ noremap <C-E> <End>
 map <c-J> gqip
 map <C-N> <C-W>j<C-W>_
 map <C-P> <C-W>k<C-W>_
-inoremap  
 inoremap <C-]> <C-X><C-]>
 inoremap <C-F> <C-X><C-F>
 inoremap <C-L> <C-X><C-L>
 inoremap <C-e> <esc>
-map gf :new <cfile>
+map gf :new <cfile><CR>
 nmap <silent> <Leader>f :CommandT<CR>
 
 " Allow backspace to remove digits from numeric prefix for commands.
