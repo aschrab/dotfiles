@@ -209,7 +209,6 @@ map! <M-Esc>[65~ <S-MouseUp>
 
 map ,x :w<C-M>:r!chmod +x %<C-M>:w!<C-M>
 
-map <F2> <ESC>`>a<CR>_<ESC>`<i_<CR><ESC>:s/\(.\)/\1<C-V><C-H>\1/g<CR>J2xkJxX            
 "dig 00 176
 dig !! 161
 dig ?? 191
