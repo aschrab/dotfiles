@@ -10,19 +10,9 @@ call pathogen#infect()
 filetype off
 filetype plugin indent on
 
+source ~/.vim/functions.vim
+
 set statusline=%<%f%h%m%r%w\ [%{&ft},%{&ff},%{&fenc}]\ %=\ L%l\/%LCol%c%V\ byt%o\ ch0x%B\ %P
-function! CleanCWD ()
-	let cwd = getcwd()
-	"let home = '^/home/athena/aschrab'
-	let home = expand('~')
-	let cwd = substitute(cwd, home, '~', '')
-	return cwd
-endfunction
-function! CleanTTY ()
-  let tty = $TTY
-  let tty = substitute( tty, '/dev/', '', '')
-  return tty
-endfunction
 auto BufEnter * let &titlestring = "Vim@%{hostname()} : %{CleanTTY()} : %{CleanCWD()}"
 
 let perl_extended_vars = 1
@@ -252,33 +242,6 @@ dig ?? 191
 dig SS 167
 dig ?! 8253 " Interrobang
 
-fun! UnderscoreToTitle(word)
-	let conv = a:word
-
-	" Remove prefix
-	let conv = substitute( conv, '.*:', '', '' )
-	let conv = substitute( conv, '_\(.\)', ' \u\1', 'g' )
-	let conv = substitute( conv, '^\(.\)', '\u\1', 'g' )
-
-	return conv . ':'
-endf
-
-fun! CamelToUnderscore(word)
-	let converted = ''
-	let pos = 0
-	let str = ''
-
-	while pos < strlen(a:word)
-		let str = matchstr( a:word, '\C\([A-Z][a-z]\+\|[A-Z]\+\|[a-z]\+\|[^A-Za-z]\+\)', pos )
-		if pos > 0
-			let converted = converted . '_'
-		endif
-		let converted = converted . tolower(str)
-		let pos = pos + strlen(str)
-	endwhile
-
-	return converted
-endf
 
 " autocmd BufRead *.[ch] set cindent
 set cinoptions+=l1,(0,t0
