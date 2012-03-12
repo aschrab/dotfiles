@@ -4,6 +4,12 @@ scriptencoding utf-8
 
 let mapleader=','
 
+runtime bundle/pathogen/autoload/pathogen.vim
+call pathogen#infect()
+" Disable and reenable filetype support to support added paths
+filetype off
+filetype plugin indent on
+
 set statusline=%<%f%h%m%r%w\ [%{&ft},%{&ff},%{&fenc}]\ %=\ L%l\/%LCol%c%V\ byt%o\ ch0x%B\ %P
 function! CleanCWD ()
 	let cwd = getcwd()
@@ -245,13 +251,6 @@ dig !! 161
 dig ?? 191
 dig SS 167
 dig ?! 8253 " Interrobang
-
-runtime bundle/pathogen/autoload/pathogen.vim
-call pathogen#runtime_append_all_bundles()
-" Disable and reenable filetype support to support added paths
-filetype off
-filetype indent on
-filetype plugin on
 
 fun! UnderscoreToTitle(word)
 	let conv = a:word
