@@ -196,25 +196,6 @@ omap i' :normal vT'ot'<CR>
 omap a' :normal vF'of'<CR>
 :endif
 
-" Mappings for email {{{
-map ,ad aAaron Schrab <aaron@schrab.com>
-map ,af 1G/^From:WD
-map ,al aAaron Schrab <listmaster@execpc.com>
-map ,ap aAaron Schrab <ats@execpc.com>
-map ,aw aAaron Schrab <aarons@execpc.com>
-"}}}
-
-" signature stuff {{{
-map ,sd oi-- :r~/.sigs/schrab:r!~/bin/fortune
-map ,sf :r!~/bin/fortune
-map ,sl oi-- :r~/.sigs/lsm
-map ,sm oi-- :r~/.sigs/mega
-map ,sp oi-- :r~/.sigs/personal:r!~/bin/fortune
-map ,ss :r~/.sigs/spamreply
-map ,sw oi-- :r~/.sigs/work
-map ,sx :r~/.sigs/lsm.luser
-"}}}
-
 " Support for scroll wheel {{{
 map <M-Esc>[62~ <MouseDown>
 map! <M-Esc>[62~ <MouseDown>
@@ -226,14 +207,7 @@ map <M-Esc>[65~ <S-MouseUp>
 map! <M-Esc>[65~ <S-MouseUp>
 "}}}
 
-"map ,x :perl chmod(01600, $curwin->Buffer->Name):wq!
 map ,x :w<C-M>:r!chmod +x %<C-M>:w!<C-M>
-map ,, /^> *$
-map ,l 1G}jyGGp:.,$!wc -ld0iLines: dd1G}P
-map ,q :%s/^\(> \)*$//
-map ,r :.,/^$/!formail -fbY -IX-Envelope -IX-spamrc: -IX-Suspect-Reason: -IX-procmail: -IReceived: -IReturn-Path: -IResent- -IContent-Length: -IX-Loop: -ILines: -IPrecedence:
-
-map ,e :.w !sed -e 's/^\(..[^:(][^:(]*\)[:(]\([0-9][0-9]*\).*/:new +\2 \1/' > $HOME/temp.vim :so $HOME/temp.vim :!rm -f $HOME/temp.vim
 
 map <F2> <ESC>`>a<CR>_<ESC>`<i_<CR><ESC>:s/\(.\)/\1<C-V><C-H>\1/g<CR>J2xkJxX            
 "dig 00 176
