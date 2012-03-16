@@ -18,6 +18,19 @@ then
   alias tmux="EVENT_NOEPOLL=1 command tmux"
 fi
 
+# Only the initial arguments to `find` should use globbing.
+#
+# Use alias to turn off globbing, then use function to explicitly do globbing
+# on arguments before the first one that starts with a dash.
+#
+# This allows using patterns to specify paths to search, but doesn't require
+# pattern characters to be quoted in the match criteria.
+alias find='noglob find'
+'find'() {
+  integer i=${argv[(i)-*]}
+  command find ${~argv[1,i-1]} "${(@)argv[i,-1]}"
+}
+
 case "$EDITOR" in
 	vim|*/vim)
 		alias -g L="| view -"
