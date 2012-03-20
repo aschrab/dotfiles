@@ -31,11 +31,13 @@ zset_title() {
       ;;
   esac
 
+  [[ -n $TMUX ]] && tmux=y
+
   if [[ $xterm == y || $screen == y ]]; then
     print -nP "\E]1;${1:-%(#.#.$)$host$DEBCHROOT}\C-g"
   fi
 
-  if [[ $xterm == y ]]; then
+  if [[ $xterm == y || $tmux == y ]]; then
     print -nP "\E]2;${1:-%(#.#.$)$host$DEBCHROOT($tty):%~}\C-g"
   fi
 
