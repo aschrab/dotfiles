@@ -5,6 +5,7 @@
 \set ON_ERROR_ROLLBACK interactive
 
 SET client_min_messages = notice;
+SET timezone TO 'America/New_York';
 
 \set SHELLHOST `echo $host`
 \set PROMPT1 '%[%033[0;35m%]%x%/ @%m @%:SHELLHOST:%R%#%[%033[0;22m%] ' 
