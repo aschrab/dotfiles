@@ -1,0 +1,9 @@
+#!/bin/sh
+
+if git config user.email > /dev/null
+then
+	:
+else
+	echo 'Set email address with `git config user.email` first' >&2
+	exit 1
+fi

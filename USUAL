@@ -1,6 +1,7 @@
 ackrc
 gitconfig
 gitignore
+git_template
 inputrc
 irbrc
 lftp

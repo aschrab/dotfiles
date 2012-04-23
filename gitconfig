@@ -1,6 +1,8 @@
 # vim: ft=gitconfig tabstop=4 shiftwidth=4
 [user]
 	name = Aaron Schrab
+[init]
+	templatedir = ~/.git_template
 [url "ssh://pug.qqx.org/srv/git/"]
 	pushInsteadOf = http://git.qqx.org/
 [url "ssh://git@github.com/aschrab/"]
@@ -39,6 +41,7 @@
 	review = "!f() { for rev in $(git log --reverse --format=%H $@); do git show $rev; done; }; f"
 	show-commit = log -1 -p
 	lol = log --graph --decorate --pretty=oneline --abbrev-commit
+	foo = commit -v
 
 [push]
 	default = current
