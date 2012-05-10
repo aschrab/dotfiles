@@ -1,3 +1,6 @@
+" Use ^D for digraphs, since ^K will be remapped
+inoremap <C-d> <C-k>
+
 nnoremap <C-j> :m+<CR>==
 nnoremap <C-k> :m-2<CR>==
 inoremap <C-j> <Esc>:m+<CR>==gi
