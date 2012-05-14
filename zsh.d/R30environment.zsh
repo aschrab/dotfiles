@@ -8,6 +8,14 @@ fi
 # Set $TERMINFO to dir in original user's home
 [[ -z $TERMINFO ]] && export TERMINFO=~${SUDO_USER}/.terminfo
 
+if [[ $LANG == *UTF* ]]; then
+  # Have perl assume the following are in UTF8
+  # A: @ARGV
+  # S: STDIN, STDOUT, STDERR
+  # D: any file opened, unless otherwise specified
+  export PERL_UNICODE=ASD
+fi
+
 unset MAIL  # set it later in host specific portion
 unset MAILCHECK
 
