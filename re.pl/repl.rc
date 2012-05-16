@@ -4,7 +4,7 @@
 $ENV{NOPASTE_SERVICES} = 'Gist';
 
 foreach (qw{Timing DumpHistory OutputCache Interrupt Nopaste MultiLine::PPI Packages FancyPrompt}) {
-	$_REPL->load_plugin($_);
+	eval { $_REPL->load_plugin($_); 1 } or warn "Failed to load plugin $_\n";
 }
 
 use Term::ReadLine::Gnu;
