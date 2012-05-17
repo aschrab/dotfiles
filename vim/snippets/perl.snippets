@@ -52,3 +52,12 @@ snippet alcap change
 
 snippet alcap delete
 	AllowCapabilities(${1:appraisal}:${2}:${3:delete})${4}
+snippet pack
+	package ${1:`PerlPackageName()`};
+
+	use strict;
+	use warnings;
+
+	${2}
+
+	1;
