@@ -9,6 +9,8 @@ let mapleader=','
 :if filereadable(expand("~/.vim/bundle/pathogen/autoload/pathogen.vim"))
 	runtime bundle/pathogen/autoload/pathogen.vim
 	call pathogen#infect()
+	filetype off
+	filetype plugin indent on
 :endif
 
 source ~/.vim/functions.vim
