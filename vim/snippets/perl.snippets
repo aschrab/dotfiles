@@ -66,6 +66,8 @@ snippet moose
 	package ${1:`PerlPackageName()`};
 
 	use Moose;
+	use namespace::autoclean;
+
 	extends '${2:Parent::Class}';
 
 	${3}
