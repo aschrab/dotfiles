@@ -1,15 +1,5 @@
 fun! PerlPackageTemplate()
-  let pack = expand('%:p')
-  let orig = pack
-
-  let pack = substitute( pack, '.*/perl\(/[0-9.]\+\)\?/', '',   '' )
-  let pack = substitute( pack, '.*/lib/', '',   '' )
-  if pack == orig
-    return
-  endif
-
-  let pack = substitute( pack, '\.pm$',   '',   '' )
-  let pack = substitute( pack, '/',       '::', 'g' )
+  let pack = PerlPackageName()
 
   call setline( 1, 'package ' . pack . ';' )
   call append(  1, [ '', 'use strict;', 'use warnings;', '', '', '1;' ] )
