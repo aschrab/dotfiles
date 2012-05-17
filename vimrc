@@ -196,4 +196,8 @@ command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | di
 	source ~/.vim/local.vim
 :endif
 
+let g:snipMate = {}
+let g:snipMate.scope_aliases = {} 
+let g:snipMate.scope_aliases['tt2html'] = 'tt2,html'
+
 source ~/.vim/projects.vim
