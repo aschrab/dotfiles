@@ -61,3 +61,15 @@ snippet pack
 	${2}
 
 	1;
+
+snippet moose
+	package ${1:`PerlPackageName()`};
+
+	use Moose;
+	extends '${2:Parent::Class}';
+
+	${3}
+
+	__PACKAGE__->meta->make_immutable;
+
+	1;
