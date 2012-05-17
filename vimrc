@@ -6,9 +6,6 @@ let mapleader=','
 
 runtime bundle/pathogen/autoload/pathogen.vim
 call pathogen#infect()
-" Disable and reenable filetype support to support added paths
-filetype off
-filetype plugin indent on
 
 source ~/.vim/functions.vim
 
