@@ -28,6 +28,8 @@
 	d = diff
 	dif = diff
 	ds = diff --staged
+	sh = show
+	sho = show
 	st = status
 	up = "!echo Use pull >&2 ; exit 1"
 	l1 = log --pretty=oneline
