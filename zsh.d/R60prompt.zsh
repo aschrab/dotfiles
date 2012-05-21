@@ -31,17 +31,20 @@ zset_title() {
       ;;
   esac
 
-  [[ -n $TMUX ]] && tmux=y
+  local title
+  title=0
 
-  if [[ $xterm == y || $screen == y ]]; then
-    print -nP "\E]1;${1:-%(#.#.$)$host$DEBCHROOT}\C-g"
+  if [[ -n $TMUX ]]; then
+    tmux=y
+    title=2
   fi
 
   if [[ $xterm == y || $tmux == y ]]; then
-    print -nP "\E]2;${1:-%(#.#.$)$host$DEBCHROOT($tty):%~}\C-g"
+    print -nP "\E]${title};${1:-%(#.#.$)$host$DEBCHROOT($tty):%~}\C-g"
   fi
 
   if [[ $screen == y ]]; then
+    print -nP "\E]1;${1:-%(#.#.$)$host$DEBCHROOT}\C-g"
     print -nP "\Ek${1:-$host$DEBCHROOT:%~}\E\\"
   fi
 }
