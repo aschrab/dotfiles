@@ -17,6 +17,7 @@ source ~/.vim/functions.vim
 
 set statusline=%<%f%h%m%r%w\ [%{&ft},%{&ff},%{&fenc}]\ %=\ L%l\/%L\ Col%c%V\ byt%o\ ch0x%B\ %P
 auto BufEnter * let &titlestring = "Vim@%{hostname()} : %{CleanTTY()} : %{CleanCWD()}"
+auto BufEnter * let &iconstring  = "Vim@%{hostname()} : %f (%{CleanTTY()})"
 
 let perl_extended_vars = 1
 let perl_highlight_matches = 1
@@ -32,8 +33,9 @@ let SVNCommandDeleteOnHide=1
 let SVNCommandEnableBufferSetup=1
 
 " Inform vim how to set window title for additional $TERM types
-if &term =~ '\(gnome-256color\|screen\)'
+if &term =~ '\(xterm\|gnome-256color\|screen\)'
 	let &t_ts="\<Esc>]2;"
+	let &t_IS="\<Esc>]1;"
 	let &t_fs="\<C-G>"
 endif
 
