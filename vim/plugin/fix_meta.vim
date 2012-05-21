@@ -4,7 +4,7 @@
 " Enable terminal timeout, and set a short length.
 " This should prevent actual escape key being interpretted as start of meta
 " sequence
-set ttimeout ttimeoutlen=10
+set ttimeout ttimeoutlen=1
 
 set <M-a>=a
 set <M-b>=b
