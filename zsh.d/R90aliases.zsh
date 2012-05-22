@@ -51,7 +51,6 @@ fi
 alias ack=ack-grep
 
 alias cls='clear'
-alias f=finger
 alias sz='sz -e'
 alias l='ls -F'
 alias la='ls -aF'
