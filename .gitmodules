@@ -22,3 +22,6 @@
 [submodule "vim/bundle/lighttpd"]
 	path = vim/bundle/lighttpd
 	url = https://github.com/aschrab/lighttpd-syntax.git
+[submodule "vim/bundle/ultisnips"]
+	path = vim/bundle/ultisnips
+	url = http://git.qqx.org/ultisnips
