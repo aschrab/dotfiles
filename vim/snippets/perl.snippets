@@ -75,3 +75,8 @@ snippet moose
 	__PACKAGE__->meta->make_immutable;
 
 	1;
+snippet self
+	my $self = shift;
+snippet args
+	my $self = shift;
+	my (${1:$foo}) = @_;${2}
