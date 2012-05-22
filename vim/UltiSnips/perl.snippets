@@ -1,0 +1,46 @@
+snippet self
+my $self = shift;
+endsnippet
+
+snippet args
+my $self = shift;
+my (${1:$foo}) = @_;${2}
+endsnippet
+
+snippet moose
+package ${1:`!v PerlPackageName()`};
+
+use Moose;
+use namespace::autoclean;
+
+extends '${2:Parent::Class}';
+
+${3}
+
+__PACKAGE__->meta->make_immutable;
+
+1;
+endsnippet
+
+snippet pack
+package ${1:`!v PerlPackageName()`};
+
+use strict;
+use warnings;
+
+${2}
+
+1;
+endsnippet
+
+snippet dbit
+use base 'Blackjack::Schema::Result';
+
+__PACKAGE__->table('${1:`!v CamelToUnderscore(Filename())`}');
+__PACKAGE__->add_columns(
+	${2:$1_id} => { data_type => '${3:serial}', },
+	${4}
+);
+
+__PACKAGE__->set_primary_key(qw{$2});
+endsnippet
