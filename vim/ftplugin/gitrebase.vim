@@ -1,3 +1,5 @@
+set cursorline
+
 nnoremap <buffer> <silent> <C-C> :Cycle<CR>
 
 nnoremap <buffer> <silent> <C-P> :Pick<CR>
