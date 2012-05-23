@@ -83,7 +83,7 @@ set showmatch
 set showcmd
 "set cursorcolumn
 "set cursorline
-hi CursorLine   cterm=NONE ctermbg=darkred guibg=darkred guifg=white
+hi CursorLine   cterm=NONE ctermbg=yellow guibg=darkred guifg=white
 hi CursorColumn ctermbg=yellow
 set splitbelow
 set formatoptions+=r
