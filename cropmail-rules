@@ -5,14 +5,15 @@ require 'gdbm'
 $dbfile = "#{Message.maildir}/dupcache"
 $dupcheck = false
 
+# Try to save to backup mailbox with today's date {{{
 begin
   save Time.now.strftime('/srv/mail/pug.qqx.org/backup_ats/%Y/%m/%d' )
 rescue Exception
   log "Couldn't write to backup file"
-end
+end #}}}
 
 class ::Cropmail::Message
-  def save_md mailbox
+  def save_md mailbox #{{{
     dup = false
 
     if $dupcheck
@@ -35,9 +36,10 @@ class ::Cropmail::Message
     end
 
     done
-  end
+  end #}}}
 end
 
+# Drop some spam messages that have at times reached mailbomb levels {{{
 if subject =~ /WARNING. Mail Delayed: hello$/
   done
 end
@@ -47,6 +49,7 @@ done if subject =~ /Undeliverable mail: hello$/
 if subject =~ /^Re: Mystery(secret.)?.shopper/i
   done
 end
+#}}}
 
 if ENV['EXTENSION']
   $envelope_to = ENV['EXTENSION'].sub(/=([^=]*)/, '@\\1')
@@ -55,6 +58,7 @@ elsif ENV['RECIPIENT']
 end
 headers.replace 'X-QQX-Envelope-To', $envelope_to
 
+# Improve messages from faxaway {{{
 fax_re = %r/Faxaway-\(([\d-]+).*\).*(<faxaway@faxaway\.com>)/i
 match = fax_re.match from
 if match
@@ -83,8 +87,9 @@ if match
   end
   save Message.maildir
   done
-end
+end #}}}
 
+# Cleanup MLUG auth logs {{{
 if from =~ /root@mail\.milwaukeelug\.org/i and subject =~ %r<^/var/log/auth\.log>
   filtered = ''
   prefix = '^\w{3} +\d{1,2} \d\d:\d\d:\d\d mlug '
@@ -95,7 +100,7 @@ if from =~ /root@mail\.milwaukeelug\.org/i and subject =~ %r<^/var/log/auth\.log
   end
 
   body.replace filtered
-end
+end #}}}
 
 if to =~ /(webmaster|sympa-request|mlug-admin-editor|mlug-list-request)@.*milwaukeelug\.org/i
   save_md '=INBOX/sympa'
