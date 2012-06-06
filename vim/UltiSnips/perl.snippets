@@ -44,3 +44,15 @@ __PACKAGE__->add_columns(
 
 __PACKAGE__->set_primary_key(qw{$2});
 endsnippet
+
+snippet has
+has ${1:attribute} => (
+	is       => '${2:ro|rw}',
+	isa      => '${3:Str|Int|Class}',
+	required => ${4:1},
+	lazy     => ${5:0},
+	coerce   => ${6:1},
+	${7:builder  => '${8:_build_method}',}
+);
+
+endsnippet
