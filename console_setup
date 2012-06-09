@@ -1,0 +1,46 @@
+#!/usr/bin/env perl
+
+use warnings;
+use strict;
+
+my $file = $ARGV[0] || '/etc/default/keyboard'; # For testing
+die "No keyboard configuration found\n" unless -r $file;
+
+my @lines;
+my $found;
+{
+	open my $fh, "<", $file or die;
+
+	while (<$fh>) {
+		if( /^XKBOPTIONS="(.*)"/ ) {
+			++$found;
+			my %keys;
+			my @options;
+			foreach my $opt (split ',', $1) {
+				push @options, $opt;
+				if( $opt =~ /^(.*?)(?::(.*))?$/ ) {
+					$keys{$1} = $2;
+				}
+			}
+
+			push @options, "ctrl:swapcaps" unless exists $keys{ctrl};
+			push @options, "compose:menu" unless exists $keys{compose};
+
+			my $options = join ',', @options;
+			$_ = qq{XKBOPTIONS="$options"\n};
+		}
+
+		push @lines, $_;
+	}
+}
+
+die "No XKBOPTIONS found in $file\n" unless $found;
+
+{
+	open my $fh, '>', $file or die "Can't write config file\n";
+	print {$fh} @lines;
+
+	my $command = "setupcon -k";
+	print "Running \`$command\` to reconfigure console\n";
+	system $command;
+}
