@@ -114,11 +114,11 @@ def class_tree(root, show_methods = true, colorize = true) #{{{
   indentation = " "*4
   c = Hash.new("")
   if colorize
-    c[:lines]       = "\033[34;1m"
-    c[:dots]        = "\033[31;1m"
-    c[:classNames]  = "\033[33;1m"
-    c[:moduleNames] = "\033[32;1m"
-    c[:methodNames] = "\033[39;1m"
+    c[:lines]       = term_color :blue
+    c[:dots]        = term_color :red
+    c[:classNames]  = term_color :yellow
+    c[:moduleNames] = term_color :green
+    c[:methodNames] = term_color :default
   end
   
   recursePrint = proc do |current_root,prefixString|
