@@ -73,7 +73,7 @@ begin
     # Save history before exiting {{{
     Kernel::at_exit {
       lines = Readline::HISTORY.to_a.reverse.uniq.reverse
-      lines = lines[ -100, 100 ] if lines.nitems > 100
+      lines = lines[ -100, 100 ] if lines.length > 100
       $stderr.puts "Saving %d history lines to %s." %
       [ lines.length, histfile ] if $VERBOSE || $DEBUG
       File::open( histfile, File::WRONLY|File::CREAT|File::TRUNC ) {|ofh|
