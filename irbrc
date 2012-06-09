@@ -23,26 +23,16 @@ def term_color(color, rl_ignore=false) #{{{
   color = color.intern if color.is_a? String
   color =
   case color
-  when :black
-    30
-  when :red
-    31
-  when :green
-    32
-  when :yellow
-    33
-  when :blue
-    34
-  when :magenta
-    35
-  when :cyan
-    36
-  when :white
-    37
-  when :normal
-    22
-  else
-    color
+  when :black   then 30
+  when :red     then 31
+  when :green   then 32
+  when :yellow  then 33
+  when :blue    then 34
+  when :magenta then 35
+  when :cyan    then 36
+  when :white   then 37
+  when :normal  then 22
+  else color
   end
 
   r = "\033[0;#{color}m"
