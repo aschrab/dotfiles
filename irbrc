@@ -141,7 +141,7 @@ def class_tree(root, show_methods = true, colorize = true) #{{{
         c[:methodNames]+m.to_s
       }
       strings[0] = prefixString + c[:lines]+"- "+c[:classNames]+current_root.to_s
-      strings[0] += " " + c[:dots]+"."*(maxlength-current_root.to_s.length) + " "+c[:methodNames]+methods[0] if methods[0] != nil
+      strings[0] += " " + c[:dots]+"."*(maxlength-current_root.to_s.length) + " "+c[:methodNames]+methods[0].to_s if methods[0] != nil
       strings.each {|aString| puts(aString) }
     else
       string = prefixString + c[:lines]+"- " +c[:classNames]+current_root.to_s
