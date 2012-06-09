@@ -31,6 +31,7 @@ def term_color(color, rl_ignore=false) #{{{
   when :magenta then 35
   when :cyan    then 36
   when :white   then 37
+  when :default then 39
   when :normal  then 22
   else color
   end
