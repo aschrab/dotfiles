@@ -23,26 +23,17 @@ def term_color(color, rl_ignore=false) #{{{
   color = color.intern if color.is_a? String
   color =
   case color
-  when :black
-    30
-  when :red
-    31
-  when :green
-    32
-  when :yellow
-    33
-  when :blue
-    34
-  when :magenta
-    35
-  when :cyan
-    36
-  when :white
-    37
-  when :normal
-    22
-  else
-    color
+  when :black   then 30
+  when :red     then 31
+  when :green   then 32
+  when :yellow  then 33
+  when :blue    then 34
+  when :magenta then 35
+  when :cyan    then 36
+  when :white   then 37
+  when :default then 39
+  when :normal  then 22
+  else color
   end
 
   r = "\033[0;#{color}m"
@@ -82,7 +73,7 @@ begin
     # Save history before exiting {{{
     Kernel::at_exit {
       lines = Readline::HISTORY.to_a.reverse.uniq.reverse
-      lines = lines[ -100, 100 ] if lines.nitems > 100
+      lines = lines[ -100, 100 ] if lines.length > 100
       $stderr.puts "Saving %d history lines to %s." %
       [ lines.length, histfile ] if $VERBOSE || $DEBUG
       File::open( histfile, File::WRONLY|File::CREAT|File::TRUNC ) {|ofh|
@@ -123,11 +114,11 @@ def class_tree(root, show_methods = true, colorize = true) #{{{
   indentation = " "*4
   c = Hash.new("")
   if colorize
-    c[:lines]       = "\033[34;1m"
-    c[:dots]        = "\033[31;1m"
-    c[:classNames]  = "\033[33;1m"
-    c[:moduleNames] = "\033[32;1m"
-    c[:methodNames] = "\033[39;1m"
+    c[:lines]       = term_color :blue
+    c[:dots]        = term_color :red
+    c[:classNames]  = term_color :yellow
+    c[:moduleNames] = term_color :green
+    c[:methodNames] = term_color :default
   end
   
   recursePrint = proc do |current_root,prefixString|
@@ -141,7 +132,7 @@ def class_tree(root, show_methods = true, colorize = true) #{{{
         c[:methodNames]+m.to_s
       }
       strings[0] = prefixString + c[:lines]+"- "+c[:classNames]+current_root.to_s
-      strings[0] += " " + c[:dots]+"."*(maxlength-current_root.to_s.length) + " "+c[:methodNames]+methods[0] if methods[0] != nil
+      strings[0] += " " + c[:dots]+"."*(maxlength-current_root.to_s.length) + " "+c[:methodNames]+methods[0].to_s if methods[0] != nil
       strings.each {|aString| puts(aString) }
     else
       string = prefixString + c[:lines]+"- " +c[:classNames]+current_root.to_s
