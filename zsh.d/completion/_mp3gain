@@ -1,0 +1,38 @@
+#compdef mp3gain
+
+local context state state_descr line
+typeset -A opt_args
+
+_arguments \
+  '(   -r -k -a -m -d -x -u)-g[Apply gain without analyzing]:Gain: ' \
+  '(-g    -k -a -m -d -x -u)-r[Apply track gain automatically]' \
+  '(-g -r    -a -m -d -x -u)-k[Lower track gain to prevent clipping]' \
+  '(-g -r -k    -m -d -x -u)-a[Apply album gain automatically]' \
+  '(-g -r -k -a    -d -x -u)-m[Modify suggested MP3 gain]:Integer: ' \
+  '(-g -r -k -a -m    -x -u)-d[Modify suggested dB gain]:Float: ' \
+  '(-g -r -k -a -m -d    -u)-x[Only find maximum amplitude]' \
+  '(-g -r -k -a -m -d -x   )-u[Undo previous changes by mp3gain]' \
+  '-o[Use tab delimited output]' \
+  '(-T)-t[Use a temporary file for modified version]' \
+  '(-t)-T[Modify original file]' \
+  '-c[Ignore clipping warning when applying gain]' \
+  '-q[Quiet mode]' \
+  '-p[Preserve original file timestamp]' \
+  '-f[Force treating file as MP3]' \
+  '-w[Wrap gain change]' \
+  '-v[Show version of program]' \
+  '-s[Tag selection]:Tag selection:->subs' \
+  '*: :_files -g *.mp3' \
+  && ret=0
+
+case "$state" in
+  (subs)
+    _values 'Tag selection' \
+      'c[Only check stored tag info]' \
+      'd[Delete stored tag info]' \
+      'i[Use ID3v2 tag for gain information]' \
+      'a[Use APEv2 tag for gain information]' \
+      's[Skip stored tag information]' \
+      'r[Force recalculation]'
+    ;;
+esac
