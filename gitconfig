@@ -9,6 +9,8 @@
 [url "ssh://git@github.com/aschrab/"]
 	pushInsteadOf = git://github.com/aschrab/
 	pushInsteadOf = https://github.com/aschrab/
+[url "git@bitbucket.org:aschrab/"]
+	pushInsteadOf = https://bitbucket.org/aschrab/
 [url "git@git.it.corp:"]
 	pushInsteadOf = git://git.it.corp/
 	pushInsteadOf = http://git.it.corp/
