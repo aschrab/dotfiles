@@ -106,7 +106,9 @@ set wildmode=longest:full,full
 set wildignore+=*.o,*~
 set tags=tags,TAGS,./tags;,./TAGS;
 
+:if has("folding")
 set foldopen=mark,quickfix,tag,block,hor,search,jump
+:endif
 "}}}
 
 " Don't force sync after writing swap files, to avoid spinning up disk {{{
