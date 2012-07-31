@@ -40,6 +40,7 @@ if &term =~ '\(xterm\|gnome-256color\|screen\)'
 endif
 
 set t_Co=16
+:if has("syntax")
 syntax on
 " Custom colors {{{
 if &bg == "light"
@@ -65,6 +66,7 @@ highlight diffRemoved ctermfg=Red
 highlight diffAdded ctermfg=Blue
 end
 "}}}
+:endif
 
 " Miscellaneous options {{{
 set viminfo=!,s1,%,'20,f1,c,h,r/tmp,r/media,n~/.viminfo
