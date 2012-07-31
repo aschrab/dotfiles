@@ -3,7 +3,7 @@
 	name = Aaron Schrab
 	email = aaron@schrab.com
 [init]
-	templatedir = ~/.git_template
+#	templatedir = ~/.git_template
 [url "ssh://pug.qqx.org/srv/git/"]
 	pushInsteadOf = http://git.qqx.org/
 [url "ssh://git@github.com/aschrab/"]
