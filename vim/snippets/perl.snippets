@@ -52,31 +52,3 @@ snippet alcap change
 
 snippet alcap delete
 	AllowCapabilities(${1:appraisal}:${2}:${3:delete})${4}
-snippet pack
-	package ${1:`PerlPackageName()`};
-
-	use strict;
-	use warnings;
-
-	${2}
-
-	1;
-
-snippet moose
-	package ${1:`PerlPackageName()`};
-
-	use Moose;
-	use namespace::autoclean;
-
-	extends '${2:Parent::Class}';
-
-	${3}
-
-	__PACKAGE__->meta->make_immutable;
-
-	1;
-snippet self
-	my $self = shift;
-snippet args
-	my $self = shift;
-	my (${1:$foo}) = @_;${2}
