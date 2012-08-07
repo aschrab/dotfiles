@@ -1,0 +1,30 @@
+#compdef faketime
+
+# Completion for faketime command from
+# http://www.code-wizards.com/projects/libfaketime/
+#
+# This command takes a time specification as the first non-option
+# argument, remaining arguments specify a command to run in an environment
+# where it's made to look like the command was started at the given time.
+#
+# Completion done based on version 0.8
+
+local context state line
+typeset -A opt_args
+
+_arguments -A \
+  '--help[Show usage information and quit]' \
+  '--version[Show version information and quit]' \
+  '-m[Use multi-threading variant of libfaketime]' \
+  '-f[Use advanced timestamp specification format]' \
+  ':timespec:' \
+  ':command: _command_names -e' \
+  '*::arguments:->cmdargs'
+
+case "$state" in
+  (cmdargs)
+    shift words
+    (( CURRENT-- ))
+    _normal
+    ;;
+esac
