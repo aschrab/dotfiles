@@ -37,7 +37,6 @@ set tmpdir=/tmp/$USER
 
 set keep_flagged
 set save_name                  # save messages in folder named for addressee
-source ~/.mutt/gpg.rc
 set pgp_verify_sig=yes         # Verify signature automatically
 set pgp_replyencrypt
 set pgp_replysign
