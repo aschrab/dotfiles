@@ -3,7 +3,7 @@ unlists *
 unalias *
 unhook *
 
-set pgp_sign_as="0x0507D84E"
+set pgp_sign_as="0x6DB5C725"
 
 source ~/.mutt/rc.common
 source ~/.mutt/save_hooks
