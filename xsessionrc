@@ -1,0 +1,13 @@
+#!/bin/sh
+
+if ! gpg-agent 2> /dev/null
+then
+	gpg-agent --daemon \
+		--enable-ssh-support \
+		--write-env-file ~/.gpg-agent.info \
+		--pinentry-program /usr/bin/pinentry-qt4
+
+	. ~/.gpg-agent.info
+	export GPG_AGENT_INFO
+	export SSH_AUTH_SOCK
+fi
