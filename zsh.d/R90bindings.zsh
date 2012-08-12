@@ -1,6 +1,8 @@
-bindkey -e
+bindkey -v
 
-# bind keys
+##################
+# Emacs bindings #
+##################
 bindkey -M emacs \^p up-history
 bindkey -M emacs \^n down-history
 bindkey -M emacs "\e[A" up-line-or-search
@@ -29,6 +31,40 @@ bindkey -M emacs -s '~?' '~/'
 zle -C complete-file complete-word _generic
 zstyle ':completion:complete-file::::' completer _files
 bindkey -M emacs '^x^f' complete-file
+
+##################
+# Vi bindings    #
+##################
+bindkey -M vicmd "/"   history-incremental-search-backward
+bindkey -M vicmd "?"   history-incremental-search-forward
+bindkey -M vicmd "^u"  vi-kill-line
+
+bindkey -M viins "^a"  beginning-of-line
+bindkey -M viins "^e"  end-of-line
+bindkey -M viins "^k"  kill-line
+bindkey -M viins "^t"  transpose-chars
+bindkey -M viins "M-t" transpose-words
+bindkey -M viins "\et" transpose-words
+bindkey -M viins "M-;" copy-prev-word
+bindkey -M viins "\e;" copy-prev-word
+bindkey -M viins "M-." insert-last-word
+bindkey -M viins "\e." insert-last-word
+
+# Make control+space another way to get into command mode
+bindkey -M viins '^\x20' vi-cmd-mode
+
+# space (with or without meta) is magic-space
+bindkey -M viins    "\x20" magic-space
+bindkey -M viins "\M-\x20" magic-space
+bindkey -M viins  "\e\x20" magic-space
+
+# Start in command mode when editing history, if using Vi bindings
+zle-history-line-set() { [[ `bindkey '\e'` == *vi-cmd-mode ]] && zle -K vicmd }
+zle -N zle-history-line-set
+
+###################
+# Common bindings #
+###################
 
 # Automatically quote special characters in URLs
 autoload -Uz url-quote-magic
