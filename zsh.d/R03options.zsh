@@ -42,6 +42,8 @@ export HISTSIZE=250
 export NULLCMD=:
 export HISTORY=${ZDOTDIR:=$HOME}/.zsh-history
 
+WORDCHARS='`~!@#$%^&*()-_+{}[]\|:;",.<>/?'\'
+
 typeset -gaU preexec_functions
 typeset -gaU precmd_functions
 typeset -gaU chpwd_functions

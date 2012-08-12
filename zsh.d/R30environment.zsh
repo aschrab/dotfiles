@@ -23,7 +23,6 @@ export CVS_RSH=ssh
 export RSYNC_RSH=ssh
 export MPAGE="-2m50t"
 export COLORFGBG='default;default'
-export WORDCHARS='*?_-.[]~/&|;!#$%^(){}<>,'
 export HOST_DEFAULTS='-R'
 export NOPASTE_SERVICES='Gist'
 export MTR_OPTIONS="--order LSD NABMV"
