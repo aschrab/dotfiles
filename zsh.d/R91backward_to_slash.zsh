@@ -20,6 +20,6 @@ backward-to-/ () {
 }
 
 zle -N backward-to-/
-bindkey "\M-/" backward-to-/
-bindkey "\e/" backward-to-/
-bindkey "^[/" backward-to-/
+bindkey -M emacs "\M-/" backward-to-/
+bindkey -M emacs "\e/" backward-to-/
+bindkey -M emacs "^[/" backward-to-/

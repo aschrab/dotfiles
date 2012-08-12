@@ -10,4 +10,4 @@ fancy-ctrl-z () {
 }
 
 zle -N fancy-ctrl-z
-bindkey '^Z' fancy-ctrl-z
+bindkey -M emacs '^Z' fancy-ctrl-z

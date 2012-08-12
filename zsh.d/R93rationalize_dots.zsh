@@ -6,5 +6,5 @@ else
 fi
 }
 zle -N _rationalize_dot
-bindkey . _rationalize_dot
+bindkey -M emacs . _rationalize_dot
 
