@@ -8,3 +8,4 @@
 --type-set=txt=.txt
 --type-set=xsl=.xslt
 --type-set=wiki=.www
+--type-set=snippets=.snippets
