@@ -106,35 +106,6 @@ list ||= 'subs/skeptic' if from =~ /<skepticsociety@skeptic.com>/i
 case headers[:list_id]
 when /<debian-([a-z0-9_-]+)\.lists\.debian\.org>/
   list = "debian/#$1".downcase
-when /<MilwaukeeRuby\.googlegroups\.com>/i
-	list = 'ruby/mke'
-	subject_re = /\[MKERB\]\s*/
-when /<mlug-list\..*\.milwaukeelug/i
-  subject_re = /\[MLUG\]\s*/
-  list = 'ug/mlug'
-when /<blinux\.googlegroups\.com>/i
-  list = 'ug/blinux'
-when /<fdllug-list\./i
-  subject_re = /\[fdllug-list\]\s*/i
-	list = 'ug/fdllug'
-when /<list\.sewaug\.org>/i
-  subject_re = /\[SEWAUG\]\s*/i
-  list = 'ug/sewaug'
-when /<offlineimap\.complete/i
-  list = 'mail/offlineimap'
-when /<dovecot\.dovecot/i
-  list = 'mail/dovecot'
-  subject_re = /\[Dovecot\]\s*/i
-when /ruby-(talk|core)\.ruby-lang\.org/i
-  list = "ruby/#{$1}"
-when /ruby-dbi-(next|devel)\./
-  subject_re = /\[Ruby-dbi-$1\]\s*/i
-  list = "ruby/dbi"
-when /\bmodruby\./
-  list = 'ruby/modruby'
-when /<rubyonrails-core\.googlegroups\.com>/i
-	subject_re = /\[Rails-core\]\s*/i
-	list = 'ruby/rails-core'
 when /<raleigh-rb-members/
   subject_re = /\[raleigh\.rb\]\s*/i
   list = 'ruby/raleigh'
@@ -180,17 +151,6 @@ when /<bugtraq-return-.*@securityfocus/i
   list = 'bugtraq'
 when /<lsm-workers-admin@lists/i
   list = 'lsm-workers'
-when /<crypto-gram-return/i
-  list = 'subs/crypto'
-  fixlinks = true
-end unless list
-
-case headers[:sender]
-when /owner-spamtools@/i
-  subject_re = /\[spamtools\]/i
-  list = 'mail/spamtools'
-when /list-managers-owner@greatc/i
-  list = 'mail/list-managers'
 end unless list
 #}}}
 
