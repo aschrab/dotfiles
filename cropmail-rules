@@ -154,6 +154,7 @@ when /<lsm-workers-admin@lists/i
 end unless list
 #}}}
 
+# Cleanup subject {{{
 begin
   subj = headers[:subject][0]
   log "Trying to clean up Subject: #{subj.inspect}"
@@ -165,6 +166,7 @@ begin
 rescue Exception
   log "Error while cleaning subject: #{$!}"
 end
+#}}}
 
 headers.replace 'Lines', body.inject(0){ |sum,x| sum+1 }.to_s
 
