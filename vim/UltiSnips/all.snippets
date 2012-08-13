@@ -1,0 +1,10 @@
+snippet {{{
+`!p
+import vim
+b,e = vim.eval("&commentstring").split("%s")
+snip.rv = b
+` $1 {{{`!p snip.rv = e`
+${VISUAL}$2
+`!p snip.rv = b + '}}}' + e`
+$0
+endsnippet
