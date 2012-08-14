@@ -52,7 +52,7 @@ precmd_functions+='zset_title'
 
 RPS1=''
 PS1='
-%S%{$pColor%} %D{%H:%M:%S}  %1v%2m$DEBCHROOT  %~ $(zgit_current_branch)%E%s%{$fColor%}
+%S%{$pColor%} %D{%H:%M:%S}  %1v%2m$DEBCHROOT  %~ ${vcs_info_msg_0_}%E%s%{$fColor%}
 %{$pColor%}%!%(#.#.$)%{$fColor%} '
 
 PS2='%{$pColor%}%_>%{$fColor%} '
