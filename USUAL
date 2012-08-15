@@ -8,6 +8,7 @@ lftp
 pinforc
 psqlrc
 re.pl
+quiltrc
 screenrc
 tmux.conf
 vim
