@@ -27,6 +27,7 @@ mailboxes =rss
 <%= mlist 'dev/git', :address => 'git@vger.kernel.org' %>
 <%= mlist 'dev/tmux', :address => 'tmux-users@lists.sourceforge.net' %>
 <%= mlist 'dev/meld', :address => 'meld-list@gnome.org' %>
+<%= mlist 'mail/scanner', :address => 'mailscanner@lists.mailscanner.info' %>
 <%= mlist 'dev/sql-translator', :address => 'sqlfairy-developers@lists.sourceforge.net' %>
 
 <%= mlist 'mail/spamtools', :from => 'aaron+spamtools@schrab.com' %>

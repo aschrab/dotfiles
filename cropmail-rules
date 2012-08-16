@@ -132,6 +132,8 @@ when /<meld-list\.gnome\.org>/i
   list = 'dev/meld'
 when /<sqlfairy-developers\.lists\.sourceforge\.net>/i
   list = 'dev/sql-translator'
+when /<mailscanner.lists.mailscanner.info>/i
+  list = 'mail/scanner'
 end unless list
 
 case headers[:mailing_list]
