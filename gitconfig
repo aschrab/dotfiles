@@ -4,6 +4,8 @@
 	email = aaron@schrab.com
 [init]
 #	templatedir = ~/.git_template
+[log]
+	abbrevCommit = true
 [url "ssh://pug.qqx.org/srv/git/"]
 	pushInsteadOf = http://git.qqx.org/
 [url "ssh://git@github.com/aschrab/"]
