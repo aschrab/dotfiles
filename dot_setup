@@ -41,10 +41,24 @@ foreach my $f (@ARGV) {
 
 	my $dest = "$ENV{HOME}/.$f"; # Name of link to use
 
+	# If the link is supposed to be in a subdirectory:
+	# * Make sure the parent directories exist
+	# * Adjust the symlink to go up to home before pointing to target
+	my $parents = "";
+	my $dirs = "";
+	while( $f =~ m{([^/]+/)}g ) {
+		$dirs .= $1;
+		$parents .= "../";
+		unless ( -d "$home/$dirs" ) {
+			print "/ $home /$dirs\n";
+			mkdir "$home/$dirs" or die;
+		}
+	}
+
 	# Indicate what targets already exist and which are going to be created
 	my $status = -e $dest ? '.' : '+';
 	print "$status $f\n";
 
 	next unless $status eq '+';
-	symlink "$src/$f" => $dest or die; # Create the link
+	symlink "$parents$src/$f" => $dest or die; # Create the link
 }
