@@ -22,10 +22,18 @@ use warnings;
 
 my $home = $ENV{HOME};
 
-my $src = $0;                # Get location of files from script location
-$src =~ s{^\./}{$ENV{PWD}/}; # Convert relative path to absolute
-$src =~ s{/[^/]+$}{};        # Remove script filename to get just dir name
-$src =~ s{^$home/?}{}; # Convert to being relative to home
+# Get location of files from script location
+my $src = $0;
+# Convert relative path to absolute
+$src = "$ENV{PWD}/$src" unless $src =~ m{^/};
+# Eliminate useless references to "." directory
+1 while $src =~ s{/\./}{/};
+# Eliminate uses of ".."
+1 while $src =~ s{/[^/]+/\.\./}{/};
+# Remove script filename to get just dir name
+$src =~ s{/[^/]+$}{};
+# Convert to being relative to home
+$src =~ s{^$home/?}{};
 
 foreach my $f (@ARGV) {
 	chomp $f;
