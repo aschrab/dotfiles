@@ -1,0 +1,4 @@
+#compdef dot_setup
+
+_arguments \
+  '*:Config:_path_files -W ~/vc/dotfiles'
