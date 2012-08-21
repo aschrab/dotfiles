@@ -12,6 +12,7 @@ setopt \
   Extended_Glob \
   Glob_Complete \
   List_Types \
+  Magic_Equal_Subst \
   Mail_Warning \
   Notify \
   Numeric_Glob_Sort \
