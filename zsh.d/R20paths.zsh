@@ -13,10 +13,6 @@ ppath=(
   /usr/X11R6/bin
   /usr/X11/bin
   /usr/share/bin
-  /usr/local/pkg/guru
-  /usr/local/pkg/dnvs
-  /usr/local/adm/voyager
-  /usr/local/adm/execpc
   /usr/adm/bin
   /usr/local/pilot/bin
   /usr/ccs/bin
