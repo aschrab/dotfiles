@@ -1,6 +1,5 @@
 setopt \
   Always_Last_Prompt \
-  All_Export \
   Always_to_End \
   Auto_cd \
   Auto_List \
@@ -24,6 +23,7 @@ setopt \
   Typeset_Silent
 
 unsetopt \
+  All_Export \
   Beep \
   Clobber \
   Correct_All \
