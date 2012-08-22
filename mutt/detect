@@ -6,7 +6,7 @@
 % end
 
 % if %w(pug milamber).include? ENV['host']
-  account-hook ats@pug.qqx.org 'set tunnel="dovecot --exec-mail imap"'
+  account-hook ats@pug.qqx.org 'set tunnel="<%= Dir.pwd %>/imapwrap"'
   set editor="twrap vim '+/^$/+1'"
 % end
 
