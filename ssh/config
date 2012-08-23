@@ -41,4 +41,9 @@ Port 222
 Host *.trilug.org
 User aschrab
 
+Host linode_console
+User linode214437
+HostName atlanta286.linode.com
+HostKeyAlias linode_console
+
 # vim: ft=sshconfig
