@@ -1,7 +1,7 @@
 # vim: ft=sh
 
 for where in ./ ../ ../../ ../../../ ../../../../ ../../../../../; do
-	if [ -e ${where}debian/rules -a -d ${where}debian/patches ]; then
-			export QUILT_PATCHES=debian/patches
-	fi
+  if [ -e ${where}debian/rules -a -d ${where}debian/patches ]; then
+    export QUILT_PATCHES=debian/patches
+  fi
 done
