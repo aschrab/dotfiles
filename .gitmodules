@@ -29,3 +29,6 @@
 	path = vim/bundle/perl
 	url = git://github.com/aschrab/vim-perl.git
 	update = merge
+[submodule "upstreams/completions"]
+	path = upstreams/completions
+	url = https://github.com/aschrab/zsh-completions.git
