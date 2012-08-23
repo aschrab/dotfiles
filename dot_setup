@@ -58,7 +58,6 @@ foreach my $f (@ARGV) {
 		$dirs .= $1;
 		$parents .= "../";
 		unless ( -d "$home/$dirs" ) {
-			print "/ $home /$dirs\n";
 			mkdir "$home/$dirs" or die;
 		}
 	}
