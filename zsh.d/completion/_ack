@@ -72,9 +72,14 @@ case "$state" in
   (color)
     # TODO complete combinations of the following parts separated by spaces
     #local cattrs=(clear reset dark bold underline underscore blink reverse concealed)
-    #local fgcolor=(   black    red    green    yellow    blue    magenta    cyan    white)
-    #local bgcolor=(on_black on_red on_green on_yellow on_blue on_magenta on_cyan on_white)
-    _values 'Color' black    red    green    yellow    blue    magenta    cyan    white
+    local fgcolor
+    local bgcolor
+    fgcolor=(   'black'    'red'    'green'    'yellow'    'blue'    'magenta'    'cyan'    'white')
+    bgcolor=('on_black' 'on_red' 'on_green' 'on_yellow' 'on_blue' 'on_magenta' 'on_cyan' 'on_white')
+    #_values 'Color' black    red    green    yellow    blue    magenta    cyan    white
+    local expl
+    _wanted color expl 'Color' \
+      _sep_parts fgcolor ' ' bgcolor
     ;;
   (filetype)
     local types="$(
