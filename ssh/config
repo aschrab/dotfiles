@@ -2,8 +2,9 @@ HashKnownHosts no
 #ControlMaster auto
 ControlPath ~/.ssh/.master.%l-%r@%h:%p
 
+Host milamber.qqx.org
+
 Host pug.qqx.org
-Port 222
 
 Host ircproxy
 HostName pug.qqx.org
@@ -21,6 +22,11 @@ Host aevo.qqx.org
 User root
 Port 22
 ForwardX11 no
+
+Host gay-deceiver.qqx.org
+
+Host zim.qqx.org
+#ProxyCommand ssh gay-deceiver.qqx.org nc %h %p
 
 Host *.qqx.org
 ForwardAgent yes
