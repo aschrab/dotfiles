@@ -1,0 +1,13 @@
+#!/bin/sh
+
+/usr/lib/dovecot/imap
+
+# For some reason dovecot is exiting with code 81
+# even when there are no problems.
+# This causes mutt to pause to tell me that when closing the connection.
+# Ignore that specific exit code.
+if (( $? == 81 )); then
+	exit 0
+fi
+
+exit $?
