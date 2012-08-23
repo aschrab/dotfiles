@@ -28,6 +28,10 @@ Host gay-deceiver.qqx.org
 Host zim.qqx.org
 #ProxyCommand ssh gay-deceiver.qqx.org nc %h %p
 
+Host kahlan*
+ForwardX11 no
+Port 22
+
 Host *.qqx.org
 ForwardAgent yes
 ForwardX11 yes
