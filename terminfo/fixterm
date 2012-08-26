@@ -12,7 +12,10 @@ do
 	if infocmp -A $dir $term > /dev/null 2>&1
 	then
 		tmp=$(mktemp -d terminfo.XXXXX)
-		infocmp -1 -A $dir $term | sed -e '/^[ 	]*[sr]mcup=/d' > $tmp/$term
+		infocmp -1 -A $dir $term | sed \
+			-e '/^[ 	]*[sr]mcup=/d' \
+			-e '/\(^[ 	]*colors\)#[0-9]*/s//\1#256/' \
+			> $tmp/$term
 		tic $tmp/$term
 		rm -rf $tmp
 		exit
