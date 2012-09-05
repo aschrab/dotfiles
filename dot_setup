@@ -41,7 +41,7 @@ foreach my $f (@ARGV) {
 
 	# IF "USUAL" is used as name to link, actually each line in that file as a name to link
 	if( $f =~ /USUAL/ ) {
-		open USUAL, '<', "$home/$src/$f" or die $!;
+		open USUAL, '<', "$src/$f" or die $!;
 		push @ARGV, <USUAL>;
 		close USUAL;
 		next;
