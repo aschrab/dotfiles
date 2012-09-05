@@ -25,7 +25,7 @@ export MPAGE="-2m50t"
 export COLORFGBG='default;default'
 export HOST_DEFAULTS='-R'
 export NOPASTE_SERVICES='Gist'
-export MTR_OPTIONS="--order LSD NABMV"
+export MTR_OPTIONS="--order LSRDNABMV"
 export DBIC_TRACE_PROFILE=console
 
 export EMAIL="aaron@schrab.com"
