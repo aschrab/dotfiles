@@ -32,6 +32,8 @@ $src = "$ENV{PWD}/$src" unless $src =~ m{^/};
 1 while $src =~ s{/[^/]+/\.\./}{/};
 # Remove script filename to get just dir name
 $src =~ s{/[^/]+$}{};
+# Copy of absolute for opening USUAL file
+my $source = $src;
 # Convert to being relative to home
 $src =~ s{^$home/?}{};
 
@@ -41,7 +43,7 @@ foreach my $f (@ARGV) {
 
 	# IF "USUAL" is used as name to link, actually each line in that file as a name to link
 	if( $f =~ /USUAL/ ) {
-		open USUAL, '<', "$src/$f" or die $!;
+		open USUAL, '<', "$source/$f" or die "Couldn't open '$source/$f': $!\n";
 		push @ARGV, <USUAL>;
 		close USUAL;
 		next;
