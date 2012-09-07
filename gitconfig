@@ -70,3 +70,5 @@
 	confirm = always
 	suppresscc = self
 	chainreplyto = no
+[upstream]
+	urltag = qqx/upstream
