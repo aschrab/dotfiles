@@ -10,6 +10,7 @@ psqlrc
 re.pl
 quiltrc
 screenrc
+ssh/config
 tmux.conf
 vim
 vimrc
