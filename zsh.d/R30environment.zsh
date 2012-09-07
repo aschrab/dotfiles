@@ -28,6 +28,9 @@ export NOPASTE_SERVICES='Gist'
 export MTR_OPTIONS="--order LSRDNABMV"
 export DBIC_TRACE_PROFILE=console
 
+# Enable colors in FreeBSD's ls
+export CLICOLOR=1
+
 export EMAIL="aaron@schrab.com"
 export DEBEMAIL="$EMAIL"
 
