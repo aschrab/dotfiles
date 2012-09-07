@@ -2,6 +2,7 @@
 [user]
 	name = Aaron Schrab
 	email = aaron@schrab.com
+	signingkey = 6DB5C725
 [init]
 #	templatedir = ~/.git_template
 [log]
