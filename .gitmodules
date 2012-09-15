@@ -32,3 +32,6 @@
 [submodule "upstreams/completions"]
 	path = upstreams/completions
 	url = https://github.com/aschrab/zsh-completions.git
+[submodule "vim/bundle/nginx"]
+	path = vim/bundle/nginx
+	url = https://github.com/evanmiller/nginx-vim-syntax.git
