@@ -5,6 +5,10 @@ then
   DISPLAY="localhost:${DISPLAY#${HOST}:}"
 fi
 
+if [[ -n "$DISPLAY" && -z "$XAUTHORITY" && -r ~/.Xauthority ]]; then
+  export XAUTHORITY=~/.Xauthority
+fi
+
 # Set $TERMINFO to dir in original user's home
 [[ -z $TERMINFO ]] && export TERMINFO=~${SUDO_USER}/.terminfo
 
