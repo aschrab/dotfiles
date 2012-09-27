@@ -1,3 +1,4 @@
 #autoload
-mkdir "$@"
-cd "$argv[-1]"
+
+mkdir -p "$@"
+cd "$_"
