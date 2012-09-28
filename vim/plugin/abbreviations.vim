@@ -17,6 +17,3 @@ iabbrev shfit shift
 iabbrev lenght length
 iabbrev ube unsolicited bulk email
 iabbrev UBE Unsolicited Bulk Email
-
-cabbrev ack <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'Ack' : 'ack')<CR>
-
