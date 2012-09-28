@@ -56,3 +56,6 @@
 [submodule "vim/bundle/cmdalias"]
 	path = vim/bundle/cmdalias
 	url = https://github.com/vim-scripts/cmdalias.vim.git
+[submodule "vim/bundle/js"]
+	path = vim/bundle/js
+	url = https://github.com/pangloss/vim-javascript.git
