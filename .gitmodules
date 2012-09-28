@@ -53,3 +53,6 @@
 [submodule "vim/bundle/editorconfig"]
 	path = vim/bundle/editorconfig
 	url = https://github.com/editorconfig/editorconfig-vim.git
+[submodule "vim/bundle/cmdalias"]
+	path = vim/bundle/cmdalias
+	url = https://github.com/vim-scripts/cmdalias.vim.git
