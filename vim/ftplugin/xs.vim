@@ -1,5 +1,5 @@
-set tabstop=2
-set shiftwidth=2
-set expandtab
-set smartindent
-set cindent
+setlocal tabstop=2
+setlocal shiftwidth=2
+setlocal expandtab
+setlocal smartindent
+setlocal cindent

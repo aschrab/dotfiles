@@ -1,4 +1,4 @@
 let b:nojump=1
-set spell
+setlocal spell
 setlocal formatoptions+=a
 setlocal nomodeline

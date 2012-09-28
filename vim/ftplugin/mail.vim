@@ -1,2 +1,2 @@
-set formatoptions+=rawn2
-set spell
+setlocal formatoptions+=rawn2
+setlocal spell

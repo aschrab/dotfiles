@@ -1,4 +1,4 @@
-set cursorline
+setlocal cursorline
 
 nnoremap <buffer> <silent> <C-C> :Cycle<CR>
 

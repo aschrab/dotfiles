@@ -1,1 +1,1 @@
-set nosmarttab noexpandtab noautoindent
+setlocal nosmarttab noexpandtab noautoindent

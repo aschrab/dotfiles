@@ -1,4 +1,4 @@
-set tabstop=4
-set shiftwidth=4
-set noexpandtab
-set foldnestmax=1
+setlocal tabstop=4
+setlocal shiftwidth=4
+setlocal noexpandtab
+setlocal foldnestmax=1

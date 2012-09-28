@@ -1,4 +1,4 @@
-set formatoptions+=o
-set shiftwidth=2
-set expandtab
+setlocal formatoptions+=o
+setlocal shiftwidth=2
+setlocal expandtab
 let b:nojump=1
