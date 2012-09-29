@@ -4,7 +4,7 @@ local context state line
 typeset -A opt_args
 
 _arguments -s : \
-  '-b+[Source IP address]:IP:_local_addresses' \
+  '-b+[Source IP address]:IP:_bind_addresses' \
   '-c+[Class]:DNS class:_dns_class' \
   '-t+[Type]:DNS type:_dns_type' \
   '-q+[Query name]:Name:_hosts' \
