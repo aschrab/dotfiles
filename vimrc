@@ -29,8 +29,10 @@ highlight rubyStringDelimiter ctermfg=Blue
 highlight rubyInterpolation ctermbg=Cyan ctermfg=DarkYellow
 highlight rubyEscape ctermbg=Cyan ctermfg=DarkBlue
 
-highlight diffRemoved ctermfg=Red
-highlight diffAdded ctermfg=Blue
+highlight DiffDelete cterm=NONE ctermfg=white ctermbg=Red
+highlight DiffAdd    cterm=NONE ctermfg=white ctermbg=Green
+highlight DiffChange cterm=NONE ctermfg=white ctermbg=Yellow
+highlight DiffText   cterm=NONE ctermfg=white ctermbg=Magenta
 end
 "}}}
 :endif
