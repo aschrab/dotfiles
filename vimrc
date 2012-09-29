@@ -13,8 +13,6 @@ syntax on
 if &bg == "light"
 highlight Comment ctermfg=DarkRed
 highlight Constant ctermfg=DarkMagenta
-highlight procmailAction ctermfg=DarkGreen
-highlight procmailCondition ctermfg=DarkBlue
 
 highlight Visual ctermfg=Yellow ctermbg=black
 highlight VisualNOS ctermfg=Yellow ctermbg=grey cterm=reverse
@@ -22,7 +20,6 @@ highlight NonText ctermfg=DarkBlue guifg=grey gui=NONE
 highlight SpecialKey ctermfg=Yellow guifg=grey gui=NONE
 highlight StatusLineNC ctermfg=DarkBlue ctermbg=grey cterm=reverse
 highlight StatusLine ctermfg=Blue cterm=reverse
-highlight link smVar Identifier
 
 highlight String ctermbg=Cyan ctermfg=Black
 highlight rubyStringDelimiter ctermfg=Blue
