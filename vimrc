@@ -8,30 +8,7 @@ scriptencoding utf-8
 
 set t_Co=16
 :if has("syntax")
-syntax on
-" Custom colors {{{
-if &bg == "light"
-highlight Comment ctermfg=DarkRed
-highlight Constant ctermfg=DarkMagenta
-
-highlight Visual ctermfg=Yellow ctermbg=black
-highlight VisualNOS ctermfg=Yellow ctermbg=grey cterm=reverse
-highlight NonText ctermfg=DarkBlue guifg=grey gui=NONE
-highlight SpecialKey ctermfg=Yellow guifg=grey gui=NONE
-highlight StatusLineNC ctermfg=DarkBlue ctermbg=grey cterm=reverse
-highlight StatusLine ctermfg=Blue cterm=reverse
-
-highlight String ctermbg=Cyan ctermfg=Black
-highlight rubyStringDelimiter ctermfg=Blue
-highlight rubyInterpolation ctermbg=Cyan ctermfg=DarkYellow
-highlight rubyEscape ctermbg=Cyan ctermfg=DarkBlue
-
-highlight DiffDelete cterm=NONE ctermfg=white ctermbg=Red
-highlight DiffAdd    cterm=NONE ctermfg=white ctermbg=Green
-highlight DiffChange cterm=NONE ctermfg=white ctermbg=Yellow
-highlight DiffText   cterm=NONE ctermfg=white ctermbg=Magenta
-end
-"}}}
+	syntax on
 :endif
 
 " Miscellaneous options {{{
