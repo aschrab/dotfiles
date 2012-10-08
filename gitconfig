@@ -5,6 +5,8 @@
 	signingkey = 6DB5C725
 [init]
 #	templatedir = ~/.git_template
+[advice]
+	statusHints = no
 [log]
 	abbrevCommit = true
 [url "ssh://pug.qqx.org/srv/git/"]
