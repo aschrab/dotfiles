@@ -100,6 +100,11 @@ inoremap <C-e> <esc>
 map gf :new <cfile><CR>
 nmap <silent> <Leader>f :CommandT<CR>
 
+" Preserve visual selection after indenting
+vnoremap < <gv
+vnoremap > >gv
+vnoremap = =gv
+
 " Allow backspace to remove digits from numeric prefix for commands.
 omap <BS> <Del>
 
