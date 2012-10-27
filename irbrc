@@ -51,6 +51,21 @@ IRB.conf[:IRB_RC] = proc do |conf|
   conf.return_format = lead + " #{term_color :red}==>#{term_color :normal} %s\n"
 end #}}}
 
+# Methods to generate "toy" Hash or Array objects{{{
+# Copied from https://gist.github.com/807492
+class Array
+  def self.toy(n=10, &block)
+    block_given? ? Array.new(n,&block) : Array.new(n) {|i| i+1}
+  end
+end
+
+class Hash
+  def self.toy(n=10)
+    Hash[Array.toy(n){|c| (96+(c+1)).chr.to_sym }.zip(Array.toy(n))]
+  end
+end
+#}}}
+
 begin # IRb shouldn't fail if can't get completion
   require 'irb/completion'
 rescue Exception
