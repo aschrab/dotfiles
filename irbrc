@@ -204,4 +204,10 @@ class MethodFinder
 end
 #}}}
 
+class Object
+  def own_methods
+    self.class.instance_methods - self.class.superclass.instance_methods
+  end
+end
+
 # vim: filetype=ruby foldmethod=marker
