@@ -63,6 +63,11 @@
 	diff = auto
 	interactive = auto
 	status = auto
+[color "status"]
+	added     = green
+	untracked = yellow
+	updated   = red
+	changed   = red
 [github]
 	user = aschrab
 [sendemail]
