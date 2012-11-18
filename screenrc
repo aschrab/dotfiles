@@ -2,7 +2,7 @@
 startup_message off
 autodetach on
 setenv SCREENTERM $TERM
-escape ^Oo
+#escape ^Oo
 #debug on
 
 defscrollback 500
