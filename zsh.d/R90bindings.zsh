@@ -11,6 +11,8 @@ bindkey -M emacs "\eOD" backward-char
 bindkey -M emacs "\eOC" forward-char
 bindkey -M emacs "\e[5D" backward-word  # ctrl + left-arrow
 bindkey -M emacs "\e[5C" forward-word   # ctrl + right-arrow
+bindkey -M emacs "\e[1;5D" backward-word  # ctrl + left-arrow
+bindkey -M emacs "\e[1;5C" forward-word   # ctrl + right-arrow
 bindkey -M emacs "\M-;" copy-prev-word
 bindkey -M emacs "\e;" copy-prev-word
 
