@@ -99,6 +99,7 @@ inoremap <C-L> <C-X><C-L>
 inoremap <C-e> <esc>
 map gf :new <cfile><CR>
 nmap <silent> <Leader>f :CommandT<CR>
+nmap <silent> <Leader>a :call SyntaxAttr#SyntaxAttr()<CR>
 
 " Preserve visual selection after indenting
 vnoremap < <gv

@@ -65,3 +65,6 @@
 [submodule "vim/bundle/syntastic"]
 	path = vim/bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
+[submodule "vim/bundle/SyntaxAttr"]
+	path = vim/bundle/SyntaxAttr
+	url = https://github.com/aschrab/SyntaxAttr.vim.git
