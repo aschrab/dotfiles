@@ -1,3 +1,0 @@
-[ -t 0 ] && stty -ixon
-command vim "$@"
-[ -t 0 ] && stty ixon
