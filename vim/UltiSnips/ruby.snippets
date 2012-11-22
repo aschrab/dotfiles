@@ -3,3 +3,11 @@ should "${1:description}" do #{{{
 	$0
 end #}}}
 endsnippet
+
+clearsnippets do
+snippet do
+do ${1:|${2:args}|}
+	$3
+end
+$0
+endsnippet
