@@ -101,6 +101,8 @@ map gf :new <cfile><CR>
 nmap <silent> <Leader>f :CommandT<CR>
 nmap <silent> <Leader>a :call SyntaxAttr#SyntaxAttr()<CR>
 
+nnoremap <F5> :GundoToggle<CR>
+
 " Preserve visual selection after indenting
 vnoremap < <gv
 vnoremap > >gv
