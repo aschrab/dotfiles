@@ -1,14 +1,18 @@
 # vim: ft=gitconfig tabstop=4 shiftwidth=4
 [user]
-	name = Aaron Schrab
-	email = aaron@schrab.com
+	name       = Aaron Schrab
+	email      = aaron@schrab.com
 	signingkey = 6DB5C725
+
 [init]
 #	templatedir = ~/.git_template
+#
 [advice]
 	statusHints = no
+
 [log]
 	abbrevCommit = true
+
 [url "ssh://pug.qqx.org/srv/git/"]
 	pushInsteadOf = http://git.qqx.org/
 [url "ssh://git@github.com/aschrab/"]
@@ -19,63 +23,73 @@
 [url "git@git.it.corp:"]
 	pushInsteadOf = git://git.it.corp/
 	pushInsteadOf = http://git.it.corp/
+
 [core]
-	pager = less -R
-	#autocrlf = input
-	safecrlf = true
+	pager        = less -R
+	#autocrlf    = input
+	safecrlf     = true
 	excludesfile = ~/.gitignore
+
 [diff]
-	renames = true
+	renames        = true
 	mnemonicprefix = yes
+
 [merge]
 	conflictstyle = diff3
+
 [alias]
-	co = checkout
-	ci = commit -v
-	cia = commit -v -a
-	d = diff
-	dif = diff
-	ds = diff --staged
-	sh = show
-	sho = show
-	st = status
-	up = "!echo Use pull >&2 ; exit 1"
-	l1 = log --pretty=oneline
-	last = log --stat -p -1 HEAD
-	unstage = reset HEAD --
-	srebase = svn rebase
-	sr = svn rebase
-	dcommit = svn dcommit
-	dc = svn dcommit
-	sf = svn fetch
-	review = "!f() { for rev in $(git log --reverse --format=%H $@); do git show $rev; done; }; f"
+	co          = checkout
+	ci          = commit -v
+	cia         = commit -v -a
+	d           = diff
+	dif         = diff
+	ds          = diff --staged
+	sh          = show
+	sho         = show
+	st          = status
+	up          = "!echo Use pull >&2 ; exit 1"
+	l1          = log --pretty                                    = oneline
+	last        = log --stat -p -1 HEAD
+	unstage     = reset HEAD --
+	srebase     = svn rebase
+	sr          = svn rebase
+	dcommit     = svn dcommit
+	dc          = svn dcommit
+	sf          = svn fetch
+	review      = "!f() { for rev in $(git log --reverse --format = %H $@); do git show $rev; done; }; f"
 	show-commit = log -1 -p
-	lol = log --graph --decorate --pretty=oneline --abbrev-commit
-	foo = commit -v
+	lol         = log --graph --decorate --pretty                 = oneline --abbrev-commit
+	foo         = commit -v
 
 [push]
 	default = current
+
 [filter "date-prop"]
-	clean =  perl -pe 's/,,Date[^,]*,,/,,Date,,/i'
+	clean  = perl -pe 's/,,Date[^,]*,,/,,Date,,/i'
 	smudge = perl -pe 's/,,Date[^,]*,,/,,Date: @{[scalar gmtime]},,/i'
+
 [color]
-	branch = auto
-	diff = auto
+	branch      = auto
+	diff        = auto
 	interactive = auto
-	status = auto
+	status      = auto
+
 [color "status"]
 	added     = green
 	untracked = yellow
 	updated   = red
 	changed   = red
+
 [github]
 	user = aschrab
+
 [sendemail]
-	from = Aaron Schrab <aaron@schrab.com>
+	from           = Aaron Schrab <aaron@schrab.com>
 	envelopesender = aaron@schrab.com
-	bcc = aaron@schrab.com
-	confirm = always
-	suppresscc = self
-	chainreplyto = no
+	bcc            = aaron@schrab.com
+	confirm        = always
+	suppresscc     = self
+	chainreplyto   = no
+
 [upstream]
 	urltag = qqx/upstream
