@@ -106,6 +106,9 @@ vnoremap < <gv
 vnoremap > >gv
 vnoremap = =gv
 
+" Visually select text most recently edited or pasted
+nnoremap gV `[v`]
+
 " Allow backspace to remove digits from numeric prefix for commands.
 omap <BS> <Del>
 
