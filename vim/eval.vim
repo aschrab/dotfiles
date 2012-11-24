@@ -3,13 +3,14 @@ let mapleader=','
 
 " Start up pathogen if it's available
 " Won't be available on boxes before git submodules have been fetched
-:if filereadable(expand("~/.vim/bundle/pathogen/autoload/pathogen.vim"))
+try
 	let g:pathogen_disabled = [ 'command-t' ]
 	runtime bundle/pathogen/autoload/pathogen.vim
 	call pathogen#infect()
 	filetype off
 	filetype plugin indent on
-:endif
+catch
+endtry
 
 source ~/.vim/functions.vim
 
