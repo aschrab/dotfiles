@@ -18,12 +18,12 @@ endif
 
 map <buffer> f :call ToggleFold()<CR> 
 
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set expandtab
-set autoindent
-set foldcolumn=1
+setlocal tabstop=4
+setlocal softtabstop=4
+setlocal shiftwidth=4
+setlocal expandtab
+setlocal autoindent
+setlocal foldcolumn=1
 
 let w:nestinglevel = 0
 let w:signature = 0
