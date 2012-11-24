@@ -1,4 +1,4 @@
-fun! CamelToUnderscore(word)
+function! convert#CamelToUnderscore(word)
 	let converted = ''
 	let pos = 0
 	let str = ''

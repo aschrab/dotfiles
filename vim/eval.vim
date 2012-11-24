@@ -13,8 +13,6 @@ endtry
 
 filetype plugin indent on
 
-source ~/.vim/functions.vim
-
 set statusline=%<%{statusline#fugitive()}%f%h%m%r%w\ [%{&ft},%{&ff},%{&fenc}]\ %=\ L%l\/%L\ Col%c%V\ byt%o\ ch0x%B\ %P
 auto BufEnter * let &titlestring = "Vim@%{hostname()} : %{clean#TTY()} : %{clean#CWD()}"
 auto BufEnter * let &iconstring  = "Vim@%{hostname()} : %f (%{clean#TTY()})"
