@@ -8,7 +8,7 @@ my (${1:$foo}) = @_;${2}
 endsnippet
 
 snippet moose
-package ${1:`!v PerlPackageName()`};
+package ${1:`!v perl#package_name()`};
 
 use Moose;
 use namespace::autoclean;
@@ -24,7 +24,7 @@ endsnippet
 
 clearsnippets class
 snippet class
-package ${1:`!v PerlPackageName()`};
+package ${1:`!v perl#package_name()`};
 
 use strict;
 use warnings;
