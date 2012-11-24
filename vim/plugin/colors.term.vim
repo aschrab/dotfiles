@@ -10,6 +10,11 @@ if &bg == "light"
 	highlight Constant            ctermfg=DarkMagenta
 	highlight String              ctermfg=Black       ctermbg=Cyan
 
+	" Set fg color for bad spellings in addition to bg, to ensure it's visible
+	highlight SpellBad            ctermfg=White       ctermbg=Red
+	" Don't do any coloring for non-capitalized words.  Too often wanted.
+	highlight SpellCap            ctermfg=NONE        ctermbg=NONE
+
 	highlight rubyStringDelimiter ctermfg=Blue
 	highlight rubyInterpolation   ctermfg=DarkYellow  ctermbg=Cyan
 	highlight rubyEscape          ctermfg=DarkBlue    ctermbg=Cyan
