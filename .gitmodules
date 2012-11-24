@@ -77,3 +77,6 @@
 [submodule "vim/bundle/gundo"]
 	path = vim/bundle/gundo
 	url = http://github.com/sjl/gundo.vim.git
+[submodule "vim/bundle/SudoEdit"]
+	path = vim/bundle/SudoEdit
+	url = https://github.com/chrisbra/SudoEdit.vim.git
