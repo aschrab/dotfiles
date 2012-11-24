@@ -16,8 +16,6 @@ if !exists("g:ifold_mode")
     let g:ifold_mode = 1
 endif
 
-map <buffer> f :call ToggleFold()<CR> 
-
 setlocal tabstop=4
 setlocal softtabstop=4
 setlocal shiftwidth=4
