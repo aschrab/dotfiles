@@ -1,1 +1,3 @@
-Alias ack Ack
+if exists(":Alias")
+	Alias ack Ack
+endif

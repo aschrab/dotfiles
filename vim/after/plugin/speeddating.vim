@@ -1,5 +1,7 @@
-" Allow month names by themselves
-SpeedDatingFormat %B
+if exists(":SpeedDatingFormat")
+	" Allow month names by themselves
+	SpeedDatingFormat %B
 
-" Allow weekday names by themselves
-SpeedDatingFormat %A
+	" Allow weekday names by themselves
+	SpeedDatingFormat %A
+endif
