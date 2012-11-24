@@ -7,10 +7,11 @@ try
 	let g:pathogen_disabled = [ 'command-t' ]
 	runtime bundle/pathogen/autoload/pathogen.vim
 	call pathogen#infect()
-	filetype off
-	filetype plugin indent on
+
 catch
 endtry
+
+filetype plugin indent on
 
 source ~/.vim/functions.vim
 
