@@ -4,10 +4,9 @@ should "${1:description}" do #{{{
 end #}}}
 endsnippet
 
-clearsnippets do
-snippet do
-do ${1:|${2:args}|}
-	$3
+snippet do "do block" !s
+do `!p snip.rv = "|" if t[1] else""`${1:args}`!p snip.rv = "|" if t[1] else""`
+	$2
 end
 $0
 endsnippet
