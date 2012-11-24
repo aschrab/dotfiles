@@ -1,16 +1,3 @@
-function! CleanCWD ()
-	let cwd = getcwd()
-	let home = expand('~')
-	let cwd = substitute(cwd, home, '~', '')
-	return cwd
-endfunction
-
-function! CleanTTY ()
-  let tty = $TTY
-  let tty = substitute( tty, '/dev/', '', '')
-  return tty
-endfunction
-
 fun! CamelToUnderscore(word)
 	let converted = ''
 	let pos = 0
