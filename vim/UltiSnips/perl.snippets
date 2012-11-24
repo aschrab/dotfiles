@@ -29,7 +29,14 @@ package ${1:`!v PerlPackageName()`};
 use strict;
 use warnings;
 
-${2}
+sub new {
+	my $class = shift;
+	$class = ref $class if ref $class;
+	my $self = bless {}, $class;
+	$self;
+}
+
+${0}
 
 1;
 endsnippet
