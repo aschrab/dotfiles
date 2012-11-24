@@ -1,1 +1,0 @@
-SudoEdit.vba: call delete('/home/ats/.vim/autoload/SudoEdit.vim')|call delete('/home/ats/.vim/doc/SudoEdit.txt')|call delete('/home/ats/.vim/plugin/SudoEdit.vim')
