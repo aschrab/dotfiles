@@ -33,18 +33,6 @@ ${2}
 1;
 endsnippet
 
-snippet dbit
-use base 'Blackjack::Schema::Result';
-
-__PACKAGE__->table('${1:`!v CamelToUnderscore(Filename())`}');
-__PACKAGE__->add_columns(
-	${2:$1_id} => { data_type => '${3:serial}', },
-	${4}
-);
-
-__PACKAGE__->set_primary_key(qw{$2});
-endsnippet
-
 snippet has
 has ${1:attribute} => (
 	is       => '${2:ro|rw}',
