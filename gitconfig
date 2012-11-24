@@ -77,7 +77,7 @@
 [color "status"]
 	added     = green
 	untracked = yellow
-	updated   = red
+	updated   = blue
 	changed   = red
 
 [github]
