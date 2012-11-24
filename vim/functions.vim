@@ -14,14 +14,3 @@ fun! CamelToUnderscore(word)
 
 	return converted
 endf
-
-fun! UnderscoreToTitle(word)
-	let conv = a:word
-
-	" Remove prefix
-	let conv = substitute( conv, '.*:', '', '' )
-	let conv = substitute( conv, '_\(.\)', ' \u\1', 'g' )
-	let conv = substitute( conv, '^\(.\)', '\u\1', 'g' )
-
-	return conv . ':'
-endf
