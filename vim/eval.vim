@@ -7,7 +7,6 @@ try
 	let g:pathogen_disabled = [ 'command-t' ]
 	runtime bundle/pathogen/autoload/pathogen.vim
 	call pathogen#infect()
-
 catch
 endtry
 
