@@ -92,3 +92,4 @@ esac
 export LESSCHARSET
 
 export HOSTALIASES=~/.hostaliases
+export PYTHONSTARTUP=~/.pythonrc.py
