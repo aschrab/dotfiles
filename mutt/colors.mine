@@ -1,3 +1,18 @@
+color normal		default	default
+color error		red	default
+
+color index		default	default ~A
+color index		red	default ~T
+
+color status		black	green
+color indicator		default	cyan
+color tree		blue	default
+
+color hdrdefault	cyan	default
+color header		red	default "^X-(Suspect-reason|spam-action|procmail|Diagnostic|Processed|Country):"
+color header		red	default "^X-Debian-PR-Package:"
+
+color quoted		magenta	default
 
 color body		red	default	"((s?ftp|https?)://|(ftp|www[-a-z0-9]*)\\.)[^ \t\r\n\"<>]*[^].,:;!)? \t\r\n<>\"]"
 color body		magenta	default	'(mailto:)?[a-z0-9]([-+=._%!$#]?[a-z0-9])*@[-a-z0-9.]+\.[a-z][a-z]+'
@@ -5,19 +20,11 @@ color body		green	default	'^gpg: Good signature.*'
 color body		red	yellow	'^gpg: BAD signature .*'
 color body		red	default	'^gpg: .*not certified.*'
 #color body		magenta	default '^-----(BEGIN|END) PGP .*'
-color normal		default	default
-color status		black	green
-color indicator		default	cyan
-color tree		blue	default
-color error		red	default
-color attachment	white	blue #	default
-color hdrdefault	cyan	default
-color header		red	default "^X-(Suspect-reason|spam-action|procmail|Diagnostic|Processed|Country):"
-color header		red	default "^X-Debian-PR-Package:"
-color index		default	default ~A
-color index		red	default ~T
-color signature		cyan	default
-color markers		blue	default
-color tilde		white	default
-color quoted		magenta	default
 
+color signature		cyan	default
+color tilde		white	default
+
+color attachment	white	blue
+color markers		blue	default
+
+# vim: tabstop=8 nowrap filetype=conf
