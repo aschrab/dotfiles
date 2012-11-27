@@ -46,8 +46,6 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
-autocmd FileType * if !exists('b:UltiSnipsStripTrailingWhitespace') | let b:UltiSnipsStripTrailingWhitespace = 1 | endif
-
 " Show changes between buffer and the file on disk
 command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
 
