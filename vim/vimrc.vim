@@ -100,6 +100,7 @@ inoremap <C-e> <esc>
 map gf :new <cfile><CR>
 nmap <silent> <Leader>f :CommandT<CR>
 nmap <silent> <Leader>a :call SyntaxAttr#SyntaxAttr()<CR>
+map <Leader>z <Plug>SimpleFold_Foldsearch
 
 nnoremap <F5> :GundoToggle<CR>
 
