@@ -13,7 +13,7 @@ endtry
 filetype plugin indent on
 
 if has('multi_statusline')
-	set statuslineheight=2
+	set statuslineheight=1
 endif
 
 set statusline=%!statusline#line()
