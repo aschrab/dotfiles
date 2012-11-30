@@ -12,7 +12,7 @@ endtry
 
 filetype plugin indent on
 
-set statusline=%<%{statusline#fugitive()}%f%h%m%r%w\ [%{&ft},%{&ff},%{&fenc}]\ %=\ L%l\/%L\ Col%c%V\ byt%o\ ch0x%B\ %P
+set statusline=%<#%{statusline#WindowNumber()}\ %{statusline#fugitive()}%f%h%m%r%w\ [%{&ft},%{&ff},%{&fenc}]\ %=\ L%l\/%L\ Col%c%V\ byt%o\ ch0x%B\ %P
 auto BufEnter * let &titlestring = "Vim@%{hostname()} : %{clean#TTY()} : %{clean#CWD()}"
 auto BufEnter * let &iconstring  = "Vim@%{hostname()} : %f (%{clean#TTY()})"
 

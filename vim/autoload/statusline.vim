@@ -5,3 +5,8 @@ function! statusline#fugitive ()
 		return ''
 	endif
 endfunction
+
+function! statusline#WindowNumber ()
+	let str=tabpagewinnr(tabpagenr())
+	return str
+endfunction
