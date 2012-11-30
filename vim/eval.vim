@@ -12,6 +12,10 @@ endtry
 
 filetype plugin indent on
 
+if has('multi_statusline')
+	set statuslineheight=2
+endif
+
 set statusline=%!statusline#line()
 auto BufEnter * let &titlestring = "Vim@%{hostname()} : %{clean#TTY()} : %{clean#CWD()}"
 auto BufEnter * let &iconstring  = "Vim@%{hostname()} : %f (%{clean#TTY()})"
