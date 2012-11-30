@@ -11,7 +11,7 @@ function! statusline#line ()"{{{
 	endif
 	let line.='%h' " Help buffer flag
 	let line.='%2*%m%*' " Modified flag
-	let line.='%1*%r%*' " Readonly flag
+	let line.=statusline#readlonly()
 	let line.='%w' " Preview window flag
 	let line.=' '
 	let line.='[%{&ft}%{statusline#format()}%{statusline#encoding()}]'
@@ -54,6 +54,14 @@ function! statusline#encoding ()"{{{
 		return ''
 	endif
 	return ';' . enc
+endfunction"}}}
+
+function! statusline#readlonly ()"{{{
+	if &ro
+		return ' %1*⚠%*'
+	else
+		return ''
+	endif
 endfunction"}}}
 
 function! statusline#fugitive ()"{{{
