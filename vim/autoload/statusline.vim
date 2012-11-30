@@ -1,3 +1,24 @@
+function! statusline#line ()
+	let line=''
+	let line.='%<' " Mark truncation
+	let line.='#%{statusline#WindowNumber()} '
+	let line.='%{statusline#fugitive()}'
+	let line.='%f' " Path to file
+	let line.='%h' " Help buffer flag
+	let line.='%m' " Modified flag
+	let line.='%r' " Readonly flag
+	let line.='%w' " Preview window flag
+	let line.=' '
+	let line.='[%{&ft},%{&ff},%{&fenc}]'
+	let line.=' '
+	let line.='%=' " Begin right-aligned portion
+	let line.=' '
+	let line.='ch0x%B' " Code of character under cursor
+	let line.=' '
+	let line.='L%l/%L Col%c%V byt%o %P' " cursor position
+	return line
+endfunction
+
 function! statusline#fugitive ()
 	if exists("*fugitive#statusline")
 		return fugitive#statusline()
