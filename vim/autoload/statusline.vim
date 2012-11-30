@@ -13,8 +13,8 @@ function! statusline#line ()
 		endif
 	endif
 	let line.='%h' " Help buffer flag
-	let line.='%m' " Modified flag
-	let line.='%r' " Readonly flag
+	let line.='%2*%m%*' " Modified flag
+	let line.='%1*%r%*' " Readonly flag
 	let line.='%w' " Preview window flag
 	let line.=' '
 	let line.='[%{&ft},%{&ff},%{&fenc}]'
