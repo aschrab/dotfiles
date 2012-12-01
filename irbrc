@@ -150,7 +150,7 @@ def class_tree(root, show_methods = true, colorize = true) #{{{
       strings[0] += " " + c[:dots]+"."*(maxlength-current_root.to_s.length) + " "+c[:methodNames]+methods[0].to_s if methods[0] != nil
       strings.each {|aString| puts(aString) }
     else
-      string = prefixString + c[:lines]+"- " +c[:classNames]+current_root.to_s
+      string = "#{prefixString}#{c[:lines]}-#{c[:classNames]}#{current_root.to_s}"
       modules = current_root.included_modules - [Kernel]
       if modules.size > 0
         string += " "*(maxlength-current_root.to_s.length)+c[:lines]+"[ "+c[:moduleNames]+
