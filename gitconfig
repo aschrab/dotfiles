@@ -80,6 +80,9 @@
 	updated   = blue
 	changed   = red
 
+[status]
+	submodulesummary = true
+
 [github]
 	user = aschrab
 
