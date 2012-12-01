@@ -25,6 +25,11 @@ while i <= 9
     let i = i + 1
 endwhile
 
+let g:Powerline_theme='qqx'
+let g:Powerline_symbols='fancy'
+call Pl#Theme#InsertSegment( 'charcode', 'after', 'lineinfo')
+call Pl#Theme#InsertSegment( 'qqx:maxline', 'after', 'lineinfo' )
+
 set statusline=%!statusline#inactive()
 let &l:statusline='%!statusline#line()'
 auto BufEnter,WinEnter * let &l:statusline='%!statusline#line()'
