@@ -8,6 +8,16 @@ use 5.10.0;
 $0
 endsnippet
 
+snippet else
+else {
+	$0
+}
+endsnippet
+
+snippet open
+open ${1:my \$${2:fh}}, '${3:<}', "${4:path}" or die$5;
+endsnippet
+
 snippet self
 my $self = shift;
 endsnippet
