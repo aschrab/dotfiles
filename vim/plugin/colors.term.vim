@@ -26,4 +26,6 @@ if &bg == "light"
 	highlight DiffAdd             ctermfg=white       ctermbg=Green       cterm=NONE
 	highlight DiffChange          ctermfg=white       ctermbg=Yellow      cterm=NONE
 	highlight DiffText            ctermfg=white       ctermbg=Magenta     cterm=NONE
+
+	highlight mkdCode             ctermbg=Black       ctermbg=Cyan
 endif
