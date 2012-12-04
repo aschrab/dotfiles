@@ -1,5 +1,6 @@
 [[ $ZSH_MAJOR_VERSION -lt 4 ]] && return
 
+zstyle ':completion:*' rehash yes
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _oldlist _expand _complete _ignored _match _correct _approximate _prefix
 zstyle ':completion:*' completions 'NUMERIC==3'
