@@ -7,4 +7,6 @@ if &bg == "light"
 	" Set colors for portions of the statusline
 	highlight User1               guifg=Red                           gui=reverse
 	highlight User2               guifg=Yellow                        gui=reverse
+
+	highlight mkdCode             guibg=Black       guibg=Cyan
 endif
