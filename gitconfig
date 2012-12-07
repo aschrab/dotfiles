@@ -48,7 +48,7 @@
 	sho         = show
 	st          = status
 	up          = "!echo Use pull >&2 ; exit 1"
-	l1          = log --pretty                                    = oneline
+	l1          = log --pretty=oneline
 	last        = log --stat -p -1 HEAD
 	unstage     = reset HEAD --
 	srebase     = svn rebase
@@ -56,9 +56,9 @@
 	dcommit     = svn dcommit
 	dc          = svn dcommit
 	sf          = svn fetch
-	review      = "!f() { for rev in $(git log --reverse --format = %H $@); do git show $rev; done; }; f"
+	review      = "!f() { for rev in $(git log --reverse --format=%H $@); do git show $rev; done; }; f"
 	show-commit = log -1 -p
-	lol         = log --graph --decorate --pretty                 = oneline --abbrev-commit
+	lol         = log --graph --decorate --pretty=oneline --abbrev-commit
 	foo         = commit -v
 
 [push]
