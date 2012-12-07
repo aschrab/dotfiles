@@ -49,6 +49,8 @@
 	st          = status
 	up          = "!echo Use pull >&2 ; exit 1"
 	l1          = log --pretty=oneline
+	ls          = log --decorate --graph --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]"
+	ll          = log --decorate --numstat --date=short --pretty=format:"%C(yellow)%ad\\ %h%Cred%d\\ %Creset%s%Cblue\\ [%cn]"
 	last        = log --stat -p -1 HEAD
 	unstage     = reset HEAD --
 	srebase     = svn rebase
