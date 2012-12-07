@@ -57,7 +57,7 @@
 %#    spam '^X-qqx-org-MailScanner-SpamCheck:.*(score|hits)=(-?[0-9.]+)' '%2'
 %#    set imap_headers="X-qqx-org-MailScanner-SpamCheck"
     folder-hook 'suspect' 'set sort=spam'
-%   spam_fmt = ' <%4.4H>';
+%   spam_fmt = ' <'+'%4.4H>';
 % end
 
 % if mutt_patch %r<date_conditional>
