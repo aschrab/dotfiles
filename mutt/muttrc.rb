@@ -1,7 +1,9 @@
 def mlist mbox, opts={} #{{{
   case mbox
-  when Hash: opts = mbox
-  else opts[:mbox] = mbox
+  when Hash
+    opts = mbox
+  else
+    opts[:mbox] = mbox
   end
 
   unless opts[:address]
