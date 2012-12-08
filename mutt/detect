@@ -7,6 +7,9 @@
 
 % if %w(pug milamber).include? ENV['host']
   account-hook ats@pug.qqx.org 'set tunnel="<%= Dir.pwd %>/imapwrap"'
+% end
+
+% if ENV['TMUX']
   set editor="twrap vim '+/^$/+1'"
 % end
 
