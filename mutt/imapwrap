@@ -1,6 +1,14 @@
 #!/bin/sh
 
-/usr/lib/dovecot/imap
+case $HOST in
+	pug|milamber)
+		;;
+	*)
+		ssh="ssh pug.qqx.org"
+		;;
+esac
+
+$ssh /usr/lib/dovecot/imap
 
 # For some reason dovecot is exiting with code 81
 # even when there are no problems.
