@@ -5,9 +5,7 @@
 	source ~/.mutt/aliases
 % end
 
-% if %w(pug milamber).include? ENV['host']
-  account-hook ats@pug.qqx.org 'set tunnel="<%= Dir.pwd %>/imapwrap"'
-% end
+account-hook ats@pug.qqx.org 'set tunnel="<%= Dir.pwd %>/imapwrap"'
 
 % if ENV['TMUX']
   set editor="twrap vim '+/^$/+1'"
