@@ -12,7 +12,8 @@ account-hook ats@pug.qqx.org 'set tunnel="<%= Dir.pwd %>/imapwrap"'
 % end
 
 % alternates = [ ]
-% alternates << '(aaron|root|master|ats|bofh)@sc[h]rab\.com'
+% alternates << 'aaron(\+[^@]+)?@sc[h]rab\.com'
+% alternates << '(root|[hp]ostmaster|ats|bofh)@sc[h]rab\.com'
 % alternates << '@pug\.qqx\.org'
 % alternates << '[hp]ostmaster@qqx\.org'
 %
