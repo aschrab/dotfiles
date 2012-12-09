@@ -1,24 +1,15 @@
 % require 'muttrc.rb'
 
 mailboxes !
-mailboxes =INBOX/wiki
 mailboxes =INBOX/junk
 mailboxes =INBOX/sympa
 
-<%# mlist 'sec/linux-security' %>
 <%= mlist 'lsm-workers' %>
 
 # UG lists
-<%= mlist 'ug/mlug-board' %>
-<%= mlist 'ug/mlug' %>
-<%= mlist 'ug/blinux' %>
 <%= mlist 'ug/raleigh-pm' %>
 <%= mlist 'ruby/raleigh', :address => 'raleigh-rb-members' %>
 <%= mlist 'ug/trilug' %>
-<%= mlist 'ug/fdllug' %>
-<%= mlist 'ug/milwpm' %>
-<%= mlist 'ug/sewaug' %>
-<%= mlist 'ug/double-click' %>
 
 mailboxes =rss
 
@@ -27,24 +18,8 @@ mailboxes =rss
 <%= mlist 'dev/git', :address => 'git@vger.kernel.org' %>
 <%= mlist 'dev/tmux', :address => 'tmux-users@lists.sourceforge.net' %>
 <%= mlist 'dev/meld', :address => 'meld-list@gnome.org' %>
-<%= mlist 'mail/scanner', :address => 'mailscanner@lists.mailscanner.info' %>
 <%= mlist 'dev/sql-translator', :address => 'sqlfairy-developers@lists.sourceforge.net' %>
 
-<%= mlist 'mail/spamtools', :from => 'aaron+spamtools@schrab.com' %>
-
-<%= mlist 'vim-dev' %>
-
-# Ruby lists
-<%= mlist 'ruby/dbi' %>
-<%= mlist 'ruby/rexml', :address => 'ser-rexml' %>
-<%= mlist 'ruby/mke', :address => 'MilwaukeeRuby@googlegroups.com' %>
-<%= mlist 'ruby/modruby' %>
-<%= mlist 'ruby/narf' %>
-<%= mlist 'ruby/rails-core' %>
-<%= mlist 'ruby/core' %>
-<%= mlist 'ruby/talk' %>
-
-<%= mlist 'mail/offlineimap' %>
 
 # Perl lists
 <%= mlist 'perl/dbix', :address => 'dbix-class' %>
@@ -63,6 +38,4 @@ mailboxes =rss
 <%= mlist 'debian/vote' %>
 lists debian-.*@lists\.debian\.org
 
-<%= mlist 'mail/dovecot' %>
-<%= mlist 'tidbits' %>
 <%= mlist 'bugtraq' %>
