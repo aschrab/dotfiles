@@ -262,7 +262,9 @@ command! -nargs=1 RiExpand :call Ri('<args>', 1)
 " Section: Setup mappings {{{1
 " Prompt for search term
 
-nnoremap <unique> <Plug>Ri :call Ri('', 0)<CR>
+if !hasmapto('<Plug>Ri')
+  nnoremap <unique> <Plug>Ri :call Ri('', 0)<CR>
+endif
 if !hasmapto('<Plug>Ri')
   nmap <unique> <Leader>ri <Plug>Ri
 endif
@@ -272,7 +274,9 @@ if !hasmapto('<M-i>')
 endif
 
 " Expand class/module if possible and prompt
-nnoremap <unique> <Plug>Rx :call Ri('', 1)<CR>
+if !hasmapto('<Plug>Rx')
+  nnoremap <unique> <Plug>Rx :call Ri('', 1)<CR>
+endif
 if !hasmapto('<Plug>Rx')
   nmap <unique> <Leader>rx <Plug>Rx
 endif
