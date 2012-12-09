@@ -58,3 +58,26 @@ let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
 let g:syntastic_auto_loc_list=1
 let g:syntastic_loc_list_height=5
+
+let g:ScreenImpl='Tmux'
+let g:ScreenShellInitialFocus='shell'
+let g:ScreenShellExpandTabs=1
+"let g:ScreenShellQuitOnVimExit=0
+
+function! s:ScreenShellListener()
+if g:ScreenShellActive
+  nmap <C-c><C-c> :ScreenSend<cr>
+  vmap <C-c><C-c> :ScreenSend<cr>
+  nmap <C-c><C-x> :ScreenQuit<cr>
+else
+  nmap <C-c><C-c> :ScreenShell<cr>
+endif
+endfunction
+
+nmap <C-c><C-c> :ScreenShell<cr>
+augroup ScreenShellEnter
+autocmd User * call <SID>ScreenShellListener()
+augroup END
+augroup ScreenShellExit
+autocmd User * call <SID>ScreenShellListener()
+augroup END
