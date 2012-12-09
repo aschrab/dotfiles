@@ -3,11 +3,14 @@ alias gi=git
 alias stty='noglob stty'
 alias wget='noglob wget'
 
-for v in ri ri1.8 ri1.9; do
-  if [[ -n "$(whence $v)" ]]; then
-    alias $v='LESS="$LESS -fR"'" noglob command $v -fansi"
-  fi
-done
+() {
+  local v
+  for v in ri ri1.8 ri1.9; do
+    if [[ -n "$(whence $v)" ]]; then
+      alias $v='LESS="$LESS -fR"'" noglob command $v -fansi"
+    fi
+  done
+}
 
 # Avoid epoll bug in libevent
 # Without this commands where stderr is redirected to /dev/null hang
@@ -74,37 +77,41 @@ alias trt=traceroute
 [[ -n $(whence screen) ]] && alias screen='screen -a -A'
 [[ -n $(whence htop) ]] && alias top=htop
 
-LS=$(whence gnuls)
-if [[ -n $LS ]]; then
-  LS=gnuls
-  alias ls=$LS
-fi
-if [[ "$TERM" == "emacs" || ( $OSTYPE == *bsd* || $OSTYPE == *darwin* && -z $LS ) ]]; then
-  # Using colorls under emacs sucks
-  # The standard BSD ls breaks with --color=tty, but doesn't give an error
-  :
-else
-  if ${LS:=ls} --color=tty / >/dev/null 2>&1; then
-    alias ls="$LS --color=tty"
-    LS_COLORS="di=34:ex=32:ln=35:so=33:bd=0:cd=0"
-    LS_COLORS="${LS_COLORS}:*.zip=33:*.rpm=33:*.tar=33:*.tgz=33:*.gz=33"
-    LS_COLORS="${LS_COLORS}:*.bz2=33:*.Z=33"
-    export LS_COLORS
+() {
+  local LS
+  LS=$(whence gnuls)
+  if [[ -n $LS ]]; then
+    LS=gnuls
+    alias ls=$LS
   fi
-fi
-unset LS
+  if [[ "$TERM" == "emacs" || ( $OSTYPE == *bsd* || $OSTYPE == *darwin* && -z $LS ) ]]; then
+    # Using colorls under emacs sucks
+    # The standard BSD ls breaks with --color=tty, but doesn't give an error
+    :
+  else
+    if ${LS:=ls} --color=tty / >/dev/null 2>&1; then
+      alias ls="$LS --color=tty"
+      LS_COLORS="di=34:ex=32:ln=35:so=33:bd=0:cd=0"
+      LS_COLORS="${LS_COLORS}:*.zip=33:*.rpm=33:*.tar=33:*.tgz=33:*.gz=33"
+      LS_COLORS="${LS_COLORS}:*.bz2=33:*.Z=33"
+      export LS_COLORS
+    fi
+  fi
+}
 
-gtar=`whence gtar`
-if [ -n "$gtar" ]; then
-  alias tar=$gtar
-elif [ -x /usr/local/gnu/bin/tar ]; then
-  alias tar=/usr/local/gnu/bin/tar
-elif [ -x /usr/local/gnu/bin/gtar ]; then
-  alias tar=/usr/local/gnu/bin/gtar
-elif [ -x /usr/local/bin/tar ]; then
-  alias tar=/usr/local/bin/tar
-fi
-unset gtar
+() {
+  local gtar
+  gtar=`whence gtar`
+  if [ -n "$gtar" ]; then
+    alias tar=$gtar
+  elif [ -x /usr/local/gnu/bin/tar ]; then
+    alias tar=/usr/local/gnu/bin/tar
+  elif [ -x /usr/local/gnu/bin/gtar ]; then
+    alias tar=/usr/local/gnu/bin/gtar
+  elif [ -x /usr/local/bin/tar ]; then
+    alias tar=/usr/local/bin/tar
+  fi
+}
 
 # Tell rcsdiff to checkout revisions without putting in version numbers
 alias rcsdiff='rcsdiff -kk'
