@@ -65,7 +65,7 @@ let g:ScreenShellExpandTabs=1
 "let g:ScreenShellQuitOnVimExit=0
 
 function! s:ScreenShellListener()
-if g:ScreenShellActive
+if exists('g:ScreenShellActive') && g:ScreenShellActive
   nmap <C-c><C-c> :ScreenSend<cr>
   vmap <C-c><C-c> :ScreenSend<cr>
   nmap <C-c><C-x> :ScreenQuit<cr>
