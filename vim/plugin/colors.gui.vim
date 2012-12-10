@@ -4,6 +4,8 @@ if &bg == "light"
 
 	highlight StatusLineNC        guifg=DarkBlue    guibg=grey        gui=reverse
 	highlight StatusLine          guifg=Blue                          gui=reverse
+	highlight CursorLine          guifg=white       guibg=darkred
+
 	" Set colors for portions of the statusline
 	highlight User1               guifg=Red                           gui=reverse
 	highlight User2               guifg=Yellow                        gui=reverse

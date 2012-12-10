@@ -5,6 +5,8 @@ if &bg == "light"
 	highlight SpecialKey          ctermfg=Yellow
 	highlight StatusLineNC        ctermfg=DarkBlue    ctermbg=grey        cterm=reverse
 	highlight StatusLine          ctermfg=Blue                            cterm=reverse
+	highlight CursorLine                              ctermbg=yellow      cterm=NONE
+	highlight CursorColumn                            ctermbg=yellow
 	" Set colors for portions of the statusline
 	highlight User1               ctermfg=Red                             cterm=reverse
 	highlight User2               ctermfg=Yellow                          cterm=reverse
