@@ -86,3 +86,6 @@
 [submodule "vim/bundle/simplefold"]
 	path = vim/bundle/simplefold
 	url = https://github.com/aschrab/vim-simplefold.git
+[submodule "vim/bundle/screenshell"]
+	path = vim/bundle/screenshell
+	url = https://github.com/aschrab/screen.git

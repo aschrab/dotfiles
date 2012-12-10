@@ -5,13 +5,15 @@
 	source ~/.mutt/aliases
 % end
 
-% if %w(pug milamber).include? ENV['host']
-  account-hook ats@pug.qqx.org 'set tunnel="<%= Dir.pwd %>/imapwrap"'
+account-hook ats@pug.qqx.org 'set tunnel="<%= Dir.pwd %>/imapwrap"'
+
+% if ENV['TMUX']
   set editor="twrap vim '+/^$/+1'"
 % end
 
 % alternates = [ ]
-% alternates << '(aaron|root|master|ats|bofh)@sc[h]rab\.com'
+% alternates << 'aaron(\+[^@]+)?@sc[h]rab\.com'
+% alternates << '(root|[hp]ostmaster|ats|bofh)@sc[h]rab\.com'
 % alternates << '@pug\.qqx\.org'
 % alternates << '[hp]ostmaster@qqx\.org'
 %
@@ -95,4 +97,17 @@ folder-hook '(suspect|spam)'		"set hdr_format=\'%5C %Z <%=date_fmt%>  %-15.15F (
   set smime_decrypt_command="openssl smime -decrypt  -passin stdin -inform DER -in %f -inkey %k -recip %c"
   set smime_verify_command="openssl smime -verify -inform DER -in %s %C -content %f"
   set smime_verify_opaque_command="openssl smime -verify -inform DER -in %s %C"
+% end
+
+% if mutt_variable :sidebar_width
+  set sidebar_width=20
+  #set sidebar_visible
+  set sidebar_format="%B%?F? [%F]?%* %?N?%N?"
+  color sidebar_new default yellow
+  bind index <Esc>J sidebar-next
+  bind index <Esc>K sidebar-prev
+  bind index <Esc>O sidebar-open
+  <% %w{index pager}.each do |menu| %>
+    macro <%= menu %> <Esc>B "<enter-command>toggle sidebar_visible<enter>"
+  <% end %>
 % end

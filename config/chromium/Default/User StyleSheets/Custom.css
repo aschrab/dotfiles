@@ -1,0 +1,7 @@
+/* Display full dates on github along with the relative date */
+.js-relative-date:before {
+	content: attr(title) " (";
+}
+.js-relative-date:after {
+	content: ")";
+}
