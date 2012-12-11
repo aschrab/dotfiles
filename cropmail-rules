@@ -111,7 +111,7 @@ case headers[:list_id]
 when /<debian-([a-z0-9_-]+)\.lists\.debian\.org>/
   list = "debian/#$1".downcase
 when /<raleigh-rb-members/
-  subject_re = /\[raleigh\.rb\]\s*/i
+  subject_re = /\[triangle\.rb\]\s*/i
   list = 'ruby/raleigh'
 when /<raleigh-(talk|pm)\.pm\.org>/i
   subject_re = /\[Raleigh-pm\]\s*/i
