@@ -1,6 +1,6 @@
 #!/bin/sh
 
-case $HOST in
+case "`hostname`" in
 	pug|milamber)
 		;;
 	*)
