@@ -5,6 +5,7 @@ ControlPath ~/.ssh/.master.%l-%r@%h:%p
 Host milamber.qqx.org
 
 Host pug.qqx.org
+Port 443
 
 Host ircproxy
 HostName pug.qqx.org
