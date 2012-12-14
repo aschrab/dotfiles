@@ -49,7 +49,7 @@ account-hook ats@pug.qqx.org 'set tunnel="<%= Dir.pwd %>/imapwrap"'
 
 % if mutt_variable :xterm_title
   set xterm_set_titles
-  set xterm_title="Mutt %f %n/%m"
+  set xterm_title="Mutt %f %n/%m {%b}"
 % end
 
 % spam_fmt=''
