@@ -15,3 +15,10 @@ do `!p snip.rv = "|" if t[1] else""`${1:args}`!p snip.rv = "|" if t[1] else""`
 	$0
 end
 endsnippet
+
+clearsnippets def
+snippet def "def <name>..."
+def ${1:function_name} ${2:*args}
+	${0:# TODO}
+end
+endsnippet
