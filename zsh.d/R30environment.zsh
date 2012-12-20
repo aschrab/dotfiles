@@ -32,6 +32,9 @@ export NOPASTE_SERVICES='Gist'
 export MTR_OPTIONS="--order LSRDNABMV"
 export DBIC_TRACE_PROFILE=console
 
+# Have GTK programs honor ~/.XCompose file
+export GTK_IM_MODULE=xim
+
 # Enable colors in FreeBSD's ls
 export CLICOLOR=1
 

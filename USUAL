@@ -14,5 +14,6 @@ ssh/config
 tmux.conf
 vim
 vimrc
+XCompose
 zshrc
 zsh.d
