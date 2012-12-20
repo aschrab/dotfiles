@@ -43,10 +43,8 @@ fpath=($zshrc_dir/completion $fpath)
 
 local fdir="$zshrc_dir/functions"
 fpath=($fdir $fpath)
-local func
-for func in $fdir/*; do
-  autoload ${func##*/}
-done
+
+autoload -- $fdir/*(:t)
 
 unset ppath d m
 export PATH MANPATH
