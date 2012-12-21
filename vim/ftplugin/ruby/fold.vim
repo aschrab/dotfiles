@@ -90,7 +90,7 @@ function! RubyMethodFoldText()
 		let lnum+=1
 	endwhile
 
-	let lines = v:foldend - v:foldstart
+	let lines = v:foldend - v:foldstart + 1
 	let line = substitute( line, '\v^\s*', '', '' )
 
 	return printf( '+%s%4d lines: %s', v:folddashes, lines, line )
