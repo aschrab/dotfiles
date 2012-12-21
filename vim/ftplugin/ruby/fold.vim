@@ -78,5 +78,24 @@ function! RubyMethodFold(line)
 	return '='
 endfunction
 
+function! RubyMethodFoldText()
+	let lnum = v:foldstart
+
+	" Look for first non-comment line
+	while lnum < v:foldend
+		let line = getline(lnum)
+		if line !~ '\v^\s*#'
+			break
+		endif
+		let lnum+=1
+	endwhile
+
+	let lines = v:foldend - v:foldstart
+	let line = substitute( line, '\v^\s*', '', '' )
+
+	return printf( '+%s%4d lines: %s', v:folddashes, lines, line )
+endf
+
+setlocal foldtext=RubyMethodFoldText()
 setlocal foldexpr=RubyMethodFold(v:lnum)
 setlocal foldmethod=expr
