@@ -1,6 +1,7 @@
 HashKnownHosts no
 #ControlMaster auto
 ControlPath ~/.ssh/.master.%l-%r@%h:%p
+VerifyHostKeyDNS=ask
 
 Host milamber.qqx.org
 
