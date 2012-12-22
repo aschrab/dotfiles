@@ -1,10 +1,16 @@
 function! RubyMethodFold(line)
 	let line = getline(a:line)
+	let comment_re = '\v^\s*#(([{}]{3})\@!.)*$'
+
+	if line =~ '.*{{{'
+		return 'a1'
+	elseif line =~ '.*}}}'
+		return 's1'
+	endif
 
 	" This line should be folded
 	if line =~ '\v^\s*(def|module|class) '
 		let lnum = a:line
-		let re = '\v^\s*#'
 		let found = 0
 
 		" Include immediately preceding comment lines in this fold
@@ -12,7 +18,7 @@ function! RubyMethodFold(line)
 			let lnum-=1
 			let line = getline(lnum)
 
-			if line =~ re
+			if line =~ comment_re
 				let found = 1
 				continue
 			endif
@@ -30,7 +36,6 @@ function! RubyMethodFold(line)
 	if line =~ '\v^\s*#'
 		let found = 0
 		let lnum = a:line
-		let comment_re = '\v^\s*#'
 		let start_re   = '\v^\s*(module|class|def)>'
 
 		" If previous line is a comment, this line is part of the same fold
