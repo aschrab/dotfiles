@@ -1,6 +1,8 @@
+" Regexp to match comment lines which do not contain a fold marker
+let s:comment_re = '\v^\s*#(([{}]{3})\@!.)*$'
+
 function! RubyMethodFold(line)
 	let line = getline(a:line)
-	let comment_re = '\v^\s*#(([{}]{3})\@!.)*$'
 
 	if line =~ '.*{{{'
 		return 'a1'
@@ -18,7 +20,7 @@ function! RubyMethodFold(line)
 			let lnum-=1
 			let line = getline(lnum)
 
-			if line =~ comment_re
+			if line =~ s:comment_re
 				let found = 1
 				continue
 			endif
@@ -39,7 +41,7 @@ function! RubyMethodFold(line)
 		let start_re   = '\v^\s*(module|class|def)>'
 
 		" If previous line is a comment, this line is part of the same fold
-		if getline(lnum - 1) =~ comment_re
+		if getline(lnum - 1) =~ s:comment_re
 			return '='
 		endif
 
@@ -50,7 +52,7 @@ function! RubyMethodFold(line)
 			let lnum+=1
 			let line = getline(lnum)
 
-			if line =~ comment_re
+			if line =~ s:comment_re
 				continue
 			elseif line =~ start_re
 				let found = 1
@@ -83,7 +85,7 @@ function! RubyMethodFoldText()
 	" Look for first non-comment line
 	while lnum < v:foldend
 		let line = getline(lnum)
-		if line !~ '\v^\s*#'
+		if line !~ s:comment_re
 			break
 		endif
 		let lnum+=1
@@ -91,6 +93,7 @@ function! RubyMethodFoldText()
 
 	let lines = v:foldend - v:foldstart + 1
 	let line = substitute( line, '\v^\s*', '', '' )
+	let line = substitute( line, '\s*{{{\s*', '', '' )
 
 	return printf( '+%s%4d lines: %s', v:folddashes, lines, line )
 endf
