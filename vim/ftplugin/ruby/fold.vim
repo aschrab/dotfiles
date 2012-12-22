@@ -95,7 +95,7 @@ function! RubyMethodFoldText()
 	let line = substitute( line, '\v^\s*', '', '' )
 	let line = substitute( line, '\s*{{{\s*', '', '' )
 
-	return printf( '+%s%4d lines: %s', v:folddashes, lines, line )
+	return printf( '+%s%4d lines: %s ', v:folddashes, lines, line )
 endf
 
 setlocal foldtext=RubyMethodFoldText()
