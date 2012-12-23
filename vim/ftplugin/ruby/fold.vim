@@ -35,7 +35,7 @@ function! RubyMethodFold(line)
 		endif
 	endif
 
-	if line =~ '\v^\s*#'
+	if line =~ s:comment_re
 		let found = 0
 		let lnum = a:line
 		let start_re   = '\v^\s*(module|class|def)>'
