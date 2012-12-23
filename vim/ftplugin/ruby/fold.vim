@@ -1,5 +1,5 @@
 " Regexp to match comment lines which do not contain a fold marker
-let s:comment_re = '\v^\s*#(([{}]{3})\@!.)*$'
+let s:comment_re = '\v^\s*#(([{}]{3})@!.)*$'
 
 function! RubyMethodFold(line)
 	let line = getline(a:line)
