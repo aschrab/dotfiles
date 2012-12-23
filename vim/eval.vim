@@ -50,6 +50,10 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
+let g:NumberToggleOff=''
+let g:NumberToggleOn=''
+let g:NumberToggleTrigger=''
+
 " Show changes between buffer and the file on disk
 command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
 
@@ -58,6 +62,8 @@ let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
 let g:syntastic_auto_loc_list=1
 let g:syntastic_loc_list_height=5
+
+map <F1> :NERDTreeToggle<CR>
 
 let g:ScreenImpl='Tmux'
 let g:ScreenShellInitialFocus='shell'

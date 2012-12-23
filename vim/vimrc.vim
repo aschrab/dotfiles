@@ -13,6 +13,7 @@ set t_Co=16
 
 " Miscellaneous options {{{
 set viminfo=!,s1,%,'20,f1,c,h,r/tmp,r/media,n~/.viminfo
+set undofile
 set display+=lastline
 set shiftwidth=4
 set tabstop=4
@@ -50,7 +51,7 @@ set wildignore+=*.o,*~
 set tags=tags,TAGS,./tags;,./TAGS;
 
 :if has("folding")
-set foldopen=mark,quickfix,tag,block,hor,search,jump
+set foldopen=mark,quickfix,tag,block,hor,search,insert,undo
 :endif
 "}}}
 
@@ -96,6 +97,10 @@ inoremap <C-F> <C-X><C-F>
 inoremap <C-L> <C-X><C-L>
 inoremap <C-e> <esc>
 map gf :new <cfile><CR>
+
+nnoremap / /\v
+vnoremap / /\v
+
 nmap <silent> <Leader>f :CommandT<CR>
 nmap <silent> <Leader>a :call SyntaxAttr#SyntaxAttr()<CR>
 map <Leader>z <Plug>SimpleFold_Foldsearch

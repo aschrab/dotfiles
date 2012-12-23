@@ -92,3 +92,9 @@
 [submodule "upstreams/syntax-hightlight"]
 	path = upstreams/syntax-hightlight
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule "vim/bundle/numbertoggle"]
+	path = vim/bundle/numbertoggle
+	url = https://github.com/Greduan/vim-numbertoggle.git
+[submodule "vim/bundle/nerdtree"]
+	path = vim/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
