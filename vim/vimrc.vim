@@ -51,7 +51,7 @@ set wildignore+=*.o,*~
 set tags=tags,TAGS,./tags;,./TAGS;
 
 :if has("folding")
-set foldopen=mark,quickfix,tag,block,hor,search,jump
+set foldopen=mark,quickfix,tag,block,hor,search,insert,undo
 :endif
 "}}}
 
