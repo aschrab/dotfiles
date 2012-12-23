@@ -10,6 +10,12 @@ function! RubyMethodFold(line)
 		return 's1'
 	endif
 
+	let col = match( line, '\v\s*\zs' )
+	let col = virtcol([a:line, col])
+	let level = col / &sw
+	let level+=1
+	let col+=1
+
 	" This line should be folded
 	if line =~ '\v^\s*(def|module|class) '
 		let lnum = a:line
@@ -31,7 +37,7 @@ function! RubyMethodFold(line)
 		if found
 			return '='
 		else
-			return 'a1'
+			return '>' . level
 		endif
 	endif
 
@@ -62,7 +68,7 @@ function! RubyMethodFold(line)
 		endwhile
 
 		if found
-			return 'a1'
+			return '>' . level
 		else
 			return '='
 		endif
@@ -72,7 +78,7 @@ function! RubyMethodFold(line)
 	let col = match( line, '\v\zsend>' )
 	if col >= 0
 		if synIDattr(synID(a:line,col+1,0), 'name') =~ '\vruby(Module|Class|Define)'
-			return 's1'
+			return '<' . level
 		endif
 	endif
 
