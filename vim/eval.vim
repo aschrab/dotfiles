@@ -50,6 +50,10 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
+let g:NumberToggleOff=''
+let g:NumberToggleOn=''
+let g:NumberToggleTrigger=''
+
 " Show changes between buffer and the file on disk
 command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
 
