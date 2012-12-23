@@ -97,6 +97,10 @@ inoremap <C-F> <C-X><C-F>
 inoremap <C-L> <C-X><C-L>
 inoremap <C-e> <esc>
 map gf :new <cfile><CR>
+
+nnoremap / /\v
+vnoremap / /\v
+
 nmap <silent> <Leader>f :CommandT<CR>
 nmap <silent> <Leader>a :call SyntaxAttr#SyntaxAttr()<CR>
 map <Leader>z <Plug>SimpleFold_Foldsearch
