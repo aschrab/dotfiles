@@ -62,7 +62,7 @@ function! RubyMethodFold(line)
 		endwhile
 
 		if found
-			return 's1'
+			return 'a1'
 		else
 			return '='
 		endif
