@@ -95,3 +95,6 @@
 [submodule "vim/bundle/numbertoggle"]
 	path = vim/bundle/numbertoggle
 	url = https://github.com/Greduan/vim-numbertoggle.git
+[submodule "vim/bundle/nerdtree"]
+	path = vim/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
