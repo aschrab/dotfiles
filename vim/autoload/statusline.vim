@@ -15,7 +15,7 @@ function! statusline#line ()
 	let line.='%1*%r%*' " Readonly flag
 	let line.='%w' " Preview window flag
 	let line.=' '
-	let line.='[%{&ft},%{&ff},%{&fenc}]'
+	let line.='[%{&ft},%{statusline#format()},%{statusline#encoding()}]'
 	let line.=' '
 	let line.='%=' " Begin right-aligned portion
 	let line.=' '
@@ -32,6 +32,22 @@ function! statusline#line ()
 	endif
 
 	return line
+endfunction
+
+function! statusline#format ()
+	let fmt = &ff
+	if fmt == 'unix'
+		return ''
+	endif
+	return fmt
+endfunction
+
+function! statusline#encoding ()
+	let enc = &fenc
+	if enc == 'utf-8'
+		return ''
+	endif
+	return enc
 endfunction
 
 function! statusline#fugitive ()
