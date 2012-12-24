@@ -1,4 +1,4 @@
-function! statusline#line ()
+function! statusline#line ()"{{{
 	let line=''
 	let line2=''
 
@@ -31,40 +31,42 @@ function! statusline#line ()
 	endif
 
 	return line
-endfunction
+endfunction"}}}
 
-function! statusline#inactive ()
+function! statusline#inactive ()"{{{
 	let line=''
 	let line.='#%{statusline#WindowNumber()} '
 	let line.='%f'
 	return line
-endfunction
+endfunction"}}}
 
-function! statusline#format ()
+function! statusline#format ()"{{{
 	let fmt = &ff
 	if fmt == 'unix'
 		return ''
 	endif
 	return fmt
-endfunction
+endfunction"}}}
 
-function! statusline#encoding ()
+function! statusline#encoding ()"{{{
 	let enc = &fenc
 	if enc == 'utf-8'
 		return ''
 	endif
 	return enc
-endfunction
+endfunction"}}}
 
-function! statusline#fugitive ()
+function! statusline#fugitive ()"{{{
 	if exists("*fugitive#statusline")
 		return fugitive#statusline()
 	else
 		return ''
 	endif
-endfunction
+endfunction"}}}
 
-function! statusline#WindowNumber ()
+function! statusline#WindowNumber ()"{{{
 	let str=tabpagewinnr(tabpagenr())
 	return str
-endfunction
+endfunction"}}}
+
+" vim: foldmethod=marker
