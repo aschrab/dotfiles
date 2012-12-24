@@ -21,7 +21,10 @@ function! statusline#line ()
 	let line.=' '
 	let line.='ch0x%B' " Code of character under cursor
 	let line.=' '
-	let line.='L%l/%L Col%c%V byt%o %P' " cursor position
+
+	" cursor position
+	let line.='L%l/%L C%c%V'
+	"let line.='byt%o %P'
 
 	if line2 != ''
 		let line.='%@%<'
