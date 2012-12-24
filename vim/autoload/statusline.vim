@@ -58,7 +58,10 @@ endfunction"}}}
 
 function! statusline#fugitive ()"{{{
 	if exists("*fugitive#statusline")
-		return fugitive#statusline()
+		let str=fugitive#statusline()
+		let str=substitute( str, '^\[Git', '', '' )
+		let str=substitute( str, '\]$',   ' ', '' )
+		return str
 	else
 		return ''
 	endif
