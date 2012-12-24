@@ -43,6 +43,23 @@ endfunction"}}}
 function! statusline#path ()"{{{
 	let path=bufname('%')
 	let path=substitute( path, 'fugitive://.*.\zegit//', '', '' )
+	let path=substitute( path, $HOME.'/', '~/', '' )
+
+	if strdisplaywidth(path) > winwidth(0) - 20
+		let dirs = split( path, '/', 1 )
+
+		let path = ''
+		for d in dirs[:-2]
+			let m = matchlist( d, '\v(\D{,2})\D*((\d+[.-])+\d+)' )
+			if m != []
+				let path.= m[1] . m[2] . '/'
+			else
+				let path.= d[:2] . '/'
+			endif
+		endfor
+
+		let path.=dirs[-1]
+	endif
 	return path
 endfunction"}}}
 
