@@ -10,8 +10,14 @@ should "${1:description}" do #{{{
 end #}}}
 endsnippet
 
-snippet do "do block" !s
+snippet do| "do block" !s
 do `!p snip.rv = "|" if t[1] else""`${1:args}`!p snip.rv = "|" if t[1] else""`
+	$0
+end
+endsnippet
+
+snippet do "do block" !s
+do
 	$0
 end
 endsnippet
