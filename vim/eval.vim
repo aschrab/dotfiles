@@ -16,7 +16,11 @@ if has('multi_statusline')
 	set statuslineheight=1
 endif
 
-set statusline=%!statusline#line()
+set statusline=%!statusline#inactive()
+let &l:statusline='%!statusline#line()'
+auto WinEnter * let &l:statusline='%!statusline#line()'
+auto WinLeave * let &l:statusline='%!statusline#inactive()'
+
 auto BufEnter * let &titlestring = "Vim@%{hostname()} : %{clean#TTY()} : %{clean#CWD()}"
 auto BufEnter * let &iconstring  = "Vim@%{hostname()} : %f (%{clean#TTY()})"
 

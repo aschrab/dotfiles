@@ -3,7 +3,6 @@ function! statusline#line ()
 	let line2=''
 
 	let line.='%<' " Mark truncation
-	let line.='#%{statusline#WindowNumber()} '
 	let line.='%{statusline#fugitive()}'
 	if has('multi_statusline') && &statuslineheight > 1
 		let line2.='%f' " Path to file
@@ -31,6 +30,13 @@ function! statusline#line ()
 		let line.=line2
 	endif
 
+	return line
+endfunction
+
+function! statusline#inactive ()
+	let line=''
+	let line.='#%{statusline#WindowNumber()} '
+	let line.='%f'
 	return line
 endfunction
 
