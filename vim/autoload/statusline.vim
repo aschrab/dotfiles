@@ -14,7 +14,7 @@ function! statusline#line ()"{{{
 	let line.='%1*%r%*' " Readonly flag
 	let line.='%w' " Preview window flag
 	let line.=' '
-	let line.='[%{&ft},%{statusline#format()},%{statusline#encoding()}]'
+	let line.='[%{&ft}%{statusline#format()}%{statusline#encoding()}]'
 	let line.=' '
 	let line.='%=' " Begin right-aligned portion
 	let line.=' '
@@ -45,7 +45,7 @@ function! statusline#format ()"{{{
 	if fmt == 'unix'
 		return ''
 	endif
-	return fmt
+	return ',' . fmt
 endfunction"}}}
 
 function! statusline#encoding ()"{{{
@@ -53,7 +53,7 @@ function! statusline#encoding ()"{{{
 	if enc == 'utf-8'
 		return ''
 	endif
-	return enc
+	return ';' . enc
 endfunction"}}}
 
 function! statusline#fugitive ()"{{{
