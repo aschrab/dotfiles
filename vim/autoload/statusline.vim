@@ -5,9 +5,9 @@ function! statusline#line ()"{{{
 	let line.='%<' " Mark truncation
 	let line.='%{statusline#fugitive()}'
 	if has('multi_statusline') && &statuslineheight > 1
-		let line2.='%f' " Path to file
+		let line2.='%{statusline#path()}' " Path to file
 	else
-		let line.='%f' " Path to file
+		let line.='%{statusline#path()}' " Path to file
 	endif
 	let line.='%h' " Help buffer flag
 	let line.='%2*%m%*' " Modified flag
@@ -36,8 +36,14 @@ endfunction"}}}
 function! statusline#inactive ()"{{{
 	let line=''
 	let line.='#%{statusline#WindowNumber()} '
-	let line.='%f'
+	let line.='%{statusline#path()}'
 	return line
+endfunction"}}}
+
+function! statusline#path ()"{{{
+	let path=bufname('%')
+	let path=substitute( path, 'fugitive://.*.\zegit//', '', '' )
+	return path
 endfunction"}}}
 
 function! statusline#format ()"{{{
