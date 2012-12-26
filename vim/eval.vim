@@ -67,7 +67,7 @@ let g:syntastic_warning_symbol='⚠'
 let g:syntastic_auto_loc_list=1
 let g:syntastic_loc_list_height=5
 
-map <F1> :NERDTreeToggle<CR>
+map <silent> <F1> :NERDTreeToggle<CR>
 
 let g:ScreenImpl='Tmux'
 let g:ScreenShellInitialFocus='shell'
