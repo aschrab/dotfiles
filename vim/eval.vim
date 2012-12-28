@@ -18,7 +18,7 @@ endif
 
 set statusline=%!statusline#inactive()
 let &l:statusline='%!statusline#line()'
-auto WinEnter * let &l:statusline='%!statusline#line()'
+auto BufEnter,WinEnter * let &l:statusline='%!statusline#line()'
 auto WinLeave * let &l:statusline='%!statusline#inactive()'
 
 auto BufEnter * let &titlestring = "Vim@%{hostname()} : %{clean#TTY()} : %{clean#CWD()}"
