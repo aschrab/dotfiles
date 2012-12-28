@@ -10,7 +10,7 @@ function! statusline#line ()"{{{
 		let line.='%{statusline#path()}' " Path to file
 	endif
 	let line.='%h' " Help buffer flag
-	let line.='%2*%m%*' " Modified flag
+	let line.=statusline#modified()
 	let line.=statusline#readlonly()
 	let line.='%w' " Preview window flag
 	let line.=' '
@@ -37,6 +37,7 @@ function! statusline#inactive ()"{{{
 	let line=''
 	let line.='#%{statusline#WindowNumber()} '
 	let line.='%{statusline#path()}'
+	let line.=statusline#modified()
 	return line
 endfunction"}}}
 
@@ -82,6 +83,14 @@ endfunction"}}}
 function! statusline#readlonly ()"{{{
 	if &ro
 		return ' %1*⚠%*'
+	else
+		return ''
+	endif
+endfunction"}}}
+
+function! statusline#modified ()"{{{
+	if &mod
+		return ' %2*✻%*'
 	else
 		return ''
 	endif
