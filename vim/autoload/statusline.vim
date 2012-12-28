@@ -43,6 +43,11 @@ endfunction"}}}
 
 function! statusline#path ()"{{{
 	let path=bufname('%')
+
+	if path == ""
+		return '(no file)'
+	endif
+
 	let path=substitute( path, 'fugitive://.*.\zegit//', '', '' )
 	let path=substitute( path, $HOME.'/', '~/', '' )
 
