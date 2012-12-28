@@ -14,6 +14,7 @@ set t_Co=16
 " Miscellaneous options {{{
 set viminfo=!,s1,%,'20,f1,c,h,r/tmp,r/media,n~/.viminfo
 set undofile
+set hidden
 set display+=lastline
 set shiftwidth=4
 set tabstop=4
