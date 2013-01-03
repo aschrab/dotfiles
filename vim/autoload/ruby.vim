@@ -108,4 +108,19 @@ function! ruby#MethodFoldText() "[[[
 	return printf( '+%s%4d lines: %s ', v:folddashes, lines, line )
 endfunction "]]]
 
+function! ruby#SyntaxFoldText ()
+	let lnum = v:foldstart
+
+	while lnum <= v:foldend
+		let line = getline(lnum)
+		if line !~ '^\s*#\s*$'
+			break
+		endif
+		let lnum+=1
+	endwhile
+
+	let line = substitute( line, '\v^\s*', '', '' )
+	return printf( '+%s%4d lines: %s ', v:folddashes, v:foldend-v:foldstart+1, line )
+endfunction
+
 " vim: foldmethod=marker foldmarker=[[[,]]]
