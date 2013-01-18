@@ -104,7 +104,6 @@ end
 # Mailing list detection {{{
 list = nil
 
-list ||= 'debian/pts' if headers[:x_pts_package] =~ /\w/
 list ||= 'subs/skeptic' if from =~ /<skepticsociety@skeptic.com>/i
 
 case headers[:list_id]
@@ -158,6 +157,8 @@ when /<bugtraq-return-.*@securityfocus/i
 when /<lsm-workers-admin@lists/i
   list = 'lsm-workers'
 end unless list
+
+list ||= 'debian/pts' if headers[:x_pts_package] =~ /\w/
 #}}}
 
 # Cleanup subject {{{
