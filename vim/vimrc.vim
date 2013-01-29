@@ -13,7 +13,6 @@ set t_Co=16
 
 " Miscellaneous options {{{
 set viminfo=!,s1,%,'20,f1,c,h,r/tmp,r/media,n~/.viminfo
-set undofile
 set hidden
 set display+=lastline
 set shiftwidth=4
@@ -53,6 +52,10 @@ set tags=tags,TAGS,./tags;,./TAGS;
 
 :if has("folding")
 set foldopen=mark,quickfix,tag,block,hor,search,insert,undo
+:endif
+
+:if has("persistent_undo")
+	set undofile
 :endif
 "}}}
 
