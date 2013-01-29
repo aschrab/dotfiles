@@ -51,7 +51,8 @@ function! statusline#path ()"{{{
 	let path=substitute( path, 'fugitive://.*.\zegit//', '', '' )
 	let path=substitute( path, $HOME.'/', '~/', '' )
 
-	if strdisplaywidth(path) > winwidth(0) - 20
+	" Should use strdisplaywidth here, but too new for some systems that I use
+	if strlen(path) > winwidth(0) - 20
 		let dirs = split( path, '/', 1 )
 
 		let path = ''
