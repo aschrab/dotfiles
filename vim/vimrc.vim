@@ -142,13 +142,6 @@ map <M-Esc>[65~ <S-MouseUp>
 map! <M-Esc>[65~ <S-MouseUp>
 "}}}
 
-" Jump to given window number with <Leader>{digit}
-let i = 1
-while i <= 9
-    execute 'nnoremap <Leader>' . i . ' :' . i . 'wincmd w<CR>'
-    let i = i + 1
-endwhile
-
 map ,x :w<C-M>:r!chmod +x %<C-M>:w!<C-M>
 
 :if has("digraphs")

@@ -16,6 +16,13 @@ if has('multi_statusline')
 	set statuslineheight=1
 endif
 
+" Jump to given window number with <Leader>{digit}
+let i = 1
+while i <= 9
+    execute 'nnoremap <Leader>' . i . ' :' . i . 'wincmd w<CR>'
+    let i = i + 1
+endwhile
+
 set statusline=%!statusline#inactive()
 let &l:statusline='%!statusline#line()'
 auto BufEnter,WinEnter * let &l:statusline='%!statusline#line()'
