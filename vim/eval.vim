@@ -10,6 +10,8 @@ try
 catch
 endtry
 
+runtime macros/matchit.vim
+
 filetype plugin indent on
 
 if has('multi_statusline')
