@@ -360,7 +360,7 @@
     \end{center}%
   \end{minipage}}
 \newcommand{\@PrintEnvelope}[2]{%
-  \if@rotateenvelopes\rotatebox{90}{\PrintEnvelope{#1}{#2}}%
+  \if@rotateenvelopes\rotatebox{-90}{\PrintEnvelope{#1}{#2}}%
   \else\PrintEnvelope{#1}{#2}%
   \fi}
 \renewcommand{\mlabel}[2]{\ignorespaces%
