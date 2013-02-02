@@ -10,7 +10,7 @@ function! statusline#line ()"{{{
 		let line.='%{statusline#path()}' " Path to file
 	endif
 	let line.='%h' " Help buffer flag
-	let line.=statusline#modified()
+	let line.='%2*%m%*'
 	let line.=statusline#readonly()
 	let line.='%w' " Preview window flag
 	let line.=' '
@@ -37,7 +37,7 @@ function! statusline#inactive ()"{{{
 	let line=''
 	let line.='#%{statusline#WindowNumber()} '
 	let line.='%{statusline#path()}'
-	let line.=statusline#modified()
+	let line.='%2*%m%*'
 	return line
 endfunction"}}}
 
@@ -95,6 +95,9 @@ function! statusline#readonly ()"{{{
 endfunction"}}}
 
 function! statusline#modified ()"{{{
+	" This doesn't work properly because the statusline function isn't called
+	" for each statusline.  So, all windows show the modified status of the
+	" active window.
 	if &mod
 		return ' %2*✻%*'
 	else
