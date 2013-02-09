@@ -1,22 +1,25 @@
 " Regexp to match comment lines which do not contain a fold marker
 let s:comment_re = '\v^\s*#(([{}]{3})@!.)*$'
 
-function! ruby#MethodFold(line)
+function! ruby#MethodFold(line) "[[[
 	let line = getline(a:line)
 
+	" Fold marker line "[[[
 	if line =~ '.*{{{'
 		return 'a1'
 	elseif line =~ '.*}}}'
 		return 's1'
-	endif
+	endif "]]]
 
+	" Setup variables "[[[
 	let col = match( line, '\v\s*\zs' )
 	let col = virtcol([a:line, col])
 	let level = col / &sw
 	let level+=1
 	let col+=1
+    "]]]
 
-	" This line should be folded
+	" This line should start a fold "[[[
 	if line =~ '\v^\s*(def|module|class) '
 		let lnum = a:line
 		let found = 0
@@ -39,8 +42,9 @@ function! ruby#MethodFold(line)
 		else
 			return '>' . level
 		endif
-	endif
+	endif "]]]
 
+	" Comment line "[[[
 	if line =~ s:comment_re
 		let found = 0
 		let lnum = a:line
@@ -51,7 +55,7 @@ function! ruby#MethodFold(line)
 			return '='
 		endif
 
-		" First line of a comment
+		" First line of a comment "[[[
 		" Look forward through additional comment lines for beginning of a
 		" fold block.  If found, start the fold here.
 		while lnum < 10000
@@ -65,41 +69,43 @@ function! ruby#MethodFold(line)
 			endif
 
 			break
-		endwhile
+		endwhile "]]]
 
 		if found
 			return '>' . level
 		else
 			return '='
 		endif
-	endif
+	endif "]]]
 
-	" end lines indicate end of a fold
+	" end lines indicate end of a fold "[[[
 	let col = match( line, '\v\zsend>' )
 	if col >= 0
 		if synIDattr(synID(a:line,col+1,0), 'name') =~ '\vruby(Module|Class|Define)'
 			return '<' . level
 		endif
-	endif
+	endif "]]]
 
 	return '='
-endfunction
+endfunction "]]]
 
-function! ruby#MethodFoldText()
+function! ruby#MethodFoldText() "[[[
 	let lnum = v:foldstart
 
-	" Look for first non-comment line
+	" Look for first non-comment line"[[[
 	while lnum < v:foldend
 		let line = getline(lnum)
 		if line !~ s:comment_re
 			break
 		endif
 		let lnum+=1
-	endwhile
+	endwhile "]]]
 
 	let lines = v:foldend - v:foldstart + 1
 	let line = substitute( line, '\v^\s*', '', '' )
 	let line = substitute( line, '\s*{{{\s*', '', '' )
 
 	return printf( '+%s%4d lines: %s ', v:folddashes, lines, line )
-endf
+endfunction "]]]
+
+" vim: foldmethod=marker foldmarker=[[[,]]]
