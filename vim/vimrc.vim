@@ -106,7 +106,7 @@ nnoremap / /\v
 vnoremap / /\v
 
 nmap <silent> <Leader>f :CommandT<CR>
-nmap <silent> <Leader>a :call SyntaxAttr#SyntaxAttr()<CR>
+nnoremap <silent> <Leader>a :call SyntaxAttr#SyntaxAttr()<CR>
 map <Leader>z <Plug>SimpleFold_Foldsearch
 
 nnoremap <F5> :GundoToggle<CR>
