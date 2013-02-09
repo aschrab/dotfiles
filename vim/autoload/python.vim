@@ -1,4 +1,4 @@
-function! PythonMethodFold(line)
+function! python#MethodFold(line)
 	let line = getline(a:line)
 
 	let col = match( line, '\v\s*\zs' )
@@ -13,6 +13,3 @@ function! PythonMethodFold(line)
 
 	return '='
 endfunction
-
-setlocal foldexpr=PythonMethodFold(v:lnum)
-setlocal foldmethod=expr
