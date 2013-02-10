@@ -19,12 +19,18 @@ function! python#MethodFold(line) "{{{1
 	endif "}}}2
 
 	let level = python#lineLevel(a:line, line)
-	let blockStart = '\v^\s*(def|class)\s'
+	let blockStart = '\v^\s*(\@|(def|class)\s)'
 
-	" Start of class or method starts a fold {{{2
+	" Start of class or method (including decorators) starts a fold {{{2
 	if line =~ blockStart
 		let level+=1
-		return '>' . level
+		let prv = a:line-1
+		let prvline = getline(prv)
+		if prvline =~ '^\s*@'
+			return level
+		else
+			return '>' . level
+		endif
 	endif "}}}2
 
 	" Check if line level is lower than previous level {{{2
