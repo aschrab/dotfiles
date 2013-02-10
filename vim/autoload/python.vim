@@ -51,4 +51,22 @@ function! python#MethodFold(line) "{{{1
 	return '='
 endfunction "}}}1
 
+function! python#MethodFoldText() "{{{1
+	let lnum = v:foldstart
+	let lines = v:foldend - v:foldstart + 1
+
+	" Skip decorator lines {{{2
+	while lnum < v:foldend
+		let line = getline(lnum)
+		if line !~ '^\s*@'
+			break
+		endif
+		let lnum+=1
+	endwhile "}}}2
+
+	let line = substitute( line, '\v^\s*', '', '' )
+
+	return printf( '+%s%4d lines: %s ', v:folddashes, lines, line )
+endfunction "}}}1
+
 " vim: foldmethod=marker
