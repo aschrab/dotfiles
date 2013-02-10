@@ -1,23 +1,48 @@
-function! python#MethodFold(line)
+function! python#lineLevel(lnum, line) "{{{1
+	let clmn = match( a:line, '\v\s*\zs' )
+	let clmn = virtcol([a:lnum, clmn])
+	let level = clmn / &sw
+	return level
+endfunction "}}}1
+
+function! python#MethodFold(line) "{{{1
 	let line = getline(a:line)
 
-	let col = match( line, '\v\s*\zs' )
-	let col = virtcol([a:line, col])
-	let level = col / &sw
-	let level+=1
+	" Keep same level for empty lines {{{2
+	if line =~ '\v^\s*$'
+		return '='
+	endif "}}}2
 
-	" Start of class or method starts a fold
-	if line =~ '\v^\s*(def|class)\s'
+	" Lines inside of string use same fold level as previous line {{{2
+	if synIDattr(synID(a:line,1,0), 'name') == 'pythonString'
+		return "="
+	endif "}}}2
+
+	let level = python#lineLevel(a:line, line)
+	let blockStart = '\v^\s*(def|class)\s'
+
+	" Start of class or method starts a fold {{{2
+	if line =~ blockStart
+		let level+=1
 		return '>' . level
+	endif "}}}2
 
-	" Other lines that don't begin with whitespace aren't in a fold
-	elseif line =~ '\v^\S'
-		" Unless inside of a string
-		if synIDattr(synID(a:line,1,0), 'name') != 'pythonString'
-			return 0
-		end
-	endif
+	" Check if line level is lower than previous level {{{2
+	" Would use foldlevel() function, but that's returning -1
+	let lnum = a:line
+	while lnum >= 2
+		let lnum-=1
+		let prvline = getline(lnum)
+		if  prvline =~ blockStart
+			if level <= python#lineLevel(lnum, prvline)
+				return level
+			endif
+			break
+		endif
+	endwhile "}}}2
 
 	" Anything else is same as previous line
 	return '='
-endfunction
+endfunction "}}}1
+
+" vim: foldmethod=marker
