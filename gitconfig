@@ -61,6 +61,7 @@
 	review      = "!f() { for rev in $(git log --reverse --format=%H $@); do git show $rev; done; }; f"
 	show-commit = log -1 -p
 	lol         = log --graph --decorate --pretty=oneline --abbrev-commit
+	push-new-repo = push --receive-pack=git-receive-new-repo --all
 
 [push]
 	default = current
