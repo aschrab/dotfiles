@@ -33,6 +33,13 @@ function! python#MethodFold(line) "{{{1
 		endif
 	endif "}}}2
 
+	" If blocks at top level should be folded {{{2
+	" Not necessarily wanted by itself, but if not folded it screws up folding
+	" of classes or methods defined in the block
+	if line =~ '^\v(if)\s*'
+		return '>1'
+	endif "}}}2
+
 	" Check if line level is lower than previous level {{{2
 	" Would use foldlevel() function, but that's returning -1
 	let lnum = a:line
