@@ -36,6 +36,8 @@
 
 [merge]
 	conflictstyle = diff3
+	defaultToUpstream = yes
+	log = 999
 
 [alias]
 	co          = checkout
