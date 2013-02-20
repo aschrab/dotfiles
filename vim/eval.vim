@@ -3,13 +3,10 @@ let mapleader=','
 
 " Start up pathogen if it's available
 " Won't be available on boxes before git submodules have been fetched
-if v:version >= 700
-	try
-		let g:pathogen_disabled = [ 'command-t' ]
-		runtime bundle/pathogen/autoload/pathogen.vim
-		call pathogen#infect()
-	catch
-	endtry
+let g:pathogen_disabled = [ 'command-t' ]
+runtime bundle/pathogen/autoload/pathogen.vim
+if exists('*pathogen#infect')
+	call pathogen#infect()
 endif
 
 runtime macros/matchit.vim
