@@ -6,7 +6,7 @@ let mapleader=','
 let g:pathogen_disabled = [ 'command-t' ]
 runtime bundle/pathogen/autoload/pathogen.vim
 if exists('*pathogen#infect')
-	call pathogen#infect()
+	execute pathogen#infect()
 endif
 
 runtime macros/matchit.vim
