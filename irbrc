@@ -1,10 +1,10 @@
 HISTFILE = "~/.irb.hist"
 MAXHISTSIZE = 100
 
-begin # Try to load YAML
+begin # Try to load YAML {{{
   require 'yaml'
 rescue Exception
-end
+end #}}}
 
 # Have :_ refer to value returned by previous command
 IRB.conf[:EVAL_HISTORY] = 1000
@@ -52,25 +52,26 @@ IRB.conf[:IRB_RC] = proc do |conf|
 end #}}}
 
 # Methods to generate "toy" Hash or Array objects{{{
-# Copied from https://gist.github.com/807492
-class Array
-  def self.toy(n=10, &block)
-    block_given? ? Array.new(n,&block) : Array.new(n) {|i| i+1}
+  # Copied from https://gist.github.com/807492
+  class Array
+    def self.toy(n=10, &block)
+      block_given? ? Array.new(n,&block) : Array.new(n) {|i| i+1}
+    end
   end
-end
 
-class Hash
-  def self.toy(n=10)
-    Hash[Array.toy(n){|c| (96+(c+1)).chr.to_sym }.zip(Array.toy(n))]
+  class Hash
+    def self.toy(n=10)
+      Hash[Array.toy(n){|c| (96+(c+1)).chr.to_sym }.zip(Array.toy(n))]
+    end
   end
-end
 #}}}
 
-begin # IRb shouldn't fail if can't get completion
+begin # IRb shouldn't fail if can't get completion {{{
   require 'irb/completion'
 rescue Exception
-end
+end #}}}
 
+# Save/restore history {{{
 begin
   if defined? Readline::HISTORY
     # Load history at startup {{{
@@ -96,23 +97,24 @@ begin
       }
     } #}}}
   end
-end
-
-# Define "ri" command {{{
-# Tell less to pass control characters and not complain about binary files.
-if ENV['LESS'].to_s[/^-/]
-  # If $LESS already set just make sure it contains options 'R' and 'f'.
-  ENV['LESS'] = ENV['LESS'].sub(/^-/, '-fR')
-else
-  ENV['LESS'] = '-EfFRX'
-end
-
-def ri( *names )
-  system %Q<ri -fansi #{names.map{|n| n.to_s} * ' '}>
 end #}}}
 
+# Define "ri" command {{{
+  # Tell less to pass control characters and not complain about binary files.
+  if ENV['LESS'].to_s[/^-/]
+    # If $LESS already set just make sure it contains options 'R' and 'f'.
+    ENV['LESS'] = ENV['LESS'].sub(/^-/, '-fR')
+  else
+    ENV['LESS'] = '-EfFRX'
+  end
+
+  def ri( *names )
+    system %Q<ri -fansi #{names.map{|n| n.to_s} * ' '}>
+  end
+#}}}
+
 # Show information about given class and its children
-def class_tree(root, show_methods = true, colorize = true) #{{{
+def class_tree(root, show_methods = true, colorize = true)
   # get children of root
   children = Hash.new()
   maxlength = root.to_s.length
@@ -135,7 +137,7 @@ def class_tree(root, show_methods = true, colorize = true) #{{{
     c[:moduleNames] = term_color :green
     c[:methodNames] = term_color :default
   end
-  
+
   recursePrint = proc do |current_root,prefixString|
     if show_methods # show methods (but don't show mixed in modules)
       puts(prefixString.tr('`','|'))
@@ -170,53 +172,53 @@ def class_tree(root, show_methods = true, colorize = true) #{{{
   end
 
   recursePrint.call(root,"")
-end #}}}
-
-# Add Object#what? to list methods of the object that return the given values.
-# Example:
-#       "foo".what? == 3 ==> [ 'length', 'size' ]
-# From  http://redhanded.hobix.com/inspect/stickItInYourIrbrcMethodfinder.html
-#{{{
-class Object
-  # Clone fails on numbers, but they're immutable anyway
-  def always_clone
-    self.clone rescue self
-  end
-  def what?(*a)
-    MethodFinder.new(self, *a)
-  end
 end
 
-class MethodFinder
-  # Find all methods on [anObject] which, when called with [args] return [expectedResult]
-  def self.find( anObject, expectedResult, *args )
-    oldwarn = $VERBOSE
-    $VERBOSE = nil
-    anObject.methods.select { |name| name}.
-                     select { |name| anObject.method(name).arity == args.size }.
-                     select { |name| anObject.always_clone.method( name ).call(*args) == expectedResult rescue nil }
-  ensure
-    $VERBOSE = oldwarn
+# Add Object#what? to list methods of the object that return the given values.{{{
+  # Example:
+  #       "foo".what? == 3 ==> [ 'length', 'size' ]
+  # From  http://redhanded.hobix.com/inspect/stickItInYourIrbrcMethodfinder.html
+  #
+  class Object
+    # Clone fails on numbers, but they're immutable anyway
+    def always_clone
+      self.clone rescue self
+    end
+    def what?(*a)
+      MethodFinder.new(self, *a)
+    end
   end
 
-  # Pretty-prints the results of the previous method
-  def self.show( anObject, expectedResult, *args )
-    find( anObject, expectedResult, *args ).each { |name|
-      print "#{anObject.inspect}.#{name}" 
-      print "(" + args.map { |o| o.inspect }.join(", ") + ")" unless args.empty?
-      puts " == #{expectedResult.inspect}" 
-    }
-  end
+  class MethodFinder
+    # Find all methods on [anObject] which, when called with [args] return [expectedResult]
+    def self.find( anObject, expectedResult, *args )
+      oldwarn = $VERBOSE
+      $VERBOSE = nil
+      anObject.methods.select { |name| name}.
+                       select { |name| anObject.method(name).arity == args.size }.
+                       select { |name| anObject.always_clone.method( name ).call(*args) == expectedResult rescue nil }
+    ensure
+      $VERBOSE = oldwarn
+    end
 
-  def initialize( obj, *args )
-    @obj = obj
-    @args = args
-  end
+    # Pretty-prints the results of the previous method
+    def self.show( anObject, expectedResult, *args )
+      find( anObject, expectedResult, *args ).each { |name|
+        print "#{anObject.inspect}.#{name}" 
+        print "(" + args.map { |o| o.inspect }.join(", ") + ")" unless args.empty?
+        puts " == #{expectedResult.inspect}" 
+      }
+    end
 
-  def ==( val )
-    MethodFinder.show( @obj, val, *@args )
+    def initialize( obj, *args )
+      @obj = obj
+      @args = args
+    end
+
+    def ==( val )
+      MethodFinder.show( @obj, val, *@args )
+    end
   end
-end
 #}}}
 
 class Object
@@ -225,4 +227,4 @@ class Object
   end
 end
 
-# vim: filetype=ruby foldmethod=marker
+# vim: filetype=ruby
