@@ -7,7 +7,7 @@ ServerAliveInterval=600
 Host milamber.qqx.org
 
 Host pug.qqx.org
-Port 443
+#Port 443
 
 Host ircproxy
 HostName pug.qqx.org
