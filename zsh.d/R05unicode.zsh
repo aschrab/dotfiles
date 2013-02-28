@@ -5,7 +5,7 @@
 unset LC_CTYPE
 
 # Check if we're on a Unicode terminal
-if [[ $ZSH_MAJOR_VERSION -ge 4 ]]; then
+if is-at-least 4.0; then
   # Based on perl script by Jan-Pieter Cornet <johnpc@xs4all.nl>
   # http://lists.debian.org/debian-mentors/2003/debian-mentors-200312/msg00144.html
   # Converted to zsh with clues from promptnl script that comes with zsh

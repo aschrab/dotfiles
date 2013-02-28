@@ -1,4 +1,4 @@
-[[ $ZSH_MAJOR_VERSION -lt 4 ]] && return
+is-at-least 4.0 || return
 
 # Copied from http://zshwiki.org/home/examples/zlewordchar
 

@@ -1,4 +1,4 @@
-[[ $ZSH_MAJOR_VERSION -lt 4 ]] && return
+is-at-least 4.0 || return
 
 # Change behaviour of insert-last-word widget
 # $NUMERIC should be carried over between consecutive invocations

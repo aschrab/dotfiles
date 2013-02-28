@@ -1,4 +1,4 @@
-[[ $ZSH_MAJOR_VERSION -lt 4 ]] && return
+is-at-least 4.0 || return
 
 zstyle ':completion:*' rehash yes
 zstyle ':completion:*' auto-description 'specify: %d'

@@ -32,7 +32,7 @@ unsetopt \
   Ignore_EOF \
   Prompt_CR
 
-if [[ $ZSH_MAJOR_VERSION -ge 3 ]]; then
+if is-at-least 3.0; then
   setopt Equals Function_ArgZero Mult_IOs
 else
   unsetopt No_Equals
