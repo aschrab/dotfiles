@@ -57,6 +57,7 @@ set foldopen=mark,quickfix,tag,block,hor,search,insert,undo
 
 :if has("persistent_undo")
 	set undofile
+	set undodir=~/.undo,.
 :endif
 "}}}
 
