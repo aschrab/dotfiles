@@ -13,6 +13,7 @@ quiltrc
 screenrc
 ssh/config
 tmux.conf
+undo/.gitignore
 vim
 vimrc
 XCompose
