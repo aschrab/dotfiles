@@ -48,3 +48,5 @@ autoload -- $fdir/*(:t)
 
 unset ppath d m
 export PATH MANPATH
+
+path+=$(dirname $(readlink -f $zshrc_dir))/upstreams/powerline/scripts/
