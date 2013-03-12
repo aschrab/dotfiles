@@ -19,3 +19,6 @@ vimrc
 XCompose
 zshrc
 zsh.d
+fonts/PowerlineSymbols.otf
+config/fontconfig/conf.d/10-powerline-symbols.conf
+config/powerline

@@ -96,3 +96,7 @@ export LESSCHARSET
 
 export HOSTALIASES=~/.hostaliases
 export PYTHONSTARTUP=~/.pythonrc.py
+
+typeset -TU PYTHONPATH python_path
+python_path+=~/.python
+export PYTHONPATH
