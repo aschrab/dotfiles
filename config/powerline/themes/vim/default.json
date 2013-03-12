@@ -7,7 +7,7 @@
 			"args": { "text": "+" }
 		},
 		"line_percent": {
-			"args": { "gradient": true },
+			"args": { "gradient": false },
 			"after": "%"
 		},
 		"line_current_symbol": {
