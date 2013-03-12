@@ -100,6 +100,12 @@
 				"align": "r"
 			},
 			{
+				"module": "qqx.powerline.vim",
+				"name": "line_count",
+				"draw_divider": false,
+				"before": "/"
+			},
+			{
 				"name": "virtcol_current",
 				"draw_divider": false,
 				"priority": 30,

@@ -23,6 +23,7 @@
 		"line_percent": { "fg": "gray9", "bg": "gray4" },
 		"line_percent_gradient": { "fg": "green_yellow_red", "bg": "gray4" },
 		"line_current": { "fg": "gray1", "bg": "gray10", "attr": ["bold"] },
+		"line_count": { "fg": "gray1", "bg": "gray10", "attr": ["bold"] },
 		"line_current_symbol": { "fg": "gray1", "bg": "gray10" },
 		"col_current": { "fg": "gray6", "bg": "gray10" },
 		"current_char": { "fg": "yellow", "bg": "gray2" },
