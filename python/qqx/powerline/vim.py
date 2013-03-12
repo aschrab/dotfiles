@@ -29,3 +29,20 @@ def file_encoding(segment_info, expected=['utf-8'], unknown_text='unknown'):
             return enc
         else:
             return unknown_text
+
+@requires_segment_info
+@add_divider_highlight_group('background:divider')
+def file_format(segment_info, expected=['unix'], unknown_text='unknown'):
+    '''Return file format (i.e. line ending type).
+
+    :return: file format or None if unknown or missing file format
+
+    Divider highlight group used: ``background:divider``.
+    '''
+
+    fmt = getbufvar(segment_info['bufnr'], '&fileformat')
+
+    if fmt in expected:
+        return None
+    else:
+        return fmt or unknown_text
