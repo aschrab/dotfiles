@@ -49,6 +49,7 @@ set modeline
 set wildmenu
 set wildmode=longest:full,full
 set wildignore+=*.o,*~
+set wildignore+=*.pyc
 set tags=tags,TAGS,./tags;,./TAGS;
 
 :if has("folding")
