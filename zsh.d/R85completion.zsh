@@ -29,7 +29,7 @@ zstyle ':completion:*:scp:*' tag-order '!users'
 
 # Don't complete "CVS" or "lost+found" directories
 zstyle ':completion:*:(all-|)files' ignored-patterns '(|*/)CVS' '(*/)#lost+found' \
-  '(|*/)*.bak' '(|*/)*.swp' '(|*/)*.o' '(|*/)*~'
+  '(|*/)*.bak' '(|*/)*.swp' '(|*/)*.o' '(|*/)*.pyc' '(|*/)*~'
 zstyle ':completion:*:cd:*' ignored-patterns '(*/)#CVS' '(*/)#lost+found'
 zstyle ':completion:*:rm:*' ignored-patterns
 
