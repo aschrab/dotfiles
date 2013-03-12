@@ -24,10 +24,10 @@ while i <= 9
     let i = i + 1
 endwhile
 
-set statusline=%!statusline#inactive()
-let &l:statusline='%!statusline#line()'
-auto BufEnter,WinEnter * let &l:statusline='%!statusline#line()'
-auto WinLeave * let &l:statusline='%!statusline#inactive()'
+"set statusline=%!statusline#inactive()
+"let &l:statusline='%!statusline#line()'
+"auto BufEnter,WinEnter * let &l:statusline='%!statusline#line()'
+"auto WinLeave * let &l:statusline='%!statusline#inactive()'
 
 auto BufEnter * let &titlestring = "Vim@%{hostname()} : %{clean#TTY()} : %{clean#CWD()}"
 auto BufEnter * let &iconstring  = "Vim@%{hostname()} : %f (%{clean#TTY()})"
