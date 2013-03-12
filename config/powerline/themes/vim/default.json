@@ -12,6 +12,9 @@
 		},
 		"line_current_symbol": {
 			"contents": " "
+		},
+		"qqx.powerline.vim.file_encoding": {
+			"args": { "expected": ["utf-8"] }
 		}
 	},
 	"segments": {
@@ -68,6 +71,7 @@
 				"priority": 50
 			},
 			{
+				"module": "qqx.powerline.vim",
 				"name": "file_encoding",
 				"exclude_modes": ["nc"],
 				"priority": 50
