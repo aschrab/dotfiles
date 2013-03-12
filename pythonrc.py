@@ -5,6 +5,8 @@ import os
 import sys
 import atexit
 
+from pprint import pprint as p
+
 readline.parse_and_bind('tab: complete')
 histfile = os.path.join( os.environ['HOME'], '.pythonhistory' )
 try:
