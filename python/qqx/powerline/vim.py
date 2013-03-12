@@ -46,3 +46,8 @@ def file_format(segment_info, expected=['unix'], unknown_text='unknown'):
         return None
     else:
         return fmt or unknown_text
+@requires_segment_info
+def line_count(segment_info):
+    '''Return the number of lines in the file'''
+    lines = len(segment_info['buffer'])
+    return str(lines)
