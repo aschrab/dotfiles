@@ -101,6 +101,11 @@
 				"before": ":",
 				"width": 3,
 				"align": "l"
+			},
+			{
+				"module": "qqx.powerline.vim",
+				"exclude_modes": ["nc"],
+				"name": "current_char"
 			}
 		]
 	}
