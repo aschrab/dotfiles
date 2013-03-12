@@ -65,6 +65,7 @@
 		],
 		"right": [
 			{
+				"module": "qqx.powerline.vim",
 				"name": "file_format",
 				"draw_divider": false,
 				"exclude_modes": ["nc"],
