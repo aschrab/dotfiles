@@ -1,5 +1,6 @@
 .*.sw[op]
 .DS_Store
+*.pyc
 vim/.netrwhist
 vim/doc/tags
 vim/spell
