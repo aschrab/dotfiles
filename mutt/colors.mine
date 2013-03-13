@@ -27,4 +27,4 @@ color tilde		white	default
 color attachment	white	blue
 color markers		blue	default
 
-# vim: tabstop=8 nowrap filetype=conf
+# vim: tabstop=8 nowrap filetype=muttrc

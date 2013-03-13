@@ -1,4 +1,4 @@
-%# vim: ft=eruby
+%# vim: ft=eruby.muttrc
 % require 'muttrc.rb'
 
 % if File.stat "#{ENV['HOME']}/.mutt/aliases"

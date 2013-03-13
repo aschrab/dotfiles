@@ -1,2 +1,4 @@
 set move=no
 push "T~E !(~O|~N|~F)\n"
+
+# vim: filetype=muttrc

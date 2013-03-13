@@ -133,4 +133,4 @@ set reply_regexp="^(\[[a-z0-9:-]*\]|((re|a(nt)?w(ort)?)(\\[[0-9]+])?:)[        ]
 
 source ~/.mutt/colors
 
-# vim: tabstop=8
+# vim: tabstop=8 filetype=muttrc
