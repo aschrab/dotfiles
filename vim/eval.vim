@@ -1,6 +1,10 @@
 
 let mapleader=','
 
+if exists("+guifont")
+	set guifont=Source\ Code\ Pro\ for\ Powerline\ Ultra-Light\ 10
+endif
+
 " Start up pathogen if it's available
 " Won't be available on boxes before git submodules have been fetched
 let g:pathogen_disabled = [ 'command-t' ]
