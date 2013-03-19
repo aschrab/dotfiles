@@ -12,16 +12,16 @@ alias scp='noglob scp'
   for arg in $argv
   do
     case "$arg" in
-    -*|*:*)
-      # Use argument verbatim
+    -*|[^/]##:*)
+      # Option or remote path reference, use argument verbatim
       args=($args "$arg")
       ;;
     *)
-      # Do glob expansion
+      # Anything else, do glob expansion
       args=($args ${~arg})
       ;;
     esac
   done
 
-  command scp $args
+  echo scp $args
 }
