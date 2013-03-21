@@ -23,5 +23,5 @@ alias scp='noglob scp'
     esac
   done
 
-  echo scp $args
+  command scp $args
 }
