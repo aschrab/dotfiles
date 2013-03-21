@@ -2,7 +2,7 @@
 let mapleader=','
 
 if exists("+guifont")
-	set guifont=Source\ Code\ Pro\ for\ Powerline\ Ultra-Light\ 10
+	set guifont=Source\ Code\ Pro\ for\ Powerline\ 9
 endif
 
 " Start up pathogen if it's available
