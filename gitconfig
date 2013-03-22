@@ -15,9 +15,9 @@
 
 [url "ssh://pug.qqx.org/srv/git/"]
 	pushInsteadOf = http://git.qqx.org/
-[url "ssh://git@github.com/aschrab/"]
-	pushInsteadOf = git://github.com/aschrab/
-	pushInsteadOf = https://github.com/aschrab/
+[url "ssh://git@github.com/"]
+	pushInsteadOf = git://github.com/
+	pushInsteadOf = https://github.com/
 [url "git@bitbucket.org:aschrab/"]
 	pushInsteadOf = https://bitbucket.org/aschrab/
 [url "git@git.it.corp:"]
