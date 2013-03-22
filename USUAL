@@ -17,6 +17,7 @@ undo/.gitignore
 vim
 vimrc
 XCompose
+zshenv
 zshrc
 zsh.d
 fonts/PowerlineSymbols.otf

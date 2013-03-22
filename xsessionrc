@@ -1,5 +1,7 @@
 #!/bin/sh
 
+export PYTHONPATH="$HOME/.python"
+
 if ! gpg-agent 2> /dev/null
 then
 	gpg-agent --daemon \

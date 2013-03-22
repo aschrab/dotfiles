@@ -43,10 +43,6 @@ export DEBEMAIL="$EMAIL"
 
 export PSQL_EDITOR="vim +'set ft=sql'"
 
-if [[ -d "/usr/local/lib/site_perl" ]]; then
-  export PERL5LIB="/usr/local/lib/site_perl"
-fi
-
 if whence vim >& /dev/null
 then
   [[ -d $HOME/share/vim ]] && export VIM=$HOME/share/vim
@@ -96,7 +92,3 @@ export LESSCHARSET
 
 export HOSTALIASES=~/.hostaliases
 export PYTHONSTARTUP=~/.pythonrc.py
-
-typeset -TU PYTHONPATH python_path
-python_path+=~/.python
-export PYTHONPATH
