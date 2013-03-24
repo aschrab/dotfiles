@@ -1,4 +1,4 @@
-bindkey -e
+bindkey -v
 
 ##################
 # Emacs bindings #
