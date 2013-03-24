@@ -1,3 +1,5 @@
+[[ $(bindkey '\e') == *vi-cmd-mode ]] && vim_mode="%{$fg[green]%}INS%{$reset_color%}"
+
 function zle-mode {
   case "$KEYMAP" in
     vicmd)
