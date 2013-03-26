@@ -1,9 +1,9 @@
-[[ $(bindkey '\e') == *vi-cmd-mode ]] && vim_mode="%{$fg[green]%}INS%{$reset_color%}"
+[[ $(bindkey '\e') == *vi-cmd-mode ]] && vim_mode="%{$bg[green]%} INS %{$reset_color%}"
 
 function zle-mode {
   case "$KEYMAP" in
     vicmd)
-      echo "%{$fg[red]%}CMD%{$reset_color%}"
+      echo "%{$bg[red]%} CMD %{$reset_color%}"
       return
       ;;
     viins)
@@ -16,7 +16,7 @@ function zle-mode {
       ;;
   esac
 
-  echo "%{$fg[green]%}INS%{$reset_color%}"
+  echo "%{$bg[green]%} INS %{$reset_color%}"
 }
 
 function zle-keymap-select {
