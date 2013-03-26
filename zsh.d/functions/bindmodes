@@ -1,0 +1,13 @@
+#autoload
+
+local modes mode func key
+
+modes="$1"
+func="$2"
+shift 2
+
+for mode in ${(s:,:)modes}; do
+  for key in $@; do
+    bindkey -M $mode $key $func
+  done
+done
