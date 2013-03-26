@@ -1,38 +1,32 @@
 bindkey -v
 
-##################
-# Emacs bindings #
-##################
-bindkey -M emacs \^p up-history
-bindkey -M emacs \^n down-history
-bindkey -M emacs "\e[A" up-line-or-search
-bindkey -M emacs "\eOA" up-line-or-search
-bindkey -M emacs "\eOD" backward-char
-bindkey -M emacs "\eOC" forward-char
-bindkey -M emacs "\e[5D" backward-word  # ctrl + left-arrow
-bindkey -M emacs "\e[5C" forward-word   # ctrl + right-arrow
-bindkey -M emacs "\e[1;5D" backward-word  # ctrl + left-arrow
-bindkey -M emacs "\e[1;5C" forward-word   # ctrl + right-arrow
-bindkey -M emacs "\M-;" copy-prev-word
-bindkey -M emacs "\e;" copy-prev-word
+bindmodes emacs,viins,vicmd up-line-or-search '\e[A' '\eOA' # Up arrow
+bindmodes emacs,viins,vicmd backward-word '\e[5D' '\e[1;5D' # ctrl + left-arrow
+bindmodes emacs,viins,vicmd forward-word  '\e[5C' '\e[1;5C' # ctrl + right-arrow
+
+bindmodes emacs,viins,vicmd up-history   '^p'
+bindmodes emacs,viins,vicmd down-history '^n'
+
+bindmodes emacs,viins backward-char '\eOD'
+bindmodes emacs,viins forward-char  '\eOC'
+bindmodes emacs,viins copy-prev-word '\M-;' '\e;'
 
 # space (with or without meta) is magic-space
-bindkey -M emacs    "\x20" magic-space
-bindkey -M emacs "\M-\x20" magic-space
-bindkey -M emacs  "\e\x20" magic-space
+bindmodes emacs,viins,vicmd magic-space '\x20' '\M-\x20' '\e\x20'
 
 # M-Q pushes all pending lines onto the stack, not just current line
-bindkey -M emacs "\M-q" push-input
-bindkey -M emacs "\eq" push-input
+bindmodes emacs,viins,vicmd push-input '\M-q' '\eq'
 
 # Autoconvert "~?" -> "~/" since I often hold down the shift key for too long
 # when trying to type the latter.
 bindkey -M emacs -s '~?' '~/'
+bindkey -M viins -s '~?' '~/'
 
 # Make ^X^F force file completion
 zle -C complete-file complete-word _generic
 zstyle ':completion:complete-file::::' completer _files
 bindkey -M emacs '^x^f' complete-file
+bindkey -M viins '^x^f' complete-file
 
 ##################
 # Vi bindings    #
@@ -46,24 +40,12 @@ noop () { }
 zle -N noop
 bindkey -M vicmd '\e' noop
 
-bindkey -M viins "^a"  beginning-of-line
-bindkey -M viins "^e"  end-of-line
-bindkey -M viins "^k"  kill-line
-bindkey -M viins "^t"  transpose-chars
-bindkey -M viins "M-t" transpose-words
-bindkey -M viins "\et" transpose-words
-bindkey -M viins "M-;" copy-prev-word
-bindkey -M viins "\e;" copy-prev-word
-bindkey -M viins "M-." insert-last-word
-bindkey -M viins "\e." insert-last-word
+bindkey -M viins '^t'  transpose-chars
+bindmodes viins transpose-words  'M-t' '\et'
+bindmodes viins insert-last-word 'M-.' '\e.'
 
 # Make control+space another way to get into command mode
 bindkey -M viins '^\x20' vi-cmd-mode
-
-# space (with or without meta) is magic-space
-bindkey -M viins    "\x20" magic-space
-bindkey -M viins "\M-\x20" magic-space
-bindkey -M viins  "\e\x20" magic-space
 
 # Start in command mode when editing history, if using Vi bindings
 zle-history-line-set() { [[ `bindkey '\e'` == *vi-cmd-mode ]] && zle -K vicmd }
