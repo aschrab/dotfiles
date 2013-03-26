@@ -103,6 +103,8 @@ inoremap <C-]> <C-X><C-]>
 inoremap <C-F> <C-X><C-F>
 inoremap <C-L> <C-X><C-L>
 inoremap <C-e> <esc>
+" Control-space
+inoremap <C-@> <esc>
 map gf :new <cfile><CR>
 
 nnoremap / /\v
