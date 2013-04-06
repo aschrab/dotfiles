@@ -3,8 +3,10 @@
 function zle-mode {
   case "$KEYMAP" in
     vicmd)
-      echo "%{$bg[red]%} CMD %{$reset_color%}"
-      return
+      if [[ $1 != finish ]]; then
+        echo "%{$bg[red]%} CMD %{$reset_color%}"
+        return
+      fi
       ;;
     viins)
       ;;
@@ -26,7 +28,7 @@ function zle-keymap-select {
 zle -N zle-keymap-select
 
 function zle-line-finish {
-  vim_mode=$(zle-mode)
+  vim_mode=$(zle-mode finish)
 }
 zle -N zle-line-finish
 
