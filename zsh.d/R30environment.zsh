@@ -17,7 +17,7 @@ if [[ $LANG == *UTF* ]]; then
   # A: @ARGV
   # S: STDIN, STDOUT, STDERR
   # D: any file opened, unless otherwise specified
-  export PERL_UNICODE=ASD
+  #export PERL_UNICODE=ASD
 fi
 
 unset MAIL  # set it later in host specific portion
