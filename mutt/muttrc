@@ -137,4 +137,4 @@ set smime_verify_opaque_command="openssl smime -verify -inform DER -in %s %C"
 # set smime_verify_opaque_command="openssl smime -verify -inform DER -in %s -noverify"
 #
 
-source "exec /home/ats/.mutt/expand_muttrc |"
+source "exec /home/ats/.mutt/expand_muttrc detect mboxes |"
