@@ -110,7 +110,7 @@
 			},
 			{
 				"module": "qqx.powerline.vim",
-				"exclude_modes": ["nc"],
+				"include_modes": [ "n" ],
 				"name": "current_char"
 			}
 		]
