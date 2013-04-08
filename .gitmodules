@@ -106,4 +106,4 @@
 	url = https://github.com/nelstrom/vim-textobj-rubyblock.git
 [submodule "upstreams/powerline"]
 	path = upstreams/powerline
-	url = git://github.com/Lokaltog/powerline
+	url = git://github.com/aschrab/powerline
