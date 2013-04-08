@@ -8,7 +8,7 @@ def current_char(segment_info):
         pos = segment_info['window'].cursor
         char = segment_info['buffer'][ pos[0]-1 ][ pos[1] ]
         return "0x%02X" % ord(char)
-    except Exception, e:
+    except Exception:
         return "0x00"
 
 @requires_segment_info
