@@ -49,10 +49,6 @@ bindmodes viins insert-last-word 'M-.' '\e.'
 # Make space with modifier another way to get into command mode
 bindmodes viins vi-cmd-mode '^\x20' 'M\x20' '\e\x20'
 
-# Start in command mode when editing history, if using Vi bindings
-zle-history-line-set() { [[ `bindkey '\e'` == *vi-cmd-mode ]] && zle -K vicmd }
-zle -N zle-history-line-set
-
 ###################
 # Common bindings #
 ###################
