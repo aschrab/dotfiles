@@ -28,6 +28,10 @@ def mlist mbox, opts={} #{{{
     out << "folder-hook L(ists)?/#{opts[:mbox]} 'set move=no'"
   end
 
+  unless opts.fetch :followup_to, true
+    out << "folder-hook L(ists)?/#{opts[:mbox]} 'set followup_to=no'"
+  end
+
   out << ''
 
   out.join "\n"

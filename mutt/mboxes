@@ -15,7 +15,7 @@ mailboxes =rss
 
 <%= mlist 'mail/mutt-dev', :from => 'aaron+mutt@schrab.com' %>
 <%= mlist 'dev/zsh', :address => 'zsh-(users|workers)@zsh.org' %>
-<%= mlist 'dev/git', :address => 'git@vger.kernel.org' %>
+<%= mlist 'dev/git', :address => 'git@vger.kernel.org', :followup_to => false %>
 <%= mlist 'dev/tmux', :address => 'tmux-users@lists.sourceforge.net' %>
 <%= mlist 'dev/meld', :address => 'meld-list@gnome.org' %>
 <%= mlist 'dev/sql-translator', :address => 'sqlfairy-developers@lists.sourceforge.net' %>

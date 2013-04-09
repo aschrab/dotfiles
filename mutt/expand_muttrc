@@ -18,6 +18,6 @@ def mutt_include( fname )
   eval( code, nil, fname )
 end
 
-%w< detect mboxes >.each do |file|
+ARGV.each do |file|
   mutt_include file
 end
