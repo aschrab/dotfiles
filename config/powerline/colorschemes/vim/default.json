@@ -28,7 +28,7 @@
 		"line_count": { "fg": "gray1", "bg": "gray10", "attr": ["bold"] },
 		"line_current_symbol": { "fg": "gray1", "bg": "gray10" },
 		"col_current": { "fg": "gray6", "bg": "gray10" },
-		"current_char": { "fg": "yellow", "bg": "gray2" },
+		"current_char": { "fg": "gray9", "bg": "gray4" },
 		"modified_buffers": { "fg": "brightyellow", "bg": "gray2" }
 	},
 	"mode_translations": {
