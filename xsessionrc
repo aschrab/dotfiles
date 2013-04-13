@@ -14,3 +14,12 @@ then
 fi
 
 [ -r ~/.touchpad.sh ] && . ~/.touchpad.sh
+
+case "$1" in
+	i3)
+		xscreensaver &
+		nm-applet &
+		;;
+esac
+
+[ -x ~/.dropbox-dist/dropbox ] && ~/.dropbox-dist/dropbox &
