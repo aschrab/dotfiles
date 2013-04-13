@@ -1,9 +1,14 @@
+% host = `hostname`.chomp
+# <%= host %>
+
 general {
         colors = true
         interval = 5
 }
 
+% if host == 'frak'
 order += "wireless wlan0"
+% end
 order += "ipv6"
 order += "disk /"
 order += "run_watch DHCP"
