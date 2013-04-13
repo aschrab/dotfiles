@@ -107,3 +107,6 @@
 [submodule "upstreams/powerline"]
 	path = upstreams/powerline
 	url = git://github.com/aschrab/powerline
+[submodule "vim/bundle/abolish"]
+	path = vim/bundle/abolish
+	url = https://github.com/tpope/vim-abolish.git
