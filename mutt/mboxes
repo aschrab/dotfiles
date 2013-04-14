@@ -40,4 +40,4 @@ lists debian-.*@lists\.debian\.org
 
 <%= mlist 'bugtraq' %>
 
-# vim: filetype=eruby
+# vim: filetype=eruby.muttrc

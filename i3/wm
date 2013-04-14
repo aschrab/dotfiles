@@ -144,3 +144,5 @@ bar {
 % end
 
 for_window [class="Gitk"] floating enable
+
+# vim: filetype=eruby.conf

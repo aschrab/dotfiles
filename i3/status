@@ -56,3 +56,5 @@ load {
 disk "/" {
         format = "%free"
 }
+
+# vim: filetype=eruby.conf
