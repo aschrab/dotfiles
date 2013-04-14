@@ -45,6 +45,16 @@ def eruby h
 end
 
 desc "Configuration for i3 window manager"
-task :i3
-task :i3 => eruby('i3/wm' => "#{home}/.config/i3/config")
-task :i3 => eruby('i3/status' => "#{home}/.config/i3status/config")
+task :i3 => 'i3:reload'
+
+namespace :i3 do
+  desc "Window manager"
+  task :wm => eruby('i3/wm' => "#{home}/.config/i3/config")
+  desc "Status bar"
+  task :status => eruby('i3/status' => "#{home}/.config/i3status/config")
+
+  desc "Reload"
+  task :reload => [ :wm, :status ] do
+    sh "i3 reload"
+  end
+end
