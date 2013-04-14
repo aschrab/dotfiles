@@ -88,6 +88,7 @@ set nopipe_decode              # don't decode MIME or weed headers when piping
 set thorough_search
 set nowait_key                 # don't wait for a key after running programs
 set nobeep
+set beep_new
 
 set timeout=30                 # seconds inactivity before looking for new mail
 
