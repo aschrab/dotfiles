@@ -1,12 +1,13 @@
 % host = `hostname`.chomp
 # <%= host %>
+% laptop = %w<frak>.include? host
 
 general {
         colors = true
         interval = 5
 }
 
-% if host == 'frak'
+% if laptop
 order += "wireless wlan0"
 % end
 order += "ipv6"
@@ -14,7 +15,9 @@ order += "disk /"
 order += "run_watch DHCP"
 #order += "run_watch VPN"
 order += "ethernet eth0"
+% if laptop
 order += "battery 0"
+% end
 order += "load"
 order += "time"
 
