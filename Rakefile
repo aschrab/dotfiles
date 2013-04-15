@@ -1,3 +1,4 @@
+ENV['DISPLAY'] = ':0'
 home = ENV['HOME']
 
 class ERuby
