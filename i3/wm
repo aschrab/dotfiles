@@ -109,6 +109,8 @@ bindsym $mod+g exec i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Go to: '
 bindsym $mod+Shift+I move scratchpad
 bindsym $mod+i scratchpad show
 
+bindsym $mod+Tab exec true
+
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
