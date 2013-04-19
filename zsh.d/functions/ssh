@@ -1,5 +1,6 @@
 #autoload
 
+if [[ -t 1 ]]; then
   local foo
   local bar
   foo="$argv[$#]"
@@ -19,4 +20,6 @@
     bar="$foo"
   fi
   zset_title "$bar"
-  command ssh "$@"
+fi
+
+command ssh "$@"
