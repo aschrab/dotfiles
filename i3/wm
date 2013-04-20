@@ -106,6 +106,8 @@ bindsym $mod+m exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
 # Read 1 character and go to the window with the character
 bindsym $mod+g exec i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Go to: '
 
+bindsym $mod+slash exec i3-input -F '[title="(?i)%s"] focus' -P 'Find window title: '
+
 bindsym $mod+Shift+I move scratchpad
 bindsym $mod+i scratchpad show
 
