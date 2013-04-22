@@ -51,7 +51,14 @@ if egrep --color=auto . /etc/passwd > /dev/null 2>&1; then
 else
 	alias grep=egrep
 fi
-alias ack=ack-grep
+
+if (( $+commands[ack-grep] )); then
+  if (( $+commands[ack] )) && [[ $(ack) == *PATTERN* ]]; then
+    :
+  else
+    alias ack=ack-grep
+  fi
+fi
 
 alias cls='clear'
 alias sz='sz -e'
