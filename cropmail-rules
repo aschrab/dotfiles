@@ -133,6 +133,9 @@ when /<tmux-users\.lists\.sourceforge\.net>/i
   list = 'dev/tmux'
 when /<meld-list\.gnome\.org>/i
   list = 'dev/meld'
+when /<i3-discuss\.i3\.zekjur\.net>/
+  subject_re = /\[i3\]/i
+  list = 'dev/i3'
 when /<sqlfairy-developers\.lists\.sourceforge\.net>/i
   list = 'dev/sql-translator'
 when /<mailscanner.lists.mailscanner.info>/i

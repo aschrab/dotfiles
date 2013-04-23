@@ -19,7 +19,7 @@ mailboxes =rss
 <%= mlist 'dev/tmux', :address => 'tmux-users@lists.sourceforge.net' %>
 <%= mlist 'dev/meld', :address => 'meld-list@gnome.org' %>
 <%= mlist 'dev/sql-translator', :address => 'sqlfairy-developers@lists.sourceforge.net' %>
-
+<%= mlist 'dev/i3', :address => 'i3-discuss@i3.zekjur.net' %>
 
 # Perl lists
 <%= mlist 'perl/dbix', :address => 'dbix-class' %>
