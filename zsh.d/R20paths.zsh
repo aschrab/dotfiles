@@ -6,4 +6,4 @@ fpath=($fdir $fpath)
 
 autoload -- $fdir/*(:t)
 
-path+=$(dirname $(readlink -f $zshrc_dir))/upstreams/powerline/scripts/
+path+=$(dirname $(perl -MCwd -e 'print Cwd::abs_path($ARGV[0])' $zshrc_dir))/upstreams/powerline/scripts/

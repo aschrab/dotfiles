@@ -1,5 +1,5 @@
 __link_dir() {
-	local linkpath=$(readlink -f $1)
+  local linkpath=$(perl -MCwd -e 'print Cwd::abs_path($ARGV[0])' $1)
 	[[ -n $linkpath ]] && dirname $linkpath
 }
 
