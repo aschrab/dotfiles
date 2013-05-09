@@ -1,5 +1,5 @@
 #autoload
-local real=`builtin pwd -r`
+local real="`builtin pwd -r`"
 if [[ ! -t 1 ]]; then
   # Only output real path when used in backticks.
   echo $real
