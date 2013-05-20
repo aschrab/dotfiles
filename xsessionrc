@@ -23,3 +23,4 @@ case "$1" in
 esac
 
 [ -x ~/.dropbox-dist/dropbox ] && ~/.dropbox-dist/dropbox &
+[ -r ~/.synergy.conf ] && synergys
