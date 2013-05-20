@@ -1,6 +1,7 @@
 % host = `hostname`.chomp
 # <%= host %>
 % laptop = %w<frak>.include? host
+% eth = host == 'zim' ? 'br0' : 'eth0'
 
 general {
         colors = true
@@ -14,7 +15,7 @@ order += "ipv6"
 order += "disk /"
 order += "run_watch DHCP"
 #order += "run_watch VPN"
-order += "ethernet eth0"
+order += "ethernet <%= eth %>"
 % if laptop
 order += "battery 0"
 % end
@@ -26,7 +27,7 @@ wireless wlan0 {
         format_down = "W: down"
 }
 
-ethernet eth0 {
+ethernet <%= eth %> {
         # if you use %speed, i3status requires root privileges
         format_up = "E: %ip (%speed)"
         format_down = "E: down"
