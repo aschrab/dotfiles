@@ -69,10 +69,10 @@ if match
   if npa = number[/^\d{3}/]
     File.open( '/usr/share/misc/npa.txt' ) do |f|
       f.each_line do |line|
-	next unless line[/^#{npa}:/]
-	info = line.chomp.split(':')
-	area = " (#{info[1]}, #{info[3]})"
-	break
+        next unless line[/^#{npa}:/]
+        info = line.chomp.split(':')
+        area = " (#{info[1]}, #{info[3]})"
+        break
       end
     end
   end
@@ -80,7 +80,7 @@ if match
   if subject =~ /voice message/i
     map! do |msg,typ|
       if !typ and msg.content_type.type.downcase == 'text'
-	msg = Cropmail::Message.new "\n\nVoicemail message from #{number}#{area}\n\n"
+        msg = Cropmail::Message.new "\n\nVoicemail message from #{number}#{area}\n\n"
       end
       msg
     end
@@ -90,11 +90,11 @@ if match
 end #}}}
 
 if headers[:x_qqx_org_mailscanner_spamscore] =~ /s{5}/i
-	save_md '=spam'
+  save_md '=spam'
 end
 
 if headers[:x_spam_flag] =~ /YES/i
-	save_md '=spam'
+  save_md '=spam'
 end
 
 if headers[:from] =~ /postmaster@(pug\.)?qqx\.org/i
