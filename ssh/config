@@ -22,6 +22,14 @@ LocalForward 9103 0:9103
 LocalForward 9104 0:9104
 LocalForward 9105 0:9105
 
+Host proxy
+HostName pug.qqx.org
+HostKeyAlias pug.qqx.org
+Port 222
+ForwardX11 yes
+ForwardAgent yes
+DynamicForward 9876
+
 Host aevo.qqx.org
 User root
 Port 22
