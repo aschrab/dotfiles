@@ -185,6 +185,11 @@ if list
   done
 end
 
+# Messages to me using Cyrillic are almost certainly spam
+if content_type.subfields['charset'] =~ /windows-1251/i
+  save_md '=INBOX/junk'
+end
+
 save Message.maildir
 done
 
