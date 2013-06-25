@@ -136,6 +136,9 @@ omap i' :normal vT'ot'<CR>
 omap a' :normal vF'of'<CR>
 :endif
 
+" In command line, expand %% to the directory containing the current file
+cnoremap %% <C-R>=expand('%:h').'/'<CR>
+
 " Support for scroll wheel {{{
 map <M-Esc>[62~ <MouseDown>
 map! <M-Esc>[62~ <MouseDown>
