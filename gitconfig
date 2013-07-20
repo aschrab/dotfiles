@@ -33,6 +33,7 @@
 [diff]
 	renames        = true
 	mnemonicprefix = yes
+	algorithm      = patience
 
 [merge]
 	conflictstyle = diff3
