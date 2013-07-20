@@ -105,7 +105,8 @@ inoremap <C-L> <C-X><C-L>
 inoremap <C-e> <esc>
 " Control-space
 inoremap <C-@> <esc>
-map gf :new <cfile><CR>
+nnoremap gf :new <cfile><CR>
+vnoremap gf :<C-U>new <C-R>=escape#filename(visual#get())<CR><CR>
 
 nnoremap / /\v
 vnoremap / /\v
