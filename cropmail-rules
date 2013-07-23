@@ -138,6 +138,7 @@ when /<i3-discuss\.i3\.zekjur\.net>/
   list = 'dev/i3'
 when /<sqlfairy-developers\.lists\.sourceforge\.net>/i
   list = 'dev/sql-translator'
+  subject_re = /\[sqlfairy-developers\]/i
 when /<mailscanner.lists.mailscanner.info>/i
   list = 'mail/scanner'
 end unless list
