@@ -85,6 +85,9 @@ let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
 let g:syntastic_auto_loc_list=1
 let g:syntastic_loc_list_height=5
+let g:syntastic_html_tidy_ignore_errors = [
+  \ "proprietary attribute \"autocomplete\""
+  \ ]
 
 map <silent> <F1> :NERDTreeToggle<CR>
 
