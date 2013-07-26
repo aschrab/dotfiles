@@ -156,5 +156,6 @@ bar {
 for_window [class="Gitk"] floating enable
 for_window [class="^Display\.im"] floating enable
 for_window [title="^Open Database -"] floating enable
+for_window [title="^xfce4-notifyd"] floating enable
 
 # vim: filetype=eruby.conf
