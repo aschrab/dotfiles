@@ -113,3 +113,5 @@ augroup END
 augroup ScreenShellExit
 autocmd User * call <SID>ScreenShellListener()
 augroup END
+
+let g:signify_vcs_list = [ 'git' ]

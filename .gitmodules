@@ -110,3 +110,6 @@
 [submodule "vim/bundle/abolish"]
 	path = vim/bundle/abolish
 	url = https://github.com/tpope/vim-abolish.git
+[submodule "vim/bundle/signify"]
+	path = vim/bundle/signify
+	url = https://github.com/mhinz/vim-signify.git
