@@ -1,0 +1,4 @@
+! TEK = Truly Ergonomic Keyboard
+
+! Use key in lower left corner of TEK as compose key
+keycode 97 = SunCompose
