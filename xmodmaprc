@@ -2,3 +2,6 @@
 
 ! Use key in lower left corner of TEK as compose key
 keycode 97 = SunCompose
+
+! Use left space bar on TEK as additional Super key
+keycode 135 = Super_R
