@@ -3,7 +3,7 @@ set folder=imaps://ats@pug.qqx.org/
 account-hook . 'set notunnel'
 set spoolfile=+INBOX
 set postponed=+Drafts          # where to save postponed messages
-set record=+Sent               # save copies of outgoing mail
+set record=!/old               # save copies of outgoing mail
 set mbox=+Misc
 set imap_headers="X-Spam-Status"
 set mail_check=60
