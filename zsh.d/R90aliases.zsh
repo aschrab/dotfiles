@@ -16,10 +16,13 @@ alias wget='noglob wget'
 # Without this commands where stderr is redirected to /dev/null hang
 # http://sourceforge.net/mailarchive/message.php?msg_id=28004727
 # But with versions of libevent < 2.0 this exposes an even worse bug
-if [[ -n $(whence tmux) ]] && ! ldd =tmux | fgrep -q libevent-1.
-then
-  alias tmux="EVENT_NOEPOLL=1 command tmux"
-fi
+() {
+  if [[ -n $(whence tmux) ]] && ! ldd =tmux | fgrep -q libevent-1.
+  then
+    epoll="EVENT_NOEPOLL=1"
+  fi
+  alias tmux="TMPDIR= ${epoll} command tmux"
+}
 
 # Only the initial arguments to `find` should use globbing.
 #
