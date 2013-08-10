@@ -1,7 +1,7 @@
 %# vim: ft=eruby.muttrc
 % require 'muttrc.rb'
 
-% if File.stat "#{ENV['HOME']}/.mutt/aliases"
+% if file_exists? "#{ENV['HOME']}/.mutt/aliases"
 	source ~/.mutt/aliases
 % end
 

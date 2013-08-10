@@ -1,3 +1,9 @@
+def file_exists? path
+  File.stat path
+rescue Errno::ENOENT
+  false
+end
+
 def mlist mbox, opts={} #{{{
   case mbox
   when Hash
