@@ -1,8 +1,8 @@
 #!/usr/bin/ruby1.8 -w
 
-#$debug_fh = File.open('/tmp/expand_muttrc.debug', 'w' )
-#$debug_fh.puts "I have PID #{Process.pid}"
-#$debug_fh.puts "My parent is #{ Process.ppid }"
+#$stderr.reopen '/tmp/expand_muttrc.debug', 'w'
+#$stderr.puts "I have PID #{Process.pid}"
+#$stderr.puts "My parent is #{ Process.ppid }"
 
 Dir.chdir( File.dirname($0) )
 
