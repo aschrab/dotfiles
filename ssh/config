@@ -6,15 +6,12 @@ ServerAliveInterval=600
 
 Host milamber.qqx.org
 
-Host pug.qqx.org
+Host pug.qqx.org, proxy
 #Port 443
 
 Host proxy
 HostName pug.qqx.org
 HostKeyAlias pug.qqx.org
-Port 222
-ForwardX11 yes
-ForwardAgent yes
 DynamicForward 9876
 
 Host aevo.qqx.org
@@ -31,7 +28,7 @@ Host kahlan*
 ForwardX11 no
 Port 22
 
-Host *.qqx.org
+Host *.qqx.org, proxy
 ForwardAgent yes
 ForwardX11 yes
 Port 222
