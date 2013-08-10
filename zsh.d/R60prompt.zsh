@@ -28,16 +28,15 @@ zset_title() {
       ;;
     screen*)
       screen=y
+      # Really only want to do the following for tmux,
+      # but there isn't a reliable way to distinguish remotely
+      tmux=y
+      title=2
       ;;
   esac
 
   local title
   title=0
-
-  if [[ -n $TMUX ]]; then
-    tmux=y
-    title=2
-  fi
 
   if [[ $xterm == y || $tmux == y ]]; then
     print -nP "\E]${title};${1:-%(#.#.$)$host$DEBCHROOT($tty):%~}\C-g"
