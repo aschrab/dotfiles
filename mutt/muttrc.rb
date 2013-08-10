@@ -1,3 +1,9 @@
+class String
+  def quote
+    %q<'> + gsub( %q<'>, %q<'\\\\''>) + %q<'>
+  end
+end
+
 def file_exists? path
   File.stat path
 rescue Errno::ENOENT
@@ -36,6 +42,17 @@ def mlist mbox, opts={} #{{{
 
   unless opts.fetch :followup_to, true
     out << "folder-hook L(ists)?/#{opts[:mbox]} 'set followup_to=no'"
+  end
+
+  if rx = opts[:subjectrx] and mutt_patch %r<mailboxrx>
+    rx = case rx
+           when String
+             Regexp.escape(rx) + '\\s*'
+           when Regexp
+             rx.to_s
+           end
+    command = "subjectrx #{rx.quote} '%L%R'"
+    out << %Q<folder-hook L(ists)?/#{opts[:mbox]} #{command.quote}>
   end
 
   out << ''
