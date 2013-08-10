@@ -28,7 +28,7 @@ Host kahlan*
 ForwardX11 no
 Port 22
 
-Host *.qqx.org, proxy
+Host *.qqx.org proxy
 ForwardAgent yes
 ForwardX11 yes
 Port 222
