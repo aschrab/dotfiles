@@ -1,3 +1,7 @@
+% if mutt_patch %r<mailboxrx>
+folder-hook . 'unsubjectrx *'
+% end
+
 mailboxes !
 mailboxes =INBOX/junk
 mailboxes =INBOX/sympa
@@ -5,9 +9,9 @@ mailboxes =INBOX/sympa
 <%= mlist 'lsm-workers' %>
 
 # UG lists
-<%= mlist 'ug/raleigh-pm' %>
-<%= mlist 'ruby/raleigh', :address => 'raleigh-rb-members' %>
-<%= mlist 'ug/trilug' %>
+<%= mlist 'ug/raleigh-pm', :subjectrx => '[Raleigh-pm]' %>
+<%= mlist 'ruby/raleigh', :address => 'raleigh-rb-members', :subjectrx => '[triangle.rb]' %>
+<%= mlist 'ug/trilug', :subjectrx => '[TriLUG]' %>
 
 mailboxes =rss
 
@@ -16,11 +20,11 @@ mailboxes =rss
 <%= mlist 'dev/git', :address => 'git@vger.kernel.org', :followup_to => false %>
 <%= mlist 'dev/tmux', :address => 'tmux-users@lists.sourceforge.net' %>
 <%= mlist 'dev/meld', :address => 'meld-list@gnome.org' %>
-<%= mlist 'dev/sql-translator', :address => 'sqlfairy-developers@lists.sourceforge.net' %>
-<%= mlist 'dev/i3', :address => 'i3-discuss@i3.zekjur.net' %>
+<%= mlist 'dev/sql-translator', :address => 'sqlfairy-developers@lists.sourceforge.net', :subjectrx => '[sqlfairy-developers]' %>
+<%= mlist 'dev/i3', :address => 'i3-discuss@i3.zekjur.net', :subjectrx => '[i3]' %>
 
 # Perl lists
-<%= mlist 'perl/dbix', :address => 'dbix-class' %>
+<%= mlist 'perl/dbix', :address => 'dbix-class', :subjectrx => '[Dbix-class]' %>
 
 # Debian lists
 <%= mlist 'debian/ruby' %>
