@@ -1,7 +1,9 @@
 %# vim: ft=eruby.muttrc
 
-% if file_exists? "#{ENV['HOME']}/.mutt/aliases"
-	source ~/.mutt/aliases
+% %w<aliases secrets>.each do |file|
+%   if file_exists? "#{ENV['HOME']}/.mutt/#{file}"
+      source ~/.mutt/<%= file %>
+%   end
 % end
 
 account-hook ats@pug.qqx.org 'set tunnel="<%= Dir.pwd %>/imapwrap"'

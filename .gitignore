@@ -8,6 +8,7 @@ lftp/cwd_history
 lftp/rl_history
 lftp/transfer_log
 mutt/aliases
+mutt/secrets
 ssh/id*
 ssh/authorized_keys
 ssh/known_hosts
