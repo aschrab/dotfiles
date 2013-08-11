@@ -1,4 +1,4 @@
-#!/usr/bin/ruby1.8 -w
+#!/usr/bin/ruby1.9.3 -w
 
 #$stderr.reopen '/tmp/expand_muttrc.debug', 'w'
 #$stderr.puts "I have PID #{Process.pid}"
@@ -6,16 +6,14 @@
 
 Dir.chdir( File.dirname($0) )
 
-require 'eruby'
-require 'muttrc'
-
-$compiler = ERuby::Compiler.new
+require 'erb'
+require_relative 'muttrc'
 
 def mutt_include( fname )
-  #$stderr.puts "Compiling #{fname}"
-  code = File.open( fname ){ |fh| $compiler.compile_file( fh ) }
+  #$stderr.puts "Reading #{fname}"
+  code = File.open( fname ){ |fh| fh.read }
   #$stderr.puts "Eval'ing #{fname}"
-  eval( code, nil, fname )
+  puts ERB.new( code, nil, '%<>' ).result
 end
 
 ARGV.each do |file|
