@@ -1,5 +1,3 @@
-% require 'muttrc.rb'
-
 mailboxes !
 mailboxes =INBOX/junk
 mailboxes =INBOX/sympa
