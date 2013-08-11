@@ -6,6 +6,7 @@ unhook *
 set pgp_sign_as="0x6DB5C725"
 
 source ~/.mutt/rc.common
+source ~/.mutt/accounts.pug
 source ~/.mutt/save_hooks
 
 # Since a lot of software claims that cp1252 encoded text is actually
