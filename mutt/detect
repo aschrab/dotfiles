@@ -8,6 +8,10 @@
 
 account-hook ats@pug.qqx.org 'set tunnel="<%= Dir.pwd %>/imapwrap"'
 
+% if mutt_patch %r<mailboxrx>
+mailboxrx 'imaps://aaron.schrab@gmail.com[^/]*/' '[G]%R'
+% end
+
 % if ENV['TMUX']
   set editor="twrap vim '+/^$/+1'"
 % end
