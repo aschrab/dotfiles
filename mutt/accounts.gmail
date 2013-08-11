@@ -1,0 +1,11 @@
+# vim: tw=0 ft=muttrc
+
+# Use line like following to use app-specific password
+#account-hook imaps://aaron.schrab@gmail.com 'set imap_pass=""'
+
+macro index G <change-folder>imaps://aaron.schrab@gmail.com@imap.gmail.com/
+
+set folder=imaps://aaron.schrab@gmail.com@imap.gmail.com/
+set spoolfile=+INBOX
+set postponed="+[GMail]/Drafts" # where to save postponed messages
+set record="+[GMail]/Sent Mail" # save copies of outgoing mail
