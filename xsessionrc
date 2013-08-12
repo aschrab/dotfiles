@@ -1,5 +1,6 @@
 #!/bin/sh
 
+export GTK_IM_MODULE=xim
 export PYTHONPATH="$HOME/.python"
 
 if ! gpg-agent 2> /dev/null
