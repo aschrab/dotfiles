@@ -15,6 +15,7 @@ then
 fi
 
 [ -r ~/.touchpad.sh ] && . ~/.touchpad.sh
+[ -r ~/.xmodmaprc ] && xmodmap ~/.xmodmaprc
 
 case "$1" in
 	i3)
