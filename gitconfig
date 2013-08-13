@@ -42,6 +42,7 @@
 
 [rerere]
 	enabled = yes
+	autoupdate = yes
 
 [alias]
 	co          = checkout
