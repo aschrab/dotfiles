@@ -40,6 +40,9 @@
 	defaultToUpstream = yes
 	log = 999
 
+[rerere]
+	enabled = yes
+
 [alias]
 	co          = checkout
 	ci          = commit -v
