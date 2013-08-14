@@ -6,7 +6,7 @@ ServerAliveInterval=600
 
 Host milamber.qqx.org
 
-Host pug.qqx.org, proxy
+Host pug.qqx.org proxy
 #Port 443
 
 Host proxy
