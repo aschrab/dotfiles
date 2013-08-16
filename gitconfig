@@ -40,6 +40,9 @@
 	defaultToUpstream = yes
 	log = 999
 
+[mergetool "fugitive"]
+	cmd = vim -f -c "Gdiff" "$MERGED"
+
 [rerere]
 	enabled = yes
 	autoupdate = yes
