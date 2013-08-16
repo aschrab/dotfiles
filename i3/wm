@@ -29,6 +29,11 @@ bindsym $mod+Shift+Q kill
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run
 
+# volume control
+bindSym XF86AudioRaiseVolume  exec --no-startup-id "amixer -q set Master 9%+"
+bindSym XF86AudioLowerVolume  exec --no-startup-id "amixer -q set Master 9%-"
+bindSym XF86AudioMute         exec --no-startup-id "amixer -q set Master toggle"
+
 # change focus
 bindsym $mod+j focus left
 bindsym $mod+k focus down
