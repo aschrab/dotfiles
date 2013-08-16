@@ -50,6 +50,8 @@ set wildmenu
 set wildmode=longest:full,full
 set wildignore+=*.o,*~
 set wildignore+=*.pyc
+set wildoptions=tagfile
+set completeopt=longest,menuone,preview
 set tags=tags,TAGS,./tags;,./TAGS;
 
 :if has("folding")
