@@ -20,6 +20,11 @@
 	"segments": {
 		"left": [
 			{
+				"module": "qqx.powerline.vim",
+				"name": "window_number",
+				"include_modes": ["nc"]
+			},
+			{
 				"name": "mode",
 				"exclude_modes": ["nc"]
 			},

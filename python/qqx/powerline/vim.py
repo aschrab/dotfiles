@@ -1,6 +1,10 @@
 from powerline.theme import requires_segment_info
-from powerline.bindings.vim import getbufvar
+from powerline.bindings.vim import vim_get_func, getbufvar
 from powerline.lib import add_divider_highlight_group
+
+vim_funcs = {
+    'tabpagebuflist': vim_get_func('tabpagebuflist',rettype=list),
+}
 
 @requires_segment_info
 def current_char(segment_info, **extra):
@@ -51,3 +55,14 @@ def line_count(segment_info, **extra):
     '''Return the number of lines in the file'''
     lines = len(segment_info['buffer'])
     return str(lines)
+
+@requires_segment_info
+def window_number(segment_info, **extra):
+  '''Return number of window within tab page'''
+  try:
+    buffers = vim_funcs['tabpagebuflist']()
+    bufno = str(segment_info['bufnr'])
+    winno = buffers.index( bufno  )
+    return str(winno + 1)
+  except:
+    return "?"
