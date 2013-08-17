@@ -117,3 +117,12 @@ autocmd User * call <SID>ScreenShellListener()
 augroup END
 
 let g:signify_vcs_list = [ 'git' ]
+
+let g:airline_powerline_fonts=1
+let g:airline_detect_whitespace=0
+let g:airline_detect_iminsert=0
+let g:airline_enable_branch = 1
+let g:airline_section_x = "%{strlen(&ft)>0?&ft:''}%{statusline#fileinfo()}"
+let g:airline_section_y = '%3l/%3L»%3c'
+let g:airline_section_z = "ch0x%02B"
+let g:airline_theme='molokai'

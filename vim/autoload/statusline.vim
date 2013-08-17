@@ -121,4 +121,20 @@ function! statusline#WindowNumber ()"{{{
 	return str
 endfunction"}}}
 
+function! statusline#fileinfo () "{{{
+  let info=''
+
+  let fmt = &ff
+  if fmt != 'unix' && fmt != ''
+    let info .= '{' . fmt . '}'
+  endif
+
+  let enc = &fenc
+  if enc != 'utf-8' && enc != ''
+    let info .= '[' . enc . ']'
+  endif
+
+  return info
+endfunction "}}}
+
 " vim: foldmethod=marker
