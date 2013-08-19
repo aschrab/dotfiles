@@ -1,7 +1,7 @@
 HashKnownHosts no
 #ControlMaster auto
 ControlPath ~/.ssh/.master.%l-%r@%h:%p
-VerifyHostKeyDNS=ask
+#VerifyHostKeyDNS=ask
 ServerAliveInterval=600
 
 Host milamber.qqx.org
@@ -35,6 +35,7 @@ Port 222
 
 Host *.trilug.org
 User aschrab
+ForwardAgent yes
 
 Host lish
 User qqx
