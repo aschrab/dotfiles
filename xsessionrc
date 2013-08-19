@@ -27,4 +27,4 @@ esac
 [ -x ~/.dropbox-dist/dropbox ] && ~/.dropbox-dist/dropbox &
 [ -r ~/.synergy.conf ] && synergys
 
-unclutter -idle 1 -root -noevents
+unclutter -idle 1 -root -noevents &
