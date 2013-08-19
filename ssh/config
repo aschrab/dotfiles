@@ -35,6 +35,7 @@ Port 222
 
 Host *.trilug.org
 User aschrab
+ForwardAgent yes
 
 Host lish
 User qqx
