@@ -26,6 +26,7 @@ set ignorecase
 set smartcase
 set incsearch
 set ruler
+set number relativenumber
 set showmatch
 set showcmd
 "set cursorcolumn
