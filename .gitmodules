@@ -1,9 +1,6 @@
 [submodule "upstreams/zsh"]
 	path = upstreams/zsh
 	url = http://git.qqx.org/zsh
-[submodule "vim/bundle/command-t"]
-	path = vim/bundle/command-t
-	url = git://git.wincent.com/command-t.git
 [submodule "vim/bundle/syntax-coffeescript"]
 	path = vim/bundle/syntax-coffeescript
 	url = https://github.com/kchmck/vim-coffee-script.git
@@ -92,9 +89,6 @@
 [submodule "upstreams/syntax-hightlight"]
 	path = upstreams/syntax-hightlight
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
-[submodule "vim/bundle/numbertoggle"]
-	path = vim/bundle/numbertoggle
-	url = https://github.com/Greduan/vim-numbertoggle.git
 [submodule "vim/bundle/nerdtree"]
 	path = vim/bundle/nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
