@@ -67,7 +67,10 @@ foreach my $f (@ARGV) {
 	$dest = "$ENV{HOME}/$dest"; # Convert destination to absolute path
 
 	# Indicate what targets already exist and which are going to be created
-	my $status = -e $dest ? '.' : '+';
+	my $status;
+	if ( -e $dest ) { $status = '.' }
+	elsif ( -l $dest ) { $status = '!' }
+	else { $status = '+' }
 	print "$status $f\n";
 
 	next unless $status eq '+';
