@@ -6,6 +6,7 @@ unhook *
 set pgp_sign_as="0x6DB5C725"
 
 source ~/.mutt/rc.common
+source ~/.mutt/accounts.gmail
 source ~/.mutt/accounts.pug
 source ~/.mutt/save_hooks
 
@@ -18,8 +19,8 @@ auto_view application/x-gtar application/x-tar application/x-tar-gz text/x-csrc
 
 set ispell="spell"
 
-set from="aaron@schrab.com"
-#my_hdr Bcc: backup@schrab.com
+set folder=imaps://ats@pug.qqx.org/
+set spoolfile=+INBOX
 
 source ~/.mutt/ignore
 

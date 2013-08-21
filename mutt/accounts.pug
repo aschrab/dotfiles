@@ -1,7 +1,11 @@
 # vim: tw=0 ft=muttrc
 
-set folder=imaps://ats@pug.qqx.org/
-set spoolfile=+INBOX
-set postponed=+Drafts # where to save postponed messages
-set record=!/old      # save copies of outgoing mail
-set mbox=+Misc
+macro index H <change-folder>imaps://ats@pug.qqx.org/
+
+folder-hook 'imaps?://ats@pug.qqx.org/' 'set from="aaron@schrab.com"'
+folder-hook 'imaps?://ats@pug.qqx.org/' 'set folder=imaps://ats@pug.qqx.org/'
+folder-hook 'imaps?://ats@pug.qqx.org/' 'set spoolfile=+INBOX'
+folder-hook 'imaps?://ats@pug.qqx.org/' 'set postponed=+Drafts'
+folder-hook 'imaps?://ats@pug.qqx.org/' 'set record=!/old'
+
+send2-hook '~f @(schrab\.com\|(pug\.)?qqx\.org)' 'unset smtp_url'

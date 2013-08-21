@@ -21,6 +21,7 @@ mailboxrx 'imaps://aaron.schrab@gmail.com[^/]*/' '[G]%R'
 % alternates << '(root|[hp]ostmaster|ats|bofh)@sc[h]rab\.com'
 % alternates << '@pug\.qqx\.org'
 % alternates << '[hp]ostmaster@qqx\.org'
+% alternates << 'aaron\.?schrab(\+[^@]+)?@gmail.com'
 %
 % if mutt_variable :alternates
   set alternates = '(<%= alternates.join('|') %>)'
