@@ -114,9 +114,6 @@ inoremap <S-Space> <esc>
 nnoremap gf :new <cfile><CR>
 vnoremap gf :<C-U>new <C-R>=escape#filename(visual#get())<CR><CR>
 
-nnoremap / /\v
-vnoremap / /\v
-
 nmap <silent> <Leader>f :CommandT<CR>
 nnoremap <silent> <Leader>a :call SyntaxAttr#SyntaxAttr()<CR>
 map <Leader>z <Plug>SimpleFold_Foldsearch
