@@ -67,12 +67,17 @@ foreach my $f (@ARGV) {
 	$dest = "$ENV{HOME}/$dest"; # Convert destination to absolute path
 
 	# Indicate what targets already exist and which are going to be created
-	my $status;
-	if ( -e $dest ) { $status = '.' }
-	elsif ( -l $dest ) { $status = '!' }
-	else { $status = '+' }
-	print "$status $f\n";
+	my $target = "$parents$src/$f";
+	my $status = '!';
+	if ( -l $dest ) {
+		$status = '.' if readlink($dest) eq $target;
+	}
+	else {
+		$status = '+' unless -e $dest;
+	}
 
+	print "$status $f\n";
 	next unless $status eq '+';
-	symlink "$parents$src/$f" => $dest or die "Couldn't create link $dest: $!";
+
+	symlink $target => $dest or die "Couldn't create link $dest: $!";
 }
