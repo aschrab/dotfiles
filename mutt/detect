@@ -11,10 +11,11 @@ account-hook 'trilug.org'      'set tunnel="<%= Dir.pwd %>/imapwrap trilug"'
 
 % sendmail='/usr/sbin/sendmail -oem -oi'
 
-% trilug = ENV['HOST'] == 'pilot' ? '' : 'ssh pilot.trilug.org'
+% host = File.read('/etc/hostname').chomp rescue ''
+% trilug = host == 'pilot' ? '' : 'ssh pilot.trilug.org'
 send2-hook '~f @trilug.org' 'set sendmail="<%=trilug%> <%=sendmail%>"'
 
-% pug = ENV['HOST'] == 'pug' ? '' : 'ssh pug.qqx.org'
+% pug = host == 'pug' ? '' : 'ssh pug.qqx.org'
 send2-hook '~f @(schrab\.com\|(pug\.)?qqx\.org)' 'set sendmail="<%=pug%> <%=sendmail%>"'
 
 % if mutt_patch %r<mailboxrx>
