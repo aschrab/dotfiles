@@ -29,6 +29,7 @@ ForwardX11 no
 Port 22
 
 Host *.qqx.org proxy
+User ats
 ForwardAgent yes
 ForwardX11 yes
 Port 222
