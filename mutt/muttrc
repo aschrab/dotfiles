@@ -9,7 +9,6 @@ source ~/.mutt/rc.common
 source ~/.mutt/accounts.gmail
 source ~/.mutt/accounts.trilug
 source ~/.mutt/accounts.pug
-source ~/.mutt/save_hooks
 
 # Since a lot of software claims that cp1252 encoded text is actually
 # iso-8859-1, and the former is a superset of the latter, just allow it.
@@ -22,6 +21,7 @@ set ispell="spell"
 
 set folder=imaps://ats@pug.qqx.org/
 set spoolfile=+INBOX
+source ~/.mutt/save_hooks
 
 source ~/.mutt/ignore
 
