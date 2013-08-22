@@ -6,7 +6,16 @@
 %   end
 % end
 
-account-hook ats@pug.qqx.org 'set tunnel="<%= Dir.pwd %>/imapwrap"'
+account-hook 'ats@pug.qqx.org' 'set tunnel="<%= Dir.pwd %>/imapwrap qqx"'
+account-hook 'trilug.org'      'set tunnel="<%= Dir.pwd %>/imapwrap trilug"'
+
+% sendmail='/usr/sbin/sendmail -oem -oi'
+
+% trilug = ENV['HOST'] == 'pilot' ? '' : 'ssh pilot.trilug.org'
+send2-hook '~f @trilug.org' 'set sendmail="<%=trilug%> <%=sendmail%>"'
+
+% pug = ENV['HOST'] == 'pug' ? '' : 'ssh pug.qqx.org'
+send2-hook '~f @(schrab\.com\|(pug\.)?qqx\.org)' 'set sendmail="<%=pug%> <%=sendmail%>"'
 
 % if mutt_patch %r<mailboxrx>
 mailboxrx 'imaps://aaron.schrab@gmail.com[^/]*/' '[G]%R'
@@ -22,6 +31,7 @@ mailboxrx 'imaps://aaron.schrab@gmail.com[^/]*/' '[G]%R'
 % alternates << '@pug\.qqx\.org'
 % alternates << '[hp]ostmaster@qqx\.org'
 % alternates << 'aaron\.?schrab(\+[^@]+)?@gmail.com'
+% alternates << 'aschrab[@]trilug\.org'
 %
 % if mutt_variable :alternates
   set alternates = '(<%= alternates.join('|') %>)'

@@ -1,12 +1,27 @@
 #!/bin/sh
 
-case "`hostname`" in
-	pug|milamber)
-		;;
-	*)
-		ssh="ssh pug.qqx.org"
-		;;
+case "$1" in
+  (qqx)
+    case "`hostname`" in
+        (pug|milamber)
+            ;;
+        (*)
+            ssh=pug.qqx.org
+            ;;
+    esac
+    ;;
+  (trilug)
+    case "`hostname`" in
+      (pilot)
+        ;;
+      (*)
+        ssh=pilot.trilug.org
+        ;;
+    esac
+    ;;
 esac
+
+[ -n $ssh ] && ssh="ssh $ssh"
 
 $ssh /usr/lib/dovecot/imap
 

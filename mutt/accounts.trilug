@@ -1,0 +1,9 @@
+# vim: tw=0 ft=muttrc
+
+folder-hook 'imaps?://aschrab@mail.trilug.org/' 'set from="aschrab@trilug.org"'
+folder-hook 'imaps?://aschrab@mail.trilug.org/' 'set folder=imaps://aschrab@mail.trilug.org/'
+folder-hook 'imaps?://aschrab@mail.trilug.org/' 'set spoolfile=+INBOX'
+folder-hook 'imaps?://aschrab@mail.trilug.org/' 'set postponed=+Drafts'
+folder-hook 'imaps?://aschrab@mail.trilug.org/' 'set record=!/old'
+
+send2-hook '~f @trilug.org' 'unset smtp_url'
