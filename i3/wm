@@ -148,7 +148,7 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 
 % require 'json'
-% displays = JSON.parse(`i3-msg -t get_outputs`).select{ |m| m['active'] }.sort_by{ |m| m['x'] }
+% displays = JSON.parse(`i3-msg -t get_outputs`).select{ |m| m['active'] }.sort_by{ |m| m['x'] } rescue [{}]
 
 % displays.each_with_index do |m,i|
 bar {
