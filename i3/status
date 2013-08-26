@@ -1,6 +1,6 @@
 % host = `hostname`.chomp
 # <%= host %>
-% laptop = %w<frak>.include? host
+% laptop = %w<frak frell>.include? host
 % eth = host == 'zim' ? 'br0' : 'eth0'
 
 general {
