@@ -21,6 +21,7 @@ case "$1" in
 	i3)
 		xscreensaver &
 		nm-applet &
+		xfce4-power-manager &
 		;;
 esac
 
