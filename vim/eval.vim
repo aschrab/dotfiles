@@ -126,3 +126,7 @@ let g:airline_section_x = "%{strlen(&ft)>0?&ft:''}%{statusline#fileinfo()}"
 let g:airline_section_y = '%3l/%3L»%3c'
 let g:airline_section_z = "ch0x%02B"
 let g:airline_theme='molokai'
+
+let g:SuperTabDefaultCompletionType='context'
+let g:SuperTabLongestEnhanced=1
+let g:SuperTabLongestHighlight=1
