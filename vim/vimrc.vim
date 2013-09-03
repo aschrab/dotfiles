@@ -28,7 +28,10 @@ set ignorecase
 set smartcase
 set incsearch
 set ruler
-set number relativenumber
+set number
+if exists("+relativenumber")
+set relativenumber
+endif
 set showmatch
 set showcmd
 "set cursorcolumn
