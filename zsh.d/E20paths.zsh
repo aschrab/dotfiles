@@ -16,6 +16,9 @@ path=(
 
 typeset -aU manpath
 manpath=(
+  /usr/software/man
+  /usr/software/rats/man
+  /usr/software/utils/man
   /usr/local/man
   /usr/X11/man
   /usr/share/man
