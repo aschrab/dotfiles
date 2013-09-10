@@ -122,3 +122,6 @@
 [submodule "vim/bundle/p4syntax"]
 	path = vim/bundle/p4syntax
 	url = https://github.com/theevocater/vim-perforce.git
+[submodule "vim/bundle/supertab"]
+	path = vim/bundle/supertab
+	url = https://github.com/ervandew/supertab.git

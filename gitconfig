@@ -16,6 +16,8 @@
 [url "ssh://pug.qqx.org/srv/git/"]
 	pushInsteadOf = http://git.qqx.org/
 	pushInsteadOf = git://git.qqx.org/
+[url "git://github.com/"]
+	insteadOf = https://github.com/
 [url "ssh://git@github.com/"]
 	pushInsteadOf = git://github.com/
 	pushInsteadOf = https://github.com/

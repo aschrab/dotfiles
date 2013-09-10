@@ -1,6 +1,10 @@
 typeset -aU path
 path=(
   ~/bin
+  /usr/software/bin
+  /usr/software/rats/bin
+  /usr/software/utils/bin
+  /usr/kerberos/bin
   /usr/local/bin
   /usr/bin
   /bin

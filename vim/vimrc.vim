@@ -11,6 +11,8 @@ set t_Co=16
 	syntax on
 :endif
 
+colorscheme mayansmoke
+
 " Miscellaneous options {{{
 set viminfo=!,s1,%,'20,f1,c,h,r/tmp,r/media,n~/.viminfo
 set hidden
@@ -26,7 +28,10 @@ set ignorecase
 set smartcase
 set incsearch
 set ruler
-set number relativenumber
+set number
+if exists("+relativenumber")
+set relativenumber
+endif
 set showmatch
 set showcmd
 "set cursorcolumn
@@ -91,7 +96,7 @@ set t_vb=
 :endif
 
 " Display tabs and trailing spaces {{{
-set listchars=tab:▶·,trail:∙,precedes:«,extends:»
+silent! set listchars=tab:▶·,trail:∙,precedes:«,extends:»
 " eol:↲
 set list
 "}}}
