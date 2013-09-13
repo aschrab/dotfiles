@@ -118,6 +118,8 @@ bindsym $mod+i scratchpad show
 
 bindsym $mod+Tab exec true
 
+bindsym $mod+o exec /home/ats/bin/rotate -r
+
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
