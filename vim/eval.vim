@@ -125,7 +125,7 @@ let g:airline_enable_branch = 1
 let g:airline_section_x = "%{strlen(&ft)>0?&ft:''}%{statusline#fileinfo()}"
 let g:airline_section_y = '%3l/%L»%-3c'
 let g:airline_section_z = "ch0x%02B"
-let g:airline_theme='molokai'
+let g:airline_theme='badwolf'
 
 let g:SuperTabDefaultCompletionType='context'
 let g:SuperTabLongestEnhanced=1
