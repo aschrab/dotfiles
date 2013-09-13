@@ -5,7 +5,7 @@ color index		default	default ~A
 color index		red	default ~T
 
 color status		black	green
-color indicator		default	cyan
+color indicator		yellow	default
 color tree		blue	default
 
 color hdrdefault	cyan	default
