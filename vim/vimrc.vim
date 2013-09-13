@@ -11,7 +11,7 @@ set t_Co=16
 	syntax on
 :endif
 
-colorscheme eclipse
+colorscheme vividchalk
 
 " Miscellaneous options {{{
 set viminfo=!,s1,%,'20,f1,c,h,r/tmp,r/media,n~/.viminfo
