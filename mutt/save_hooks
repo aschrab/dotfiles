@@ -1,6 +1,8 @@
 # vim: ft=muttrc
+unhook save-hook
 save-hook @netflix =INBOX/netflix
 save-hook blockbusteronline@blockbuster =INBOX/netflix
 save-hook @paytrust =INBOX/billmanager
+save-hook rw@peterc.org =L/subs/ruby-weekly-news
 save-hook @thisistrue =L/subs/true
 save-hook . =INBOX/old
