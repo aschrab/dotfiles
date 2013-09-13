@@ -21,9 +21,9 @@ color body		red	yellow	'^gpg: BAD signature .*'
 color body		red	default	'^gpg: .*not certified.*'
 #color body		magenta	default '^-----(BEGIN|END) PGP .*'
 
-color body		blue	default '^(diff|index).*'
-color body		green	default '^\+.*'
-color body		red	default '^-.*'
+#color body		blue	default '^(diff|index).*'
+#color body		green	default '^\+.*'
+#color body		red	default '^-.*'
 
 color signature		cyan	default
 color tilde		white	default
