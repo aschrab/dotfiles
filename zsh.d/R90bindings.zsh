@@ -42,6 +42,14 @@ noop () { }
 zle -N noop
 bindkey -M vicmd '\e' noop
 
+() {
+  local n
+  for n in {0..9}
+  do
+    bindmodes viins,vicmd digit-argument "\M-$n" "\\e$n"
+  done
+}
+
 bindkey -M viins '^t'  transpose-chars
 bindmodes viins transpose-words  'M-t' '\et'
 bindmodes viins insert-last-word 'M-.' '\e.'
