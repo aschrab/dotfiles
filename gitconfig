@@ -51,6 +51,7 @@
 	autoupdate = yes
 
 [alias]
+	root        = rev-parse --show-toplevel
 	co          = checkout
 	ci          = commit -v
 	cia         = commit -v -a
