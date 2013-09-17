@@ -77,8 +77,8 @@ set foldopen=mark,quickfix,tag,block,hor,search,insert,undo
 :endif
 "}}}
 
+set mouse=a
 :if $DISPLAY != ""
-  set mouse=a
   set clipboard=unnamed,autoselect,exclude:cons\|linux
 :endif
 
