@@ -116,6 +116,8 @@ augroup ScreenShellExit
 autocmd User * call <SID>ScreenShellListener()
 augroup END
 
+autocmd BufNewFile,BufRead * call AutoPath()
+
 let g:signify_vcs_list = [ 'git' ]
 
 let g:airline_powerline_fonts=1
