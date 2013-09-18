@@ -118,6 +118,9 @@ augroup END
 
 autocmd BufNewFile,BufRead * call AutoPath()
 
+" auto-start NERDTree if vim started with no files
+autocmd VimEnter * if !argc() | NERDTree | endif
+
 let g:signify_vcs_list = [ 'git' ]
 
 let g:airline_powerline_fonts=1
