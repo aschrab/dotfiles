@@ -24,4 +24,12 @@ manpath=(
   /usr/share/man
 )
 
+if [[ -d /usr/software/lib ]]
+then
+  typeset -TUx LD_LIBRARY_PATH ld_library_path
+  ld_library_path=(
+    /usr/software/lib
+  )
+fi
+
 export PATH MANPATH
