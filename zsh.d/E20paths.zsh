@@ -1,6 +1,7 @@
 typeset -aU path
 path=(
   ~/bin
+  ~/.gem/bin
   /usr/software/bin
   /usr/software/rats/bin
   /usr/software/utils/bin
