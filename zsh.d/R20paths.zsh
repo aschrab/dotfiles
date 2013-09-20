@@ -1,5 +1,9 @@
 typeset -aU fpath
-fpath=($zshrc_dir/completion $fpath)
+fpath=(
+  $zshrc_dir/completion
+  $fpath
+  $zshrc_dir/../upstreams/completions/src/
+)
 
 local fdir="$zshrc_dir/functions"
 fpath=($fdir $fpath)
