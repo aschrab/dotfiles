@@ -2,7 +2,7 @@ typeset -aU path
 
 # Hack, on this host need to use /usr/bin/vim because one in /usr/software/bin
 # is broken.  But on other hosts, copy in /usr/bin is hopelessly outdated.
-[[ $host == scmrtp02 ]] && early_usr_bin=/usr/bin
+[[ $HOST == scmrtp02 ]] && early_usr_bin=/usr/bin
 
 path=(
   ~/bin
