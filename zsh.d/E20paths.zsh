@@ -2,11 +2,11 @@ typeset -aU path
 path=(
   ~/bin
   ~/.gem/bin
+  /usr/local/bin
   /usr/software/bin
   /usr/software/rats/bin
   /usr/software/utils/bin
   /usr/kerberos/bin
-  /usr/local/bin
   /usr/bin
   /bin
   /usr/local/sbin
@@ -17,10 +17,10 @@ path=(
 
 typeset -aU manpath
 manpath=(
+  /usr/local/man
   /usr/software/man
   /usr/software/rats/man
   /usr/software/utils/man
-  /usr/local/man
   /usr/X11/man
   /usr/share/man
 )
