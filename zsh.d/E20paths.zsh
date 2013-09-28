@@ -7,6 +7,7 @@ typeset -aU path
 path=(
   ~/bin
   ~/.gem/bin
+  ~/.rbenv/shims
   /usr/local/bin
   $early_usr_bin
   /usr/software/bin
