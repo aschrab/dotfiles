@@ -2,8 +2,14 @@ function! perl#package_name()
   let pack = expand('%:p')
   let orig = pack
 
-  let pack = substitute( pack, '.*/perl\(/[0-9.]\+\)\?/', '',   '' )
-  let pack = substitute( pack, '.*/lib/', '',   '' )
+  try
+    let pack = fugitive#buffer().path()
+  catch
+  endtry
+
+  let pack = substitute( pack, '\(.*/\|\)perl\(/[0-9.]\+\)\?/', '',   '' )
+  let pack = substitute( pack, '\(.*/\|\)lib/', '',   '' )
+
   if pack == orig
     return ''
   endif
