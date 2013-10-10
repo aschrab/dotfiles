@@ -128,3 +128,6 @@
 [submodule "vim/bundle/rails"]
 	path = vim/bundle/rails
 	url = https://github.com/tpope/vim-rails
+[submodule "vim/bundle/perlprove"]
+	path = vim/bundle/perlprove
+	url = https://github.com/vim-scripts/perlprove.vim
