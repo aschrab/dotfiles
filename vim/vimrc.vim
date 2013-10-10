@@ -133,6 +133,9 @@ vnoremap = =gv
 " Visually select text most recently edited or pasted
 nnoremap gV `[v`]
 
+" List contents of all registers (that typically contain pasteable text).
+nnoremap <silent> "" :registers "0123456789abcdefghijklmnopqrstuvwxyz*+.<CR>
+
 " Allow backspace to remove digits from numeric prefix for commands.
 omap <BS> <Del>
 
