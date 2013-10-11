@@ -77,8 +77,8 @@ set foldopen=mark,quickfix,tag,block,hor,search,insert,undo
 :endif
 "}}}
 
+set mouse=a
 :if $DISPLAY != ""
-  set mouse=a
   set clipboard=unnamed,autoselect,exclude:cons\|linux
 :endif
 
@@ -101,6 +101,7 @@ silent! set listchars=tab:▶·,trail:∙,precedes:«,extends:»
 set list
 "}}}
 
+set guioptions+=a
 set guicursor=n-v-c:block-Cursor-blinkon0,ve:ver35-Cursor-blinkon0,o:hor50-Cursor-blinkon0,i-ci:ver25-Cursor-blinkon0,r-cr:hor20-Cursor-blinkon0,sm:block-Cursor-blinkon0
 
 noremap <C-E> <End>

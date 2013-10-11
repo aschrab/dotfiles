@@ -2,12 +2,12 @@
 let mapleader=','
 
 if exists("+guifont")
-	set guifont=Source\ Code\ Pro\ for\ Powerline\ 9
+	set guifont=Sauce\ Code\ Powerline:h12,Source\ Code\ Pro\ for\ Powerline\ 9
 endif
 
 " Start up pathogen if it's available
 " Won't be available on boxes before git submodules have been fetched
-let g:pathogen_disabled = [ 'command-t' ]
+let g:pathogen_disabled = [ 'signify' ]
 runtime bundle/pathogen/autoload/pathogen.vim
 if exists('*pathogen#infect')
 	execute pathogen#infect()
@@ -115,6 +115,13 @@ augroup END
 augroup ScreenShellExit
 autocmd User * call <SID>ScreenShellListener()
 augroup END
+
+autocmd BufNewFile,BufRead * call AutoPath()
+
+" auto-start NERDTree if vim started with no files
+autocmd VimEnter * if !argc() | NERDTree | endif
+" quit vim if NERDTree is only window
+autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 let g:signify_vcs_list = [ 'git' ]
 

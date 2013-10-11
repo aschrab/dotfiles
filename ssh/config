@@ -42,4 +42,9 @@ Host lish
 User qqx
 HostName lish-atlanta.linode.com
 
+Host *.netapp.com
+User aschrab
+ForwardAgent yes
+ForwardX11 yes
+
 # vim: ft=sshconfig
