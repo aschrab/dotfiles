@@ -1,0 +1,15 @@
+#compdef annotate-output
+
+_arguments -A \
+  '--help[Show usage information and quit]' \
+  '--version[Show version information and quit]' \
+  ':command: _command_names -e' \
+  '*::arguments:->cmdargs'
+
+case "$state" in
+  (cmdargs)
+    shift words
+    (( CURRENT-- ))
+    _normal
+    ;;
+esac
