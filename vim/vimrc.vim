@@ -101,6 +101,7 @@ silent! set listchars=tab:▶·,trail:∙,precedes:«,extends:»
 set list
 "}}}
 
+set guioptions+=a
 set guicursor=n-v-c:block-Cursor-blinkon0,ve:ver35-Cursor-blinkon0,o:hor50-Cursor-blinkon0,i-ci:ver25-Cursor-blinkon0,r-cr:hor20-Cursor-blinkon0,sm:block-Cursor-blinkon0
 
 noremap <C-E> <End>
@@ -132,6 +133,9 @@ vnoremap = =gv
 
 " Visually select text most recently edited or pasted
 nnoremap gV `[v`]
+
+" List contents of all registers (that typically contain pasteable text).
+nnoremap <silent> "" :registers "0123456789abcdefghijklmnopqrstuvwxyz*+.<CR>
 
 " Allow backspace to remove digits from numeric prefix for commands.
 omap <BS> <Del>
