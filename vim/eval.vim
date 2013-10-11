@@ -92,6 +92,7 @@ let g:syntastic_html_tidy_ignore_errors = [
   \ ]
 
 map <silent> <F1> :NERDTreeToggle<CR>
+let NERDTreeSortOrder=[ 'README.*', '*', '\(\~\|\.\(bak\|swp\)\)$' ]
 
 let g:ScreenImpl='Tmux'
 let g:ScreenShellInitialFocus='shell'
