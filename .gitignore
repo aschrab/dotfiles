@@ -3,6 +3,7 @@
 *.pyc
 vim/.netrwhist
 vim/doc/tags
+vim/local.vim
 vim/spell
 lftp/cwd_history
 lftp/rl_history
