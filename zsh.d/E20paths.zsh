@@ -2,7 +2,7 @@ typeset -aU path
 
 # Hack, on this host need to use /usr/bin/vim because one in /usr/software/bin
 # is broken.  But on other hosts, copy in /usr/bin is hopelessly outdated.
-[[ $HOST == scmrtp02 ]] && early_usr_bin=/usr/bin
+[[ $HOST == scmrtp* ]] && early_usr_bin=/usr/bin
 
 path=(
   ~/bin
@@ -33,7 +33,7 @@ manpath=(
   /usr/share/man
 )
 
-if [[ -d /usr/software/lib ]]
+if [[ $HOST != scmrtp06* ]] && [[ -d /usr/software/lib ]]
 then
   typeset -TUx LD_LIBRARY_PATH ld_library_path
   ld_library_path=(
