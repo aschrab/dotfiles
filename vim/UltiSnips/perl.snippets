@@ -72,3 +72,10 @@ has ${1:attribute} => (
 );
 
 endsnippet
+
+snippet subtest "Test::More subtest"
+subtest '${1:Description}' => sub {
+	${0}
+};
+
+endsnippet
