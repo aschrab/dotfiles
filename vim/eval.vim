@@ -7,7 +7,9 @@ endif
 
 " Start up pathogen if it's available
 " Won't be available on boxes before git submodules have been fetched
-let g:pathogen_disabled = [ 'signify' ]
+let g:pathogen_disabled = []
+let g:pathogen_disabled += [ 'signify' ]
+
 runtime bundle/pathogen/autoload/pathogen.vim
 if exists('*pathogen#infect')
 	execute pathogen#infect()
