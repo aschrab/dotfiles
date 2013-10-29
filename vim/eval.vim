@@ -44,7 +44,6 @@ let perl_highlight_matches = 1
 "let perl_embedded_pod = 1
 
 let g:xml_syntax_folding = 1
-let g:javaScript_fold = 1
 let g:perl_fold = 1
 let g:perl_fold_anonymous_subs = 1
 
