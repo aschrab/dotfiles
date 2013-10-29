@@ -10,6 +10,24 @@ should "${1:description}" do #{{{
 end #}}}
 endsnippet
 
+snippet context
+context "${1:description}" do
+	$0
+end
+endsnippet
+
+snippet describe
+describe "${1:description}" do
+	$0
+end
+endsnippet
+
+snippet it
+it "${1:description}" do
+	$0
+end
+endsnippet
+
 snippet do| "do block" !s
 do `!p snip.rv = "|" if t[1] else""`${1:args}`!p snip.rv = "|" if t[1] else""`
 	$0
