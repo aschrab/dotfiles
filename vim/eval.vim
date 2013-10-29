@@ -8,7 +8,7 @@ endif
 " Start up pathogen if it's available
 " Won't be available on boxes before git submodules have been fetched
 let g:pathogen_disabled = []
-let g:pathogen_disabled += [ 'signify' ]
+"let g:pathogen_disabled += [ 'signify' ]
 
 runtime bundle/pathogen/autoload/pathogen.vim
 if exists('*pathogen#infect')
@@ -127,6 +127,7 @@ autocmd VimEnter * if !argc() | NERDTree | endif
 autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 let g:signify_vcs_list = [ 'git' ]
+let g:signify_sign_overwrite = 0
 
 let g:airline_powerline_fonts=1
 let g:airline_detect_whitespace=0
