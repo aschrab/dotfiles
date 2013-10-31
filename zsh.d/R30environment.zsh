@@ -1,5 +1,9 @@
 export BAUD=0
 
+if [[ -n $TMUX ]]; then
+  precmd_functions+='update_env_from_tmux'
+fi
+
 if [[ "${DISPLAY#${HOST}:}" != "$DISPLAY" ]]
 then
   DISPLAY="localhost:${DISPLAY#${HOST}:}"

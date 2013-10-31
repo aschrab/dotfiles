@@ -1,0 +1,19 @@
+#autoload
+
+local line var val
+
+tmux showenv | while read line
+do
+  case "$line" in
+    (-*)
+      line=${line#-}
+      unset "$line"
+      ;;
+    (*=*)
+      var=${line%\=*}
+      val=${line#*=}
+      val=${val//\'/\'\\\'\'}
+      eval "export $var='$val'"
+      ;;
+  esac
+done
