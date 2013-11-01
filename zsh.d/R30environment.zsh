@@ -45,18 +45,23 @@ export CLICOLOR=1
 export EMAIL="aaron@schrab.com"
 export DEBEMAIL="$EMAIL"
 
-export PSQL_EDITOR="vim +'set ft=sql'"
-
-if whence vim >& /dev/null
+if [[ -n $DISPLAY ]] && (( $+commands[vimx] )); then
+  EDITOR=vimx
+  alias vim=vimx
+  alias vi=vim
+elif (( $+commands[vim] )) >& /dev/null
 then
-  [[ -d $HOME/share/vim ]] && export VIM=$HOME/share/vim
-  EDITOR==vim
+  EDITOR=vim
   alias vi=vim
 else
-  EDITOR==vi
+  EDITOR=vi
 fi
+
+[[ $EDITOR == vim* ]] && [[ -d $HOME/share/vim ]] && export VIM=$HOME/share/vim
+
 VISUAL="$EDITOR"
 export EDITOR VISUAL
+export PSQL_EDITOR="$EDITOR +'set ft=sql'"
 
 FOO=$(whence lessfile)
 FOO=${FOO:=$(whence lesspipe)}
