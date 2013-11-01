@@ -17,7 +17,7 @@ alias wget='noglob wget'
 # http://sourceforge.net/mailarchive/message.php?msg_id=28004727
 # But with versions of libevent < 2.0 this exposes an even worse bug
 () {
-  if [[ $OSTYPE == darwin* ]] && [[ -n $(whence tmux) ]] && ! ldd =tmux | fgrep -q libevent-1.
+  if [[ $OSTYPE == linux* ]] && [[ -n $(whence tmux) ]] && ! ldd =tmux | fgrep -q libevent-1.
   then
     epoll="EVENT_NOEPOLL=1"
   fi
