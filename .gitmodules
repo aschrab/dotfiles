@@ -131,3 +131,6 @@
 [submodule "vim/bundle/perlprove"]
 	path = vim/bundle/perlprove
 	url = https://github.com/vim-scripts/perlprove.vim
+[submodule "vim/bundle/mediawiki"]
+	path = vim/bundle/mediawiki
+	url = https://github.com/chikamichi/mediawiki.vim
