@@ -125,7 +125,7 @@ autocmd BufNewFile,BufRead * call AutoPath()
 " auto-start NERDTree if vim started with no files and no buffer content
 autocmd VimEnter * if !argc() && line('$') == 1 && getline(1) == '' | NERDTree | endif
 " quit vim if NERDTree is only window
-autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+"autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 let g:signify_vcs_list = [ 'git' ]
 let g:signify_sign_overwrite = 0
