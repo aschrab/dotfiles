@@ -134,3 +134,6 @@
 [submodule "vim/bundle/mediawiki"]
 	path = vim/bundle/mediawiki
 	url = https://github.com/chikamichi/mediawiki.vim
+[submodule "vim/bundle/tabcd"]
+	path = vim/bundle/tabcd
+	url = https://github.com/oinksoft/tcd.vim
