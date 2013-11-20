@@ -140,6 +140,10 @@ nnoremap <silent> "" :registers "0123456789abcdefghijklmnopqrstuvwxyz*+.<CR>
 " Allow backspace to remove digits from numeric prefix for commands.
 omap <BS> <Del>
 
+" Using a bracket with lower-case p should always paste after cursor
+" capitol P can be used to paste before cursor
+nnoremap [p ]p
+
 " Quote motions for operators: da" will delete a quoted string.
 " Built-in to Vim7
 :if version < 700
