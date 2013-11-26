@@ -3,4 +3,5 @@
 .*.un~
 tags
 .DS_Store
+._.DS_Store
 /P4ENV
