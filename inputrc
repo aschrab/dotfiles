@@ -1,3 +1,6 @@
+set editing-mode vi
+#set keymap vi-command
+#
 # "\C-I" self-insert
 
 # isearch-terminators is a list of sequences that, when used in incremental

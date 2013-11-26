@@ -1,4 +1,6 @@
 if exists(":SpeedDatingFormat")
+	SpeedDatingFormat %Y-%m-%dT%H:%M:%S
+
 	SpeedDatingFormat %-d %B %Y
 
 	" Date format I use in attribution lines from mutt
