@@ -47,4 +47,7 @@ User aschrab
 ForwardAgent yes
 ForwardX11 yes
 
+Host p4git
+BatchMode yes
+
 # vim: ft=sshconfig
