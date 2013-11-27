@@ -86,8 +86,8 @@
 [submodule "vim/bundle/screenshell"]
 	path = vim/bundle/screenshell
 	url = https://github.com/aschrab/screen.git
-[submodule "upstreams/syntax-hightlight"]
-	path = upstreams/syntax-hightlight
+[submodule "upstreams/syntax-highlight"]
+	path = upstreams/syntax-highlight
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
 [submodule "vim/bundle/nerdtree"]
 	path = vim/bundle/nerdtree
