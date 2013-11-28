@@ -3,7 +3,9 @@ scriptencoding utf-8
 let mapleader=','
 
 if exists("+guifont")
-	set guifont=Sauce\ Code\ Powerline:h12,Source\ Code\ Pro\ for\ Powerline\ 9
+	set guifont=Inconsolata\ Medium\ 14
+	set guifont+=Sauce\ Code\ Powerline:h12
+	set guifont+=Source\ Code\ Pro\ for\ Powerline\ 9
 endif
 
 " Start up pathogen if it's available
