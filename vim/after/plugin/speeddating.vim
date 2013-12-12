@@ -1,4 +1,6 @@
 if exists(":SpeedDatingFormat")
+	1 SpeedDatingFormat %a %b %0d %H:%M:%S %Z %Y
+
 	SpeedDatingFormat %Y-%m-%dT%H:%M:%S
 
 	SpeedDatingFormat %-d %B %Y
