@@ -1,6 +1,7 @@
 .*.swp
 .swp
 .*.un~
+core
 tags
 .DS_Store
 ._.DS_Store
