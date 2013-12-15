@@ -18,7 +18,12 @@ send2-hook '~f @trilug.org' 'set sendmail="<%=trilug%> <%=sendmail%>"'
 % pug = host == 'pug' ? '' : 'ssh pug.qqx.org'
 send2-hook '~f @(schrab\.com\|(pug\.)?qqx\.org)' 'set sendmail="<%=pug%> <%=sendmail%>"'
 
-% if mutt_patch %r<mailboxrx>
+
+% if mutt_patch %r<mailbox_prefix>
+  mailbox_prefix + imaps://aaron.schrab@gmail.com@imap.gmail.com/
+  mailbox_prefix * imaps://aschrab@mail.trilug.org/
+#  mailbox_prefix [H] imaps://ats@pug.qqx.org/
+% elsif mutt_patch %r<mailboxrx>
 mailboxrx 'imaps://aaron.schrab@gmail.com[^/]*/' '[G]%R'
 % end
 
@@ -89,7 +94,6 @@ mailboxrx 'imaps://aaron.schrab@gmail.com[^/]*/' '[G]%R'
 % else
 %   date_fmt = '%[%m/%d]'
 % end
-
 
 macro index i ":set hdr_format=\'%5C %Z <%=date_fmt%>  %-15.15F (%5l) %s\'\n"
 macro index I ":set hdr_format=\'%5C %Z <%=date_fmt%>  %-15.15L (%5l) %s\'\n"
