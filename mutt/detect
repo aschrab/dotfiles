@@ -64,9 +64,14 @@ mailboxrx 'imaps://aaron.schrab@gmail.com[^/]*/' '[G]%R'
   append-hook '\.gz$' "gzip -c %t >> %f"
 % end
 
-% if mutt_variable :xterm_title
+% title_format = "Mutt %f %n/%m {%b}"
+
+% if mutt_variable :ts_status_format
+  set ts_status_format="<%= title_format %>"
+  set ts_enabled
+% elsif mutt_variable :xterm_title
   set xterm_set_titles
-  set xterm_title="Mutt %f %n/%m {%b}"
+  set xterm_title="<%= title_format %>"
 % end
 
 % spam_fmt=''
