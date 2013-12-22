@@ -52,7 +52,7 @@ def mlist mbox, opts={} #{{{
              rx.to_s
            end
     command = "subjectrx #{rx.quote} '%L%R'"
-    out << %Q<folder-hook L(ists)?/#{opts[:mbox]} #{command.quote}>
+    out << %Q<folder-hook #{opts[:mbox]} #{command.quote}>
   end
 
   out << ''
