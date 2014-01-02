@@ -8,38 +8,40 @@ mailboxes =INBOX/sympa
 
 <%= mlist 'lsm-workers' %>
 
+<%= mlist '+L/triangle-sword', :account => :gmail, :subjectrx => '[TSG Projects]' %>
+
 # UG lists
-<%= mlist 'ug/raleigh-pm', :subjectrx => '[Raleigh-pm]' %>
-<%= mlist 'ruby/raleigh', :address => 'raleigh-rb-members', :subjectrx => '[triangle.rb]' %>
-<%= mlist 'ug/trilug', :subjectrx => '[TriLUG]' %>
+<%= mlist '=L/ug/raleigh-pm', :subjectrx => '[Raleigh-pm]' %>
+<%= mlist '=L/ruby/raleigh', :address => 'raleigh-rb-members', :subjectrx => '[triangle.rb]' %>
+<%= mlist '=L/ug/trilug', :subjectrx => '[TriLUG]' %>
 
 mailboxes =rss
 
-<%= mlist 'mail/mutt-dev', :from => 'aaron+mutt@schrab.com' %>
-<%= mlist 'dev/zsh', :address => 'zsh-(users|workers)@zsh.org' %>
-<%= mlist 'dev/git', :address => 'git@vger.kernel.org', :followup_to => false %>
-<%= mlist 'dev/tmux', :address => 'tmux-users@lists.(sourceforge|sf).net' %>
-<%= mlist 'dev/meld', :address => 'meld-list@gnome.org' %>
-<%= mlist 'dev/sql-translator', :address => 'sqlfairy-developers@lists.(sourceforge|sf).net', :subjectrx => '[sqlfairy-developers]' %>
-<%= mlist 'dev/i3', :address => 'i3-discuss@i3.zekjur.net', :subjectrx => '[i3]' %>
+<%= mlist '=L/mail/mutt-dev', :from => 'aaron+mutt@schrab.com' %>
+<%= mlist '=L/dev/zsh', :address => 'zsh-(users|workers)@zsh.org' %>
+<%= mlist '=L/dev/git', :address => 'git@vger.kernel.org', :followup_to => false %>
+<%= mlist '=L/dev/tmux', :address => 'tmux-users@lists.(sourceforge|sf).net' %>
+<%= mlist '=L/dev/meld', :address => 'meld-list@gnome.org' %>
+<%= mlist '=L/dev/sql-translator', :address => 'sqlfairy-developers@lists.(sourceforge|sf).net', :subjectrx => '[sqlfairy-developers]' %>
+<%= mlist '=L/dev/i3', :address => 'i3-discuss@i3.zekjur.net', :subjectrx => '[i3]' %>
 
 # Perl lists
-<%= mlist 'perl/dbix', :address => 'dbix-class', :subjectrx => '[Dbix-class]' %>
+<%= mlist '=L/perl/dbix', :address => 'dbix-class', :subjectrx => '[Dbix-class]' %>
 
 # Debian lists
-<%= mlist 'debian/ruby' %>
-<%= mlist 'debian/news' %>
-<%= mlist 'debian/devel-announce' %>
-<%= mlist 'debian/security-announce' %>
-<%= mlist 'debian/pts' %>
-<%= mlist 'debian/devel' %>
-<%= mlist 'debian/mentors' %>
-<%= mlist 'debian/project' %>
-<%= mlist 'debian/qa' %>
-<%= mlist 'debian/qa-packages' %>
-<%= mlist 'debian/vote' %>
+<%= mlist '=L/debian/ruby' %>
+<%= mlist '=L/debian/news' %>
+<%= mlist '=L/debian/devel-announce' %>
+<%= mlist '=L/debian/security-announce' %>
+<%= mlist '=L/debian/pts' %>
+<%= mlist '=L/debian/devel' %>
+<%= mlist '=L/debian/mentors' %>
+<%= mlist '=L/debian/project' %>
+<%= mlist '=L/debian/qa' %>
+<%= mlist '=L/debian/qa-packages' %>
+<%= mlist '=L/debian/vote' %>
 lists debian-.*@lists\.debian\.org
 
-<%= mlist 'bugtraq' %>
+<%= mlist '=L/bugtraq' %>
 
 # vim: filetype=eruby.muttrc

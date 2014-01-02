@@ -8,9 +8,9 @@ macro editor "\eG" imaps://aaron.schrab@gmail.com@imap.gmail.com/
 macro index G <change-folder>imaps://aaron.schrab@gmail.com@imap.gmail.com/
 
 folder-hook 'imaps?://aaron.schrab@gmail.com' 'set from=aaron.schrab@gmail.com'
-folder-hook 'imaps?://aaron.schrab@gmail.com' 'set folder=imaps://aaron.schrab@gmail.com@imap.gmail.com/'
-folder-hook 'imaps?://aaron.schrab@gmail.com' 'set spoolfile=+INBOX'
-folder-hook 'imaps?://aaron.schrab@gmail.com' 'set postponed="+[GMail]/Drafts"'
-folder-hook 'imaps?://aaron.schrab@gmail.com' 'set record="+[GMail]/Sent Mail"'
+#folder-hook 'imaps?://aaron.schrab@gmail.com' 'set folder=imaps://aaron.schrab@gmail.com@imap.gmail.com/'
+#folder-hook 'imaps?://aaron.schrab@gmail.com' 'set spoolfile=+INBOX'
+folder-hook 'imaps?://aaron.schrab@gmail.com' 'set postponed="imaps://aaron.schrab@gmail.com@imap.gmail.com/[GMail]/Drafts"'
+folder-hook 'imaps?://aaron.schrab@gmail.com' 'set record="imaps://aaron.schrab@gmail.com@imap.gmail.com/[GMail]/Sent Mail"
 
 send2-hook '~fschrab(\\+[^@]*)?@gmail' 'set smtp_url="smtp://aaron.schrab@smtp.gmail.com:587/"'

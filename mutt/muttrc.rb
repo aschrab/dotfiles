@@ -29,7 +29,7 @@ def mlist mbox, opts={} #{{{
   end
 
   out = []
-  out << "mailboxes =L/#{opts[:mbox]}"
+  out << "mailboxes #{opts[:mbox]}"
   out << "subscribe #{opts[:address]}"
   out << "mbox-hook L/#{opts[:mbox]} =Read/#{opts[:mbox]}"
   if opts[:from]
