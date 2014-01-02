@@ -137,3 +137,6 @@
 [submodule "vim/bundle/tabcd"]
 	path = vim/bundle/tabcd
 	url = https://github.com/oinksoft/tcd.vim
+[submodule "vim/bundle/you_complete_me"]
+	path = vim/bundle/you_complete_me
+	url = https://github.com/Valloric/YouCompleteMe
