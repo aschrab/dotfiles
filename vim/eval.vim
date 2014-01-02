@@ -11,6 +11,10 @@ endif
 " Start up pathogen if it's available
 " Won't be available on boxes before git submodules have been fetched
 let g:pathogen_disabled = []
+if ((v:version == 703 && has('patch584')) || v:version > 703) && has('python')
+else
+	let g:pathogen_disabled += [ 'you_complete_me' ]
+endif
 "let g:pathogen_disabled += [ 'signify' ]
 
 runtime bundle/pathogen/autoload/pathogen.vim
@@ -145,3 +149,5 @@ let g:SuperTabDefaultCompletionType='context'
 let g:SuperTabLongestEnhanced=1
 "let g:SuperTabLongestHighlight=1
 let g:SuperTabNoCompleteAfter=['^', ',', '\s', "'", '"']
+
+let g:ycm_key_list_select_completion = ['<Down>'] " Don't include <Tab> so that UltiSnips can use that
