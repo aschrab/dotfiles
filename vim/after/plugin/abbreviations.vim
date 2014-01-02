@@ -15,6 +15,7 @@ Abolish fiel file
 Abolish lable label
 Abolish shfit{,ed,ing} shift{}
 Abolish lenght length
+Abolish errror error
 endif
 
 iabbrev ube unsolicited bulk email
