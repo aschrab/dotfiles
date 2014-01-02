@@ -140,8 +140,8 @@ highlight SpellRare     ctermbg=DarkMagenta
 highlight SpellCap      ctermbg=DarkBlue
 highlight SpellLocal    ctermbg=DarkCyan
 
-call s:hibg("Folded"    ,"#110077","DarkBlue",17)
-call s:hifg("Folded"    ,"#aaddee","LightCyan",63)
+call s:hibg("Folded"    ,"Black","Black",17)
+call s:hifg("Folded"    ,"Blue","Blue",63)
 highlight FoldColumn    none
 high link FoldColumn    Folded
 highlight DiffAdd       ctermbg=4 ctermfg=White guibg=DarkBlue
