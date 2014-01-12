@@ -18,4 +18,4 @@ function! FoldJump ()
 endfunction
 
 command! -count=0 FoldJump :call FoldJump()
-nnoremap G :<C-U>FoldJump<cr>
+nnoremap <silent> G :<C-U>FoldJump<cr>
