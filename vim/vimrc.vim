@@ -126,6 +126,7 @@ nnoremap <silent> <Leader>a :call SyntaxAttr#SyntaxAttr()<CR>
 map <Leader>z <Plug>SimpleFold_Foldsearch
 
 nnoremap <F5> :GundoToggle<CR>
+nnoremap <silent> <F12> :set cursorcolumn!<CR>
 
 " Preserve visual selection after indenting
 vnoremap < <gv
