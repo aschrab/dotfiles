@@ -2,6 +2,9 @@ scriptencoding utf-8
 
 let mapleader=','
 
+" Visually select last pasted or changed text
+nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
+
 if exists("+guifont")
 	set guifont=Inconsolata\ Medium\ 14
 	set guifont+=Sauce\ Code\ Powerline:h12
