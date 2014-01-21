@@ -37,6 +37,7 @@ set showcmd
 "set cursorcolumn
 "set cursorline
 set splitbelow
+set splitright
 set formatoptions+=r
 set formatoptions+=2
 set formatlistpat=^\\s*\\d\\+[\\]:.)}]\\s\\+
