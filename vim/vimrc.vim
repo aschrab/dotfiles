@@ -60,6 +60,7 @@ set wildignore+=*.pyc
 set wildoptions=tagfile
 set completeopt=longest,menuone,preview
 set tags=tags,TAGS,./tags;,./TAGS;
+set diffopt+=iwhite
 
 :if has("folding")
 set foldopen=mark,quickfix,tag,block,hor,search,insert,undo

@@ -143,3 +143,6 @@
 [submodule "vim/bundle/swapit"]
 	path = vim/bundle/swapit
 	url = https://github.com/mjbrownie/swapit
+[submodule "vim/bundle/mustache"]
+	path = vim/bundle/mustache
+	url = https://github.com/mustache/vim-mustache-handlebars
