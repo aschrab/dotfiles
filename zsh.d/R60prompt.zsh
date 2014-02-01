@@ -51,7 +51,7 @@ precmd_functions+='zset_title'
 
 RPS1=''
 PS1='
-%S%{$pColor%} %D{%H:%M:%S}  %1v%2m$DEBCHROOT  %~ ${vcs_info_msg_0_}%E%s%{$fColor%}
+%S%{$pColor%} %D{%d%b%H:%M:%S}  %1v%2m$DEBCHROOT  %~ ${vcs_info_msg_0_}%E%s%{$fColor%}
 %{$pColor%}%!%(#.#.$)%{$fColor%} '
 
 PS2='%{$pColor%}%_>%{$fColor%} '
