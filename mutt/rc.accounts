@@ -1,7 +1,0 @@
-# vim: tw=0 ft=muttrc
-
-account-hook . 'unset imap_pass'
-account-hook imaps://aaron.schrab@gmail.com 'set imap_pass="naqituibydfupewm"'
-mailboxrx 'imaps://aaron.schrab@gmail.com[^/]/' 'GMail:%R'
-
-macro index G <change-folder>imaps://aaron.schrab@gmail.com@imap.gmail.com/
