@@ -71,7 +71,7 @@ else
   PAGER=$(whence zless)
 fi
 unset FOO
-PAGER=${PAGER:=$(whence less)}
+export PAGER=${PAGER:=$(whence less)}
 if [ -n "$PAGER" ]; then
   PAGER="$PAGER"
 else
