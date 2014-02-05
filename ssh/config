@@ -50,4 +50,14 @@ ForwardX11 yes
 Host p4git
 BatchMode yes
 
+Host aschrab-wifi
+User aschrab
+ForwardAgent yes
+HostName 2001:470:8:86c:aabb:cfff:fe20:4300
+
+Host aschrab-eth
+User aschrab
+ForwardAgent yes
+HostName 2001:470:8:86c:6a5b:35ff:fe9e:efde
+
 # vim: ft=sshconfig
