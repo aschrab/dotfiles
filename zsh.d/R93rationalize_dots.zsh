@@ -1,6 +1,7 @@
 _rationalize_dot() {
-if [[ $LBUFFER != g(it|)\ * ]] && [[ $LBUFFER = *.. ]]; then
-    LBUFFER+=/..
+if [[ $LBUFFER != g(it|)\ * ]] && [[ $LBUFFER = *../# ]]; then
+    [[ $LBUFFER != */ ]] && LBUFFER+=/
+    LBUFFER+=../
 else
     LBUFFER+=.
 fi
