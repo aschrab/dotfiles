@@ -4,8 +4,8 @@ __git_submodules () {
   local expl
   declare -a submodules
 
-  [[ -r .gitmodules ]] || return 1
-  submodules=(${${(M)${(f)"$(< .gitmodules)"}:#[ 	]#path[ 	]#=*}##*=[ 	]#})
+  submodules=($(_call_program submodules git submodule -q foreach 'echo $path' 2>/dev/null))
+  __git_command_successful $pipestatus || return 1
 
   _wanted submodules expl submodule compadd $* - $submodules
 }
