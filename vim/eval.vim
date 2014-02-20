@@ -153,4 +153,9 @@ let g:SuperTabLongestEnhanced=1
 "let g:SuperTabLongestHighlight=1
 let g:SuperTabNoCompleteAfter=['^', ',', '\s', "'", '"']
 
+nmap <Plug>SwapItFallbackIncrement <Plug>SpeedDatingUp
+nmap <Plug>SwapItFallbackDecrement <Plug>SpeedDatingDown
+vmap <Plug>SwapItFallbackIncrement <Plug>SpeedDatingUp
+vmap <Plug>SwapItFallbackDecrement <Plug>SpeedDatingDown
+
 let g:ycm_key_list_select_completion = ['<Down>'] " Don't include <Tab> so that UltiSnips can use that
