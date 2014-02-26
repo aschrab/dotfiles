@@ -38,12 +38,12 @@ alias find='noglob find'
 }
 
 case "$EDITOR" in
-	vim|*/vim)
-		alias -g L="| view -"
-		;;
-	*)
-		alias -g L="| $PAGER"
-		;;
+  (*/|)vim(x|))
+    alias -g L="| view -"
+    ;;
+  *)
+    alias -g L="| $PAGER"
+    ;;
 esac
 
 alias les=less
