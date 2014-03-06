@@ -8,3 +8,5 @@ tags
 /P4ENV
 *.pyc
 .swo
+.swm
+.swn
