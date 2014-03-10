@@ -146,3 +146,6 @@
 [submodule "vim/bundle/mustache"]
 	path = vim/bundle/mustache
 	url = https://github.com/mustache/vim-mustache-handlebars
+[submodule "vim/bundle/exchange"]
+	path = vim/bundle/exchange
+	url = https://github.com/tommcdo/vim-exchange.git
