@@ -113,3 +113,5 @@
 
 [upstream]
 	urltag = qqx/upstream
+[help]
+	autocorrect = 15

@@ -63,21 +63,12 @@ VISUAL="$EDITOR"
 export EDITOR VISUAL
 export PSQL_EDITOR="$EDITOR +'set ft=sql'"
 
-FOO=$(whence lessfile)
-FOO=${FOO:=$(whence lesspipe)}
-if [ -n "$FOO" ]; then
-  eval $($FOO)
-else
-  PAGER=$(whence zless)
-fi
-unset FOO
-export PAGER=${PAGER:=$(whence less)}
-if [ -n "$PAGER" ]; then
-  PAGER="$PAGER"
-else
-  PAGER="$PAGER"
-  alias less=$PAGER
-fi
+() {
+  local pager_setup=$commands[lessfile]
+  [[ -n ${pager_setup:=$commands[lesspipe]} ]] && eval $( $pager_setup )
+}
+[[ -n ${PAGER:=less} ]] && [[ $PAGER != *less* ]] && alias less=$PAGER
+export PAGER
 
 export LESS=""
 LESS="$LESS --quit-at-eof"

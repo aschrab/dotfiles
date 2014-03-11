@@ -155,6 +155,13 @@ when /<mailto:mutt-dev@/i
   list = 'mail/mutt-dev'
 end unless list
 
+case headers[:list_unsubscribe]
+when %r{<http://discourse.triangleruby.com/user_preferences>}
+  list = 'ug/trianglerb'
+  subject_re = '[Triangle.rb Forum]'
+  subject_re = Regexp.escape subject_re unless subject_re.is_a? Regexp
+end unless list
+
 case headers[:return_path]
 when /<bugtraq-return-.*@securityfocus/i
   list = 'bugtraq'
