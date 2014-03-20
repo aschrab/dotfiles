@@ -17,9 +17,11 @@
 	pushInsteadOf = git://git.qqx.org/
 [url "git://github.com/"]
 	insteadOf = https://github.com/
+	insteadOf = gh:
 [url "ssh://git@github.com/"]
 	pushInsteadOf = git://github.com/
 	pushInsteadOf = https://github.com/
+	pushInsteadOf = gh:
 [url "git@bitbucket.org:aschrab/"]
 	pushInsteadOf = https://bitbucket.org/aschrab/
 
