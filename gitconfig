@@ -22,9 +22,6 @@
 	pushInsteadOf = https://github.com/
 [url "git@bitbucket.org:aschrab/"]
 	pushInsteadOf = https://bitbucket.org/aschrab/
-[url "git@git.it.corp:"]
-	pushInsteadOf = git://git.it.corp/
-	pushInsteadOf = http://git.it.corp/
 
 [core]
 	pager        = less -R
