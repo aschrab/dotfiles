@@ -1,6 +1,6 @@
 scriptencoding utf-8
 
-let mapleader=','
+let mapleader=' '
 
 " Visually select last pasted or changed text
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
