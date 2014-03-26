@@ -57,6 +57,9 @@ bindmodes viins insert-last-word 'M-.' '\e.'
 # Make space with modifier another way to get into command mode
 bindmodes viins vi-cmd-mode '^\x20' 'M\x20' '\e\x20'
 
+# Allow "jl" to escape to command mode
+bindmodes viins vi-cmd-mode 'jl'
+
 ###################
 # Common bindings #
 ###################
