@@ -63,6 +63,7 @@
 	l1          = log --pretty=oneline
 	ls          = log --decorate --graph --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]"
 	ll          = log --decorate --numstat --date=short --pretty=format:"%C(yellow)%ad\\ %h%Cred%d\\ %Creset%s%Cblue\\ [%cn]"
+	tree        = "!f() { git ls ^$(git show-branch --merge-base $@)^ $@; }; f"
 	last        = log --stat -p -1 HEAD
 	unstage     = reset HEAD --
 	srebase     = svn rebase
