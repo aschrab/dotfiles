@@ -155,3 +155,6 @@
 [submodule "vim/bundle/textobj-comment"]
 	path = vim/bundle/textobj-comment
 	url = https://github.com/glts/vim-textobj-comment
+[submodule "vim/bundle/count_jump"]
+	path = vim/bundle/count_jump
+	url = https://github.com/vim-scripts/CountJump
