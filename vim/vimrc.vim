@@ -114,6 +114,7 @@ inoremap <C-]> <C-X><C-]>
 inoremap <C-F> <C-X><C-F>
 inoremap <C-L> <C-X><C-L>
 inoremap <C-e> <esc>
+inoremap jl <esc>
 " Control-space
 inoremap <C-@> <esc>
 inoremap <C-Space> <esc>

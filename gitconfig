@@ -17,14 +17,13 @@
 	pushInsteadOf = git://git.qqx.org/
 [url "git://github.com/"]
 	insteadOf = https://github.com/
+	insteadOf = gh:
 [url "ssh://git@github.com/"]
 	pushInsteadOf = git://github.com/
 	pushInsteadOf = https://github.com/
+	pushInsteadOf = gh:
 [url "git@bitbucket.org:aschrab/"]
 	pushInsteadOf = https://bitbucket.org/aschrab/
-[url "git@git.it.corp:"]
-	pushInsteadOf = git://git.it.corp/
-	pushInsteadOf = http://git.it.corp/
 
 [core]
 	pager        = less -R
@@ -64,6 +63,7 @@
 	l1          = log --pretty=oneline
 	ls          = log --decorate --graph --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]"
 	ll          = log --decorate --numstat --date=short --pretty=format:"%C(yellow)%ad\\ %h%Cred%d\\ %Creset%s%Cblue\\ [%cn]"
+	tree        = "!f() { git ls ^$(git show-branch --merge-base $@)^ $@; }; f"
 	last        = log --stat -p -1 HEAD
 	unstage     = reset HEAD --
 	srebase     = svn rebase

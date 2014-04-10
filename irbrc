@@ -45,7 +45,7 @@ reset_color  = term_color :normal, true
 
 IRB.conf[:IRB_RC] = proc do |conf|
   lead = " " * conf.irb_name.length
-  conf.prompt_i      = "#{prompt_color}#{conf.irb_name} -->#{reset_color} "
+  conf.prompt_i      = "\n#{prompt_color}#{conf.irb_name} -->#{reset_color} "
   conf.prompt_s      = lead + " #{prompt_color}\-%l #{reset_color}"
   conf.prompt_c      = lead + " #{prompt_color}\-+ #{reset_color}"
   conf.return_format = lead + " #{term_color :red}==>#{term_color :normal} %s\n"

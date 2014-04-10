@@ -1,6 +1,6 @@
 scriptencoding utf-8
 
-let mapleader=','
+let mapleader=' '
 
 " Visually select last pasted or changed text
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
@@ -159,3 +159,7 @@ vmap <Plug>SwapItFallbackIncrement <Plug>SpeedDatingUp
 vmap <Plug>SwapItFallbackDecrement <Plug>SpeedDatingDown
 
 let g:ycm_key_list_select_completion = ['<Down>'] " Don't include <Tab> so that UltiSnips can use that
+
+let delimitMate_jump_expansion = 1
+let delimitMate_expand_space = 1
+let delimitMate_expand_cr = 2
