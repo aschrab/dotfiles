@@ -9,7 +9,7 @@
 	url = https://github.com/plasticboy/vim-markdown.git
 [submodule "vim/bundle/css-color"]
 	path = vim/bundle/css-color
-	url = git://github.com/skammer/vim-css-color.git
+	url = https://github.com/skammer/vim-css-color.git
 [submodule "vim/bundle/vcscommand"]
 	path = vim/bundle/vcscommand
 	url = http://git.qqx.org/vcscommand.vim
@@ -24,7 +24,7 @@
 	url = http://git.qqx.org/ultisnips
 [submodule "vim/bundle/perl"]
 	path = vim/bundle/perl
-	url = git://github.com/aschrab/vim-perl.git
+	url = https://github.com/aschrab/vim-perl.git
 	update = merge
 [submodule "upstreams/completions"]
 	path = upstreams/completions
@@ -34,7 +34,7 @@
 	url = https://github.com/evanmiller/nginx-vim-syntax.git
 [submodule "vim/bundle/fugitive"]
 	path = vim/bundle/fugitive
-	url = git://github.com/tpope/vim-fugitive.git
+	url = https://github.com/tpope/vim-fugitive.git
 [submodule "vim/bundle/unimpaired"]
 	path = vim/bundle/unimpaired
 	url = https://github.com/tpope/vim-unimpaired.git
@@ -100,7 +100,7 @@
 	url = https://github.com/nelstrom/vim-textobj-rubyblock.git
 [submodule "upstreams/powerline"]
 	path = upstreams/powerline
-	url = git://github.com/aschrab/powerline
+	url = https://github.com/aschrab/powerline
 [submodule "vim/bundle/abolish"]
 	path = vim/bundle/abolish
 	url = https://github.com/tpope/vim-abolish.git
@@ -109,7 +109,7 @@
 	url = https://github.com/mhinz/vim-signify.git
 [submodule "vim/bundle/puppet"]
 	path = vim/bundle/puppet
-	url = git://github.com/rodjek/vim-puppet.git
+	url = https://github.com/rodjek/vim-puppet.git
 [submodule "vim/bundle/airline"]
 	path = vim/bundle/airline
 	url = https://github.com/bling/vim-airline.git
