@@ -7,6 +7,8 @@ tags
 ._.DS_Store
 /P4ENV
 *.pyc
-.swo
+.swk
+.swl
 .swm
 .swn
+.swo
