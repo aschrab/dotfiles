@@ -95,12 +95,13 @@ mailboxrx 'imaps://aaron.schrab@gmail.com[^/]*/' '[G]%R'
 %   date_fmt = '%[%m/%d]'
 % end
 
-macro index i ":set hdr_format=\'%5C %Z <%=date_fmt%>  %-15.15F (%5l) %s\'\n"
-macro index I ":set hdr_format=\'%5C %Z <%=date_fmt%>  %-15.15L (%5l) %s\'\n"
-set hdr_format="%5C %Z <%=date_fmt%>  %-15.15L (%5l) %s"
-folder-hook '(INBOX|Mail|spool)'	"set hdr_format=\'%5C %Z <%=date_fmt%>  %-15.15L (%5l) %s\'"
-folder-hook '(L(ists)?|Read)'		"set hdr_format=\'%5C %Z <%=date_fmt%>  %-15.15F (%5l) %s\'"
-folder-hook '(suspect|spam)'		"set hdr_format=\'%5C %Z <%=date_fmt%>  %-15.15F (%5l)<%=spam_fmt%> %s\'"
+% hdr_format = "%5C (%?M?+%4M&%5l?) %Z #{date_fmt}  %-15.15F ¶ %s"
+macro index i ":set hdr_format=<%= hdr_format.quote %>\n"
+macro index I ":set hdr_format=<%= hdr_format.sub('F', 'L').quote %>\n"
+set hdr_format="<%= hdr_format.sub('F', 'L') %>"
+folder-hook '(INBOX|Mail|spool)'	"set hdr_format=<%= hdr_format.sub('F', 'L').quote %>"
+folder-hook '(L(ists)?|Read)'		"set hdr_format=<%= hdr_format.quote %>"
+folder-hook '(suspect|spam)'		"set hdr_format=<%= hdr_format.sub('%s', %Q[#{spam_fmt} %s]).quote %>"
 
 % if mutt_variable :see_old
   set see_old
