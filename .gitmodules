@@ -158,3 +158,6 @@
 [submodule "vim/bundle/count_jump"]
 	path = vim/bundle/count_jump
 	url = https://github.com/vim-scripts/CountJump
+[submodule "vim/bundle/dbext"]
+	path = vim/bundle/dbext
+	url = https://github.com/vim-scripts/dbext.vim
