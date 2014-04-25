@@ -59,6 +59,8 @@
 	sh          = show
 	sho         = show
 	st          = status
+	b           = branch
+	pick        = cherry-pick
 	up          = "!echo Use pull >&2 ; exit 1"
 	l1          = log --pretty=oneline
 	ls          = log --decorate --graph --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]"
