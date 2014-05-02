@@ -163,3 +163,4 @@ let g:ycm_key_list_select_completion = ['<Down>'] " Don't include <Tab> so that 
 let delimitMate_jump_expansion = 1
 let delimitMate_expand_space = 1
 let delimitMate_expand_cr = 2
+let delimitMate_matchpairs = "(:),[:],{:}"
