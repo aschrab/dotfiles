@@ -161,3 +161,6 @@
 [submodule "vim/bundle/dbext"]
 	path = vim/bundle/dbext
 	url = https://github.com/vim-scripts/dbext.vim
+[submodule "vim/bundle/tmux-navigator"]
+	path = vim/bundle/tmux-navigator
+	url = https://github.com/christoomey/vim-tmux-navigator
