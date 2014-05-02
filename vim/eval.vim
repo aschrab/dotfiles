@@ -167,3 +167,5 @@ let delimitMate_matchpairs = "(:),[:],{:}"
 
 " Insert current timestamp in UTC, ISO format
 imap <C-A>tu 2000-01-01T12:34:56<C-O>h<C-O>d<C-A><C-O>lZ
+
+let g:Gitv_DoNotMapCtrlKey = 1
