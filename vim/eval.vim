@@ -164,3 +164,6 @@ let delimitMate_jump_expansion = 1
 let delimitMate_expand_space = 1
 let delimitMate_expand_cr = 2
 let delimitMate_matchpairs = "(:),[:],{:}"
+
+" Insert current timestamp in UTC, ISO format
+imap <C-A>tu 2000-01-01T12:34:56<C-O>h<C-O>d<C-A><C-O>lZ
