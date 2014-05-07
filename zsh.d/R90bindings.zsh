@@ -65,5 +65,4 @@ bindmodes viins vi-cmd-mode 'jl'
 ###################
 
 # Automatically quote special characters in URLs
-autoload -Uz url-quote-magic
-zle -N self-insert url-quote-magic
+autoload -Uz url-quote-magic && zle -N self-insert url-quote-magic
