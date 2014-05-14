@@ -1,0 +1,9 @@
+#compdef git-tree
+#description display listed branches in tree structure
+
+local -a log_options
+__git_setup_log_options
+
+_arguments -w -C -s \
+  $log_options \
+  '*:Branch:__git_branch_names'
