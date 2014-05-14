@@ -120,6 +120,8 @@ inoremap <C-@> <esc>
 inoremap <C-Space> <esc>
 inoremap <S-Space> <Space>
 
+inoremap <C-D> <C-K>
+
 nnoremap gf :new <cfile><CR>
 vnoremap gf :<C-U>new <C-R>=escape#filename(visual#get())<CR><CR>
 
