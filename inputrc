@@ -1,4 +1,8 @@
 set editing-mode vi
+
+set keymap vi-insert
+  "jl": vi-movement-mode
+
 #set keymap vi-command
 #
 # "\C-I" self-insert
