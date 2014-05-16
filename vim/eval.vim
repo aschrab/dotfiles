@@ -20,9 +20,11 @@ else
 endif
 "let g:pathogen_disabled += [ 'signify' ]
 
-runtime bundle/pathogen/autoload/pathogen.vim
-if exists('*pathogen#infect')
-	execute pathogen#infect()
+if hostname() !~ '\M.netapp.com$' || hostname() =~ '\M.rtp.'
+	runtime bundle/pathogen/autoload/pathogen.vim
+	if exists('*pathogen#infect')
+		execute pathogen#infect()
+	endif
 endif
 
 runtime macros/matchit.vim
