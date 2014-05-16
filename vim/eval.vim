@@ -20,7 +20,7 @@ else
 endif
 "let g:pathogen_disabled += [ 'signify' ]
 
-if hostname() !~ '\M.netapp.com$' || hostname() =~ '\M.rtp.'
+if exists("+guifont") || hostname() !~ '\M.netapp.com$' || hostname() =~ '\M.rtp.'
 	runtime bundle/pathogen/autoload/pathogen.vim
 	if exists('*pathogen#infect')
 		execute pathogen#infect()
