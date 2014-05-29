@@ -20,9 +20,11 @@ else
 endif
 "let g:pathogen_disabled += [ 'signify' ]
 
-runtime bundle/pathogen/autoload/pathogen.vim
-if exists('*pathogen#infect')
-	execute pathogen#infect()
+if exists("+guifont") || hostname() !~ '\M.netapp.com$' || hostname() =~ '\M.rtp.'
+	runtime bundle/pathogen/autoload/pathogen.vim
+	if exists('*pathogen#infect')
+		execute pathogen#infect()
+	endif
 endif
 
 runtime macros/matchit.vim
@@ -132,7 +134,7 @@ augroup END
 autocmd BufNewFile,BufRead * call AutoPath()
 
 " auto-start NERDTree if vim started with no files and no buffer content
-autocmd VimEnter * if !argc() && line('$') == 1 && getline(1) == '' | NERDTree | endif
+autocmd VimEnter * if exists(':NERDTree') && !argc() && line('$') == 1 && getline(1) == '' | NERDTree | endif
 " quit vim if NERDTree is only window
 "autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
