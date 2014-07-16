@@ -49,6 +49,8 @@
 	autoupdate = yes
 
 [alias]
+	g           = "!f() { git $@; }; f"
+	git         = "!f() { git $@; }; f"
 	root        = rev-parse --show-toplevel
 	co          = checkout
 	ci          = commit -v
