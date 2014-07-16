@@ -56,6 +56,12 @@ PS1='
 
 PS2='%{$pColor%}%_>%{$fColor%} '
 
+# Reset prompt after $TMOUT seconds to update time
+TRAPALRM() {
+  zle reset-prompt
+}
+TMOUT=1
+
 case "$TERM" in
   screen*)
     zset_command_title () {
