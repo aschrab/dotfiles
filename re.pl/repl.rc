@@ -3,7 +3,7 @@
 
 $ENV{NOPASTE_SERVICES} = 'Gist';
 
-foreach (qw{Timing DumpHistory OutputCache Interrupt Nopaste MultiLine::PPI Packages FancyPrompt}) {
+foreach (qw{Timing DumpHistory OutputCache Interrupt Nopaste MultiLine::PPI Packages FancyPrompt DDP}) {
 	eval { $_REPL->load_plugin($_); 1 } or warn "Failed to load plugin $_\n";
 }
 
