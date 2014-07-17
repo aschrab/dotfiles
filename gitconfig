@@ -30,6 +30,7 @@
 	#autocrlf    = input
 	safecrlf     = true
 	excludesfile = ~/.gitignore
+	preloadindex = yes
 
 [diff]
 	renames        = true
