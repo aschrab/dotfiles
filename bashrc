@@ -5,7 +5,7 @@ alias g=git
 
 set -o noclobber
 
-shopt -s autocd cdspell dirspell extglob
+shopt -s autocd cdspell dirspell extglob 2> /dev/null
 
 # The following breaks completion
 #shopt -s failglob
