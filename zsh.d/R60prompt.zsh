@@ -56,11 +56,13 @@ PS1='
 
 PS2='%{$pColor%}%_>%{$fColor%} '
 
-# Reset prompt after $TMOUT seconds to update time
-TRAPALRM() {
+# Update prompt before running a command so that it will display time when the
+# command was started rather than when the previous command ended
+zle-update-prompt() {
   zle reset-prompt
+  zle .$WIDGET
 }
-TMOUT=1
+zle -N accept-line zle-update-prompt
 
 case "$TERM" in
   screen*)
