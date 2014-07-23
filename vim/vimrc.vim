@@ -11,7 +11,7 @@ set t_Co=16
 	syntax on
 :endif
 
-colorscheme vividchalk
+silent! colorscheme vividchalk
 
 " Miscellaneous options {{{
 set viminfo=!,s1,%,'20,f1,c,h,r/tmp,r/media,n~/.viminfo
@@ -79,7 +79,7 @@ set foldopen=mark,quickfix,tag,block,hor,search,insert,undo
 :endif
 "}}}
 
-set mouse=a
+silent! set mouse=a
 :if $DISPLAY != ""
   set clipboard=unnamed,autoselect,exclude:cons\|linux
 :endif

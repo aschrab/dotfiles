@@ -13,3 +13,5 @@ zstyle ':vcs_info:git(|-p4|-svn):*' actionformats "[%b|%a]%c%u"
 
 export P4HUSH=1
 export P4CONFIG=P4ENV
+export P4DIFF=diffp4
+export P4IGNORE=~/.gitignore
