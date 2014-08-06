@@ -156,7 +156,7 @@ when /<mailto:mutt-dev@/i
 end unless list
 
 case headers[:list_unsubscribe]
-when %r{<http://discourse.triangleruby.com/user_preferences>}
+when %r{<http://discourse.triangleruby.com/}
   list = 'ug/trianglerb'
   subject_re = '[Triangle.rb Forum]'
   subject_re = Regexp.escape subject_re unless subject_re.is_a? Regexp
