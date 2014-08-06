@@ -6,4 +6,4 @@ __git_setup_log_options
 
 _arguments -w -C -s \
   $log_options \
-  '*:Branch:__git_branch_names'
+  '*:Branch:__git_heads'
