@@ -107,6 +107,10 @@ macro pager	,@r13on	"<enter-command>set display_filter='tr A-Za-z N-ZA-Mn-za-m';
 macro pager	,@r13off "<enter-command>macro pager '#' ,@r13on 'Toggle ROT13 decoding'\n<display-toggle-weed><display-toggle-weed>"  "Turn off ROT13 decoding"
 macro pager	'#'	,@r13on       "Toggle ROT13 decoding"
 
+macro index	,@lDate	"<enter-command>set sort_aux=last-date-received; macro index 'S' ,@fDate 'Toggle thread date order'\n" "Sort threads by latest dates"
+macro index	,@fDate	"<enter-command>set sort_aux=date;               macro index 'S' ,@lDate 'Toggle thread date order'\n" "Sort threads by first dates"
+macro index 'S' ,@fDate 'Toggle thread date order'
+
 set my_wrap=100
 macro pager	l	"<enter-command>set my_save=\$my_wrap my_wrap=\$wrap wrap=\$my_save\n" "Toggle wrap"
 
