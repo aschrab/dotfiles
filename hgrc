@@ -1,0 +1,24 @@
+[annotate]
+ignorews=yes
+
+[diff]
+git=yes
+showfunc=yes
+
+[extensions]
+pager =
+color =
+rebase =
+shelve =
+transplant =
+histedit =
+progress =
+record =
+#hgext.bookmarks =
+#hgext.git =
+
+[ui]
+askusername=yes
+
+[pager]
+attend = annotate, cat, diff, export, glog, log, qdiff, help
