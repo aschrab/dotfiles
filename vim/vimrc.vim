@@ -64,6 +64,7 @@ set diffopt+=iwhite
 
 :if has("folding")
 set foldopen=mark,quickfix,tag,block,hor,search,insert,undo
+set foldminlines=2
 :endif
 
 :if has("persistent_undo")

@@ -55,6 +55,7 @@ let perl_highlight_matches = 1
 "let perl_want_scope_in_variables = 1
 "let perl_embedded_pod = 1
 
+let g:vimsyn_folding="Paflpr"
 let g:xml_syntax_folding = 1
 let g:perl_fold = 1
 let g:perl_fold_anonymous_subs = 1
@@ -171,3 +172,4 @@ let delimitMate_matchpairs = "(:),[:],{:}"
 imap <C-A>tu 2000-01-01T12:34:56<C-O>h<C-O>d<C-A><C-O>lZ
 
 let g:Gitv_DoNotMapCtrlKey = 1
+let g:Gitv_TruncateCommitSubjects = 1
