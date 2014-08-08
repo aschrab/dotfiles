@@ -55,6 +55,7 @@ let perl_highlight_matches = 1
 "let perl_want_scope_in_variables = 1
 "let perl_embedded_pod = 1
 
+let g:vimsyn_folding="Paflpr"
 let g:xml_syntax_folding = 1
 let g:perl_fold = 1
 let g:perl_fold_anonymous_subs = 1
