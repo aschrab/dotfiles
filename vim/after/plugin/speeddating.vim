@@ -1,4 +1,7 @@
 if exists(":SpeedDatingFormat")
+	" Normal US format, since it's used a lot even though it's awful
+	1 SpeedDatingFormat %m/%d/%Y
+
 	1 SpeedDatingFormat %a %b %0d %H:%M:%S %Z %Y
 
 	SpeedDatingFormat %Y-%m-%dT%H:%M:%S
