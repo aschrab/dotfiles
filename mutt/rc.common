@@ -119,7 +119,6 @@ macro index	'^'	"<last-entry><next-new>" "Jump to first new message"
 macro index	"\eh"	"<view-attachments><next-entry><edit-type><bol><delete-char><enter><exit><display-message>" "View alternative"
 bind  index	B	bounce-message
 #bind  index	n	next-entry
-macro index	A	"c+Lists/inet\n"
 macro index	"\Ck"	"|pgp -kaf\n"
 macro index	"\Cb"	"|urlview\n"
 macro index	'<F2>'	'<enter-command>toggle narrow_tree<enter>' 'Toggle narrow tree'
