@@ -32,6 +32,7 @@ Host *.qqx.org proxy
 User ats
 ForwardAgent yes
 ForwardX11 yes
+ForwardX11Timeout 3w
 Port 222
 
 Host *.trilug.org
@@ -46,6 +47,7 @@ Host *.netapp.com
 User aschrab
 ForwardAgent yes
 ForwardX11 yes
+ForwardX11Timeout 3w
 
 Host p4git
 BatchMode yes
