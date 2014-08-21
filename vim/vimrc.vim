@@ -1,5 +1,6 @@
 " vim: fdm=marker
 :version 4.0
+set encoding=utf-8
 scriptencoding utf-8
 
 :if 1
