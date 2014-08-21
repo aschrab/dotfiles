@@ -1,15 +1,10 @@
 typeset -aU path
 
-# Hack, on this host need to use /usr/bin/vim because one in /usr/software/bin
-# is broken.  But on other hosts, copy in /usr/bin is hopelessly outdated.
-[[ $HOST == scmrtp* ]] && early_usr_bin=/usr/bin
-
 path=(
   ~/bin
   ~/.gem/bin
   ~/.rbenv/shims
   /usr/local/bin
-  $early_usr_bin
   /usr/software/bin
   /usr/software/rats/bin
   /usr/software/utils/bin
@@ -21,8 +16,6 @@ path=(
   /sbin
   /usr/X11/bin
 )
-
-unset early_usr_bin
 
 typeset -aU manpath
 manpath=(
