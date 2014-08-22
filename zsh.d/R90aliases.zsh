@@ -71,7 +71,7 @@ else
   alias ll='ls -lhF'
   alias lla='ls -halF'
 fi
-alias bc='bc -ql'
+alias bc='/usr/bin/bc -ql'
 alias trt=traceroute
 
 [ -x /usr/lib/sendmail ] && alias sendmail=/usr/lib/sendmail
