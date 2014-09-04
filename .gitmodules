@@ -6,7 +6,7 @@
 	url = https://github.com/kchmck/vim-coffee-script.git
 [submodule "vim/bundle/syntax-markdown"]
 	path = vim/bundle/syntax-markdown
-	url = https://github.com/plasticboy/vim-markdown.git
+	url = https://github.com/aschrab/vim-markdown.git
 [submodule "vim/bundle/css-color"]
 	path = vim/bundle/css-color
 	url = https://github.com/skammer/vim-css-color.git
