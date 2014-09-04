@@ -6,4 +6,4 @@ function! ScratchSpace (...)
 	exe cmd
 endfunction
 
-command! -nargs=? -complete=filetype Scratch execute ScratchSpace(<f-args>)
+silent! command! -nargs=? -complete=filetype Scratch execute ScratchSpace(<f-args>)

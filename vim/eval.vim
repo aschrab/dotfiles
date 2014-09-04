@@ -11,19 +11,21 @@ if exists("+guifont")
 	set guifont+=Source\ Code\ Pro\ for\ Powerline\ 9
 endif
 
-" Start up pathogen if it's available
-" Won't be available on boxes before git submodules have been fetched
-let g:pathogen_disabled = []
-if ((v:version == 703 && has('patch584')) || v:version > 703) && has('python')
-else
-	let g:pathogen_disabled += [ 'you_complete_me' ]
-endif
-"let g:pathogen_disabled += [ 'signify' ]
+if (v:version >= 700)
+	" Start up pathogen if it's available
+	" Won't be available on boxes before git submodules have been fetched
+	let g:pathogen_disabled = []
+	if ((v:version == 703 && has('patch584')) || v:version > 703) && has('python')
+	else
+		let g:pathogen_disabled += [ 'you_complete_me' ]
+	endif
+	"let g:pathogen_disabled += [ 'signify' ]
 
-if has("gui_running") || hostname() !~ '\M.netapp.com$' || hostname() =~ '\M.rtp.'
-	runtime bundle/pathogen/autoload/pathogen.vim
-	if exists('*pathogen#infect')
-		execute pathogen#infect()
+	if has("gui_running") || hostname() !~ '\M.netapp.com$' || hostname() =~ '\M.rtp.'
+		runtime bundle/pathogen/autoload/pathogen.vim
+		if exists('*pathogen#infect')
+			execute pathogen#infect()
+		endif
 	endif
 endif
 
@@ -47,8 +49,10 @@ endwhile
 "auto BufEnter,WinEnter * let &l:statusline='%!statusline#line()'
 "auto WinLeave * let &l:statusline='%!statusline#inactive()'
 
-auto BufEnter * let &titlestring = "Vim@%{hostname()} : %{clean#TTY()} : %{clean#CWD()}"
-auto BufEnter * let &iconstring  = "Vim@%{hostname()} : %f (%{clean#TTY()})"
+if v:version >= 700
+	auto BufEnter * let &titlestring = "Vim@%{hostname()} : %{clean#TTY()} : %{clean#CWD()}"
+	auto BufEnter * let &iconstring  = "Vim@%{hostname()} : %f (%{clean#TTY()})"
+endif
 
 let perl_extended_vars = 1
 let perl_highlight_matches = 1
@@ -77,9 +81,11 @@ elseif &term == 'screen'
 	let &t_fs="\<Esc>\\"
 endif
 
-let g:snipMate = {}
-let g:snipMate.scope_aliases = {} 
-let g:snipMate.scope_aliases['tt2html'] = 'tt2,html'
+if v:version >= 700
+	let g:snipMate = {}
+	let g:snipMate.scope_aliases = {}
+	let g:snipMate.scope_aliases['tt2html'] = 'tt2,html'
+endif
 
 let g:powerlineNoPythonError = 1
 
@@ -102,12 +108,16 @@ let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
 let g:syntastic_auto_loc_list=1
 let g:syntastic_loc_list_height=5
-let g:syntastic_html_tidy_ignore_errors = [
-  \ "proprietary attribute \"autocomplete\""
-  \ ]
+if v:version >= 700
+	let g:syntastic_html_tidy_ignore_errors = [
+	  \ "proprietary attribute \"autocomplete\""
+	  \ ]
+endif
 
 map <silent> <F1> :NERDTreeToggle<CR>
-let NERDTreeSortOrder=[ 'README.*', '*', '\(\~\|\.\(bak\|swp\)\)$' ]
+if v:version >= 700
+	let NERDTreeSortOrder=[ 'README.*', '*', '\(\~\|\.\(bak\|swp\)\)$' ]
+endif
 
 let g:ScreenImpl='Tmux'
 let g:ScreenShellInitialFocus='shell'
@@ -140,7 +150,9 @@ autocmd VimEnter * if exists(':NERDTree') && !argc() && !exists('s:std_in') | NE
 " quit vim if NERDTree is only window
 "autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
-let g:signify_vcs_list = [ 'git' ]
+if v:version >= 700
+	let g:signify_vcs_list = [ 'git' ]
+endif
 let g:signify_sign_overwrite = 0
 
 let g:airline_powerline_fonts=1
@@ -155,14 +167,18 @@ let g:airline_theme='badwolf'
 let g:SuperTabDefaultCompletionType='context'
 let g:SuperTabLongestEnhanced=1
 "let g:SuperTabLongestHighlight=1
-let g:SuperTabNoCompleteAfter=['^', ',', '\s', "'", '"']
+if v:version >= 700
+	let g:SuperTabNoCompleteAfter=['^', ',', '\s', "'", '"']
+endif
 
 nmap <Plug>SwapItFallbackIncrement <Plug>SpeedDatingUp
 nmap <Plug>SwapItFallbackDecrement <Plug>SpeedDatingDown
 vmap <Plug>SwapItFallbackIncrement <Plug>SpeedDatingUp
 vmap <Plug>SwapItFallbackDecrement <Plug>SpeedDatingDown
 
-let g:ycm_key_list_select_completion = ['<Down>'] " Don't include <Tab> so that UltiSnips can use that
+if v:version >= 700
+	let g:ycm_key_list_select_completion = ['<Down>'] " Don't include <Tab> so that UltiSnips can use that
+endif
 
 let delimitMate_jump_expansion = 1
 let delimitMate_expand_space = 1

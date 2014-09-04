@@ -41,7 +41,9 @@ set splitbelow
 set splitright
 set formatoptions+=r
 set formatoptions+=2
+if exists("+formatlistpat")
 set formatlistpat=^\\s*\\d\\+[\\]:.)}]\\s\\+
+endif
 set cpoptions+=$
 set nrformats=hex
 "set cmdheight=2
@@ -58,8 +60,12 @@ set wildmenu
 set wildmode=longest:full,full
 set wildignore+=*.o,*~
 set wildignore+=*.pyc
+if exists("+wildoptions")
 set wildoptions=tagfile
+endif
+if exists("+completeopt")
 set completeopt=longest,menuone,preview
+endif
 set tags=tags,TAGS,./tags;,./TAGS;
 set diffopt+=iwhite
 
