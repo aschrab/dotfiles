@@ -190,3 +190,6 @@ imap <C-A>tu 2000-01-01T12:34:56<C-O>h<C-O>d<C-A><C-O>lZ
 
 let g:Gitv_DoNotMapCtrlKey = 1
 let g:Gitv_TruncateCommitSubjects = 1
+
+" Use my own fold expression and settings for markdown
+let g:vim_markdown_folding_disabled = 1
