@@ -18,6 +18,13 @@ send2-hook '~f @trilug.org' 'set sendmail="<%=trilug%> <%=sendmail%>"'
 % pug = host == 'pug' ? '' : 'ssh pug.qqx.org'
 send2-hook '~f @(schrab\.com\|(pug\.)?qqx\.org)' 'set sendmail="<%=pug%> <%=sendmail%>"'
 
+% alt_types='text/enriched text/plain text application/postscript image/*'
+alternative_order <%= alt_types %>
+% bind = lambda { |x| "macro pager,index H ,@#{x} 'Toggle HTML preference'" }
+macro pager,index ,@html "<enter-command>unalternative_order <%= alt_types %>; <%= bind.call(:text) %><enter><display-toggle-weed><display-toggle-weed>"
+macro pager,index ,@text "<enter-command>alternative_order <%= alt_types %>; <%= bind.call(:html) %><enter><display-toggle-weed><display-toggle-weed>"
+<%= bind.call(:html) %>
+
 
 % if mutt_patch %r<mailbox_prefix>
   mailbox_prefix + imaps://aaron.schrab@gmail.com@imap.gmail.com/
