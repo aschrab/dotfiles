@@ -184,11 +184,11 @@ map! <M-Esc>[65~ <S-MouseUp>
 map ,x :w<C-M>:r!chmod +x %<C-M>:w!<C-M>
 
 :if has("digraphs")
-"dig 00 176
-dig !! 161
-dig ?? 191
-dig SS 167
-dig ?! 8253 " Interrobang
+"dig 00 176 " ∞
+dig !! 161 " ¡
+dig ?? 191 " ¿
+dig SS 167 " §
+dig ?! 8253 " Interrobang ‽
 endif
 
 set cinoptions+=l1,(0,t0
