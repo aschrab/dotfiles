@@ -71,7 +71,7 @@ export PSQL_EDITOR="$EDITOR +'set ft=sql'"
 export PAGER
 
 export LESS=""
-LESS="$LESS --quit-at-eof"
+#LESS="$LESS --quit-at-eof"
 LESS="$LESS --quit-if-one-screen"
 LESS="$LESS --search-skip-screen"
 LESS="$LESS --LONG-PROMPT"
