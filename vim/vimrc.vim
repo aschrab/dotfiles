@@ -73,6 +73,8 @@ set tags=tags,TAGS,./tags;,./TAGS;
 set diffopt+=iwhite
 set diffopt+=vertical
 
+set history=1000
+
 :if has("folding")
 set foldopen=mark,quickfix,tag,block,hor,search,insert,undo
 set foldminlines=2
