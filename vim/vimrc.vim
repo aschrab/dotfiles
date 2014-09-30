@@ -18,6 +18,9 @@ silent! colorscheme vividchalk
 set viminfo=!,s1,%,'20,f1,c,h,r/tmp,r/media,n~/.viminfo
 set hidden
 set display+=lastline
+set scrolloff=1
+set sidescrolloff=10
+set sidescroll=1
 set shiftwidth=4
 set tabstop=4
 set autoindent
