@@ -21,7 +21,7 @@ if (v:version >= 700)
 	endif
 	"let g:pathogen_disabled += [ 'signify' ]
 
-	if has("gui_running") || hostname() !~ '\M.netapp.com$' || hostname() =~ '\M.rtp.'
+	if has("gui_running") || hostname() !~ '\M.netapp.com$' || hostname() =~ '\M.rtp.' || hostname() =~ '\M^aschrab.'
 		runtime bundle/pathogen/autoload/pathogen.vim
 		if exists('*pathogen#infect')
 			execute pathogen#infect()
