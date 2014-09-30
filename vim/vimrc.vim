@@ -68,6 +68,7 @@ set completeopt=longest,menuone,preview
 endif
 set tags=tags,TAGS,./tags;,./TAGS;
 set diffopt+=iwhite
+set diffopt+=vertical
 
 :if has("folding")
 set foldopen=mark,quickfix,tag,block,hor,search,insert,undo
