@@ -1,9 +1,13 @@
 function! ScratchSpace (...)
-	let cmd = "new +set\\ buftype=nofile"
-	if (a:0)
-		let cmd = cmd . "\\ filetype=" . a:1
+	if (a:0 > 1)
+		vert new
+	else
+		new
 	endif
-	exe cmd
+	setlocal buftype=nofile
+	if (a:0)
+		let &filetype = a:1
+	endif
 endfunction
 
-silent! command! -nargs=? -complete=filetype Scratch execute ScratchSpace(<f-args>)
+silent! command! -nargs=* -complete=filetype Scratch execute ScratchSpace(<f-args>)

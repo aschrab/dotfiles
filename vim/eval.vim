@@ -21,7 +21,7 @@ if (v:version >= 700)
 	endif
 	"let g:pathogen_disabled += [ 'signify' ]
 
-	if has("gui_running") || hostname() !~ '\M.netapp.com$' || hostname() =~ '\M.rtp.'
+	if has("gui_running") || hostname() !~ '\M.netapp.com$' || hostname() =~ '\M.rtp.' || hostname() =~ '\M^aschrab.'
 		runtime bundle/pathogen/autoload/pathogen.vim
 		if exists('*pathogen#infect')
 			execute pathogen#infect()
@@ -183,6 +183,7 @@ endif
 let delimitMate_jump_expansion = 1
 let delimitMate_expand_space = 1
 let delimitMate_expand_cr = 2
+let delimitMate_balance_matchpairs = 1
 let delimitMate_matchpairs = "(:),[:],{:}"
 
 " Insert current timestamp in UTC, ISO format
