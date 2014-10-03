@@ -9,6 +9,7 @@ mailboxes =INBOX/sympa
 <%= mlist 'lsm-workers' %>
 
 <%= mlist '+L/triangle-sword', :account => :gmail, :subjectrx => '[TSG Projects]' %>
+<%= mlist '+L/triangle-sword/org', :account => :gmail %>
 
 # UG lists
 <%= mlist '=L/ug/raleigh-pm', :subjectrx => '[Raleigh-pm]' %>
