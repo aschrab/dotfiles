@@ -49,9 +49,11 @@ zset_title() {
 }
 precmd_functions+='zset_title'
 
+rev="$(tput rev)"
+rum="$(tput rum)"
 RPS1=''
 PS1='
-%S%{$pColor%} %D{%d%b%H:%M:%S}  %1v%2m$DEBCHROOT  %~ ${vcs_info_msg_0_}%E%s%{$fColor%}
+%{$pColor$rev%} %D{%d%b%H:%M:%S}  %1v%2m$DEBCHROOT  %~ ${vcs_info_msg_0_}%E%{$rum$fColor%}
 %{$pColor%}%!%(#.#.$)%{$fColor%} '
 
 PS2='%{$pColor%}%_>%{$fColor%} '
