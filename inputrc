@@ -12,3 +12,10 @@ set keymap vi-insert
 # includes ESC, but that causes later portions of sequences that start with
 # ESC to be entered verbatim into the command line.
 set isearch-terminators "\C-J"
+
+set completion-ignore-case on
+
+# Treat "-" and "_" as equivalent in case-insensitive completion
+set completion-map-case on
+
+set completion-prefix-display-length 2
