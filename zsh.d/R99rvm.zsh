@@ -2,4 +2,8 @@
 #
 # Some of its functionality requires that it be run as a shell function
 
-[[ -r ~/.rvm/scripts/rvm ]] && source ~/.rvm/scripts/rvm
+if [[ -d ~/.rbenv/shims ]] && (( $+commands[rbenv] )); then
+  eval "$(rbenv init -)"
+elif [[ -r ~/.rvm/scripts/rvm ]]; then
+  source ~/.rvm/scripts/rvm
+fi
