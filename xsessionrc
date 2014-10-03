@@ -27,5 +27,6 @@ esac
 
 [ -x ~/.dropbox-dist/dropbox ] && ~/.dropbox-dist/dropbox &
 [ -r ~/.synergy.conf ] && synergys
+[ -r ~/.config/touchegg/touchegg.conf ] && touchegg >&/dev/null &
 
 unclutter -idle 5 -root -noevents &
