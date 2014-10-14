@@ -21,6 +21,11 @@ if (v:version >= 700)
 	endif
 	"let g:pathogen_disabled += [ 'signify' ]
 
+	if ((v:version == 703 && has('patch501')) || v:version > 703)
+    else
+		let g:pathogen_disabled += [ 'vorax' ]
+    endif
+
 	if has("gui_running") || hostname() !~ '\M.netapp.com$' || hostname() =~ '\M.rtp.' || hostname() =~ '\M^aschrab.'
 		runtime bundle/pathogen/autoload/pathogen.vim
 		if exists('*pathogen#infect')
