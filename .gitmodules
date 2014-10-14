@@ -173,3 +173,6 @@
 [submodule "vim/bundle/vorax"]
 	path = vim/bundle/vorax
 	url = https://github.com/talek/vorax4
+[submodule "vim/bundle/unicode"]
+	path = vim/bundle/unicode
+	url = https://github.com/chrisbra/unicode.vim
