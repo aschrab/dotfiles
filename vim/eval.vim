@@ -195,6 +195,8 @@ let g:Gitv_TruncateCommitSubjects = 1
 " Use my own fold expression and settings for markdown
 let g:vim_markdown_folding_disabled = 1
 
+let g:vorax_output_window_default_funnel = 2
+
 if exists("g:loaded_unicodePlugin")
 	nnoremap ga :<C-U>UnicodeName<CR>
 endif
