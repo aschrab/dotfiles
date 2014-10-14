@@ -66,6 +66,9 @@ set wildignore+=*.pyc
 if exists("+wildoptions")
 set wildoptions=tagfile
 endif
+if exists("&wildignorecase")
+	set wildignorecase
+endif
 if exists("+completeopt")
 set completeopt=longest,menuone,preview
 endif
