@@ -176,3 +176,6 @@
 [submodule "vim/bundle/unicode"]
 	path = vim/bundle/unicode
 	url = https://github.com/chrisbra/unicode.vim
+[submodule "vim/bundle/syntax-jade"]
+	path = vim/bundle/syntax-jade
+	url = https://github.com/digitaltoad/vim-jade
