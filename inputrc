@@ -2,6 +2,8 @@ set editing-mode vi
 
 set keymap vi-insert
   "jl": vi-movement-mode
+  "\e.": yank-last-arg
+  "\et": transpose-words
 
 #set keymap vi-command
 #
