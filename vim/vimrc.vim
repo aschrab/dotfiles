@@ -137,8 +137,8 @@ inoremap <C-@> <esc>
 inoremap <C-Space> <esc>
 inoremap <S-Space> <Space>
 
-nnoremap gf :new <cfile><CR>
-vnoremap gf :<C-U>new <C-R>=escape#filename(visual#get())<CR><CR>
+nnoremap gf :sfind <cfile><CR>
+vnoremap gf :<C-U>sfind <C-R>=escape#filename(visual#get())<CR><CR>
 
 nmap <silent> <Leader>f :CommandT<CR>
 nnoremap <silent> <Leader>a :call SyntaxAttr#SyntaxAttr()<CR>
