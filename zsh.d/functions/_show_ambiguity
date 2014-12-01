@@ -1,0 +1,17 @@
+#autoload
+
+_show_ambiguity()
+{
+  (( $comppostfuncs[(I)_show_ambiguity_end] )) || comppostfuncs+=( _show_ambiguity_end )
+  return 1
+}
+
+_show_ambiguity_end()
+{
+  local prefix=${${compstate[unambiguous]}[1,${compstate[unambiguous_cursor]}-1]}
+  local unesc=' \''"'
+  [ -n "$prefix" ] && ZLS_COLORS+=":=${prefix[1,-2]//?/(}${prefix[1,-2]//(#m)?/${${MATCH:q}//\\[$unesc]/$MATCH}|)}${${prefix[-1]:q}//\\[$unesc]/$prefix[-1]}(#b)(?|)*==4"
+  ZLS_COLORS+=":=*=0"
+}
+
+_show_ambiguity "$@"
