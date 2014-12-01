@@ -86,6 +86,7 @@ set nobeep
 set beep_new
 
 set timeout=30                 # seconds inactivity before looking for new mail
+set ssl_use_sslv3=no
 
 # Bindings
 bind  pager	<Tab>	next-new
