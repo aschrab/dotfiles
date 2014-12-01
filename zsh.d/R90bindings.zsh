@@ -60,6 +60,9 @@ bindmodes viins vi-cmd-mode '^\x20' 'M\x20' '\e\x20'
 # Allow "jl" to escape to command mode
 bindmodes viins vi-cmd-mode 'jl'
 
+# Use shift+tab to expand glob in place
+bindkey -M viins '\e[Z' expand-word
+
 ###################
 # Common bindings #
 ###################
