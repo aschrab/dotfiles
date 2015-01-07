@@ -33,8 +33,8 @@ bindkey -M viins '^x^f' complete-file
 ##################
 # Vi bindings    #
 ##################
-bindkey -M vicmd "/"   history-incremental-search-backward
-bindkey -M vicmd "?"   history-incremental-search-forward
+bindkey -M vicmd "?"   history-incremental-pattern-search-backward
+bindkey -M vicmd "/"   history-incremental-pattern-search-forward
 bindkey -M vicmd "^u"  vi-kill-line
 
 # Avoid issue where escape in command mode will eat next character

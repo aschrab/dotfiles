@@ -22,8 +22,6 @@ bindkey -M viins '\ed'   kill-word         # Alt-d
 bindkey -M vicmd '^a'    beginning-of-line
 bindkey -M vicmd '^e'    end-of-line
 bindkey -M vicmd '^k'    kill-line
-bindkey -M vicmd '^r'    history-incremental-pattern-search-backward
-bindkey -M vicmd '^s'    history-incremental-pattern-search-forward
 bindkey -M vicmd '^y'    yank
 bindkey -M vicmd '^w'    backward-kill-word
 bindkey -M vicmd '^u'    backward-kill-line
