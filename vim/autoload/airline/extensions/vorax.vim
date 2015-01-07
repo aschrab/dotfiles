@@ -2,8 +2,10 @@
 " http://vorax-ide.blogspot.com/2014/06/custom-vorax-status-line.html
 
 function! airline#extensions#vorax#init (ext)
-	call a:ext.add_statusline_func('airline#extensions#vorax#apply')
-	"call a:ext.add_inactive_statusline_func('airline#extensions#vorax#apply')
+	if exists("*VORAXDebug")
+		call a:ext.add_statusline_func('airline#extensions#vorax#apply')
+		"call a:ext.add_inactive_statusline_func('airline#extensions#vorax#apply')
+	endif
 endfunction
 
 " Let me choose the statusbar
