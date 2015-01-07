@@ -151,7 +151,7 @@ autocmd BufNewFile,BufRead * call AutoPath()
 
 " auto-start NERDTree if vim started with no files and no buffer content
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if exists(':NERDTree') && !argc() && !exists('s:std_in') | NERDTree | endif
+"autocmd VimEnter * if exists(':NERDTree') && !argc() && !exists('s:std_in') | NERDTree | endif
 " quit vim if NERDTree is only window
 "autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
