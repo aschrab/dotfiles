@@ -65,6 +65,7 @@
 	b           = branch
 	pick        = cherry-pick
 	up          = "!echo Use pull >&2 ; exit 1"
+	ff          = pull --ff-only
 	l1          = log --pretty=oneline
 	ls          = log --decorate --graph --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]"
 	ll          = log --decorate --numstat --date=short --pretty=format:"%C(yellow)%ad\\ %h%Cred%d\\ %Creset%s%Cblue\\ [%cn]"
