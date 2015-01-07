@@ -179,3 +179,6 @@
 [submodule "vim/bundle/syntax-jade"]
 	path = vim/bundle/syntax-jade
 	url = https://github.com/digitaltoad/vim-jade
+[submodule "vim/bundle/narrow-region"]
+	path = vim/bundle/narrow-region
+	url = https://github.com/chrisbra/NrrwRgn
