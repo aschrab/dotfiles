@@ -125,8 +125,6 @@ set guicursor=n-v-c:block-Cursor-blinkon0,ve:ver35-Cursor-blinkon0,o:hor50-Curso
 
 noremap <C-E> <End>
 map <c-J> gqip
-map <C-N> <C-W>j<C-W>_
-map <C-P> <C-W>k<C-W>_
 inoremap <C-]> <C-X><C-]>
 inoremap <C-F> <C-X><C-F>
 inoremap <C-L> <C-X><C-L>
