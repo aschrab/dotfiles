@@ -182,3 +182,6 @@
 [submodule "vim/bundle/narrow-region"]
 	path = vim/bundle/narrow-region
 	url = https://github.com/chrisbra/NrrwRgn
+[submodule "mxw-jsx"]
+	path = vim/bundle/jsx
+	url = https://github.com/mxw/vim-jsx.git
