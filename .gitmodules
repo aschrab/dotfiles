@@ -24,7 +24,7 @@
 	url = http://git.qqx.org/ultisnips
 [submodule "vim/bundle/perl"]
 	path = vim/bundle/perl
-	url = https://github.com/aschrab/vim-perl.git
+	url = git://github.com/vim-perl/vim-perl.git
 	update = merge
 [submodule "upstreams/completions"]
 	path = upstreams/completions
