@@ -121,3 +121,7 @@
 	urltag = qqx/upstream
 [help]
 	autocorrect = 15
+
+[git-p4]
+	skipSubmitEdit = true
+	conflict = quit
