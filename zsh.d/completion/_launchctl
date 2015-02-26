@@ -1,0 +1,43 @@
+#compdef launchctl
+
+_launchctl() {
+  integer ret=1
+  if (( CURRENT > 2 )); then
+
+    shift words
+    (( CURRENT-- ))
+    if (( $+functions[__launchctl-$words[1]] )); then
+      _call_function ret __launchctl-$words[1]
+    fi
+
+  else
+    if ! (( ${+__launchctl_commands} )); then
+      typeset -ga __launchctl_commands
+      __launchctl_commands=(
+        ${${${(M)${(f)"$(launchctl help 2>&1)"}:#	*}#	}/ ##/:}
+      )
+
+    fi
+    _describe -t commands 'Launctl command' __launchctl_commands && ret=0
+  fi
+
+  return ret
+}
+
+__launchctl_jobs() {
+  local job_names
+  job_names=( ${${${(f)"$(launchctl list 2>&1)"}:#PID*}##*	} )
+  _describe -t 'jobs' 'Launchd jobs' job_names
+  return 0
+}
+
+__launchctl-stop() {
+  __launchctl_jobs
+}
+
+
+__launchctl-remove() {
+  __launchctl_jobs
+}
+
+_launchctl "$@"
