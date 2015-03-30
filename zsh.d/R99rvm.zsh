@@ -2,7 +2,8 @@
 #
 # Some of its functionality requires that it be run as a shell function
 
-if [[ -d ~/.rbenv/shims ]] && (( $+commands[rbenv] )); then
+if [[ -x ~/.rbenv/bin/rbenv ]] && [[ -d ~/.rbenv/shims ]]; then
+  path+=(~/.rbenv/bin)
   eval "$(rbenv init -)"
 elif [[ -r ~/.rvm/scripts/rvm ]]; then
   source ~/.rvm/scripts/rvm

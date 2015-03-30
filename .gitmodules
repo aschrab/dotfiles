@@ -185,3 +185,9 @@
 [submodule "mxw-jsx"]
 	path = vim/bundle/jsx
 	url = https://github.com/mxw/vim-jsx.git
+[submodule "upstreams/rbenv"]
+	path = upstreams/rbenv
+	url = https://github.com/sstephenson/rbenv.git
+[submodule "rbenv/plugins/ruby-build"]
+	path = rbenv/plugins/ruby-build
+	url = https://github.com/sstephenson/ruby-build.git
