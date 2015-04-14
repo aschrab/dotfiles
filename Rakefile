@@ -56,6 +56,6 @@ namespace :i3 do
 
   desc "Reload"
   task :reload => [ :wm, :status ] do
-    sh "i3 reload"
+    sh "i3-msg reload"
   end
 end
