@@ -12,7 +12,7 @@
 set $mod Mod4
 
 # font for window titles. ISO 10646 = Unicode
-font -*-times-*-r-normal-*-13-*-*-*-*-*-iso10646-1
+font -*-neep-medium-r-normal-*-15-*-*-*-*-*-iso10646-1
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
