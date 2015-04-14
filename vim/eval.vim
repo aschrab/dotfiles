@@ -6,9 +6,9 @@ let mapleader=' '
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
 if exists("+guifont")
-	set guifont=Inconsolata\ Medium\ 14
+	set guifont=Source\ Code\ Pro\ for\ Powerline\ 9
+	set guifont+=Inconsolata\ Medium\ 14
 	set guifont+=Sauce\ Code\ Powerline:h12
-	set guifont+=Source\ Code\ Pro\ for\ Powerline\ 9
 endif
 
 if (v:version >= 700)
