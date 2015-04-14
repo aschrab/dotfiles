@@ -191,3 +191,6 @@
 [submodule "rbenv/plugins/ruby-build"]
 	path = rbenv/plugins/ruby-build
 	url = https://github.com/sstephenson/ruby-build.git
+[submodule "vim/bundle/syntax-cjsx"]
+	path = vim/bundle/syntax-cjsx
+	url = https://github.com/mtscout6/vim-cjsx
