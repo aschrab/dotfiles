@@ -22,6 +22,7 @@ case "$1" in
 		xscreensaver &
 		nm-applet &
 		xfce4-power-manager &
+		xsetroot -gray
 		;;
 esac
 
