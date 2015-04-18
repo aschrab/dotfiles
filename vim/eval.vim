@@ -42,6 +42,12 @@ if has('multi_statusline')
 	set statuslineheight=1
 endif
 
+" Always show tab line in GUI to work around GTK UI
+" not resizing correctly when it's added
+if has('gui_running') && exists('+showtabline')
+  set showtabline=2
+endif
+
 " Jump to given window number with <Leader>{digit}
 let i = 1
 while i <= 9
