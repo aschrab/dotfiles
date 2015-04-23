@@ -15,6 +15,10 @@ if (v:version >= 700)
 	" Start up pathogen if it's available
 	" Won't be available on boxes before git submodules have been fetched
 	let g:pathogen_disabled = []
+	if &term =~ 'linux'
+		" Don't use airline on Linux console, it messes up the display horribly
+		let g:pathogen_disabled += [ 'airline' ]
+	endif
 	if ((v:version == 703 && has('patch584')) || v:version > 703) && has('python')
 	else
 		let g:pathogen_disabled += [ 'you_complete_me' ]
