@@ -203,3 +203,6 @@
 [submodule "vim/bundle/syntax-css3"]
 	path = vim/bundle/syntax-css3
 	url = https://github.com/hail2u/vim-css3-syntax
+[submodule "vim/bundle/liquid"]
+	path = vim/bundle/liquid
+	url = https://github.com/tpope/vim-liquid
