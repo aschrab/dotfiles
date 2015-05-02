@@ -1,0 +1,13 @@
+snippet %
+{% ${VISUAL}${1} %}${0}
+endsnippet
+
+snippet {
+{{ ${VISUAL}${1} }}${0}
+endsnippet
+
+snippet %if
+{% ${1:if} ${2} %}
+  ${VISUAL}$0
+{% end$1 %}
+endsnippet
