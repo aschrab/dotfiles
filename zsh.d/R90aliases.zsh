@@ -1,5 +1,6 @@
 alias g=git
 alias gi=git
+(( $+commands[hub] )) && alias git=hub
 alias stty='noglob stty'
 alias wget='noglob wget'
 
