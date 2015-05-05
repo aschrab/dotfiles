@@ -5,9 +5,6 @@ path=(
   ~/.gem/bin
   ~/.rbenv/shims
   /usr/local/bin
-  /usr/software/bin
-  /usr/software/rats/bin
-  /usr/software/utils/bin
   /usr/kerberos/bin
   /usr/bin
   /bin
@@ -19,10 +16,8 @@ path=(
 
 typeset -aU manpath
 manpath=(
+  /usr/local/share/man
   /usr/local/man
-  /usr/software/man
-  /usr/software/rats/man
-  /usr/software/utils/man
   /usr/X11/man
   /usr/share/man
 )
