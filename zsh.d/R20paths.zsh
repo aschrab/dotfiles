@@ -3,6 +3,7 @@ fpath=(
   $zshrc_dir/completion
   $fpath
   $zshrc_dir/../upstreams/completions/src/
+  /usr/local/share/zsh/site-functions/
 )
 
 local fdir="$zshrc_dir/functions"
