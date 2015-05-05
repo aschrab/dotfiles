@@ -13,16 +13,18 @@ path=(
   /sbin
   /usr/X11/bin
 )
+export PATH
 
-typeset -aU manpath
-manpath=(
-  /usr/local/share/man
-  /usr/local/man
-  /usr/X11/man
-  /usr/share/man
-)
+if [[ $OSTYPE != darwin* ]]; then
+  typeset -aU manpath
+  manpath=(
+    /usr/local/share/man
+    /usr/local/man
+    /usr/X11/man
+    /usr/share/man
+  )
+  export MANPATH
+fi
 
 typeset -TUx LD_LIBRARY_PATH ld_library_path
 ld_library_path=()
-
-export PATH MANPATH
