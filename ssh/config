@@ -4,8 +4,6 @@ ControlPath ~/.ssh/.master.%l-%r@%h:%p
 #VerifyHostKeyDNS=ask
 ServerAliveInterval=600
 
-Host milamber.qqx.org
-
 Host pug.qqx.org proxy
 #Port 443
 
@@ -13,11 +11,6 @@ Host proxy
 HostName pug.qqx.org
 HostKeyAlias pug.qqx.org
 DynamicForward 9876
-
-Host aevo.qqx.org
-User root
-Port 22
-ForwardX11 no
 
 Host gay-deceiver.qqx.org
 
@@ -42,14 +35,5 @@ ForwardAgent yes
 Host lish
 User qqx
 HostName lish-atlanta.linode.com
-
-Host *.netapp.com
-User aschrab
-ForwardAgent yes
-ForwardX11 yes
-ForwardX11Timeout 3w
-
-Host p4git
-BatchMode yes
 
 # vim: ft=sshconfig
