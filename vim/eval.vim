@@ -48,7 +48,7 @@ endif
 
 " Always show tab line in GUI to work around GTK UI
 " not resizing correctly when it's added
-if has('gui_running') && exists('+showtabline')
+if has('gui_running') && exists('+showtabline') && !has('gui_macvim')
   set showtabline=2
 endif
 
