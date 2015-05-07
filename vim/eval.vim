@@ -38,6 +38,16 @@ if (v:version >= 700)
 	endif
 endif
 
+" Screen/tmux can also handle xterm mousiness, but Vim doesn't detect it by default.
+if &term == "screen"
+  set ttymouse=xterm2
+endif
+
+if v:version >= 704 && &term =~ "^screen"
+  " Odds are good that this is a modern tmux, so let's pick the best mouse-handling mode.
+  set ttymouse=sgr
+endif
+
 runtime macros/matchit.vim
 
 filetype plugin indent on
