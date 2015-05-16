@@ -19,7 +19,7 @@ fi
 
 case "$1" in
 	i3)
-		xscreensaver &
+		xautolock -time 5 -locker i3lock &
 		nm-applet &
 		xfce4-power-manager &
 		xsetroot -gray

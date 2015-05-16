@@ -21,7 +21,7 @@ floating_modifier $mod
 bindsym $mod+Return exec i3-sensible-terminal
 
 # lock screen
-bindsym $mod+Shift+Z exec xscreensaver-command -lock
+bindsym $mod+Shift+Z exec xautolock -locknow
 
 # kill focused window
 bindsym $mod+Shift+Q kill
