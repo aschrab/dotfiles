@@ -226,3 +226,5 @@ let g:vorax_output_window_default_funnel = 2
 if exists("g:loaded_unicodePlugin")
 	nnoremap ga :<C-U>UnicodeName<CR>
 endif
+
+let g:sudoAuth = ' sudo '
