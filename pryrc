@@ -1,5 +1,25 @@
 Pry.config.editor = 'vim'
-Pry.config.prompt = Pry::NAV_PROMPT
+Pry.config.color = true
+
+def term_color(name, text) #{{{
+  Pry.color ? Pry::Helpers::Text.send(name, text) : text
+end #}}}
+def prompt_color(name, text) #{{{
+  if Pry.color
+    "\001#{term_color(name, '{text}')}\002".sub( '{text}', "\002#{text}\001" )
+  else
+    text
+  end
+end #}}}
+
+Pry.config.prompt = [
+  proc do |object, nest_level, pry|
+    prompt  = prompt_color :magenta, Pry.view_clip(object)
+    prompt += ":#{nest_level}" if nest_level > 0
+    prompt += prompt_color :cyan, ' » '
+  end,
+  proc { |object,nest_level,pry| prompt_color :cyan, '» ' }
+]
 
 # use awesome print for output if available
 begin
