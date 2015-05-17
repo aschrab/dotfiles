@@ -5,6 +5,7 @@ ControlPath ~/.ssh/.master.%l-%r@%h:%p
 ServerAliveInterval=600
 
 Host pug.qqx.org proxy
+#ControlMaster auto
 #Port 443
 
 Host proxy
