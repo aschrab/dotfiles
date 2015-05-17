@@ -13,6 +13,9 @@ bindmodes emacs,viins copy-prev-word '\M-;' '\e;'
 
 bindmodes emacs,viins,vicmd run-help '\M-h' '\eh'
 
+# Delete key
+bindmodes emacs,viins,vicmd delete-char '\e[3~'
+
 # space (with or without meta) is magic-space
 bindmodes emacs,viins,vicmd magic-space '\x20' '\M-\x20' '\e\x20'
 
