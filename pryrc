@@ -1,6 +1,12 @@
 Pry.config.editor = 'vim'
 Pry.config.prompt = Pry::NAV_PROMPT
 
+# use awesome print for output if available
+begin
+  require 'awesome_print'
+  AwesomePrint.pry!
+end
+
 # Methods to generate "toy" Hash or Array objects{{{
   # Copied from https://gist.github.com/807492
   class Array

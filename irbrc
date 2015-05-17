@@ -18,6 +18,13 @@ IRB.conf[:AUTO_INDENT] = true
 # To use to_s instead of inspect for returned values
 # IRB.conf[:INSPECT_MODE] = false
 
+# use awesome print for output if available
+begin
+  require 'awesome_print'
+  AwesomePrint.irb!
+end
+
+
 # Change the prompt {{{
 def term_color(color, rl_ignore=false) #{{{
   color = color.intern if color.is_a? String
