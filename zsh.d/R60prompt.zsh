@@ -49,6 +49,11 @@ zset_title() {
 }
 precmd_functions+='zset_title'
 
+cnorm() {
+  tput cnorm
+}
+precmd_functions+='cnorm'
+
 rev="$(tput rev)"
 rum="$(tput rum)"
 RPS1=''
