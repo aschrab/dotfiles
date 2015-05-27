@@ -1,6 +1,12 @@
-alias g=git
-alias gi=git
-(( $+commands[hub] )) && alias git=hub
+() {
+  local git=git
+  if (( $+commands[hub] )); then
+    git=hub
+    alias git=hub
+  fi
+  alias g=$git
+  alias gi=$git
+}
 alias stty='noglob stty'
 alias wget='noglob wget'
 
