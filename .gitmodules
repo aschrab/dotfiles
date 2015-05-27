@@ -58,7 +58,7 @@
 	url = https://github.com/pangloss/vim-javascript.git
 [submodule "vim/bundle/ruby"]
 	path = vim/bundle/ruby
-	url = https://github.com/aschrab/vim-ruby.git
+	url = https://github.com/vim-ruby/vim-ruby.git
 [submodule "vim/bundle/syntastic"]
 	path = vim/bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
