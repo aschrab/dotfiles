@@ -18,6 +18,7 @@ set dsn_notify=failure         # notify on transmission failure
 set dsn_return=full            #   include full message
 set reverse_name               # use address mail was sent to when replying
 set forw_format='Fwd: %s (from %a)'
+set simple_search="~f %s | ~t %s | ~s %s"
 
 # Editing related settings
 set recall=no       # don't ask about recalling when mailing
