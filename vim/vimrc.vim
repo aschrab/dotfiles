@@ -73,7 +73,7 @@ if exists("+completeopt")
 set completeopt=longest,menuone,preview
 endif
 set tags=tags,TAGS,./tags;,./TAGS;
-set diffopt+=iwhite
+"set diffopt+=iwhite
 set diffopt+=vertical
 
 set history=1000
