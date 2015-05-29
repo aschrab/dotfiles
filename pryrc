@@ -24,7 +24,34 @@ Pry.config.prompt = [
 # use awesome print for output if available
 begin
   require 'awesome_print'
+rescue LoadError
   AwesomePrint.pry!
+end
+
+# Setup hirb if it's available
+begin
+  require 'hirb'
+rescue LoadError
+  # Missing goodies, bummer
+end
+if defined? Hirb
+  # Dirty hack to support in-session Hirb.disable/enable
+  Hirb::View.instance_eval do
+    def enable_output_method
+      @output_method = true
+      @default_print ||= Pry.config.print
+      Pry.config.print = proc do |output, value, pry|
+        Hirb::View.view_or_page_output(value) || @default_print.call(output, value, pry)
+      end
+    end
+
+    def disable_output_method
+      Pry.config.print = @default_print
+      @output_method = nil
+    end
+  end
+
+  Hirb.enable
 end
 
 if defined?(PryByebug)
