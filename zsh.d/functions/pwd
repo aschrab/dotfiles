@@ -1,10 +1,9 @@
 #autoload
 local real="`builtin pwd -r`"
-if [[ ! -t 1 ]]; then
+if [[ ! -t 1 ]] || [[ $real == $PWD ]]; then
   # Only output real path when used in backticks.
+  # Don't duplicate path if they're the same.
   echo $real
-elif [[ $real == $PWD ]]; then
-  echo $PWD
 else
   echo "$PWD ($real)"
 fi
