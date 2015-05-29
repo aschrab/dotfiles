@@ -16,7 +16,7 @@ DynamicForward 9876
 Host gay-deceiver.qqx.org
 
 Host zim.qqx.org
-#ProxyCommand ssh gay-deceiver.qqx.org nc %h %p
+#ProxyCommand ssh home.qqx.org nc zim.dyn.qqx.org %p
 
 Host kahlan*
 ForwardX11 no
