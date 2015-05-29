@@ -73,6 +73,7 @@
 	tree        = "!f() { git ls ^$(git show-branch --merge-base $@)^ $@; }; f"
 	last        = log --stat -p -1 HEAD
 	unstage     = reset HEAD --
+	pr          = pull-request
 	srebase     = svn rebase
 	sr          = svn rebase
 	dcommit     = svn dcommit
