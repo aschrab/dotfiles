@@ -1,2 +1,4 @@
 setlocal foldlevel=9
-setlocal nospell
+if !&modifiable
+	setlocal nospell
+endif
