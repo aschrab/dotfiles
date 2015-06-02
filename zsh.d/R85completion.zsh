@@ -2,7 +2,7 @@ is-at-least 4.0 || return
 
 zstyle ':completion:*' rehash yes
 zstyle ':completion:*' auto-description 'specify: %d'
-zstyle ':completion:*' completer _oldlist _expand _complete _ignored _match _correct _approximate _prefix
+zstyle ':completion:*' completer _show_ambiguity _oldlist _expand _complete _ignored _match _correct _approximate _prefix
 zstyle ':completion:*' completions 'NUMERIC==3'
 zstyle ':completion:*' format "$fg[blue]%SCompleting %d%s${fColor}"
 zstyle ':completion:*' glob 'NUMERIC==1'
@@ -17,8 +17,6 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=** r:|=**
 
 zstyle ':completion:*:manuals' separate-sections true
 zstyle ':completion:*:manuals.(^1*)' insert-sections true
-
-zstyle ':completion:*' completer _show_ambiguity _complete
 
 # Allow one error for every 3 characters typed.
 zstyle -e ':completion:*:approximate:*' max-errors 'reply=( $(( ($#PREFIX+$#SUFFIX)/3 )) numeric )'
