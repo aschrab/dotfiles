@@ -2,7 +2,7 @@ snippet %
 {% ${VISUAL}${1} %}${0}
 endsnippet
 
-snippet {
+snippet %b
 {{ ${VISUAL}${1} }}${0}
 endsnippet
 
@@ -10,4 +10,10 @@ snippet %if
 {% ${1:if} ${2} %}
   ${VISUAL}$0
 {% end$1 %}
+endsnippet
+
+snippet %for "For loop" !b
+{% for ${2:${1/.*?([a-z]+?)s?$/$1/i}} in ${1:list} %}
+	${0}
+{% endfor %}
 endsnippet
