@@ -101,9 +101,6 @@
 [submodule "vim/bundle/abolish"]
 	path = vim/bundle/abolish
 	url = https://github.com/tpope/vim-abolish.git
-[submodule "vim/bundle/signify"]
-	path = vim/bundle/signify
-	url = https://github.com/mhinz/vim-signify.git
 [submodule "vim/bundle/puppet"]
 	path = vim/bundle/puppet
 	url = https://github.com/rodjek/vim-puppet.git
@@ -206,3 +203,6 @@
 [submodule "vim/bundle/pipe"]
 	path = vim/bundle/pipe
 	url = git@github.com:krisajenkins/vim-pipe.git
+[submodule "vim/bundle/git-gutter"]
+	path = vim/bundle/git-gutter
+	url = git://github.com/airblade/vim-gitgutter.git
