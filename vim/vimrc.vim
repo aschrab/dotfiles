@@ -145,6 +145,10 @@ nmap <silent> <Leader>f :CommandT<CR>
 nnoremap <silent> <Leader>a :call SyntaxAttr#SyntaxAttr()<CR>
 map <Leader>z <Plug>SimpleFold_Foldsearch
 
+" Delete and change to blackhole register
+nnoremap <Leader>d "_d
+nnoremap <Leader>c "_c
+
 nnoremap <F5> :GundoToggle<CR>
 nnoremap <silent> <F12> :set cursorcolumn!<CR>
 
