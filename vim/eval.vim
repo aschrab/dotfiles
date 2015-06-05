@@ -126,7 +126,7 @@ let g:NumberToggleTrigger='<leader>n'
 let g:numbertoggle_defaultmodeoff = 'number'
 
 " Show changes between buffer and the file on disk
-command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
+command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
 
 "let g:syntastic_check_on_open=1
 let g:syntastic_check_on_wq = 0
