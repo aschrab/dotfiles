@@ -60,6 +60,7 @@
 	d           = diff
 	dif         = diff
 	ds          = diff --staged
+	id          = log -1 --format=%h
 	sh          = show
 	sho         = show
 	st          = status
