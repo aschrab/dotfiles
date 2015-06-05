@@ -1,8 +1,8 @@
-# Have ^Z on an empty line run `bg`
-# So that can put a program into background with ^Z^Z
+# Have ^Z on an empty line run `fg`
+# So that it can be used to toggle between shell and backgroundable-programs
 fancy-ctrl-z () {
   if [[ $#BUFFER -eq 0 ]]; then
-    bg
+    fg
     zle redisplay
   else
     zle push-input
