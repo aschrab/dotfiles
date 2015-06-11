@@ -73,6 +73,7 @@
 	ll          = log --decorate --numstat --date=short --pretty=format:"%C(yellow)%ad\\ %h%Cred%d\\ %Creset%s%Cblue\\ [%cn]"
 	tree        = "!f() { git ls ^$(git show-branch --merge-base $@)^ $@; }; f"
 	last        = log --stat -p -1 HEAD
+	stashed     = stash list --pretty='%gd: %Cred%h%Creset %Cgreen[%ar]%Creset %s'
 	unstage     = reset HEAD --
 	pr          = pull-request
 	review      = "!f() { for rev in $(git log --reverse --format=%H $@); do git show $rev; done; }; f"
