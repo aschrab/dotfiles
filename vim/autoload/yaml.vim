@@ -1,35 +1,22 @@
 function! yaml#Fold(line) "{{{1
   let line = getline(a:line)
 
-  " Keep same level for empty lines {{{2
+  " Keep same level for empty lines
   if line =~ '\v^\s*$'
     return '='
-  endif "}}}2
+  endif
 
   let lnum = a:line
-  let last = line('$')
   let level = yaml#lineLevel(lnum,line)
 
-  " Look for next non-empty line
-  while(lnum < last)
-    let lnum = lnum + 1
-    let next = getline(lnum)
-
-    if next =~ '\v^\s*$'
-      continue " Ignore empty lines
-    else
-      let nextLevel = yaml#lineLevel(lnum, next)
-      if nextLevel > level
-        " Start a new fold if next line is indented farther
-        return '>' . nextLevel
-      endif
-    endif
-  endwhile
-
-  " No non-empty lines following, or following line has same indent
-  " So use the level for this line
-  return level
-
+  " If line ends with a colon, start a new fold for higher level
+  if line =~ '\v:\s*$'
+    let level = level + 1
+    return '>' . level
+  else
+    " Otherwise just base the level on indent of this line
+    return level
+  endif
 endfunction
 
 function! yaml#lineLevel(lnum,line) "{{{1
