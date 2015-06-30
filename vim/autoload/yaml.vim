@@ -6,8 +6,8 @@ function! yaml#Fold(line) "{{{1
     return '='
   endif
 
-  let lnum = a:line
-  let level = yaml#lineLevel(lnum,line)
+  " Determine fold level for line based on indent
+  let level = strlen(matchstr(line, '\v^\s*')) / &sw
 
   " If line ends with a colon, start a new fold for higher level
   if line =~ '\v:\s*$'
@@ -17,13 +17,6 @@ function! yaml#Fold(line) "{{{1
     " Otherwise just base the level on indent of this line
     return level
   endif
-endfunction
-
-function! yaml#lineLevel(lnum,line) "{{{1
-	let clmn = match( a:line, '\v\s*\zs' )
-	let clmn = virtcol([a:lnum, clmn])
-	let level = clmn / &sw
-	return level
 endfunction
 
 " vim: foldmethod=marker
