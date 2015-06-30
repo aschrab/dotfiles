@@ -54,7 +54,7 @@ hi! link FoldColumn Folded
 hi Directory    gui=NONE guifg=#0000ff guibg=NONE
 hi LineNr       gui=NONE guifg=#8080a0 guibg=NONE
 hi NonText      gui=BOLD guifg=#4000ff guibg=#EFEFF7
-"hi SpecialKey   gui=NONE guifg=#A35B00 guibg=NONE
+hi SpecialKey   gui=NONE guifg=#EFDFDF guibg=NONE
 hi Title        gui=BOLD guifg=#1014AD guibg=NONE
 hi Visual term=reverse ctermfg=yellow ctermbg=black gui=NONE guifg=Black guibg=#BDDFFF
 hi VisualNOS term=reverse ctermfg=yellow ctermbg=black gui=UNDERLINE guifg=Black guibg=#BDDFFF

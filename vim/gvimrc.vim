@@ -1,4 +1,10 @@
 if has("gui_macvim")
+  colorscheme nuvola
+
+  AirlineTheme lucius
+  if has(":AirlineTheme")
+  endif
+
   macm File.New\ Window					key=<Nop>
   macm File.New\ Tab					key=<Nop>
   macm File.Open\.\.\.					key=<Nop>
