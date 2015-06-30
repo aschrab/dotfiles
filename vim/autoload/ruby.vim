@@ -113,7 +113,7 @@ function! ruby#SyntaxFoldText ()
 
 	while lnum <= v:foldend
 		let line = getline(lnum)
-		if line !~ '^\s*#\s*$'
+		if line =~ '[a-zA-Z]'
 			break
 		endif
 		let lnum+=1
