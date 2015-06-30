@@ -141,6 +141,9 @@ inoremap <S-Space> <Space>
 nnoremap gf :sfind <cfile><CR>
 vnoremap gf :<C-U>sfind <C-R>=escape#filename(visual#get())<CR><CR>
 
+" Open new tab with new window for current buffer
+nnoremap <silent> <C-W>t :<C-U>tab split<CR>
+
 nmap <silent> <Leader>f :CommandT<CR>
 nnoremap <silent> <Leader>a :call SyntaxAttr#SyntaxAttr()<CR>
 map <Leader>z <Plug>SimpleFold_Foldsearch
