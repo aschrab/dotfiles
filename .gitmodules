@@ -209,3 +209,6 @@
 [submodule "vim/bundle/diff-enhanced"]
 	path = vim/bundle/diff-enhanced
 	url = git@github.com:chrisbra/vim-diff-enhanced.git
+[submodule "vim/bundle/direnv"]
+	path = vim/bundle/direnv
+	url = git@github.com:direnv/direnv.vim.git
