@@ -20,6 +20,7 @@ line.
 use strict;
 use warnings;
 
+my $use_exit = 0;
 my $home = $ENV{HOME};
 
 # Get location of files from script location
@@ -37,9 +38,16 @@ my $source = $src;
 # Convert to being relative to home
 $src =~ s{^$home/?}{};
 
+my $added = 0;
+my $conflicts = 0;
 foreach my $f (@ARGV) {
 	chomp $f;
 	next if $f =~ /dot_setup/; # Never link this script
+
+	if ($f eq '-e') {
+		$use_exit = 1;
+		next;
+	}
 
 	# IF "USUAL" is used as name to link, actually each line in that file as a name to link
 	if( $f =~ /USUAL/ ) {
@@ -76,8 +84,16 @@ foreach my $f (@ARGV) {
 		$status = '+' unless -e $dest;
 	}
 
+	$added++ if $status eq '+';
+	$conflicts++ if $status eq '!';
+
 	print "$status $f\n";
 	next unless $status eq '+';
 
 	symlink $target => $dest or die "Couldn't create link $dest: $!";
+}
+
+if ($use_exit) {
+	exit 2 if $conflicts;
+	exit 1 if $added;
 }
