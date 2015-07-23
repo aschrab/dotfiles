@@ -1,6 +1,6 @@
 [submodule "upstreams/zsh"]
 	path = upstreams/zsh
-	url = http://git.qqx.org/zsh
+	url = git://zsh.git.sf.net/gitroot/zsh/zsh
 [submodule "vim/bundle/syntax-coffeescript"]
 	path = vim/bundle/syntax-coffeescript
 	url = https://github.com/kchmck/vim-coffee-script.git
