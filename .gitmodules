@@ -212,3 +212,6 @@
 [submodule "vim/bundle/direnv"]
 	path = vim/bundle/direnv
 	url = git@github.com:direnv/direnv.vim.git
+[submodule "vim/bundle/easy-align"]
+	path = vim/bundle/easy-align
+	url = git@github.com:junegunn/vim-easy-align.git
