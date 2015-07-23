@@ -103,6 +103,7 @@
 
 [status]
 	submodulesummary = true
+	showUntrackedFiles = all
 
 [github]
 	user = aschrab
