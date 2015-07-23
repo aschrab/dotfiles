@@ -215,3 +215,6 @@
 [submodule "vim/bundle/easy-align"]
 	path = vim/bundle/easy-align
 	url = git@github.com:junegunn/vim-easy-align.git
+[submodule "vim/bundle/bufexplorer"]
+	path = vim/bundle/bufexplorer
+	url = https://github.com/jlanzarotta/bufexplorer.git
