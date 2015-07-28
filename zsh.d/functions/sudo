@@ -1,0 +1,7 @@
+#autoload sudo
+
+if [[ $# -eq 0 ]]; then
+  command sudo HOME="$HOME" "$SHELL" -l
+else
+  command sudo "$@"
+fi

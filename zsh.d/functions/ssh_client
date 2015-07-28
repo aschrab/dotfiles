@@ -1,0 +1,1 @@
+echo ${SSH_CONNECTION%% *}
