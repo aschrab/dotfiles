@@ -218,3 +218,6 @@
 [submodule "vim/bundle/bufexplorer"]
 	path = vim/bundle/bufexplorer
 	url = https://github.com/jlanzarotta/bufexplorer.git
+[submodule "vim/bundle/ctrl-space"]
+	path = vim/bundle/ctrl-space
+	url = https://github.com/szw/vim-ctrlspace.git
