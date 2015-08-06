@@ -1,4 +1,4 @@
-for HELPDIR in ${${module_path[1]%/*}/\/lib\//\/share\/}/help /usr/share/zsh/$ZSH_VERSION/help
+for HELPDIR in ${${module_path[1]%/*}/\/lib\//\/share\/}/help /usr{,/local}/share/zsh{/$ZSH_VERSION,}/help
 do
 	[[ -d $HELPDIR ]] || continue
 	unalias run-help 2> /dev/null || :
