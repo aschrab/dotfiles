@@ -8,7 +8,7 @@ SET client_min_messages = notice;
 SET timezone TO 'America/New_York';
 
 \set SHELLHOST `echo $host`
-\set PROMPT1 '%[%033[0;35m%]%x%/ @%m @%:SHELLHOST:%R%#%[%033[0;22m%] ' 
+\set PROMPT1 '%[%033[0;35m%]%x%n@%m @%:SHELLHOST::%/%R%#%[%033[0;22m%] '
 \set PROMPT2 '%[%033[0;35m%]%x%/%R#%[%033[0;22m%] ' 
 
 \pset linestyle unicode

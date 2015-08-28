@@ -139,6 +139,7 @@ let g:syntastic_warning_symbol='⚠'
 let g:syntastic_auto_loc_list=1
 let g:syntastic_loc_list_height=5
 if v:version >= 700
+	let g:syntastic_javascript_checkers = ['eslint']
 	let g:syntastic_html_tidy_ignore_errors = [
 	  \ "proprietary attribute \"autocomplete\""
 	  \ ]
@@ -232,3 +233,8 @@ if exists("g:loaded_unicodePlugin")
 endif
 
 let g:sudoAuth = ' sudo '
+
+" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+vmap <Enter> <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)

@@ -1,6 +1,6 @@
 [submodule "upstreams/zsh"]
 	path = upstreams/zsh
-	url = http://git.qqx.org/zsh
+	url = git://git.code.sf.net/p/zsh/code
 [submodule "vim/bundle/syntax-coffeescript"]
 	path = vim/bundle/syntax-coffeescript
 	url = https://github.com/kchmck/vim-coffee-script.git
@@ -212,3 +212,12 @@
 [submodule "vim/bundle/direnv"]
 	path = vim/bundle/direnv
 	url = git@github.com:direnv/direnv.vim.git
+[submodule "vim/bundle/easy-align"]
+	path = vim/bundle/easy-align
+	url = git@github.com:junegunn/vim-easy-align.git
+[submodule "vim/bundle/bufexplorer"]
+	path = vim/bundle/bufexplorer
+	url = https://github.com/jlanzarotta/bufexplorer.git
+[submodule "vim/bundle/ctrl-space"]
+	path = vim/bundle/ctrl-space
+	url = https://github.com/szw/vim-ctrlspace.git

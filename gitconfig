@@ -68,7 +68,7 @@
 	pick        = cherry-pick
 	up          = "!echo Use pull >&2 ; exit 1"
 	ff          = pull --ff-only
-	l1          = log --pretty=oneline
+	l1          = log --pretty=format:"'%C(yellow)%h %C(green)%aN %C(blue)%ar %C(reset)%s'"
 	ls          = log --decorate --graph --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]"
 	ll          = log --decorate --numstat --date=short --pretty=format:"%C(yellow)%ad\\ %h%Cred%d\\ %Creset%s%Cblue\\ [%cn]"
 	tree        = "!f() { git ls ^$(git show-branch --merge-base $@)^ $@; }; f"
@@ -103,6 +103,7 @@
 
 [status]
 	submodulesummary = true
+	showUntrackedFiles = all
 
 [github]
 	user = aschrab

@@ -4,6 +4,7 @@ path=(
   ~/bin
   ~/.gem/bin
   ~/.rbenv/shims
+  ~/.ndenv/shims
   /usr/local/bin
   /usr/kerberos/bin
   /usr/bin
