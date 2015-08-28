@@ -63,7 +63,7 @@
 	id          = log -1 --format=%h
 	sh          = show
 	sho         = show
-	st          = status
+	st          = status -sb
 	b           = branch
 	pick        = cherry-pick
 	up          = "!echo Use pull >&2 ; exit 1"
