@@ -206,6 +206,8 @@ map ,x :w<C-M>:r!chmod +x %<C-M>:w!<C-M>
 
 :if has("digraphs")
 "dig 00 176 " ∞
+dig dg 176 " °
+dig oo 176 " °
 dig !! 161 " ¡
 dig ?? 191 " ¿
 dig SS 167 " §
