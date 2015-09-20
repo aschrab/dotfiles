@@ -221,3 +221,6 @@
 [submodule "vim/bundle/ctrl-space"]
 	path = vim/bundle/ctrl-space
 	url = https://github.com/szw/vim-ctrlspace.git
+[submodule "vim/bundle/git"]
+	path = vim/bundle/git
+	url = https://github.com/tpope/vim-git.git
