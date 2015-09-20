@@ -17,6 +17,9 @@ font -*-neep-medium-r-normal-*-15-*-*-*-*-*-iso10646-1
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+# If app requests focus, set urgency hint instead
+focus_on_window_activation urgent
+
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
