@@ -37,7 +37,8 @@ Host lish
 User qqx
 HostName lish-atlanta.linode.com
 
-Host *.raritan.com 192.168.42.* aarons-nerve
+Host *.raritan.com 192.168.42.* aarons-nerve aarons aarons.lan
+User aarons
 ForwardAgent yes
 
 Host nerve-proxy
