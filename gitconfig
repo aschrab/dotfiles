@@ -32,6 +32,7 @@
 	safecrlf     = true
 	excludesfile = ~/.gitignore
 	preloadindex = yes
+	commentChar  = !
 
 [diff]
 	renames        = true
