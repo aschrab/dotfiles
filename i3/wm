@@ -64,6 +64,10 @@ bindsym $mod+Shift+Right move right
 bindsym $mod+Control+Left move workspace to output left
 bindsym $mod+Control+Right move workspace to output right
 
+bindsym $mod+Control+1 move workspace to output DisplayPort-1
+bindsym $mod+Control+2 move workspace to output HDMI-0
+bindsym $mod+Control+3 move workspace to output DisplayPort-2
+
 # split in horizontal orientation
 bindsym $mod+h split h
 
