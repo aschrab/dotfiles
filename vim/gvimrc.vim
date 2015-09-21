@@ -45,6 +45,7 @@ if has("gui_macvim")
   " Add No-op bindings for Cmd+<letter>, otherwise they act as if Cmd wasn't used
   for c in split('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789','\zs')
     exe 'map <D-' . c . '> <Nop>'
+    exe 'cmap <D-' . c . '> <Nop>'
   endfor
 endif
 
