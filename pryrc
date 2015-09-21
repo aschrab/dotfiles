@@ -24,8 +24,8 @@ Pry.config.prompt = [
 # use awesome print for output if available
 begin
   require 'awesome_print'
-rescue LoadError
   AwesomePrint.pry!
+rescue LoadError
 end
 
 # Setup hirb if it's available
