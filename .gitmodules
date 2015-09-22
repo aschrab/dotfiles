@@ -202,19 +202,19 @@
 	url = gh:sstephenson/rbenv-default-gems.git
 [submodule "vim/bundle/pipe"]
 	path = vim/bundle/pipe
-	url = git@github.com:krisajenkins/vim-pipe.git
+	url = https://github.com/krisajenkins/vim-pipe.git
 [submodule "vim/bundle/git-gutter"]
 	path = vim/bundle/git-gutter
 	url = git://github.com/airblade/vim-gitgutter.git
 [submodule "vim/bundle/diff-enhanced"]
 	path = vim/bundle/diff-enhanced
-	url = git@github.com:chrisbra/vim-diff-enhanced.git
+	url = git://github.com/chrisbra/vim-diff-enhanced.git
 [submodule "vim/bundle/direnv"]
 	path = vim/bundle/direnv
-	url = git@github.com:direnv/direnv.vim.git
+	url = https://github.com/direnv/direnv.vim.git
 [submodule "vim/bundle/easy-align"]
 	path = vim/bundle/easy-align
-	url = git@github.com:junegunn/vim-easy-align.git
+	url = https://github.com/junegunn/vim-easy-align.git
 [submodule "vim/bundle/bufexplorer"]
 	path = vim/bundle/bufexplorer
 	url = https://github.com/jlanzarotta/bufexplorer.git
