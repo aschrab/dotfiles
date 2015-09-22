@@ -11,4 +11,5 @@ augroup filetypedetect
 	autocmd! BufNewFile *.svn-base execute 'doautocmd filetypedetect BufNewFile ' . expand('%:r')
 
 	au BufNewFile,BufRead *.as setf javascript
+	au BufNewFile,BufRead .eslintrc setf javascript
 augroup END
