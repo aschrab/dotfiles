@@ -1,5 +1,7 @@
 #!/bin/sh
 
+dotfiles=$(dirname $(readlink -f ${BASH_SOURCE-$HOME/.xsessionrc}))
+
 export GTK_IM_MODULE=xim
 export PYTHONPATH="$HOME/.python"
 
@@ -19,7 +21,12 @@ fi
 
 case "$1" in
 	i3)
-		xautolock -time 5 -locker i3lock &
+		if type xss-lock > /dev/null; then
+			xset s 60
+			xss-lock -n $dotfiles/xss-lock/dim-screen -l $dotfiles/xss-lock/transfer-sleep-lock-i3lock &
+		else
+			xautolock -time 5 -locker i3lock &
+		fi
 		nm-applet &
 		xfce4-power-manager &
 		xsetroot -gray
