@@ -1,3 +1,5 @@
+require 'gdbm'
+
 #self.spoolfile =
 self.spooldir = "/srv/mail/ats"
 self.maildir = "Mail"
@@ -10,6 +12,19 @@ end
 
 def list name, subject: nil, dupcheck: false
   #$stderr.puts "List #{name}"
+
+  begin
+    dbfile = "#{ENV['HOME']}/.dupcache"
+    GDBM.open(dbfile, 0600, GDBM::WRCREAT|GDBM::SYNC) do |dbm|
+      key = "#{name}:#{headers.message_id}"
+      if dbm[key]
+        deposit mbox :dups
+      else
+        dbm[key] = Time.now.to_i.to_s
+      end
+    end
+  rescue
+  end if dupcheck
 
   begin
     original = modified = headers.subject
