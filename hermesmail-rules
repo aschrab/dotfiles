@@ -1,0 +1,100 @@
+#self.spoolfile =
+self.spooldir = "/srv/mail/ats"
+self.maildir = "Mail"
+
+self.default_format = Maildir
+
+def mbox name
+  Maildir.new "/srv/mail/ats/.#{name}"
+end
+
+def list name, subject: nil, dupcheck: false
+  #$stderr.puts "List #{name}"
+
+  begin
+    original = modified = headers.subject
+
+    if subject
+      subject = Regexp.escape subject unless subject.is_a? Regexp
+      modified.sub!(subject, '')
+    end
+
+    reply = true if modified.sub!( /(-reply\s*)+$/i, '' )
+    reply = true if modified.sub!( /^(\s*Re(\[\d+\])?:)+/i, '' )
+
+    modified = "Re: #{modified.strip}"
+    headers.replace :Subject, modified unless modified == original
+  rescue
+  end
+
+  deposit mbox "L.#{name}"
+end
+
+def process
+  #headers.replace 'Lines', body.lines.inject(0){ |sum,x| sum+1 }.to_s
+
+  envelope_to =
+    if ENV['EXTENSION']
+      ENV['EXTENSION'].sub(/=([^=]*)/, '@\\1')
+    elsif ENV['RECIPIENT']
+      ENV['RECIPIENT']
+    end
+  headers.replace 'X-QQX-Envelope-To', envelope_to if envelope_to
+
+  deposit mbox :spam if headers.x_spam_flag =~ /YES/i
+  deposit mbox :junk if headers.from =~ /postmaster@(pug\.)?qqx\.org/i
+
+  case headers.list_id
+  when /debian-([a-z0-9_-]+)\.lists\.debian\.org/
+    list "debian.#$1".downcase
+  when /raleigh-rb-members/
+    list 'ruby.raleigh', subject: /\[triangle\.rb\]\s*/i
+  when /raleigh-(talk|pm)\.pm\.org/i
+    list 'ug.raleigh-pm', subject: /\[Raleigh-pm\]\s*/i
+  when /trilug\.trilug\.org/i
+    list 'ug.trilug', subject: /\[TriLUG\]\s*/i
+  when /trilug-ontopic\.trilug\.org/i
+    list 'ug.trilug', subject: /\[TriLUG-ontopic\]\s*/i
+  when /dbix-class\.lists\.scsys\.co\.uk/i
+    list 'perl.dbix', subject: /\[Dbix-class\]/i
+  when /zsh-(workers|users)\.zsh\.org/i
+    list 'dev.zsh'
+  when /git\.vger\.kernel\.org/i
+    list 'dev.git', dupcheck: true
+  when /tmux-users\.lists\.sourceforge\.net/i
+    list 'dev.tmux'
+  when /meld-list\.gnome\.org/i
+    list 'dev.meld'
+  when /i3-discuss\.i3\.zekjur\.net/
+    list 'dev.i3', subject: /\[i3\]/i
+  when /sqlfairy-developers\.lists\.sourceforge\.net/i
+    list 'dev.sql-translator', subject: /\[sqlfairy-developers\]/i
+  when /mailscanner.lists.mailscanner.info/i
+    list 'mail.scanner'
+  end
+
+  case headers.list_post
+  when /<mailto:mutt-dev@/i
+    list 'mail.mutt-dev'
+  end
+
+  case headers.list_unsubscribe
+  when %r{<http://discourse.triangleruby.com/}
+    list 'ug.trianglerb', subject: '[Triangle.rb Forum]'
+  end
+
+  case headers.return_path
+  when /<bugtraq-return-.*@securityfocus/i
+    list 'bugtraq'
+  when /<lsm-workers-admin@lists/i
+    list 'lsm-workers'
+  end
+
+  list 'debian.pts' if headers.x_pts_package =~ /\w/
+  list 'subs.skeptic' if from.has?(/eskeptic@skeptic.com/i)
+
+  #$stderr.puts "Saving to default mailbox"
+  deposit Maildir.new "/srv/mail/ats"
+end
+
+# vim: ft=ruby
