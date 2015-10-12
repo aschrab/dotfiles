@@ -20,7 +20,7 @@ mailboxes =INBOX/sympa
 mailboxes =rss
 
 <%= mlist '=L/mail/mutt-dev', :from => 'aaron+mutt@schrab.com' %>
-<%= mlist '=L/dev/zsh', :address => 'zsh-(users|workers)@zsh.org' %>
+<%= mlist '+L/dev/zsh', :address => 'zsh-(users|workers)@zsh.org' %>
 <%= mlist '=L/dev/git', :address => 'git@vger.kernel.org', :followup_to => false %>
 <%= mlist '=L/dev/tmux', :address => 'tmux-users@lists.(sourceforge|sf).net' %>
 <%= mlist '=L/dev/meld', :address => 'meld-list@gnome.org' %>
