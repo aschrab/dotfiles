@@ -91,6 +91,8 @@ bindsym $mod+space focus mode_toggle
 # focus parent/child container
 bindsym $mod+bracketleft  focus parent
 bindsym $mod+bracketright focus child
+bindsym $mod+comma        focus parent
+bindsym $mod+period       focus child
 
 # switch to workspace
 % 1.upto 10 do |n|
