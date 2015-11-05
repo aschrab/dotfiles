@@ -199,7 +199,7 @@
 	url = https://github.com/tpope/vim-liquid
 [submodule "rbenv/plugins/rbenv-default-gems"]
 	path = rbenv/plugins/rbenv-default-gems
-	url = gh:sstephenson/rbenv-default-gems.git
+	url = https://github.com/sstephenson/rbenv-default-gems.git
 [submodule "vim/bundle/pipe"]
 	path = vim/bundle/pipe
 	url = https://github.com/krisajenkins/vim-pipe.git
