@@ -6,6 +6,9 @@ path=(
   ~/.rbenv/shims
   ~/.ndenv/shims
   /usr/local/bin
+  /usr/software/bin
+  /usr/software/rats/bin
+  /usr/software/utils/bin
   /usr/kerberos/bin
   /usr/bin
   /bin
@@ -21,6 +24,9 @@ if [[ $OSTYPE != darwin* ]]; then
   manpath=(
     /usr/local/share/man
     /usr/local/man
+    /usr/software/man
+    /usr/software/rats/man
+    /usr/software/utils/man
     /usr/X11/man
     /usr/share/man
   )
