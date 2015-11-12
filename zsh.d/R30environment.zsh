@@ -65,7 +65,11 @@ export PSQL_EDITOR="$EDITOR +'set ft=sql'"
 
 () {
   local pager_setup=$commands[lessfile]
-  [[ -n ${pager_setup:=$commands[lesspipe]} ]] && eval $( $pager_setup )
+  if [[ -n ${pager_setup:=$commands[lesspipe]} ]]; then
+    eval $( $pager_setup )
+  elif [[ -x /usr/bin/lesspipe.sh ]]; then
+    LESSOPEN='|/usr/bin/lesspipe.sh %s'
+  fi
 }
 [[ -n ${PAGER:=less} ]] && [[ $PAGER != *less* ]] && alias less=$PAGER
 export PAGER
