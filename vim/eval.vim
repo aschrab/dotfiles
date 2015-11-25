@@ -80,8 +80,13 @@ endwhile
 "auto WinLeave * let &l:statusline='%!statusline#inactive()'
 
 if v:version >= 700
-	auto BufEnter * let &titlestring = "Vim@%{hostname()} : %{clean#TTY()} : %{clean#CWD()}"
-	auto BufEnter * let &iconstring  = "Vim@%{hostname()} : %f (%{clean#TTY()})"
+  if has('gui_running')
+    auto BufEnter * let &titlestring = "GVim : %{clean#CWD()}"
+    auto BufEnter * let &iconstring  = "GVim"
+  else
+    auto BufEnter * let &titlestring = "Vim@%{$host} : %{clean#TTY()} : %{clean#CWD()}"
+    auto BufEnter * let &iconstring  = "Vim@%{$host} : %f (%{clean#TTY()})"
+  endif
 endif
 
 let perl_extended_vars = 1
