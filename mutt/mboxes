@@ -25,7 +25,7 @@ mailboxes =rss
 <%= mlist '=L/dev/tmux', :address => 'tmux-users@lists.(sourceforge|sf).net' %>
 <%= mlist '=L/dev/meld', :address => 'meld-list@gnome.org' %>
 <%= mlist '=L/dev/sql-translator', :address => 'sqlfairy-developers@lists.(sourceforge|sf).net', :subjectrx => '[sqlfairy-developers]' %>
-<%= mlist '=L/dev/i3', :address => 'i3-discuss@i3.zekjur.net', :subjectrx => '[i3]' %>
+<%= mlist '=L/dev/i3', :address => 'i3-discuss@freelists.org', :subjectrx => '[i3-discuss]' %>
 <%= mlist '+L/ruby/sequel', :account => :gmail, :address => 'sequel-talk@googlegroups.com' %>
 
 # Perl lists
