@@ -80,8 +80,8 @@ def process
     list 'dev.tmux'
   when /meld-list\.gnome\.org/i
     list 'dev.meld'
-  when /i3-discuss\.i3\.zekjur\.net/
-    list 'dev.i3', subject: /\[i3\]/i
+  when /i3-discuss\.(freelists\.org|i3\.zekjur\.net)/
+    list 'dev.i3', subject: /\[i3(-discuss)?\]/i
   when /sqlfairy-developers\.lists\.sourceforge\.net/i
     list 'dev.sql-translator', subject: /\[sqlfairy-developers\]/i
   when /mailscanner.lists.mailscanner.info/i
