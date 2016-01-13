@@ -1,5 +1,3 @@
-setlocal shiftwidth=2
-setlocal expandtab
 setlocal indentkeys-=0#
 
 setlocal foldtext=ruby#SyntaxFoldText()
