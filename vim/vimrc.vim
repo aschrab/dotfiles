@@ -55,7 +55,7 @@ set matchpairs=(:),{:},[:],<:>
 set fileformats=unix,dos,mac
 set fileencoding=utf-8
 set fileencodings=ucs-bom,utf-8,euc-jp,latin1
-set nofixeol
+silent! set nofixeol
 set pastetoggle=<F4>
 set modeline
 set modelines=5
