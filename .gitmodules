@@ -230,3 +230,6 @@
 [submodule "vim/bundle/vorax"]
 	path = vim/bundle/vorax
 	url = https://github.com/talek/vorax4
+[submodule "vim/bundle/syntax-less"]
+	path = vim/bundle/syntax-less
+	url = https://github.com/groenewege/vim-less.git
