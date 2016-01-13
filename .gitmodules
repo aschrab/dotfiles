@@ -115,7 +115,7 @@
 	url = https://github.com/aschrab/vim-multiple-cursors.git
 [submodule "vim/bundle/p4syntax"]
 	path = vim/bundle/p4syntax
-	url = https://github.com/theevocater/vim-perforce.git
+	url = https://github.com/aschrab/vim-perforce.git
 [submodule "vim/bundle/supertab"]
 	path = vim/bundle/supertab
 	url = https://github.com/ervandew/supertab.git
@@ -199,7 +199,7 @@
 	url = https://github.com/tpope/vim-liquid
 [submodule "rbenv/plugins/rbenv-default-gems"]
 	path = rbenv/plugins/rbenv-default-gems
-	url = gh:sstephenson/rbenv-default-gems.git
+	url = https://github.com/sstephenson/rbenv-default-gems.git
 [submodule "vim/bundle/pipe"]
 	path = vim/bundle/pipe
 	url = https://github.com/krisajenkins/vim-pipe.git
@@ -226,4 +226,10 @@
 	url = https://github.com/szw/vim-ctrlspace.git
 [submodule "vim/bundle/git"]
 	path = vim/bundle/git
-	url = https://github.com/tpope/vim-git.git
+	url = https://github.com/aschrab/vim-git.git
+[submodule "vim/bundle/vorax"]
+	path = vim/bundle/vorax
+	url = https://github.com/talek/vorax4
+[submodule "vim/bundle/syntax-less"]
+	path = vim/bundle/syntax-less
+	url = https://github.com/groenewege/vim-less.git

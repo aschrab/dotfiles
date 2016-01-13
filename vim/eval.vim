@@ -35,7 +35,7 @@ if (v:version >= 700)
 		let g:pathogen_disabled += [ 'diff-enhanced' ]
     endif
 
-	if has("gui_running") || hostname() !~ '\M.netapp.com$' || hostname() =~ '\M.rtp.' || hostname() =~ '\M^aschrab.'
+	if has("gui_running") || hostname() !~ '\M.netapp.com$' || hostname() =~ '\M.rtp.' || hostname() =~ '\M^aschrab'
 		runtime bundle/pathogen/autoload/pathogen.vim
 		if exists('*pathogen#infect')
 			execute pathogen#infect()
@@ -80,8 +80,13 @@ endwhile
 "auto WinLeave * let &l:statusline='%!statusline#inactive()'
 
 if v:version >= 700
-	auto BufEnter * let &titlestring = "Vim@%{hostname()} : %{clean#TTY()} : %{clean#CWD()}"
-	auto BufEnter * let &iconstring  = "Vim@%{hostname()} : %f (%{clean#TTY()})"
+  if has('gui_running')
+    auto BufEnter * let &titlestring = "GVim : %{clean#CWD()}"
+    auto BufEnter * let &iconstring  = "GVim"
+  else
+    auto BufEnter * let &titlestring = "Vim@%{$host} : %{clean#TTY()} : %{clean#CWD()}"
+    auto BufEnter * let &iconstring  = "Vim@%{$host} : %f (%{clean#TTY()})"
+  endif
 endif
 
 let perl_extended_vars = 1
@@ -142,7 +147,8 @@ let g:syntastic_loc_list_height=5
 if v:version >= 700
 	let g:syntastic_javascript_checkers = ['eslint']
 	let g:syntastic_html_tidy_ignore_errors = [
-	  \ "proprietary attribute \"autocomplete\""
+	  \ "proprietary attribute \"autocomplete\"",
+	  \ "proprietary attribute \"ng-"
 	  \ ]
 endif
 
