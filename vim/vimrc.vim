@@ -99,7 +99,7 @@ set foldminlines=2
 
 silent! set mouse=a
 :if $DISPLAY != ""
-  set clipboard=unnamed,autoselect,exclude:cons\|linux
+  set clipboard=unnamedplus,autoselectplus,exclude:cons\|linux
 :endif
 
 " Not many filenames have = in them, so make completion easier
