@@ -112,7 +112,7 @@
 	url = https://github.com/majutsushi/tagbar.git
 [submodule "vim/bundle/multiple-cursors"]
 	path = vim/bundle/multiple-cursors
-	url = https://github.com/aschrab/vim-multiple-cursors.git
+	url = https://github.com/kristijanhusak/vim-multiple-cursors.git
 [submodule "vim/bundle/p4syntax"]
 	path = vim/bundle/p4syntax
 	url = https://github.com/aschrab/vim-perforce.git
@@ -233,3 +233,6 @@
 [submodule "vim/bundle/syntax-less"]
 	path = vim/bundle/syntax-less
 	url = https://github.com/groenewege/vim-less.git
+[submodule "vim/bundle/windowswap"]
+	path = vim/bundle/windowswap
+	url = https://github.com/aschrab/vim-windowswap.git

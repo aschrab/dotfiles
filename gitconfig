@@ -42,6 +42,7 @@
 	renames        = true
 	mnemonicprefix = yes
 	algorithm      = patience
+	#algorithm      = histogram # Too new for some of the systems I use
 
 [merge]
 	conflictstyle = diff3
