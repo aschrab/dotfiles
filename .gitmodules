@@ -233,3 +233,6 @@
 [submodule "vim/bundle/syntax-less"]
 	path = vim/bundle/syntax-less
 	url = https://github.com/groenewege/vim-less.git
+[submodule "vim/bundle/windowswap"]
+	path = vim/bundle/windowswap
+	url = https://github.com/wesQ3/vim-windowswap.git
