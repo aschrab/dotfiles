@@ -21,7 +21,7 @@ application/vnd.sun.xml.math;/home/ats/.openoffice/1.1.0/soffice %s
 application/vnd.stardivision.math;/home/ats/.openoffice/1.1.0/soffice %s
 application/x-starmath;/home/ats/.openoffice/1.1.0/soffice %s
 #text/html; xfix -s -- netscape -remote 'openURL('%s')'; test=xfix -s -- /home/aarons/bin/runningnetscape
-text/html; w3m -dump -o document_charset=%{charset} -T text/html %s; copiousoutput
+text/html; w3m -dump -o display_link_number=1 -o document_charset=%{charset} -T text/html %s; copiousoutput
 text/x-internet-signup; cat -v %s; copiousoutput
 text/on; cat -v %s; copiousoutput
 text/x-patch; cat -v %s; copiousoutput
