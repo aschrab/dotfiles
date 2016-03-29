@@ -37,16 +37,9 @@ Host lish
 User qqx
 HostName lish-atlanta.linode.com
 
-Host *.raritan.com 192.168.42.* aarons-nerve aarons aarons.lan
-User aarons
+Host *.netapp.com
+ForwardX11 yes
 ForwardAgent yes
-
-Host nerve-proxy
-HostName aarons-nerve
-HostKeyAlias aarons-nerve
-ForwardAgent yes
-LocalForward localhost:5432  localhost:5432
-LocalForward localhost:61613 localhost:61613
 
 Host vagrant
   HostName 127.0.0.1
