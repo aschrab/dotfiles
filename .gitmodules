@@ -236,3 +236,6 @@
 [submodule "vim/bundle/windowswap"]
 	path = vim/bundle/windowswap
 	url = https://github.com/aschrab/vim-windowswap.git
+[submodule "vim/bundle/recover"]
+	path = vim/bundle/recover
+	url = https://github.com/chrisbra/Recover.vim.git
