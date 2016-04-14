@@ -80,6 +80,12 @@ end
   end
 #}}}
 
+class Fixnum
+  def inspect
+    to_s.split('').reverse.each_slice(3).map{ |x| x.join '' }.reverse.join(',')
+  end
+end
+
 # Add `where_is` method to show location where a method or class is defined
 # From https://gist.github.com/wtaysom/1236979
 module Where
