@@ -99,7 +99,11 @@ set foldminlines=2
 
 silent! set mouse=a
 :if $DISPLAY != ""
-  set clipboard=unnamed,autoselect,exclude:cons\|linux
+  :if has('nvim')
+    set clipboard=unnamed
+  :else
+    set clipboard=unnamed,autoselect,exclude:cons\|linux
+  :endif
 :endif
 
 " Not many filenames have = in them, so make completion easier
