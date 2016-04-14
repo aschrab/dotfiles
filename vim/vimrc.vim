@@ -15,7 +15,11 @@ set t_Co=16
 silent! colorscheme vividchalk
 
 " Miscellaneous options {{{
-set viminfo=!,s1,%,'20,f1,c,h,r/tmp,r/media,n~/.viminfo
+:if has('nvim')
+  set viminfo=!,s1,%,'20,f1,c,h,r/tmp,r/media,n~/.nviminfo
+:else
+  set viminfo=!,s1,%,'20,f1,c,h,r/tmp,r/media,n~/.viminfo
+:endif
 set hidden
 set display+=lastline
 set scrolloff=1
