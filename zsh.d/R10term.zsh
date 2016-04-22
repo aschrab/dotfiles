@@ -19,8 +19,6 @@ then
   TERM=xterm
 fi
 
-#if [[ $TERM == xterm && $COLORTERM == gnome-terminal ]]; then
-#  TERM=gnome-256color
-#fi
+[[ $TERM == xterm(|-color) ]] && TERM=xterm-256color
 
 export TERM
