@@ -9,6 +9,8 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
+% DOTFILE_DIR = (File.absolute_path(__dir__))
+
 set $mod Mod4
 
 # font for window titles. ISO 10646 = Unicode
@@ -94,6 +96,9 @@ bindsym $mod+period       focus child
 % 1.upto 10 do |n|
 bindsym $mod+<%= n % 10 %> workspace <%= n %>
 % end
+
+bindsym $mod+a exec --no-startup-id "<%= DOTFILE_DIR %>/i3/workspace-exec i3 workspace %s"
+bindsym $mod+Shift+A exec --no-startup-id "<%= DOTFILE_DIR %>/i3/workspace-exec i3 move container to workspace %s"
 
 # move focused container to workspace
 bindsym $mod+Shift+exclam move container to workspace 1
