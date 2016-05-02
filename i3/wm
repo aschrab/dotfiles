@@ -64,10 +64,6 @@ bindsym $mod+Shift+Right move right
 bindsym $mod+Control+Left move workspace to output left
 bindsym $mod+Control+Right move workspace to output right
 
-bindsym $mod+Control+1 move workspace to output DisplayPort-1
-bindsym $mod+Control+2 move workspace to output HDMI-0
-bindsym $mod+Control+3 move workspace to output DisplayPort-2
-
 # split in horizontal orientation
 bindsym $mod+h split h
 
@@ -162,7 +158,9 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 
 % require 'json'
-% displays = JSON.parse(`i3-msg -t get_outputs`).select{ |m| m['active'] }.sort_by{ |m| m['x'] } rescue [{}]
+% displays = JSON.parse(`i3-msg -t get_outputs`) rescue [{}]
+% displays.select!{ |m| m['active'] }
+% displays.sort_by!{ |m| m['rect'].values_at(*%w<x y>) }
 
 % displays.each_with_index do |m,i|
 bar {
@@ -171,6 +169,7 @@ bar {
         <% if m['name'] == displays[-1]['name'] %>status_command i3status<% end %>
         tray_output <%= displays[0]['name'] %>
 }
+bindsym $mod+Control+<%=i+1%> move workspace to output <%= m['name'] %>
 % end
 
 for_window [class="Gitk"] floating enable
