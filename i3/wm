@@ -99,6 +99,7 @@ bindsym $mod+<%= n % 10 %> workspace <%= n %>
 
 bindsym $mod+a exec --no-startup-id "<%= DOTFILE_DIR %>/i3/workspace-exec i3 workspace %s"
 bindsym $mod+Shift+A exec --no-startup-id "<%= DOTFILE_DIR %>/i3/workspace-exec i3 move container to workspace %s"
+bindsym $mod+Control+r exec --no-startup-id "<%= DOTFILE_DIR %>/i3/workspace-exec i3 rename workspace to %s"
 
 # move focused container to workspace
 bindsym $mod+Shift+exclam move container to workspace 1
