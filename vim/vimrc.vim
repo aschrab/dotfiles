@@ -3,6 +3,8 @@
 set encoding=utf-8
 scriptencoding utf-8
 
+set background=dark
+
 :if 1
 	source ~/.vim/eval.vim
 :endif
