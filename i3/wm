@@ -9,7 +9,7 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-% DOTFILE_DIR = (File.absolute_path(__dir__))
+% DOTFILE_DIR = File.dirname(File.absolute_path(__FILE__))
 
 set $mod Mod4
 
