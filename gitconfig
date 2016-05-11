@@ -1,7 +1,7 @@
 # vim: ft=gitconfig tabstop=4 shiftwidth=4
 [user]
 	name          = Aaron Schrab
-	email         = aaron@schrab.com
+	#email         = aaron@schrab.com
 	useconfigonly = true
 	signingkey    = 6DB5C725
 
