@@ -4,6 +4,7 @@ set keymap vi-insert
   "jl": vi-movement-mode
   "\e.": yank-last-arg
   "\et": transpose-words
+  TAB: menu-complete
 
 #set keymap vi-command
 #
@@ -22,3 +23,7 @@ set completion-map-case on
 
 set completion-prefix-display-length 2
 #set show-mode-in-prompt
+#
+set show-all-if-ambiguous on
+set show-all-if-unmodified on
+set menu-complete-display-prefix on
