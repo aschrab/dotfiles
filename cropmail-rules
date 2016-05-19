@@ -118,6 +118,9 @@ when /<raleigh-(talk|pm)\.pm\.org>/i
 when /<steering\.trilug\.org>/i
   subject_re = '[Steering]'
   list = 'ug/trilug/steering'
+when /<volunteers\.trilug\.org>/i
+  subject_re = '[TriLUG Volunteers]'
+  list = 'ug/trilug/volunteers'
 when /<trilug\.trilug\.org>/i
   subject_re = /\[TriLUG\]\s*/i
   list = 'ug/trilug'

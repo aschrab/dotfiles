@@ -16,6 +16,7 @@ mailboxes =INBOX/sympa
 <%= mlist '=L/ruby/raleigh', :address => 'raleigh-rb-members', :subjectrx => '[triangle.rb]' %>
 <%= mlist '=L/ug/trianglerb', :subjectrx => '[Triangle.rb Forum]' %>
 <%= mlist '=L/ug/trilug/steering', :subjectrx => '[Steering]' %>
+<%= mlist '=L/ug/trilug/volunteers', :subjectrx => '[TriLUG Volunteers]' %>
 <%= mlist '=L/ug/trilug', :subjectrx => '[TriLUG]' %>
 
 mailboxes =rss
