@@ -245,3 +245,5 @@ let g:sudoAuth = ' sudo '
 vmap <Enter> <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+
+let g:git_comment_char = "auto"

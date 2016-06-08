@@ -1,8 +1,9 @@
 # vim: ft=gitconfig tabstop=4 shiftwidth=4
 [user]
-	name       = Aaron Schrab
-	email      = aaron@schrab.com
-	signingkey = 6DB5C725
+	name          = Aaron Schrab
+	#email         = aaron@schrab.com
+	useconfigonly = true
+	signingkey    = 6DB5C725
 
 [init]
 	templatedir = ~/.git_template
@@ -77,7 +78,7 @@
 	l1          = log --pretty=format:"'%C(yellow)%h %C(green)%aN %C(blue)%ar %C(reset)%s'"
 	ls          = log --decorate --graph --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]"
 	ll          = log --decorate --numstat --date=short --pretty=format:"%C(yellow)%ad\\ %h%Cred%d\\ %Creset%s%Cblue\\ [%cn]"
-	tree        = "!f() { git ls ^$(git show-branch --merge-base $@)^ $@ --; }; f"
+	tree        = "!f() { base=$(git show-branch --merge-base $@) && git ls --boundary ^$base^ $@ --; }; f"
 	last        = log --stat -p -1 HEAD
 	stashed     = stash list --pretty='%gd: %Cred%h%Creset %Cgreen[%ar]%Creset %s'
 	unstage     = reset HEAD --
@@ -140,3 +141,5 @@
 	autosquash = true
 [pull]
 	ff = only
+[http]
+	sslCAPath = ~/.certs

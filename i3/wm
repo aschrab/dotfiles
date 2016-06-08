@@ -9,6 +9,8 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
+% DOTFILE_DIR = File.dirname(File.absolute_path(__FILE__))
+
 set $mod Mod4
 
 # font for window titles. ISO 10646 = Unicode
@@ -64,10 +66,6 @@ bindsym $mod+Shift+Right move right
 bindsym $mod+Control+Left move workspace to output left
 bindsym $mod+Control+Right move workspace to output right
 
-bindsym $mod+Control+1 move workspace to output DisplayPort-1
-bindsym $mod+Control+2 move workspace to output HDMI-0
-bindsym $mod+Control+3 move workspace to output DisplayPort-2
-
 # split in horizontal orientation
 bindsym $mod+h split h
 
@@ -98,6 +96,11 @@ bindsym $mod+period       focus child
 % 1.upto 10 do |n|
 bindsym $mod+<%= n % 10 %> workspace <%= n %>
 % end
+
+bindsym $mod+a exec --no-startup-id "<%= DOTFILE_DIR %>/i3/workspace-exec i3 workspace %s"
+bindsym $mod+Shift+A exec --no-startup-id "<%= DOTFILE_DIR %>/i3/workspace-exec i3 move container to workspace %s"
+bindsym $mod+Control+A exec --no-startup-id "<%= DOTFILE_DIR %>/i3/workspace-exec 'i3 move container to workspace %s; i3 workspace %s'"
+bindsym $mod+Control+r exec --no-startup-id "<%= DOTFILE_DIR %>/i3/workspace-exec i3 rename workspace to %s"
 
 # move focused container to workspace
 bindsym $mod+Shift+exclam move container to workspace 1
@@ -162,7 +165,9 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 
 % require 'json'
-% displays = JSON.parse(`i3-msg -t get_outputs`).select{ |m| m['active'] }.sort_by{ |m| m['x'] } rescue [{}]
+% displays = JSON.parse(`i3-msg -t get_outputs`) rescue [{}]
+% displays.select!{ |m| m['active'] }
+% displays.sort_by!{ |m| m['rect'].values_at(*%w<x y>) }
 
 % displays.each_with_index do |m,i|
 bar {
@@ -171,6 +176,7 @@ bar {
         <% if m['name'] == displays[-1]['name'] %>status_command i3status<% end %>
         tray_output <%= displays[0]['name'] %>
 }
+bindsym $mod+Control+<%=i+1%> move workspace to output <%= m['name'] %>
 % end
 
 for_window [class="Gitk"] floating enable

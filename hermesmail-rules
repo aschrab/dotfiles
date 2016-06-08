@@ -66,8 +66,14 @@ def process
     list 'ruby.raleigh', subject: /\[triangle\.rb\]\s*/i
   when /raleigh-(talk|pm)\.pm\.org/i
     list 'ug.raleigh-pm', subject: /\[Raleigh-pm\]\s*/i
+  when /steering\.trilug\.org/i
+    list 'ug.trilug.steering', subject: '[Steering]'
+  when /volunteers\.trilug\.org/i
+    list 'ug.trilug.volunteers', subject: '[TriLUG Volunteers]'
   when /trilug\.trilug\.org/i
-    list 'ug.trilug', subject: /\[TriLUG\]\s*/i
+    unless headers.x_list_administrivia =~ /yes/i
+      list 'ug.trilug', subject: /\[TriLUG\]\s*/i
+    end
   when /trilug-ontopic\.trilug\.org/i
     list 'ug.trilug', subject: /\[TriLUG-ontopic\]\s*/i
   when /dbix-class\.lists\.scsys\.co\.uk/i
@@ -104,6 +110,8 @@ def process
   when /<lsm-workers-admin@lists/i
     list 'lsm-workers'
   end
+
+  list 'dev.git', dupcheck: true if receivers.include? 'git@vger.kernel.org'
 
   list 'debian.pts' if headers.x_pts_package =~ /\w/
   list 'subs.skeptic' if from.has?(/eskeptic@skeptic.com/i)

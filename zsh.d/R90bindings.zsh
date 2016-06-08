@@ -72,3 +72,5 @@ bindkey -M viins '\e[Z' expand-word
 
 # Automatically quote special characters in URLs
 autoload -Uz url-quote-magic && zle -N self-insert url-quote-magic
+autoload -Uz bracketed-paste-magic && zle -N bracketed-paste bracketed-paste-magic && \
+  zstyle :bracketed-paste-magic paste-init backward-extend-paste

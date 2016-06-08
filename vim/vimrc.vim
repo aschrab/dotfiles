@@ -3,6 +3,8 @@
 set encoding=utf-8
 scriptencoding utf-8
 
+set background=dark
+
 :if 1
 	source ~/.vim/eval.vim
 :endif
@@ -15,7 +17,11 @@ set t_Co=16
 silent! colorscheme vividchalk
 
 " Miscellaneous options {{{
-set viminfo=!,s1,%,'20,f1,c,h,r/tmp,r/media,n~/.viminfo
+:if has('nvim')
+  set viminfo=!,s1,%,'20,f1,c,h,r/tmp,r/media,n~/.nviminfo
+:else
+  set viminfo=!,s1,%,'20,f1,c,h,r/tmp,r/media,n~/.viminfo
+:endif
 set hidden
 set display+=lastline
 set scrolloff=1
@@ -99,7 +105,11 @@ set foldminlines=2
 
 silent! set mouse=a
 :if $DISPLAY != ""
-  set clipboard=unnamed,autoselect,exclude:cons\|linux
+  :if has('nvim')
+    set clipboard=unnamed
+  :else
+    set clipboard=unnamed,autoselect,exclude:cons\|linux
+  :endif
 :endif
 
 " Not many filenames have = in them, so make completion easier

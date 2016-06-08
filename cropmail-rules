@@ -115,9 +115,17 @@ when /<raleigh-rb-members/
 when /<raleigh-(talk|pm)\.pm\.org>/i
   subject_re = /\[Raleigh-pm\]\s*/i
   list = 'ug/raleigh-pm'
+when /<steering\.trilug\.org>/i
+  subject_re = '[Steering]'
+  list = 'ug/trilug/steering'
+when /<volunteers\.trilug\.org>/i
+  subject_re = '[TriLUG Volunteers]'
+  list = 'ug/trilug/volunteers'
 when /<trilug\.trilug\.org>/i
-  subject_re = /\[TriLUG\]\s*/i
-  list = 'ug/trilug'
+  unless headers[:x_list_administrivia] =~ /yes/i
+    subject_re = /\[TriLUG\]\s*/i
+    list = 'ug/trilug'
+  end
 when /<trilug-ontopic\.trilug\.org>/i
   subject_re = /\[TriLUG-ontopic\]\s*/i
   list = 'ug/trilug'
@@ -142,6 +150,11 @@ when /<sqlfairy-developers\.lists\.sourceforge\.net>/i
 when /<mailscanner.lists.mailscanner.info>/i
   list = 'mail/scanner'
 end unless list
+
+if headers[:to] =~ /git@vger\.kernel\.org/ or headers[:cc] =~ /git@vger\.kernel\.org/
+  $dupcheck = true
+  list = 'dev/git'
+end
 
 case headers[:mailing_list]
 when /list milwpm@yahoogroups\.com/
