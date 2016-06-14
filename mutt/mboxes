@@ -19,8 +19,6 @@ mailboxes =INBOX/sympa
 <%= mlist '=L/ug/trilug/volunteers', :subjectrx => '[TriLUG Volunteers]' %>
 <%= mlist '=L/ug/trilug', :subjectrx => '[TriLUG]' %>
 
-mailboxes =rss
-
 <%= mlist '=L/mail/mutt-dev', :from => 'aaron+mutt@schrab.com' %>
 <%= mlist '+L/dev/zsh', :address => 'zsh-(users|workers)@zsh.org' %>
 <%= mlist '=L/dev/git', :address => 'git@vger.kernel.org', :followup_to => false %>
