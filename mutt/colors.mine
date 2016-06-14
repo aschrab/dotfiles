@@ -11,6 +11,7 @@ color tree		blue	default
 color hdrdefault	cyan	default
 color header		red	default "^X-(Suspect-reason|spam-action|procmail|Diagnostic|Processed|Country):"
 color header		red	default "^X-Debian-PR-Package:"
+color header		green	default "^Subject:"
 
 color quoted		magenta	default
 
