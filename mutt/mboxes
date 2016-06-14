@@ -3,6 +3,7 @@ folder-hook . 'unsubjectrx *'
 % end
 
 mailboxes !
+mailboxes *
 mailboxes =INBOX/junk
 mailboxes =INBOX/sympa
 
