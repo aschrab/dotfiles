@@ -1,9 +1,11 @@
 #!/bin/sh
 
+hostname=$(hostname)
+
 case "$1" in
   (qqx)
-    case "`hostname`" in
-        (pug|milamber)
+    case "$hostname" in
+        (pug*|milamber*)
             ;;
         (*)
             ssh=pug.qqx.org
@@ -11,8 +13,8 @@ case "$1" in
     esac
     ;;
   (trilug)
-    case "`hostname`" in
-      (pilot)
+    case "$hostname" in
+      (pilot*)
         ;;
       (*)
         ssh=pilot.trilug.org
