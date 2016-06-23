@@ -1,4 +1,4 @@
-#!/usr/bin/ruby1.9.3 -w
+#!/usr/bin/ruby -w
 
 #$stderr.reopen '/tmp/expand_muttrc.debug', 'w'
 #$stderr.puts "I have PID #{Process.pid}"
