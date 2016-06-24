@@ -6,10 +6,14 @@ let mapleader=' '
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
 if exists("+guifont")
-	set guifont=Monoisome\ Semi-Condensed\ 10
-	set guifont+=Source\ Code\ Pro\ for\ Powerline\ 9
-	set guifont+=Inconsolata\ Medium\ 14
-	set guifont+=Sauce\ Code\ Powerline:h12
+  if has("gui_macvim")
+    set guifont=Monoisome\ Regular:h10
+    set guifont+=Sauce\ Code\ Powerline:h12
+  else
+    set guifont=Monoisome\ Semi-Condensed\ 9
+    set guifont+=Source\ Code\ Pro\ for\ Powerline\ 9
+    set guifont+=Inconsolata\ Medium\ 14
+  endif
 endif
 
 if (v:version >= 700)
