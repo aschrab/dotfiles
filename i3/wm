@@ -30,6 +30,7 @@ bindsym $mod+Shift+Z exec i3lock
 
 # kill focused window
 bindsym $mod+Shift+Q kill
+bindsym $mod+Shift+X kill
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec i3-dmenu-desktop --entry-type=command
