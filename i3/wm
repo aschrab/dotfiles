@@ -171,7 +171,7 @@ bindsym $mod+r mode "resize"
 
 % displays.each_with_index do |m,i|
 bar {
-        position top
+        position bottom
         output <%= m['name'] %>
         <% if m['name'] == displays[-1]['name'] %>status_command i3status<% end %>
         tray_output <%= displays[0]['name'] %>
