@@ -3,23 +3,22 @@ folder-hook . 'unsubjectrx *'
 % end
 
 mailboxes !
+mailboxes *
 mailboxes =INBOX/junk
 mailboxes =INBOX/sympa
 
 <%= mlist 'lsm-workers' %>
 
 <%= mlist '+L/triangle-sword', :account => :gmail, :subjectrx => '[TSG Projects]' %>
-<%= mlist '+L/triangle-sword/org', :account => :gmail %>
+<%= mlist '+L/triangle-sword/org', :account => :gmail, :address => 'tsg-organization@googlegroups.com' %>
 
 # UG lists
 <%= mlist '=L/ug/raleigh-pm', :subjectrx => '[Raleigh-pm]' %>
 <%= mlist '=L/ruby/raleigh', :address => 'raleigh-rb-members', :subjectrx => '[triangle.rb]' %>
 <%= mlist '=L/ug/trianglerb', :subjectrx => '[Triangle.rb Forum]' %>
-<%= mlist '=L/ug/trilug/steering', :subjectrx => '[Steering]' %>
-<%= mlist '=L/ug/trilug/volunteers', :subjectrx => '[TriLUG Volunteers]' %>
-<%= mlist '=L/ug/trilug', :subjectrx => '[TriLUG]' %>
-
-mailboxes =rss
+<%= mlist '=L/ug/trilug/steering', :subjectrx => '[Steering]', :address => 'steering@trilug' %>
+<%= mlist '=L/ug/trilug/volunteers', :subjectrx => '[TriLUG Volunteers]', :address => 'volunteers@trilug' %>
+<%= mlist '=L/ug/trilug', :address => 'trilug@trilug', :subjectrx => '[TriLUG]' %>
 
 <%= mlist '=L/mail/mutt-dev', :from => 'aaron+mutt@schrab.com' %>
 <%= mlist '+L/dev/zsh', :address => 'zsh-(users|workers)@zsh.org' %>
@@ -34,17 +33,18 @@ mailboxes =rss
 <%= mlist '=L/perl/dbix', :address => 'dbix-class', :subjectrx => '[Dbix-class]' %>
 
 # Debian lists
-<%= mlist '=L/debian/ruby' %>
-<%= mlist '=L/debian/news' %>
-<%= mlist '=L/debian/devel-announce' %>
-<%= mlist '=L/debian/security-announce' %>
-<%= mlist '=L/debian/pts' %>
-<%= mlist '=L/debian/devel' %>
-<%= mlist '=L/debian/mentors' %>
-<%= mlist '=L/debian/project' %>
-<%= mlist '=L/debian/qa' %>
-<%= mlist '=L/debian/qa-packages' %>
-<%= mlist '=L/debian/vote' %>
+<%= mlist '=L/debian/ruby', :address => 'debian-ruby' %>
+<%= mlist '=L/debian/news', :address => 'debian-news' %>
+<%= mlist '=L/debian/devel-announce', :address => 'debian-devel-announce' %>
+<%= mlist '=L/debian/security-announce', :address => 'debian-security-announce' %>
+<%= mlist '=L/debian/pts', :address => 'debian-pts' %>
+<%= mlist '=L/debian/devel', :address => 'debian-devel' %>
+<%= mlist '=L/debian/backports', :address => 'debian-backports' %>
+<%= mlist '=L/debian/mentors', :address => 'debian-mentors' %>
+<%= mlist '=L/debian/project', :address => 'debian-project' %>
+<%= mlist '=L/debian/qa', :address => 'debian-qa' %>
+<%= mlist '=L/debian/qa-packages', :address => 'debian-qa-packages' %>
+<%= mlist '=L/debian/vote', :address => 'debian-vote' %>
 lists debian-.*@lists\.debian\.org
 
 <%= mlist '=L/bugtraq' %>

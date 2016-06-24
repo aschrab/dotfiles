@@ -7,6 +7,6 @@ fi
 
 git submodule init
 git submodule sync
-git submodule update
+git -c submodule.fetchJobs=4 submodule update
 
 echo complete

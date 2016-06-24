@@ -1,13 +1,13 @@
 %# vim: ft=eruby.muttrc
 
 % %w<aliases secrets>.each do |file|
-%   if file_exists? "#{ENV['HOME']}/.mutt/#{file}"
+%   if File.exist? "#{ENV['HOME']}/.mutt/#{file}"
       source ~/.mutt/<%= file %>
 %   end
 % end
 
-account-hook 'ats@pug.qqx.org' 'set tunnel="<%= Dir.pwd %>/imapwrap qqx"'
-account-hook 'trilug.org'      'set tunnel="<%= Dir.pwd %>/imapwrap trilug"'
+account-hook 'ats@pug.qqx.org' 'set tunnel="exec <%= Dir.pwd %>/imapwrap qqx"'
+account-hook 'trilug.org'      'set tunnel="exec <%= Dir.pwd %>/imapwrap trilug"'
 
 % sendmail='/usr/sbin/sendmail -oem -oi'
 
@@ -134,14 +134,19 @@ folder-hook '(suspect|spam)'		"set hdr_format=<%= hdr_format.sub('%s', %Q[#{spam
 % end
 
 % if mutt_variable :sidebar_width
-  set sidebar_width=20
-  #set sidebar_visible
-  set sidebar_format="%B%?F? [%F]?%* %?N?%N?"
-  color sidebar_new default yellow
+  set sidebar_width=30
+  set sidebar_visible
+  set sidebar_format="%?F?%F!&  ? %B%* %?N? %N?"
+  set sidebar_divider_char="│"
+  color sidebar_divider green default
+  color sidebar_new cyan default
+  bind index <Esc>N sidebar-next-new
   bind index <Esc>J sidebar-next
   bind index <Esc>K sidebar-prev
   bind index <Esc>O sidebar-open
-  <% %w{index pager}.each do |menu| %>
-    macro <%= menu %> <Esc>B "<enter-command>toggle sidebar_visible<enter>"
-  <% end %>
+  macro index,pager <Esc>B "<enter-command>toggle sidebar_visible<enter>"
+% end
+
+% if mutt_variable :mail_check_stats
+  set mail_check_stats
 % end

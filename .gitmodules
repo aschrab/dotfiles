@@ -235,7 +235,7 @@
 	url = https://github.com/groenewege/vim-less.git
 [submodule "vim/bundle/windowswap"]
 	path = vim/bundle/windowswap
-	url = https://github.com/aschrab/vim-windowswap.git
+	url = https://github.com/wesQ3/vim-windowswap.git
 [submodule "vim/bundle/recover"]
 	path = vim/bundle/recover
 	url = https://github.com/chrisbra/Recover.vim.git
