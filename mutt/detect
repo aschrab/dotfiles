@@ -134,9 +134,9 @@ folder-hook '(suspect|spam)'		"set hdr_format=<%= hdr_format.sub('%s', %Q[#{spam
 % end
 
 % if mutt_variable :sidebar_width
-  set sidebar_width=20
+  set sidebar_width=30
   set sidebar_visible
-  set sidebar_format="%B%?F? [%F]?%* %?N? %N?"
+  set sidebar_format="%?F?%F!&  ? %B%* %?N? %N?"
   set sidebar_divider_char="│"
   color sidebar_divider green default
   color sidebar_new cyan default
