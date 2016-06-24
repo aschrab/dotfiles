@@ -56,3 +56,5 @@ zstyle ':completion:*:*:*:*:processes' force-list always
 
 # Color process list in ps completion
 zstyle ':completion:*:*:kill:*:processes' list-colors "=(#b) #([0-9]#)*=36=31"
+
+zstyle ':completion:*:*:git:*' user-commands reintegrate:'Rebuild integration branch'
