@@ -2,7 +2,7 @@ HashKnownHosts no
 #ControlMaster auto
 ControlPath ~/.ssh/.master.%l-%r@%h:%p
 #VerifyHostKeyDNS=ask
-ServerAliveInterval=600
+ServerAliveInterval=120
 
 Host pug.qqx.org proxy
 #ControlMaster auto
