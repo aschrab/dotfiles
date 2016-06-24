@@ -7,13 +7,7 @@ export PYTHONPATH="$HOME/.python"
 
 if ! gpg-agent 2> /dev/null
 then
-	gpg-agent --daemon \
-		--enable-ssh-support \
-		--write-env-file ~/.gpg-agent.info
-
-	. ~/.gpg-agent.info
-	export GPG_AGENT_INFO
-	export SSH_AUTH_SOCK
+	eval "$(gpg-agent --daemon --enable-ssh-support)"
 fi
 
 [ -r ~/.touchpad.sh ] && . ~/.touchpad.sh
