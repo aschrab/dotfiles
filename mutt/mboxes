@@ -39,6 +39,7 @@ mailboxes =INBOX/sympa
 <%= mlist '=L/debian/security-announce', :address => 'debian-security-announce' %>
 <%= mlist '=L/debian/pts', :address => 'debian-pts' %>
 <%= mlist '=L/debian/devel', :address => 'debian-devel' %>
+<%= mlist '=L/debian/backports', :address => 'debian-backports' %>
 <%= mlist '=L/debian/mentors', :address => 'debian-mentors' %>
 <%= mlist '=L/debian/project', :address => 'debian-project' %>
 <%= mlist '=L/debian/qa', :address => 'debian-qa' %>
