@@ -1,7 +1,7 @@
 %# vim: ft=eruby.muttrc
 
 % %w<aliases secrets>.each do |file|
-%   if file_exists? "#{ENV['HOME']}/.mutt/#{file}"
+%   if File.exist? "#{ENV['HOME']}/.mutt/#{file}"
       source ~/.mutt/<%= file %>
 %   end
 % end
