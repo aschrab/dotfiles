@@ -19,15 +19,6 @@ alias wget='noglob wget'
   done
 }
 
-# Avoid epoll bug in libevent
-# Without this commands where stderr is redirected to /dev/null hang
-# http://sourceforge.net/mailarchive/message.php?msg_id=28004727
-# But with versions of libevent < 2.0 this exposes an even worse bug
-if [[ $OSTYPE == linux* ]] && [[ -n $(whence tmux) ]] && ! ldd =tmux | fgrep -q libevent-1.
-then
-  alias tmux="EVENT_NOEPOLL=1 command tmux"
-fi
-
 # Only the initial arguments to `find` should use globbing.
 #
 # Use alias to turn off globbing, then use function to explicitly do globbing
