@@ -3,7 +3,7 @@ account-hook . 'set notunnel'
 set imap_headers="X-Spam-Status"
 set mail_check=60
 
-set quote_regexp='^([])>|!%>] ?|[|>]| {0,4}[:>] ?| ?[a-z]+>+ ?)'
+set quote_regexp='^([])>|!%}] ?|[|>]| {0,4}[:>] ?| ?[a-z]+>+ ?)'
 
 # Settings for sending mail
 set use_domain
