@@ -5,6 +5,7 @@ editorconfig
 gitconfig
 gitignore
 git_template
+config/git
 inputrc
 irbrc
 lftp

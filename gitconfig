@@ -49,6 +49,9 @@
 	#algorithm      = histogram # Too new for some of the systems I use
 	compactionHeuristic =  yes
 
+[diff "ini"]
+	xfuncname = "^\\[.*\\]"
+
 [merge]
 	conflictstyle = diff3
 	defaultToUpstream = yes

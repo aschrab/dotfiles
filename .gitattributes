@@ -1,1 +1,3 @@
-#zshrc filter=date-prop
+gitconfig ini
+.gitmodules ini
+editorconfig ini
