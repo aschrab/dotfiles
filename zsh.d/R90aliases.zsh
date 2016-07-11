@@ -128,3 +128,5 @@ fi
 
 # Version of vared to edit array variables with each element on a separate line
 alias lvared="IFS=\$'\n' vared"
+
+alias magit="vim -c MagitOnly"
