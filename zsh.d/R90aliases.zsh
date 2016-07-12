@@ -63,13 +63,16 @@ alias cls='clear'
 alias sz='sz -e'
 alias l='ls -F'
 alias la='ls -aF'
-if [[ $OSTYPE == *bsd* ]]; then
-  alias ll='ls -lhoF'
-  alias lla='ls -Foalh'
-else
-  alias ll='ls -lhF'
-  alias lla='ls -halF'
-fi
+case "$OSTYPE" in
+  (*bsd*|darwin*)
+    alias ll='ls -lhoF'
+    alias lla='ls -Foalh'
+    ;;
+  (*)
+    alias ll='ls -lhF'
+    alias lla='ls -halF'
+    ;;
+esac
 alias bc='/usr/bin/bc -ql'
 alias trt=traceroute
 
