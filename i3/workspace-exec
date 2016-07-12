@@ -9,4 +9,4 @@ selected, _status = Open3.capture2('dmenu', stdin_data: workspaces.join("\n"))
 selected.chomp!
 
 args = ARGV.map{ |arg| arg.gsub '%s', selected }
-system *args
+system(*args)
