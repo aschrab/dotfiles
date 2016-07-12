@@ -45,6 +45,9 @@ Host *.netapp.com
 ForwardX11 yes
 ForwardAgent yes
 
+Host *.github.com github.com
+  CheckHostIP no
+
 Host vagrant
   HostName 127.0.0.1
   Port 2222
