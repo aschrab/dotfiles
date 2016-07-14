@@ -9,6 +9,7 @@ config/git
 inputrc
 irbrc
 lftp
+npmrc
 pinforc
 psqlrc
 psqlrc-9.2
