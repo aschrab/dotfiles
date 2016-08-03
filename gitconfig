@@ -49,6 +49,9 @@
 	#algorithm      = histogram # Too new for some of the systems I use
 	compactionHeuristic =  yes
 
+[commit]
+	verbose = yes
+
 [diff "ini"]
 	xfuncname = "^\\[.*\\]"
 
