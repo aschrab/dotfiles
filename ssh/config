@@ -22,6 +22,15 @@ Host kahlan*
 ForwardX11 no
 Port 22
 
+Host moya.trilug.org
+Port 622
+
+Host pilotvm
+HostName moya.trilug.org
+HostKeyAlias pilot.trilug.org
+CheckHostIP no
+User aschrab
+
 Host *.qqx.org proxy
 User ats
 ForwardAgent yes
