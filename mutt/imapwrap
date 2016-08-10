@@ -2,6 +2,9 @@
 
 hostname=$(hostname)
 
+. ~/.zsh.d/functions/update_env_from_tmux
+update_env_from_tmux
+
 case "$1" in
   (qqx)
     case "$hostname" in
