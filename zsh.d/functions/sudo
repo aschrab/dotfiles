@@ -4,4 +4,4 @@ if [[ $# -eq 0 ]]; then
   set HOME="$HOME" "$SHELL" -l
 fi
 
-command sudo "$@"
+command sudo TMUX="$TMUX" "$@"
