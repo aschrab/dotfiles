@@ -251,3 +251,12 @@ vmap <Enter> <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 let g:git_comment_char = "auto"
+
+if exists(':tnoremap')  " Neovim
+  tnoremap <silent> <c-h> <c-\><c-n>:TmuxNavigateLeft<cr>
+  tnoremap <silent> <c-j> <c-\><c-n>:TmuxNavigateDown<cr>
+  tnoremap <silent> <c-k> <c-\><c-n>:TmuxNavigateUp<cr>
+  tnoremap <silent> <c-l> <c-\><c-n>:TmuxNavigateRight<cr>
+  " Cannot use <c-\> here.
+  " tnoremap <silent> <c-\> <c-\><c-n>:TmuxNavigatePrevious<cr>
+endif
