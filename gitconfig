@@ -97,7 +97,7 @@
 	show-commit = log -1 -p
 	lol         = log --graph --decorate --pretty=oneline --abbrev-commit
 	push-new-repo = push --receive-pack=git-receive-new-repo --all
-	submodule-annotate = submodule foreach "git update-ref refs/heads/submodule-parent $sha1 || true"
+	submodule-annotate = submodule foreach 'git update-ref --create-reflog -m \"Update from parent repo\" refs/heads/submodule-parent $sha1 || true'
 
 [push]
 	default = current
