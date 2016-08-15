@@ -7,7 +7,8 @@ nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
 if exists("+guifont")
   if has("gui_macvim")
-    set guifont=Monoisome\ Regular:h10
+    set guifont=Fira\ Code:h13
+    set guifont+=Monoisome\ Regular:h10
     set guifont+=Sauce\ Code\ Powerline:h12
   else
     set guifont=Monoisome\ Semi-Condensed\ 9

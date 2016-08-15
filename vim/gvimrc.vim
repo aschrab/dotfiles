@@ -2,6 +2,7 @@ if has("gui_macvim")
   colorscheme nuvola
 
   silent! AirlineTheme lucius
+  silent! set macligatures
 
   macm File.New\ Window					key=<Nop>
   macm File.New\ Tab					key=<Nop>
