@@ -35,7 +35,7 @@ Host *.qqx.org proxy
 User ats
 ForwardAgent yes
 ForwardX11 yes
-ForwardX11Timeout 3w
+#ForwardX11Timeout 3w
 Port 222
 
 Host *.trilug.org
