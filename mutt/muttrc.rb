@@ -22,6 +22,10 @@ def mlist mbox, opts={} #{{{
       end
   end
 
+  unless mutt_patch(%r<mailbox_prefix>)
+    opts[:mbox].sub!(/^\+/, 'imaps://aaron.schrab@gmail.com@imap.gmail.com/')
+  end
+
   out = []
   out << "mailboxes #{opts[:mbox]}"
   out << "subscribe #{opts[:address]}"
