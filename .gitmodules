@@ -242,3 +242,6 @@
 [submodule "vim/bundle/magit"]
 	path = vim/bundle/magit
 	url = https://github.com/jreybert/vimagit.git
+[submodule "vim/bundle/rest-console"]
+	path = vim/bundle/rest-console
+	url = https://github.com/diepm/vim-rest-console.git
