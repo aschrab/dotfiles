@@ -3,7 +3,7 @@ __link_dir() {
 	[[ -n $linkpath ]] && dirname $linkpath
 }
 
-zshrc_dir=~/.zsh.d
+zshrc_dir=${ZDOTDIR:-$HOME}/.zsh.d
 [[ -d $zshrc_dir ]] || zshrc_dir=$( __link_dir ~/.zshrc )/zsh.d
 [[ -d $zshrc_dir ]] || zshrc_dir=~${SUDO_USER}/.zsh.d
 [[ -d $zshrc_dir ]] || zshrc_dir=$( __link_dir ~${SUDO_USER}/.zshrc )/zsh.d
@@ -14,7 +14,7 @@ case "$zshrc_dir" in
   /*)
     ;;
   *)
-    zshrc_dir="$HOME/$zshrc_dir"
+    zshrc_dir="${ZDOTDIR:-$HOME}/$zshrc_dir"
     ;;
 esac
 
