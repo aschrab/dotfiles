@@ -245,3 +245,6 @@
 [submodule "vim/bundle/rest-console"]
 	path = vim/bundle/rest-console
 	url = https://github.com/diepm/vim-rest-console.git
+[submodule "vim/bundle/airline-themes"]
+	path = vim/bundle/airline-themes
+	url = gh:vim-airline/vim-airline-themes
