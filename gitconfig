@@ -5,6 +5,9 @@
 	useconfigonly = true
 	signingkey    = 6DB5C725
 
+[include]
+	path = .gitconfig.local
+
 [init]
 	templatedir = ~/.git_template
 
@@ -17,13 +20,13 @@
 [url "ssh://pug.qqx.org/srv/git/"]
 	pushInsteadOf = http://git.qqx.org/
 	pushInsteadOf = git://git.qqx.org/
-[url "git://github.com/"]
-	insteadOf = https://github.com/
 [url "ssh://git@github.com/"]
-	insteadOf = gh:
 	pushInsteadOf = git://github.com/
 	pushInsteadOf = https://github.com/
 	pushInsteadOf = gh:
+[url "https://github.com/"]
+	insteadOf = gh:
+	insteadOf = git://github.com/
 [url "git@bitbucket.org:aschrab/"]
 	pushInsteadOf = https://bitbucket.org/aschrab/
 [url "git@github.com:sunbirddcim/"]
@@ -45,6 +48,12 @@
 	algorithm      = patience
 	#algorithm      = histogram # Too new for some of the systems I use
 	compactionHeuristic =  yes
+
+[commit]
+	verbose = yes
+
+[diff "ini"]
+	xfuncname = "^\\[.*\\]"
 
 [merge]
 	conflictstyle = diff3
@@ -88,7 +97,8 @@
 	show-commit = log -1 -p
 	lol         = log --graph --decorate --pretty=oneline --abbrev-commit
 	push-new-repo = push --receive-pack=git-receive-new-repo --all
-	submodule-annotate = submodule foreach "git update-ref refs/heads/submodule-parent $sha1 || true"
+	submodule-annotate = submodule foreach 'git update-ref --create-reflog -m \"Update from parent repo\" refs/heads/submodule-parent $sha1 || true'
+	wtree = worktree
 
 [push]
 	default = current

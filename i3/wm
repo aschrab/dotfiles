@@ -30,9 +30,10 @@ bindsym $mod+Shift+Z exec i3lock
 
 # kill focused window
 bindsym $mod+Shift+Q kill
+bindsym $mod+Shift+X kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec i3-dmenu-desktop --entry-type=command
+bindsym $mod+d exec i3-dmenu-desktop
 
 # volume control
 bindSym XF86AudioRaiseVolume  exec --no-startup-id "amixer -q set Master 9%+"
@@ -164,17 +165,25 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 
-% require 'json'
-% displays = JSON.parse(`i3-msg -t get_outputs`) rescue [{}]
-% displays.select!{ |m| m['active'] }
-% displays.sort_by!{ |m| m['rect'].values_at(*%w<x y>) }
+<%
+  require 'json'
+  displays = JSON.parse(`i3-msg -t get_outputs`) rescue [{}]
+  displays.select!{ |m| m['active'] }
 
-% displays.each_with_index do |m,i|
+  # Put tray on display that extends farthest down, preferring right-most display if tie
+  tray = displays.sort_by{ |m| m['rect'].values_at('y','x') }.last['name']
+
+  # Sort from left to right, top to bottom
+  displays.sort_by!{ |m| m['rect'].values_at(*%w<x y>) }
+
+displays.each_with_index do |m,i| -%>
 bar {
-        position top
+        position bottom
         output <%= m['name'] %>
-        <% if m['name'] == displays[-1]['name'] %>status_command i3status<% end %>
-        tray_output <%= displays[0]['name'] %>
+<%- if m == displays.last -%>
+        status_command i3status
+<%- end -%>
+        tray_output <%= tray %>
 }
 bindsym $mod+Control+<%=i+1%> move workspace to output <%= m['name'] %>
 % end

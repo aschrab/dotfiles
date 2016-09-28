@@ -23,7 +23,7 @@ class ERuby
 
         template = File.open(src) { |fh| fh.read }
         b = binding
-        out = ERB.new( template, nil, '%' ).result b
+        out = ERB.new( template, nil, '%-' ).result b
 
         Pathname.new(dst).dirname.mkpath
         File.open dst, 'w' do |fh|

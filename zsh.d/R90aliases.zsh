@@ -19,15 +19,6 @@ alias wget='noglob wget'
   done
 }
 
-# Avoid epoll bug in libevent
-# Without this commands where stderr is redirected to /dev/null hang
-# http://sourceforge.net/mailarchive/message.php?msg_id=28004727
-# But with versions of libevent < 2.0 this exposes an even worse bug
-if [[ $OSTYPE == linux* ]] && [[ -n $(whence tmux) ]] && ! ldd =tmux | fgrep -q libevent-1.
-then
-  alias tmux="EVENT_NOEPOLL=1 command tmux"
-fi
-
 # Only the initial arguments to `find` should use globbing.
 #
 # Use alias to turn off globbing, then use function to explicitly do globbing
@@ -72,13 +63,16 @@ alias cls='clear'
 alias sz='sz -e'
 alias l='ls -F'
 alias la='ls -aF'
-if [[ $OSTYPE == *bsd* ]]; then
-  alias ll='ls -lhoF'
-  alias lla='ls -Foalh'
-else
-  alias ll='ls -lhF'
-  alias lla='ls -halF'
-fi
+case "$OSTYPE" in
+  (*bsd*|darwin*)
+    alias ll='ls -lhoF'
+    alias lla='ls -Foalh'
+    ;;
+  (*)
+    alias ll='ls -lhF'
+    alias lla='ls -halF'
+    ;;
+esac
 alias bc='/usr/bin/bc -ql'
 alias trt=traceroute
 
@@ -137,3 +131,5 @@ fi
 
 # Version of vared to edit array variables with each element on a separate line
 alias lvared="IFS=\$'\n' vared"
+
+alias magit="vim -c MagitOnly"

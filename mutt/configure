@@ -1,0 +1,30 @@
+#!/bin/sh
+
+if ! [ -f muttlib.c ]; then
+  echo "muttlib.c not found, are you in a mutt source directory?" >&2
+  exit 1
+fi
+
+export CFLAGS=-ggdb
+exec ./prepare \
+	--sysconfdir=/etc \
+	--enable-compressed \
+	--enable-sidebar \
+	--enable-debug \
+	--enable-fcntl \
+	--enable-hcache \
+	--enable-iconv \
+	--enable-gpgme \
+	--enable-imap \
+	--enable-pop \
+	--enable-smtp \
+	--prefix=$HOME \
+	--with-curses \
+	--with-gnutls \
+	--with-gss \
+	--with-idn \
+	--with-mixmaster \
+	--with-sasl \
+	--with-mailpath=/var/mail \
+	--without-bdb --without-qdbm \
+	"$@"

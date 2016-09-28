@@ -58,6 +58,7 @@ def process
 
   deposit mbox :spam if headers.x_spam_flag =~ /YES/i
   deposit mbox :junk if headers.from =~ /postmaster@(pug\.)?qqx\.org/i
+  deposit mbox :junk if headers.to =~ /mailman-bounces.*@trilug\.org/i
 
   case headers.list_id
   when /debian-([a-z0-9_-]+)\.lists\.debian\.org/

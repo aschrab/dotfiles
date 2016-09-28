@@ -8,6 +8,7 @@ tags
 .DS_Store
 ._.DS_Store
 /P4ENV
+.nfs*
 *.pyc
 .swk
 .swl

@@ -7,7 +7,8 @@ nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
 if exists("+guifont")
   if has("gui_macvim")
-    set guifont=Monoisome\ Regular:h10
+    set guifont=Fira\ Code:h13
+    set guifont+=Monoisome\ Regular:h10
     set guifont+=Sauce\ Code\ Powerline:h12
   else
     set guifont=Monoisome\ Semi-Condensed\ 9
@@ -204,7 +205,7 @@ let g:airline#extensions#branch#enabled = 1
 let g:airline_section_x = "%{strlen(&ft)>0?&ft:''}%{statusline#fileinfo()}"
 let g:airline_section_y = '%3l/%L»%-3c'
 let g:airline_section_z = "ch0x%04B"
-let g:airline_theme='badwolf'
+let g:airline_theme='cool'
 
 let g:SuperTabDefaultCompletionType='context'
 let g:SuperTabLongestEnhanced=1
@@ -251,3 +252,12 @@ vmap <Enter> <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 let g:git_comment_char = "auto"
+
+if exists(':tnoremap')  " Neovim
+  tnoremap <silent> <c-h> <c-\><c-n>:TmuxNavigateLeft<cr>
+  tnoremap <silent> <c-j> <c-\><c-n>:TmuxNavigateDown<cr>
+  tnoremap <silent> <c-k> <c-\><c-n>:TmuxNavigateUp<cr>
+  tnoremap <silent> <c-l> <c-\><c-n>:TmuxNavigateRight<cr>
+  " Cannot use <c-\> here.
+  " tnoremap <silent> <c-\> <c-\><c-n>:TmuxNavigatePrevious<cr>
+endif

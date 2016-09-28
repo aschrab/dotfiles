@@ -9,16 +9,16 @@ mailboxes =INBOX/sympa
 
 <%= mlist 'lsm-workers' %>
 
-<%= mlist '+L/triangle-sword', :account => :gmail, :subjectrx => '[TSG Projects]' %>
-<%= mlist '+L/triangle-sword/org', :account => :gmail, :address => 'tsg-organization@googlegroups.com' %>
-
-# UG lists
-<%= mlist '=L/ug/raleigh-pm', :subjectrx => '[Raleigh-pm]' %>
-<%= mlist '=L/ruby/raleigh', :address => 'raleigh-rb-members', :subjectrx => '[triangle.rb]' %>
-<%= mlist '=L/ug/trianglerb', :subjectrx => '[Triangle.rb Forum]' %>
 <%= mlist '=L/ug/trilug/steering', :subjectrx => '[Steering]', :address => 'steering@trilug' %>
 <%= mlist '=L/ug/trilug/volunteers', :subjectrx => '[TriLUG Volunteers]', :address => 'volunteers@trilug' %>
 <%= mlist '=L/ug/trilug', :address => 'trilug@trilug', :subjectrx => '[TriLUG]' %>
+
+<%= mlist '+L/triangle-sword', :account => :gmail, :subjectrx => '[TSG Projects]' %>
+<%= mlist '+L/triangle-sword/org', :account => :gmail, :address => 'tsg-organization@googlegroups.com' %>
+
+<%= mlist '=L/ug/raleigh-pm', :subjectrx => '[Raleigh-pm]' %>
+<%= mlist '=L/ruby/raleigh', :address => 'raleigh-rb-members', :subjectrx => '[triangle.rb]' %>
+<%= mlist '=L/ug/trianglerb', :subjectrx => '[Triangle.rb Forum]' %>
 
 <%= mlist '=L/mail/mutt-dev', :from => 'aaron+mutt@schrab.com' %>
 <%= mlist '+L/dev/zsh', :address => 'zsh-(users|workers)@zsh.org' %>

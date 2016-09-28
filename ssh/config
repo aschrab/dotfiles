@@ -1,5 +1,5 @@
 HashKnownHosts no
-#ControlMaster auto
+ControlMaster auto
 ControlPath ~/.ssh/.master.%l-%r@%h:%p
 #VerifyHostKeyDNS=ask
 ServerAliveInterval=120
@@ -22,11 +22,20 @@ Host kahlan*
 ForwardX11 no
 Port 22
 
+Host moya.trilug.org
+Port 622
+
+Host pilotvm
+HostName moya.trilug.org
+HostKeyAlias pilot.trilug.org
+CheckHostIP no
+User aschrab
+
 Host *.qqx.org proxy
 User ats
 ForwardAgent yes
 ForwardX11 yes
-ForwardX11Timeout 3w
+#ForwardX11Timeout 3w
 Port 222
 
 Host *.trilug.org
@@ -37,9 +46,16 @@ Host lish
 User qqx
 HostName lish-atlanta.linode.com
 
+Host atla-app*.netapp.com
+ForwardX11 no
+ForwardAgent no
+
 Host *.netapp.com
 ForwardX11 yes
 ForwardAgent yes
+
+Host *.github.com github.com
+  CheckHostIP no
 
 Host vagrant
   HostName 127.0.0.1

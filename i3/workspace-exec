@@ -5,8 +5,8 @@ require 'open3'
 
 workspaces = JSON.parse(`i3-msg -t get_workspaces`).map{ |w| w['name'] }.sort
 
-selected, _status = Open3.capture2('dmenu', stdin_data: workspaces.join("\n"))
+selected, _status = Open3.capture2('dmenu', '-i', '-f', stdin_data: workspaces.join("\n"))
 selected.chomp!
 
 args = ARGV.map{ |arg| arg.gsub '%s', selected }
-system *args
+system(*args)

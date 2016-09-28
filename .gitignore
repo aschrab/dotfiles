@@ -1,5 +1,6 @@
 .*.sw[op]
 .DS_Store
+*.elc
 *.pyc
 /vim/.netrwhist
 /vim/doc/tags

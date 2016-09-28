@@ -46,6 +46,10 @@ set pgp_good_sign="^gpg: Good signature from"
 send-hook   . "unmy_hdr From"
 folder-hook . "set followup_to=yes"
 
+send-hook . "set crypt_autosign=no"
+send2-hook '~C trilug' "set crypt_autosign=yes"
+send2-hook '~C debian' "set crypt_autosign=yes"
+
 # -*-muttrc-*-
 ## The following options are only available if you have
 ## compiled in S/MIME support
@@ -139,4 +143,4 @@ set smime_verify_opaque_command="openssl smime -verify -inform DER -in %s %C"
 # set smime_verify_opaque_command="openssl smime -verify -inform DER -in %s -noverify"
 #
 
-source "exec /home/ats/.mutt/expand_muttrc detect mboxes |"
+source "exec $HOME/.mutt/expand_muttrc detect mboxes |"
