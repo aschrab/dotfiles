@@ -109,11 +109,11 @@ let SVNCommandDeleteOnHide=1
 let SVNCommandEnableBufferSetup=1
 
 " Inform vim how to set window title for additional $TERM types
-if &term =~ '\v(xterm|gnome-256color)'
+if &term =~ '\v(xterm|gnome)(-256color)?'
 	let &t_ts="\<Esc>]2;"
 	let &t_IS="\<Esc>]1;"
 	let &t_fs="\<C-G>"
-elseif &term == 'screen'
+elseif &term =~ '\v(screen)(-256color)?'
 	" For some reason using the above settings in tmux causes the :make
 	" command to wait for input before giving any indication that the build
 	" process has finished.  Use an alternate escape sequence for that.
