@@ -1,4 +1,4 @@
-autoload -U compinit zrecompile
+emulate zsh -c 'autoload -U compinit zrecompile'
 
 zsh_cache=${HOME}/.zsh_cache
 mkdir -p $zsh_cache
