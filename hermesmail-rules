@@ -46,7 +46,7 @@ def list name, subject: nil, dupcheck: false
 end
 
 def process
-  #headers.replace 'Lines', body.lines.inject(0){ |sum,x| sum+1 }.to_s
+  headers.replace 'Lines', body.lines.size
 
   envelope_to =
     if ENV['EXTENSION']
