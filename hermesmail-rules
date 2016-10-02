@@ -46,6 +46,11 @@ def list name, subject: nil, dupcheck: false
 end
 
 def process
+  begin
+    save Time.now.strftime('/srv/mail/qqx.org/backup_ats/%Y/%m/%d')
+  rescue
+  end
+
   headers.replace 'Lines', body.lines.size
 
   envelope_to =
