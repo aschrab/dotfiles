@@ -1,7 +1,14 @@
 #autoload sudo
 
+local args
+
+if [[ $# -eq 2 ]] && [[ "$1" = '-u' ]]; then
+  args=($*)
+  set --
+fi
+
 if [[ $# -eq 0 ]]; then
   set HOME="$HOME" "$SHELL" -l
 fi
 
-command sudo TMUX="$TMUX" "$@"
+command sudo $args TMUX="$TMUX" "$@"
