@@ -101,6 +101,10 @@ if headers[:from] =~ /postmaster@(pug\.)?qqx\.org/i
   save_md '=INBOX/junk'
 end
 
+if headers[:to] =~ /mailman-bounces.*@trilug\.org/i
+  save_md '=INBOX/junk'
+end
+
 # Mailing list detection {{{
 list = nil
 
