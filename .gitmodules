@@ -248,3 +248,6 @@
 [submodule "vim/bundle/airline-themes"]
 	path = vim/bundle/airline-themes
 	url = gh:vim-airline/vim-airline-themes
+[submodule "vim/bundle/xmledit"]
+	path = vim/bundle/xmledit
+	url = gh:sukima/xmledit.git
