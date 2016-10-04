@@ -98,6 +98,8 @@ def process
     list 'dev.sql-translator', subject: /\[sqlfairy-developers\]/i
   when /mailscanner.lists.mailscanner.info/i
     list 'mail.scanner'
+  when /bugtraq.list-id.securityfocus.com/
+    list 'bugtraq'
   end
 
   case headers.list_post
@@ -108,13 +110,6 @@ def process
   case headers.list_unsubscribe
   when %r{<http://discourse.triangleruby.com/}
     list 'ug.trianglerb', subject: '[Triangle.rb Forum]'
-  end
-
-  case headers.return_path
-  when /<bugtraq-return-.*@securityfocus/i
-    list 'bugtraq'
-  when /<lsm-workers-admin@lists/i
-    list 'lsm-workers'
   end
 
   list 'dev.git', dupcheck: true if receivers.include? 'git@vger.kernel.org'
