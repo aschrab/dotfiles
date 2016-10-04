@@ -5,6 +5,7 @@ unhook *
 
 set pgp_sign_as="0x6DB5C725"
 
+source ~/vc/mutt/contrib/gpg.rc
 source ~/.mutt/rc.common
 source ~/.mutt/accounts.gmail
 source ~/.mutt/accounts.trilug
