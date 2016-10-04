@@ -622,6 +622,8 @@ ignore X-Spam-
 ignore X-CNFS-Analysis:
 ignore X_CMAE_Category:
 ignore X-CM-Score:
+ignore X-Google-DKIM-Signature:
+ignore X-Gm-Message-State:
 unignore X-Seq:
 unignore Content-Type:
 
