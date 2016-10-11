@@ -51,7 +51,10 @@ def process
   rescue
   end
 
-  headers.replace 'Lines', body.lines.size
+  begin
+    headers.replace 'Lines', body.lines.size
+  rescue
+  end
 
   envelope_to =
     if ENV['EXTENSION']
