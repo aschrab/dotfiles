@@ -45,6 +45,19 @@ def list name, subject: nil, dupcheck: false
   deposit mbox "L.#{name}"
 end
 
+def mutt_alias name
+  re = /^\s*alias\s+#{Regexp.escape name}\s+(.*)/
+  File.open("#{ENV['HOME']}/.mutt/aliases") do |f|
+    f.each_line do |l|
+      case l
+      when re
+        return $1.split(',')
+      end
+    end
+  end
+  raise "Alias #{name} not found"
+end
+
 def process
   begin
     save Time.now.strftime('/srv/mail/qqx.org/backup_ats/%Y/%m/%d')
@@ -119,6 +132,14 @@ def process
 
   list 'debian.pts' if headers.x_pts_package =~ /\w/
   list 'subs.skeptic' if from.has?(/eskeptic@skeptic.com/i)
+
+  if from.has?(/@(cooperpress\.com|@peterc\.org)>/i)
+    begin
+      sendmail mutt_alias :newsblur
+    rescue
+    end
+    deposit mbox :read
+  end
 
   #$stderr.puts "Saving to default mailbox"
   deposit Maildir.new "/srv/mail/ats"
