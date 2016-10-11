@@ -24,7 +24,7 @@ set folder=imaps://ats@pug.qqx.org/
 set spoolfile=+INBOX
 source ~/.mutt/save_hooks
 
-source ~/.mutt/ignore
+source ~/.mutt/unignore
 
 set date_format = "!%H:%M %Z %d %b %Y"
 set attribution="At %d, %?F?%f&I? wrote:"
