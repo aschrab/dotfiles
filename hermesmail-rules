@@ -45,13 +45,29 @@ def list name, subject: nil, dupcheck: false
   deposit mbox "L.#{name}"
 end
 
+def mutt_alias name
+  re = /^\s*alias\s+#{Regexp.escape name}\s+(.*)/
+  File.open("#{ENV['HOME']}/.mutt/aliases") do |f|
+    f.each_line do |l|
+      case l
+      when re
+        return $1.split(',')
+      end
+    end
+  end
+  raise "Alias #{name} not found"
+end
+
 def process
   begin
     save Time.now.strftime('/srv/mail/qqx.org/backup_ats/%Y/%m/%d')
   rescue
   end
 
-  headers.replace 'Lines', body.lines.size
+  begin
+    headers.replace 'Lines', body.lines.size
+  rescue
+  end
 
   envelope_to =
     if ENV['EXTENSION']
@@ -62,8 +78,8 @@ def process
   headers.replace 'X-QQX-Envelope-To', envelope_to if envelope_to
 
   deposit mbox :spam if headers.x_spam_flag =~ /YES/i
-  deposit mbox :junk if headers.from =~ /postmaster@(pug\.)?qqx\.org/i
-  deposit mbox :junk if headers.to =~ /mailman-bounces.*@trilug\.org/i
+  deposit mbox :junk if from.has?(/postmaster@(pug\.)?qqx\.org/i)
+  deposit mbox :junk if to.has?(/mailman-bounces.*@trilug\.org/i)
 
   case headers.list_id
   when /debian-([a-z0-9_-]+)\.lists\.debian\.org/
@@ -116,6 +132,14 @@ def process
 
   list 'debian.pts' if headers.x_pts_package =~ /\w/
   list 'subs.skeptic' if from.has?(/eskeptic@skeptic.com/i)
+
+  if from.has?(/@(cooperpress\.com|@peterc\.org)>/i)
+    begin
+      sendmail mutt_alias :newsblur
+    rescue
+    end
+    deposit mbox :read
+  end
 
   #$stderr.puts "Saving to default mailbox"
   deposit Maildir.new "/srv/mail/ats"

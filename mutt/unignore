@@ -1,0 +1,11 @@
+# vim: filetype=muttrc
+ignore *
+unignore Subject:
+unignore From:
+unignore Date:
+unignore To:
+unignore CC:
+unignore User-Agent:
+unignore X-Mailer:
+unignore X-Seq:
+unignore Content-Type:

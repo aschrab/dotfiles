@@ -1,6 +1,7 @@
 HashKnownHosts no
 ControlMaster auto
 ControlPath ~/.ssh/.master.%l-%r@%h:%p
+ControlPersist 30
 #VerifyHostKeyDNS=ask
 ServerAliveInterval=120
 
@@ -25,8 +26,8 @@ Port 22
 Host moya.trilug.org
 Port 622
 
-Host pilotvm
-HostName moya.trilug.org
+Host pilotvm pilotvm.trilug.org
+#HostName moya.trilug.org
 HostKeyAlias pilot.trilug.org
 CheckHostIP no
 User aschrab

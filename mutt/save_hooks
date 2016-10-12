@@ -4,10 +4,8 @@ save-hook @netflix =INBOX/netflix
 save-hook blockbusteronline@blockbuster =INBOX/netflix
 save-hook @paytrust =INBOX/billmanager
 
-save-hook rw@peterc.org            =L/subs/weekly-tech-news
-save-hook jsw@peterc.org           =L/subs/weekly-tech-news
-save-hook postgres@cooperpress.com =L/subs/weekly-tech-news
-save-hook node@cooperpress.com     =L/subs/weekly-tech-news
+save-hook @peterc.org =L/subs/weekly-tech-news
+save-hook @cooperpress.com =L/subs/weekly-tech-news
 save-hook peter@html5weekly.com    =L/subs/weekly-tech-news
 
 save-hook @thisistrue =L/subs/true

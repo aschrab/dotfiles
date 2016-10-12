@@ -139,7 +139,7 @@ bind  editor	<space>	noop
 bind  editor	';'	buffy-cycle
 
 # Deal with subjects in ruby-core mailing list having "[ruby-core:1234] prepended
-set reply_regexp="^(\[[a-z0-9:-]*\]|((re|a(nt)?w(ort)?)(\\[[0-9]+])?:)[        ]*)+"
+set reply_regexp="^(\[[a-z0-9:-]*\]|((re|a(nt)?w(ort)?)(\\[[0-9]+]| )?:)[        ]*)+"
 
 source ~/.mutt/colors
 

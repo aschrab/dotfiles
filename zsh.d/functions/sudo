@@ -11,4 +11,4 @@ if [[ $# -eq 0 ]]; then
   set HOME="$HOME" "$SHELL" -l
 fi
 
-command sudo $args TMUX="$TMUX" "$@"
+command sudo $args SSH_AUTH_SOCK="$SSH_AUTH_SOCK" TMUX="$TMUX" "$@"
