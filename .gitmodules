@@ -18,7 +18,7 @@
 	url = https://github.com/aschrab/lighttpd-syntax.git
 [submodule "vim/bundle/ultisnips"]
 	path = vim/bundle/ultisnips
-	url = http://git.qqx.org/ultisnips
+	url = https://github.com/SirVer/ultisnips.git
 [submodule "vim/bundle/perl"]
 	path = vim/bundle/perl
 	url = git://github.com/vim-perl/vim-perl.git
