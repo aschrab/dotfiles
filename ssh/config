@@ -1,6 +1,7 @@
 HashKnownHosts no
 ControlMaster auto
 ControlPath ~/.ssh/.master.%l-%r@%h:%p
+ControlPersist 30
 #VerifyHostKeyDNS=ask
 ServerAliveInterval=120
 

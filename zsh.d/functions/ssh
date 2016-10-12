@@ -22,4 +22,4 @@ if [[ -t 1 ]]; then
   zset_title "$bar"
 fi
 
-command ssh -M "$@"
+command ssh "$@"
