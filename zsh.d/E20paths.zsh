@@ -7,9 +7,6 @@ function set_paths {
     ~/.rbenv/shims
     ~/.ndenv/shims
     /usr/local/bin
-    /usr/software/bin
-    /usr/software/rats/bin
-    /usr/software/utils/bin
     /usr/kerberos/bin
     /usr/bin
     /bin
@@ -17,6 +14,9 @@ function set_paths {
     /usr/sbin
     /sbin
     /usr/X11/bin
+    /usr/software/bin
+    /usr/software/rats/bin
+    /usr/software/utils/bin
   )
   export PATH
 
