@@ -23,10 +23,12 @@
 [url "ssh://git@github.com/"]
 	pushInsteadOf = git://github.com/
 	pushInsteadOf = https://github.com/
+	pushInsteadOf = http://github.com/
 	pushInsteadOf = gh:
 [url "https://github.com/"]
 	insteadOf = gh:
 	insteadOf = git://github.com/
+	insteadOf = http://github.com/
 [url "git@bitbucket.org:aschrab/"]
 	pushInsteadOf = https://bitbucket.org/aschrab/
 [url "git@github.com:sunbirddcim/"]
