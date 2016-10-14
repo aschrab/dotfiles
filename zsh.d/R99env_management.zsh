@@ -1,6 +1,10 @@
-if [[ -x ~/.rbenv/bin/rbenv ]] && [[ -d ~/.rbenv/shims ]]; then
-  path+=(~/.rbenv/bin)
-  eval "$(rbenv init -)"
+if [[ -x ~/.rbenv/bin/rbenv ]]; then
+  rbenv_setup() {
+    path+=(~/.rbenv/bin)
+    eval "$(rbenv init -)"
+    unfunction rbenv_setup
+  }
+  [[ -d ~/.rbenv/shims ]] && rbenv_setup
 
   if (( $+commands[brew] )); then
     export RUBY_CONFIGURE_OPTS="--with-readline-dir=`brew --prefix readline`"
@@ -8,12 +12,17 @@ if [[ -x ~/.rbenv/bin/rbenv ]] && [[ -d ~/.rbenv/shims ]]; then
     #RUBY_CONFIGURE_OPTS="$RUBY_CONFIGURE_OPTS --with-libyaml-dir=`brew --prefix libyaml`"
   fi
 elif [[ -r ~/.rvm/scripts/rvm ]]; then
+  unfunction rbenv_setup # Switching isn't this simple
   source ~/.rvm/scripts/rvm
 fi
 
-if [[ -x ~/.ndenv/bin/ndenv ]] && [[ -d ~/.ndenv/shims ]]; then
-  path+=(~/.ndenv/bin)
-  eval "$(ndenv init -)"
+if [[ -x ~/.ndenv/bin/ndenv ]]; then
+  ndenv_setup() {
+    path+=(~/.ndenv/bin)
+    eval "$(ndenv init -)"
+    unfunction ndenv_setup
+  }
+  [[ -d ~/.ndenv/shims ]] && ndenv_setup
 fi
 
 (( $+commands[direnv] )) && eval "$(direnv hook zsh)"
