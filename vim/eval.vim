@@ -262,3 +262,5 @@ if exists(':tnoremap')  " Neovim
   " Cannot use <c-\> here.
   " tnoremap <silent> <c-\> <c-\><c-n>:TmuxNavigatePrevious<cr>
 endif
+
+let g:vrc_trigger = '<C-q>'
