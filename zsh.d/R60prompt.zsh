@@ -64,7 +64,7 @@ fi
 
 RPS1=''
 PS1='
-%{$pColor$rev%} %D{%d%b%H:%M:%S}  %1v%n@%2m$DEBCHROOT  %~ ${vcs_info_msg_0_}%E %{$rum$fColor%}
+%{$pColor$rev%} %D{%d%b%H:%M:%S}  %1v%n@$host$DEBCHROOT  %~ ${vcs_info_msg_0_}%E %{$rum$fColor%}
 %{$pColor%}%!%(#.#.$)%{$fColor%} '
 
 PS2='%{$pColor%}%_>%{$fColor%} '
