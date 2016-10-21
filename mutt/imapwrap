@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 
 hostname=$(hostname)
 
@@ -7,26 +7,16 @@ update_env_from_tmux
 
 case "$1" in
   (qqx)
-    case "$hostname" in
-        (pug*|milamber*)
-            ;;
-        (*)
-            ssh=pug.qqx.org
-            ;;
-    esac
+    pat='(pug*|milamber*)'
+    ssh_host='pug.qqx.org'
     ;;
   (trilug)
-    case "$hostname" in
-      (pilot*)
-        ;;
-      (*)
-        ssh=pilot.trilug.org
-        ;;
-    esac
+    pat='(pilot*)'
+    ssh_host='pilot.trilug.org'
     ;;
 esac
 
-[ -n "$ssh" ] && ssh="ssh $ssh"
+[[ $hostname != ${~pat} ]] && ssh=(ssh $ssh_host)
 
 $ssh /usr/lib/dovecot/imap
 
