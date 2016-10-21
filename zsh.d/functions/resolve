@@ -1,0 +1,16 @@
+#autoload
+
+resolve() {
+  local res cmd
+  for cmd in "$@"; do
+    res="$(which $cmd)"
+    echo "$res"
+    case "$res" in
+      (*:*aliased*)
+        resolve "${res##*: aliased to }"
+        ;;
+    esac
+  done
+}
+
+resolve "$@"
