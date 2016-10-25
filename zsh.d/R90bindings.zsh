@@ -66,6 +66,10 @@ bindmodes viins vi-cmd-mode 'jl'
 # Use shift+tab to expand glob in place
 bindkey -M viins '\e[Z' expand-word
 
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
+
 ###################
 # Common bindings #
 ###################
