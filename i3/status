@@ -36,7 +36,7 @@ ethernet <%= eth %> {
 
 battery 0 {
         format = "%status %percentage %remaining"
-        path = "/sys/class/power_supply/BAT1/uevent"
+        path = "/sys/class/power_supply/BAT<%= host == 'frak' ? 0 : 1 %>/uevent"
 }
 
 run_watch DHCP {
