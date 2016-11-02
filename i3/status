@@ -2,6 +2,7 @@
 # <%= host %>
 % laptop = %w<frak frell>.include? host
 % eth = host == 'zim' ? 'br0' : 'eth0'
+% wlan = host == 'frak' ? 'wlp4s0' : 'wlan'
 
 general {
         colors = true
@@ -9,7 +10,7 @@ general {
 }
 
 % if laptop
-order += "wireless wlan0"
+order += "wireless <%= wlan %>"
 % end
 order += "ipv6"
 #order += "disk /"
@@ -22,7 +23,7 @@ order += "battery 0"
 order += "load"
 order += "time"
 
-wireless wlan0 {
+wireless <%= wlan %> {
         format_up = "W: (%quality at %essid) %ip"
         format_down = "W: down"
 }
