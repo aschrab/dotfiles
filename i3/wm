@@ -176,6 +176,7 @@ bar {
 <%- if m == displays.last -%>
         status_command i3status
 <%- end -%>
+        separator_symbol " | "
         tray_output <%= tray %>
 }
 bindsym $mod+Control+<%=i+1%> move workspace to output <%= m['name'] %>
