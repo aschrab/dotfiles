@@ -101,7 +101,7 @@ let perl_highlight_matches = 1
 
 let g:vimsyn_folding="Paflpr"
 let g:xml_syntax_folding = 1
-let g:xml_jump_string="`"
+let g:xml_jump_string="¦"
 let g:perl_fold = 1
 let g:perl_fold_anonymous_subs = 1
 
