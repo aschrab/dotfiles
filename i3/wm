@@ -86,27 +86,17 @@ bindsym $mod+bracketright focus child
 bindsym $mod+comma        focus parent
 bindsym $mod+period       focus child
 
-# switch to workspace
-% 1.upto 10 do |n|
-bindsym $mod+<%= n % 10 %> workspace number <%= n %>
-% end
-
 bindsym $mod+a exec --no-startup-id "<%= DOTFILE_DIR %>/i3/workspace-exec i3 workspace %s"
 bindsym $mod+Shift+A exec --no-startup-id "<%= DOTFILE_DIR %>/i3/workspace-exec i3 move container to workspace %s"
 bindsym $mod+Control+A exec --no-startup-id "<%= DOTFILE_DIR %>/i3/workspace-exec 'i3 move container to workspace %s; i3 workspace %s'"
 bindsym $mod+Control+r exec --no-startup-id "<%= DOTFILE_DIR %>/i3/workspace-exec i3 rename workspace to %s"
 
 # move focused container to workspace
-bindsym $mod+Shift+exclam move container to workspace number 1
-bindsym $mod+Shift+at move container to workspace number 2
-bindsym $mod+Shift+numbersign move container to workspace number 3
-bindsym $mod+Shift+dollar move container to workspace number 4
-bindsym $mod+Shift+percent move container to workspace number 5
-bindsym $mod+Shift+asciicircum move container to workspace number 6
-bindsym $mod+Shift+ampersand move container to workspace number 7
-bindsym $mod+Shift+asterisk move container to workspace number 8
-bindsym $mod+Shift+parenleft move container to workspace number 9
-bindsym $mod+Shift+parenright move container to workspace number 10
+% symbols = %w{exclam at numbersign dollar percent asciicircum ampersand asterisk parenleft parenright}
+<%- symbols.each.with_index(1) do |sym,num| -%>
+bindsym $mod+<%= num % 10 %> workspace number <%= num %>
+bindsym $mod+Shift+<%= sym %> move container to workspace number <%= num %>
+<%- end -%>
 
 # reload the configuration file
 bindsym $mod+Shift+C reload
