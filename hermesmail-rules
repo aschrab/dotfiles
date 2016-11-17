@@ -128,7 +128,9 @@ def process
     list 'ug.trianglerb', subject: '[Triangle.rb Forum]'
   end
 
-  list 'dev.git', dupcheck: true if receivers.include? 'git@vger.kernel.org'
+  # Practice on git list is to CC everyone involved, attempt to send
+  # direct-to-me messages to the list folder
+  #list 'dev.git', dupcheck: true if receivers.include? 'git@vger.kernel.org'
 
   list 'debian.pts' if headers.x_pts_package =~ /\w/
   list 'subs.skeptic' if from.has?(/eskeptic@skeptic.com/i)
