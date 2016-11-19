@@ -231,9 +231,9 @@ let delimitMate_balance_matchpairs = 1
 let delimitMate_matchpairs = "(:),[:],{:}"
 
 " Insert current timestamp in UTC, ISO format
-imap <C-A>tu 2000-01-01T12:34:56<C-O>h<C-O>d<C-A><C-O>lZ
+imap <C-A>tu 2000-01-01T12:34:56<C-O>h<C-O>d<C-A><Right>Z
 " Insert current timestamp in local time
-imap <C-A>tl 2000-01-01 12:34:56 -0400<C-O>h<C-O>d<C-X><C-O>l
+imap <C-A>tl 2000-01-01 12:34:56 -0400<C-O>h<C-O>d<C-X><Right>
 
 let g:Gitv_DoNotMapCtrlKey = 1
 let g:Gitv_TruncateCommitSubjects = 1
