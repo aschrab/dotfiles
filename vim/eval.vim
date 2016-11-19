@@ -18,34 +18,34 @@ if exists("+guifont")
 endif
 
 if (v:version >= 700)
-	" Start up pathogen if it's available
-	" Won't be available on boxes before git submodules have been fetched
-	let g:pathogen_disabled = []
-	if &term =~ 'linux'
-		" Don't use airline on Linux console, it messes up the display horribly
-		let g:pathogen_disabled += [ 'airline' ]
-	endif
-	if ((v:version == 703 && has('patch584')) || v:version > 703) && has('python')
-	else
-		let g:pathogen_disabled += [ 'you_complete_me' ]
-	endif
-	"let g:pathogen_disabled += [ 'signify' ]
+  " Start up pathogen if it's available
+  " Won't be available on boxes before git submodules have been fetched
+  let g:pathogen_disabled = []
+  if &term =~ 'linux'
+    " Don't use airline on Linux console, it messes up the display horribly
+    let g:pathogen_disabled += [ 'airline' ]
+  endif
+  if ((v:version == 703 && has('patch584')) || v:version > 703) && has('python')
+  else
+    let g:pathogen_disabled += [ 'you_complete_me' ]
+  endif
+  "let g:pathogen_disabled += [ 'signify' ]
 
-	if ((v:version == 703 && has('patch501')) || v:version > 703)
-    else
-		let g:pathogen_disabled += [ 'vorax' ]
+  if ((v:version == 703 && has('patch501')) || v:version > 703)
+  else
+    let g:pathogen_disabled += [ 'vorax' ]
+  endif
+
+  if (v:version < 704)
+    let g:pathogen_disabled += [ 'diff-enhanced' ]
+  endif
+
+  if has("gui_running") || hostname() !~ '\M.netapp.com$' || hostname() =~ '\M.rtp.' || hostname() =~ '\M^aschrab'
+    runtime bundle/pathogen/autoload/pathogen.vim
+    if exists('*pathogen#infect')
+      execute pathogen#infect()
     endif
-
-    if (v:version < 704)
-		let g:pathogen_disabled += [ 'diff-enhanced' ]
-    endif
-
-	if has("gui_running") || hostname() !~ '\M.netapp.com$' || hostname() =~ '\M.rtp.' || hostname() =~ '\M^aschrab'
-		runtime bundle/pathogen/autoload/pathogen.vim
-		if exists('*pathogen#infect')
-			execute pathogen#infect()
-		endif
-	endif
+  endif
 endif
 
 " Screen/tmux can also handle xterm mousiness, but Vim doesn't detect it by default.
@@ -63,7 +63,7 @@ runtime macros/matchit.vim
 filetype plugin indent on
 
 if has('multi_statusline')
-	set statuslineheight=1
+  set statuslineheight=1
 endif
 
 " Always show tab line in GUI to work around GTK UI
@@ -111,21 +111,21 @@ let SVNCommandEnableBufferSetup=1
 
 " Inform vim how to set window title for additional $TERM types
 if &term =~ '\v(xterm|gnome)(-256color)?'
-	let &t_ts="\<Esc>]2;"
-	let &t_IS="\<Esc>]1;"
-	let &t_fs="\<C-G>"
+  let &t_ts="\<Esc>]2;"
+  let &t_IS="\<Esc>]1;"
+  let &t_fs="\<C-G>"
 elseif &term =~ '\v(screen)(-256color)?'
-	" For some reason using the above settings in tmux causes the :make
-	" command to wait for input before giving any indication that the build
-	" process has finished.  Use an alternate escape sequence for that.
-	let &t_ts="\<Esc>]2;"
-	let &t_fs="\<Esc>\\"
+  " For some reason using the above settings in tmux causes the :make
+  " command to wait for input before giving any indication that the build
+  " process has finished.  Use an alternate escape sequence for that.
+  let &t_ts="\<Esc>]2;"
+  let &t_fs="\<Esc>\\"
 endif
 
 if v:version >= 700
-	let g:snipMate = {}
-	let g:snipMate.scope_aliases = {}
-	let g:snipMate.scope_aliases['tt2html'] = 'tt2,html'
+  let g:snipMate = {}
+  let g:snipMate.scope_aliases = {}
+  let g:snipMate.scope_aliases['tt2html'] = 'tt2,html'
 endif
 
 let g:powerlineNoPythonError = 1
@@ -151,16 +151,16 @@ let g:syntastic_warning_symbol='⚠'
 let g:syntastic_auto_loc_list=1
 let g:syntastic_loc_list_height=5
 if v:version >= 700
-	let g:syntastic_javascript_checkers = ['eslint']
-	let g:syntastic_html_tidy_ignore_errors = [
-	  \ "proprietary attribute \"autocomplete\"",
-	  \ "proprietary attribute \"ng-"
-	  \ ]
+  let g:syntastic_javascript_checkers = ['eslint']
+  let g:syntastic_html_tidy_ignore_errors = [
+        \ "proprietary attribute \"autocomplete\"",
+        \ "proprietary attribute \"ng-"
+        \ ]
 endif
 
 map <silent> <F1> :NERDTreeToggle<CR>
 if v:version >= 700
-	let NERDTreeSortOrder=[ 'README.*', '*', '\(\~\|\.\(bak\|swp\)\)$' ]
+  let NERDTreeSortOrder=[ 'README.*', '*', '\(\~\|\.\(bak\|swp\)\)$' ]
 endif
 
 let g:ScreenImpl='Tmux'
@@ -195,7 +195,7 @@ autocmd StdinReadPre * let s:std_in=1
 "autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 if v:version >= 700
-	let g:signify_vcs_list = [ 'git' ]
+  let g:signify_vcs_list = [ 'git' ]
 endif
 let g:signify_sign_overwrite = 0
 
@@ -212,7 +212,7 @@ let g:SuperTabDefaultCompletionType='context'
 let g:SuperTabLongestEnhanced=1
 "let g:SuperTabLongestHighlight=1
 if v:version >= 700
-	let g:SuperTabNoCompleteAfter=['^', ',', '\s', "'", '"']
+  let g:SuperTabNoCompleteAfter=['^', ',', '\s', "'", '"']
 endif
 
 nmap <Plug>SwapItFallbackIncrement <Plug>SpeedDatingUp
@@ -221,7 +221,7 @@ vmap <Plug>SwapItFallbackIncrement <Plug>SpeedDatingUp
 vmap <Plug>SwapItFallbackDecrement <Plug>SpeedDatingDown
 
 if v:version >= 700
-	let g:ycm_key_list_select_completion = ['<Down>'] " Don't include <Tab> so that UltiSnips can use that
+  let g:ycm_key_list_select_completion = ['<Down>'] " Don't include <Tab> so that UltiSnips can use that
 endif
 
 let delimitMate_jump_expansion = 1
@@ -244,7 +244,7 @@ let g:vim_markdown_folding_disabled = 1
 let g:vorax_output_window_default_funnel = 2
 
 if exists("g:loaded_unicodePlugin")
-	nnoremap ga :<C-U>UnicodeName<CR>
+  nnoremap ga :<C-U>UnicodeName<CR>
 endif
 
 let g:sudoAuth = ' sudo '
