@@ -36,8 +36,9 @@ def list name, subject: nil, dupcheck: false
 
     reply = true if modified.sub!( /(-reply\s*)+$/i, '' )
     reply = true if modified.sub!( /^(\s*Re(\[\d+\])?:)+/i, '' )
+    modified.strip!
+    modified = "Re: #{modified}" if reply
 
-    modified = "Re: #{modified.strip}"
     headers.replace :Subject, modified unless modified == original
   rescue
   end
