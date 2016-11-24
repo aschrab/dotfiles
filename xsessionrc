@@ -5,7 +5,11 @@ dotfiles=$(dirname $(readlink -f ${BASH_SOURCE-$HOME/.xsessionrc}))
 export GTK_IM_MODULE=xim
 export PYTHONPATH="$HOME/.python"
 
-if ! gpg-agent 2> /dev/null
+if type gnome-keyring-daemon 2> /dev/null
+then
+  eval "$(gnome-keyring-daemon)"
+  export SSH_AUTH_SOCK
+elif ! gpg-agent 2> /dev/null
 then
 	eval "$(gpg-agent --daemon --enable-ssh-support)"
 fi
