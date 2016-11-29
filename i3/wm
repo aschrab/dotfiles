@@ -158,6 +158,9 @@ bindsym $mod+r mode "resize"
   # Put tray on display that extends farthest down, preferring right-most display if tie
   tray = displays.sort_by{ |m| m['rect'].values_at('y','x') }.last['name']
 
+  # Put status on display with highest bottom, preferring left-most if tie
+  status = displays.sort_by{ |m| m['rect'].values_at('y','x') }.first['name']
+
   # Sort from left to right, top to bottom
   displays.sort_by!{ |m| m['rect'].values_at(*%w<x y>) }
 
@@ -165,7 +168,7 @@ displays.each_with_index do |m,i| -%>
 bar {
         position bottom
         output <%= m['name'] %>
-<%- if m == displays.last -%>
+<%- if m['name'] == status -%>
         status_command i3status
 <%- end -%>
         separator_symbol " | "
