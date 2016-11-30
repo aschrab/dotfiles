@@ -19,3 +19,6 @@ export LANG
 
 # Make is-at-least function available for use in later config files
 autoload -U is-at-least
+
+# Some systems define a `which` alias in /etc/profile.d
+unalias -m which
