@@ -50,6 +50,7 @@
 	algorithm      = patience
 	#algorithm      = histogram # Too new for some of the systems I use
 	compactionHeuristic =  yes
+	indentHeuristic = yes
 
 [commit]
 	verbose = yes
