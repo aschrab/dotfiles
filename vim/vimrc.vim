@@ -6,7 +6,7 @@ scriptencoding utf-8
 set background=dark
 
 :if 1
-	source ~/.vim/eval.vim
+  runtime eval.vim
 :endif
 
 set t_Co=16
@@ -242,5 +242,5 @@ set secure
 :endif
 
 :if 1
-source ~/.vim/projects.vim
+  runtime projects.vim
 :endif
