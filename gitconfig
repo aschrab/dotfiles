@@ -154,5 +154,3 @@
 	autosquash = true
 [pull]
 	ff = only
-[http]
-	sslCAPath = ~/.certs
