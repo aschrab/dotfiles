@@ -38,6 +38,7 @@ if (v:version >= 700)
 
   if (v:version < 704)
     let g:pathogen_disabled += [ 'diff-enhanced' ]
+    let g:pathogen_disabled += [ 'tsuquyomi' ]
   endif
 
   if has("gui_running") || hostname() !~ '\M.netapp.com$' || hostname() =~ '\M.rtp.' || hostname() =~ '\M^aschrab'
