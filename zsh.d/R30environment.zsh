@@ -1,5 +1,8 @@
 export BAUD=0
 
+: ${XDG_CONFIG_HOME:=$HOME/.config}
+export XDG_CONFIG_HOME
+
 if [[ -n $TMUX ]] && [[ -r ${TMUX%%,*} ]]; then
   preexec_functions+='update_env_from_tmux'
 fi

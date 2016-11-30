@@ -8,7 +8,7 @@ if [[ $# -eq 2 ]] && [[ "$1" = '-u' ]]; then
 fi
 
 if [[ $# -eq 0 ]]; then
-  set ZDOTDIR="${ZDOTDIR:-$HOME}" VIMINIT="source $ZDOTDIR/.vim/sudoed.vim" "$SHELL" -l
+  set XDG_CONFIG_HOME="$XDG_CONFIG_HOME" ZDOTDIR="${ZDOTDIR:-$HOME}" VIMINIT="source $ZDOTDIR/.vim/sudoed.vim" "$SHELL" -l
 fi
 
 command sudo $args SSH_AUTH_SOCK="$SSH_AUTH_SOCK" TMUX="$TMUX" "$@"
