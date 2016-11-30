@@ -1,6 +1,6 @@
 export BAUD=0
 
-if [[ -n $TMUX ]]; then
+if [[ -n $TMUX ]] && [[ -r ${TMUX%%,*} ]]; then
   preexec_functions+='update_env_from_tmux'
 fi
 
