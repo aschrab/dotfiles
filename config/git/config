@@ -40,7 +40,7 @@
 	pager        = less -R
 	#autocrlf    = input
 	safecrlf     = true
-	excludesfile = ~/.gitignore
+	#excludesfile = ~/.gitignore
 	preloadindex = yes
 	commentChar  = !
 
