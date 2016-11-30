@@ -8,7 +8,7 @@ if [[ $# -eq 2 ]] && [[ "$1" = '-u' ]]; then
 fi
 
 if [[ $# -eq 0 ]]; then
-  set HOME="$HOME" "$SHELL" -l
+  set ZDOTDIR="${ZDOTDIR:-$HOME}" "$SHELL" -l
 fi
 
 command sudo $args SSH_AUTH_SOCK="$SSH_AUTH_SOCK" TMUX="$TMUX" "$@"
