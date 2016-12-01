@@ -85,9 +85,11 @@ set thorough_search
 set nowait_key                 # don't wait for a key after running programs
 set nobeep
 set nobeep_new
-
 set timeout=30                 # seconds inactivity before looking for new mail
+
 set ssl_use_sslv3=no
+set ssl_use_tlsv1=no
+set ssl_force_tls=yes # Require all remote connections to be encrypted.
 
 # Bindings
 bind  pager	<Tab>	next-new
