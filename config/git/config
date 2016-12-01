@@ -6,7 +6,8 @@
 	signingkey    = 6DB5C725
 
 [include]
-	path = .gitconfig.local
+	path = ~/.gitconfig.local
+	path = local
 
 [init]
 	templatedir = ~/.git_template
