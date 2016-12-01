@@ -82,7 +82,7 @@ end
 
 class Fixnum
   def inspect
-    to_s.split('').reverse.each_slice(3).map{ |x| x.reverse.join '' }.reverse.join(',')
+    to_s.split('').reverse.each_slice(3).map{ |x| x.reverse.join '' }.reverse.join('_')
   end
 end
 
