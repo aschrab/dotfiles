@@ -27,7 +27,8 @@ def list name, subject: nil, dupcheck: false
   end if dupcheck
 
   begin
-    original = modified = headers.subject
+    original = headers.subject
+    modified = original.dup
 
     if subject
       subject = Regexp.escape subject unless subject.is_a? Regexp
