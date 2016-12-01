@@ -42,7 +42,6 @@ set save_name                  # save messages in folder named for addressee
 set pgp_verify_sig=yes         # Verify signature automatically
 set pgp_replyencrypt
 set pgp_replysign
-set pgp_good_sign="^gpg: Good signature from"
 
 send-hook   . "unmy_hdr From"
 folder-hook . "set followup_to=yes"
