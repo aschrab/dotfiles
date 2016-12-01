@@ -20,7 +20,7 @@ exec ./prepare \
 	--enable-smtp \
 	--prefix=$HOME \
 	--with-curses \
-	--with-gnutls \
+	--with-ssl \
 	--with-gss \
 	--with-idn \
 	--with-mixmaster \
