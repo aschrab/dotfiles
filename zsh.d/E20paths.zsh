@@ -3,6 +3,7 @@ typeset -aU path
 function set_paths {
   path=(
     ~/bin
+    ~/.bin
     ~/.gem/bin
     ~/.rbenv/shims
     ~/.ndenv/shims
@@ -39,3 +40,4 @@ function set_paths {
 }
 
 [[ $SHLVL = 1 ]] && set_paths
+:
