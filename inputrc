@@ -4,17 +4,20 @@ set keymap vi-insert
   "jl": vi-movement-mode
   "\e.": yank-last-arg
   "\et": transpose-words
+  "\C-a": beginning-of-line
+  "\C-e": end-of-line
   TAB: menu-complete
 
-#set keymap vi-command
-#
+set keymap vi-command
+  "\C-a": beginning-of-line
+  "\C-e": end-of-line
 # "\C-I" self-insert
 
 # isearch-terminators is a list of sequences that, when used in incremental
 # search, will do nothing other than terminate incremental search.  Default
 # includes ESC, but that causes later portions of sequences that start with
 # ESC to be entered verbatim into the command line.
-set isearch-terminators "\C-J"
+set isearch-terminators "\C-J jl"
 
 set completion-ignore-case on
 
