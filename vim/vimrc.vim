@@ -126,7 +126,7 @@ set t_vb=
 :endif
 
 " Display tabs and trailing spaces {{{
-silent! set listchars=tab:▶·,trail:∙,precedes:«,extends:»
+silent! set listchars=tab:→·,trail:∙,precedes:«,extends:»
 " eol:↲
 set list
 "}}}
