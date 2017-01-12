@@ -28,6 +28,7 @@ text/x-patch; cat -v %s; copiousoutput
 text/x-sh; cat -v %s; copiousoutput
 text/x-csrc; cat -v %s; copiousoutput
 text/english; cat -v %s; copiousoutput
+application/text; cat -v %s; copiousoutput
 
 #image/*; xfix -s -- display %s; test=xfix -s -- /home/aarons/bin/runningx
 image/*; twrap display %s
