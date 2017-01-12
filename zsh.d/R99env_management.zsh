@@ -25,4 +25,4 @@ if [[ -x ~/.ndenv/bin/ndenv ]]; then
   [[ -d ~/.ndenv/shims ]] && ndenv_setup
 fi
 
-(( $+commands[direnv] )) && eval "$(direnv hook zsh)"
+(( $+commands[direnv] )) && eval "$(direnv hook zsh)" && direnv reload
