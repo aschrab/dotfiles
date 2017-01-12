@@ -7,7 +7,7 @@ fi
 
 export CFLAGS=-ggdb
 exec ./prepare \
-	--sysconfdir=/etc \
+	--sysconfdir=$HOME/.etc \
 	--enable-compressed \
 	--enable-sidebar \
 	--enable-debug \
