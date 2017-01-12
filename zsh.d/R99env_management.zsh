@@ -12,7 +12,7 @@ if [[ -x ~/.rbenv/bin/rbenv ]]; then
     #RUBY_CONFIGURE_OPTS="$RUBY_CONFIGURE_OPTS --with-libyaml-dir=`brew --prefix libyaml`"
   fi
 elif [[ -r ~/.rvm/scripts/rvm ]]; then
-  unfunction rbenv_setup # Switching isn't this simple
+  unfunction rbenv_setup 2>/dev/null # Switching isn't this simple
   source ~/.rvm/scripts/rvm
 fi
 
