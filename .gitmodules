@@ -25,7 +25,7 @@
 	update = merge
 [submodule "upstreams/completions"]
 	path = upstreams/completions
-	url = https://github.com/aschrab/zsh-completions.git
+	url = https://github.com/zsh-users/zsh-completions.git
 [submodule "vim/bundle/nginx"]
 	path = vim/bundle/nginx
 	url = https://github.com/evanmiller/nginx-vim-syntax.git
@@ -43,7 +43,7 @@
 	url = https://github.com/aschrab/vim-speeddating.git
 [submodule "vim/bundle/gitv"]
 	path = vim/bundle/gitv
-	url = https://github.com/aschrab/gitv.git
+	url = https://github.com/gregsexton/gitv.git
 [submodule "vim/bundle/editorconfig"]
 	path = vim/bundle/editorconfig
 	url = https://github.com/editorconfig/editorconfig-vim.git
