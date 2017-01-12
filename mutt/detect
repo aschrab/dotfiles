@@ -103,7 +103,7 @@ mailboxrx 'imaps://aaron.schrab@gmail.com[^/]*/' '[G]%R'
 %   date_fmt = '%[%m/%d]'
 % end
 
-% hdr_format = "%5C (%?M?+%4M&%5l?) %Z #{date_fmt}  %-15.15F ¶ %s"
+% hdr_format = "%5C (%?M?+%4M&%5l?) %Z #{date_fmt}  %-15.15F│ %s"
 macro index i ":set hdr_format=<%= hdr_format.quote %>\n"
 macro index I ":set hdr_format=<%= hdr_format.sub('F', 'L').quote %>\n"
 set hdr_format="<%= hdr_format.sub('F', 'L') %>"
