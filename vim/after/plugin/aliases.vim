@@ -4,4 +4,7 @@ if exists(":Alias")
   Alias gitk Gitv
   Alias gv Gitv
   Alias scratch Scratch
+  if exists(":Shell")
+    Alias shell Shell
+  endif
 endif
