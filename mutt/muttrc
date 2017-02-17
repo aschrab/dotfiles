@@ -17,7 +17,7 @@ charset-hook ^iso-8859-1$ cp1252
 
 auto_view application/x-zip-compressed application/msword text/x-sh
 auto_view application/x-gtar application/x-tar application/x-tar-gz text/x-csrc
-auto_view application/text
+auto_view application/text application/x-plain
 
 set ispell="spell"
 
