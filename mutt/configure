@@ -25,6 +25,7 @@ exec ./prepare \
 	--with-idn \
 	--with-mixmaster \
 	--with-sasl \
+	--with-kyotocabinet \
 	--with-mailpath=/var/mail \
 	--without-bdb --without-qdbm \
 	"$@"
