@@ -33,6 +33,10 @@ zstyle ':completion:complete-file::::' completer _files
 bindkey -M emacs '^x^f' complete-file
 bindkey -M viins '^x^f' complete-file
 
+# Allow Meta+Enter to be used to use pager for command
+bindkey -M viins -s '\e^m' '^e|page^m'
+bindkey -M emacs -s '\e^m' '^e|page^m'
+
 ##################
 # Vi bindings    #
 ##################
