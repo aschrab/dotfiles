@@ -26,10 +26,14 @@ def mlist mbox, opts={} #{{{
     opts[:mbox].sub!(/^\+/, 'imaps://aaron.schrab@gmail.com@imap.gmail.com/')
   end
 
+  unless opts[:mbox] =~ /^[+=]/
+    opts[:mbox] = "=L/#{opts[:mbox]}"
+  end
+
   out = []
   out << "mailboxes #{opts[:mbox]}"
   out << "subscribe #{opts[:address]}"
-  out << "mbox-hook L/#{opts[:mbox]} =Read/#{opts[:mbox]}"
+  out << "mbox-hook #{opts[:mbox]} #{opts[:mbox].sub('L', 'Read')}"
   if opts[:from]
     out << "send-hook #{opts[:address]} my_hdr From: #{opts[:from]}"
   end
