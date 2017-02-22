@@ -31,7 +31,7 @@ if (v:version >= 700)
   endif
   "let g:pathogen_disabled += [ 'signify' ]
 
-  if ((v:version == 703 && has('patch501')) || v:version > 703)
+  if !exists('g:sudoed') && ((v:version == 703 && has('patch501')) || v:version > 703)
   else
     let g:pathogen_disabled += [ 'vorax' ]
   endif
