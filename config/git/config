@@ -1,4 +1,12 @@
 # vim: ft=gitconfig tabstop=4 shiftwidth=4
+[core]
+	pager        = less -R
+	#autocrlf    = input
+	safecrlf     = true
+	#excludesfile = ~/.gitignore
+	preloadindex = yes
+	commentChar  = !
+
 [user]
 	name          = Aaron Schrab
 	#email         = aaron@schrab.com
@@ -9,41 +17,15 @@
 	path = ~/.gitconfig.local
 	path = local
 
-[init]
-	templatedir = ~/.git_template
-
 [advice]
 	statusHints = no
 
+[status]
+	submodulesummary = true
+	showUntrackedFiles = all
+
 [log]
 	abbrevCommit = true
-
-[url "ssh://pug.qqx.org/srv/git/"]
-	pushInsteadOf = http://git.qqx.org/
-	pushInsteadOf = git://git.qqx.org/
-[url "ssh://git@github.com/"]
-	pushInsteadOf = git://github.com/
-	pushInsteadOf = https://github.com/
-	pushInsteadOf = http://github.com/
-	pushInsteadOf = gh:
-[url "https://github.com/"]
-	insteadOf = gh:
-	insteadOf = git://github.com/
-	insteadOf = http://github.com/
-[url "git@bitbucket.org:aschrab/"]
-	pushInsteadOf = https://bitbucket.org/aschrab/
-[url "git@github.com:sunbirddcim/"]
-	insteadOf = git@github.com:raritan/
-	insteadOf = ssh://git@github.com/raritan/
-	insteadOf = https://github.com/raritan/poweriq_web.git
-
-[core]
-	pager        = less -R
-	#autocrlf    = input
-	safecrlf     = true
-	#excludesfile = ~/.gitignore
-	preloadindex = yes
-	commentChar  = !
 
 [diff]
 	renames        = true
@@ -53,16 +35,29 @@
 	compactionHeuristic =  yes
 	indentHeuristic = yes
 
+[diff "ini"]
+	xfuncname = "^\\[.*\\]"
+
 [commit]
 	verbose = yes
 
-[diff "ini"]
-	xfuncname = "^\\[.*\\]"
+[pull]
+	ff = only
+[rebase]
+	autosquash = true
+[push]
+	default = current
 
 [merge]
 	conflictstyle = diff3
 	defaultToUpstream = yes
 	log = 999
+
+[init]
+	templatedir = ~/.git_template
+
+[help]
+	autocorrect = 15
 
 [mergetool "fugitive"]
 	cmd = vim -f -c "Gdiff" "$MERGED"
@@ -106,9 +101,6 @@
 	submodule-annotate = submodule foreach 'git update-ref --create-reflog -m \"Update from parent repo\" refs/heads/submodule-parent $sha1 || true'
 	wtree = worktree
 
-[push]
-	default = current
-
 [filter "date-prop"]
 	clean  = perl -pe 's/,,Date[^,]*,,/,,Date,,/i'
 	smudge = perl -pe 's/,,Date[^,]*,,/,,Date: @{[scalar gmtime]},,/i'
@@ -125,13 +117,6 @@
 	updated   = blue
 	changed   = red
 
-[status]
-	submodulesummary = true
-	showUntrackedFiles = all
-
-[github]
-	user = aschrab
-
 [sendemail]
 	from           = Aaron Schrab <aaron@schrab.com>
 	envelopesender = aaron@schrab.com
@@ -143,18 +128,34 @@
 
 [upstream]
 	urltag = qqx/upstream
-[help]
-	autocorrect = 15
 
 [git-p4]
 	skipSubmitEdit = true
 	conflict = quit
 
+[github]
+	user = aschrab
+
 [filter "lfs"]
 	clean = git lfs clean %f
 	smudge = git lfs smudge %f
 	required = true
-[rebase]
-	autosquash = true
-[pull]
-	ff = only
+
+[url "ssh://pug.qqx.org/srv/git/"]
+	pushInsteadOf = http://git.qqx.org/
+	pushInsteadOf = git://git.qqx.org/
+[url "ssh://git@github.com/"]
+	pushInsteadOf = git://github.com/
+	pushInsteadOf = https://github.com/
+	pushInsteadOf = http://github.com/
+	pushInsteadOf = gh:
+[url "https://github.com/"]
+	insteadOf = gh:
+	insteadOf = git://github.com/
+	insteadOf = http://github.com/
+[url "git@bitbucket.org:aschrab/"]
+	pushInsteadOf = https://bitbucket.org/aschrab/
+[url "git@github.com:sunbirddcim/"]
+	insteadOf = git@github.com:raritan/
+	insteadOf = ssh://git@github.com/raritan/
+	insteadOf = https://github.com/raritan/poweriq_web.git
