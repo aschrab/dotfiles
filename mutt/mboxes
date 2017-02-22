@@ -12,6 +12,7 @@ mailboxes =INBOX/sympa
 <%= mlist '=L/ug/trilug/steering', :subjectrx => '[Steering]', :address => 'steering@trilug' %>
 <%= mlist '=L/ug/trilug/volunteers', :subjectrx => '[TriLUG Volunteers]', :address => 'volunteers@trilug' %>
 <%= mlist '=L/ug/trilug', :address => 'trilug@trilug', :subjectrx => '[TriLUG]' %>
+<%= mlist '=L/ug/trilug/ham', :address => 'linux-ham@trilug', :subjectrx => '[Linux-ham]' %>
 
 <%= mlist '+L/triangle-sword', :account => :gmail, :subjectrx => '[TSG Projects]' %>
 <%= mlist '+L/triangle-sword/org', :account => :gmail, :address => 'tsg-organization@googlegroups.com' %>

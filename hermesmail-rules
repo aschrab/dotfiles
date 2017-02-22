@@ -94,6 +94,8 @@ def process
     list 'ug.trilug.steering', subject: '[Steering]'
   when /volunteers\.trilug\.org/i
     list 'ug.trilug.volunteers', subject: '[TriLUG Volunteers]'
+  when /linux-ham\.trilug\.org/i
+    list 'ug.trilug.ham', subject: '[Linux-ham]'
   when /trilug\.trilug\.org/i
     unless headers.x_list_administrivia =~ /yes/i
       list 'ug.trilug', subject: /\[TriLUG\]\s*/i
