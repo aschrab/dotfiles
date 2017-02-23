@@ -1,0 +1,9 @@
+#/bin/sh
+
+set -e
+
+if [ -n "$(which curl)" ]; then
+  curl -O "$@"
+else
+  wget "$@"
+fi
