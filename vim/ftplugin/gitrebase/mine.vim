@@ -7,5 +7,6 @@ nnoremap <buffer> <silent> <C-S> :Squash<CR>
 nnoremap <buffer> <silent> <C-E> :Edit<CR>
 nnoremap <buffer> <silent> <C-R> :Reword<CR>
 nnoremap <buffer> <silent> <C-F> :Fixup<CR>
+nnoremap <buffer> <silent> <C-D> :Drop<CR>
 
 nnoremap <buffer> K ^w:Gsplit <C-r><C-w><CR>
