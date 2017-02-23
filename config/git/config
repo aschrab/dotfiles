@@ -45,6 +45,7 @@
 	ff = only
 [rebase]
 	autosquash = true
+	missingCommitsCheck = error
 [push]
 	default = current
 
