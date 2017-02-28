@@ -13,7 +13,7 @@ end
 def list name, subject: nil, dupcheck: false
   #$stderr.puts "List #{name}"
 
-  begin
+  begin # Filter duplicates
     dbfile = "#{ENV['HOME']}/.dupcache"
     GDBM.open(dbfile, 0600, GDBM::WRCREAT|GDBM::SYNC) do |dbm|
       key = "#{name}:#{headers.message_id}"
@@ -26,7 +26,7 @@ def list name, subject: nil, dupcheck: false
   rescue
   end if dupcheck
 
-  begin
+  begin # Cleanup subject
     original = headers.subject
     modified = original.dup
 
@@ -105,7 +105,7 @@ def process
   when /dbix-class\.lists\.scsys\.co\.uk/i
     list 'perl.dbix', subject: /\[Dbix-class\]/i
   when /zsh-(workers|users)\.zsh\.org/i
-    list 'dev.zsh'
+    list 'dev.zsh', dupcheck: true
   when /git\.vger\.kernel\.org/i
     list 'dev.git', dupcheck: true
   when /tmux-users\.lists\.sourceforge\.net/i
