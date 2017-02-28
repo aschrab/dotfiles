@@ -4,6 +4,11 @@ class String
   end
 end
 
+def subjectrx?
+  return true if mutt_version > mutt_version('1.8')
+  return true if mutt_patch %r<mailboxrx>
+end
+
 def mlist mbox, opts={} #{{{
   case mbox
   when Hash
@@ -46,7 +51,7 @@ def mlist mbox, opts={} #{{{
     out << "folder-hook L(ists)?/#{opts[:mbox]} 'set followup_to=no'"
   end
 
-  if rx = opts[:subjectrx] and mutt_patch %r<mailboxrx>
+  if rx = opts[:subjectrx] and subjectrx?
     rx = case rx
            when String
              Regexp.escape(rx) + '\\s*'
