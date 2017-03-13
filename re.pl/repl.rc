@@ -38,3 +38,8 @@ $_REPL->fancy_prompt( sub {
 	}) if $_REPL->can('fancy_prompt');
 
 package main;
+
+sub inspect {
+  use Data::Dumper;
+  Data::Dumper->new([])->Terse(1)->Indent(0)->Useqq(1)->Values([$_[0]])->Dump;
+}
