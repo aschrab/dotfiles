@@ -47,7 +47,7 @@ if [[ $USER == 'root' ]]; then
   # Display all processes
   zstyle ':completion:*:*:*:*:processes' 'command' 'ps ax'
 else # Display all of current user's processes.
-  zstyle ':completion:*:*:*:*:processes' 'command' 'ps -u$USER'
+  zstyle ':completion:*:*:*:*:processes' 'command' 'ps x'
 fi
 
 # Display list of processes even if there's only one match
