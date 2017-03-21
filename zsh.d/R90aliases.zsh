@@ -34,7 +34,7 @@ alias find='noglob find'
 
 case "$EDITOR" in
   (*/|)(n|)vim(x|))
-    alias page="view +'set buftype=nofile' -"
+    alias page="view +'set buftype=nofile ro' -"
     ;;
   *)
     alias page="$PAGER"
