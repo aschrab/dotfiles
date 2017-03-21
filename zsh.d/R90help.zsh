@@ -6,5 +6,7 @@ do
 	autoload run-help-git
 	autoload run-help-svn
 	autoload run-help-sudo
+	autoload run-help-ip
+	autoload run-help-openssl
 	break
 done
