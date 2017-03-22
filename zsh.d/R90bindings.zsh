@@ -45,9 +45,7 @@ bindkey -M vicmd "/"   history-incremental-pattern-search-forward
 bindkey -M vicmd "^u"  vi-kill-line
 
 # Avoid issue where escape in command mode will eat next character
-noop () { }
-zle -N noop
-bindkey -M vicmd '\e' noop
+bindkey -M vicmd -s '\e' ''
 
 () {
   local n
