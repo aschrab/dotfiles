@@ -7,6 +7,7 @@ function set_paths {
     ~/.gem/bin
     ~/.rbenv/shims
     ~/.ndenv/shims
+    ~/opt/git/default/bin
     /usr/local/bin
     /usr/kerberos/bin
     /usr/bin
