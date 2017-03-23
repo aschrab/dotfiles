@@ -260,3 +260,6 @@
 [submodule "vim/bundle/vimproc"]
 	path = vim/bundle/vimproc
 	url = https://github.com/Shougo/vimproc.vim.git
+[submodule "vim/bundle/tern"]
+	path = vim/bundle/tern
+	url = https://github.com/ternjs/tern_for_vim.git
