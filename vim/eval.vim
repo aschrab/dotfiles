@@ -163,6 +163,8 @@ if v:version >= 700
         \ ]
 endif
 
+autocmd BufNewFile,BufRead .eslintrc let b:syntastic_checkers = []
+
 map <silent> <F1> :NERDTreeToggle<CR>
 if v:version >= 700
   let NERDTreeSortOrder=[ 'README.*', '*', '\(\~\|\.\(bak\|swp\)\)$' ]
