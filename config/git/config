@@ -26,6 +26,7 @@
 
 [log]
 	abbrevCommit = true
+	decorate = auto
 
 [diff]
 	renames        = true
