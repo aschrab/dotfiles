@@ -107,3 +107,5 @@ if is-at-least 5.2; then
   bindkey -a ys add-surround
   bindkey -M visual S add-surround
 fi
+
+bindkey -M menuselect '^f'  history-incremental-search-forward

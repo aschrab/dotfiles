@@ -1,5 +1,8 @@
 is-at-least 4.0 || return
 
+# Force loading completion module so that keymaps get defined
+zmodload zsh/complist
+
 zstyle ':completion:*' rehash yes
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _show_ambiguity _expand _complete _ignored _match _correct _approximate _prefix
@@ -21,7 +24,7 @@ zstyle ':completion:*:manuals.(^1*)' insert-sections true
 # Allow one error for every 3 characters typed.
 zstyle -e ':completion:*:approximate:*' max-errors 'reply=( $(( ($#PREFIX+$#SUFFIX)/3 )) numeric )'
 
-zstyle ':completion:*' menu select=3
+zstyle ':completion:*' menu select=3 yes=long auto interactive
 zstyle ':completion:*' original true
 zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
 zstyle ':completion:*' substitute 'NUMERIC==2'
