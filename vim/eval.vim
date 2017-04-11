@@ -211,7 +211,7 @@ let g:airline#extensions#whitespace#enabled = 0
 let g:airline_detect_iminsert=0
 let g:airline#extensions#branch#enabled = 1
 let g:airline_section_x = "%{strlen(&ft)>0?&ft:''}%{statusline#fileinfo()}"
-let g:airline_section_y = '%3l/%L»%-3c'
+let g:airline_section_y = '%3l/%L»%-3v'
 let g:airline_section_z = "ch0x%04B"
 let g:airline_theme='cool'
 
