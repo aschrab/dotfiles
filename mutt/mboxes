@@ -30,6 +30,9 @@ mailboxes =INBOX/sympa
 <%= mlist '=L/dev/i3', :address => 'i3-discuss@freelists.org', :subjectrx => '[i3-discuss]' %>
 <%= mlist '+L/ruby/sequel', :account => :gmail, :address => 'sequel-talk@googlegroups.com' %>
 
+<%= mlist '=L/mail/mailman3', subjectrx: '[MM3-users]', address: 'mailman-users@mailman3.org' %>
+<%= mlist '=L/mail/sympa', subjectrx: '[sympa-users]', address: 'sympa-users' %>
+
 # Perl lists
 <%= mlist '=L/perl/dbix', :address => 'dbix-class', :subjectrx => '[Dbix-class]' %>
 
