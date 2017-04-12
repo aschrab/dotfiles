@@ -9,6 +9,11 @@ resolve() {
       (*:*aliased*)
         resolve "${res##*: aliased to }"
         ;;
+      (*)
+        [[ "$res" = /* ]] || res=$commands[$res]
+        if [[ -L "$res" ]]; then
+          resolve $(readlink $res)
+        fi
     esac
   done
 }
