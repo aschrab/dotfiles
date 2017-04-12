@@ -79,6 +79,7 @@
 	cia         = commit -v -a
 	d           = diff
 	dif         = diff
+	difff       = diff
 	ds          = diff --staged
 	id          = log --no-walk --format=%h
 	sh          = show
