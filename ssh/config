@@ -36,6 +36,7 @@ Host *.qqx.org proxy
 User ats
 ForwardAgent yes
 ForwardX11 yes
+ForwardX11Trusted yes
 #ForwardX11Timeout 3w
 Port 222
 
