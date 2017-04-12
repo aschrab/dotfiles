@@ -120,6 +120,10 @@ def process
     list 'mail.scanner'
   when /bugtraq.list-id.securityfocus.com/
     list 'bugtraq'
+  when /mailman-users\.mailman3\.org/i
+    list 'mail.mailman3'
+  when /sympa-users\.listes\.renater\.fr/i
+    list 'mail.sympa'
   end
 
   case headers.list_post

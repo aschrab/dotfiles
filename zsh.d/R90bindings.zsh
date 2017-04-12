@@ -109,3 +109,4 @@ if is-at-least 5.2; then
 fi
 
 bindkey -M menuselect '^f'  history-incremental-search-forward
+bindkey -M menuselect '^i'  down-line-or-history

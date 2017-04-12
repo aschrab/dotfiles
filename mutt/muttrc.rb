@@ -5,7 +5,7 @@ class String
 end
 
 def subjectrx?
-  return true if mutt_version > mutt_version('1.8')
+  return true if mutt_version >= mutt_version('1.8')
   return true if mutt_patch %r<mailboxrx>
 end
 
