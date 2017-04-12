@@ -18,6 +18,12 @@ zstyle ':vcs_info:hg:*' use-simple false
 zstyle ':vcs_info:hg:*' hgrevformat "%r:%6.6h"
 zstyle ':vcs_info:hg:*' formats "-hg-[%b](%m)%c%u"
 
+#function +vi-shorten-branch() {
+#  [[ $hook_com[branch] =~ '^(.*/[A-Z]+-[0-9]+)-.*' ]] &&
+#    hook_com[branch]=$match[1]
+#}
+#zstyle ':vcs_info:git*+post-backend:*' hooks shorten-branch
+
 export P4HUSH=1
 export P4CONFIG=P4ENV
 export P4DIFF=diffp4
