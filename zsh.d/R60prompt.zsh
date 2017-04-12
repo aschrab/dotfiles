@@ -62,10 +62,13 @@ else
   rum=""
 fi
 
+nl='
+'
+
 RPS1=''
 PS1='
-%{$pColor$rev%} %D{%d%b%H:%M:%S}  %1v%n@$host$DEBCHROOT  %~ ${vcs_info_msg_0_}%E %{$rum$fColor%}
-%{$pColor%}%!%(#.#.$)%{$fColor%} '
+%{$pColor$rev%} %D{%d%b%H:%M:%S}  %1v%n@$host$DEBCHROOT  %~%E %{$rum$fColor%}
+%{$pColor%}${vcs_info_msg_0_}%E${vcs_info_msg_0_:+$nl}%{$pColor%}%!%(#.#.$)%{$fColor%} '
 
 PS2='%{$pColor%}%_>%{$fColor%} '
 
