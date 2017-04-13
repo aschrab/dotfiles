@@ -5,9 +5,8 @@
 
 if [[ -n "$PS1" ]]; then
   # If in an interactive shell, try running zsh.
-  # If that exits normally, exit this shell as well.
   ZSH_EXE=$(which zsh)
-  if [[ -x $ZSH_EXE ]]; then
-    SHLVL='' SHELL=$ZSH_EXE $ZSH_EXE -l && exit
+  if [[ -x $ZSH_EXE ]] && $ZSH_EXE -c :; then
+    SHLVL='' SHELL=$ZSH_EXE exec $ZSH_EXE -l
   fi
 fi
