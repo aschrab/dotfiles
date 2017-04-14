@@ -42,6 +42,13 @@ if (v:version >= 700)
     let g:pathogen_disabled += [ 'tsuquyomi' ]
   endif
 
+  " Only use one of ale|syntastic
+  if (v:version >= 800 || has('nvim'))
+    let g:pathogen_disabled += [ 'syntastic' ]
+  else
+    let g:pathogen_disabled += [ 'ale' ]
+  endif
+
   if !has('python') && !has('python')
     let g:pathogen_disabled += [ 'tern' ]
   endif
