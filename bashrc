@@ -11,5 +11,23 @@ set -o noclobber
 
 shopt -s autocd cdspell dirspell extglob 2> /dev/null
 
+# Remember when last command started
+trap '[[ -z $LAST_COMMAND_TIME ]] && LAST_COMMAND_TIME=$SECONDS' DEBUG
+
+long_command_notification() {
+  echo -ne '\a'
+}
+
+# Notify (beep) if a command takes longer than $LONG_COMMAND_TIME
+LONG_COMMAND_TIME=5
+notify_after_long_command() {
+  if [[ -n $LONG_COMMAND_TIME ]] && [[ -n $LAST_COMMAND_TIME ]] && [[ $(( SECONDS - LAST_COMMAND_TIME )) -gt $LONG_COMMAND_TIME ]]
+  then
+    long_command_notification
+  fi
+  LAST_COMMAND_TIME=
+}
+PROMPT_COMMAND=notify_after_long_command
+
 # The following breaks completion
 #shopt -s failglob
