@@ -77,4 +77,7 @@ Host niq-aaron
   User netappiq
   ForwardAgent yes
 
+Host datalakegw
+  HostName phyrhcgws01-prd.corp.netapp.com
+
 # vim: ft=sshconfig
