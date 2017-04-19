@@ -71,4 +71,13 @@ Host vagrant
 # IdentitiesOnly yes
   LogLevel FATAL
 
+Host niq-aaron
+  HostName durrhc1sn02-stg.corp.netapp.com
+  Port 4030
+  User netappiq
+  ForwardAgent yes
+
+Host datalakegw
+  HostName phyrhcgws01-prd.corp.netapp.com
+
 # vim: ft=sshconfig
