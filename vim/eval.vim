@@ -110,6 +110,7 @@ let g:xml_syntax_folding = 1
 let g:xml_jump_string="¦"
 let g:perl_fold = 1
 let g:perl_fold_anonymous_subs = 1
+let g:sh_fold_enabled = 3
 
 let SVNCommandEdit='split'
 let SVNCommandDeleteOnHide=1
