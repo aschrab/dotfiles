@@ -6,6 +6,7 @@ set keymap vi-insert
   "\et": transpose-words
   "\C-a": beginning-of-line
   "\C-e": end-of-line
+  "\C-p": previous-history
 
 set keymap vi-command
   "\C-a": beginning-of-line
