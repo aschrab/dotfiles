@@ -7,4 +7,7 @@ if exists(":Alias")
   if exists(":Shell")
     Alias shell Shell
   endif
+
+  Alias Gmv Gmove
+  Alias Grm Gremove
 endif
