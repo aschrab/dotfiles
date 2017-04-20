@@ -39,7 +39,7 @@ zstyle ':completion:*:(all-|)files' ignored-patterns '(|*/)CVS' '(*/)#lost+found
   '(|*/)*.bak' '(|*/)*.swp' '(|*/)*.o' '(|*/)*.pyc' '(|*/)*~'
 zstyle ':completion:*:cd:*' ignored-patterns '(*/)#CVS' '(*/)#lost+found'
 zstyle ':completion:*:rm:*' ignored-patterns
-
+zstyle ':completion:*' file-sort modification
 
 # Try to avoid completion functions when completing command names.
 zstyle ':completion:*:commands' ignored-patterns '_*'
