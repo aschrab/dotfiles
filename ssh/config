@@ -75,8 +75,10 @@ Host vagrant
 Host niq-aaron
   HostName durrhc1sn02-stg.corp.netapp.com
   Port 4030
-  User netappiq
+  #User netappiq
   ForwardAgent yes
+  ForwardX11 yes
+  ForwardX11Trusted yes
 
 Host datalakegw
   HostName phyrhcgws01-prd.corp.netapp.com
