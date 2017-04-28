@@ -283,3 +283,4 @@ if exists(':tnoremap')  " Neovim
 endif
 
 let g:vrc_trigger = '<C-q>'
+let g:tern_map_keys = 1
