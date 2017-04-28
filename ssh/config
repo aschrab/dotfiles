@@ -4,6 +4,7 @@ ControlPath ~/.ssh/.master.%r@%h:%p
 ControlPersist 30
 #VerifyHostKeyDNS=ask
 ServerAliveInterval=5
+AddKeysToAgent yes
 
 Host pug.qqx.org proxy
 #ControlMaster auto
