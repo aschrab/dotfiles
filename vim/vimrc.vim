@@ -106,10 +106,13 @@ set foldminlines=2
 
 silent! set mouse=a
 :if $DISPLAY != ""
-  :if has('nvim')
-    set clipboard=unnamed
+  :if has('unnamedplus')
+    set clipboard=unnamedplus
   :else
-    set clipboard=unnamed,autoselect,exclude:cons\|linux
+    set clipboard=unnamed
+  :endif
+  :if !has('nvim')
+    set clipboard+=autoselect,exclude:cons\|linux
   :endif
 :endif
 
