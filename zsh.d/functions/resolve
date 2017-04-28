@@ -13,6 +13,9 @@ resolve() {
         [[ "$res" = /* ]] || res=$commands[$res]
         if [[ -L "$res" ]]; then
           resolve $(readlink $res)
+        else
+          real=$(realpath "$res")
+          [[ $real = $res ]] || echo $real
         fi
     esac
   done
