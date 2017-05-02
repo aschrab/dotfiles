@@ -131,9 +131,14 @@ set t_vb=
 
 " Display tabs and trailing spaces {{{
 silent! set listchars=tab:→·,trail:∙,precedes:«,extends:»
+silent! set listchars+=nbsp:_
 " eol:↲
 set list
 "}}}
+
+:if has('linebreak')
+  let &showbreak = nr2char(0x21AA).' '
+:endif
 
 set guioptions+=a " Autoselect
 set guioptions-=T " No toolbar
