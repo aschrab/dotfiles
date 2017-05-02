@@ -1,0 +1,50 @@
+#!/bin/sh
+
+if [ -c /dev/machtrace ]; then
+  copy() {
+    reattach-to-user-namespace pbcopy
+  }
+  paste() {
+    reattach-to-user-namespace pbpaste
+  }
+else
+  selection=clipboard
+  #selection=primary
+  copy() {
+    xclip -in -selection $selection
+  }
+  paste() {
+    xclip -out -selection $selection
+  }
+fi
+
+if [ $# -eq 0 ]; then
+  # If STDIN is not the terminal
+  if [ ! -t 0 ]; then
+    do_copy=y
+  fi
+
+  # If STDOUT is not the terminal, or nothing else was done
+  if [ ! -t 1 ] || [ -t 0 ]; then
+    do_paste=y
+  fi
+else
+  for arg in "$@"; do
+    case "x$arg" in
+      xin|x-in|xcopy|x-copy)
+        do_copy=y
+        ;;
+      xout|x-out|xpaste|x-paste)
+        do_paste=y
+        ;;
+    esac
+  done
+fi
+
+if [ "x$do_copy" = xy ]; then
+  copy
+fi
+
+if [ "x$do_paste" = xy ]; then
+  paste
+fi
