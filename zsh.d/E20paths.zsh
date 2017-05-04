@@ -4,6 +4,7 @@ function set_paths {
   path=(
     ~/bin
     ~/.bin
+    ~/.local/bin
     ~/.gem/bin
     ~/.rbenv/shims
     ~/.ndenv/shims
