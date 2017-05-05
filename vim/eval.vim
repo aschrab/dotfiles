@@ -205,7 +205,9 @@ augroup END
 
 autocmd BufNewFile,BufRead * call AutoPath()
 
+if exists('##TermOpen')
 autocmd TermOpen * nmap <buffer> <C-p> a<C-p>
+endif
 
 " auto-start NERDTree if vim started with no files and no buffer content
 autocmd StdinReadPre * let s:std_in=1
