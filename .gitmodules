@@ -205,7 +205,7 @@
 	url = https://github.com/krisajenkins/vim-pipe.git
 [submodule "vim/bundle/git-gutter"]
 	path = vim/bundle/git-gutter
-	url = git://github.com/airblade/vim-gitgutter.git
+	url = git://github.com/aschrab/vim-gitgutter.git
 [submodule "vim/bundle/diff-enhanced"]
 	path = vim/bundle/diff-enhanced
 	url = git://github.com/chrisbra/vim-diff-enhanced.git
