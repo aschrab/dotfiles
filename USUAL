@@ -20,6 +20,7 @@ quiltrc
 screenrc
 ssh/config
 tmux.conf
+config/tmux
 undo/.gitignore
 vim
 vimrc

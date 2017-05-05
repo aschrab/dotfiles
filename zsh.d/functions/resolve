@@ -12,9 +12,9 @@ resolve() {
       (*)
         [[ "$res" = /* ]] || res=$commands[$res]
         if [[ -L "$res" ]]; then
-          resolve $(readlink $res)
+          resolve $(perl -MCwd -e 'print Cwd::abs_path($ARGV[0])' "$res")
         else
-          real=$(realpath "$res")
+          real=$(perl -MCwd -e 'print Cwd::abs_path($ARGV[0])' "$res")
           [[ $real = $res ]] || echo $real
         fi
     esac
