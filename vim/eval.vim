@@ -18,6 +18,8 @@ if exists("+guifont")
   endif
 endif
 
+let g:deoplete#enable_at_startup = 1
+
 if (v:version >= 700)
   " Start up pathogen if it's available
   " Won't be available on boxes before git submodules have been fetched
