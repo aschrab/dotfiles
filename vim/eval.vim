@@ -18,6 +18,8 @@ if exists("+guifont")
   endif
 endif
 
+let g:deoplete#enable_at_startup = 1
+
 if (v:version >= 700)
   " Start up pathogen if it's available
   " Won't be available on boxes before git submodules have been fetched
@@ -228,6 +230,8 @@ let g:airline_section_x = "%{strlen(&ft)>0?&ft:''}%{statusline#fileinfo()}"
 let g:airline_section_y = '%3l/%L»%-3v'
 let g:airline_section_z = "ch0x%04B"
 let g:airline_theme='cool'
+let g:airline#extensions#branch#format = 2
+let g:airline#extensions#branch#displayed_head_limit = 20
 
 let g:SuperTabDefaultCompletionType='context'
 let g:SuperTabLongestEnhanced=1
