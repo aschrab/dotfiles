@@ -17,3 +17,4 @@ tags
 .swo
 .ackrc
 .direnv
+.envrc
