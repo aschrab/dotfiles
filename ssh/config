@@ -79,6 +79,7 @@ Host niq-aaron
   ForwardAgent yes
   ForwardX11 yes
   ForwardX11Trusted yes
+  LocalForward localhost:5000 0:5000
 
 Host datalakegw
   HostName phyrhcgws01-prd.corp.netapp.com
