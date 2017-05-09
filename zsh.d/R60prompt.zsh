@@ -38,8 +38,12 @@ zset_title() {
   local title
   title=0
 
+  # Don't include host name in icon title when in a local tmux session
+  local icon_host=$host
+  [[ -n $TMUX ]] && icon_host=''
+
   if [[ $xterm == y || $tmux == y ]]; then
-    print -nP "\E]${title};${1:-%(#.#.$)$host$DEBCHROOT($tty):%~}\C-g"
+    print -nP "\E]${title};${1:-%(#.#.$)$icon_host$DEBCHROOT:%2~}\C-g"
   fi
 
   if [[ $screen == y ]]; then
