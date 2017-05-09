@@ -104,7 +104,11 @@ if v:version >= 700
     auto BufEnter * let &titlestring = "GVim : %{clean#CWD()}"
     auto BufEnter * let &iconstring  = "GVim"
   else
-    auto BufEnter * let &titlestring = "Vim@%{$host} : %{clean#TTY()} : %{clean#CWD()}"
+    if exists('$TMUX')
+      auto BufEnter * let &titlestring = "Vim : %{clean#CWD()}"
+    else
+      auto BufEnter * let &titlestring = "Vim@%{$host} : %{clean#TTY()} : %{clean#CWD()}"
+    endif
     auto BufEnter * let &iconstring  = "Vim@%{$host} : %f (%{clean#TTY()})"
   endif
 endif
