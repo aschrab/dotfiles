@@ -296,3 +296,5 @@ endif
 
 let g:vrc_trigger = '<C-q>'
 let g:tern_map_keys = 1
+
+let g:RecoverPlugin_Delete_Unmodified_Swapfile = 1
