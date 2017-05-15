@@ -51,8 +51,8 @@ if (v:version >= 700)
     let g:pathogen_disabled += [ 'ale' ]
   endif
 
-  if !has('python') && !has('python')
-    let g:pathogen_disabled += [ 'tern' ]
+  if !has('python') && !has('python3')
+    let g:pathogen_disabled += [ 'tern', 'editorconfig' ]
   endif
 
   if has("gui_running") || empty(glob('/usr/software/')) || hostname() =~ '\M.rtp.' || hostname() =~ '\M^aschrab'
@@ -296,3 +296,5 @@ endif
 
 let g:vrc_trigger = '<C-q>'
 let g:tern_map_keys = 1
+
+let g:RecoverPlugin_Delete_Unmodified_Swapfile = 1
