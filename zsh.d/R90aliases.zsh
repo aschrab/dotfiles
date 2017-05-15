@@ -28,7 +28,7 @@ alias wget='noglob wget'
 # pattern characters to be quoted in the match criteria.
 alias find='noglob find'
 'find'() {
-  integer i=${argv[(i)-*]}
+  integer i=${argv[(i)(\(|-*)]}
   command find ${~argv[1,i-1]} "${(@)argv[i,-1]}"
 }
 

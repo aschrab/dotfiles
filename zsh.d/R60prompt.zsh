@@ -31,15 +31,15 @@ zset_title() {
       # Really only want to do the following for tmux,
       # but there isn't a reliable way to distinguish remotely
       tmux=y
-      title=2
       ;;
   esac
 
-  local title
-  title=0
+  # Don't include host name in icon title when in a local tmux session
+  local icon_host=$host
+  [[ -n $TMUX ]] && icon_host=''
 
   if [[ $xterm == y || $tmux == y ]]; then
-    print -nP "\E]${title};${1:-%(#.#.$)$host$DEBCHROOT($tty):%~}\C-g"
+    print -nP "\E]0;${1:-%(#.#.$)$icon_host$DEBCHROOT:%2~}\C-g"
   fi
 
   if [[ $screen == y ]]; then

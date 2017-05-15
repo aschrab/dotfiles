@@ -49,6 +49,7 @@ export EMAIL="aaron@schrab.com"
 export DEBEMAIL="$EMAIL"
 
 if (( $+commands[nvim] )); then
+  export MANPAGER="nvim -c 'set ft=man' -"
   EDITOR=nvim
 elif [[ -n $DISPLAY ]] && (( $+commands[vimx] )); then
   EDITOR=vimx

@@ -272,3 +272,6 @@
 [submodule "vim/bundle/ale"]
 	path = vim/bundle/ale
 	url = https://github.com/w0rp/ale.git
+[submodule "vim/bundle/deoplete"]
+	path = vim/bundle/deoplete
+	url = https://github.com/Shougo/deoplete.nvim.git
