@@ -278,3 +278,6 @@
 [submodule "vim/bundle/snippets"]
 	path = vim/bundle/snippets
 	url = gh:honza/vim-snippets
+[submodule "vim/bundle/autoread"]
+	path = vim/bundle/autoread
+	url = https://github.com/djoshea/vim-autoread.git
