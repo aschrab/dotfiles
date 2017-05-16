@@ -55,6 +55,10 @@ if (v:version >= 700)
     let g:pathogen_disabled += [ 'tern', 'editorconfig' ]
   endif
 
+  if !has('nvim') || !has('python3')
+    let g:pathogen_disabled += [ 'deoplete' ]
+  endif
+
   if has("gui_running") || empty(glob('/usr/software/')) || hostname() =~ '\M.rtp.' || hostname() =~ '\M^aschrab'
     runtime bundle/pathogen/autoload/pathogen.vim
     if exists('*pathogen#infect')
