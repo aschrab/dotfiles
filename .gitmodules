@@ -281,3 +281,6 @@
 [submodule "vim/bundle/autoread"]
 	path = vim/bundle/autoread
 	url = https://github.com/djoshea/vim-autoread.git
+[submodule "vim/bundle/nvim-typescript"]
+	path = vim/bundle/nvim-typescript
+	url = https://github.com/mhartington/nvim-typescript.git
