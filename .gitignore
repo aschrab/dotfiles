@@ -10,6 +10,7 @@
 /lftp/rl_history
 /lftp/transfer_log
 /mutt/aliases
+/mutt/certificates
 /mutt/secrets
 /ssh/id*
 /ssh/authorized_keys
