@@ -42,6 +42,7 @@ if (v:version >= 700)
   if (v:version < 704)
     let g:pathogen_disabled += [ 'diff-enhanced' ]
     let g:pathogen_disabled += [ 'tsuquyomi' ]
+    let g:pathogen_disabled += [ 'ultisnips' ]
   endif
 
   " Only use one of ale|syntastic
