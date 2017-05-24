@@ -3,6 +3,7 @@ bin
 certs
 colordiffrc
 editorconfig
+eslintrc.yml
 gitconfig
 git_template
 config/git
