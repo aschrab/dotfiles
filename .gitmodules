@@ -284,3 +284,6 @@
 [submodule "vim/bundle/nvim-typescript"]
 	path = vim/bundle/nvim-typescript
 	url = https://github.com/mhartington/nvim-typescript.git
+[submodule "upstreams/neovim-remote"]
+	path = upstreams/neovim-remote
+	url = https://github.com/mhinz/neovim-remote.git
