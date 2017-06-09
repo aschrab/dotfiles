@@ -49,7 +49,7 @@ Host lish
 User qqx
 HostName lish-atlanta.linode.com
 
-Host atla-app*.netapp.com
+Host ngage.netapp.com atla-app*.netapp.com
 ForwardX11 no
 ForwardAgent no
 
