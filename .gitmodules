@@ -287,3 +287,6 @@
 [submodule "upstreams/neovim-remote"]
 	path = upstreams/neovim-remote
 	url = https://github.com/mhinz/neovim-remote.git
+[submodule "vim/bundle/scriptease"]
+	path = vim/bundle/scriptease
+	url = https://github.com/tpope/vim-scriptease.git
