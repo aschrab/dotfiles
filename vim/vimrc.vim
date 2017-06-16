@@ -204,6 +204,11 @@ omap <BS> <Del>
 " capitol P can be used to paste before cursor
 nnoremap [p ]p
 
+nnoremap <silent> [s :ALEPrevious<CR>
+nnoremap <silent> ]s :ALENext<CR>
+nnoremap <silent> [S gg:ALENext<CR>
+nnoremap <silent> ]S G:ALEPrevious<CR>
+
 " Quote motions for operators: da" will delete a quoted string.
 " Built-in to Vim7
 :if version < 700
