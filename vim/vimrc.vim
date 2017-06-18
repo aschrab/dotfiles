@@ -232,7 +232,7 @@ map <M-Esc>[65~ <S-MouseUp>
 map! <M-Esc>[65~ <S-MouseUp>
 "}}}
 
-map ,x :w<C-M>:r!chmod +x %<C-M>:w!<C-M>
+map ,x :w<C-M>:r!chmod +x <C-R>=expand('%:S')<C-M><C-M>:w!<C-M>
 
 :if has("digraphs")
 "dig 00 176 " ∞
