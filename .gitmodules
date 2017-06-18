@@ -70,7 +70,7 @@
 	url = https://github.com/godlygeek/tabular.git
 [submodule "vim/bundle/gundo"]
 	path = vim/bundle/gundo
-	url = http://github.com/sjl/gundo.vim.git
+	url = https://github.com/simnalamburt/vim-mundo.git
 [submodule "vim/bundle/SudoEdit"]
 	path = vim/bundle/SudoEdit
 	url = https://github.com/chrisbra/SudoEdit.vim.git

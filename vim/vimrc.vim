@@ -183,7 +183,7 @@ nnoremap ,s :bnext<Return>
 nnoremap ,d :bd<Return>
 nnoremap ,f :b<Space>
 
-nnoremap <F5> :GundoToggle<CR>
+nnoremap <F5> :MundoToggle<CR>
 nnoremap <silent> <F12> :set cursorcolumn!<CR>
 
 " Preserve visual selection after indenting
