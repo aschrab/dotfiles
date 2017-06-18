@@ -27,6 +27,11 @@ Port 22
 Host moya.trilug.org
 Port 622
 
+Host dargo.trilug.org
+User ats
+ForwardAgent yes
+ForwardX11 yes
+
 Host pilotvm pilotvm.trilug.org
 #HostName moya.trilug.org
 HostKeyAlias pilot.trilug.org
