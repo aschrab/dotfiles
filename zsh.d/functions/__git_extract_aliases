@@ -1,0 +1,12 @@
+#autoload
+
+__git_extract_aliases () {
+  local -a tmp
+  tmp=(${${(0)"$(_call_program aliases "git config -z --get-regexp '^alias.'")"}#alias.})
+  if (( ${#tmp} > 0 )); then
+      aliases=(${^tmp/$'\n'/:alias for \'}\')
+      aliases=${aliases:#dif(|ff)}
+  else
+      aliases=()
+  fi
+}
