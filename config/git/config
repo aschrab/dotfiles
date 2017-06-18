@@ -104,6 +104,7 @@
 	push-new-repo = push --receive-pack=git-receive-new-repo --all
 	submodule-annotate = submodule foreach 'git update-ref --create-reflog -m \"Update from parent repo\" refs/heads/submodule-parent $sha1 || true'
 	wtree = worktree
+	recent = "for-each-ref --count=10 --sort=-committerdate refs/heads --format='%(color:blue)%(align:15)[%(committerdate:relative)]%(end)%(color:reset) %(refname:short)'"
 
 [filter "date-prop"]
 	clean  = perl -pe 's/,,Date[^,]*,,/,,Date,,/i'
