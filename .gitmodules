@@ -142,7 +142,7 @@
 	url = https://github.com/tommcdo/vim-exchange.git
 [submodule "vim/bundle/delimitMate"]
 	path = vim/bundle/delimitMate
-	url = https://github.com/aschrab/delimitMate
+	url = https://github.com/Raimondi/delimitMate
 [submodule "vim/bundle/textobj-comment"]
 	path = vim/bundle/textobj-comment
 	url = https://github.com/glts/vim-textobj-comment
