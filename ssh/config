@@ -62,6 +62,10 @@ Host *.netapp.com
 ForwardX11 yes
 ForwardAgent yes
 
+Host aschrab-mbp.lan
+User aschrab
+ForwardAgent yes
+
 Host *.github.com github.com
   CheckHostIP no
 
