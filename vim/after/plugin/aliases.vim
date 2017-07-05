@@ -8,6 +8,10 @@ if exists(":Alias")
     Alias shell Shell
   endif
 
+  if exists(":Man")
+    Alias man Man
+  endif
+
   Alias Gmv Gmove
   Alias Grm Gremove
 endif
