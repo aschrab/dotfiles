@@ -62,12 +62,12 @@ auto_view text/html application/pgp-keys application/x-tar-gz \
   text/x-internet-signup application/x-sh application/x-patch text/x-patch \
   application/octet-stream application/pdf
 
-charset-hook windows-1251 cp1251
-#charset-hook ascii cp1251
-#charset-hook iso8859-1 cp1251
-charset-hook ascii cp1252
-charset-hook us-ascii cp1252
-charset-hook iso8859-1 cp1252
+charset-hook ^windows-1251$ cp1251
+#charset-hook ^ascii cp1251
+#charset-hook ^iso8859-1 cp1251
+charset-hook ^ascii$ cp1252
+charset-hook ^us-ascii$ cp1252
+charset-hook ^iso8859-1$ cp1252
 
 
 # Misc settings
