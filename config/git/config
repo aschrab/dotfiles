@@ -78,6 +78,7 @@
 	co          = checkout
 	ci          = commit -v
 	cia         = commit -v -a
+	ad          = add
 	d           = diff
 	dif         = diff
 	difff       = diff
