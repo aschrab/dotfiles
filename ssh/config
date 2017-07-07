@@ -100,4 +100,9 @@ Host niq-build-host
 Host datalakegw
   HostName phyrhcgws01-prd.corp.netapp.com
 
+Host burtview*.netapp.com
+  ForwardX11 yes
+  ForwardX11Trusted yes
+  ForwardAgent yes
+
 # vim: ft=sshconfig
