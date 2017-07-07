@@ -20,7 +20,7 @@ trap '[[ -z $LAST_COMMAND_TIME ]] && LAST_COMMAND_TIME=$SECONDS' DEBUG
 
 # menu complete from older bash versions is awful
 # and inputrc doesn't allow version checking
-if (( BASH_VERSINFO[0] >= 4 )); then
+if [[ -n "$PS1" ]] && (( BASH_VERSINFO[0] >= 4 )); then
   bind -m vi-insert 'TAB: menu-complete'
   bind -m emacs 'TAB: menu-complete'
 fi
