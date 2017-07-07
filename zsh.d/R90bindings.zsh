@@ -114,3 +114,11 @@ fi
 
 bindkey -M menuselect '^f'  history-incremental-search-forward
 bindkey -M menuselect '^i'  down-line-or-history
+
+# Shortcut for inserting current path relative to $HOME.  Main anticipated use
+# is when I want to refer to same directory on a different system with scp.
+_ins_current_path() {
+  LBUFFER+=$(print -n -P '%~')
+}
+zle -N _ins_current_path
+bindkey -M viins '\e`' _ins_current_path
