@@ -78,24 +78,25 @@ Host vagrant
   LogLevel FATAL
 
 Host niq-aaron
-  HostName durrhc1sn02-stg.corp.netapp.com
   Port 4030
-  #User netappiq
-  ForwardAgent yes
-  ForwardX11 yes
-  ForwardX11Trusted yes
+  User aschrab
   LocalForward localhost:3000 0:3000
   LocalForward localhost:5000 0:5000
 
-Host niq-build
+Host niq-*
   HostName durrhc1sn02-stg.corp.netapp.com
-  Port 3222
   User netappiq
-
-Host niq-build-host
-  HostName durrhc1sn02-stg.corp.netapp.com
+  ForwardAgent yes
   ForwardX11 yes
   ForwardX11Trusted yes
+
+Host niq-build niq-build-2
+  Port 3222
+
+Host niq-build-3
+  Port 3322
+
+Host niq-build-host
 
 Host datalakegw
   HostName phyrhcgws01-prd.corp.netapp.com
