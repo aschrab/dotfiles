@@ -78,7 +78,7 @@ if exists("&wildignorecase")
 	set wildignorecase
 endif
 if exists("+completeopt")
-set completeopt=longest,menuone,preview
+set completeopt=longest,menuone
 endif
 set tags=tags,TAGS,./tags;,./TAGS;
 "set diffopt+=iwhite
