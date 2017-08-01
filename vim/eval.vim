@@ -66,6 +66,14 @@ if (v:version >= 700)
       execute pathogen#infect()
     endif
   endif
+
+  let filters = []
+  let filters += ['converter_truncate_menu']
+  let filters += ['converter_remove_overlap']
+  let filters += ['converter_truncate_abbr']
+  let filters += ['converter_truncate_menu']
+  let filters += ['converter_remove_paren']
+  call deoplete#custom#set('_', 'filters', filters)
 endif
 
 " Screen/tmux can also handle xterm mousiness, but Vim doesn't detect it by default.
