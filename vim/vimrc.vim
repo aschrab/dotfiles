@@ -78,7 +78,7 @@ if exists("&wildignorecase")
 	set wildignorecase
 endif
 if exists("+completeopt")
-set completeopt=longest,menuone,preview
+set completeopt=longest,menuone
 endif
 set tags=tags,TAGS,./tags;,./TAGS;
 "set diffopt+=iwhite
@@ -158,9 +158,6 @@ inoremap <C-]> <C-X><C-]>
 inoremap <C-L> <C-X><C-L>
 inoremap <C-e> <esc>
 inoremap jl <esc>
-" Control-space
-inoremap <C-@> <esc>
-inoremap <C-Space> <esc>
 inoremap <S-Space> <Space>
 
 nnoremap gf :sfind <cfile><CR>

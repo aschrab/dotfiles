@@ -70,14 +70,17 @@ end #}}}
 # Find the currently executing mutt binary
 def mutt_binary #{{{
   return ENV['MUTT_BINARY'] if ENV['MUTT_BINARY']
-  mutt_pid = ENV['MUTT_PID'] || Process.ppid
-  link = "/proc/#{mutt_pid}/exe"
-  dest = File.readlink(link)
 
-  # Make sure that the found item is a mutt (and not just something in
-  # a "mutt" directory.
-  exit 1 unless dest and dest[%r{mutt[^/]*$}i]
-  link
+  begin
+    mutt_pid = ENV['MUTT_PID'] || Process.ppid
+    link = "/proc/#{mutt_pid}/exe"
+    # Make sure that the found item is a mutt (and not just something in
+    # a "mutt" directory.
+    return link if File.readlink(link)[%r{mutt[^/]*$}i]
+  rescue Errno::ENOENT
+  end
+
+  'mutt'
 end #}}}
 
 # Return a comparable version number for the given string.

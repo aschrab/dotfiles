@@ -4,6 +4,11 @@ root = true
 indent_style = space
 indent_size = 2
 
+[*.py]
+# PEP 8
+indent_style = space
+indent_size = 4
+
 [Makefile]
 indent_style = tab
 

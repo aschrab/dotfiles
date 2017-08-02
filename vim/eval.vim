@@ -28,7 +28,7 @@ if (v:version >= 700)
     " Don't use airline on Linux console, it messes up the display horribly
     let g:pathogen_disabled += [ 'airline' ]
   endif
-  if ((v:version == 703 && has('patch584')) || v:version > 703) && has('python') && filereadable(expand('<sfile>:p:h') . '/bundle/you_complete_me/third_party/ycmd/ycm_core.so')
+  if ((v:version == 703 && has('patch584')) || v:version > 703) && (has('python') || has('python3')) && filereadable(expand('<sfile>:p:h') . '/bundle/you_complete_me/third_party/ycmd/ycm_core.so')
   else
     let g:pathogen_disabled += [ 'you_complete_me' ]
   endif
@@ -66,6 +66,14 @@ if (v:version >= 700)
       execute pathogen#infect()
     endif
   endif
+
+  let filters = []
+  let filters += ['converter_truncate_menu']
+  let filters += ['converter_remove_overlap']
+  let filters += ['converter_truncate_abbr']
+  let filters += ['converter_truncate_menu']
+  let filters += ['converter_remove_paren']
+  call deoplete#custom#set('_', 'filters', filters)
 endif
 
 " Screen/tmux can also handle xterm mousiness, but Vim doesn't detect it by default.
@@ -302,6 +310,12 @@ if exists(':tnoremap')  " Neovim
 endif
 
 let g:vrc_trigger = '<C-]>'
+let g:vrc_max_time = 2
 let g:tern_map_keys = 1
 
 let g:RecoverPlugin_Delete_Unmodified_Swapfile = 1
+
+let g:windowswap_map_keys = 0
+nnoremap <silent> <leader>sw :call WindowSwap#EasyWindowSwap()<CR>
+
+call camelcasemotion#CreateMotionMappings(',')
