@@ -6,8 +6,8 @@ if [ ! -r dot_setup ]; then
 fi
 
 export GIT_CONFIG_PARAMETERS="'submodule.fetchJobs=9'"
-git submodule init
+#git submodule init
 git submodule sync
-git submodule update
+git submodule update --init --recursive
 
 echo complete
