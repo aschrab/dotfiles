@@ -317,3 +317,5 @@ let g:RecoverPlugin_Delete_Unmodified_Swapfile = 1
 
 let g:windowswap_map_keys = 0
 nnoremap <silent> <leader>sw :call WindowSwap#EasyWindowSwap()<CR>
+
+call camelcasemotion#CreateMotionMappings(',')
