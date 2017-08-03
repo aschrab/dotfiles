@@ -1,5 +1,6 @@
 let b:nojump=1
 setlocal spell
+setlocal spellcapcheck=""
 setlocal formatoptions+=aw
 setlocal nomodeline
 setlocal colorcolumn=73
