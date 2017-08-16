@@ -98,6 +98,9 @@ Host niq-build-3
 
 Host niq-build-host
 
+Host niq-template
+  Port 4020
+
 Host datalakegw
   HostName phyrhcgws01-prd.corp.netapp.com
 
