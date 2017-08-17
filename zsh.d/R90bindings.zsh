@@ -40,6 +40,8 @@ bindkey -M vicmd "?"   history-incremental-pattern-search-backward
 bindkey -M vicmd "/"   history-incremental-pattern-search-forward
 bindkey -M vicmd "^u"  vi-kill-line
 
+bindkey -M vicmd '""'  quote-line
+
 # Avoid issue where escape in command mode will eat next character
 bindkey -M vicmd -s '\e' ''
 
