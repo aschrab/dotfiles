@@ -14,4 +14,5 @@ if exists(":Alias")
 
   Alias Gmv Gmove
   Alias Grm Gremove
+  Alias Rm Delete
 endif
