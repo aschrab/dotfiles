@@ -284,3 +284,6 @@
 [submodule "vim/bundle/scriptease"]
 	path = vim/bundle/scriptease
 	url = https://github.com/tpope/vim-scriptease.git
+[submodule "vim/bundle/characterize"]
+	path = vim/bundle/characterize
+	url = https://github.com/tpope/vim-characterize.git
