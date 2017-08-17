@@ -9,5 +9,6 @@ export GIT_CONFIG_PARAMETERS="'submodule.fetchJobs=9'"
 #git submodule init
 git submodule sync
 git submodule update --init --recursive
+vim -c:Helptags -c:q /dev/null
 
 echo complete
