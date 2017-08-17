@@ -17,6 +17,9 @@
 	path = ~/.gitconfig.local
 	path = local
 
+[includeIf "gitdir:~/vc/niq/"]
+	path = netapp
+
 [advice]
 	statusHints = no
 
