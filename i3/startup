@@ -1,0 +1,18 @@
+#!/bin/bash
+
+shopt -qs nullglob
+
+dir=$HOME/.config/i3
+
+for f in $dir/*.json; do
+  name=$(basename "$f" .json)
+  i3-msg "append_layout $f"
+  i3-msg "workspace $name"
+
+  <$f jq -r '.nodes[]._command | select(.)' |
+  while read cmd; do
+    $cmd &
+  done
+done
+
+i3-msg 'workspace number 1'
