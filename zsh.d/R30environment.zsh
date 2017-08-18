@@ -54,7 +54,7 @@ if (( $+commands[nvim] )); then
   else
     EDITOR=nvim
   fi
-  export MANPAGER="$EDITOR -c 'set ft=man' -o -"
+  export MANPAGER="$EDITOR -c 'set ft=man' -"
 elif [[ -n $DISPLAY ]] && (( $+commands[vimx] )); then
   EDITOR=vimx
 elif (( $+commands[vim] )); then
