@@ -182,4 +182,6 @@ for_window [class="^Display\.im"] floating enable
 for_window [title="^Open Database -"] floating enable
 for_window [title="^xfce4-notifyd"] floating enable
 
+exec --no-startup-id "<%= DOTFILE_DIR %>/i3/startup"
+
 # vim: filetype=eruby.conf

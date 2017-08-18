@@ -17,6 +17,9 @@
 	path = ~/.gitconfig.local
 	path = local
 
+[includeIf "gitdir:~/vc/niq/"]
+	path = netapp
+
 [advice]
 	statusHints = no
 
@@ -105,7 +108,7 @@
 	push-new-repo = push --receive-pack=git-receive-new-repo --all
 	submodule-annotate = submodule foreach 'git update-ref --create-reflog -m \"Update from parent repo\" refs/heads/submodule-parent $sha1 || true'
 	wtree = worktree
-	recent = "for-each-ref --count=10 --sort=-committerdate refs/heads --format='%(color:blue)%(align:16)[%(committerdate:relative)]%(end)%(color:reset) %(HEAD) %(align:20)%(refname:short)%(end) %(color:yellow)%(subject)%(color:reset)'"
+	recent = "for-each-ref --count=10 --sort=-committerdate refs/heads --format='%(HEAD) %(color:blue)%(align:14)%(committerdate:relative)%(end)%(color:reset) %(color:red)%(align:10)%(objectname:short)%(end)%(color:reset) %(color:green)%(align:20)%(authorname)%(end)%(color:reset) %(color:yellow)%(refname:short)%(color:reset)\n  %(align:14)%(end) %(subject)'"
 
 [filter "date-prop"]
 	clean  = perl -pe 's/,,Date[^,]*,,/,,Date,,/i'

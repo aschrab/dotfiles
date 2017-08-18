@@ -50,7 +50,7 @@ export DEBEMAIL="$EMAIL"
 
 if (( $+commands[nvim] )); then
   if [[ -n $NVIM_LISTEN_ADDRESS ]] && (( $+commands[nvr] )); then
-    EDITOR=nvr
+    EDITOR='nvr -cc split --remote-wait "+set bufhidden=wipe"'
   else
     EDITOR=nvim
   fi

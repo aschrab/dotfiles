@@ -73,7 +73,7 @@ if (v:version >= 700)
   let filters += ['converter_truncate_abbr']
   let filters += ['converter_truncate_menu']
   let filters += ['converter_remove_paren']
-  call deoplete#custom#set('_', 'filters', filters)
+  silent! call deoplete#custom#set('_', 'filters', filters)
 endif
 
 " Screen/tmux can also handle xterm mousiness, but Vim doesn't detect it by default.
@@ -318,4 +318,6 @@ let g:RecoverPlugin_Delete_Unmodified_Swapfile = 1
 let g:windowswap_map_keys = 0
 nnoremap <silent> <leader>sw :call WindowSwap#EasyWindowSwap()<CR>
 
-call camelcasemotion#CreateMotionMappings(',')
+silent! call camelcasemotion#CreateMotionMappings(',')
+
+let g:EditorConfig_disable_rules = ['trim_trailing_whitespace']

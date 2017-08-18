@@ -39,6 +39,7 @@ notify_after_long_command() {
   LAST_COMMAND_TIME=
 }
 PROMPT_COMMAND=notify_after_long_command
+PROMPT_DIRTRIM=2
 
 # The following breaks completion
 #shopt -s failglob

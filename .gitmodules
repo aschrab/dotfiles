@@ -71,9 +71,6 @@
 [submodule "vim/bundle/gundo"]
 	path = vim/bundle/gundo
 	url = https://github.com/simnalamburt/vim-mundo.git
-[submodule "vim/bundle/SudoEdit"]
-	path = vim/bundle/SudoEdit
-	url = https://github.com/chrisbra/SudoEdit.vim.git
 [submodule "vim/bundle/CamelCaseMotion"]
 	path = vim/bundle/CamelCaseMotion
 	url = https://github.com/bkad/CamelCaseMotion.git
@@ -97,7 +94,7 @@
 	url = https://github.com/nelstrom/vim-textobj-rubyblock.git
 [submodule "upstreams/powerline"]
 	path = upstreams/powerline
-	url = https://github.com/aschrab/powerline
+	url = https://github.com/powerline/powerline
 [submodule "vim/bundle/abolish"]
 	path = vim/bundle/abolish
 	url = https://github.com/tpope/vim-abolish.git
@@ -221,9 +218,6 @@
 [submodule "vim/bundle/syntax-scss"]
 	path = vim/bundle/syntax-scss
 	url = https://github.com/cakebaker/scss-syntax.vim.git
-[submodule "vim/bundle/ctrl-space"]
-	path = vim/bundle/ctrl-space
-	url = https://github.com/szw/vim-ctrlspace.git
 [submodule "vim/bundle/git"]
 	path = vim/bundle/git
 	url = https://github.com/aschrab/vim-git.git
@@ -287,3 +281,12 @@
 [submodule "vim/bundle/scriptease"]
 	path = vim/bundle/scriptease
 	url = https://github.com/tpope/vim-scriptease.git
+[submodule "vim/bundle/characterize"]
+	path = vim/bundle/characterize
+	url = https://github.com/tpope/vim-characterize.git
+[submodule "vim/bundle/eunuch"]
+	path = vim/bundle/eunuch
+	url = https://github.com/tpope/vim-eunuch.git
+[submodule "vim/bundle/tcomment"]
+	path = vim/bundle/tcomment
+	url = https://github.com/tomtom/tcomment_vim.git
