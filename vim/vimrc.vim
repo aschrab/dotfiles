@@ -77,6 +77,9 @@ endif
 if exists("&wildignorecase")
 	set wildignorecase
 endif
+if exists("&infercase")
+  set infercase
+endif
 if exists("+completeopt")
 set completeopt=longest,menuone
 endif
