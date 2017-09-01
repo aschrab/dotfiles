@@ -323,3 +323,4 @@ nnoremap <silent> <leader>sw :call WindowSwap#EasyWindowSwap()<CR>
 silent! call camelcasemotion#CreateMotionMappings(',')
 
 let g:EditorConfig_disable_rules = ['trim_trailing_whitespace']
+let g:cmdaliasCmdPrefixes = 'verbose debug silent redir tab vert'
