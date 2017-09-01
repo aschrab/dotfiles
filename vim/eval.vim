@@ -74,6 +74,11 @@ if (v:version >= 700)
   let filters += ['converter_truncate_menu']
   let filters += ['converter_remove_paren']
   silent! call deoplete#custom#set('_', 'filters', filters)
+
+  if !exists('g:ale_linters')
+    let g:ale_linters = {}
+  endif
+  let g:ale_linters['typescript'] = ['tslint']
 endif
 
 " Screen/tmux can also handle xterm mousiness, but Vim doesn't detect it by default.
