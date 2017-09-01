@@ -14,6 +14,7 @@ if exists(":Alias")
 
   Alias Gmv Gmove
   Alias Grm Gremove
+  Alias Gci Gcommit
 
   Alias Rm Delete
   Alias Mv Move
