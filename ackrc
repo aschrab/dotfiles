@@ -9,6 +9,7 @@
 --type-set=xsl=.xslt
 --type-set=wiki=.www
 --type-set=snippets=.snippets
+--type-set=svg=.svg
 --type-set=tags:is:tags
 
 --notags
