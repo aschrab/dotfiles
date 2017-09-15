@@ -19,6 +19,9 @@
 
 [includeIf "gitdir:~/vc/niq/"]
 	path = netapp
+[includeIf "gitdir:~/vc/netapp/"]
+	path = netapp
+
 
 [advice]
 	statusHints = no
