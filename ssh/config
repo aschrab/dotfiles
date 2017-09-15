@@ -6,6 +6,10 @@ ControlPersist 30
 ServerAliveInterval=5
 AddKeysToAgent yes
 
+Host niq.qqx.org
+Port 22
+User aschrab
+
 Host pug.qqx.org proxy
 #ControlMaster auto
 #Port 443
