@@ -84,7 +84,7 @@ _pgsql_databases () {
     _pgsql_get_identity
 
     # Should I grep out template0?
-    compadd "$@" - ${${(f)~~"$( psql $_pgsql_params[@] -At -l 2>/dev/null )"}[@]%%|*} 
+    compadd "$@" - ${${(f)~~"$( psql $_pgsql_params[@] -At -lX 2>/dev/null )"}[@]%%|*}
 }
 
 
