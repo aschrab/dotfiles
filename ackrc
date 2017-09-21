@@ -14,3 +14,4 @@
 
 --notags
 --ignore-dir=.snapshot
+--ignore-dir=dist
