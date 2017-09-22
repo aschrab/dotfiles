@@ -42,7 +42,7 @@ HostKeyAlias pilot.trilug.org
 CheckHostIP no
 User aschrab
 
-Host *.qqx.org proxy
+Host *.qqx.org *.lan proxy
 User ats
 ForwardAgent yes
 ForwardX11 yes
