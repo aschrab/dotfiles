@@ -236,6 +236,7 @@ autocmd TermOpen * nmap <buffer> <C-c> a<C-c>
 autocmd TermOpen * nmap <buffer> <C-d> a<C-d>
 autocmd TermOpen * nmap <buffer> <C-p> a<C-p>
 autocmd TermOpen * nmap <buffer> <C-r> a<C-r>
+autocmd TermOpen * nmap <buffer> <Return> a<Return>
 endif
 
 " auto-start NERDTree if vim started with no files and no buffer content
