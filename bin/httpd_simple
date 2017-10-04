@@ -1,5 +1,8 @@
 #!/bin/sh -ex
 
-[ -n "$1" ] && cd "$1"
-
-python -m SimpleHTTPServer
+if [ -n "$(which live-server)" ] ; then
+  live-server --no-browser --ignore=.git .
+else
+  [ -n "$1" ] && cd "$1"
+  python -m SimpleHTTPServer
+fi
