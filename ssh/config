@@ -9,6 +9,7 @@ AddKeysToAgent yes
 Host niq.qqx.org
 Port 22
 User aschrab
+LocalForward localhost:5000 0:5000
 
 Host pug.qqx.org proxy
 #ControlMaster auto
@@ -89,7 +90,6 @@ Host niq-aaron
   Port 4030
   User aschrab
   LocalForward localhost:3000 0:3000
-  LocalForward localhost:5000 0:5000
 
 Host niq-*
   HostName durrhc1sn02-stg.corp.netapp.com
