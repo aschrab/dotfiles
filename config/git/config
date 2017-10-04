@@ -48,6 +48,9 @@
 [commit]
 	verbose = yes
 
+[fetch]
+	prune = yes
+
 [pull]
 	ff = only
 [rebase]
