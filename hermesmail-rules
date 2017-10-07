@@ -10,21 +10,23 @@ def mbox name
   Maildir.new "/srv/mail/ats/.#{name}"
 end
 
+def filter_duplicates list
+  dbfile = "#{ENV['HOME']}/.dupcache"
+  GDBM.open(dbfile, 0600, GDBM::WRCREAT|GDBM::SYNC) do |dbm|
+    key = "#{list}:#{headers.message_id}"
+    if dbm[key]
+      deposit mbox :dups
+    else
+      dbm[key] = Time.now.to_i.to_s
+    end
+  end
+rescue
+end
+
 def list name, subject: nil, dupcheck: false
   #$stderr.puts "List #{name}"
 
-  begin # Filter duplicates
-    dbfile = "#{ENV['HOME']}/.dupcache"
-    GDBM.open(dbfile, 0600, GDBM::WRCREAT|GDBM::SYNC) do |dbm|
-      key = "#{name}:#{headers.message_id}"
-      if dbm[key]
-        deposit mbox :dups
-      else
-        dbm[key] = Time.now.to_i.to_s
-      end
-    end
-  rescue
-  end if dupcheck
+  filter_duplicates(name) if dupcheck
 
   begin # Cleanup subject
     original = headers.subject
@@ -149,6 +151,10 @@ def process
     rescue
     end
     deposit mbox 'INBOX.read'
+  end
+
+  if from.has?(/mailman.*[@.]trilug\.org/) and headers.x_list_administrivia =~ /yes/i
+    filter_duplicates :inbox
   end
 
   #$stderr.puts "Saving to default mailbox"
