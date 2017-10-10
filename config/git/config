@@ -171,7 +171,3 @@
 	insteadOf = http://github.com/
 [url "git@bitbucket.org:aschrab/"]
 	pushInsteadOf = https://bitbucket.org/aschrab/
-[url "git@github.com:sunbirddcim/"]
-	insteadOf = git@github.com:raritan/
-	insteadOf = ssh://git@github.com/raritan/
-	insteadOf = https://github.com/raritan/poweriq_web.git
