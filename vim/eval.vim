@@ -58,6 +58,11 @@ if (v:version >= 700)
 
   if !has('nvim') || !has('python3')
     let g:pathogen_disabled += [ 'deoplete' ]
+  else
+    let g:pathogen_disabled += [ 'tsuquyomi' ]
+    let g:ycm_filetype_specific_completion_to_disable = {}
+    let g:ycm_filetype_specific_completion_to_disable['javascript'] = 1
+    let g:ycm_filetype_specific_completion_to_disable['typescript'] = 1
   endif
 
   if has("gui_running") || empty(glob('/usr/software/')) || hostname() =~ '\M.rtp.' || hostname() =~ '\M^aschrab'
