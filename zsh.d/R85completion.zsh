@@ -24,7 +24,7 @@ zstyle ':completion:*:manuals.(^1*)' insert-sections true
 # Allow one error for every 3 characters typed.
 zstyle -e ':completion:*:approximate:*' max-errors 'reply=( $(( ($#PREFIX+$#SUFFIX)/3 )) numeric )'
 
-zstyle ':completion:*' menu select=3 yes=long auto interactive
+zstyle ':completion:*' menu select=3 yes=long auto # interactive
 zstyle ':completion:*' original true
 zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
 zstyle ':completion:*' substitute 'NUMERIC==2'
