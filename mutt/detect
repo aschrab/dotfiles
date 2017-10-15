@@ -7,7 +7,7 @@
 % end
 
 account-hook 'ats@pug.qqx.org' 'set tunnel="exec <%= Dir.pwd %>/imapwrap qqx"'
-account-hook 'trilug.org'      'set tunnel="exec <%= Dir.pwd %>/imapwrap trilug"'
+account-hook '@trilug.org'     'set tunnel="exec <%= Dir.pwd %>/imapwrap trilug"'
 
 % sendmail='/usr/sbin/sendmail -oem -oi'
 
