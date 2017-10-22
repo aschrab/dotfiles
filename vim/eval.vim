@@ -336,3 +336,14 @@ silent! call camelcasemotion#CreateMotionMappings(',')
 
 let g:EditorConfig_disable_rules = ['trim_trailing_whitespace']
 let g:cmdaliasCmdPrefixes = 'verbose debug silent redir tab vert'
+
+vmap <unique> <up>    <Plug>SchleppUp
+vmap <unique> <down>  <Plug>SchleppDown
+vmap <unique> <left>  <Plug>SchleppLeft
+vmap <unique> <right> <Plug>SchleppRight
+vmap <unique> <S-up>   <Plug>SchleppIndentUp
+vmap <unique> <S-down> <Plug>SchleppIndentDown
+vmap <unique> Dk <Plug>SchleppDupUp
+vmap <unique> Dj <Plug>SchleppDupDown
+vmap <unique> Dh <Plug>SchleppDupLeft
+vmap <unique> Dl <Plug>SchleppDupRight

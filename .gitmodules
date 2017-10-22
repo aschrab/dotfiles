@@ -290,3 +290,6 @@
 [submodule "vim/bundle/tcomment"]
 	path = vim/bundle/tcomment
 	url = https://github.com/tomtom/tcomment_vim.git
+[submodule "vim/bundle/schlepp"]
+	path = vim/bundle/schlepp
+	url = https://github.com/zirrostig/vim-schlepp.git
