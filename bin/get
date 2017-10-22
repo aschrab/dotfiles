@@ -2,9 +2,9 @@
 
 set -e
 
-if [ -n "$(which http)" ]; then
+if type http > /dev/null 2>&1 ; then
   http -d "$@"
-elif [ -n "$(which curl)" ]; then
+elif type curl > /dev/null 2>&1 ; then
   curl -O "$@"
 else
   wget "$@"
