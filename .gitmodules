@@ -28,7 +28,7 @@
 	url = https://github.com/zsh-users/zsh-completions.git
 [submodule "vim/bundle/nginx"]
 	path = vim/bundle/nginx
-	url = https://github.com/evanmiller/nginx-vim-syntax.git
+	url = https://github.com/chr4/nginx.vim.git
 [submodule "vim/bundle/fugitive"]
 	path = vim/bundle/fugitive
 	url = https://github.com/aschrab/vim-fugitive.git
