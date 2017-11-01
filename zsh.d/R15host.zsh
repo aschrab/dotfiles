@@ -2,6 +2,16 @@
 # - Split $HOST on '.'
 # - Remove $stripdom - 1 portions from the end
 # - Rejoin
+
+if [[ -z "$FQDN" ]] ; then
+  if [[ "$HOST" = *.* ]] ; then
+    FQDN="$HOST"
+  else
+    FQDN=$(hostname -f)
+  fi
+fi
+export FQDN
+
 if [[ "$HOST" = *.local ]]
 then
   host=${HOST/.*/}
