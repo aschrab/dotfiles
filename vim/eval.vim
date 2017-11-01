@@ -65,7 +65,7 @@ if (v:version >= 700)
     let g:ycm_filetype_specific_completion_to_disable['typescript'] = 1
   endif
 
-  if has("gui_running") || empty(glob('/usr/software/')) || hostname() =~ '\M.rtp.' || hostname() =~ '\M^aschrab'
+  if has("gui_running") || empty(glob('/usr/software/')) || $FQDN =~ '\M.rtp.' || $FQDN =~ '\M^aschrab'
     runtime bundle/pathogen/autoload/pathogen.vim
     if exists('*pathogen#infect')
       execute pathogen#infect()
