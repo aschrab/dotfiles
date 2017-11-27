@@ -110,7 +110,7 @@ Host niq-template
   Port 4020
 
 Host datalakegw
-  HostName phyrhcgws01-prd.corp.netapp.com
+  HostName phyrhcgws02-prd.corp.netapp.com
 
 Host burtview*.netapp.com
   ForwardX11 yes
