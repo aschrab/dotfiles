@@ -242,6 +242,7 @@ dig !! 161 " ¡
 dig ?? 191 " ¿
 dig SS 167 " §
 dig ?! 8253 " Interrobang ‽
+dig .. 8230 " Ellipsis …
 endif
 
 set cinoptions+=l1,(0,t0
