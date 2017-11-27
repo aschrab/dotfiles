@@ -237,6 +237,10 @@ augroup END
 autocmd BufNewFile,BufRead * call AutoPath()
 
 if exists('##TermOpen')
+autocmd TermOpen * setlocal nonumber norelativenumber
+autocmd TermOpen,BufEnter term://* startinsert
+autocmd BufLeave term://* stopinsert
+
 autocmd TermOpen * nmap <buffer> <C-c> a<C-c>
 autocmd TermOpen * nmap <buffer> <C-d> a<C-d>
 autocmd TermOpen * nmap <buffer> <C-p> a<C-p>
