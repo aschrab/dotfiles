@@ -4,6 +4,7 @@ folder-hook . 'unsubjectrx *'
 
 mailboxes !
 mailboxes *
+mailboxes =INBOX/wcfc
 mailboxes =INBOX/junk
 mailboxes =INBOX/sympa
 

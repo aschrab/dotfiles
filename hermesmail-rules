@@ -145,6 +145,18 @@ def process
   list 'debian.pts' if headers.x_pts_package =~ /\w/
   list 'subs.skeptic' if from.has?(/eskeptic@skeptic.com/i)
 
+  if from.has?(/noreturn@myfbo\.com/i)
+    begin
+      if body.match(/^Message sent by (.*?)  (\S+@\S+)$/)
+        headers.replace 'From', %Q{"#$1" <#$2>}
+      end
+    rescue
+      $stderr.puts $!
+    end
+
+    deposit mbox 'INBOX.wcfc'
+  end
+
   if from.has?(/@(cooperpress\.com|peterc\.org)$/i)
     begin
       sendmail mutt_alias :newsblur
