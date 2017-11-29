@@ -1,0 +1,18 @@
+#!/bin/sh
+
+set -e
+
+die() {
+  echo "$@" >&2
+  exit 1
+}
+
+matches=$(mktemp)
+cleanup() {
+  rm -f "$matches"
+}
+trap cleanup EXIT
+
+ack --column "$@" >"$matches" || die "No matches found"
+
+${EDITOR:-vim} -q "$matches"
