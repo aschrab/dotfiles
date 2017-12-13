@@ -23,43 +23,43 @@ let g:deoplete#enable_at_startup = 1
 if (v:version >= 700)
   " Start up pathogen if it's available
   " Won't be available on boxes before git submodules have been fetched
-  let g:pathogen_disabled = []
+  let g:pathogen_blacklist = []
   if &term =~ 'linux'
     " Don't use airline on Linux console, it messes up the display horribly
-    let g:pathogen_disabled += [ 'airline' ]
+    let g:pathogen_blacklist += [ 'airline' ]
   endif
   if ((v:version == 703 && has('patch584')) || v:version > 703) && (has('python') || has('python3')) && filereadable(expand('<sfile>:p:h') . '/bundle/you_complete_me/third_party/ycmd/ycm_core.so')
   else
-    let g:pathogen_disabled += [ 'you_complete_me' ]
+    let g:pathogen_blacklist += [ 'you_complete_me' ]
   endif
-  "let g:pathogen_disabled += [ 'signify' ]
+  "let g:pathogen_blacklist += [ 'signify' ]
 
   if !exists('g:sudoed') && ((v:version == 703 && has('patch501')) || v:version > 703)
   else
-    let g:pathogen_disabled += [ 'vorax' ]
+    let g:pathogen_blacklist += [ 'vorax' ]
   endif
 
   if (v:version < 704)
-    let g:pathogen_disabled += [ 'diff-enhanced' ]
-    let g:pathogen_disabled += [ 'tsuquyomi' ]
-    let g:pathogen_disabled += [ 'ultisnips' ]
+    let g:pathogen_blacklist += [ 'diff-enhanced' ]
+    let g:pathogen_blacklist += [ 'tsuquyomi' ]
+    let g:pathogen_blacklist += [ 'ultisnips' ]
   endif
 
   " Only use one of ale|syntastic
   if (v:version >= 800 || has('nvim'))
-    let g:pathogen_disabled += [ 'syntastic' ]
+    let g:pathogen_blacklist += [ 'syntastic' ]
   else
-    let g:pathogen_disabled += [ 'ale' ]
+    let g:pathogen_blacklist += [ 'ale' ]
   endif
 
   if !has('python') && !has('python3')
-    let g:pathogen_disabled += [ 'tern', 'editorconfig' ]
+    let g:pathogen_blacklist += [ 'tern', 'editorconfig' ]
   endif
 
   if !has('nvim') || !has('python3')
-    let g:pathogen_disabled += [ 'deoplete' ]
+    let g:pathogen_blacklist += [ 'deoplete' ]
   else
-    let g:pathogen_disabled += [ 'tsuquyomi' ]
+    let g:pathogen_blacklist += [ 'tsuquyomi' ]
     let g:ycm_filetype_specific_completion_to_disable = {}
     let g:ycm_filetype_specific_completion_to_disable['javascript'] = 1
     let g:ycm_filetype_specific_completion_to_disable['typescript'] = 1
