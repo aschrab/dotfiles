@@ -11,7 +11,7 @@ set background=dark
 
 set t_Co=16
 :if has("syntax")
-	syntax on
+  syntax on
 :endif
 
 silent! colorscheme vividchalk
@@ -75,7 +75,7 @@ if exists("+wildoptions")
 set wildoptions=tagfile
 endif
 if exists("&wildignorecase")
-	set wildignorecase
+  set wildignorecase
 endif
 if exists("&infercase")
   set infercase
@@ -95,8 +95,8 @@ set foldminlines=2
 :endif
 
 :if has("persistent_undo")
-	set undofile
-	set undodir=~/.undo,.
+  set undofile
+  set undodir=~/.undo,.
 :endif
 "}}}
 
@@ -252,7 +252,7 @@ set bs=2
 set secure
 
 :if filereadable(expand("~/.vim/local.vim"))
-	source ~/.vim/local.vim
+  source ~/.vim/local.vim
 :endif
 
 :if 1
