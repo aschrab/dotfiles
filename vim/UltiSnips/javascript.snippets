@@ -5,3 +5,9 @@ endsnippet
 snippet : "Object property"
 ${1:key}: ${2:value},$0
 endsnippet
+
+snippet Promise "Create a Promise"
+new Promise((resolve, reject) => {
+  ${VISUAL}$0
+})
+endsnippet
