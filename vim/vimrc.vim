@@ -153,7 +153,15 @@ set guioptions-=l
 set guioptions-=L
 set guioptions-=b
 
+:if has('nvim') "&& $TERM =~ 'konsole'
+  " method of changing cursor on konsole causes font size to be reset to
+  " profile default.
+  " Not including the check of $TERM for now, since this problem occurs
+  " through tmux sessions.
+  set guicursor=
+:else
 set guicursor=n-v-c:block-Cursor-blinkon0,ve:ver35-Cursor-blinkon0,o:hor50-Cursor-blinkon0,i-ci:ver25-Cursor-blinkon0,r-cr:hor20-Cursor-blinkon0,sm:block-Cursor-blinkon0
+:endif
 
 noremap <C-E> <End>
 map <c-J> gqip
