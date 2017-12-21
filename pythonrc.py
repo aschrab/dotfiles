@@ -11,6 +11,9 @@ from pprint import pprint as p
 assert rlcompleter
 assert p
 
+# Report non-default imports
+print("Imported os, sys, atexit, readline, rlcompleter")
+
 readline.parse_and_bind('tab: complete')
 histfile = os.path.join(os.environ['HOME'], '.pythonhistory')
 try:
