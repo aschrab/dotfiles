@@ -2,6 +2,7 @@ typeset -aU fpath
 fpath=(
   $zshrc_dir/completion
   $fpath
+  /usr/share/zsh/vendor-completions/
   $zshrc_dir/../upstreams/completions/src/
   /usr/local/share/zsh/site-functions/
   /usr/share/zsh/site-functions/
