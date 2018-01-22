@@ -22,6 +22,9 @@ bindsym $mod+t exec i3-sensible-terminal -e tmux
 # lock screen
 bindsym $mod+Shift+Z exec i3lock
 
+# Toggle showing key presses
+bindsym $mod+Control+K exec --no-startup-id ~/.bin/show_keys
+
 # kill focused window
 bindsym $mod+Shift+Q kill
 bindsym $mod+Shift+X kill
