@@ -253,3 +253,6 @@
 [submodule "vim/bundle/zz_polyglot"]
 	path = vim/bundle/zz_polyglot
 	url = https://github.com/sheerun/vim-polyglot.git
+[submodule "vim/bundle/twiggy"]
+	path = vim/bundle/twiggy
+	url = https://github.com/sodapopcan/vim-twiggy.git
