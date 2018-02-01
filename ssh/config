@@ -10,6 +10,7 @@ Host niq.qqx.org
 Port 22
 User aschrab
 LocalForward localhost:5000 0:5000
+LocalForward localhost:9229 0:9229
 
 Host pug.qqx.org proxy
 #ControlMaster auto
