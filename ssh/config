@@ -119,4 +119,22 @@ Host burtview*.netapp.com
   ForwardX11Trusted yes
   ForwardAgent yes
 
+# EC2 nodes
+Host 172.30.*
+  User ubuntu
+  IdentityFile ~/vc/niq/common/keys/netappiq.pem
+  UserKnownHostsFile /dev/null
+  StrictHostKeyChecking no
+  ChallengeResponseAuthentication no
+  KbdInteractiveAuthentication no
+
+# IT EC2 nodes
+Host 10.105.*
+  User root
+  IdentityFile ~/.ssh/niq.pem
+  UserKnownHostsFile /dev/null
+  StrictHostKeyChecking no
+  ChallengeResponseAuthentication no
+  KbdInteractiveAuthentication no
+
 # vim: ft=sshconfig
