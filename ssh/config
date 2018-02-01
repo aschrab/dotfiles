@@ -69,6 +69,7 @@ ForwardAgent yes
 
 Host aschrab-mbp.lan
 User aschrab
+Port 22
 ForwardAgent yes
 
 Host *.github.com github.com
