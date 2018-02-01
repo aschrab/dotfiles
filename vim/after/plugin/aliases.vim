@@ -6,6 +6,7 @@ if exists(":Alias")
   Alias scratch Scratch
   if exists(":Shell")
     Alias shell Shell
+    Alias SHell Shell
   endif
 
   if exists(":Man")
