@@ -1,3 +1,2 @@
-To setup powerline font run:
-
-  fc-cache -vf ~/.fonts
+# To setup powerline font run:
+fc-cache -vf ~/.fonts
