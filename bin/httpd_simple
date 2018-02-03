@@ -5,7 +5,7 @@ if [ -n "$1" ]; then
   shift
 fi
 
-if [ -n "$(which live-server)" ] ; then
+if type live-server >/dev/null 2>&1 ; then
   live-server --no-browser --ignore=.git .
 else
   python -m SimpleHTTPServer
