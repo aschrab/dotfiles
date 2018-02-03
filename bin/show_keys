@@ -1,0 +1,18 @@
+#!/bin/bash
+set -e
+
+pidfile=~/.show_keys.pid
+
+if [[ -r $pidfile ]]; then
+  read pid <$pidfile
+  script=$(sed -nz 2p /proc/$pid/cmdline 2>/dev/null)
+  [[ $script == */screenkey ]] && kill $pid
+  rm -f $pidfile
+else
+  (
+    # Subshells don't update $$
+    echo $BASHPID > $pidfile
+    exec screenkey --no-detach \
+      --ignore XF86WakeUp
+  ) &
+fi

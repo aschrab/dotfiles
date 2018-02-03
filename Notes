@@ -1,3 +1,4 @@
-To setup powerline font run:
+# To setup powerline font run:
+fc-cache -vf ~/.fonts
 
-  fc-cache -vf ~/.fonts
+xdg-settings set default-web-browser chromium.desktop

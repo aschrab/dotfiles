@@ -1,9 +1,6 @@
 [submodule "upstreams/zsh"]
 	path = upstreams/zsh
 	url = git://git.code.sf.net/p/zsh/code
-[submodule "vim/bundle/syntax-coffeescript"]
-	path = vim/bundle/syntax-coffeescript
-	url = https://github.com/kchmck/vim-coffee-script.git
 [submodule "vim/bundle/syntax-markdown"]
 	path = vim/bundle/syntax-markdown
 	url = https://github.com/aschrab/vim-markdown.git
@@ -19,16 +16,9 @@
 [submodule "vim/bundle/ultisnips"]
 	path = vim/bundle/ultisnips
 	url = https://github.com/SirVer/ultisnips.git
-[submodule "vim/bundle/perl"]
-	path = vim/bundle/perl
-	url = git://github.com/vim-perl/vim-perl.git
-	update = merge
 [submodule "upstreams/completions"]
 	path = upstreams/completions
 	url = https://github.com/zsh-users/zsh-completions.git
-[submodule "vim/bundle/nginx"]
-	path = vim/bundle/nginx
-	url = https://github.com/chr4/nginx.vim.git
 [submodule "vim/bundle/fugitive"]
 	path = vim/bundle/fugitive
 	url = https://github.com/aschrab/vim-fugitive.git
@@ -50,12 +40,6 @@
 [submodule "vim/bundle/cmdalias"]
 	path = vim/bundle/cmdalias
 	url = https://github.com/vim-scripts/cmdalias.vim.git
-[submodule "vim/bundle/js"]
-	path = vim/bundle/js
-	url = https://github.com/pangloss/vim-javascript.git
-[submodule "vim/bundle/ruby"]
-	path = vim/bundle/ruby
-	url = https://github.com/vim-ruby/vim-ruby.git
 [submodule "vim/bundle/syntastic"]
 	path = vim/bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
@@ -98,9 +82,6 @@
 [submodule "vim/bundle/abolish"]
 	path = vim/bundle/abolish
 	url = https://github.com/tpope/vim-abolish.git
-[submodule "vim/bundle/puppet"]
-	path = vim/bundle/puppet
-	url = https://github.com/rodjek/vim-puppet.git
 [submodule "vim/bundle/airline"]
 	path = vim/bundle/airline
 	url = https://github.com/bling/vim-airline.git
@@ -140,9 +121,6 @@
 [submodule "vim/bundle/delimitMate"]
 	path = vim/bundle/delimitMate
 	url = https://github.com/Raimondi/delimitMate
-[submodule "vim/bundle/textobj-comment"]
-	path = vim/bundle/textobj-comment
-	url = https://github.com/glts/vim-textobj-comment
 [submodule "vim/bundle/count_jump"]
 	path = vim/bundle/count_jump
 	url = https://github.com/vim-scripts/CountJump
@@ -158,9 +136,6 @@
 [submodule "vim/bundle/genutils"]
 	path = vim/bundle/genutils
 	url = https://github.com/vim-scripts/genutils
-[submodule "vim/bundle/json"]
-	path = vim/bundle/json
-	url = https://github.com/elzr/vim-json
 [submodule "vim/bundle/unicode"]
 	path = vim/bundle/unicode
 	url = https://github.com/chrisbra/unicode.vim
@@ -170,18 +145,12 @@
 [submodule "vim/bundle/narrow-region"]
 	path = vim/bundle/narrow-region
 	url = https://github.com/chrisbra/NrrwRgn
-[submodule "mxw-jsx"]
-	path = vim/bundle/jsx
-	url = https://github.com/mxw/vim-jsx.git
 [submodule "upstreams/rbenv"]
 	path = upstreams/rbenv
 	url = https://github.com/sstephenson/rbenv.git
 [submodule "rbenv/plugins/ruby-build"]
 	path = rbenv/plugins/ruby-build
 	url = https://github.com/sstephenson/ruby-build.git
-[submodule "vim/bundle/syntax-cjsx"]
-	path = vim/bundle/syntax-cjsx
-	url = https://github.com/mtscout6/vim-cjsx
 [submodule "upstreams/ndenv"]
 	path = upstreams/ndenv
 	url = https://github.com/riywo/ndenv
@@ -191,9 +160,6 @@
 [submodule "vim/bundle/syntax-css3"]
 	path = vim/bundle/syntax-css3
 	url = https://github.com/hail2u/vim-css3-syntax
-[submodule "vim/bundle/liquid"]
-	path = vim/bundle/liquid
-	url = https://github.com/tpope/vim-liquid
 [submodule "rbenv/plugins/rbenv-default-gems"]
 	path = rbenv/plugins/rbenv-default-gems
 	url = https://github.com/sstephenson/rbenv-default-gems.git
@@ -215,15 +181,9 @@
 [submodule "vim/bundle/bufexplorer"]
 	path = vim/bundle/bufexplorer
 	url = https://github.com/jlanzarotta/bufexplorer.git
-[submodule "vim/bundle/syntax-scss"]
-	path = vim/bundle/syntax-scss
-	url = https://github.com/cakebaker/scss-syntax.vim.git
 [submodule "vim/bundle/git"]
 	path = vim/bundle/git
 	url = https://github.com/aschrab/vim-git.git
-[submodule "vim/bundle/syntax-less"]
-	path = vim/bundle/syntax-less
-	url = https://github.com/groenewege/vim-less.git
 [submodule "vim/bundle/windowswap"]
 	path = vim/bundle/windowswap
 	url = https://github.com/wesQ3/vim-windowswap.git
@@ -242,9 +202,6 @@
 [submodule "vim/bundle/xmledit"]
 	path = vim/bundle/xmledit
 	url = gh:sukima/xmledit.git
-[submodule "vim/bundle/syntax-typescript"]
-	path = vim/bundle/syntax-typescript
-	url = https://github.com/leafgarland/typescript-vim.git
 [submodule "vim/bundle/tsuquyomi"]
 	path = vim/bundle/tsuquyomi
 	url = https://github.com/Quramy/tsuquyomi.git
@@ -293,3 +250,9 @@
 [submodule "vim/bundle/schlepp"]
 	path = vim/bundle/schlepp
 	url = https://github.com/zirrostig/vim-schlepp.git
+[submodule "vim/bundle/zz_polyglot"]
+	path = vim/bundle/zz_polyglot
+	url = https://github.com/sheerun/vim-polyglot.git
+[submodule "vim/bundle/twiggy"]
+	path = vim/bundle/twiggy
+	url = https://github.com/sodapopcan/vim-twiggy.git

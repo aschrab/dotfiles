@@ -11,7 +11,7 @@ set background=dark
 
 set t_Co=16
 :if has("syntax")
-	syntax on
+  syntax on
 :endif
 
 silent! colorscheme vividchalk
@@ -75,7 +75,7 @@ if exists("+wildoptions")
 set wildoptions=tagfile
 endif
 if exists("&wildignorecase")
-	set wildignorecase
+  set wildignorecase
 endif
 if exists("&infercase")
   set infercase
@@ -95,8 +95,8 @@ set foldminlines=2
 :endif
 
 :if has("persistent_undo")
-	set undofile
-	set undodir=~/.undo,.
+  set undofile
+  set undodir=~/.undo,.
 :endif
 "}}}
 
@@ -153,7 +153,15 @@ set guioptions-=l
 set guioptions-=L
 set guioptions-=b
 
+:if has('nvim') "&& $TERM =~ 'konsole'
+  " method of changing cursor on konsole causes font size to be reset to
+  " profile default.
+  " Not including the check of $TERM for now, since this problem occurs
+  " through tmux sessions.
+  set guicursor=
+:else
 set guicursor=n-v-c:block-Cursor-blinkon0,ve:ver35-Cursor-blinkon0,o:hor50-Cursor-blinkon0,i-ci:ver25-Cursor-blinkon0,r-cr:hor20-Cursor-blinkon0,sm:block-Cursor-blinkon0
+:endif
 
 noremap <C-E> <End>
 map <c-J> gqip
@@ -242,6 +250,7 @@ dig !! 161 " ¡
 dig ?? 191 " ¿
 dig SS 167 " §
 dig ?! 8253 " Interrobang ‽
+dig .. 8230 " Ellipsis …
 endif
 
 set cinoptions+=l1,(0,t0
@@ -251,7 +260,7 @@ set bs=2
 set secure
 
 :if filereadable(expand("~/.vim/local.vim"))
-	source ~/.vim/local.vim
+  source ~/.vim/local.vim
 :endif
 
 :if 1

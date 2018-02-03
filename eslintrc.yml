@@ -6,9 +6,13 @@ env:
 extends: standard
 parserOptions:
   sourceType: script
+plugins:
+  - react
 rules:
   linebreak-style:
     - error
     - unix
   default-case:
+    - error
+  react/jsx-uses-vars:
     - error

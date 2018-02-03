@@ -42,7 +42,7 @@ set status_chars=" *%"
 set sort=threads
 set nostrict_threads
 set sort_aux=last-date-received
-set status_format=" %r Mutt:%-25.25f [Msgs:%?M?%M/?%m New:%n%?F? Flag:%F?%?t? Tag:%t? In:%b%?p? Post:%p?]%> (%s/%S)"
+set status_format=" %r %-25.25f [Msgs:%?M?%M/?%m New:%n%?F? Flag:%F?%?t? Tag:%t? In:%b%?p? Post:%p?]%> (%s/%S)"
 
 set folder_format="%2C%t %5N %8s %d %f"
 

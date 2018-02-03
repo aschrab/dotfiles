@@ -15,3 +15,4 @@
 --notags
 --ignore-dir=.snapshot
 --ignore-dir=dist
+--ignore-dir=node_modules

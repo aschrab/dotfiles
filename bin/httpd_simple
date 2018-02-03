@@ -1,8 +1,12 @@
 #!/bin/sh -ex
 
-if [ -n "$(which live-server)" ] ; then
+if [ -n "$1" ]; then
+  cd "$1"
+  shift
+fi
+
+if type live-server >/dev/null 2>&1 ; then
   live-server --no-browser --ignore=.git .
 else
-  [ -n "$1" ] && cd "$1"
   python -m SimpleHTTPServer
 fi

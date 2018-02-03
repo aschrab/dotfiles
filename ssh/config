@@ -10,6 +10,7 @@ Host niq.qqx.org
 Port 22
 User aschrab
 LocalForward localhost:5000 0:5000
+LocalForward localhost:9229 0:9229
 
 Host pug.qqx.org proxy
 #ControlMaster auto
@@ -69,6 +70,7 @@ ForwardAgent yes
 
 Host aschrab-mbp.lan
 User aschrab
+Port 22
 ForwardAgent yes
 
 Host *.github.com github.com
@@ -116,5 +118,23 @@ Host burtview*.netapp.com
   ForwardX11 yes
   ForwardX11Trusted yes
   ForwardAgent yes
+
+# EC2 nodes
+Host 172.30.*
+  User ubuntu
+  IdentityFile ~/vc/niq/common/keys/netappiq.pem
+  UserKnownHostsFile /dev/null
+  StrictHostKeyChecking no
+  ChallengeResponseAuthentication no
+  KbdInteractiveAuthentication no
+
+# IT EC2 nodes
+Host 10.105.*
+  User root
+  IdentityFile ~/.ssh/niq.pem
+  UserKnownHostsFile /dev/null
+  StrictHostKeyChecking no
+  ChallengeResponseAuthentication no
+  KbdInteractiveAuthentication no
 
 # vim: ft=sshconfig
