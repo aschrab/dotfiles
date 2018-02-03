@@ -45,6 +45,10 @@ if (v:version >= 700)
     let g:pathogen_disabled += [ 'ultisnips' ]
   endif
 
+  if !((v:version >= 704) || (v:version == 703 && has('patch1261') && has('patch1264')))
+    let g:pathogen_disabled += [ 'bufexplorer' ]
+  endif
+
   " Only use one of ale|syntastic
   if (v:version >= 800 || has('nvim'))
     let g:pathogen_disabled += [ 'syntastic' ]
