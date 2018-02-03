@@ -1,6 +1,6 @@
 if [[ -x ~/.rbenv/bin/rbenv ]]; then
   rbenv_setup() {
-    path+=(~/.rbenv/bin)
+    path=(~/.rbenv/bin $path)
     eval "$(rbenv init -)"
     unfunction rbenv_setup
   }
