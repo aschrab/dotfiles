@@ -46,7 +46,7 @@ if (v:version >= 700)
   endif
 
   if !((v:version >= 704) || (v:version == 703 && has('patch1261') && has('patch1264')))
-    let g:pathogen_disabled += [ 'bufexplorer' ]
+    let g:pathogen_blacklist += [ 'bufexplorer' ]
   endif
 
   " Only use one of ale|syntastic
