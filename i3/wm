@@ -191,4 +191,4 @@ for_window [title="^xfce4-notifyd"] floating enable
 
 exec --no-startup-id "<%= DOTFILE_DIR %>/i3/startup"
 
-# vim: filetype=eruby.conf
+# vim: filetype=eruby.i3
