@@ -100,10 +100,10 @@ bindsym $mod+Control+r exec --no-startup-id "<%= DOTFILE_DIR %>/i3/workspace-exe
 
 # move focused container to workspace
 % symbols = %w{exclam at numbersign dollar percent asciicircum ampersand asterisk parenleft parenright}
-<%- symbols.each.with_index(1) do |sym,num| -%>
+<% symbols.each.with_index(1) do |sym,num| %>
 bindsym $mod+<%= num % 10 %> workspace number <%= num %>
 bindsym $mod+Shift+<%= sym %> move container to workspace number <%= num %>
-<%- end -%>
+<% end %>
 
 workspace_auto_back_and_forth yes
 
@@ -170,14 +170,14 @@ bindsym $mod+r mode "resize"
 
   # Sort from left to right, top to bottom
   displays.sort_by!{ |m| m['rect'].values_at(*%w<x y>) }
-
-displays.each_with_index do |m,i| -%>
+%>
+% displays.each_with_index do |m,i|
 bar {
         position bottom
         output <%= m['name'] %>
-<%- if m['name'] == status -%>
+<% if m['name'] == status %>
         status_command i3status
-<%- end -%>
+<% end %>
         separator_symbol " | "
         tray_output <%= tray %>
 }
