@@ -1,6 +1,8 @@
 if ( $?prompt ) then
   set path = ($HOME/bin $path)
-  bash -c : && exec env -u SHLVL SHELL=`which bash` bash -l
+  foreach shell ( zsh bash )
+    $shell -c : >& /dev/null && exec env -u SHLVL SHELL=`which $shell` $shell -l
+  end
 endif
 
 # vim: ft=csh
