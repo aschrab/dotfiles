@@ -185,12 +185,6 @@ map <Leader>z <Plug>SimpleFold_Foldsearch
 nnoremap <Leader>d "_d
 nnoremap <Leader>c "_c
 
-" Leader + left home keys for buffer nav
-nnoremap ,a :bprev<Return>
-nnoremap ,s :bnext<Return>
-nnoremap ,d :bd<Return>
-nnoremap ,f :b<Space>
-
 nnoremap <F5> :MundoToggle<CR>
 nnoremap <silent> <F12> :set cursorcolumn!<CR>
 
