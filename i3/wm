@@ -4,6 +4,31 @@
 
 % DOTFILE_DIR = File.dirname(File.absolute_path(__FILE__))
 
+<%
+DIRS = {
+  Left: %w<j J>,
+  Down: %w<k K>,
+  Up: %w<l L>,
+  Right: %w<semicolon colon>,
+}
+
+def bind_dir binding
+  mapping, cmd = binding.split(/\s+/, 2)
+  keys = mapping.split('+')
+
+  dir = keys.pop.to_sym
+  mods = keys.join '+'
+  shifted = mods[/shift/i]
+
+  mods += '+' unless mods.empty?
+
+  key = DIRS[dir][shifted ? 1:0]
+  [dir, key].map do |k|
+    "bindsym #{mods}#{k} #{cmd}"
+  end.join("\n")
+end
+%>
+
 set $mod Mod4
 
 # font for window titles. ISO 10646 = Unicode
@@ -38,28 +63,16 @@ bindSym XF86AudioLowerVolume  exec --no-startup-id "amixer -q set Master 5%-"
 bindSym XF86AudioMute         exec --no-startup-id "amixer -q set Master toggle"
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
-
-# alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+<%= bind_dir '$mod+Left focus left' %>
+<%= bind_dir '$mod+Down focus down' %>
+<%= bind_dir '$mod+Up focus up' %>
+<%= bind_dir '$mod+Right focus right' %>
 
 # move focused window
-bindsym $mod+Shift+J move left
-bindsym $mod+Shift+K move down
-bindsym $mod+Shift+L move up
-bindsym $mod+Shift+colon move right
-
-# alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+<%= bind_dir '$mod+Shift+Left move left' %>
+<%= bind_dir '$mod+Shift+Down move down' %>
+<%= bind_dir '$mod+Shift+Up move up' %>
+<%= bind_dir '$mod+Shift+Right move right' %>
 
 bindsym $mod+Control+Left move workspace to output left
 bindsym $mod+Control+Right move workspace to output right
@@ -132,20 +145,10 @@ bindsym $mod+o exec /home/ats/bin/rotate -r
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
-
-        # same bindings, but for the arrow keys
-        bindsym Left  resize shrink width  10 px or 10 ppt
-        bindsym Up    resize grow   height 10 px or 10 ppt
-        bindsym Down  resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow   width  10 px or 10 ppt
+        <%= bind_dir 'Left  resize shrink width  10 px or 10 ppt' %>
+        <%= bind_dir 'Up    resize grow   height 10 px or 10 ppt' %>
+        <%= bind_dir 'Down  resize shrink height 10 px or 10 ppt' %>
+        <%= bind_dir 'Right resize grow   width  10 px or 10 ppt' %>
 
         # back to normal: Enter or Escape
         bindsym Return mode "default"
