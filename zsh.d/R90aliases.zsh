@@ -133,3 +133,5 @@ fi
 alias lvared="IFS=\$'\n' vared"
 
 alias magit="vim -c MagitOnly"
+
+(( $+commands[http] )) && alias https='http --default-scheme=https'
