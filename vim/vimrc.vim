@@ -3,7 +3,10 @@
 set encoding=utf-8
 scriptencoding utf-8
 
-set background=dark
+:if $TERM != 'linux'
+  set background=dark
+  silent! colorscheme vividchalk
+:endif
 
 :if 1
   runtime eval.vim
@@ -13,8 +16,6 @@ set t_Co=16
 :if has("syntax")
   syntax on
 :endif
-
-silent! colorscheme vividchalk
 
 " Miscellaneous options {{{
 :if has('nvim')
