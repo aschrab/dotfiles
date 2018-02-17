@@ -24,10 +24,6 @@ if (v:version >= 700)
   " Start up pathogen if it's available
   " Won't be available on boxes before git submodules have been fetched
   let g:pathogen_blacklist = []
-  if &term =~ 'linux'
-    " Don't use airline on Linux console, it messes up the display horribly
-    let g:pathogen_blacklist += [ 'airline' ]
-  endif
   if ((v:version == 703 && has('patch584')) || v:version > 703) && (has('python') || has('python3')) && filereadable(expand('<sfile>:p:h') . '/bundle/you_complete_me/third_party/ycmd/ycm_core.so')
   else
     let g:pathogen_blacklist += [ 'you_complete_me' ]
