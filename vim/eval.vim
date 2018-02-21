@@ -74,13 +74,13 @@ if (v:version >= 700)
     endif
   endif
 
-  let filters = []
-  let filters += ['converter_truncate_menu']
-  let filters += ['converter_remove_overlap']
-  let filters += ['converter_truncate_abbr']
-  let filters += ['converter_truncate_menu']
-  let filters += ['converter_remove_paren']
-  silent! call deoplete#custom#set('_', 'filters', filters)
+  let s:filters = []
+  let s:filters += ['converter_truncate_menu']
+  let s:filters += ['converter_remove_overlap']
+  let s:filters += ['converter_truncate_abbr']
+  let s:filters += ['converter_truncate_menu']
+  let s:filters += ['converter_remove_paren']
+  silent! call deoplete#custom#set('_', 'filters', s:filters)
 
   if !exists('g:ale_linters')
     let g:ale_linters = {}
