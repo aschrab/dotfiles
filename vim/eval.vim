@@ -6,6 +6,8 @@ let maplocalleader=','
 " Visually select last pasted or changed text
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
+let g:jsx_ext_required = 1
+
 if exists("+guifont")
   if has("gui_macvim")
     set guifont=Fira\ Code:h13
