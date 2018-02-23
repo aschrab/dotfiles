@@ -1,0 +1,50 @@
+#!/bin/sh
+
+set -e
+# set -x
+
+die() {
+  echo "$@" >&2
+  exit 1
+}
+
+usage() {
+  die "Usage: git upstream <remote> [<new-remote>]"
+}
+
+remote="$1"
+[ -z "$remote" ] && usage
+shift
+
+upstream_name="$1"
+
+set -u
+
+url=$(git remote get-url $remote)
+url=${url%.git}
+
+case "$url" in
+  https://github.com/*|ssh://git@github.com/*)
+    repo=${url#*github.com/}
+    upstream=$(curl --silent https://api.github.com/repos/$repo | jq -r '.parent.clone_url // ""')
+    ;;
+  *)
+    echo "Unknown URL format: $url"
+    exit 1
+esac
+
+if [ -z "$upstream" ]; then
+  echo "No known upstream for $url"
+  exit 1
+fi
+
+echo $upstream
+
+if [ -n "$upstream_name" ]; then
+  old_upstream=$(git remote get-url $upstream_name 2> /dev/null || :)
+  if [ -n "$old_upstream" ]; then
+    die "Remote '$upstream_name' already exists for '$old_upstream'"
+  fi
+
+  git remote add -f "$upstream_name" "$upstream"
+fi
