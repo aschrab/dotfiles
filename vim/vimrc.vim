@@ -99,6 +99,9 @@ set foldminlines=2
   set undofile
   set undodir=~/.undo,.
 :endif
+
+" Shorter time before updating swapfile and triggering CursorHold events
+set updatetime=200
 "}}}
 
 " Don't force sync after writing swap files, to avoid spinning up disk {{{
