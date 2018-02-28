@@ -22,6 +22,10 @@ bindmodes emacs,viins,vicmd magic-space '\x20' '\M-\x20' '\e\x20'
 # M-Q pushes all pending lines onto the stack, not just current line
 bindmodes emacs,viins,vicmd push-input '\M-q' '\eq'
 
+# Apply quotes to the current line/region
+bindmodes emacs,viins,vicmd quote-line '\M-'\' '\e'\'
+bindmodes emacs,viins,vicmd quote-region '\M-"' '\e"'
+
 # Autoconvert "~?" -> "~/" since I often hold down the shift key for too long
 # when trying to type the latter.
 bindkey -M emacs -s '~?' '~/'
