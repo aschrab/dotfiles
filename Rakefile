@@ -59,3 +59,17 @@ namespace :i3 do
     sh "i3-msg reload"
   end
 end
+
+namespace :ssh do
+  dst = "#{home}/.ssh/config"
+
+  task :unlink do
+    if File.symlink?(dst)
+      $stderr.puts "Removing symlink '#{dst}'"
+      File.unlink dst
+    end
+  end
+
+  task :config => :unlink
+  task :config => eruby('ssh/config' => dst)
+end if false
