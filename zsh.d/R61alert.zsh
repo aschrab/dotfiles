@@ -14,6 +14,9 @@ alert_precmd() {
 
     # Don't beep for commands where exiting is uninteresting
     case "$last_cmd[1]" in
+      (tmux)
+        skip_alert=y
+        ;;
       (ssh)
         # Ignore just ssh to host
         [[ $#last_cmd = 2 ]] && skip_alert=y
