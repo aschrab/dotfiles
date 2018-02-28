@@ -256,3 +256,6 @@
 [submodule "vim/bundle/twiggy"]
 	path = vim/bundle/twiggy
 	url = https://github.com/sodapopcan/vim-twiggy.git
+[submodule "upstreams/fira_code"]
+	path = upstreams/fira_code
+	url = https://github.com/tonsky/FiraCode.git
