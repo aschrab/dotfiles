@@ -1,4 +1,5 @@
 setlocal foldlevel=0
+setlocal foldmethod=syntax
 setlocal cinoptions=l1,(1s,t0,w0,{1s
 
 setlocal path+=node_modules
