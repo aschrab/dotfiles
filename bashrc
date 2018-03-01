@@ -1,4 +1,5 @@
 [ -n "$PS1" ] && PS1='\[\e]2;\$\h(\l):\w\a\]''\n''\[\e[0;45m\]'' \D{%d%b%H:%M:%S} \h \w \[\e[0;22m\]''\n''\[\e[0;45m\]''\!\$''\[\e[0;22m\] '
+PROMPT_DIRTRIM=2
 
 if [[ $PS1 && -f /usr/share/bash-completion/bash_completion ]]; then
   . /usr/share/bash-completion/bash_completion
@@ -14,9 +15,8 @@ alias g=git
 set -o noclobber
 
 shopt -s autocd cdspell dirspell extglob 2> /dev/null
-
-# Remember when last command started
-trap '[[ -z $LAST_COMMAND_TIME ]] && LAST_COMMAND_TIME=$SECONDS' DEBUG
+# The following breaks completion
+#shopt -s failglob
 
 # menu complete from older bash versions is awful
 # and inputrc doesn't allow version checking
@@ -24,6 +24,9 @@ if [[ -n "$PS1" ]] && (( BASH_VERSINFO[0] >= 4 )); then
   bind -m vi-insert 'TAB: menu-complete'
   bind -m emacs 'TAB: menu-complete'
 fi
+
+# Remember when last command started
+trap '[[ -z $LAST_COMMAND_TIME ]] && LAST_COMMAND_TIME=$SECONDS' DEBUG
 
 long_command_notification() {
   echo -ne '\a'
@@ -39,7 +42,3 @@ notify_after_long_command() {
   LAST_COMMAND_TIME=
 }
 PROMPT_COMMAND=notify_after_long_command
-PROMPT_DIRTRIM=2
-
-# The following breaks completion
-#shopt -s failglob
