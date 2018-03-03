@@ -1,6 +1,6 @@
 [submodule "upstreams/zsh"]
 	path = upstreams/zsh
-	url = git://git.code.sf.net/p/zsh/code
+	url = https://github.com/zsh-users/zsh.git
 [submodule "vim/bundle/syntax-markdown"]
 	path = vim/bundle/syntax-markdown
 	url = https://github.com/aschrab/vim-markdown.git
