@@ -7,8 +7,13 @@ fu! EditRelative(mods, cnt)
     let fname = expand("<cfile>")
   endif
 
-  let fpath = expand("%:h") . "/" . fname
-  exec a:mods . " new " . simplify(fpath)
+  for ext in split(',' . &suffixesadd, ',', 1)
+    let fpath = expand("%:h") . "/" . fname .ext
+    if filereadable(fpath)
+      exec a:mods . " new " . simplify(fpath)
+      break
+    endif
+  endfor
 endfu
 
 command! -nargs=0 -count=0 -range EditRelative execute EditRelative(<q-mods>, <count>)
