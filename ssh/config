@@ -38,6 +38,10 @@ User ats
 ForwardAgent yes
 ForwardX11 yes
 
+Host zhaan.trilug.org
+ForwardAgent yes
+ForwardX11 yes
+
 Host pilotvm pilotvm.trilug.org
 #HostName moya.trilug.org
 HostKeyAlias pilot.trilug.org
