@@ -1,0 +1,16 @@
+#!/bin/zsh -u
+
+__mcgrep() {
+  local color=$1; shift
+  local pattern="$1"; shift
+
+  if [[ $# = 0 ]]; then
+    cat
+  else
+    __mcgrep $((color + 1)) "$@"
+  fi |
+    GREP_COLOR="01;$color" grep --color=always "$pattern"
+}
+
+# Start with yellow, then blue, magenta, cyan.
+__mcgrep 33 "$@"
