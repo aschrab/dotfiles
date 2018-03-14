@@ -88,6 +88,8 @@ def process
   case headers.list_id
   when /debian-([a-z0-9_-]+)\.lists\.debian\.org/
     list "debian.#$1".downcase
+  when /mutt-(users|dev).mutt.org/
+    list 'mail.mutt-dev'
   when /raleigh-rb-members/
     list 'ruby.raleigh', subject: /\[triangle\.rb\]\s*/i
   when /raleigh-(talk|pm)\.pm\.org/i
@@ -126,11 +128,6 @@ def process
     list 'mail.mailman3'
   when /sympa-users\.listes\.renater\.fr/i
     list 'mail.sympa'
-  end
-
-  case headers.list_post
-  when /<mailto:mutt-dev@/i
-    list 'mail.mutt-dev'
   end
 
   case headers.list_unsubscribe
