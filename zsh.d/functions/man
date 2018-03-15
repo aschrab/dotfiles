@@ -1,4 +1,4 @@
-man() {
+#autoload
   if [[ "$MANPAGER" = *vi* ]]; then
     "$EDITOR" -c "Man $*" -c only
   else
@@ -11,7 +11,6 @@ man() {
       LESS_TERMCAP_us=$'\e[1;32m' \
       command man "$@"
   fi
-}
 
 # Inspired by http://boredzo.org/blog/archives/2016-08-15/colorized-man-pages-understood-and-customized
 # vim: ft=zsh
