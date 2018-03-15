@@ -9,6 +9,7 @@
 }
 alias stty='noglob stty'
 alias wget='noglob wget'
+alias man='noglob man'
 
 () {
   local v
