@@ -9,7 +9,7 @@ bindmodes emacs,viins,vicmd down-history '^n'
 
 bindmodes emacs,viins backward-char '\eOD'
 bindmodes emacs,viins forward-char  '\eOC'
-bindmodes emacs,viins copy-prev-word '\M-;' '\e;'
+bindmodes emacs,viins copy-prev-shell-word '\M-;' '\e;'
 
 bindmodes emacs,viins,vicmd run-help '\M-h' '\eh'
 
