@@ -147,4 +147,7 @@ set reply_regexp="^(\[[a-z0-9:-]*\]|((re|a(nt)?w(ort)?)(\\[[0-9]+]| )?:)[       
 
 source ~/.mutt/colors
 
+folder-hook . "set strict_threads=no"
+folder-hook trilug/steering "set strict_threads=yes"
+
 # vim: tabstop=8 filetype=muttrc
