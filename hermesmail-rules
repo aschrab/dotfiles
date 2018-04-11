@@ -1,4 +1,5 @@
 require 'gdbm'
+require 'icalendar'
 
 #self.spoolfile =
 self.spooldir = "/srv/mail/ats"
@@ -62,6 +63,32 @@ def mutt_alias name
   raise "Alias #{name} not found"
 end
 
+def add_event calFile, req
+  req = Icalendar::Calendar.parse(req).first
+  newEvent = req.events.first
+
+  File.open(calFile, 'r+') do |f|
+    f.flock(File::LOCK_EX)
+
+    updt = Icalendar::Calendar.new
+    updt.append_custom_property 'X-WR-CALNAME', 'Flights'
+    orig = Icalendar::Calendar.parse(f).first
+
+    orig.events.each do |ev|
+      next if ev.uid == newEvent.uid
+      updt.add_event ev
+    end
+
+    if req.ip_method != 'CANCEL'
+      updt.add_event newEvent
+    end
+
+    f.rewind
+    f.puts updt.to_ical
+    f.truncate(f.pos)
+  end
+end
+
 def process
   begin
     save Time.now.strftime('/srv/mail/qqx.org/backup_ats/%Y/%m/%d')
@@ -80,6 +107,25 @@ def process
       ENV['RECIPIENT']
     end
   headers.replace 'X-QQX-Envelope-To', envelope_to if envelope_to
+
+  begin # Update flight calendar
+    case headers.subject
+    when \
+      'Wings of Carolina Flying Club Schedule Confirmation',
+      'Wings of Carolina Flying Club Scheduling Notification',
+      'Wings of Carolina Flying Club Reservation Change Notification',
+      'Wings of Carolina Flying Club Reservation Canceled'
+
+      body.each do |part|
+        if part.content_type.name == 'flight.ics'
+          cal = part.body_decoded
+          cal.gsub!(/(for )?Schrab, Aaron( with)?/, '')
+          add_event("#{ENV['HOME']}/www/flight.ics", cal)
+        end
+      end
+    end
+  rescue
+  end
 
   deposit mbox :spam if headers.x_spam_flag =~ /YES/i
   deposit mbox :junk if from.has?(/postmaster@(pug\.)?qqx\.org/i)
