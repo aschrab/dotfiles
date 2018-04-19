@@ -22,7 +22,7 @@ exec ./prepare \
 	--with-curses \
 	--with-ssl \
 	--with-gss \
-	--with-idn \
+	--with-idn2 \
 	--with-mixmaster \
 	--with-sasl \
 	--with-kyotocabinet \
