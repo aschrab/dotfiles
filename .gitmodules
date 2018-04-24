@@ -106,9 +106,6 @@
 [submodule "vim/bundle/mediawiki"]
 	path = vim/bundle/mediawiki
 	url = https://github.com/chikamichi/mediawiki.vim
-[submodule "vim/bundle/you_complete_me"]
-	path = vim/bundle/you_complete_me
-	url = https://github.com/Valloric/YouCompleteMe
 [submodule "vim/bundle/swapit"]
 	path = vim/bundle/swapit
 	url = https://github.com/mjbrownie/swapit
