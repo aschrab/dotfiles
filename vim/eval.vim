@@ -206,6 +206,8 @@ if v:version >= 700
         \ ]
 endif
 
+let g:ale_c_parse_makefile=1
+
 autocmd BufNewFile,BufRead .eslintrc let b:syntastic_checkers = []
 
 map <silent> <F1> :NERDTreeToggle<CR>
