@@ -20,6 +20,7 @@ function set_paths {
     /usr/software/bin
     /usr/software/rats/bin
     /usr/software/utils/bin
+    /usr/games
   )
   export PATH
 
