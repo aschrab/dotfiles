@@ -264,7 +264,7 @@ let g:airline_section_x = "%{strlen(&ft)>0?&ft:''}%{statusline#fileinfo()}"
 let g:airline_section_y = '%3l/%L»%-3v'
 let g:airline_section_z = "ch0x%04B"
 let g:airline_theme='light'
-let g:airline#extensions#branch#format = 2
+let g:airline#extensions#branch#format = 'airline#ext#branch_format'
 let g:airline#extensions#branch#displayed_head_limit = 20
 
 let g:SuperTabDefaultCompletionType='context'
