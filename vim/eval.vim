@@ -263,7 +263,7 @@ let g:airline#extensions#branch#enabled = 1
 let g:airline_section_x = "%{strlen(&ft)>0?&ft:''}%{statusline#fileinfo()}"
 let g:airline_section_y = '%3l/%L»%-3v'
 let g:airline_section_z = "ch0x%04B"
-let g:airline_theme='cool'
+let g:airline_theme='light'
 let g:airline#extensions#branch#format = 2
 let g:airline#extensions#branch#displayed_head_limit = 20
 
