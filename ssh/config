@@ -12,6 +12,11 @@ User aschrab
 LocalForward localhost:5000 0:5000
 LocalForward localhost:9229 0:9229
 
+Host aschrab-mbp.lan
+User aschrab
+Port 22
+ForwardAgent yes
+
 Host pug.qqx.org proxy
 #ControlMaster auto
 #Port 443
@@ -70,11 +75,6 @@ ForwardAgent no
 
 Host *.netapp.com
 ForwardX11 yes
-ForwardAgent yes
-
-Host aschrab-mbp.lan
-User aschrab
-Port 22
 ForwardAgent yes
 
 Host *.github.com github.com
