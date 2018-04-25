@@ -26,10 +26,6 @@ if (v:version >= 700)
   " Start up pathogen if it's available
   " Won't be available on boxes before git submodules have been fetched
   let g:pathogen_blacklist = []
-  if ((v:version == 703 && has('patch584')) || v:version > 703) && (has('python') || has('python3')) && filereadable(expand('<sfile>:p:h') . '/bundle/you_complete_me/third_party/ycmd/ycm_core.so')
-  else
-    let g:pathogen_blacklist += [ 'you_complete_me' ]
-  endif
   "let g:pathogen_blacklist += [ 'signify' ]
 
   if !exists('g:sudoed') && ((v:version == 703 && has('patch501')) || v:version > 703)
@@ -62,9 +58,6 @@ if (v:version >= 700)
     let g:pathogen_blacklist += [ 'deoplete' ]
   else
     let g:pathogen_blacklist += [ 'tsuquyomi' ]
-    let g:ycm_filetype_specific_completion_to_disable = {}
-    let g:ycm_filetype_specific_completion_to_disable['javascript'] = 1
-    let g:ycm_filetype_specific_completion_to_disable['typescript'] = 1
   endif
 
   if has("gui_running") || $FQDN !~ '\M.netapp.com' || $FQDN =~ '\M.rtp.' || $FQDN =~ '\M^aschrab'
@@ -285,10 +278,6 @@ nmap <Plug>SwapItFallbackIncrement <Plug>SpeedDatingUp
 nmap <Plug>SwapItFallbackDecrement <Plug>SpeedDatingDown
 vmap <Plug>SwapItFallbackIncrement <Plug>SpeedDatingUp
 vmap <Plug>SwapItFallbackDecrement <Plug>SpeedDatingDown
-
-if v:version >= 700
-  let g:ycm_key_list_select_completion = ['<Down>'] " Don't include <Tab> so that UltiSnips can use that
-endif
 
 let delimitMate_jump_expansion = 1
 let delimitMate_expand_space = 1
