@@ -37,6 +37,7 @@ if (v:version >= 700)
     let g:pathogen_blacklist += [ 'diff-enhanced' ]
     let g:pathogen_blacklist += [ 'tsuquyomi' ]
     let g:pathogen_blacklist += [ 'ultisnips' ]
+    let g:pathogen_blacklist += [ 'zz_polyglot' ]
   endif
 
   if !((v:version >= 704) || (v:version == 703 && has('patch1261') && has('patch1264')))
