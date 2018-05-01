@@ -55,7 +55,8 @@ bindsym $mod+Shift+Q kill
 bindsym $mod+Shift+X kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec i3-dmenu-desktop
+bindsym $mod+d exec <%= DOTFILE_DIR %>/i3/run-desktop
+bindsym $mod+x exec rofi -combi window#ssh -show combi
 
 # volume control
 bindSym XF86AudioRaiseVolume  exec --no-startup-id "amixer -q set Master 5%+"

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if type rofi &>/dev/null
+then
+  exec rofi -show drun
+else
+  i3-dmenu-desktop
+fi
