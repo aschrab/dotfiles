@@ -5,7 +5,14 @@ require 'open3'
 
 workspaces = JSON.parse(`i3-msg -t get_workspaces`).map{ |w| w['name'] }.sort
 
-selected, _status = Open3.capture2('dmenu', '-i', '-f', stdin_data: workspaces.join("\n"))
+cmd =
+  if File.exist? '/usr/bin/rofi'
+    %w<rofi -dmenu>
+  else
+    %w<dmenu>
+  end
+
+selected, _status = Open3.capture2(*cmd, '-i', '-f', stdin_data: workspaces.join("\n"))
 selected.chomp!
 
 args = ARGV.map{ |arg| arg.gsub '%s', selected }
