@@ -273,3 +273,4 @@ rofi.combi-modi:                     window,ssh
 ! rofi.me-accept-entry:                MouseDPrimary
 ! "Accept hovered row with custom action" Set from: Default
 ! rofi.me-accept-custom:               Control+MouseDPrimary
+rofi.theme: /usr/share/rofi/themes/Paper.rasi
