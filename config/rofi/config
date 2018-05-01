@@ -1,6 +1,6 @@
 ! vim: filetype=xdefaults
 ! "Enabled modi" Set from: Default
-! rofi.modi:                           window,run,ssh
+rofi.modi:                           window,drun,ssh
 ! "Window width" Set from: Default
 ! rofi.width:                          50
 ! "Number of lines" Set from: Default
@@ -12,7 +12,7 @@
 ! "Border width" Set from: Default
 ! rofi.bw:                             1
 ! "Location on screen" Set from: Default
-! rofi.location:                       0
+rofi.location:                       2
 ! "Padding" Set from: Default
 ! rofi.padding:                        5
 ! "Y-offset relative to location" Set from: Default
@@ -64,7 +64,7 @@
 ! "Parse known_hosts file for ssh mode" Set from: Default
 ! rofi.parse-known-hosts:              true
 ! "Set the modi to combine in combi mode" Set from: Default
-! rofi.combi-modi:                     window,run
+rofi.combi-modi:                     window,ssh
 ! "Set the matching algorithm. (normal, regex, glob, fuzzy)" Set from: Default
 ! rofi.matching:                       normal
 ! "Tokenize input string" Set from: Default

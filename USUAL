@@ -34,6 +34,7 @@ fonts/PowerlineSymbols.otf
 config/fontconfig/conf.d/10-powerline-symbols.conf
 config/powerline
 config/nvim
+config/rofi
 python
 ndenv
 rbenv
