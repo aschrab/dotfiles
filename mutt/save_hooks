@@ -9,4 +9,4 @@ save-hook @cooperpress.com =L/subs/weekly-tech-news
 save-hook peter@html5weekly.com    =L/subs/weekly-tech-news
 
 save-hook @thisistrue =L/subs/true
-save-hook . =INBOX/old
+save-hook . =Archive
