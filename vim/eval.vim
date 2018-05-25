@@ -317,6 +317,7 @@ if exists(':tnoremap')  " Neovim
   tnoremap <silent> <c-j> <c-\><c-n>:TmuxNavigateDown<cr>
   tnoremap <silent> <c-k> <c-\><c-n>:TmuxNavigateUp<cr>
   tnoremap <silent> <c-l> <c-\><c-n>:TmuxNavigateRight<cr>
+  tnoremap <silent> <expr> <A-r> '<c-\><c-n>"' . nr2char(getchar()) . 'pi'
   " Cannot use <c-\> here.
   " tnoremap <silent> <c-\> <c-\><c-n>:TmuxNavigatePrevious<cr>
 endif
