@@ -39,6 +39,7 @@ set title
 set ignorecase
 set smartcase
 set incsearch
+silent! set inccommand=split
 set ruler
 set number
 if exists("+relativenumber")
