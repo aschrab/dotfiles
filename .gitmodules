@@ -259,3 +259,6 @@
 [submodule "upstreams/git-fixup"]
 	path = upstreams/git-fixup
 	url = https://github.com/keis/git-fixup.git
+[submodule "vim/bundle/highlighted-yank"]
+	path = vim/bundle/highlighted-yank
+	url = https://github.com/machakann/vim-highlightedyank.git
