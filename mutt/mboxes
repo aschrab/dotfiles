@@ -16,23 +16,16 @@ mailboxes =INBOX/sympa
 <%= mlist '=L/ug/trilug/ham', :address => 'linux-ham@trilug', :subjectrx => '[Linux-ham]' %>
 
 <%= mlist '=L/ug/raleigh-pm', :subjectrx => '[Raleigh-pm]' %>
-<%= mlist '=L/ruby/raleigh', :address => 'raleigh-rb-members', :subjectrx => '[triangle.rb]' %>
-<%= mlist '=L/ug/trianglerb', :subjectrx => '[Triangle.rb Forum]' %>
 
 <%= mlist '=L/mail/mutt-dev', :from => 'aaron+mutt@schrab.com' %>
 <%= mlist '=L/dev/zsh', :address => 'zsh-(users|workers)@zsh.org' %>
 <%= mlist '=L/dev/git', :address => 'git@vger.kernel.org', :followup_to => false %>
 <%= mlist '=L/dev/tmux', :address => 'tmux-users@lists.(sourceforge|sf).net' %>
-<%= mlist '=L/dev/meld', :address => 'meld-list@gnome.org' %>
-<%= mlist '=L/dev/sql-translator', :address => 'sqlfairy-developers@lists.(sourceforge|sf).net', :subjectrx => '[sqlfairy-developers]' %>
 <%= mlist '=L/dev/i3', :address => 'i3-discuss@freelists.org', :subjectrx => '[i3-discuss]' %>
 <%= mlist '+L/ruby/sequel', :account => :gmail, :address => 'sequel-talk@googlegroups.com' %>
 
 <%= mlist '=L/mail/mailman3', subjectrx: '[MM3-users]', address: 'mailman-users@mailman3.org' %>
 <%= mlist '=L/mail/sympa', subjectrx: '[sympa-users]', address: 'sympa-users' %>
-
-# Perl lists
-<%= mlist '=L/perl/dbix', :address => 'dbix-class', :subjectrx => '[Dbix-class]' %>
 
 # Debian lists
 <%= mlist '=L/debian/ruby', :address => 'debian-ruby' %>
@@ -42,11 +35,9 @@ mailboxes =INBOX/sympa
 <%= mlist '=L/debian/pts', :address => 'debian-pts' %>
 <%= mlist '=L/debian/devel', :address => 'debian-devel' %>
 <%= mlist '=L/debian/backports', :address => 'debian-backports' %>
-<%= mlist '=L/debian/mentors', :address => 'debian-mentors' %>
 <%= mlist '=L/debian/project', :address => 'debian-project' %>
 <%= mlist '=L/debian/qa', :address => 'debian-qa' %>
 <%= mlist '=L/debian/qa-packages', :address => 'debian-qa-packages' %>
-<%= mlist '=L/debian/vote', :address => 'debian-vote' %>
 lists debian-.*@lists\.debian\.org
 
 <%= mlist '=L/bugtraq' %>
