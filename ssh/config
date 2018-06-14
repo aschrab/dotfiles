@@ -1,4 +1,5 @@
 IgnoreUnknown AddKeysToAgent
+VisualHostKey yes
 
 HashKnownHosts no
 ControlMaster auto
