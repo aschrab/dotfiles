@@ -28,4 +28,5 @@ exec ./prepare \
 	--with-kyotocabinet \
 	--with-mailpath=/var/mail \
 	--without-bdb --without-qdbm \
+	--with-homespool \
 	"$@"
