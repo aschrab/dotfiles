@@ -3,7 +3,8 @@ VisualHostKey yes
 
 HashKnownHosts no
 ControlMaster auto
-ControlPath ~/.ssh/.master.%r@%h:%p
+#ControlPath ~/.ssh/.master.%r@%h:%p
+ControlPath ~/.ssh/.master.%C
 ControlPersist 30
 #VerifyHostKeyDNS=ask
 ServerAliveInterval=5
