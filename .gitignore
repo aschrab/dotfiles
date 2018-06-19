@@ -12,6 +12,7 @@
 /mutt/aliases
 /mutt/certificates
 /mutt/secrets
+/ssh/config
 /ssh/id*
 /ssh/authorized_keys
 /ssh/known_hosts
