@@ -31,6 +31,9 @@ HostName pug.qqx.org
 HostKeyAlias pug.qqx.org
 DynamicForward 9876
 
+Host proxy pug.qqx.org
+RemoteForward /run/user/1000/gnupg/S.gpg-agent /run/user/1000/gnupg/S.gpg-agent.extra
+
 Host gay-deceiver.qqx.org
 
 Host zim.qqx.org
