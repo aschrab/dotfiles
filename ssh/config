@@ -22,7 +22,7 @@ User aschrab
 Port 22
 ForwardAgent yes
 
-Host pug.qqx.org proxy
+Host pug.qqx.org proxy pilot.trilug.org
 #ControlMaster auto
 #Port 443
 
