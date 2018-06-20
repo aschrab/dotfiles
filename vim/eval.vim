@@ -61,6 +61,10 @@ if (v:version >= 700)
     let g:pathogen_blacklist += [ 'tsuquyomi' ]
   endif
 
+  if !exists('*funcref')
+    let g:pathogen_blacklist += [ 'highlighted-yank' ]
+  endif
+
   if has("gui_running") || $FQDN !~ '\M.netapp.com' || $FQDN =~ '\M.rtp.' || $FQDN =~ '\M^aschrab'
     runtime bundle/pathogen/autoload/pathogen.vim
     if exists('*pathogen#infect')
