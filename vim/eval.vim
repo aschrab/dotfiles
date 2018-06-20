@@ -201,6 +201,7 @@ if v:version >= 700
 endif
 
 let g:ale_c_parse_makefile=1
+let g:ale_use_deprecated_neovim = 1
 
 autocmd BufNewFile,BufRead .eslintrc let b:syntastic_checkers = []
 
