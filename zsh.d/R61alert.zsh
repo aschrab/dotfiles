@@ -14,6 +14,9 @@ alert_precmd() {
 
     # Don't beep for commands where exiting is uninteresting
     case "$last_cmd[1]" in
+      (vi|vim|nvim|view)
+        skip_alert=y
+        ;;
       (tmux)
         skip_alert=y
         ;;
