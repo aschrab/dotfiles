@@ -1,5 +1,30 @@
+snippet #!
+#!/usr/bin/env node
+'use strict'
+
+$0
+
+if (require.main === module) {
+  // Running as script
+}
+endsnippet
+
+snippet req
+const ${2:${1/.*\///}} = require('${1:module}')$0
+endsnippet
+
 snippet import
 import {${2:names}} from '${1:file}'$0
+endsnippet
+
+snippet class
+class ${1:Name} {
+  constructor (${2:args}) {
+    $3
+  }
+
+  $0
+}
 endsnippet
 
 snippet : "Object property"
