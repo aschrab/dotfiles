@@ -93,6 +93,7 @@
 	st          = status -sb
 	b           = branch
 	pick        = cherry-pick
+	fethc       = fetch
 	up          = "!echo Use pull >&2 ; exit 1"
 	ff          = merge --ff-only
 	l1          = log --pretty=format:"'%C(yellow)%h %>(15,trunc)%C(green)%aN %<(14)%C(blue)%ar %C(reset)%<(70,trunc)%s'"
