@@ -64,7 +64,7 @@ message/external-body; lynx -dump ftp://%{site}/%{directory}/%{name} ; \
 #        test=test %{access-type} = anon-ftp; copiousoutput
 
 #application/pgp-keys; pgp -f < %s ; copiousoutput
-application/pgp-keys; gpg -v %s ; copiousoutput
+application/pgp-keys; gpg --import-options=show-only --import --with-fingerprint ; copiousoutput
 #application/pdf; xfix -s -- /usr/local/bin/acroread "%s"; test=xfix -s -- /home/aarons/bin/runningx
 #mailcap entry added by Netscape Helper
 audio/x-pn-realaudio;/usr/bin/rvplayer "%s"
