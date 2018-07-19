@@ -80,7 +80,7 @@ end
   end
 #}}}
 
-class Fixnum
+class Integer
   def inspect
     to_s.split('').reverse.each_slice(3).map{ |x| x.reverse.join '' }.reverse.join('_')
   end
