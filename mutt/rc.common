@@ -125,7 +125,7 @@ macro pager	l	"<enter-command>set my_save=\$my_wrap my_wrap=\$wrap wrap=\$my_sav
 bind  index	<Tab>	next-new
 macro index	'^'	"<last-entry><next-new>" "Jump to first new message"
 macro index	"\eh"	"<view-attachments><next-entry><edit-type><bol><delete-char><enter><exit><display-message>" "View alternative"
-bind  index	'#'	noop # Too close to '$' binding for syncing, normally break-thread
+bind  index	'#'	check-stats # Too close to '$' binding for syncing, normally break-thread
 bind  index	B	bounce-message
 #bind  index	n	next-entry
 macro index	"\Ck"	"|pgp -kaf\n"
