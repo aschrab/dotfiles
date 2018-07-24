@@ -1,6 +1,7 @@
-define(`OS', regexp(esyscmd(`uname'), `\(\S+\)', `\1'))dnl
-define(`HOME', regexp(esyscmd(`echo $HOME'), `\(\S+\)', `\1'))dnl
-define(`RUNDIR', ifelse(OS, `Darwin', `HOME/.', `/run/user/1000/'))dnl
+changequote({,})dnl
+define({OS}, regexp(esyscmd({uname}), {\(\S+\)}, {\1}))dnl
+define({HOME}, regexp(esyscmd({echo $HOME}), {\(\S+\)}, {\1}))dnl
+define({RUNDIR}, ifelse(OS, {Darwin}, {HOME/.}, {/run/user/1000/}))dnl
 IgnoreUnknown AddKeysToAgent
 VisualHostKey yes
 
@@ -35,7 +36,7 @@ HostKeyAlias pug.qqx.org
 DynamicForward 9876
 
 Host proxy pug.qqx.org
-RemoteForward /run/user/1000/gnupg/S.gpg-agent RUNDIR`'gnupg/S.gpg-agent.extra
+RemoteForward /run/user/1000/gnupg/S.gpg-agent RUNDIR{}gnupg/S.gpg-agent.extra
 
 Host gay-deceiver.qqx.org
 
