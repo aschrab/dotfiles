@@ -191,4 +191,4 @@ call s:hifg("Regexp"         ,"#44B4CC","DarkCyan",21) " 74
 call s:hifg("rubyMethod"     ,"#DDE93D","Yellow",77) " 191
 "highlight railsMethod   guifg=#EE1122 ctermfg=1
 
-highlight TermCursorNC guifg=#fdf6e3 guibg=#93a1a1 ctermfg=Yellow ctermbg=Grey
+highlight TermCursorNC guifg=#fdf6e3 guibg=#93a1a1 ctermfg=Red ctermbg=Yellow
