@@ -13,8 +13,7 @@ VisualHostKey yes
 
 HashKnownHosts no
 ControlMaster auto
-#ControlPath ~/.ssh/.master.%r@%h:%p
-ControlPath ~/.ssh/.master.%C
+ControlPath ~/.ssh/.master.atleast({6.7}, {%C}, {%r@%h:%p})
 ControlPersist 30
 #VerifyHostKeyDNS=ask
 ServerAliveInterval=5
@@ -41,7 +40,7 @@ HostKeyAlias pug.qqx.org
 DynamicForward 9876
 
 Host proxy pug.qqx.org
-RemoteForward /run/user/1000/gnupg/S.gpg-agent RUNDIR{}gnupg/S.gpg-agent.extra
+atleast({6.7}, {RemoteForward /run/user/1000/gnupg/S.gpg-agent RUNDIR{}gnupg/S.gpg-agent.extra})
 
 Host gay-deceiver.qqx.org
 
