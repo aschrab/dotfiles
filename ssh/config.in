@@ -1,7 +1,7 @@
 changequote({,})dnl
 define({strip}, {substr($1, 0, decr(len($1)))})dnl
 define({sh}, {strip(esyscmd($1))})dnl
-define({ENV}, sh({echo "$1"}))dnl
+define({ENV}, {sh({echo "$$1"})})dnl
 define({OS}, sh(uname))dnl
 define({atleast}, {ifelse(sh({perl -E '$_ = `ssh -V 2>&1`; chomp; s/^OpenSSH_//; s/p.*//; say version->parse($_) > v$1 ? "New" : "Old"'}), {New}, $2, $3)})dnl
 define({RUNDIR}, ifelse(OS, {Darwin}, {ENV(HOME)/.}, {/run/user/1000/}))dnl
