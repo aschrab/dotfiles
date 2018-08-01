@@ -262,3 +262,6 @@
 [submodule "vim/bundle/highlighted-yank"]
 	path = vim/bundle/highlighted-yank
 	url = https://github.com/machakann/vim-highlightedyank.git
+[submodule "vim/bundle/sleuth"]
+	path = vim/bundle/sleuth
+	url = https://github.com/tpope/vim-sleuth.git
