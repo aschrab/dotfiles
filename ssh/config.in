@@ -1,17 +1,22 @@
-define(`OS', regexp(esyscmd(`uname'), `\(\S+\)', `\1'))dnl
-define(`HOME', regexp(esyscmd(`echo $HOME'), `\(\S+\)', `\1'))dnl
-define(`RUNDIR', ifelse(OS, `Darwin', `HOME/.', `/run/user/1000/'))dnl
+changequote({,})dnl
+define({strip}, {substr($1, 0, decr(len($1)))})dnl
+define({sh}, {strip(esyscmd($1))})dnl
+define({ENV}, {sh({echo "$$1"})})dnl
+define({OS}, sh(uname))dnl
+define({atleast}, {ifelse(sh({perl -E '$_ = `ssh -V 2>&1`; chomp; s/^OpenSSH_//; s/p.*//; say version->parse($_) > v$1 ? "New" : "Old"'}), {New}, $2, $3)})dnl
+define({RUNDIR}, ifelse(OS, {Darwin}, {ENV(HOME)/.}, {/run/user/1000/}))dnl
+atleast({6.3}, {dnl
 IgnoreUnknown AddKeysToAgent
+AddKeysToAgent yes
+})dnl
 VisualHostKey yes
 
 HashKnownHosts no
 ControlMaster auto
-#ControlPath ~/.ssh/.master.%r@%h:%p
-ControlPath ~/.ssh/.master.%C
+ControlPath ~/.ssh/.master.atleast({6.7}, {%C}, {%r@%h:%p})
 ControlPersist 30
 #VerifyHostKeyDNS=ask
 ServerAliveInterval=5
-AddKeysToAgent yes
 
 Host niq.qqx.org
 Port 22
@@ -35,7 +40,7 @@ HostKeyAlias pug.qqx.org
 DynamicForward 9876
 
 Host proxy pug.qqx.org
-RemoteForward /run/user/1000/gnupg/S.gpg-agent RUNDIR`'gnupg/S.gpg-agent.extra
+atleast({6.7}, {RemoteForward /run/user/1000/gnupg/S.gpg-agent RUNDIR{}gnupg/S.gpg-agent.extra})
 
 Host gay-deceiver.qqx.org
 

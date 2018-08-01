@@ -124,6 +124,7 @@ macro pager	l	"<enter-command>set my_save=\$my_wrap my_wrap=\$wrap wrap=\$my_sav
 
 bind  index	<Tab>	next-new
 macro index	'^'	"<last-entry><next-new>" "Jump to first new message"
+macro index	',r'	"<search><space>~N~s^^Re:<enter>" "Jump to next unread reply"
 macro index	"\eh"	"<view-attachments><next-entry><edit-type><bol><delete-char><enter><exit><display-message>" "View alternative"
 bind  index	'#'	check-stats # Too close to '$' binding for syncing, normally break-thread
 bind  index	B	bounce-message
@@ -149,5 +150,8 @@ source ~/.mutt/colors
 
 folder-hook . "set strict_threads=no"
 folder-hook trilug/steering "set strict_threads=yes"
+
+folder-hook .       "set sort_aux=last-date-received"
+folder-hook dev/git "set sort_aux=date"
 
 # vim: tabstop=8 filetype=muttrc
