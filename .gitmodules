@@ -66,7 +66,7 @@
 	url = https://github.com/aschrab/screen.git
 [submodule "upstreams/syntax-highlight"]
 	path = upstreams/syntax-highlight
-	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+	url = https://github.com/zdharma/fast-syntax-highlighting.git
 [submodule "vim/bundle/nerdtree"]
 	path = vim/bundle/nerdtree
 	url = https://github.com/aschrab/nerdtree.git
