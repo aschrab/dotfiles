@@ -6,7 +6,17 @@ if ! which pandoc >/dev/null 2>&1 ; then
   exit 1
 fi
 
-for md in "$@"; do
-  html="${md%.md}.html"
-  pandoc --standalone --from=markdown --to=html --output="$html" "$md"
-done
+if [ $# = 0 ] ; then
+  if which entr >/dev/null 2>&1 ; then
+    find -name '*.md' | entr "$0" /_
+  else
+    echo "No arguments given, and can't detect changes" >&2
+    exit 1
+  fi
+else
+  for md in "$@"; do
+    html="${md%.md}.html"
+    pandoc --standalone --from=markdown --to=html --output="$html" "$md"
+  done
+fi
+
