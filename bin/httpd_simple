@@ -6,6 +6,8 @@ if [ -d "$1" ]; then
   shift
 fi
 
+md2html &
+
 if which live-server >/dev/null 2>&1 ; then
   live-server --no-browser --ignore=.git "$@" .
 else
