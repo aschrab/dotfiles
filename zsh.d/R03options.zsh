@@ -39,7 +39,7 @@ else
 fi
 
 unset HISTFILE
-export HISTSIZE=250
+export HISTSIZE=2000
 export NULLCMD=:
 export HISTORY=${ZDOTDIR:=$HOME}/.zsh-history
 
