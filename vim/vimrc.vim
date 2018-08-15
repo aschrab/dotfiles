@@ -101,6 +101,8 @@ set foldminlines=2
   set undodir=~/.undo,.
 :endif
 
+set viewoptions-=options
+
 " Shorter time before updating swapfile and triggering CursorHold events
 set updatetime=200
 "}}}
