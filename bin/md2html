@@ -1,0 +1,12 @@
+#!/bin/sh
+set -e
+
+if ! which pandoc >/dev/null 2>&1 ; then
+  echo "pandoc not found" >&2
+  exit 1
+fi
+
+for md in "$@"; do
+  html="${md%.md}.html"
+  pandoc --standalone --from=markdown --to=html --output="$html" "$md"
+done
