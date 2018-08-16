@@ -9,7 +9,7 @@ atleast({6.3}, {dnl
 IgnoreUnknown AddKeysToAgent
 AddKeysToAgent yes
 })dnl
-VisualHostKey yes
+# VisualHostKey yes
 
 HashKnownHosts no
 ControlMaster auto
