@@ -140,8 +140,14 @@ set t_vb=
 :endif
 
 " Display tabs and trailing spaces {{{
-silent! set listchars=tab:→·,trail:∙,precedes:«,extends:»
+" Color for the following controlled by hl-Whitespace
+silent! set listchars=tab:→·,trail:∙
+" Set nbsp separately, since it's newer, so it not being known doesn't prevent
+" other portions from taking effect.
 silent! set listchars+=nbsp:_
+
+" Color for the following controlled by hl-NonText
+silent! set listchars+=precedes:«,extends:»
 " eol:↲
 set list
 "}}}
