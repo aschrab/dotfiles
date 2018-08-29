@@ -7,7 +7,8 @@ if [[ -x ~/.rbenv/bin/rbenv ]]; then
   [[ -d ~/.rbenv/shims ]] && rbenv_setup
 
   if (( $+commands[brew] )); then
-    export RUBY_CONFIGURE_OPTS="--with-readline-dir=`brew --prefix readline`"
+    # export RUBY_CONFIGURE_OPTS="--with-readline-dir=`brew --prefix readline`"
+    export RUBY_CONFIGURE_OPTS="--with-readline-dir=/usr/local/opt/readline"
     #RUBY_CONFIGURE_OPTS="$RUBY_CONFIGURE_OPTS --with-openssl-dir=`brew --prefix openssl`"
     #RUBY_CONFIGURE_OPTS="$RUBY_CONFIGURE_OPTS --with-libyaml-dir=`brew --prefix libyaml`"
   fi
