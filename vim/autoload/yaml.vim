@@ -12,6 +12,11 @@ function! yaml#Fold(line) "{{{1
   " Determine fold level for line based on indent
   let level = strlen(matchstr(line, '\v^\s*')) / &sw
 
+  " Don't allow nesting past setting of max requested
+  if level >= &foldnestmax
+    return &foldnestmax
+  endif
+
   " If line ends with a colon, start a new fold for higher level
   if line =~ '\v:\s*$'
     let level = level + 1
