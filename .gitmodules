@@ -268,3 +268,6 @@
 [submodule "nodenv/plugins/node-build"]
 	path = nodenv/plugins/node-build
 	url = https://github.com/nodenv/node-build.git
+[submodule "nodenv/plugins/nodenv-package-rehash"]
+	path = nodenv/plugins/nodenv-package-rehash
+	url = https://github.com/nodenv/nodenv-package-rehash.git
