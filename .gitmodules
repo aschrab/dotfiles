@@ -142,12 +142,6 @@
 [submodule "rbenv/plugins/ruby-build"]
 	path = rbenv/plugins/ruby-build
 	url = https://github.com/sstephenson/ruby-build.git
-[submodule "upstreams/ndenv"]
-	path = upstreams/ndenv
-	url = https://github.com/riywo/ndenv
-[submodule "ndenv/plugins/node-build"]
-	path = ndenv/plugins/node-build
-	url = https://github.com/riywo/node-build
 [submodule "vim/bundle/syntax-css3"]
 	path = vim/bundle/syntax-css3
 	url = https://github.com/hail2u/vim-css3-syntax
