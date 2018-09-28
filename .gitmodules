@@ -142,12 +142,6 @@
 [submodule "rbenv/plugins/ruby-build"]
 	path = rbenv/plugins/ruby-build
 	url = https://github.com/sstephenson/ruby-build.git
-[submodule "upstreams/ndenv"]
-	path = upstreams/ndenv
-	url = https://github.com/riywo/ndenv
-[submodule "ndenv/plugins/node-build"]
-	path = ndenv/plugins/node-build
-	url = https://github.com/riywo/node-build
 [submodule "vim/bundle/syntax-css3"]
 	path = vim/bundle/syntax-css3
 	url = https://github.com/hail2u/vim-css3-syntax
@@ -262,3 +256,15 @@
 [submodule "vim/bundle/apathy"]
 	path = vim/bundle/apathy
 	url = https://github.com/tpope/vim-apathy.git
+[submodule "upstreams/nodenv"]
+	path = upstreams/nodenv
+	url = https://github.com/nodenv/nodenv.git
+[submodule "nodenv/plugins/node-build"]
+	path = nodenv/plugins/node-build
+	url = https://github.com/nodenv/node-build.git
+[submodule "nodenv/plugins/nodenv-package-rehash"]
+	path = nodenv/plugins/nodenv-package-rehash
+	url = https://github.com/nodenv/nodenv-package-rehash.git
+[submodule "nodenv/plugins/nodenv-aliases"]
+	path = nodenv/plugins/nodenv-aliases
+	url = https://github.com/nodenv/nodenv-aliases.git

@@ -17,13 +17,13 @@ elif [[ -r ~/.rvm/scripts/rvm ]]; then
   source ~/.rvm/scripts/rvm
 fi
 
-if [[ -x ~/.ndenv/bin/ndenv ]]; then
-  ndenv_setup() {
-    path+=(~/.ndenv/bin)
-    eval "$(ndenv init -)"
-    unfunction ndenv_setup
+if [[ -x ~/.nodenv/bin/nodenv ]]; then
+  nodenv_setup() {
+    path+=(~/.nodenv/bin)
+    eval "$(nodenv init -)"
+    unfunction nodenv_setup
   }
-  [[ -d ~/.ndenv/shims ]] && ndenv_setup
+  [[ -d ~/.nodenv/shims ]] && nodenv_setup
 fi
 
 (( $+commands[direnv] )) && eval "$(direnv hook zsh)" && direnv reload 2>/dev/null

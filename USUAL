@@ -36,7 +36,7 @@ config/powerline
 config/nvim
 config/rofi
 python
-ndenv
+nodenv
 rbenv
 pryrc
 local/share/fonts
