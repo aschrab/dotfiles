@@ -265,3 +265,6 @@
 [submodule "upstreams/nodenv"]
 	path = upstreams/nodenv
 	url = https://github.com/nodenv/nodenv.git
+[submodule "nodenv/plugins/node-build"]
+	path = nodenv/plugins/node-build
+	url = https://github.com/nodenv/node-build.git
