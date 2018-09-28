@@ -271,3 +271,6 @@
 [submodule "nodenv/plugins/nodenv-package-rehash"]
 	path = nodenv/plugins/nodenv-package-rehash
 	url = https://github.com/nodenv/nodenv-package-rehash.git
+[submodule "nodenv/plugins/nodenv-aliases"]
+	path = nodenv/plugins/nodenv-aliases
+	url = https://github.com/nodenv/nodenv-aliases.git
