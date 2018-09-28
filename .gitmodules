@@ -64,9 +64,6 @@
 [submodule "upstreams/syntax-highlight"]
 	path = upstreams/syntax-highlight
 	url = https://github.com/zdharma/fast-syntax-highlighting.git
-[submodule "vim/bundle/nerdtree"]
-	path = vim/bundle/nerdtree
-	url = https://github.com/aschrab/nerdtree.git
 [submodule "vim/bundle/textobj-user"]
 	path = vim/bundle/textobj-user
 	url = https://github.com/kana/vim-textobj-user.git
