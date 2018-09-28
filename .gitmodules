@@ -262,3 +262,6 @@
 [submodule "vim/bundle/apathy"]
 	path = vim/bundle/apathy
 	url = https://github.com/tpope/vim-apathy.git
+[submodule "upstreams/nodenv"]
+	path = upstreams/nodenv
+	url = https://github.com/nodenv/nodenv.git
