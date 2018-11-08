@@ -1,0 +1,23 @@
+#!/bin/bash
+
+set -e
+set -u
+set -o pipefail
+
+die () {
+  echo "$*" >&2
+  exit 1
+}
+
+ref=$(git describe --all --exact-match)
+
+git diff --quiet || die "Working tree has uncommitted changes"
+
+[[ "$ref" = remotes/* ]] || die "Not on a remote branch"
+
+ref="${ref##remotes/}"
+remote="${ref%%/*}"
+branch="${ref#*/}"
+
+git fetch    "${remote}"
+git checkout "${remote}"/"${branch}"
