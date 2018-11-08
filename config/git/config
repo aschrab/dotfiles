@@ -42,6 +42,9 @@
 [commit]
 	verbose = yes
 
+[credential]
+	helper = cache
+
 [fetch]
 	prune = yes
 
