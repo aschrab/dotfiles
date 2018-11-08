@@ -59,6 +59,9 @@
 	defaultToUpstream = yes
 	log = 999
 
+[branch "master"]
+	mergeOptions = --ff-only
+
 [init]
 	templatedir = ~/.git_template
 
