@@ -332,7 +332,7 @@ if exists(':tnoremap')  " Neovim
 endif
 
 let g:vrc_trigger = '<C-]>'
-let g:vrc_max_time = 2
+
 let g:tern_map_keys = 1
 
 let g:RecoverPlugin_Delete_Unmodified_Swapfile = 1
