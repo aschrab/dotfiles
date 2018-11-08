@@ -1,6 +1,12 @@
 #autoload
+  local MANWIDTH
+
+  if [[ -z $MANWIDTH ]] && [[ $COLUMNS -gt 80 ]]; then
+    MANWIDTH=80
+  fi
+
   if [[ "$MANPAGER" = *vi* ]]; then
-    "$EDITOR" -c "Man $*" -c only
+    MANWIDTH="$MANWIDTH" "$EDITOR" -c "Man $*" -c only
   else
     LESS_TERMCAP_mb=$'\e[1;36m' \
       LESS_TERMCAP_md=$'\e[1;36m' \
@@ -9,6 +15,7 @@
       LESS_TERMCAP_so=$'\e[1;44;33m' \
       LESS_TERMCAP_ue=$'\e[0m' \
       LESS_TERMCAP_us=$'\e[1;32m' \
+      MANWIDTH="$MANWIDTH" \
       command man "$@"
   fi
 
