@@ -1,5 +1,5 @@
 # When adding to end of definition
-snippet : "Object property" "re.match('^\s*[}]', snip.buffer[snip.line+1])" e
+snippet : "Object property" "snip.line+1 < len(snip.buffer) and re.match('^\s*[}]', snip.buffer[snip.line+1])" e
 "${1:key}": $0
 endsnippet
 
