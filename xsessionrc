@@ -27,7 +27,6 @@ case "$1" in
 		;;
 esac
 
-[ -x ~/.dropbox-dist/dropboxd ] && ~/.dropbox-dist/dropboxd &
 [ -r ~/.synergy.conf ] && synergys
 [ -r ~/.config/touchegg/touchegg.conf ] && touchegg >&/dev/null &
 
