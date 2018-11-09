@@ -4,15 +4,14 @@ env:
   node: true
   mocha: true
 extends: standard
-parserOptions:
-  sourceType: script
-plugins:
-  - react
+# parserOptions:
+# plugins:
+#   - react
 rules:
   linebreak-style:
     - error
     - unix
   default-case:
     - error
-  react/jsx-uses-vars:
-    - error
+  # react/jsx-uses-vars:
+  #   - error
