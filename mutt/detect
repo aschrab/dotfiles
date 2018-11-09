@@ -96,7 +96,11 @@ mailboxrx 'imaps://aaron.schrab@gmail.com[^/]*/' '[G]%R'
 %   spam_fmt = ' <'+'%4.4H>';
 % end
 
-% if mutt_patch %r<date_conditional>
+% if mutt_has_command? 'index-format-hook'
+    index-format-hook date '~d<6d'   "%[%a,%H:%M]"
+    index-format-hook date '~A'      "%[%d-%b’%y]"
+%   date_fmt = '%-9@date@'
+% elsif mutt_patch %r<date_conditional>
 %   date_fmt = '%?[330d?%\\\\?[18h\\\\?%[%H:%M ]\\\\&%[%d/%b]\\\\?&%[%b’%y]?'
 %   date_fmt = '%?[6d]?%[%a,%H:%M]&%[%d-%b’%y]?'
 % else
