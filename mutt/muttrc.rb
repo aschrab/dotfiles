@@ -122,4 +122,13 @@ def mutt_variable name #{{{
   mutt_settings[/^#{name}[ =]/]
 end #}}}
 
+# Check if current mutt recognizes named command {{{
+CHECKED_COMMANDS = Hash.new do |hash,command|
+  output = mutt_output "-e '#{command}' </dev/null"
+  hash[command] = !output[/unknown command/]
+end
+def mutt_has_command? name
+  CHECKED_COMMANDS[name]
+end #}}}
+
 # vim: foldmethod=marker
