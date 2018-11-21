@@ -4,10 +4,10 @@ function! yaml#Fold(line) "{{{1
 
   " Base level of empty lines on content of next non-empty line
   let lastline = line('$')
-  if lnum <= lastline && line =~ '\v^\s*$'
+  while lnum <= lastline && line =~ '\v^\s*$'
     let lnum = lnum + 1
     let line = getline(lnum)
-  endif
+  endwhile
 
   " Determine fold level for line based on indent
   let level = strlen(matchstr(line, '\v^\s*')) / &sw
