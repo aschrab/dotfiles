@@ -13,6 +13,9 @@
 	useconfigonly = true
 	signingkey    = 6DB5C725
 
+[credential]
+	helper = cache
+
 [include]
 	path = ~/.gitconfig.local
 	path = local
@@ -41,9 +44,6 @@
 
 [commit]
 	verbose = yes
-
-[credential]
-	helper = cache
 
 [fetch]
 	prune = yes
