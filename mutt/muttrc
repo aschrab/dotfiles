@@ -72,7 +72,7 @@ set crypt_replyencrypt = yes
 set crypt_replysign = yes
 set crypt_replysignencrypted = yes
 set crypt_verify_sig = yes
-
+set crypt_use_gpgme = yes
 # Section A: Key Management.
 
 # Uncommen to make mutt ask what key to use when trying to decrypt a message.
