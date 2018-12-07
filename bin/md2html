@@ -8,7 +8,7 @@ fi
 
 if [ $# = 0 ] ; then
   if which entr >/dev/null 2>&1 ; then
-    find -name '*.md' | entr "$0" /_
+    find . -name '*.md' | entr "$0" /_
   else
     echo "No arguments given, and can't detect changes" >&2
     exit 1
