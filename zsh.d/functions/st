@@ -3,6 +3,11 @@
 # Helper for attaching to a remote tmux session
 
 st () {
+  if [[ -n "$TMUX" ]]; then
+    echo 'Already in a tmux session (unset $TMUX to nest)' >&2
+    return 1
+  fi
+
   if [[ -z "$1"  ]] || [[ $# -gt 2 ]]; then
     echo "Usage: $0 <HOST> [<SESSION>]" >&2
     return 1
