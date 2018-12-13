@@ -1,0 +1,14 @@
+#autoload
+
+# Helper for attaching to a remote tmux session
+
+st () {
+  if [[ -z "$1"  ]] || [[ $# -gt 2 ]]; then
+    echo "Usage: $0 <HOST> [<SESSION>]" >&2
+    return 1
+  fi
+
+  ssh -t "$1" tmux new -ADs "${2:-0}"
+}
+
+st "$@"

@@ -1,0 +1,28 @@
+#compdef st
+
+_ssh # Ensure that _ssh_hosts gets defined
+
+# Explicitly define function so that above only gets called once
+_st() {
+  local context state line
+  typeset -A opt_args
+  local components
+
+  _arguments \
+    '1:Host:->host' \
+    '2:Session:->session' \
+    && return 0
+
+  case "$state" in
+    (host)
+      _ssh_hosts
+      ;;
+    (session)
+      local -a sessions
+      sessions=( ${${(f)"$(ssh $line[1] tmux 2> /dev/null list-sessions)"}/:[ $'\t']##/:} )
+      _describe -t sessions 'sessions' sessions "$@"
+      ;;
+  esac
+}
+
+_st "$@"
