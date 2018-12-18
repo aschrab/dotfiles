@@ -196,6 +196,6 @@ workspace "3:cash" output <%= displays.last['name'] %>
 assign [class="keepassxc"] → "5:pass"
 workspace "5:pass" output <%= displays.last['name'] %>
 
-#exec --no-startup-id "<%= DOTFILE_DIR %>/i3/startup"
+exec --no-startup-id "<%= DOTFILE_DIR %>/i3/startup"
 
 # vim: filetype=eruby.i3
