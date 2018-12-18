@@ -193,9 +193,6 @@ for_window [title="^xfce4-notifyd"] floating enable
 assign [class="Gnucash"] → "3:cash"
 workspace "3:cash" output <%= displays.last['name'] %>
 
-assign [class="keepassxc"] → "5:pass"
-workspace "5:pass" output <%= displays.last['name'] %>
-
 exec --no-startup-id "<%= DOTFILE_DIR %>/i3/startup"
 
 # vim: filetype=eruby.i3
