@@ -8,12 +8,21 @@ st () {
     return 1
   fi
 
-  if [[ -z "$1"  ]] || [[ $# -gt 2 ]]; then
-    echo "Usage: $0 <HOST> [<SESSION>]" >&2
+  if [[ -z "$1"  ]] ; then
+    echo "Usage: $0 <HOST> [<SESSION>] [<COMMAND> ...OPTIONS]" >&2
     return 1
   fi
 
-  ssh -t "$1" tmux new -ADs "${2:-0}"
+  local host=$1
+  shift
+
+  local session=0 # default
+  if [ -n "${1:-}" ] ; then
+    session=${1}
+    shift
+  fi
+
+  ssh -t "$host" tmux new -ADs "$session" "$@"
 }
 
 st "$@"
