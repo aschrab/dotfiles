@@ -88,6 +88,8 @@ endif
 set tags=tags,TAGS,./tags;,./TAGS;
 "set diffopt+=iwhite
 set diffopt+=vertical
+silent! set diffopt+=algorithm:patience
+silent! set diffopt+=indent-heuristic
 
 set history=1000
 
