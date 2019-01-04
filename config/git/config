@@ -180,5 +180,6 @@
 	pushInsteadOf = https://bitbucket.org/aschrab/
 [url "git@gitlab.com:aschrab/"]
 	pushInsteadOf = https://gitlab.com/aschrab/
-[url "ssh://git@ngage.netapp.com:7999/"]
-	insteadOf = https://ngage.netapp.com/stash/scm/
+[url "https://aschrab@ngage.netapp.com/stash/scm/"]
+	insteadOf = ssh://git@ngage.netapp.com:7999/
+	insteadOf = ssh://ngage.netapp.com:7999/
