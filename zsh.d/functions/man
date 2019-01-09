@@ -5,7 +5,9 @@
     MANWIDTH=80
   fi
 
-  if [[ "$MANPAGER" = *vi* ]]; then
+  if ! [[ -t 1 ]]; then
+    command man "$@"
+  elif [[ "$MANPAGER" = *vi* ]]; then
     MANWIDTH="$MANWIDTH" "$EDITOR" -c "Man $*" -c only
   else
     LESS_TERMCAP_mb=$'\e[1;36m' \
