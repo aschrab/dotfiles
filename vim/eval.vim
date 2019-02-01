@@ -84,6 +84,12 @@ if (v:version >= 700)
     let g:ale_linters = {}
   endif
   let g:ale_linters['typescript'] = ['tslint']
+
+  if !exists('g:ale_fixers')
+    let g:ale_fixers = {}
+  endif
+  let g:ale_fixers['javascript'] = ['eslint']
+
 endif
 
 " Screen/tmux can also handle xterm mousiness, but Vim doesn't detect it by default.
