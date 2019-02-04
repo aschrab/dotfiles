@@ -28,7 +28,6 @@ zstyle ':completion:*' menu select=3 auto # yes=long interactive
 zstyle ':completion:*' original true
 zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
 zstyle ':completion:*' substitute 'NUMERIC==2'
-zstyle ':completion:*' ignored-patterns 'doc-base'
 zstyle :compinstall filename $HOME/.zshrc
 
 zstyle ':completion:*:ssh:*' tag-order '!users'
