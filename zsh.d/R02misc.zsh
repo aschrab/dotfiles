@@ -4,18 +4,19 @@ trap -
 # Make sure that core files are allowed
 unlimit core
 
+# Define a function to find first supported locale out of a list
+first_locale () {
+  printf %s\\n "$@" |
+    fgrep --max-count=1 --ignore-case --line-regexp --file=<(locale -a)
+}
+
 export LANG
 # The collation order for en_US is awful, ignores . and case
 # so, don't use it
-() {
-  local loc
-  for loc in C.UTF-8 C.UTF8 C; do
-    if locale -a | fgrep --ignore-case --line-regexp --quiet $loc; then
-      export LC_COLLATE=$loc
-      return
-    fi
-  done
-}
+export LC_COLLATE=$(first_locale C.UTF{-,}8 C)
+
+# Try to use a locale with more sensible time format than US
+export LC_TIME=$(first_locale en_{DK,US}.UTF{-,}8)
 
 # Make is-at-least function available for use in later config files
 autoload -U is-at-least
