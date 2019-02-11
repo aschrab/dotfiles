@@ -16,7 +16,7 @@ export LANG
 export LC_COLLATE=$(first_locale C.UTF{-,}8 C)
 
 # Try to use a locale with more sensible time format than US
-export LC_TIME=$(first_locale en_{DK,US}.UTF{-,}8)
+export LC_TIME=$(first_locale en_{DK,CA,GB,AU,NZ,IE,US}.UTF{-,}8)
 
 # Make is-at-least function available for use in later config files
 autoload -U is-at-least
