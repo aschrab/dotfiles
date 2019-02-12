@@ -20,15 +20,11 @@ fi
 
 if [ $# -eq 0 ]; then
   # If STDIN is not the terminal
-  if [ ! -t 0 ]; then
-    do_copy=y
-  fi
+  [ ! -t 0 ] && do_copy=y
 
   # If STDOUT is not the terminal, or nothing else was done
-  if [ ! -t 1 ] || [ -t 0 ]; then
-    do_paste=y
-  fi
-else
+  [ ! -t 1 ] || [ -t 0 ] && do_paste=y
+else # Command line args
   for arg in "$@"; do
     case "x$arg" in
       xin|x-in|xcopy|x-copy)
@@ -41,10 +37,6 @@ else
   done
 fi
 
-if [ "x$do_copy" = xy ]; then
-  copy
-fi
-
-if [ "x$do_paste" = xy ]; then
-  paste
-fi
+# Actually do things. Copy first, then paste so that data will flow through.
+[ "x$do_copy" = xy ] && copy
+[ "x$do_paste" = xy ] && paste
