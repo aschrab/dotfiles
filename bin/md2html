@@ -15,8 +15,9 @@ if [ $# = 0 ] ; then
   fi
 else
   for md in "$@"; do
-    html="${md%.md}.html"
-    pandoc --standalone --from=markdown --to=html --output="$html" "$md"
+    base="${md%.md}"
+    html="${base}.html"
+    pandoc --standalone --from=markdown --to=html --metadata pagetitle="$(basename "$base")" --output="$html" "$md"
   done
 fi
 
