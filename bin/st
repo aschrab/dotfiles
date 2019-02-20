@@ -4,6 +4,7 @@
 
 st () {
   if [[ -n "$TMUX" ]]; then
+    # shellcheck disable=SC2016
     echo 'Already in a tmux session (unset $TMUX to nest)' >&2
     return 1
   fi
