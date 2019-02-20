@@ -22,7 +22,12 @@ st () {
     shift
   fi
 
-  ssh -t "$host" tmux new -ADs "$session" "$@"
+  local remote=()
+  if [ -n "$host" ] && [ "-" != "$host" ]; then
+    remote=(ssh -t "$host")
+  fi
+
+  "${remote[@]}" tmux new -ADs "$session" "$@"
 }
 
 st "$@"
