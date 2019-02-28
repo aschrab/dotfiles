@@ -1,9 +1,10 @@
-#autoload
+#!/bin/bash
 
 # Helper for attaching to a remote tmux session
 
 st () {
   if [[ -n "$TMUX" ]]; then
+    # shellcheck disable=SC2016
     echo 'Already in a tmux session (unset $TMUX to nest)' >&2
     return 1
   fi
@@ -22,7 +23,12 @@ st () {
     shift
   fi
 
-  ssh -t "$host" tmux new -ADs "$session" "$@"
+  local remote=()
+  if [ -n "$host" ] && [ "-" != "$host" ]; then
+    remote=(ssh -t "$host")
+  fi
+
+  "${remote[@]}" tmux new -ADs "$session" "$@"
 }
 
 st "$@"

@@ -19,7 +19,13 @@ _st() {
       ;;
     (session)
       local -a sessions
-      sessions=( ${${(f)"$(ssh $line[1] tmux 2> /dev/null list-sessions)"}/:[ $'\t']##/:} )
+      local host=$line[1]
+      local -a remote=()
+      if [ -n "$host" ] && [ "-" != "$host" ]; then
+        remote=(ssh "$host")
+      fi
+
+      sessions=( ${${(f)"$($remote tmux 2> /dev/null list-sessions)"}/:[ $'\t']##/:} )
       _describe -t sessions 'sessions' sessions "$@"
       ;;
   esac
