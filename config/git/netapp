@@ -9,4 +9,9 @@
 	helper =
 	helper = store
 
+[url "https://aschrab@ngage.netapp.com/stash/scm/"]
+	insteadOf = ngage:
+[url "https://aschrab@ngage.netapp.com/stash/scm/AIQCS-BB/"]
+	insteadOf = aiq:
+
 # vim: ft=gitconfig tabstop=4 shiftwidth=4 noexpandtab
