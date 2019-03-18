@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# https://stackoverflow.com/questions/47705036/in-jshell-how-to-import-classpath-from-a-maven-project
+exec mvn "$@" com.github.johnpoth:jshell-maven-plugin:1.1:run
