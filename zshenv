@@ -1,6 +1,6 @@
 __link_dir() {
   local linkpath=$(perl -MCwd -e 'print Cwd::abs_path($ARGV[0])' $1)
-	[[ -n $linkpath ]] && dirname $linkpath
+  [[ -n $linkpath ]] && dirname $linkpath
 }
 
 zshrc_dir=${ZDOTDIR:-$HOME}/.zsh.d
