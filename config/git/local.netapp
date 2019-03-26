@@ -6,3 +6,10 @@
 	path = netapp
 [includeIf "gitdir:~/vc/netapp/"]
 	path = netapp
+
+[includeIf "gitdir:/u/aschrab/vc/aiq/"]
+	path = netapp
+[includeIf "gitdir:/u/aschrab/vc/niq/"]
+	path = netapp
+[includeIf "gitdir:/u/aschrab/vc/netapp/"]
+	path = netapp
