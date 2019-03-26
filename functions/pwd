@@ -1,7 +1,7 @@
 #autoload
 
 pwd() {
-  local real="`builtin pwd -r`"
+  local real="`builtin pwd -P`"
   if [[ ! -t 1 ]] || [[ $real == $PWD ]]; then
     # Only output real path when used in backticks.
     # Don't duplicate path if they're the same.
