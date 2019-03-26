@@ -9,9 +9,14 @@ fpath=(
   /usr/local/share/zsh/functions/
 )
 
-local fdir="$zshrc_dir/functions"
-fpath=($fdir $fpath)
-
-autoload -- $fdir/*(:t)
+() {
+  local fdir
+  local fpaths=()
+  for fdir in "$@" ; do
+    fpaths+=$fdir
+    [ -d "$fdir" ] && autoload -- $fdir/*(:t)
+  done
+  fpath=($fpaths $fpath)
+} "$zshrc_dir/functions" "${ZDOTDIR:-$HOME}/.functions"
 
 path+=$(dirname $(perl -MCwd -e 'print Cwd::abs_path($ARGV[0])' $zshrc_dir))/upstreams/powerline/scripts/
