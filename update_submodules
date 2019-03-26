@@ -9,6 +9,10 @@ export GIT_CONFIG_PARAMETERS="'submodule.fetchJobs=9'"
 #git submodule init
 git submodule sync
 git submodule update --init --recursive
-vim -c:Helptags -c:q
+
+# Use `script`, since the below doesn't work properly if output isn't to a terminal.
+# Write script to /dev/null and send output there as well.
+script -qec 'vim -c:Helptags -c:q' /dev/null >/dev/null ||
+  echo "Failed to update vim helptags" >&2
 
 echo complete
