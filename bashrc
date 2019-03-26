@@ -5,6 +5,12 @@ if [[ $PS1 && -f /usr/share/bash-completion/bash_completion ]]; then
   . /usr/share/bash-completion/bash_completion
 fi
 
+if [[ -n "$PS1" ]] && [[ -d "$HOME/.functions" ]] ; then
+  for f in "$HOME/.functions"/* ; do
+    . "$f"
+  done
+fi
+
 alias l='ls -F'
 alias ll='l -l'
 alias la='l -a'
