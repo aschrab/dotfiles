@@ -32,6 +32,7 @@ application/text; cat -v %s; copiousoutput
 application/x-plain; cat -v %s; copiousoutput
 
 #image/*; xfix -s -- display %s; test=xfix -s -- /home/aarons/bin/runningx
+# image/*; chafa -c 256 --symbols all %s; copiousoutput
 image/*; twrap display %s
 image/gif;  ; x-mozilla-flags=internal
 image/jpeg; ; x-mozilla-flags=internal
