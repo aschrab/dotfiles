@@ -1,0 +1,5 @@
+#autoload
+
+ip6() {
+  ip -f inet6 "$@"
+}

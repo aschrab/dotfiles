@@ -21,4 +21,4 @@ resolve() {
   done
 }
 
-resolve "$@"
+[ -n "$ZSH_NAME" ] && resolve "$@"

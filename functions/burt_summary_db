@@ -1,0 +1,5 @@
+#autoload
+
+burt_summary_db() {
+  BURT_SUMMARY_DB_GET_SEP=${BURT_SUMMARY_DB_GET_SEP:-▒} command burt_summary_db "$@"
+}

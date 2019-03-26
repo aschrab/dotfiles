@@ -1,8 +1,0 @@
-#autoload lsm
-
-if [[ $# -eq 0 ]];
-then
-  (cd ~lsm && command sudo -u lsm -H ZDOTDIR="$HOME" "$SHELL" -l)
-else
-  command sudo -u lsm -H ZDOTDIR="$HOME" "$@"
-fi

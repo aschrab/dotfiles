@@ -1,7 +1,7 @@
 #autoload
 
 # Quote to avoid alias expansion
-"man"() {
+function man {
   local MANWIDTH
 
   if [[ -z $MANWIDTH ]] && [[ $COLUMNS -gt 80 ]]; then
@@ -33,8 +33,6 @@
       command man "$@"
   fi
 }
-
-"man" "$@"
 
 # Inspired by http://boredzo.org/blog/archives/2016-08-15/colorized-man-pages-understood-and-customized
 # vim: ft=zsh

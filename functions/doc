@@ -1,0 +1,15 @@
+#autoload
+
+doc() {
+  local dir
+  for dir in /doc /usr/share/doc; do
+    if [[ -d $dir/$1 ]]; then
+      cd $dir/$1
+      ls
+      return
+    fi
+  done
+
+  echo No documentation for $1 >&2
+  return 1
+}

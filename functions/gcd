@@ -1,0 +1,8 @@
+#autoload
+
+gcd() {
+  local root
+  root=$(git rev-parse --show-toplevel)
+
+  [[ -n $root ]] && cd "$root/$1"
+}

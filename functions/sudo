@@ -1,0 +1,23 @@
+#autoload sudo
+
+function sudo {
+  local args
+
+  if [[ $# -eq 2 ]] && [[ "$1" = '-u' ]]; then
+    args=($*)
+    set --
+  fi
+
+  local vimsetup
+  if [[ $EDITOR != *nvim* ]]; then
+    # Don't do this for nvim, since it honors $XDG_CONFIG_HOME
+    vimsetup="VIMINIT=source $ZDOTDIR/.vim/sudoed.vim"
+  fi
+
+
+  if [[ $# -eq 0 ]]; then
+    set XDG_CONFIG_HOME="$XDG_CONFIG_HOME" ZDOTDIR="${ZDOTDIR:-$HOME}" EMAIL="$EMAIL" $vimsetup "$SHELL" -l
+  fi
+
+  command sudo -H $args SSH_AUTH_SOCK="$SSH_AUTH_SOCK" TMUX="$TMUX" "$@"
+}

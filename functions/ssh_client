@@ -1,0 +1,5 @@
+#autoload
+
+ssh_client() {
+  echo ${SSH_CONNECTION%% *}
+}
