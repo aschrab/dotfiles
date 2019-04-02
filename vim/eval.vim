@@ -83,7 +83,10 @@ if (v:version >= 700)
   if !exists('g:ale_linters')
     let g:ale_linters = {}
   endif
-  let g:ale_linters['typescript'] = ['tslint']
+  if !exists('g:ale_linters_ignore')
+    let g:ale_linters_ignore = {}
+  endif
+  let g:ale_linters_ignore['typescript'] = ['eslint']
 
   if !exists('g:ale_fixers')
     let g:ale_fixers = {}
