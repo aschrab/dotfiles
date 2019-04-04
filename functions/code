@@ -1,0 +1,10 @@
+#autoload
+
+function code {
+  if [ -c /dev/machtrace ] ; then
+    # On a Mac
+    open -a 'Visual Studio Code' "$@"
+  else
+    command code "$@"
+  fi
+}
