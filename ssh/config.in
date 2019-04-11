@@ -26,8 +26,7 @@ User aschrab
 Port 22
 ForwardAgent yes
 
-Host pug.qqx.org proxy pilot.trilug.org
-#ControlMaster auto
+Host pug.qqx.org proxy
 #Port 443
 
 Host proxy
@@ -58,6 +57,10 @@ ForwardX11 yes
 Host zhaan.trilug.org
 ForwardAgent yes
 ForwardX11 yes
+
+Host pilot.trilug.org
+Port 443
+AddressFamily inet
 
 Host pilotvm pilotvm.trilug.org
 #HostName moya.trilug.org
