@@ -274,3 +274,6 @@
 [submodule "vim/bundle/emmet"]
 	path = vim/bundle/emmet
 	url = https://github.com/mattn/emmet-vim.git
+[submodule "vim/bundle/language-client"]
+	path = vim/bundle/language-client
+	url = https://github.com/autozimu/LanguageClient-neovim.git
