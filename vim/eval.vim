@@ -94,6 +94,9 @@ if (v:version >= 700)
   endif
   let g:ale_fixers['javascript'] = ['eslint']
 
+  let g:LanguageClient_serverCommands = {}
+  let g:LanguageClient_serverCommands['java'] = '/Users/aschrab/vc/java-language-server/dist/mac/bin/launcher --quiet'
+
 endif
 
 " Screen/tmux can also handle xterm mousiness, but Vim doesn't detect it by default.
