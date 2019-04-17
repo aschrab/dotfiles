@@ -19,8 +19,10 @@ line.
 
 use strict;
 use warnings;
+use File::Compare;
 
 my $use_exit = 0;
+my $merge = 0;
 my $home = $ENV{HOME};
 
 # Get location of files from script location
@@ -43,6 +45,8 @@ my $conflicts = 0;
 foreach my $f (@ARGV) {
 	chomp $f;
 	next if $f =~ /dot_setup/; # Never link this script
+
+	if ($f eq '-m') { $merge = 1; next; }
 
 	if ($f eq '-e') {
 		$use_exit = 1;
@@ -84,12 +88,26 @@ foreach my $f (@ARGV) {
 		$status = '+' unless -e $dest;
 	}
 
-	$added++ if $status eq '+';
+	if ($status eq '!') {
+		foreach my $try (1,2) {
+			if (compare($dest, $f)) {
+				system "vimdiff", $dest, $f if $try == $merge;
+			}
+			else {
+				$status = '=';
+				last;
+			}
+		}
+	}
+
+	my $add = $status =~ /^[+=]$/;
+	$added++ if $add;
 	$conflicts++ if $status eq '!';
 
 	print "$status $f\n";
-	next unless $status eq '+';
+	next unless $add;
 
+	unlink $dest if $status eq '=';
 	symlink $target => $dest or die "Couldn't create link $dest: $!";
 }
 
