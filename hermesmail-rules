@@ -193,7 +193,7 @@ def process
     list 'mail.mutt-dev', subject: 'mutt |'
   end
 
-  if from.has?(/noreturn@myfbo\.com/i)
+  if from.has?(/noreturn@([a-z0-9_-]+\.)*myfbo\.com/i)
     begin
       if body.match(/^Message sent by (.*?)  (\S+@\S+)$/)
         headers.replace 'From', %Q{"#$1" <#$2>}
