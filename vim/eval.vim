@@ -61,6 +61,10 @@ if (v:version >= 700)
     let g:pathogen_blacklist += [ 'tsuquyomi' ]
   endif
 
+  if !filereadable(expand('<sfile>:p:h') . '/bundle/language-client/bin/languageclient')
+    let g:pathogen_blacklist += [ 'language-client' ]
+  endif
+
   if !exists('*funcref')
     let g:pathogen_blacklist += [ 'highlighted-yank' ]
   endif
