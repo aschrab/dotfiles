@@ -13,7 +13,7 @@ SET timezone TO 'America/New_York';
 
 \pset linestyle unicode
 
-\pset null '(null)'
+\pset null '␀'
 -- \pset pager always
 \x
 \set HISTFILE ~/.psql_history- :DBNAME
