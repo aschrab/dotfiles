@@ -64,6 +64,7 @@
 	conflictstyle = diff3
 	defaultToUpstream = yes
 	log = 999
+	tool = fugitive
 
 [branch "master"]
 	mergeOptions = --ff-only
