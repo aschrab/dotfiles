@@ -31,7 +31,7 @@ def mlist mbox, opts={} #{{{
     opts[:mbox].sub!(/^\+/, 'imaps://aaron.schrab@gmail.com@imap.gmail.com/')
   end
 
-  unless opts[:mbox] =~ /^[+=]/
+  unless opts[:mbox] =~ /^[+=\[]/
     opts[:mbox] = "=L/#{opts[:mbox]}"
   end
 
