@@ -60,5 +60,4 @@ zstyle ':completion:*:*:*:*:processes' force-list always
 zstyle ':completion:*:*:kill:*:processes' list-colors "=(#b) #([0-9]#)*=36=31"
 
 zstyle ':completion:*:*:git:*' user-commands reintegrate:'Rebuild integration branch'
-zstyle ':completion:*:*:git:*' user-commands fixup:'Create a fixup commit'
 zstyle ':completion:*:*:git:*' user-commands pr-update:'Update local checkout of a PR'

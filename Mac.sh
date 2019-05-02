@@ -8,4 +8,4 @@ defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
 vscode="$HOME/Library/Application Support/Code/User"
 mkdir -p "$vscode"
 [ -e "$vscode/settings.json" ] ||
-	ln -s "$dotfile_dir/vscode/settings.json" "$vscode"
+	ln -s "$dotfile_dir/config/Code/User/settings.json" "$vscode"
