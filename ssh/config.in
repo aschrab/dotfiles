@@ -156,4 +156,16 @@ Host 10.105.*
   ChallengeResponseAuthentication no
   KbdInteractiveAuthentication no
 
+# Use krypton app for authentication if found
+ifelse(sh({test -r ~/.kr/me && echo found}), {found}, {dnl
+Host *
+  IdentityAgent ~/.kr/krd-agent.sock
+  ProxyCommand /usr/local/bin/krssh %h %p
+  IdentityFile ~/.ssh/id_krypton
+  IdentityFile ~/.ssh/id_ed25519
+  IdentityFile ~/.ssh/id_rsa
+  IdentityFile ~/.ssh/id_ecdsa
+  IdentityFile ~/.ssh/id_dsa
+}, {})dnl
+
 # vim: ft=sshconfig
