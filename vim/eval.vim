@@ -97,6 +97,7 @@ if (v:version >= 700)
     let g:ale_fixers = {}
   endif
   let g:ale_fixers['javascript'] = ['eslint']
+  let g:ale_fixers['typescript'] = ['tslint']
 
   let g:LanguageClient_serverCommands = {}
   let g:LanguageClient_serverCommands['java'] = '/Users/aschrab/vc/java-language-server/dist/mac/bin/launcher --quiet'
