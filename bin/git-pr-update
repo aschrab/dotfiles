@@ -9,6 +9,18 @@ die () {
   exit 1
 }
 
+for opt in "$@"
+do
+  case "${opt}" in
+    (-f|--force)
+      git reset --hard
+      ;;
+    (*)
+      die "Unknown option '${opt}'"
+      ;;
+  esac
+done
+
 ref=$(git describe --all --exact-match)
 
 git diff --quiet || die "Working tree has uncommitted changes"
