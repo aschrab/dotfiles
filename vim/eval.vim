@@ -296,6 +296,7 @@ let g:airline#extensions#branch#format = 'airline#ext#branch_format'
 let g:airline#extensions#branch#displayed_head_limit = 20
 
 let g:SuperTabDefaultCompletionType='context'
+let g:SuperTabContextDefaultCompletionType="<c-n>"
 let g:SuperTabLongestEnhanced=1
 "let g:SuperTabLongestHighlight=1
 if v:version >= 700
