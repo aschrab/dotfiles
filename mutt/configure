@@ -7,7 +7,7 @@ fi
 
 export CFLAGS=-ggdb
 exec ./prepare \
-	--sysconfdir=$HOME/.etc \
+	--sysconfdir="$HOME/.etc" \
 	--enable-compressed \
 	--enable-sidebar \
 	--enable-debug \
@@ -18,7 +18,7 @@ exec ./prepare \
 	--enable-imap \
 	--enable-pop \
 	--enable-smtp \
-	--prefix=$HOME \
+	--prefix="$HOME" \
 	--with-curses \
 	--with-ssl \
 	--with-gss \
