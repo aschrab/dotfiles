@@ -190,6 +190,10 @@ for_window [class="^Display\.im"] floating enable
 for_window [title="^Open Database -"] floating enable
 for_window [title="^xfce4-notifyd"] floating enable
 
+# GnuCash scheduled transaction editor opens sized appropriately for settings,
+# but the template transaction tab needs to be much wider.
+for_window [title="^Edit Scheduled Transaction"] resize set 1000 547, move position center
+
 assign [class="Gnucash"] → "3:cash"
 workspace "3:cash" output <%= displays.last['name'] %>
 
