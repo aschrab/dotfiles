@@ -280,3 +280,6 @@
 [submodule "vim/bundle/gdb"]
 	path = vim/bundle/gdb
 	url = https://github.com/sakhnik/nvim-gdb.git
+[submodule "vim/bundle/ledger"]
+	path = vim/bundle/ledger
+	url = https://github.com/ledger/vim-ledger.git
