@@ -1,0 +1,22 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+use 5.10.0;
+use autodie;
+
+open(my $mvn, '-|', qw{mvn dependency:tree -Dverbose});
+while(<$mvn>) {
+  # Eliminate log level
+  s/^\[\w+\]\s//;
+
+  # Ignore anything not in the block from the dependency plugin
+  next unless /^--- maven-dependency-plugin/../^----/;
+
+  # Don't print block markers themselves
+  next if /^---/;
+
+  # If we get here print the result
+  print;
+}
+
