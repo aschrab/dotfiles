@@ -25,7 +25,7 @@
         { "before": ["<C-l>"], "after": ["<C-w>", "l"]},
         { "before": ["[", "c"], "commands": ["workbench.action.editor.previousChange"]},
         { "before": ["]", "c"], "commands": ["workbench.action.editor.nextChange"]},
-        { "before": ["[", "k"], "commands": ["editor.action.marker.previous"] },
+        { "before": ["[", "k"], "commands": ["editor.action.marker.prev"] },
         { "before": ["]", "k"], "commands": ["editor.action.marker.next"] }
     ],
     "vim.visualModeKeyBindingsNonRecursive": [
