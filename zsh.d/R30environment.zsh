@@ -93,6 +93,7 @@ LESS="$LESS --jump-target=3"
 LESS="$LESS --ignore-case"
 LESS="$LESS --no-init"
 LESS="$LESS --RAW-CONTROL-CHARS"
+LESS="$LESS --hilite-unread"
 
 case "$LANG" in
   *[Uu][Tt][Ff]*)
