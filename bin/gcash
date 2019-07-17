@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# Work around https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=906115
+
+set -u
+set -e
+
+unset GTK_IM_MODULE
+
+exec >/dev/null 2>&1 </dev/null
+exec gnucash
