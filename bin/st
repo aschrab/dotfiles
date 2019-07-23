@@ -28,7 +28,7 @@ st () {
     remote=(ssh -t "$host")
   fi
 
-  "${remote[@]}" tmux new -ADs "$session" "$@"
+  exec "${remote[@]}" tmux new -ADs "$session" "$@"
 }
 
 st "$@"
