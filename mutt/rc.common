@@ -124,6 +124,8 @@ macro pager	l	"<enter-command>set my_save=\$my_wrap my_wrap=\$wrap wrap=\$my_sav
 #<exit><display-message>
 
 bind  index	<Tab>	next-new-then-unread
+bind  index	<BackTab> previous-new-then-unread
+bind  index	"\e[Z"	previous-new-then-unread
 macro index	'^'	"<last-entry><next-new>" "Jump to first new message"
 macro index	',r'	"<search><space>~N~s^^Re:<enter>" "Jump to next unread reply"
 macro index	"\eh"	"<view-attachments><next-entry><edit-type><bol><delete-char><enter><exit><display-message>" "View alternative"
