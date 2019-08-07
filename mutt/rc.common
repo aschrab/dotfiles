@@ -123,7 +123,7 @@ set my_wrap=100 my_reflow=$my_wrap
 macro pager	l	"<enter-command>set my_save=\$my_wrap my_wrap=\$wrap wrap=\$my_save my_save=\$my_reflow my_reflow=\$reflow_wrap reflow_wrap=\$my_save\n<display-toggle-weed><display-toggle-weed>" "Toggle wrap"
 #<exit><display-message>
 
-bind  index	<Tab>	next-new
+bind  index	<Tab>	next-new-then-unread
 macro index	'^'	"<last-entry><next-new>" "Jump to first new message"
 macro index	',r'	"<search><space>~N~s^^Re:<enter>" "Jump to next unread reply"
 macro index	"\eh"	"<view-attachments><next-entry><edit-type><bol><delete-char><enter><exit><display-message>" "View alternative"
