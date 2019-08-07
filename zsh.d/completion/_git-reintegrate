@@ -1,0 +1,18 @@
+#compdef git-reintegrate
+#description rebuild integration branch
+
+_arguments -A \
+    '(-c --create)'{-c,--create}'[create a new integration branch]' \
+    '(-e --edit)'{-e,--edit}'[edit the instruction sheet for a branch]' \
+    '(-r --rebuild)'{-r,--rebuild}'[rebuild an integration branch]' \
+    '(--continue)'--continue'[continue an in-progress rebuild]' \
+    '(--abort)'--abort'[abort an in-progress rebuild]' \
+    '(-g --generate)'{-g,--generate}'[generate instruction sheet]' \
+    '(-a --add)'{-a,--add}'[add a branch to merge in the instruction sheet]' \
+    '(--autocontinue)'--autocontinue'[continue automatically on merge conflicts if possible]' \
+    '(--cat)'--cat'[show the instructions of an integration branch]' \
+    '(-s --status)'{-s,--status}'[shows the status of all the dependencies of an integration branch]' \
+    '(-l --list)'{-l,--list}'[list integration branches]' \
+    '(-d --delete)'{-d,--delete}'[delete an integration branch]' \
+    '(--apply)'--apply'[apply an integration branch on the current branch]' \
+    ':branch:__git_branch_names'

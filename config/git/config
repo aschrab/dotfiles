@@ -33,6 +33,7 @@
 [log]
 	abbrevCommit = true
 	decorate = auto
+	mailmap = true
 
 [diff]
 	renames        = true
