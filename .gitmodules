@@ -283,3 +283,6 @@
 [submodule "vim/bundle/ledger"]
 	path = vim/bundle/ledger
 	url = https://github.com/ledger/vim-ledger.git
+[submodule "vim/bundle/beancount"]
+	path = vim/bundle/beancount
+	url = https://github.com/nathangrigg/vim-beancount.git
