@@ -1,0 +1,10 @@
+snippet t "Transaction" bA
+${1:`!v strftime("%Y-%m-%d")`} "${2:payee}" "${3:naration}"
+  ! ${4:Expenses:Misc}	${5:0} ${6:USD}
+  ${0}
+endsnippet
+
+snippet ! "Posting" bA
+! ${1:Expenses:Misc}	${2:0} ${3:USD}
+${0}
+endsnippet
