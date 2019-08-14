@@ -1,0 +1,7 @@
+#autoload
+
+cal() {
+  command ncal -3bM "$@"
+}
+
+# vim: ft=zsh
