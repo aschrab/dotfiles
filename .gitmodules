@@ -285,4 +285,4 @@
 	url = https://github.com/ledger/vim-ledger.git
 [submodule "vim/bundle/beancount"]
 	path = vim/bundle/beancount
-	url = https://github.com/nathangrigg/vim-beancount.git
+	url = https://github.com/aschrab/vim-beancount.git
