@@ -118,6 +118,7 @@
 	pr          = pull-request
 	review      = "!f() { for rev in $(git log --reverse --format=%H $@); do git show $rev; done; }; f"
 	show-commit = log -1 -p
+	unmerged    = diff --name-only --diff-filter=U
 	lol         = log --graph --decorate --pretty=oneline --abbrev-commit
 	puhs        = push
 	push-new-repo = push --receive-pack=git-receive-new-repo --all
