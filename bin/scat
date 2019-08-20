@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -u
+set -e
+set -o pipefail
+
+host=$1
+shift
+
+exec ssh "$host" cat "$@"

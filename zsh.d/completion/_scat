@@ -1,0 +1,26 @@
+#compdef scat
+
+_ssh # Ensure that _ssh_hosts gets defined
+
+_scat() {
+  local context state line
+  typeset -A opt_args
+  local components
+
+  _arguments \
+    '1:Host:->host' \
+    '*:File:->file' \
+    && return 0
+
+  case "$state" in
+    (host)
+      _ssh_hosts
+      ;;
+    (file)
+      local host=$line[1]
+      _remote_files -h "$host" -- ssh
+      ;;
+  esac
+}
+
+_scat "$@"
