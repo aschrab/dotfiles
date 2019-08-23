@@ -1,4 +1,5 @@
 #!/bin/zsh
+set -e
 
 hostname=$(hostname)
 
@@ -18,6 +19,8 @@ esac
 
 [[ $hostname != ${~pat} ]] && ssh=(ssh $ssh_host)
 
+# Use explicit error handling after this point
+set +e
 $ssh /usr/lib/dovecot/imap
 
 # For some reason dovecot is exiting with code 81
