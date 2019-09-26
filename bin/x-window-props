@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -u
+set -e
+set -o pipefail
+
+echo 'Click on a window to display its properties'
+exec xprop -len 60 -notype
