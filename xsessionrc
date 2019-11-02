@@ -23,6 +23,7 @@ case "$1" in
 		fi
 		nm-applet &
 		xfce4-power-manager &
+		pasystray &
 		xsetroot -gray
 		;;
 esac
