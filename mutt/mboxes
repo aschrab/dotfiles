@@ -8,6 +8,11 @@ mailboxes =INBOX/wcfc
 mailboxes =INBOX/junk
 mailboxes =INBOX/sympa
 
+mailboxes =L/ug
+mailboxes =L/mail
+mailboxes =L/dev
+mailboxes =L/debian
+
 <%= mlist 'lsm-workers' %>
 
 <%= mlist '=L/ug/trilug/steering', :subjectrx => '[Steering]', :address => 'steering@trilug' %>

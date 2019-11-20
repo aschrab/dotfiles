@@ -147,6 +147,8 @@ folder-hook '(suspect|spam)'		"set hdr_format=<%= hdr_format.sub('%s', %Q[#{spam
   set sidebar_visible
   set sidebar_format="%?F?%F!&  ? %B%* %?N? %N?"
   set sidebar_divider_char="│"
+  set sidebar_folder_indent sidebar_short_path sidebar_sort_method=path
+  #set sidebar_indent_string="  /"
   color sidebar_divider green default
   color sidebar_new cyan default
   bind index <Esc>N sidebar-next-new
