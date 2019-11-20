@@ -66,6 +66,10 @@ mailboxrx 'imaps://aaron.schrab@gmail.com[^/]*/' '[G]%R'
   set header_cache=<%= ENV['HOME'] %>/.cache/mutt
 % end
 
+% if mutt_variable :autocrypt
+  set autocrypt
+% end
+
 % if mutt_variable :list_reply
   set list_reply=ask-no # When replying to a list message ask if it should go to entire list
 % end

@@ -8,6 +8,7 @@ fi
 export CFLAGS=-ggdb
 exec ./prepare \
 	--sysconfdir="$HOME/.etc" \
+	--enable-autocrypt --with-sqlite3 \
 	--enable-compressed \
 	--enable-sidebar \
 	--enable-debug \
