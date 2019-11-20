@@ -22,7 +22,7 @@ set -o noclobber
 
 shopt -s autocd cdspell dirspell extglob 2> /dev/null
 # The following breaks completion
-shopt -s failglob
+# shopt -s failglob
 
 # menu complete from older bash versions is awful
 # and inputrc doesn't allow version checking
