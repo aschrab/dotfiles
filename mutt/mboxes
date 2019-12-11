@@ -8,6 +8,7 @@ mailboxes =INBOX/wcfc
 mailboxes =INBOX/junk
 mailboxes =INBOX/sympa
 
+mailboxes =L
 mailboxes =L/ug
 mailboxes =L/mail
 mailboxes =L/dev
