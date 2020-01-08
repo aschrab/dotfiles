@@ -6,7 +6,6 @@ editorconfig
 eslintrc.yml
 gitconfig
 git_template
-config/git
 functions
 inputrc
 irbrc
@@ -33,9 +32,11 @@ zsh.d
 fonts/Monoisome-Regular.ttf
 fonts/PowerlineSymbols.otf
 config/fontconfig/conf.d/10-powerline-symbols.conf
+config/git
 config/powerline
 config/nvim
 config/rofi
+config/yamllint
 python
 nodenv
 rbenv
