@@ -77,7 +77,7 @@
 	autocorrect = 15
 
 [mergetool "fugitive"]
-	cmd = vim -f -c "Gdiffsplit!" "$MERGED"
+	cmd = vim -f -c "Gdiff!" "$MERGED"
 
 [rerere]
 	enabled = yes
