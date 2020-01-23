@@ -25,6 +25,7 @@
 
 [advice]
 	statusHints = no
+	detachedHead = false
 
 [status]
 	submodulesummary = true
