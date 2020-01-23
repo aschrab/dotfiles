@@ -1,0 +1,7 @@
+#!/bin/bash
+
+set -u
+set -e
+set -o pipefail
+
+printf '%s:%s\n' AuthorizationToken "$(jq -r .access_token ~/.tokens/"$1")"

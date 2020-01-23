@@ -1,0 +1,3 @@
+#compdef token
+
+_path_files -g '*.json' -W $HOME/.tokens
