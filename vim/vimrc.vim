@@ -19,7 +19,7 @@ set t_Co=16
 
 " Miscellaneous options {{{
 :if has('nvim')
-  set viminfo=!,s1,%,'20,f1,c,h,r/tmp,r/media,n~/.nviminfo
+  set viminfo=!,s1,%,'20,f1,c,h,r/tmp,r/media
 :else
   set viminfo=!,s1,%,'20,f1,c,h,r/tmp,r/media,n~/.viminfo
 :endif
