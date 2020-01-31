@@ -1,3 +1,9 @@
+/*
+ * In Firefox 69+ requires about:config setting:
+ *
+ *   toolkit.legacyUserProfileCustomizations.stylesheets to ttrue
+ */
+
 /* Hide normal tab bar in favor, in favor of tree-style sidebar */
 #main-window[tabsintitlebar="true"]:not([extradragspace="true"]) #TabsToolbar {
   opacity: 0;
