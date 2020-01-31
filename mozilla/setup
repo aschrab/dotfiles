@@ -8,12 +8,16 @@ base=$HOME/.mozilla/firefox
  <"$base/profiles.ini" sed -n -e '/^\[Install/,/^\[/!d' -e '/^Default=/s///p' |
 	 while read -r profile_id
 	 do
-		 echo "Profile: $profile_id"
-		 chrome_dir="${base}/${profile_id}/chrome"
-		 [ -r "${chrome_dir}/userChrome.css" ] && continue
-		 mkdir -p "${chrome_dir}"
+		echo "Profile: $profile_id"
+		chrome_dir="${base}/${profile_id}/chrome"
 
-		 ln --symbolic --relative --target-directory="${chrome_dir}" "$(dirname "$0")/userChrome.css"
+		cat >>"${chrome_dir}/prefs.js" <<-EOF
+		user_pref("image.animation_mode", "once");
+		user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
+		EOF
 
-		 ls -l "${chrome_dir}"
+		[ -r "${chrome_dir}/userChrome.css" ] && continue
+		mkdir -p "${chrome_dir}"
+		ln --symbolic --relative --target-directory="${chrome_dir}" "$(dirname "$0")/userChrome.css"
+		ls -l "${chrome_dir}"
 	 done
