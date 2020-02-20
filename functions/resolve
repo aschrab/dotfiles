@@ -3,14 +3,25 @@
 resolve() {
   local res cmd
   for cmd in "$@"; do
-    res="$(which $cmd)"
-    echo "$res"
+    # If it starts with backslash, remove that and don't do alias lookup
+    if [[ "$cmd" = \\* ]]; then
+      res=${cmd#\\}
+    else
+      res="$(which $cmd)"
+    fi
     case "$res" in
       (*:*aliased*)
-        resolve "${res##*: aliased to }"
+        echo "$res"
+        res="${res##*: aliased to }"
+        res="${res%% *}" # Strip off arguments
+
+        # If it now matches the command, prevent alias expansion on next attempt
+        [[ "$res" = "$cmd" ]] && res=\\"$res"
+        resolve "$res"
         ;;
       (*)
         [[ "$res" = /* ]] || res=$commands[$res]
+        echo "$res"
         if [[ -L "$res" ]]; then
           resolve $(perl -MCwd -e 'print Cwd::abs_path($ARGV[0])' "$res")
         else
