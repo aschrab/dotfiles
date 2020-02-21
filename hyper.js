@@ -102,6 +102,9 @@ module.exports = {
         shellArgs: ['--login'],
         // for environment variables
         env: {
+            // Hyper executable is a shell script which will start incrementing this.
+            // Reset it so that initial shell inside the terminal will see itself as the inital shell.
+            SHLVL: ''
         },
         // Supported Options:
         //  1. 'SOUND' -> Enables the bell as a sound
