@@ -4,4 +4,16 @@ set -u
 set -e
 set -o pipefail
 
-ncal -3bM "$@"
+args=(
+	-b # Old-style output
+	-M # Week starts on Monday
+)
+
+if [ "$(date +%d)" -lt 8 ] ; then
+	# In first week of the month
+	args+=(-3) # Show current and surrounding months
+else
+	args+=(-A2) # Show current months, and 2 after
+fi
+
+ncal "${args[@]}" "$@"
