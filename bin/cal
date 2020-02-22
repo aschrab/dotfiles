@@ -1,0 +1,7 @@
+#!/bin/bash
+
+set -u
+set -e
+set -o pipefail
+
+ncal -3bM "$@"
