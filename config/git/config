@@ -80,6 +80,14 @@
 [mergetool "fugitive"]
 	cmd = vim -f -c "Gdiff!" "$MERGED"
 
+[diff]
+	tool = kitty
+[difftool]
+	prompt = false
+[difftool "kitty"]
+	cmd = kitty +kitten diff $LOCAL $REMOTE
+	trustExitCode = true
+
 [rerere]
 	enabled = yes
 	autoupdate = yes
