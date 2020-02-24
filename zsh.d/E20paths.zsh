@@ -8,7 +8,7 @@ function set_paths {
     ~/.gem/bin
     ~/.rbenv/shims
     ~/.nodenv/shims
-    ~/opt/git/default/bin
+    ~/opt/*/default/bin(/N)
     /usr/local/lib/ruby/gems/2.5.0/bin
     /usr/local/opt/ruby/bin
     /usr/local/bin
