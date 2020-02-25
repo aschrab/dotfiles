@@ -8,6 +8,9 @@
     "editor.suggestSelection": "recentlyUsedByPrefix",
     "editor.rulers": [80],
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "java.testClass": ["mvn", "test", "-Dtest=${class}", "-DfailIfNoTests=false"],
+    "java.testMethod": ["mvn", "test", "-Dtest=${class}#${method}", "-DfailIfNoTests=false"],
+    "java.debugTestMethod": ["mvn", "test", "-Dtest=${class}#${method}", "-DfailIfNoTests=false", "-Dmaven.surefire.debug"],
     "editor.renderWhitespace": "all",
     "git.allowForcePush": true,
     "git.alwaysShowStagedChangesResourceGroup": true,
@@ -51,6 +54,7 @@
     "editor.renderLineHighlight": "gutter",
     "editor.tabCompletion": "onlySnippets",
     "editor.formatOnPaste": true,
+    "editor.formatOnSave": false,
     "editor.minimap.enabled": false,
     "editor.suggest.localityBonus": true,
     "editor.suggest.maxVisibleSuggestions": 7,
@@ -118,5 +122,8 @@
         }
     ],
     "peacock.affectStatusBar": true,
-    "peacock.affectActivityBar": true
+    "peacock.affectActivityBar": true,
+    "[java]": {
+    },
+    "java.implementationsCodeLens.enabled": true
 }
