@@ -4,4 +4,12 @@ set -u
 set -e
 set -o pipefail
 
-printf '%s:%s\n' AuthorizationToken "$(jq -r .access_token ~/.tokens/"$1")"
+prefix=''
+if [[ "$1" = '-a' ]]; then
+  prefix=AuthorizationToken:
+  shift
+fi
+
+token=$(jq -r .access_token ~/.tokens/"$1")
+
+printf '%s%s\n' "$prefix" "$token"
