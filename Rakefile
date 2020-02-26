@@ -73,3 +73,9 @@ namespace :ssh do
   task :config => :unlink
   task :config => eruby('ssh/config' => dst)
 end if false
+
+task :kitty => 'kitty:config'
+namespace :kitty do
+  conf = 'config/kitty/kitty.conf'
+  task :config => eruby("#{conf}.eruby" => conf)
+end
