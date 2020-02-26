@@ -1,0 +1,5 @@
+#compdef token
+
+_arguments -S : \
+  '-a[Prefix with AuthorizationToken:]' \
+  '*:Token File:_path_files -g "*.json" -W $HOME/.tokens'

@@ -9,6 +9,9 @@
 	helper =
 	helper = store
 
+[submodule]
+	recurse = true
+
 [url "https://aschrab@bitbucket.ngage.netapp.com/scm/"]
 	insteadOf = ngage:
 [url "https://aschrab@bitbucket.ngage.netapp.com/scm/AIQCS-BB/"]

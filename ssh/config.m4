@@ -14,6 +14,11 @@ ControlPersist 30
 #VerifyHostKeyDNS=ask
 ServerAliveInterval=5
 
+IdentityFile ~/.ssh/niq.pem
+IdentityFile ~/vc/niq/common/keys/netappiq.pem
+IdentityFile ~/.ssh/niq-aschrab-test.pem
+IdentityFile ~/.ssh/niq-it-prodops.pem
+
 Host niq.qqx.org
 Port 22
 User aschrab
@@ -141,7 +146,14 @@ Host burtview*.netapp.com
 # EC2 nodes
 Host 172.30.*
   User ubuntu
-  IdentityFile ~/vc/niq/common/keys/netappiq.pem
+  UserKnownHostsFile /dev/null
+  StrictHostKeyChecking no
+  ChallengeResponseAuthentication no
+  KbdInteractiveAuthentication no
+
+# New IT EC2 nodes
+Host 10.105.132.*
+  User ubuntu
   UserKnownHostsFile /dev/null
   StrictHostKeyChecking no
   ChallengeResponseAuthentication no
@@ -150,7 +162,6 @@ Host 172.30.*
 # IT EC2 nodes
 Host 10.105.*
   User root
-  IdentityFile ~/.ssh/niq.pem
   UserKnownHostsFile /dev/null
   StrictHostKeyChecking no
   ChallengeResponseAuthentication no

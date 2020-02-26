@@ -33,6 +33,9 @@ zstyle :compinstall filename $HOME/.zshrc
 zstyle ':completion:*:ssh:*' tag-order '!users'
 zstyle ':completion:*:scp:*' tag-order '!users'
 
+# For the `token` command, complete options without requiring the `-` to be typed.
+zstyle ':completion:*:token:*' tag-order options
+
 # Don't complete "CVS" or "lost+found" directories
 zstyle ':completion:*:(all-|)files' ignored-patterns '(|*/)CVS' '(*/)#lost+found' \
   '(|*/)*.bak' '(|*/)*.swp' '(|*/)*.o' '(|*/)*.pyc' '(|*/)*~'

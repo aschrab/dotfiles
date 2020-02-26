@@ -17,7 +17,9 @@ if [[ -n "$DISPLAY" && -z "$XAUTHORITY" && -r ~/.Xauthority ]]; then
 fi
 
 # Set $TERMINFO to dir in original user's home
-[[ -z $TERMINFO ]] && export TERMINFO=~${SUDO_USER}/.terminfo
+if [[ -z $TERMINFO ]] || [[ "$TERMINFO" = /Applications/* ]]; then
+  export TERMINFO=~${SUDO_USER}/.terminfo
+fi
 
 if [[ $LANG == *UTF* ]]; then
   # Have perl assume the following are in UTF8

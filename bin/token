@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -u
+set -e
+set -o pipefail
+
+prefix=''
+if [[ "$1" = '-a' ]]; then
+  prefix=AuthorizationToken:
+  shift
+fi
+
+token=$(jq -r .access_token ~/.tokens/"$1")
+
+printf '%s%s\n' "$prefix" "$token"
