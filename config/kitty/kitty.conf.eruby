@@ -5,7 +5,7 @@ tab_bar_edge top
 tab_fade 0.5 1
 tab_title_template {index}:{title}
 
-enable_audio_bell yes
+enable_audio_bell no
 
 macos_option_as_alt both
 macos_quit_when_last_window_closed no
