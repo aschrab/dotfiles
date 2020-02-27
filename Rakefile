@@ -74,6 +74,7 @@ namespace :ssh do
   task :config => eruby('ssh/config' => dst)
 end if false
 
+desc "Configuration for kitty terminal emulator"
 task :kitty => 'kitty:config'
 namespace :kitty do
   conf = 'config/kitty/kitty.conf'
