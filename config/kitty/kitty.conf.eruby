@@ -17,4 +17,6 @@ macos_quit_when_last_window_closed no
 # Go to previously active tab
 map kitty_mod+space goto_tab -1
 
+map ctrl+shift+p>u kitten hints --type=url --program=- --add-trailing-space=always
+
 # vim: ft=eruby
