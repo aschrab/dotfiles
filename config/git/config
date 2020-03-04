@@ -111,6 +111,7 @@
 	sh          = show
 	sho         = show
 	st          = status -sb
+	sw          = switch
 	b           = branch
 	pick        = cherry-pick
 	fethc       = fetch
