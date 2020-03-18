@@ -64,3 +64,6 @@ zstyle ':completion:*:*:kill:*:processes' list-colors "=(#b) #([0-9]#)*=36=31"
 
 zstyle ':completion:*:*:git:*' user-commands reintegrate:'Rebuild integration branch'
 zstyle ':completion:*:*:git:*' user-commands pr-update:'Update local checkout of a PR'
+
+# Include the fake `ARGV0` when completing parameters
+zstyle ':completion::*:(-command-|export):*' fake-parameters ARGV0=
