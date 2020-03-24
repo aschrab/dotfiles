@@ -12,4 +12,8 @@ fi
 
 token=$(jq -r .access_token ~/.tokens/"$1")
 
-printf '%s%s\n' "$prefix" "$token"
+if [ -t 1 ] ; then
+  printf '%s%s\n' "$prefix" "$token"
+else
+  printf '%s%s' "$prefix" "$token"
+fi
