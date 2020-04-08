@@ -13,7 +13,7 @@ def mutt_include( fname )
   #$stderr.puts "Reading #{fname}"
   code = File.open( fname ){ |fh| fh.read }
   #$stderr.puts "Eval'ing #{fname}"
-  puts ERB.new( code, nil, '%<>' ).result
+  puts ERB.new( code, trim_mode: '%<>' ).result
 end
 
 ARGV.each do |file|
