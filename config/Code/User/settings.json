@@ -125,5 +125,6 @@
     "peacock.affectActivityBar": true,
     "[java]": {
     },
-    "java.implementationsCodeLens.enabled": true
+    "java.implementationsCodeLens.enabled": true,
+    "window.zoomLevel": -1
 }
