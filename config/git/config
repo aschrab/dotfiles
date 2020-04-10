@@ -81,7 +81,7 @@
 	cmd = vim -f -c "Gdiff!" "$MERGED"
 
 [diff]
-	tool = kitty
+	tool = fugitive
 [difftool]
 	prompt = false
 [difftool "kitty"]
