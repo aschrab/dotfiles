@@ -14,7 +14,7 @@ printf '%d\\n' \$? >'$tmpd/status'
 END_SCRIPT
 
 # Start a new tmux window running the script we just created
-tmux neww bash -x "$tmpd/run"
+tmux neww bash "$tmpd/run"
 
 # Wait to get status from the fifo
 read -r st <"$tmpd/status"
