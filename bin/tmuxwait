@@ -1,0 +1,23 @@
+#!/bin/bash
+set -euo pipefail
+
+# Create tmp dir and fifo
+tmpd=$(mktemp -d)
+trap 'rm -rf "$tmpd"' EXIT
+mkfifo "$tmpd/status"
+
+# Write out simple script to run the provided command and send its exit status to the fifo created above
+cat >"$tmpd/run" <<END_SCRIPT
+set +e
+$(printf '%q ' "$@")
+printf '%d\\n' \$? >'$tmpd/status'
+END_SCRIPT
+
+# Start a new tmux window running the script we just created
+tmux neww bash "$tmpd/run"
+
+# Wait to get status from the fifo
+read -r st <"$tmpd/status"
+exit "$st"
+
+# vim: filetype=sh
