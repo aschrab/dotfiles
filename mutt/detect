@@ -40,7 +40,7 @@ mailboxrx 'imaps://aaron.schrab@gmail.com[^/]*/' '[G]%R'
   bind index \\ background-compose-menu
 % bg_format='%?B? Bg: %B?'
 % else
-  set editor="twrap vim '+/^$/+1'"
+  set editor="twrap vim"
 % end
 % end
 
