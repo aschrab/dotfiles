@@ -36,7 +36,7 @@ mailboxrx 'imaps://aaron.schrab@gmail.com[^/]*/' '[G]%R'
 
 % if ENV['TMUX']
 % if mutt_variable :background_edit
-  set background_edit editor="tmuxwait vim" background_format="%10S %8p %s"
+  set editor="tmuxwait vim" background_edit background_format="%10S %8p %s"
   bind index \\ background-compose-menu
 % bg_format='%?B? Bg: %B?'
 % else
