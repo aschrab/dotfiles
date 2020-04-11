@@ -7,6 +7,7 @@ fi
 
 if [[ -n "$PS1" ]] && [[ -d "$HOME/.functions" ]] ; then
   for f in "$HOME/.functions"/* ; do
+    # shellcheck disable=1090
     . "$f"
   done
 fi
