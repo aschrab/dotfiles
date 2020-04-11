@@ -16,6 +16,7 @@ alias l='ls -F'
 alias ll='l -l'
 alias la='l -a'
 alias lla='ll -a'
+alias ..='cd ..'
 
 alias g=git
 
