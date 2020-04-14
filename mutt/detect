@@ -34,12 +34,12 @@ macro pager,index ,@text "<enter-command>alternative_order <%= alt_types %>; <%=
 mailboxrx 'imaps://aaron.schrab@gmail.com[^/]*/' '[G]%R'
 % end
 
+set editor="twrap vim"
 % if ENV['TMUX']
 % if mutt_variable :background_edit
-  set background_edit editor="tmuxwait vim" background_format="%10S %8p %s"
+  set editor="tmuxwait $editor" background_edit background_format="%10S %8p %s"
+  bind index \\ background-compose-menu
 % bg_format='%?B? Bg: %B?'
-% else
-  set editor="twrap vim '+/^$/+1'"
 % end
 % end
 

@@ -6,6 +6,28 @@ tmpd=$(mktemp -d)
 trap 'rm -rf "$tmpd"' EXIT
 mkfifo "$tmpd/status"
 
+tmux_command=(tmux)
+case "$1" in
+    split-window|splitw|new-window|neww)
+        # If first argument is a tmux command for creating a new window or pane
+        # use that and any options up to `--`
+        while [ $# -gt 0 ]; do
+            if [ "$1" = -- ]; then
+                shift
+                break
+            else
+                tmux_command+=("$1")
+                shift
+            fi
+        done
+        ;;
+
+    *)
+        # Use a default command with no options
+        tmux_command+=(split-window)
+        [ "$1" = -- ] && shift
+esac
+
 # Write out simple script to run the provided command and send its exit status to the fifo created above
 cat >"$tmpd/run" <<END_SCRIPT
 set +e
@@ -14,7 +36,7 @@ printf '%d\\n' \$? >'$tmpd/status'
 END_SCRIPT
 
 # Start a new tmux window running the script we just created
-tmux neww bash "$tmpd/run"
+"${tmux_command[@]}" bash "$tmpd/run"
 
 # Wait to get status from the fifo
 read -r st <"$tmpd/status"

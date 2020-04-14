@@ -7,6 +7,7 @@ fi
 
 if [[ -n "$PS1" ]] && [[ -d "$HOME/.functions" ]] ; then
   for f in "$HOME/.functions"/* ; do
+    # shellcheck disable=1090
     . "$f"
   done
 fi
@@ -15,6 +16,7 @@ alias l='ls -F'
 alias ll='l -l'
 alias la='l -a'
 alias lla='ll -a'
+alias ..='cd ..'
 
 alias g=git
 
