@@ -1,3 +1,4 @@
+% OS_X = File.exists? '/dev/machtrace'
 font_family Fira Code
 font_size 12
 
@@ -9,6 +10,13 @@ enable_audio_bell no
 
 macos_option_as_alt both
 macos_quit_when_last_window_closed no
+
+% if OS_X
+# Added `-g` option to avoid making browser active
+open_url_with open -g
+
+map cmd+w no_op
+% end
 
 <% 1.upto(9) do |x| -%>
   map super+<%= x %> goto_tab <%= x %>
