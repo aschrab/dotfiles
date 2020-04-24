@@ -46,7 +46,7 @@
     "vim.visualstar": true,
     "editor.cursorBlinking": "solid",
     "editor.fontLigatures": true,
-    "editor.fontFamily": "'Fira Code', Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontFamily": "'JetBrains Mono', 'Fira Code', Menlo, Monaco, 'Courier New', monospace",
     "editor.lineNumbers": "relative",
     "editor.overviewRulerBorder": false,
     "editor.renderControlCharacters": true,
