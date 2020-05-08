@@ -85,6 +85,10 @@ export PSQL_EDITOR="$EDITOR +'set ft=sql'"
 [[ -n ${PAGER:=less} ]] && [[ $PAGER != *less* ]] && alias less=$PAGER
 export PAGER
 
+if (( $+commands[ssh-askpass] )); then
+  export SUDO_ASKPASS=$commands[ssh-askpass]
+fi
+
 export LESS=""
 #LESS="$LESS --quit-at-eof"
 LESS="$LESS --quit-if-one-screen"
