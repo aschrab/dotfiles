@@ -36,11 +36,11 @@ class ERuby
     end
 end
 
-def eruby h
+def eruby h, data={}
   src = h.keys[0]
   dst = h[src]
   file dst => src do |task|
-    ERuby.build task
+    ERuby.build task, data
   end
   dst
 end
@@ -50,7 +50,7 @@ task :i3 => 'i3:reload'
 
 namespace :i3 do
   desc "Window manager"
-  task :wm => eruby('i3/wm' => "#{home}/.config/i3/config")
+  task :wm => eruby({ 'i3/wm' => "#{home}/.config/i3/config" }, { wm: 'i3' })
   desc "Status bar"
   task :status => eruby('i3/status' => "#{home}/.config/i3status/config")
 

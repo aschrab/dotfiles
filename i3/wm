@@ -104,10 +104,10 @@ bindsym $mod+period       focus child
 bindsym $mod+Shift+S exec scrot -z "<%= ENV['HOME'] %>/Pictures/screenshot_%F_%T.png"
 bindsym --release $mod+Shift+W exec scrot -zsb "<%= ENV['HOME'] %>/Pictures/screenshot_%F_%T.png"
 
-bindsym $mod+a exec --no-startup-id "<%= DOTFILE_DIR %>/i3/workspace-exec i3 workspace %s"
-bindsym $mod+Shift+A exec --no-startup-id "<%= DOTFILE_DIR %>/i3/workspace-exec i3 move container to workspace %s"
-bindsym $mod+Control+A exec --no-startup-id "<%= DOTFILE_DIR %>/i3/workspace-exec 'i3 move container to workspace %s; i3 workspace %s'"
-bindsym $mod+Control+r exec --no-startup-id "<%= DOTFILE_DIR %>/i3/workspace-exec i3 rename workspace to %s"
+bindsym $mod+a exec --no-startup-id "<%= DOTFILE_DIR %>/i3/workspace-exec <%= @wm %> workspace %s"
+bindsym $mod+Shift+A exec --no-startup-id "<%= DOTFILE_DIR %>/i3/workspace-exec <%= @wm %> move container to workspace %s"
+bindsym $mod+Control+A exec --no-startup-id "<%= DOTFILE_DIR %>/i3/workspace-exec '<%= @wm %> move container to workspace %s; <%= @wm %> workspace %s'"
+bindsym $mod+Control+r exec --no-startup-id "<%= DOTFILE_DIR %>/i3/workspace-exec <%= @wm %> rename workspace to %s"
 
 # move focused container to workspace
 % symbols = %w{exclam at numbersign dollar percent asciicircum ampersand asterisk parenleft parenright}
