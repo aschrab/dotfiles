@@ -283,3 +283,6 @@
 [submodule "vim/bundle/beancount"]
 	path = vim/bundle/beancount
 	url = https://github.com/aschrab/vim-beancount.git
+[submodule "vim/bundle/flog"]
+	path = vim/bundle/flog
+	url = https://github.com/rbong/vim-flog.git
