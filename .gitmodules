@@ -21,7 +21,7 @@
 	url = https://github.com/zsh-users/zsh-completions.git
 [submodule "vim/bundle/fugitive"]
 	path = vim/bundle/fugitive
-	url = https://github.com/aschrab/vim-fugitive.git
+	url = https://github.com/tpope/vim-fugitive.git
 [submodule "vim/bundle/unimpaired"]
 	path = vim/bundle/unimpaired
 	url = https://github.com/tpope/vim-unimpaired.git
