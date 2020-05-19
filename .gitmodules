@@ -21,7 +21,7 @@
 	url = https://github.com/zsh-users/zsh-completions.git
 [submodule "vim/bundle/fugitive"]
 	path = vim/bundle/fugitive
-	url = https://github.com/aschrab/vim-fugitive.git
+	url = https://github.com/tpope/vim-fugitive.git
 [submodule "vim/bundle/unimpaired"]
 	path = vim/bundle/unimpaired
 	url = https://github.com/tpope/vim-unimpaired.git
@@ -31,9 +31,6 @@
 [submodule "vim/bundle/speeddating"]
 	path = vim/bundle/speeddating
 	url = https://github.com/tpope/vim-speeddating.git
-[submodule "vim/bundle/gitv"]
-	path = vim/bundle/gitv
-	url = https://github.com/gregsexton/gitv.git
 [submodule "vim/bundle/cmdalias"]
 	path = vim/bundle/cmdalias
 	url = https://github.com/vim-scripts/cmdalias.vim.git
@@ -286,3 +283,6 @@
 [submodule "vim/bundle/beancount"]
 	path = vim/bundle/beancount
 	url = https://github.com/aschrab/vim-beancount.git
+[submodule "vim/bundle/flog"]
+	path = vim/bundle/flog
+	url = https://github.com/rbong/vim-flog.git

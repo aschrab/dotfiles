@@ -126,5 +126,8 @@
     "[java]": {
     },
     "java.implementationsCodeLens.enabled": true,
-    "window.zoomLevel": -1
+    "window.zoomLevel": -1,
+    "java.requirements.JDK11Warning": false,
+    "java.semanticHighlighting.enabled": true,
+    "editor.insertSpaces": false
 }
