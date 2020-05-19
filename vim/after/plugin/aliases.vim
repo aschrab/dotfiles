@@ -3,8 +3,8 @@ if exists(":Alias")
 
   Alias ack Ack
   Alias New new
-  Alias gitk Gitv
-  Alias gv Gitv
+  Alias gitk Flog
+  Alias gv Flog
   Alias scratch Scratch
   if exists(":Shell")
     Alias sh    Shell
