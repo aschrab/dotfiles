@@ -96,7 +96,7 @@
 	g           = "!f() { git $@; }; f"
 	git         = "!f() { git $@; }; f"
 	v           = "!git gitv"
-	gitv        = "!f() { vim $(git rev-parse --git-dir)/index -c \":Gitv $@\" -c ':tabclose 1'; }; f"
+	gitv        = "!f() { vim $(git rev-parse --git-dir)/index -c \":Flog $@\" -c ':tabclose 1'; }; f"
 	root        = rev-parse --show-toplevel
 	conf        = config
 	co          = checkout
