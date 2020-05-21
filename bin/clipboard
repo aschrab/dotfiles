@@ -7,6 +7,13 @@ if [ -c /dev/machtrace ]; then
   paste() {
     reattach-to-user-namespace pbpaste
   }
+elif [ -n "${WAYLAND_DISPLAY:-}" ]; then
+  copy() {
+    wl-copy
+  }
+  paste() {
+    wl-paste
+  }
 else
   selection=clipboard
   #selection=primary
