@@ -22,7 +22,9 @@ endif
 
 let g:deoplete#enable_at_startup = 1
 
+" Older versions of vim don't support data structures
 if (v:version >= 700)
+  " Setup blacklist of plugins that are unavailable or incompatible
   let g:pathogen_blacklist = []
 
   if !exists('g:sudoed') && ((v:version == 703 && has('patch501')) || v:version > 703)
