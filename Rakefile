@@ -60,6 +60,18 @@ namespace :i3 do
   end
 end
 
+desc "Configuration for sway"
+task :sway => 'sway:reload'
+namespace :sway do
+  desc "Compositor"
+  task :compositor => eruby({ 'i3/wm' => "#{home}/.config/sway/i3" }, { wm: 'sway' })
+
+  desc "Reload"
+  task :reload => [ :compositor ] do
+    sh "swaymsg reload"
+  end
+end
+
 namespace :ssh do
   dst = "#{home}/.ssh/config"
 

@@ -41,11 +41,11 @@ floating_modifier $mod
 focus_on_window_activation urgent
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec exec i3-sensible-terminal
 bindsym $mod+t exec i3-sensible-terminal -e tmux
 
 # lock screen
-bindsym $mod+Shift+Z exec i3lock
+bindsym $mod+Shift+Z exec <%= @wm %>lock
 
 # Toggle showing key presses
 bindsym $mod+Control+K exec --no-startup-id ~/.bin/show_keys
@@ -172,6 +172,7 @@ bindsym $mod+r mode "resize"
   # Sort from left to right, top to bottom
   displays.sort_by!{ |m| m['rect'].values_at(*%w<x y>) }
 %>
+<% if @wm == 'i3' %>
 % displays.each_with_index do |m,i|
 bar {
         position bottom
@@ -184,6 +185,7 @@ bar {
 }
 bindsym $mod+Control+<%=i+1%> move workspace to output <%= m['name'] %>
 % end
+<% end %>
 
 for_window [class="Gitk"] floating enable
 for_window [class="^Display\.im"] floating enable
@@ -197,6 +199,11 @@ for_window [title="^Edit Scheduled Transaction"] resize set 1000 547, move posit
 assign [class="Gnucash"] → "3:cash"
 workspace "3:cash" output <%= displays.last['name'] %>
 
+<% if @wm == 'i3' %>
 exec --no-startup-id "<%= DOTFILE_DIR %>/i3/startup"
+<% end %>
+<% if @wm == 'sway' %>
+exec --no-startup-id "exec <%= DOTFILE_DIR %>/config/sway/idle"
+<% end %>
 
 # vim: filetype=eruby.i3

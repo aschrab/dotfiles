@@ -1,0 +1,13 @@
+#!/bin/bash
+
+lock='swaylock -f --color 000000'
+
+events=(
+    timeout 300 "$lock"
+    timeout 600 'swaymsg "output * dpms off"'
+         resume 'swaymsg "output * dpms on"'
+    before-sleep "$lock"
+)
+
+# printf '%s\n' \
+exec swayidle -w "${events[@]}"
