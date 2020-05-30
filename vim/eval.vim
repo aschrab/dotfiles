@@ -23,10 +23,7 @@ endif
 let g:deoplete#enable_at_startup = 1
 
 if (v:version >= 700)
-  " Start up pathogen if it's available
-  " Won't be available on boxes before git submodules have been fetched
   let g:pathogen_blacklist = []
-  "let g:pathogen_blacklist += [ 'signify' ]
 
   if !exists('g:sudoed') && ((v:version == 703 && has('patch501')) || v:version > 703)
   else
@@ -70,6 +67,8 @@ if (v:version >= 700)
   endif
 
   if has("gui_running") || $FQDN !~ '\M.netapp.com' || $FQDN =~ '\M.rtp.' || $FQDN =~ '\M^aschrab'
+    " Start up pathogen if it's available
+    " Won't be available on boxes before git submodules have been fetched
     runtime bundle/pathogen/autoload/pathogen.vim
     if exists('*pathogen#infect')
       execute pathogen#infect()
