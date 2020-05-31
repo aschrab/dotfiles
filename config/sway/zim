@@ -37,6 +37,9 @@ input * {
 }
 
 include i3
+bindsym $mod+Control+1 move workspace to output DP-1
+bindsym $mod+Control+2 move workspace to output HDMI-A-1
+bindsym $mod+Control+3 move workspace to output HDMI-A-2
 
 for_window [shell="xdg_shell"] title_format "Ⓦ %title"
 for_window [shell="xwayland"] title_format "Ⓧ %title"
