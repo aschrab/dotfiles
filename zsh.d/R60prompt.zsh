@@ -62,15 +62,19 @@ else
   rum=""
 fi
 
-nl='
+() {
+local terminator='$'
+[[ $EUID = 0 ]] && terminator='#'
+local nl='
 '
 
 RPS1=''
 PS1='
 %{$pColor$rev%} %D{%d%b%H:%M:%S}  %1v%n@$host$DEBCHROOT  %~ %{$rum$fColor%}%E
-%{$pColor%}${vcs_info_msg_0_}%E${vcs_info_msg_0_:+$nl}%{$pColor%}%!%(#.#.$)%{$fColor%} '
+%{$pColor%}${vcs_info_msg_0_}%E${vcs_info_msg_0_:+$nl}%{$pColor%}%!${(r:$SHLVL::'"$terminator"':)}%{$fColor%} '
 
 PS2='%{$pColor%}%_>%{$fColor%} '
+}
 
 # Update prompt before running a command so that it will display time when the
 # command was started rather than when the previous command ended
