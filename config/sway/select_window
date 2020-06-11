@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+
+require 'json'
+require 'open3'
+
+# Recurse through the tree and find window ids and names
+def find_windows(container, found=[])
+  if container['nodes']
+    container['nodes'].each { |node| find_windows node, found }
+  end
+
+  if container['type'] == 'con' and container['name']
+    found << [ container['id'], container['name'] ].join(' ')
+  end
+
+  found
+end
+
+windows = find_windows JSON.parse(`swaymsg -t get_tree`)
+# puts windows.join("\n")
+
+# Run wofi to get a selection
+cmd = %w<wofi --show dmenu>
+selected, _status = Open3.capture2(*cmd, '-i', stdin_data: windows.join("\n"))
+exit if selected == ""
+
+# Get the window id from the leading digits of the selection
+id = selected[/^\d+/]
+
+# Focus the selected window
+cmd = [ 'swaymsg', "[con_id=#{id}] focus" ]
+# p cmd
+system(*cmd)

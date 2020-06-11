@@ -1,0 +1,49 @@
+# Upper
+output DP-1 {
+  position 0 0
+  transform 180
+}
+bar {
+  position bottom
+  output DP-1
+  status_command i3status
+  separator_symbol " | "
+}
+
+# Lower
+output HDMI-A-1 position 0 2160
+bar {
+  position bottom
+  output HDMI-A-1
+  separator_symbol " | "
+  tray_output HDMI-A-1
+}
+
+# Right
+output HDMI-A-2 {
+  position 3840 1192
+  transform 270
+}
+bar {
+  position bottom
+  output HDMI-A-2
+  separator_symbol " | "
+}
+
+#input 1133:16495:Logitech_MX_Ergo
+input * {
+  pointer_accel 1
+  scroll_factor 3
+}
+
+include i3
+bindsym $mod+Control+1 move workspace to output DP-1
+bindsym $mod+Control+2 move workspace to output HDMI-A-1
+bindsym $mod+Control+3 move workspace to output HDMI-A-2
+
+for_window [shell="xdg_shell"] title_format "Ⓦ %title"
+for_window [shell="xwayland"] title_format "Ⓧ %title"
+
+font pango:Fira Code 12
+
+# vim: ft=i3
