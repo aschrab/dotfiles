@@ -71,7 +71,7 @@ local nl='
 RPS1=''
 PS1='
 %{$pColor$rev%} %D{%d%b%H:%M:%S}  %1v%n@$host$DEBCHROOT  %~ %{$rum$fColor%}%E
-%{$pColor%}${vcs_info_msg_0_}%E${vcs_info_msg_0_:+$nl}%{$pColor%}%!${(r:$SHLVL::'"$terminator"':)}%{$fColor%} '
+%{$pColor%}${vcs_info_msg_0_}%E${vcs_info_msg_0_:+$nl}%{$pColor%}%!${(r:$SHLVL::'"$terminator"':)}%{$fColor%} '
 
 PS2='%{$pColor%}%_>%{$fColor%} '
 }
