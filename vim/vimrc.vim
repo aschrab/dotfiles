@@ -262,6 +262,7 @@ dig .. 8230 " Ellipsis …
 dig eu 8364 " Euro sign
 dig mt 8709 " Empty set ∅
 dig nl 9216 " null ␀
+dig nb 160 " non-breaking space
 endif
 
 set cinoptions+=l1,(0,t0
