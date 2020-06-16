@@ -7,3 +7,5 @@ if [[ -r ~/.gnupg/gpg-agent.conf ]] ; then
 fi
 
 [[ -r ~/.gnupg/env ]] && source ~/.gnupg/env
+
+export HOMEBREW_NO_AUTO_UPDATE=1
