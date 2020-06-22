@@ -168,7 +168,7 @@ set guioptions-=l
 set guioptions-=L
 set guioptions-=b
 
-:if has('nvim') "&& $TERM =~ 'konsole'
+:if has('nvim') && $TERM =~ 'konsole'
   " method of changing cursor on konsole causes font size to be reset to
   " profile default.
   " Not including the check of $TERM for now, since this problem occurs
