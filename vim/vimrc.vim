@@ -168,7 +168,7 @@ set guioptions-=l
 set guioptions-=L
 set guioptions-=b
 
-:if has('nvim') "&& $TERM =~ 'konsole'
+:if has('nvim') && $TERM =~ 'konsole'
   " method of changing cursor on konsole causes font size to be reset to
   " profile default.
   " Not including the check of $TERM for now, since this problem occurs
@@ -185,6 +185,11 @@ inoremap <C-L> <C-X><C-L>
 inoremap <C-e> <esc>
 inoremap jl <esc>
 inoremap <S-Space> <Space>
+
+" Setup unimpaired-style mappings for jumplist,
+" since using ^O for tmux prefix makes the default awkward.
+nnoremap [j <C-O>
+nnoremap ]j <C-I>
 
 nnoremap gf :sfind <cfile><CR>
 vnoremap gf :<C-U>sfind <C-R>=escape#filename(visual#get())<CR><CR>

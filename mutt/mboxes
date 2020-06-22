@@ -17,6 +17,7 @@ mailboxes =L/debian
 mailboxes + +Credit
 
 <%= mlist 'lsm-workers' %>
+<%= mlist '=L/dev/esr' %>
 
 <%= mlist '=L/ug/trilug/steering', :subjectrx => '[Steering]', :address => 'steering@trilug' %>
 <%= mlist '=L/ug/trilug/volunteers', :subjectrx => '[TriLUG Volunteers]', :address => 'volunteers@trilug' %>

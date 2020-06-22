@@ -92,7 +92,6 @@ set ssl_use_tlsv1=no
 set ssl_force_tls=yes # Require all remote connections to be encrypted.
 
 # Bindings
-bind  pager	<Tab>	next-new
 bind  pager 	b	previous-page
 bind  pager	B	bounce-message
 bind  pager     *       bottom
@@ -107,7 +106,9 @@ macro pager     "\Ck"	"|gpg --import\n"
 macro pager     "\Cb"   "|urlview\n"
 macro pager	"\eh"	"<view-attachments><next-entry><edit-type><bol><delete-char><enter><exit><exit><display-message>" "View alternative"
 
-bind index,pager <Backspace> next-new
+bind index,pager <Delete> next-new-then-unread
+bind index,pager <Tab> next-new-then-unread
+
 macro index,pager ',k' "<view-attachments><search>pgp-signat<enter><pipe-entry>gpg --verify --auto-key-retrieve /dev/fd/0 /dev/null<enter><exit>" "Retrieve key for message"
 
 macro pager	,@r13on	"<enter-command>set display_filter='tr A-Za-z N-ZA-Mn-za-m'; macro pager '#' ,@r13off 'Toggle ROT13 decoding'\n<display-toggle-weed><display-toggle-weed><enter-command>unset display_filter\n"  "Turn on ROT13 decoding"
@@ -122,7 +123,6 @@ set my_wrap=100 my_reflow=$my_wrap
 macro pager	l	"<enter-command>set my_save=\$my_wrap my_wrap=\$wrap wrap=\$my_save my_save=\$my_reflow my_reflow=\$reflow_wrap reflow_wrap=\$my_save\n<display-toggle-weed><display-toggle-weed>" "Toggle wrap"
 #<exit><display-message>
 
-bind  index	<Tab>	next-new-then-unread
 bind  index	<BackTab> previous-new-then-unread
 bind  index	"\e[Z"	previous-new-then-unread
 macro index	'^'	"<last-entry><next-new>" "Jump to first new message"
