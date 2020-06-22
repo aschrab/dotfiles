@@ -9,7 +9,8 @@ zstyle ':vcs_info:*' unstagedstr '△'
 zstyle ':vcs_info:git(|-p4|-svn):*' check-for-changes true
 # If the VCS is git, don't mention that it'll be assumed
 zstyle ':vcs_info:git(|-p4|-svn):*' formats "[%b]%c%u" '%R'
-zstyle ':vcs_info:git(|-p4|-svn):*' actionformats "[%b|%a]%c%u"
+zstyle ':vcs_info:git(|-p4|-svn):*' actionformats "[%b|%a(%m)]%c%u"
+zstyle ':vcs_info:git(|-p4|-svn):*' patch-format '%n/%a'
 
 zstyle ':vcs_info:hg:*' check-for-changes true
 zstyle ':vcs_info:hg:*' get-revision true
