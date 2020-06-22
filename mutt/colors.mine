@@ -32,7 +32,7 @@ color body		red	default	'^gpg: .*not certified.*'
 color signature		cyan	default
 color tilde		white	default
 
-color attachment	white	blue
+color attachment	blue	default
 color markers		blue	default
 
 # vim: tabstop=8 nowrap filetype=muttrc
