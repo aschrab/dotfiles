@@ -186,6 +186,11 @@ inoremap <C-e> <esc>
 inoremap jl <esc>
 inoremap <S-Space> <Space>
 
+" Setup unimpaired-style mappings for jumplist,
+" since using ^O for tmux prefix makes the default awkward.
+nnoremap [j <C-O>
+nnoremap ]j <C-I>
+
 nnoremap gf :sfind <cfile><CR>
 vnoremap gf :<C-U>sfind <C-R>=escape#filename(visual#get())<CR><CR>
 
