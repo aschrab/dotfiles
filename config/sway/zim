@@ -33,7 +33,8 @@ bar {
 #input 1133:16495:Logitech_MX_Ergo
 input * {
   pointer_accel 1
-  scroll_factor 3
+  accel_profile adaptive
+  scroll_factor 2
 }
 
 include i3
