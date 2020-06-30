@@ -18,7 +18,7 @@ def bind_dir binding
 
   dir = keys.pop.to_sym
   mods = keys.join '+'
-  shifted = mods[/shift/i]
+  shifted = @wm == 'i3' and mods[/shift/i]
 
   mods += '+' unless mods.empty?
 
