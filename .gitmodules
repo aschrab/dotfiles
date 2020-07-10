@@ -286,3 +286,6 @@
 [submodule "vim/bundle/flog"]
 	path = vim/bundle/flog
 	url = https://github.com/rbong/vim-flog.git
+[submodule "vim/bundle/vcs-jump"]
+	path = vim/bundle/vcs-jump
+	url = https://github.com/wincent/vcs-jump.git
