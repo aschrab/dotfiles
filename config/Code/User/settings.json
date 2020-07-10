@@ -21,6 +21,9 @@
     "vim.insertModeKeyBindingsNonRecursive": [
         { "before": ["j", "l"], "after": ["<Esc>"]}
     ],
+    "vim.insertModeKeyBindings": [
+        { "before": [ "<C-d>" ], "commands": [ "editor.action.outdentLines" ] },
+    ],
     "vim.normalModeKeyBindings": [
         { "before": ["<C-h>"], "after": ["<C-w>", "h"]},
         { "before": ["<C-j>"], "after": ["<C-w>", "j"]},
