@@ -126,7 +126,6 @@
 	last        = log --stat -p -1 HEAD
 	stashed     = stash list --pretty='%gd: %Cred%h%Creset %Cgreen[%ar]%Creset %s'
 	unstage     = reset HEAD --
-	pr          = pull-request
 	review      = "!f() { for rev in $(git log --reverse --format=%H $@); do git show $rev; done; }; f"
 	show-commit = log -1 -p
 	unmerged    = diff --name-only --diff-filter=U
