@@ -36,6 +36,8 @@
 	#algorithm      = histogram # Too new for some of the systems I use
 	compactionHeuristic =  yes
 	indentHeuristic = yes
+	colorMoved = yes
+	colorMovedWS = ignore-space-at-eol,ignore-space-change
 
 [diff "ini"]
 	xfuncname = "^\\[.*\\]"
