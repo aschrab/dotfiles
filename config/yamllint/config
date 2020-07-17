@@ -7,3 +7,7 @@ rules:
   line-length:
     max: 160
     level: warning
+
+  empty-values:
+    forbid-in-block-mappings: true
+    forbid-in-flow-mappings: true
