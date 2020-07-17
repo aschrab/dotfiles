@@ -16,13 +16,6 @@
 [credential]
 	helper = cache
 
-[include]
-	path = ~/.gitconfig.local
-	path = local
-
-[includeIf "gitdir:/Users/aschrab/"]
-	path = mac
-
 [advice]
 	statusHints = no
 	detachedHead = false
@@ -198,3 +191,10 @@
 	insteadOf = https://ngage.netapp.com/stash/scm/
 	insteadOf = ssh://git@ngage.netapp.com:7999/
 	insteadOf = ssh://ngage.netapp.com:7999/
+
+[include]
+	path = ~/.gitconfig.local
+	path = local
+
+[includeIf "gitdir:/Users/aschrab/"]
+	path = mac
