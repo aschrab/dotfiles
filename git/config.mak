@@ -12,7 +12,7 @@ ifeq ($(prefix),$(HOME))
   ifeq ($(CURRENT_BRANCH),next)
     prefix = $(HOME)/opt/git/next
   endif
-  ifeq ($(CURRENT_BRANCH),pu)
-    prefix = $(HOME)/opt/git/pu
+  ifeq ($(CURRENT_BRANCH),seen)
+    prefix = $(HOME)/opt/git/seen
   endif
 endif
