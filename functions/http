@@ -1,0 +1,13 @@
+#autoload
+
+function http {
+  local options
+
+  if [ -t 1 ]; then
+    options=(--pretty=all)
+  else
+    options=(--pretty=format)
+  fi
+
+  command http "${options[@]}" "$@"
+}
