@@ -20,5 +20,3 @@ case "$USERNAME" in
     pColor=$fg[green]
     ;;
 esac
-
-export pColor

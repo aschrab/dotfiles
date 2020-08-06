@@ -62,6 +62,7 @@ foreach my $f (@ARGV) {
 	}
 
 	my $dest = ".$f"; # Name of link to use, relative to home directory
+	$dest =~ s{/$}{}; # Remove trailing slash to avoid creating an empty directory where we want a symlink.
 
 	# If the link is supposed to be in a subdirectory:
 	# * Make sure the parent directories exist

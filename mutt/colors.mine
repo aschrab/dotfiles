@@ -6,8 +6,7 @@ color index		green	default ~T
 color index		red	default ~D
 
 color status		black	green
-color indicator		yellow	default
-color tree		blue	default
+color tree		cyan	default
 
 color hdrdefault	cyan	default
 color header		red	default "^X-(Suspect-reason|spam-action|procmail|Diagnostic|Processed|Country):"
