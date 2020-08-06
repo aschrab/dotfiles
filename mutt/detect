@@ -179,3 +179,11 @@ folder-hook '(suspect|spam)'		"set hdr_format=<%= hdr_format.sub('%s', %Q[#{spam
   account-hook .     'set imap_condstore    imap_qresync'
   account-hook gmail 'set imap_condstore=no imap_qresync=no'
 % end
+
+% if mutt_variable :cursor_overlay
+  set cursor_overlay
+  color indicator bold default brightblack
+  color index     yellow default ~F
+% else
+  color indicator		yellow	default
+% end

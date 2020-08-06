@@ -6,7 +6,6 @@ color index		green	default ~T
 color index		red	default ~D
 
 color status		black	green
-color indicator		yellow	default
 color tree		blue	default
 
 color hdrdefault	cyan	default
