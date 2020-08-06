@@ -9,5 +9,5 @@ function http {
     options=(--pretty=format)
   fi
 
-  command http "${options[@]}" "$@"
+  command http "${options[@]}" "$@" | alert-and-page
 }
