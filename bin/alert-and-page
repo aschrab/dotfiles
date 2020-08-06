@@ -1,0 +1,18 @@
+#!/usr/bin/env perl
+use 5.10.0;
+use strict;
+use warnings;
+
+# Don't do anything if wriring to something other than a terminal
+if (-t STDOUT) {
+	# Wait for some data to be available from STDIN
+	my $rin = '';
+	vec($rin, fileno(STDIN),  1) = 1;
+	select $rin, '', '', undef;
+
+	# Print the beep character
+	print "\a";
+}
+
+# Run less to do actual paging
+exec 'less';
