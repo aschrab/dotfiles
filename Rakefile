@@ -1,6 +1,8 @@
 ENV['DISPLAY'] = ':0'
 home = ENV['HOME']
 
+task :default => [ :kitty ]
+
 class ERuby
     attr_reader :task, :data
 
