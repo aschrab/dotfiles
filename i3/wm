@@ -46,6 +46,7 @@ bindsym $mod+t exec i3-sensible-terminal -e tmux
 
 # lock screen
 bindsym $mod+Shift+Z exec <%= @wm %>lock
+bindsym $mod+Control+Q exec <%= @wm %>lock
 
 # Toggle showing key presses
 bindsym $mod+Control+K exec --no-startup-id ~/.bin/show_keys
