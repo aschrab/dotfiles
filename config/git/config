@@ -104,6 +104,7 @@
 	difff       = diff
 	ds          = diff --staged
 	id          = log --no-walk --format=%h
+	reference   = log --no-walk --format=reference
 	sh          = show
 	sho         = show
 	st          = status -sb
