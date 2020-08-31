@@ -114,7 +114,7 @@ bindsym $mod+Control+r exec --no-startup-id "<%= DOTFILE_DIR %>/i3/workspace-exe
 % symbols = %w{exclam at numbersign dollar percent asciicircum ampersand asterisk parenleft parenright}
 <% symbols.each.with_index(1) do |sym,num| %>
 bindsym $mod+<%= num % 10 %> workspace number <%= num %>
-bindsym $mod+Shift+<%= sym %> move container to workspace number <%= num %>
+bindsym $mod+Shift+<%= @wm == 'i3' ? sym : num % 10 %> move container to workspace number <%= num %>
 <% end %>
 
 workspace_auto_back_and_forth yes
