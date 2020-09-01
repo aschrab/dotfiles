@@ -1,5 +1,10 @@
+java_version() {
+	plutil -extract JavaVM json -o - "${1}/Contents/Info.plist" | jq -r .JVMPlatformVersion
+}
+
 java_home() {
 	local version="$1"
+	local verbose="${2:-n}"
 	local base=/Library/Java/JavaVirtualMachines
 	local jvm
 	local found
@@ -7,7 +12,8 @@ java_home() {
 
 	for jvm in "$base"/*
 	do
-		jvm_version=$(plutil -extract JavaVM json -o - "${jvm}/Contents/Info.plist" | jq -r .JVMPlatformVersion)
+		jvm_version=$(java_version "$jvm")
+		[ "$verbose" = y ] && echo "Found $jvm_version in '$jvm'"
 		if [ "$jvm_version" = "$version" ]; then
 			found=$jvm
 			break
