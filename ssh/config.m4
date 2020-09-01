@@ -7,6 +7,10 @@ AddKeysToAgent yes
 })dnl
 # VisualHostKey yes
 
+ifelse(OS, {Darwin}, {
+XAuthLocation /opt/X11/bin/xauth
+})dnl
+
 HashKnownHosts no
 ControlMaster auto
 ControlPath ~/.ssh/.master.atleast({6.7}, {%C}, {%r@%h:%p})
