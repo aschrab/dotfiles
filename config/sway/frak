@@ -1,0 +1,20 @@
+output eDP-1 {
+  mode 2560x1440
+  scale 1
+}
+bar {
+  position bottom
+  output eDP-1
+  tray_output eDP-1
+  status_command i3status
+  separator_symbol " | "
+}
+
+include i3
+
+for_window [shell="xdg_shell"] title_format "Ⓦ %title"
+for_window [shell="xwayland"] title_format "Ⓧ %title"
+
+font pango:Fira Code 12
+
+# vim: ft=i3
