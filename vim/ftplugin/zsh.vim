@@ -8,3 +8,5 @@ if exists("loaded_matchit")
       \ ',(:),{:},\[:]'
   endif
 endif
+
+inoremap <buffer> ; ;
