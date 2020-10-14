@@ -1,7 +1,4 @@
 #!/bin/bash
-
-set -u
-set -e
-set -o pipefail
+set -ueo pipefail
 
 namei -l "$@"
