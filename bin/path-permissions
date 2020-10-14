@@ -1,4 +1,6 @@
 #!/bin/bash
 set -ueo pipefail
 
+[[ $# = 0 ]] && set .
+
 namei -l "$@"
