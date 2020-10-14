@@ -1,7 +1,17 @@
 #!/bin/bash
+set -ueo pipefail
 
-set -u
-set -e
-set -o pipefail
+[[ $# = 0 ]] && set .
 
-namei -l "$@"
+for path in "$@"
+do
+  case "$path"
+    in
+    /*)
+      ;;
+    *)
+      path="$PWD/$path"
+      ;;
+  esac
+  namei -l "$path"
+done
