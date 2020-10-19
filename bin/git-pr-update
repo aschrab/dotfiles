@@ -21,15 +21,21 @@ do
   esac
 done
 
-ref=$(git describe --all --exact-match)
-
 git diff --quiet || die "Working tree has uncommitted changes"
 
-[[ "$ref" = remotes/* ]] || die "Not on a remote branch"
+log=$(git log --walk-reflogs -1 --pretty=format:%gs HEAD)
 
-ref="${ref##remotes/}"
-remote="${ref%%/*}"
-branch="${ref#*/}"
+if [[ $log == "checkout: moving from"* ]]; then
+  log=${log#checkout: moving from }
+else
+  die "Movement: $log"
+fi
 
+ref=${log#* to }
+
+remote=${ref%%/*}
+branch=${ref#*/}
+
+set -x
 git fetch    "${remote}"
 git checkout "${remote}"/"${branch}"

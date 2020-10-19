@@ -22,11 +22,11 @@ endsnippet
 
 snippet class
 class ${1:Name} {
-  constructor (${2:args}) {
-    $3
-  }
+	constructor (${2:args}) {
+		$3
+	}
 
-  $0
+	$0
 }
 endsnippet
 
@@ -36,7 +36,7 @@ endsnippet
 
 snippet Promise "Create a Promise"
 new Promise((resolve, reject) => {
-  ${VISUAL}$0
+	${VISUAL}$0
 })
 endsnippet
 
@@ -47,3 +47,17 @@ endsnippet
 snippet log
 console.log(\`$1\`)$0
 endsnippet
+
+snippet describe
+describe('${1:description}', () => {
+	${2:${VISUAL}}
+})
+endsnippet
+
+snippet it
+it('${1:description}', () =>
+	expect(${2:what}).to.${3}
+)$0
+endsnippet
+
+# vim: noet sw=2 ts=2

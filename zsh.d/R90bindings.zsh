@@ -117,6 +117,9 @@ fi
 bindkey -M menuselect '^f'  history-incremental-search-forward
 bindkey -M menuselect '^i'  down-line-or-history
 
+# Change enter in incremental search to only select an entry, not execute it.
+bindkey -M isearch '^M' accept-search
+
 # Shortcut for inserting current path relative to $HOME.  Main anticipated use
 # is when I want to refer to same directory on a different system with scp.
 _ins_current_path() {

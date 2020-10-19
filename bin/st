@@ -27,7 +27,7 @@ st () {
   if [ -n "$host" ] && [ "-" != "$host" ]; then
     # Sometimes an explicit xclient is needed for clipboard sharing to be activated.
     # Invoke `xrefresh` to satisfy that.
-    remote=(ssh -t "$host" 'xrefresh;')
+    remote=(ssh -t "$host" 'xrefresh; exec')
   fi
 
   exec "${remote[@]}" tmux new -ADs "$session" "$@"
