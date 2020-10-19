@@ -47,3 +47,17 @@ endsnippet
 snippet log
 console.log(\`$1\`)$0
 endsnippet
+
+snippet describe
+describe('${1:description}', () => {
+	${2:${VISUAL}}
+})
+endsnippet
+
+snippet it
+it('${1:description}', () =>
+	expect(${2:what}).to.${3}
+)$0
+endsnippet
+
+# vim: noet sw=2 ts=2
