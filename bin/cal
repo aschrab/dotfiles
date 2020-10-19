@@ -4,12 +4,28 @@ set -u
 set -e
 set -o pipefail
 
+if [ "$(date +%d)" -lt 8 ] ; then
+	early=y
+else
+	early=n
+fi
+
+if gcal --help >/dev/null 2>&1
+then
+	if [ $early = y ] ; then
+		gcal -sMon .
+	else
+		gcal -sMon .+
+	fi
+	exit
+fi
+
 args=(
 	-b # Old-style output
 	-M # Week starts on Monday
 )
 
-if [ "$(date +%d)" -lt 8 ] ; then
+if [ $early = y ] ; then
 	# In first week of the month
 	args+=(-3) # Show current and surrounding months
 else
