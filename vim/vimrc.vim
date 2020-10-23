@@ -132,7 +132,7 @@ silent! set mouse=a
 set isfname-==
 
 " Tell vim to use visual beep then disable visual beep, to keep it silent {{{
-set vb
+set visualbell
 set t_vb=
 "}}}
 
@@ -236,7 +236,7 @@ nnoremap <silent> ]K :ALELast<CR>
 
 " Quote motions for operators: da" will delete a quoted string.
 " Built-in to Vim7
-:if version < 700
+:if v:version < 700
 omap i" :normal vT"ot"<CR>
 omap a" :normal vF"of"<CR>
 omap i' :normal vT'ot'<CR>
@@ -277,7 +277,7 @@ endif
 set cinoptions+=l1,(0,t0
 set cinkeys=0{,0}:,!^F,o,O,e
 
-set bs=2
+set backspace=2
 set secure
 
 :if filereadable(expand('~/.vim/local.vim'))
