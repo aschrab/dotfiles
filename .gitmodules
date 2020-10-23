@@ -289,3 +289,6 @@
 [submodule "vim/bundle/vcs-jump"]
 	path = vim/bundle/vcs-jump
 	url = https://github.com/wincent/vcs-jump.git
+[submodule "vim/bundle/fzf"]
+	path = vim/bundle/fzf
+	url = https://github.com/junegunn/fzf.git
