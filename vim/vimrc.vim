@@ -13,7 +13,7 @@ scriptencoding utf-8
 :endif
 
 set t_Co=16
-:if has("syntax")
+:if has('syntax')
   syntax on
 :endif
 
@@ -42,7 +42,7 @@ set incsearch
 silent! set inccommand=split
 set ruler
 set number
-if exists("+relativenumber")
+if exists('+relativenumber')
 set relativenumber
 endif
 set showmatch
@@ -53,7 +53,7 @@ set splitbelow
 set splitright
 set formatoptions+=r
 set formatoptions+=2
-if exists("+formatlistpat")
+if exists('+formatlistpat')
 set formatlistpat=^\\s*\\d\\+[\\]:.)}]\\s\\+
 endif
 set cpoptions+=$
@@ -73,16 +73,16 @@ set wildmenu
 set wildmode=longest:full,full
 set wildignore+=*.o,*~
 set wildignore+=*.pyc
-if exists("+wildoptions")
+if exists('+wildoptions')
 set wildoptions=tagfile
 endif
-if exists("&wildignorecase")
+if exists('&wildignorecase')
   set wildignorecase
 endif
-if exists("&infercase")
+if exists('&infercase')
   set infercase
 endif
-if exists("+completeopt")
+if exists('+completeopt')
 set completeopt=longest,menuone
 endif
 set tags=tags,TAGS,./tags;,./TAGS;
@@ -93,12 +93,12 @@ silent! set diffopt+=indent-heuristic
 
 set history=1000
 
-:if has("folding")
+:if has('folding')
 set foldopen=mark,quickfix,tag,block,hor,search,insert,undo
 set foldminlines=2
 :endif
 
-:if has("persistent_undo")
+:if has('persistent_undo')
   set undofile
   set undodir=~/.undo,.
 :endif
@@ -110,14 +110,14 @@ set updatetime=200
 "}}}
 
 " Don't force sync after writing swap files, to avoid spinning up disk {{{
-:if $HOST =~ "frell"
+:if $HOST =~ 'frell'
   set swapsync=
   set cmdheight=4
 :endif
 "}}}
 
 silent! set mouse=a
-:if $DISPLAY != ""
+:if $DISPLAY != ''
   :if has('unnamedplus')
     set clipboard=unnamedplus
   :else
@@ -259,7 +259,7 @@ map! <M-Esc>[65~ <S-MouseUp>
 
 map ,x :w<C-M>:r!chmod +x <C-R>=expand('%:S')<C-M><C-M>:w!<C-M>
 
-:if has("digraphs")
+:if has('digraphs')
 "dig 00 176 " ∞
 dig dg 176 " °
 dig oo 176 " °
@@ -280,7 +280,7 @@ set cinkeys=0{,0}:,!^F,o,O,e
 set bs=2
 set secure
 
-:if filereadable(expand("~/.vim/local.vim"))
+:if filereadable(expand('~/.vim/local.vim'))
   source ~/.vim/local.vim
 :endif
 
