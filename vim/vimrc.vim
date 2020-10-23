@@ -3,7 +3,7 @@
 set encoding=utf-8
 scriptencoding utf-8
 
-:if $TERM != 'linux'
+:if $TERM !=? 'linux'
   set background=dark
   silent! colorscheme vividchalk
 :endif
@@ -110,14 +110,14 @@ set updatetime=200
 "}}}
 
 " Don't force sync after writing swap files, to avoid spinning up disk {{{
-:if $HOST =~ 'frell'
+:if $HOST =~? 'frell'
   set swapsync=
   set cmdheight=4
 :endif
 "}}}
 
 silent! set mouse=a
-:if $DISPLAY != ''
+:if $DISPLAY !=# ''
   :if has('unnamedplus')
     set clipboard=unnamedplus
   :else
@@ -137,7 +137,7 @@ set t_vb=
 "}}}
 
 " Try to figure out if on a UTF terminal even if locale isn't known.
-:if $LANG =~ '\cUTF-\?8'
+:if $LANG =~? '\cUTF-\?8'
   set termencoding=utf-8
 :endif
 
@@ -168,7 +168,7 @@ set guioptions-=l
 set guioptions-=L
 set guioptions-=b
 
-:if has('nvim') && $TERM =~ 'konsole'
+:if has('nvim') && $TERM =~? 'konsole'
   " method of changing cursor on konsole causes font size to be reset to
   " profile default.
   " Not including the check of $TERM for now, since this problem occurs
