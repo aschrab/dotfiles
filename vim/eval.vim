@@ -230,7 +230,9 @@ endif
 let g:ale_c_parse_makefile=1
 let g:ale_use_deprecated_neovim = 1
 
+augroup mine
 autocmd BufNewFile,BufRead .eslintrc let b:syntastic_checkers = []
+augroup END
 
 map <silent> <F1> :NERDTreeToggle<CR>
 if v:version >= 700
@@ -260,29 +262,35 @@ augroup ScreenShellExit
 autocmd User * call <SID>ScreenShellListener()
 augroup END
 
+augroup mine
 autocmd BufNewFile,BufRead * call AutoPath()
+augroup END
 
 if exists('##TermOpen')
-autocmd TermOpen * setlocal nonumber norelativenumber
-autocmd TermOpen,BufEnter term://* startinsert
-autocmd BufLeave term://* stopinsert
+  augroup mine
+  autocmd TermOpen * setlocal nonumber norelativenumber
+  autocmd TermOpen,BufEnter term://* startinsert
+  autocmd BufLeave term://* stopinsert
 
-" Map q to re-enter terminal mode rather than start recording a macro.
-autocmd TermOpen * nmap <buffer> q a
+  " Map q to re-enter terminal mode rather than start recording a macro.
+  autocmd TermOpen * nmap <buffer> q a
 
-" Map a few keys from normal-mode to apply as if done in terminal mode.
-autocmd TermOpen * nmap <buffer> <C-c> a<C-c>
-autocmd TermOpen * nmap <buffer> <C-d> a<C-d>
-autocmd TermOpen * nmap <buffer> <C-p> a<C-p>
-autocmd TermOpen * nmap <buffer> <C-r> a<C-r>
-autocmd TermOpen * nmap <buffer> <Return> a<Return>
+  " Map a few keys from normal-mode to apply as if done in terminal mode.
+  autocmd TermOpen * nmap <buffer> <C-c> a<C-c>
+  autocmd TermOpen * nmap <buffer> <C-d> a<C-d>
+  autocmd TermOpen * nmap <buffer> <C-p> a<C-p>
+  autocmd TermOpen * nmap <buffer> <C-r> a<C-r>
+  autocmd TermOpen * nmap <buffer> <Return> a<Return>
+  augroup END
 endif
 
 " auto-start NERDTree if vim started with no files and no buffer content
+augroup mine
 autocmd StdinReadPre * let s:std_in=1
 "autocmd VimEnter * if exists(':NERDTree') && !argc() && !exists('s:std_in') | NERDTree | endif
 " quit vim if NERDTree is only window
 "autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+augroup END
 
 if v:version >= 700
   let g:signify_vcs_list = [ 'git' ]
