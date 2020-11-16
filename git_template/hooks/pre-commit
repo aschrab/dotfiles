@@ -1,4 +1,5 @@
 #!/bin/sh
 git config user.email > /dev/null && exit
+# shellcheck disable=SC2016
 echo 'Set email address with `git config user.email` first' >&2
 exit 1
