@@ -8,8 +8,8 @@ nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
 let g:jsx_ext_required = 1
 
-if exists("+guifont")
-  if has("gui_macvim")
+if exists('+guifont')
+  if has('gui_macvim')
     set guifont=Fira\ Code:h13
     set guifont+=Monoisome\ Regular:h10
     set guifont+=Sauce\ Code\ Powerline:h12
@@ -68,7 +68,7 @@ if (v:version >= 700)
     let g:pathogen_blacklist += [ 'highlighted-yank' ]
   endif
 
-  if has("gui_running") || $FQDN !~ '\M.netapp.com' || $FQDN =~ '\M.rtp.' || $FQDN =~ '\M^aschrab'
+  if has('gui_running') || $FQDN !~ '\M.netapp.com' || $FQDN =~ '\M.rtp.' || $FQDN =~ '\M^aschrab'
     " Start up pathogen if it's available
     " Won't be available on boxes before git submodules have been fetched
     runtime bundle/pathogen/autoload/pathogen.vim
@@ -101,17 +101,20 @@ if (v:version >= 700)
   let g:ale_fixers['typescript'] = ['tslint']
 
   let g:LanguageClient_serverCommands = {}
-  let g:LanguageClient_serverCommands['java'] = ['/Users/aschrab/vc/java-language-server/dist/mac/bin/launcher', '--quiet']
+
+  let g:ale_java_javalsp_executable = '/Users/aschrab/vc/java-language-server/dist/launch_mac.sh'
+  let g:LanguageClient_serverCommands['java'] = [g:ale_java_javalsp_executable]
+
   let g:LanguageClient_serverCommands['python'] = ['/usr/local/bin/pyls']
 
 endif
 
 " Screen/tmux can also handle xterm mousiness, but Vim doesn't detect it by default.
-if &term == "screen"
+if &term == 'screen'
   set ttymouse=xterm2
 endif
 
-if v:version >= 704 && &term =~ "^screen"
+if v:version >= 704 && &term =~ '^screen'
   " Odds are good that this is a modern tmux, so let's pick the best mouse-handling mode.
   set ttymouse=sgr
 endif
@@ -161,9 +164,9 @@ let perl_highlight_matches = 1
 "let perl_want_scope_in_variables = 1
 "let perl_embedded_pod = 1
 
-let g:vimsyn_folding="Paflpr"
+let g:vimsyn_folding='Paflpr'
 let g:xml_syntax_folding = 1
-let g:xml_jump_string="¦"
+let g:xml_jump_string='¦'
 let g:xml_tag_completion_map = '💩💣' " The default mapping breaks delimitmate
 let g:xmledit_enable_html = 1
 let g:perl_fold = 1
@@ -197,9 +200,9 @@ let g:powerlineNoPythonError = 1
 
 let g:UltiSnipsNoPythonWarning = 1
 
-let g:UltiSnipsExpandTrigger="<C-X><C-S>"
-let g:UltiSnipsJumpForwardTrigger="<C-j>"
-let g:UltiSnipsJumpBackwardTrigger="<C-k>"
+let g:UltiSnipsExpandTrigger='<C-X><C-S>'
+let g:UltiSnipsJumpForwardTrigger='<C-j>'
+let g:UltiSnipsJumpBackwardTrigger='<C-k>'
 
 let g:NumberToggleOff=''
 let g:NumberToggleOn=''
@@ -292,13 +295,13 @@ let g:airline_detect_iminsert=0
 let g:airline#extensions#branch#enabled = 1
 let g:airline_section_x = "%{strlen(&ft)>0?&ft:''}%{statusline#fileinfo()}"
 let g:airline_section_y = '%3l/%L»%-3v'
-let g:airline_section_z = "ch0x%04B"
+let g:airline_section_z = 'ch0x%04B'
 let g:airline_theme='light'
 let g:airline#extensions#branch#format = 'airline#ext#branch_format'
 let g:airline#extensions#branch#displayed_head_limit = 20
 
 let g:SuperTabDefaultCompletionType='context'
-let g:SuperTabContextDefaultCompletionType="<c-n>"
+let g:SuperTabContextDefaultCompletionType='<c-n>'
 let g:SuperTabLongestEnhanced=1
 "let g:SuperTabLongestHighlight=1
 if v:version >= 700
@@ -314,7 +317,7 @@ let delimitMate_jump_expansion = 1
 let delimitMate_expand_space = 1
 let delimitMate_expand_cr = 2
 let delimitMate_balance_matchpairs = 1
-let delimitMate_matchpairs = "(:),[:],{:}"
+let delimitMate_matchpairs = '(:),[:],{:}'
 
 " Insert current timestamp in UTC, ISO format
 imap <C-A>tu 2000-01-01T12:34:56<Left><C-O>d<C-A><Right>Z
@@ -329,7 +332,7 @@ let g:vim_markdown_folding_disabled = 1
 
 let g:vorax_output_window_default_funnel = 2
 
-if exists("g:loaded_unicodePlugin")
+if exists('g:loaded_unicodePlugin')
   nnoremap ga :<C-U>UnicodeName<CR>
 endif
 
@@ -340,7 +343,7 @@ vmap <Enter> <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
-let g:git_comment_char = "auto"
+let g:git_comment_char = 'auto'
 
 if exists(':tnoremap')  " Neovim
   tnoremap <silent> <c-h> <c-\><c-n>:TmuxNavigateLeft<cr>
@@ -376,3 +379,5 @@ vmap <unique> Dk <Plug>SchleppDupUp
 vmap <unique> Dj <Plug>SchleppDupDown
 vmap <unique> Dh <Plug>SchleppDupLeft
 vmap <unique> Dl <Plug>SchleppDupRight
+
+let g:node_host_prog = '/Users/aschrab/.nodenv/versions/14.9/bin/neovim-node-host'
