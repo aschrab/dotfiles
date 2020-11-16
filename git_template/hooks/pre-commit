@@ -5,3 +5,13 @@ then
   echo 'Set email address with `git config user.email` first' >&2
   exit 1
 fi
+
+if [ "$(git config --type=bool --default=no commit.allowedOnMain)" = false ]
+then
+  case "$(git symbolic-ref HEAD)" in
+    refs/heads/master|refs/heads/main)
+      echo "Create a new branch before committing, or set commit.allowedOnMain" >&2
+      exit 1
+      ;;
+  esac
+fi
