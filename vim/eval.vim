@@ -68,7 +68,7 @@ if (v:version >= 700)
     let g:pathogen_blacklist += [ 'highlighted-yank' ]
   endif
 
-  if has('gui_running') || $FQDN !~ '\M.netapp.com' || $FQDN =~ '\M.rtp.' || $FQDN =~ '\M^aschrab'
+  if has('gui_running') || $FQDN !~? '\M.netapp.com' || $FQDN =~? '\M.rtp.' || $FQDN =~? '\M^aschrab'
     " Start up pathogen if it's available
     " Won't be available on boxes before git submodules have been fetched
     runtime bundle/pathogen/autoload/pathogen.vim
@@ -110,11 +110,11 @@ if (v:version >= 700)
 endif
 
 " Screen/tmux can also handle xterm mousiness, but Vim doesn't detect it by default.
-if &term == 'screen'
+if &term ==? 'screen'
   set ttymouse=xterm2
 endif
 
-if v:version >= 704 && &term =~ '^screen'
+if v:version >= 704 && &term =~? '^screen'
   " Odds are good that this is a modern tmux, so let's pick the best mouse-handling mode.
   set ttymouse=sgr
 endif
@@ -178,11 +178,11 @@ let SVNCommandDeleteOnHide=1
 let SVNCommandEnableBufferSetup=1
 
 " Inform vim how to set window title for additional $TERM types
-if &term =~ '\v(xterm|gnome)(-256color)?'
+if &term =~? '\v(xterm|gnome)(-256color)?'
   let &t_ts="\<Esc>]2;"
   let &t_IS="\<Esc>]1;"
   let &t_fs="\<C-G>"
-elseif &term =~ '\v(screen)(-256color)?'
+elseif &term =~? '\v(screen)(-256color)?'
   " For some reason using the above settings in tmux causes the :make
   " command to wait for input before giving any indication that the build
   " process has finished.  Use an alternate escape sequence for that.
