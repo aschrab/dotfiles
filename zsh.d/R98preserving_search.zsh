@@ -5,7 +5,7 @@ function _history-incremental-preserving-pattern-search-backward
   MARK=CURSOR  # magick, else multiple ^R don't work
   narrow-to-region -p "$LBUFFER${BUFFER:+»}" -P "${BUFFER:+«}$RBUFFER" -S state
   zle end-of-history
-  if zle fzf-history-widget ; then
+  if zle -l fzf-history-widget ; then
     zle fzf-history-widget
   else
     zle .history-incremental-pattern-search-backward
