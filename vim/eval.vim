@@ -387,5 +387,3 @@ vmap <unique> Dk <Plug>SchleppDupUp
 vmap <unique> Dj <Plug>SchleppDupDown
 vmap <unique> Dh <Plug>SchleppDupLeft
 vmap <unique> Dl <Plug>SchleppDupRight
-
-let g:node_host_prog = '/Users/aschrab/.nodenv/versions/14.9/bin/neovim-node-host'
