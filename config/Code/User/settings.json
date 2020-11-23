@@ -138,5 +138,6 @@
     "remote.SSH.remotePlatform": {
         "niq.qqx.org": "linux"
     },
-    "window.title": "${remoteName}${separator}${folderName}${separator}${activeEditorShort}"
+    "window.title": "${remoteName}${separator}${folderName}${separator}${activeEditorShort}",
+    "markdown-preview-enhanced.breakOnSingleNewLine": false
 }
