@@ -114,8 +114,18 @@ if is-at-least 5.2; then
   bindkey -M visual S add-surround
 fi
 
+# Within menu select, char motions actually move by columns (matches)
+bindkey -M menuselect .     forward-char
+bindkey -M menuselect ,     backward-char
+# Within menu select word motions actually move by groups
+bindkey -M menuselect '<'   forward-word
+bindkey -M menuselect '>'   backward-word
+# Allow tab to be used to begin another completion (e.g. files within a directory)
+bindkey -M menuselect '^i'  accept-and-infer-next-history
+# Allow use of + to insert current selection and continue to selecting others
+bindkey -M menuselect '+'   accept-and-hold
+bindkey -M menuselect '\e'  undo
 bindkey -M menuselect '^f'  history-incremental-search-forward
-bindkey -M menuselect '^i'  down-line-or-history
 
 # Change enter in incremental search to only select an entry, not execute it.
 bindkey -M isearch '^M' accept-search
