@@ -30,7 +30,7 @@ st () {
     remote=(ssh -t "$host" 'xrefresh; exec')
   fi
 
-  exec "${remote[@]}" tmux new -ADs "$session" "$@"
+  exec "${remote[@]}" tmux -u new -ADs "$session" "$@"
 }
 
 st "$@"
