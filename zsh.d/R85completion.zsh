@@ -42,6 +42,8 @@ zstyle ':completion:*:(all-|)files' ignored-patterns '(|*/)CVS' '(*/)#lost+found
 zstyle ':completion:*:cd:*' ignored-patterns '(*/)#CVS' '(*/)#lost+found'
 zstyle ':completion:*:rm:*' ignored-patterns
 zstyle ':completion:*' file-sort modification
+# When completing small numbers of files, use format similar to `ls -l`
+zstyle ':completion:*' file-list list=20 insert=10
 
 # Try to avoid completion functions when completing command names.
 zstyle ':completion:*:commands' ignored-patterns '_*' '*-linux-gnu-*'
