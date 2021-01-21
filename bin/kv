@@ -1,0 +1,4 @@
+#!/bin/bash
+set -ueo pipefail
+
+exec kitty +icat "$@"
