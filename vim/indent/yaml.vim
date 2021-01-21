@@ -27,6 +27,9 @@ if exists('*shiftwidth')
     let s:shiftwidth = function('shiftwidth')
 else
     function s:shiftwidth()
+        if &shiftwidth == 0
+            return &tabstop
+        endif
         return &shiftwidth
     endfunction
 endif

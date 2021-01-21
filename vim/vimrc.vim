@@ -28,7 +28,7 @@ set display+=lastline
 set scrolloff=1
 set sidescrolloff=10
 set sidescroll=1
-set shiftwidth=2
+set shiftwidth=0
 set expandtab
 set tabstop=4
 set autoindent

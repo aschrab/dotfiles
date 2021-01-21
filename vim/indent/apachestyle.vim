@@ -18,18 +18,23 @@ function GetApacheStyleIndent()
   if prev == 0
     return 0
   endif
-  
+
   " Start with indent of previous line
   let ind = indent(prev)
 
+  let sw = &shiftwidth
+  if sw == 0
+    let sw = &tabstop
+  endif
+
   " Add shiftwidth if previous line started a section
   if getline(prev) =~ '^\s*<[^/]'
-    let ind = ind + &sw
+    let ind = ind + sw
   endif
 
   " Subtract shiftwidth if this line ends a section
   if getline(v:lnum) =~ '^\s*</'
-    let ind = ind - &sw
+    let ind = ind - sw
   endif
 
   return ind
