@@ -13,6 +13,12 @@ cleanup() {
 }
 trap cleanup EXIT
 
-ack --column "$@" >"$matches" || die "No matches found"
+cmd=ack
+if command -v ag
+then
+  cmd=ag
+fi
+
+$cmd --column "$@" >"$matches" || die "No matches found"
 
 ${EDITOR:-vim} -q "$matches"
