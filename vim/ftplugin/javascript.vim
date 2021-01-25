@@ -8,3 +8,5 @@ setlocal path+=node_modules
 setlocal isfname+=@-@ " Treat @ as a filename character for scoped node packages
 
 let b:lint_ignore="// eslint-disable-next-line %s"
+
+compiler eslint
