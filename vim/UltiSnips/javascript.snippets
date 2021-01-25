@@ -16,8 +16,12 @@ snippet req
 const ${2:${1/.*\///}} = require('${1:module}')$0
 endsnippet
 
-snippet import
-import {${2:names}} from '${1:file}'$0
+snippet /imp(ort)?/ "Import" br
+import { ${2:names} } from '${1:file}'$0
+endsnippet
+
+snippet impo "Import" b
+import ${2:names} from '${1:file}'$0
 endsnippet
 
 snippet class
