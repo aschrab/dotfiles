@@ -3,6 +3,7 @@
 
 [remote "origin"]
 	fetch = +refs/pull-requests/*/from:refs/remotes/origin/pr/*
+	fetch = +refs/pull-requests/*/merge:refs/remotes/origin/merge/*
 
 [credential]
 	# Ignore any previously configured helpers
