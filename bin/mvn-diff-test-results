@@ -1,0 +1,62 @@
+#!/usr/bin/env ruby
+
+require 'json'
+require 'tmpdir'
+
+# Recursively recreate object structure, sorting Hashes by key
+def deep_sort obj
+  case obj
+
+  when Hash # Sort entries by key
+    obj.keys.sort.reduce({}) do |h, k|
+      h[k] = deep_sort obj[k]
+      h # The new hash needs to be passed back each time through the reduce block
+    end
+
+  when Array # Preserve array order, but recurse to sort any contained hashes
+    obj.map{ |i| deep_sort i }
+
+  else # Anything else is left alone
+    obj
+  end
+end
+
+def prettify content
+  structure = deep_sort(JSON.parse(content))
+  JSON.pretty_generate structure
+rescue
+  # Use unmodified content if an error occurs (such as if it's not JSON)
+  content
+end
+
+def write_content dir, version, content
+  name = "#{dir}/#{version}.json" 
+  open(name, 'w') { |f| f.puts prettify content }
+  return name
+end
+
+# Write both versions to temporary files, then invoke diff tool to compare
+def compare expected, actual
+  Dir.mktmpdir do |dir|
+    system "git", "diff", "--no-index",
+      write_content(dir, "expected", expected),
+      write_content(dir, "actual", actual)
+  end
+end
+
+def parse_file name
+  File.open(name) do |f|
+    f.each_line do |line|
+      case line
+      when /^\S+:\s+expected:<(.*)> but was:<(.*)>/
+        compare $1, $2
+      end
+    end
+  end
+end
+
+# Use list of files from command line, or search ourselves
+files = ARGV.empty? ? Dir.glob('target/surefire-reports/*.txt') : ARGV
+
+# Iterate over the list of files, parsing each
+files.each { |name| parse_file name }
