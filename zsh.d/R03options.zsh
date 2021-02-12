@@ -11,6 +11,7 @@ setopt \
   Correct \
   Extended_Glob \
   Glob_Complete \
+  Glob_Star_Short \
   List_Types \
   Magic_Equal_Subst \
   Mail_Warning \
