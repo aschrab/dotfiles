@@ -76,6 +76,9 @@ PS1='
 PS2='%{$pColor%}%_>%{$fColor%} '
 }
 
+# Output trace info (set -x) in a form where the entire line can be copy+pasted at a prompt.
+PS4=': %1N:%i%1(_.:%_.); '
+
 # Update prompt before running a command so that it will display time when the
 # command was started rather than when the previous command ended
 zle-update-prompt() {
