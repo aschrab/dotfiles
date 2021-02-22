@@ -23,7 +23,7 @@ IdentityFile ~/vc/niq/common/keys/netappiq.pem
 IdentityFile ~/.ssh/niq-aschrab-test.pem
 IdentityFile ~/.ssh/niq-it-prodops.pem
 
-Host niq.qqx.org
+Host niq.qqx.org ng.qqx.org
 Port 22
 User aschrab
 # LocalForward localhost:4200 0:4200
