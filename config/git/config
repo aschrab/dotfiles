@@ -68,6 +68,7 @@
 
 [init]
 	templatedir = ~/.git_template
+	defaultBranch = master
 
 [help]
 	autocorrect = 15

@@ -8,10 +8,16 @@ fi
 
 if [ "$(git config --type=bool --default=no commit.allowedOnMain)" = false ]
 then
-  case "$(git symbolic-ref HEAD)" in
-    refs/heads/master|refs/heads/main)
-      echo "Create a new branch before committing, or set commit.allowedOnMain" >&2
-      exit 1
-      ;;
-  esac
+  ref=$(git symbolic-ref HEAD)
+
+  # Allow initial commit to main branch
+  if git rev-parse "$ref" >/dev/null 2>&1
+  then
+    case "$ref" in
+      refs/heads/master|refs/heads/main)
+        echo "Create a new branch before committing, or set commit.allowedOnMain" >&2
+        exit 1
+        ;;
+    esac
+  fi
 fi
