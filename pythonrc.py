@@ -1,27 +1,34 @@
 # vim: ft=python
-import readline
-import rlcompleter
 import os
 import sys
 import atexit
 
 from pprint import pprint as p
 
-# Avoid errors about unused imports
-assert rlcompleter
-assert p
+imports = ['os', 'sys', 'atexit']
+
+try:
+    import readline
+    imports.push('readline')
+    import rlcompleter
+    imports.push('rlcompleter')
+    # Avoid errors about unused imports
+    assert rlcompleter
+    assert p
+
+    readline.parse_and_bind('tab: complete')
+    histfile = os.path.join(os.environ['HOME'], '.pythonhistory')
+    try:
+        readline.read_history_file(histfile)
+    except IOError:
+        pass
+
+    atexit.register(readline.write_history_file, histfile)
+except Exception:
+    print("!!!! Failed to setup readline history")
 
 # Report non-default imports
-print("Imported os, sys, atexit, readline, rlcompleter")
-
-readline.parse_and_bind('tab: complete')
-histfile = os.path.join(os.environ['HOME'], '.pythonhistory')
-try:
-    readline.read_history_file(histfile)
-except IOError:
-    pass
-
-atexit.register(readline.write_history_file, histfile)
+print("Imported " + ", ".join(imports))
 
 h = [None]
 
