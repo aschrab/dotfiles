@@ -8,6 +8,9 @@ CURRENT_BRANCH := $(shell git symbolic-ref --short HEAD)
 # Require curl dependency to be satisfied
 NO_CURL=
 
+
+SKIP_DASHED_BUILT_INS:=y
+
 ifeq ($(prefix),$(HOME))
   ifeq ($(CURRENT_BRANCH),next)
     prefix = $(HOME)/opt/git/next
