@@ -1,6 +1,6 @@
 # Upper
 output DP-1 {
-  position 0 0
+  position 1200 0
   transform 180
 }
 bar {
@@ -11,7 +11,7 @@ bar {
 }
 
 # Lower
-output HDMI-A-1 position 0 2160
+output HDMI-A-1 position 1200 2160
 bar {
   position bottom
   output HDMI-A-1
@@ -19,10 +19,10 @@ bar {
   tray_output HDMI-A-1
 }
 
-# Right
+# Left
 output HDMI-A-2 {
-  position 3840 1192
-  transform 270
+  position 0 1192
+  transform 90
 }
 bar {
   position bottom
@@ -38,9 +38,9 @@ input * {
 }
 
 include i3
-bindsym $mod+Control+1 move workspace to output DP-1
-bindsym $mod+Control+2 move workspace to output HDMI-A-1
-bindsym $mod+Control+3 move workspace to output HDMI-A-2
+bindsym $mod+Control+1 move workspace to output HDMI-A-2
+bindsym $mod+Control+2 move workspace to output DP-1
+bindsym $mod+Control+3 move workspace to output HDMI-A-1
 
 for_window [shell="xdg_shell"] title_format "Ⓦ %title"
 for_window [shell="xwayland"] title_format "Ⓧ %title"
