@@ -45,6 +45,8 @@
 [commit]
 	verbose = yes
 
+[clone]
+	defaultRemoteName = o
 [fetch]
 	prune = yes
 
