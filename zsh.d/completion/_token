@@ -2,4 +2,6 @@
 
 _arguments -S : \
   '-a[Prefix with AuthorizationToken:]' \
+  '-j[Output as JSON structure]' \
+  '-n:[Specify alternate header name]' \
   '*:Token File:_path_files -g "*.json" -W $HOME/.tokens'
