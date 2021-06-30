@@ -16,3 +16,4 @@
 --ignore-dir=.snapshot
 --ignore-dir=dist
 --ignore-dir=node_modules
+--ignore-dir=.nyc_output
