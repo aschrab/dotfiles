@@ -171,6 +171,10 @@ folder-hook '(suspect|spam)'		"set hdr_format=<%= hdr_format.sub('%s', %Q[#{spam
   set sidebar_relative_shortpath_indent
 % end
 
+% if mutt_variable :pager_skip_quoted_context
+  set pager_skip_quoted_context=3
+% end
+
 % if mutt_variable :mail_check_stats
   set mail_check_stats
 % end
