@@ -136,8 +136,16 @@
     "python.languageServer": "Microsoft",
     "remote.SSH.remoteServerListenOnSocket": true,
     "remote.SSH.remotePlatform": {
-        "niq.qqx.org": "linux"
+        "niq.qqx.org": "linux",
+        "ng.qqx.org": "linux"
     },
     "window.title": "${remoteName}${separator}${folderName}${separator}${activeEditorShort}",
-    "markdown-preview-enhanced.breakOnSingleNewLine": false
+    "markdown-preview-enhanced.breakOnSingleNewLine": false,
+    "redhat.telemetry.enabled": false,
+    "workbench.editorAssociations": [
+        {
+            "viewType": "jupyter.notebook.ipynb",
+            "filenamePattern": "*.ipynb"
+        }
+    ]
 }
