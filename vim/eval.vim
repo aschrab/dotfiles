@@ -387,3 +387,8 @@ vmap <unique> Dk <Plug>SchleppDupUp
 vmap <unique> Dj <Plug>SchleppDupDown
 vmap <unique> Dh <Plug>SchleppDupLeft
 vmap <unique> Dl <Plug>SchleppDupRight
+
+let node_host = expand('~/.nodenv/versions/default/bin/neovim-node-host')
+if filereadable(node_host)
+  let g:node_host_prog = node_host
+endif
