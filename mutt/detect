@@ -162,6 +162,9 @@ folder-hook '(suspect|spam)'		"set hdr_format=<%= hdr_format.sub('%s', %Q[#{spam
   bind index <Esc>J sidebar-next
   bind index <Esc>K sidebar-prev
   bind index <Esc>O sidebar-open
+  bind index,pager "<Esc>[1;5A" sidebar-prev # Ctrl+down
+  bind index,pager "<Esc>[1;5B" sidebar-next # Ctrl+up
+  bind index,pager "<Esc>[1;5C" sidebar-open # Ctrl+right
   macro index,pager <Esc>B "<enter-command>toggle sidebar_visible<enter>"
 % end
 % if mutt_variable :sidebar_use_mailbox_shortcuts
