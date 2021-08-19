@@ -10,6 +10,9 @@ resolve() {
       res="$(which $cmd)"
     fi
     case "$res" in
+      (*shell built-in*)
+        echo $res
+        ;;
       (*:*aliased*)
         echo "$res"
         res="${res##*: aliased to }"
