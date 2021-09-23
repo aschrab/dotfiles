@@ -6,6 +6,9 @@ resolve() {
     # If it starts with backslash, remove that and don't do alias lookup
     if [[ "$cmd" = \\* ]]; then
       res=${cmd#\\}
+    elif (( $+functions[$cmd] )); then
+      which "$cmd"
+      continue
     else
       res="$(which $cmd)"
     fi
@@ -24,13 +27,7 @@ resolve() {
         ;;
       (*)
         [[ "$res" = /* ]] || res=$commands[$res]
-        echo "$res"
-        if [[ -L "$res" ]]; then
-          resolve $(perl -MCwd -e 'print Cwd::abs_path($ARGV[0])' "$res")
-        else
-          real=$(perl -MCwd -e 'print Cwd::abs_path($ARGV[0])' "$res")
-          [[ $real = $res ]] || echo $real
-        fi
+        command resolve "$res"
     esac
   done
 }
