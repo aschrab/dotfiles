@@ -6,6 +6,8 @@ if ! [ -f muttlib.c ]; then
 fi
 
 export CFLAGS=-ggdb
+# export CFLAGS='-ggdb -g3 -fno-omit-frame-pointer -fsanitize=address'
+
 exec ./prepare \
 	--sysconfdir="$HOME/.etc" \
 	--enable-autocrypt --with-sqlite3 \
