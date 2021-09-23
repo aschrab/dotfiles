@@ -194,3 +194,10 @@ folder-hook '(suspect|spam)'		"set hdr_format=<%= hdr_format.sub('%s', %Q[#{spam
 % else
   color indicator		yellow	default
 % end
+
+% if mutt_variable :sort_thread_groups
+  set sort_thread_groups=last-date-received sort_aux=date-received
+% else
+  folder-hook .       "set sort_aux=last-date-received"
+  folder-hook dev/git "set sort_aux=date"
+% end
