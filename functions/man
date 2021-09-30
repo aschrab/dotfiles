@@ -10,17 +10,8 @@ function man {
 
   if ! [[ -t 1 ]]; then
     command man "$@"
-
-  # elif [[ "$MANPAGER" = *vi* ]]; then
-
-    # Invoke nvim directly rather than having it invoked as man's pager,
-    # this avoids issues with sandboxing of what man is allowed to invoke.
-    #
-    # But, that seems to not be a problem currently. Instead having issues with
-    # width not being passed through.
-
-    # MANWIDTH="$MANWIDTH" "$EDITOR" -c "Man $*" -c only
-
+  elif [[ "$MANPAGER" = *vi* ]]; then
+    MANWIDTH="$MANWIDTH" "$EDITOR" -c "Man $*" -c only
   else
     LESS_TERMCAP_mb=$'\e[1;36m' \
       LESS_TERMCAP_md=$'\e[1;36m' \
