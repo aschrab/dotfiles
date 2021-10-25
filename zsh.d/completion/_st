@@ -22,7 +22,7 @@ _st() {
       local host=$line[1]
       local -a remote=()
       if [ -n "$host" ] && [ "-" != "$host" ]; then
-        remote=(ssh "$host")
+        remote=(ssh -q -o BatchMode=yes "$host")
       fi
 
       sessions=( ${${(f)"$($remote tmux 2> /dev/null list-sessions)"}/:[ $'\t']##/:} )
