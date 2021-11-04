@@ -1,0 +1,9 @@
+#compdef git-foresta git-f
+#description display graph of commits
+
+local -a log_options
+__git_setup_log_options
+
+_arguments -w -C -s \
+  $log_options \
+  '*:Branch:__git_heads'
