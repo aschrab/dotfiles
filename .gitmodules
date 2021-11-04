@@ -292,3 +292,6 @@
 [submodule "nodenv/plugins/nodenv-package-json-engine"]
 	path = nodenv/plugins/nodenv-package-json-engine
 	url = https://github.com/nodenv/nodenv-package-json-engine.git
+[submodule "upstreams/git-foresta"]
+	path = upstreams/git-foresta
+	url = https://github.com/takaaki-kasai/git-foresta.git
