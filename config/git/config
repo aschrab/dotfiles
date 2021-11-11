@@ -30,7 +30,7 @@
 	mailmap = true
 
 [diff]
-	renames        = true
+	renames        = copies
 	mnemonicprefix = yes
 	algorithm      = patience
 	#algorithm      = histogram # Too new for some of the systems I use
