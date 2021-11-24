@@ -14,6 +14,7 @@ setopt \
   List_Types \
   Magic_Equal_Subst \
   Mail_Warning \
+  No_Equals \
   Notify \
   Numeric_Glob_Sort \
   Print_Exit_Value \
@@ -33,9 +34,7 @@ unsetopt \
   Prompt_CR
 
 if is-at-least 3.0; then
-  setopt Equals Function_ArgZero Mult_IOs
-else
-  unsetopt No_Equals
+  setopt Function_ArgZero Mult_IOs
 fi
 
 unset HISTFILE
