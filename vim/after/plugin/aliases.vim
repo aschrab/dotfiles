@@ -1,4 +1,4 @@
-if exists(":Alias")
+if exists(':Alias')
   let g:cmdaliasCmdPrefixes .= ' vert'
 
   Alias ack Ack
@@ -6,13 +6,13 @@ if exists(":Alias")
   Alias gitk Flog
   Alias gv Flog
   Alias scratch Scratch
-  if exists(":Shell")
+  if exists(':Shell')
     Alias sh    Shell
     Alias shell Shell
     Alias SHell Shell
   endif
 
-  if exists(":Man")
+  if exists(':Man')
     Alias man Man
   endif
 
