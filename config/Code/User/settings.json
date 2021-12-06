@@ -23,6 +23,7 @@
     ],
     "vim.insertModeKeyBindings": [
         { "before": [ "<C-d>" ], "commands": [ "editor.action.outdentLines" ] },
+        { "before": [ "<C-t>" ], "commands": [ "editor.action.indentLines" ] },
     ],
     "vim.normalModeKeyBindings": [
         { "before": ["<C-h>"], "after": ["<C-w>", "h"]},
