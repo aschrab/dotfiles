@@ -1,6 +1,9 @@
 [ -n "$PS1" ] && PS1='\[\e]2;\$\h(\l):\w\a\]''\n''\[\e[0;45m\]'' \D{%d%b%H:%M:%S} \h \w \[\e[0;22m\]''\n''\[\e[0;45m\]''\!\$''\[\e[0;22m\] '
 PROMPT_DIRTRIM=2
 
+# For newer versions of Mac OS that have zsh as default shell
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
 if [[ $PS1 && -f /usr/share/bash-completion/bash_completion ]]; then
   . /usr/share/bash-completion/bash_completion
 fi
