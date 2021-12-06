@@ -145,5 +145,6 @@
     "redhat.telemetry.enabled": false,
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter.notebook.ipynb"
-    }
+    },
+    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true
 }
