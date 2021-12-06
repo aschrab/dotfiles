@@ -31,9 +31,6 @@
 [submodule "vim/bundle/speeddating"]
 	path = vim/bundle/speeddating
 	url = https://github.com/tpope/vim-speeddating.git
-[submodule "vim/bundle/cmdalias"]
-	path = vim/bundle/cmdalias
-	url = https://github.com/vim-scripts/cmdalias.vim.git
 [submodule "vim/bundle/syntastic"]
 	path = vim/bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
@@ -295,3 +292,6 @@
 [submodule "upstreams/git-foresta"]
 	path = upstreams/git-foresta
 	url = https://github.com/takaaki-kasai/git-foresta.git
+[submodule "vim/bundle/aliases"]
+	path = vim/bundle/aliases
+	url = https://github.com/Konfekt/vim-alias.git
