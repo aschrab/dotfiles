@@ -16,9 +16,10 @@ if exists(':Alias')
     Alias man Man
   endif
 
-  Alias Gmv Gmove
-  Alias Grm Gremove
+  Alias Gmv GMove
+  Alias Grm GRemove
   Alias Gci Git\ commit
+  Alias Gpush Git\ push
 
   Alias Rm Delete
   Alias Mv Move
