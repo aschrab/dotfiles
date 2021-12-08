@@ -95,7 +95,7 @@ set editor="twrap vim"
   set xterm_title="<%= title_format %>"
 % end
 
-set status_format=" %r %-25.25f [Msgs:%?M?%M/?%m New:%n%?F? Flag:%F?%?t? Tag:%t? In:%b%?p? Post:%p?<%= bg_format %>]%> (%s/%S)"
+set status_format=" %r %-25.25f [Msgs:%?M?%M/?%m New:%n%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t? In:%b%?p? Post:%p?<%= bg_format %>]%> (%s/%S)"
 
 % spam_fmt=''
 % if mutt_variable :spam_separator
