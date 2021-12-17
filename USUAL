@@ -7,6 +7,7 @@ eslintrc.yml
 gitconfig
 git_template
 functions
+infokey
 inputrc
 irbrc
 lftp

@@ -1,0 +1,15 @@
+#info
+^b      scroll-backward-page-only
+^f      scroll-forward-page-only
+k       prev-line
+j       next-line
+
+# Go back through history
+b       history-node
+
+#echo-area
+
+#var
+link-style=blue
+active-link-style=cyan,bold
+match-style=yellow
