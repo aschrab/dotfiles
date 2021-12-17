@@ -114,3 +114,6 @@ export LESSCHARSET
 
 export HOSTALIASES=~/.hostaliases
 export PYTHONSTARTUP=~/.pythonrc.py
+
+# Have gdb automatically fetch debugging symbols when on a Debina system
+[[ -r /etc/dpkg/origins/debian ]] && export DEBUGINFOD_URLS='https://debuginfod.debian.net'
