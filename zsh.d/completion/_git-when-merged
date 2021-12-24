@@ -1,0 +1,19 @@
+#compdef git-when-merged
+#description find when a commit was merrged into one or more brances
+
+_arguments -A \
+  '(-p --pattern)'{-p,--pattern}'[show when merged into branch matching PATTERN]:Pattern' \
+  '(-n --name -s --default)'{-n,--name}'[show when merged into branch matching pattern NAME]:Name' \
+  '(-s --default -n --name)'{-s,--default}'[short for --name=default]' \
+  '(-r --recursive)'{-r,--recursive}'[follow merges recursively]' \
+  '(-c --show-commit)'{-c,--show-commit}'[display only the ID of the merge commit]' \
+  '(-b --show-branch)'{-b,--show-branch}'[display range of commits merged along with specified commit]' \
+  '(--abbrev --no-abbrev)'--abbrev'[abbreviate commit ID to NUMBER characters]:Number' \
+  '(--abbrev --no-abbrev)'--no-abbrev'[do nott abbreviate commit ID]' \
+  '(--describe --describe-contains)'--describe'[describe merge commit in terms of a tag reachable from it]' \
+  '(--describe --describe-contains)'--describe-contains'[describe merge commit in terms of a tag which contains it]' \
+  '(-l --log)'{-l,--log}'[show log message for the merge commit]' \
+  '(-d --diff)'{-d,--diff}'[show diff for the merge commit]' \
+  '(-v --visualize)'{-v,--visualize}'[visualize the merge commit with gitk]' \
+  '1:commit:__git_revisions' \
+  '*:branch:__git_branch_names'
