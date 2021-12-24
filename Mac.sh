@@ -9,3 +9,9 @@ vscode="$HOME/Library/Application Support/Code/User"
 mkdir -p "$vscode"
 [ -e "$vscode/settings.json" ] ||
 	ln -s "$dotfile_dir/config/Code/User/settings.json" "$vscode"
+
+cat <<EOF
+# Add following to top of /etc/pam.d/sudo
+auth       optional       /usr/local/lib/pam/pam_reattach.so
+auth       sufficient     pam_tid.so
+EOF
