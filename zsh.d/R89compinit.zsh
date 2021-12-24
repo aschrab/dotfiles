@@ -12,3 +12,4 @@ autoload -U bashcompinit && bashcompinit
 for f in ${ZDOTDIR:-$HOME}/.zshrc $zsh_cache/zcomp-$HOST-$ZSH_VERSION; do
 	zrecompile -p $f && rm -f $f.zwc.old
 done
+unset f
