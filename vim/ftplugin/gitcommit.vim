@@ -1,4 +1,5 @@
 let b:nojump=1
+setlocal shiftwidth=2 expandtab
 setlocal spell
 setlocal spellcapcheck=""
 setlocal formatoptions+=aw
