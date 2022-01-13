@@ -157,9 +157,6 @@
 [submodule "vim/bundle/bufexplorer"]
 	path = vim/bundle/bufexplorer
 	url = https://github.com/jlanzarotta/bufexplorer.git
-[submodule "vim/bundle/git"]
-	path = vim/bundle/git
-	url = https://github.com/aschrab/vim-git.git
 [submodule "vim/bundle/windowswap"]
 	path = vim/bundle/windowswap
 	url = https://github.com/wesQ3/vim-windowswap.git
