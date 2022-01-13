@@ -59,14 +59,12 @@
     "editor.tabCompletion": "onlySnippets",
     "editor.formatOnPaste": true,
     "editor.formatOnSave": false,
-    "editor.minimap.enabled": false,
     "editor.suggest.localityBonus": true,
     "editor.suggest.maxVisibleSuggestions": 7,
     "files.autoGuessEncoding": true,
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
     "workbench.statusBar.feedback.visible": false,
-    "workbench.editor.highlightModifiedTabs": true,
     "workbench.settings.useSplitJSON": true,
     "terminal.integrated.copyOnSelection": true,
     "terminal.integrated.macOptionIsMeta": true,
@@ -133,7 +131,6 @@
     "window.zoomLevel": 0,
     "java.requirements.JDK11Warning": false,
     "java.semanticHighlighting.enabled": true,
-    "editor.insertSpaces": false,
     "python.languageServer": "Microsoft",
     "remote.SSH.remoteServerListenOnSocket": true,
     "remote.SSH.remotePlatform": {
@@ -146,5 +143,12 @@
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter.notebook.ipynb"
     },
-    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true
+    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
+    "git.suggestSmartCommit": false,
+    "diffEditor.codeLens": true,
+    "git.inputValidation": "always",
+    "git.untrackedChanges": "separate",
+    "editor.minimap.enabled": false,
+    "workbench.editor.highlightModifiedTabs": true,
+    "editor.tabSize": 2
 }
