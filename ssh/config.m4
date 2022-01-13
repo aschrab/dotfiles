@@ -26,6 +26,7 @@ IdentityFile ~/.ssh/niq-it-prodops.pem
 Host niq.qqx.org ng.qqx.org
 Port 22
 User aschrab
+LocalForward localhost:27017 0:27017
 # LocalForward localhost:4200 0:4200
 # LocalForward localhost:5000 0:5000
 # LocalForward localhost:9229 0:9229
