@@ -10,11 +10,18 @@ if [ "$(git config --type=bool --default=no commit.allowedOnMain)" = false ]
 then
   ref=$(git symbolic-ref HEAD)
 
+  default=$(git rev-parse --verify --symbolic-full-name origin/HEAD 2>/dev/null || :)
+  if [ "$default" = "" ]; then
+    default=refs/heads/$(git config init.defaultbranch || echo master)
+  else
+    default=$(echo "$default" | sed s,remotes/origin,heads, )
+  fi
+
   # Allow initial commit to main branch
   if git rev-parse "$ref" >/dev/null 2>&1
   then
     case "$ref" in
-      refs/heads/master|refs/heads/main)
+      "$default")
         echo "Create a new branch before committing, or set commit.allowedOnMain" >&2
         exit 1
         ;;
