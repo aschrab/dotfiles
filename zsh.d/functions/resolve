@@ -3,30 +3,41 @@
 resolve() {
   local res cmd
   for cmd in "$@"; do
-    # If it starts with backslash, remove that and don't do alias lookup
     if [[ "$cmd" = \\* ]]; then
+      # starts with backslash, remove that and don't do alias lookup
       res=${cmd#\\}
     elif (( $+functions[$cmd] )); then
+      # it's a function, so use `which` to display the definition
       which "$cmd"
+      # nothing further can be resolved, go to next argument
       continue
     else
       res="$(which $cmd)"
     fi
+
     case "$res" in
       (*shell built-in*)
+        # nothing further to resolve, just state that it's a shell builtin
         echo $res
         ;;
       (*:*aliased*)
+        # show alias definition
         echo "$res"
+
+        # attempt to further resolve the command portion
         res="${res##*: aliased to }"
         res="${res%% *}" # Strip off arguments
 
-        # If it now matches the command, prevent alias expansion on next attempt
+        # If it now matches the command, prevent alias expansion on next attempt to avoid infihite loop
         [[ "$res" = "$cmd" ]] && res=\\"$res"
         resolve "$res"
-        ;;
+        ;e
       (*)
+        # if it's not already an absolute path, determine that from $commands associative array
         [[ "$res" = /* ]] || res=$commands[$res]
+
+        # now that we've gotten out of the area of aliases and functions,
+        # call the separate `resolve` script to handle symlinks
         command resolve "$res"
     esac
   done
