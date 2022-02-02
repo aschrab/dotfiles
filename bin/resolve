@@ -1,12 +1,25 @@
 #!/bin/bash
 set -ueo pipefail
 
+if command -v realpath >&/dev/null
+then
+  # If realpath is available use it and readlink to follow symlinks one at a time
+  resolve-link() {
+    cd "$(dirname "$1")" && realpath -s "$(readlink "$1")"
+  }
+else
+  # fallback to using perl's abs_path which will fully resolve symlinks to a final path
+  resolve-link() {
+    perl -MCwd -e 'print Cwd::abs_path($ARGV[0])' "$res"
+  }
+fi
+
 for cmd in "$@"; do
   res=$cmd
   [[ "$res" = /* ]] || res=$(command -v "$res")
   while [[ -L "$res" ]]; do
     echo "$res"
-    res=$(perl -MCwd -e 'print Cwd::abs_path($ARGV[0])' "$res")
+    res=$(resolve-link "$res")
   done
   echo "$res"
 done
