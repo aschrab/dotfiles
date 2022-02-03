@@ -7,6 +7,8 @@ resolve() {
       # starts with backslash, remove that and don't do alias lookup
       res=${cmd#\\}
     elif (( $+functions[$cmd] )); then
+      # ensure that the function is loaded so that we display the actual definition rather than autoload stub
+      autoload +X "$cmd"
       # it's a function, so use `which` to display the definition
       which "$cmd"
       # nothing further can be resolved, go to next argument
