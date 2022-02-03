@@ -30,7 +30,7 @@ resolve() {
         res="${res##*: aliased to }"
         res="${res%% *}" # Strip off arguments
 
-        # If it now matches the command, prevent alias expansion on next attempt to avoid infihite loop
+        # If it now matches the command, prevent alias expansion on next attempt to avoid infinite loop
         [[ "$res" = "$cmd" ]] && res=\\"$res"
         resolve "$res"
         ;e
