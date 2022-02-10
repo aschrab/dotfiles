@@ -8,6 +8,7 @@ set -e
 unset GTK_IM_MODULE
 
 # The Wayland backend makes some things way too big
+# For instance toolbar icons are too big, so don't fit on portrait display
 export GDK_BACKEND=x11
 
 exec >/dev/null 2>&1 </dev/null
