@@ -39,7 +39,9 @@ set title
 set ignorecase
 set smartcase
 set incsearch
-silent! set inccommand=split
+" Don't show results of substitute while editing command.
+" It's WAY too slow when there are many matches.
+silent! set inccommand=
 set ruler
 set number
 if exists('+relativenumber')
