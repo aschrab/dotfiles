@@ -34,6 +34,7 @@ resolve() {
         # If it now matches the command, prevent alias expansion on next attempt to avoid infinite loop
         [[ "$res" = "$cmd" ]] && res=\\"$res"
         resolve "$res"
+        ;;
       (*)
         # if it's not already an absolute path, determine that from $commands associative array
         [[ "$res" = /* ]] || res=$commands[$res]
