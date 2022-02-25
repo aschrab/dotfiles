@@ -1,6 +1,7 @@
 #autoload
 
 resolve() {
+  # setopt localoptions xtrace
   local res cmd
   for cmd in "$@"; do
     if [[ "$cmd" = \\* ]]; then
