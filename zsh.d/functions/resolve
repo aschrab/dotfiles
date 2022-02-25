@@ -2,7 +2,11 @@
 
 resolve() {
   # setopt localoptions xtrace
-  local res cmd
+  local res cmd continuation
+  if [[ "${1:-}" = -c ]]; then
+    continuation='=> '
+    shift
+  fi
   for cmd in "$@"; do
     if [[ "$cmd" = \\* ]]; then
       # starts with backslash, remove that and don't do alias lookup
@@ -21,11 +25,11 @@ resolve() {
     case "$res" in
       (*shell built-in*)
         # nothing further to resolve, just state that it's a shell builtin
-        echo $res
+        echo "$continuation$res"
         ;;
       (*:*aliased*)
         # show alias definition
-        echo "$res"
+        echo "$continuation$res"
 
         # attempt to further resolve the command portion
         res="${res##*: aliased to }"
@@ -33,7 +37,7 @@ resolve() {
 
         # If it now matches the command, prevent alias expansion on next attempt to avoid infinite loop
         [[ "$res" = "$cmd" ]] && res=\\"$res"
-        resolve "$res"
+        resolve -c "$res"
         ;;
       (*)
         # if it's not already an absolute path, determine that from $commands associative array
@@ -41,8 +45,9 @@ resolve() {
 
         # now that we've gotten out of the area of aliases and functions,
         # call the separate `resolve` script to handle symlinks
-        command resolve "$res"
+        command resolve -c "$res"
     esac
+    continuation=''
   done
 }
 

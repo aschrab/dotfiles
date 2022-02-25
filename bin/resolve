@@ -14,12 +14,21 @@ else
   }
 fi
 
+if [[ "${1:-}" = -c ]]; then
+  continuation='=> '
+  shift
+else
+  continuation=''
+fi
+
 for cmd in "$@"; do
   res=$cmd
   [[ "$res" = /* ]] || res=$(command -v "$res")
   while [[ -L "$res" ]]; do
-    echo "$res"
+    echo "$continuation$res"
     res=$(resolve-link "$res")
+    continuation='=> '
   done
-  echo "$res"
+  echo "$continuation$res"
+  continuation=''
 done
