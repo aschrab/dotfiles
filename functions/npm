@@ -1,0 +1,9 @@
+#autoload
+
+function npm {
+  if [[ -r yarn.lock ]]; then
+    echo "Use yarn instead (yarn.lock found)" >&2
+    return 1
+  fi
+  command npm "$@"
+}
