@@ -14,3 +14,10 @@ function listConnections() {
     { TOTAL_CONNECTION_COUNT: 0}
   )
 }
+
+function commandsFromUser(user) {
+  return db.currentOp(true).inprog
+    .filter(x => x.effectiveUsers && x.effectiveUsers
+      .find( y => y.user === user)
+    )
+}
