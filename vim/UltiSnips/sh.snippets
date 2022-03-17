@@ -8,3 +8,10 @@ endsnippet
 snippet shellcheck-disable
 # shellcheck disable=${1:rule number}$0
 endsnippet
+
+snippet tmpdir
+${1:tmpdir}=$(mktemp -d)
+trap 'rm -rf "$$1"' EXIT
+
+$0
+endsnippet
