@@ -2,7 +2,8 @@
 
 resolve() {
   setopt localoptions extended_glob #xtrace
-  local res cmd continuation
+  local res cmd continuation lookup_alias=y
+
   if [[ "${1:-}" = -c ]]; then
     continuation='=> '
     shift
@@ -10,16 +11,21 @@ resolve() {
   for cmd in "$@"; do
     if [[ "$cmd" = \\* ]]; then
       # starts with backslash, remove that and don't do alias lookup
-      res=${cmd#\\}
+      cmd=${cmd#\\}
+      lookup_alias=n
+    fi
+
+    if [[ $lookup_alias = y ]] && (( $+aliases[$cmd] )); then
+      res="${cmd}: aliased to ${aliases[$cmd]}"
     elif (( $+functions[$cmd] )); then
       # ensure that the function is loaded so that we display the actual definition rather than autoload stub
       autoload +X "$cmd"
       # it's a function, so use `which` to display the definition
-      which "$cmd"
+      printf '%s\n' "$functions[$cmd]"
       # nothing further can be resolved, go to next argument
       continue
     else
-      res="$(which $cmd)"
+      res=$commands[$cmd]
     fi
 
     case "$res" in
