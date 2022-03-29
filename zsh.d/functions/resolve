@@ -1,7 +1,7 @@
 #autoload
 
 resolve() {
-  # setopt localoptions xtrace
+  setopt localoptions extended_glob #xtrace
   local res cmd continuation
   if [[ "${1:-}" = -c ]]; then
     continuation='=> '
@@ -33,6 +33,8 @@ resolve() {
 
         # attempt to further resolve the command portion
         res="${res##*: aliased to }"
+        # strip off pre-command modifiers
+        res="${res/#( #(-|builtin|command|nocorrect|noglob)[[:IFS:]]##)##/}"
         res="${res%% *}" # Strip off arguments
 
         # If it now matches the command, prevent alias expansion on next attempt to avoid infinite loop
