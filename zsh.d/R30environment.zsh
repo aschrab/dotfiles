@@ -65,6 +65,9 @@ else
   EDITOR=vi
 fi
 
+# Specify options for man-db
+export MANOPT='--no-justification --no-hyphenation'
+
 [[ $EDITOR == vim ]] || alias vim=$EDITOR
 [[ $EDITOR == vi ]] || alias vi=vim
 
