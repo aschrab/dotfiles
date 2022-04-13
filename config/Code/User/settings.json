@@ -14,7 +14,6 @@
     "editor.renderWhitespace": "all",
     "git.allowForcePush": true,
     "git.alwaysShowStagedChangesResourceGroup": true,
-    "git.autorefresh": false,
     "vim.camelCaseMotion.enable": true,
     "vim.incsearch": true,
     "vim.leader": ",",
@@ -30,6 +29,9 @@
         { "before": ["<C-j>"], "after": ["<C-w>", "j"]},
         { "before": ["<C-k>"], "after": ["<C-w>", "k"]},
         { "before": ["<C-l>"], "after": ["<C-w>", "l"]},
+        { "before": ["z", "o"], "commands": [{ "command": "editor.unfold", "args": { "levels": 1 } }] },
+        { "before": ["z", "c"], "commands": [{ "command": "editor.fold", "args": { "levels": 1, "direction": "up" } }] },
+        { "before": ["z", "x"], "commands": ["editor.foldAllExcept"] },
         { "before": ["[", "c"], "commands": ["workbench.action.editor.previousChange"]},
         { "before": ["]", "c"], "commands": ["workbench.action.editor.nextChange"]},
         { "before": ["[", "k"], "commands": ["editor.action.marker.prev"] },
@@ -63,7 +65,6 @@
     "editor.suggest.maxVisibleSuggestions": 7,
     "files.autoGuessEncoding": true,
     "files.insertFinalNewline": true,
-    "files.trimFinalNewlines": true,
     "workbench.statusBar.feedback.visible": false,
     "workbench.settings.useSplitJSON": true,
     "terminal.integrated.copyOnSelection": true,
@@ -150,5 +151,7 @@
     "git.untrackedChanges": "separate",
     "editor.minimap.enabled": false,
     "workbench.editor.highlightModifiedTabs": true,
-    "editor.tabSize": 2
+    "editor.tabSize": 2,
+    "html.format.endWithNewline": true,
+    "editor.showFoldingControls": "always"
 }
