@@ -2,13 +2,14 @@ snippet #!
 #!/usr/bin/env node
 'use strict'
 
-$0
+async function main() {
+	${VISUAL}$0
+}
 
 if (require.main === module) {
 	// Running as script
-	(async () => {
-		// Wrapped in immediately-executed async function to allow await
-	})()
+	main().then(console.log)
+		.catch(console.error)
 }
 endsnippet
 
