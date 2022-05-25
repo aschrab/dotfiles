@@ -60,6 +60,10 @@ if (v:version >= 700)
     let g:pathogen_blacklist += [ 'tsuquyomi' ]
   endif
 
+  if !has('nvim') || !has('python3')
+    let g:pathogen_blacklist += [ 'nvim-lspconfig' ]
+  endif
+
   if !exists('*funcref')
     let g:pathogen_blacklist += [ 'highlighted-yank' ]
   endif
