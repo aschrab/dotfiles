@@ -64,7 +64,7 @@
 	conflictstyle = diff3
 	defaultToUpstream = yes
 	log = 999
-	tool = fugitive
+	tool = vimdiff
 
 [branch "master"]
 	mergeOptions = --ff-only
@@ -78,6 +78,9 @@
 
 [mergetool "fugitive"]
 	cmd = vim -f -c "Gdiff!" "$MERGED"
+
+[mergetool "vimdiff"]
+	layout = "LOCAL,@MERGED,REMOTE + BASE,REMOTE + BASE,LOCAL"
 
 [diff]
 	tool = fugitive
