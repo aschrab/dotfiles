@@ -18,11 +18,6 @@ ControlPersist 30
 #VerifyHostKeyDNS=ask
 ServerAliveInterval=5
 
-IdentityFile ~/.ssh/niq.pem
-IdentityFile ~/vc/niq/common/keys/netappiq.pem
-IdentityFile ~/.ssh/niq-aschrab-test.pem
-IdentityFile ~/.ssh/niq-it-prodops.pem
-
 Host niq.qqx.org ng.qqx.org
 Port 22
 User aschrab
@@ -171,5 +166,14 @@ Host 10.105.*
   StrictHostKeyChecking no
   ChallengeResponseAuthentication no
   KbdInteractiveAuthentication no
+
+Host meilisearch-dev
+  HostName 10.105.88.51
+  User admin
+  IdentityAgent none
+  IdentitiesOnly yes
+  IdentityFile ~/.ssh/meilisearch.pem
+  ForwardAgent no
+  AddKeysToAgent no
 
 # vim: ft=sshconfig
