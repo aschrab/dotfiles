@@ -95,7 +95,7 @@
 	gitv        = "!f() { vim $(git rev-parse --git-dir)/index -c \":Flog $@\" -c ':tabclose 1'; }; f"
 	root        = rev-parse --show-toplevel
 	url         = "!f() { git remote get-url \"${1:-$(git remote)}\"; }; f"
-	browse      = "!f() { open \"$(git url)\" ; }; f"
+	browse      = "!f() { open \"$(git url \"$@\")\" ; }; f"
 	conf        = config
 	co          = "!f() { echo Use switch or restore >&2; exit 1; }; f"
 	ci          = commit -v
