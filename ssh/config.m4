@@ -18,11 +18,6 @@ ControlPersist 30
 #VerifyHostKeyDNS=ask
 ServerAliveInterval=5
 
-IdentityFile ~/.ssh/niq.pem
-IdentityFile ~/vc/niq/common/keys/netappiq.pem
-IdentityFile ~/.ssh/niq-aschrab-test.pem
-IdentityFile ~/.ssh/niq-it-prodops.pem
-
 Host niq.qqx.org ng.qqx.org
 Port 22
 User aschrab
