@@ -5,7 +5,6 @@
         "**/.settings": true,
         "**/.factorypath": true
     },
-    "editor.suggestSelection": "recentlyUsedByPrefix",
     "editor.rulers": [80],
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "java.testClass": ["mvn", "test", "-Dtest=${class}", "-DfailIfNoTests=false"],
@@ -153,5 +152,8 @@
     "workbench.editor.highlightModifiedTabs": true,
     "editor.tabSize": 2,
     "html.format.endWithNewline": true,
-    "editor.showFoldingControls": "always"
+    "editor.showFoldingControls": "always",
+    "javascript.suggest.completeFunctionCalls": true,
+    "typescript.suggest.completeFunctionCalls": true,
+    "editor.acceptSuggestionOnEnter": "smart"
 }
