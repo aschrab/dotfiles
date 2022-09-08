@@ -1,6 +1,6 @@
 # Builtin
 output eDP-1 {
-  position 0 0
+  position 0 1560
 }
 bar {
   output eDP-1
@@ -9,9 +9,21 @@ bar {
   separator_symbol " | "
 }
 
+# Upper
+output DP-2 {
+  position 3840 0
+  transform 180
+}
+bar {
+  output DP-2
+  position bottom
+  status_command i3status
+  separator_symbol " | "
+}
+
 # Lower
 output DP-3 {
-  position 3840 0
+  position 3840 2160
 }
 bar {
   output DP-3
@@ -24,7 +36,7 @@ bar {
 include i3
 
 bindsym $mod+Control+1 move workspace to output eDP-1
-bindsym $mod+Control+2 move workspace to output DP-3
+bindsym $mod+Control+2 move workspace to output DP-2
 bindsym $mod+Control+3 move workspace to output DP-3
 
 font pango:Fira Code 12
