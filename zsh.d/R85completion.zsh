@@ -58,7 +58,7 @@ zstyle ':completion:*' file-list list=20 insert=10
 }
 
 # Also, don't suggest completion functions as alternative if entered command wasn't found
-#export CORRECT_IGNORE='_*'
+export CORRECT_IGNORE='_*'
 
 if [[ $USER == 'root' ]]; then
   # Display all processes
