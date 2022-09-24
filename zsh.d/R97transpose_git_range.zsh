@@ -22,4 +22,4 @@ __transpose_git_range() {
 }
 
 zle -N __transpose_git_range
-bindmodes emacs,viins __transpose_git_range '^X^T'
+bindmodes emacs,viins,vicmd __transpose_git_range '^X^T'

@@ -45,10 +45,20 @@ zstyle ':completion:*' file-sort modification
 # When completing small numbers of files, use format similar to `ls -l`
 zstyle ':completion:*' file-list list=20 insert=10
 
-# Try to avoid completion functions when completing command names.
-zstyle ':completion:*:-command-:*' ignored-patterns '_*' '*-linux-gnu-*' 'vcs_info*'
-# Also, don't suggest them as alternative if entered command wasn't found
-#export CORRECT_IGNORE='_*'
+# Ignore some commands when doing completion
+() {
+  local ignore=(
+    '_*' # completion functions
+    'vcs_info*' # VCS info functions
+    '*-linux-gnu-*' # architecture-specific build tools
+    'lam' # laminate command, similar to paste(1)
+  )
+
+  zstyle ':completion:*:-command-:*' ignored-patterns "${ignore[@]}"
+}
+
+# Also, don't suggest completion functions as alternative if entered command wasn't found
+export CORRECT_IGNORE='_*'
 
 if [[ $USER == 'root' ]]; then
   # Display all processes
