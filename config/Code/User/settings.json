@@ -128,7 +128,6 @@
     "[java]": {
     },
     "java.implementationsCodeLens.enabled": true,
-    "window.zoomLevel": 0,
     "java.requirements.JDK11Warning": false,
     "java.semanticHighlighting.enabled": true,
     "python.languageServer": "Microsoft",
@@ -155,5 +154,16 @@
     "editor.showFoldingControls": "always",
     "javascript.suggest.completeFunctionCalls": true,
     "typescript.suggest.completeFunctionCalls": true,
-    "editor.acceptSuggestionOnEnter": "smart"
+    "editor.acceptSuggestionOnEnter": "smart",
+    "editor.stickyScroll.enabled": true,
+    "gitlens.views.worktrees.pullRequests.enabled": false,
+    "gitlens.views.worktrees.pullRequests.showForBranches": false,
+    "gitlens.views.worktrees.pullRequests.showForCommits": false,
+    "gitlens.views.worktrees.reveal": false,
+    "gitlens.views.worktrees.avatars": false,
+    "gitlens.views.repositories.showTags": false,
+    "gitlens.views.repositories.showStashes": false,
+    "gitlens.views.repositories.showRemotes": false,
+    "gitlens.views.stashes.reveal": false,
+    "gitlens.views.repositories.showWorktrees": false
 }
