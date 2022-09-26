@@ -8,7 +8,8 @@ async function main() {
 
 if (require.main === module) {
 	// Running as script
-	main().then(console.log)
+	const [ /* interpreter */ , /* script */, ...files ] = process.argv
+	main(files).then(console.log)
 		.catch(console.error)
 }
 endsnippet
