@@ -1,0 +1,6 @@
+send2-hook '~faaron@schrab.com' 'set smtp_url="smtp://aaron@schrab.com@smtp.fastmail.com:587/"'
+
+folder-hook 'imaps://aaron@schrab.com@imap.fastmail.com' 'set from=aaron@schrab.com'
+
+folder-hook 'imaps://aaron@schrab.com@imap.fastmail.com' 'set postponed="imaps://aaron@schrab.com@imap.fastmail.com/Drafts"'
+folder-hook 'imaps://aaron@schrab.com@imap.fastmail.com' 'set record="imaps://aaron@schrab.com@imap.fastmail.com/Sent"'

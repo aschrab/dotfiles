@@ -8,8 +8,9 @@ set pgp_sign_as="0x6DB5C725"
 source ~/vc/mutt/contrib/gpg.rc
 source ~/.mutt/rc.common
 source ~/.mutt/accounts.gmail
+source ~/.mutt/accounts.fastmail
 source ~/.mutt/accounts.trilug
-source ~/.mutt/accounts.pug
+# source ~/.mutt/accounts.pug
 
 # Since a lot of software claims that cp1252 encoded text is actually
 # iso-8859-1, and the former is a superset of the latter, just allow it.
@@ -21,8 +22,8 @@ auto_view application/text application/x-plain
 
 set ispell="spell"
 
-set folder=imaps://ats@pug.qqx.org/
-set spoolfile=+INBOX
+set folder=imaps://aaron@schrab.com@imap.fastmail.com/
+set spoolfile==INBOX
 source ~/.mutt/save_hooks
 
 source ~/.mutt/unignore

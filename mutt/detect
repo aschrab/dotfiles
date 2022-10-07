@@ -16,7 +16,7 @@ account-hook '@(mail\.)?trilug.org' 'set tunnel="exec <%= Dir.pwd %>/imapwrap tr
 send2-hook '~f @trilug.org' 'set sendmail="<%=trilug%> <%=sendmail%>"'
 
 % pug = host['pug'] ? '' : 'twrap ssh pug.qqx.org'
-send2-hook '~f @(schrab\.com\|(pug\.)?qqx\.org)' 'set sendmail="<%=pug%> <%=sendmail%>"'
+# send2-hook '~f @(schrab\.com\|(pug\.)?qqx\.org)' 'set sendmail="<%=pug%> <%=sendmail%>"'
 
 % alt_types='text/enriched text/plain text application/postscript image/*'
 alternative_order <%= alt_types %>
@@ -28,6 +28,7 @@ macro pager,index ,@text "<enter-command>alternative_order <%= alt_types %>; <%=
 
 % if mutt_patch %r<mailbox_prefix>
   mailbox_prefix + imaps://aaron.schrab@gmail.com@imap.gmail.com/
+  # mailbox_prefix % imaps://aaron@schrab.com@imap.fastmail.com/
   mailbox_prefix * imaps://aschrab@mail.trilug.org/
 #  mailbox_prefix [H] imaps://ats@pug.qqx.org/
 % elsif mutt_patch %r<mailboxrx>
