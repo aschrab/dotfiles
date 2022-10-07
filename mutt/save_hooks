@@ -9,5 +9,5 @@ save-hook @cooperpress.com =L/subs/weekly-tech-news
 save-hook peter@html5weekly.com    =L/subs/weekly-tech-news
 
 save-hook @thisistrue =L/subs/true
-fcc-save-hook lsm@qqx.org =Archive/lsm
-save-hook . =Archive
+fcc-save-hook lsm@qqx.org =Archived/lsm
+save-hook . =Archived
