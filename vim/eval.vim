@@ -107,6 +107,12 @@ if (v:version >= 700)
 
   let g:LanguageClient_serverCommands['python'] = ['/usr/local/bin/pyls']
 
+  if !exists('g:polyglot_disabled')
+    let g:polyglot_disabled = []
+  endif
+
+  let g:polyglot_disabled += ['autoindent'] " Mimics vim-sleuth which I already use
+  let g:polyglot_disabled += ['bzl'] " claims any file named `build`
 endif
 
 " Screen/tmux can also handle xterm mousiness, but Vim doesn't detect it by default.
