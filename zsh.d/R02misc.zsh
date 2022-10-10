@@ -7,7 +7,7 @@ unlimit core
 # Define a function to find first supported locale out of a list
 first_locale () {
   printf %s\\n "$@" |
-    fgrep --max-count=1 --ignore-case --line-regexp --file=<(locale -a)
+    grep --fixed-strings --max-count=1 --ignore-case --line-regexp --file=<(locale -a)
 }
 
 export LANG
