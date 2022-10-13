@@ -286,3 +286,6 @@
 [submodule "vim/bundle/aliases"]
 	path = vim/bundle/aliases
 	url = https://github.com/Konfekt/vim-alias.git
+[submodule "vim/bundle/lspconfig"]
+	path = vim/bundle/lspconfig
+	url = https://github.com/neovim/nvim-lspconfig.git
