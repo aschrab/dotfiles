@@ -190,9 +190,6 @@
 [submodule "vim/bundle/ale"]
 	path = vim/bundle/ale
 	url = https://github.com/w0rp/ale.git
-[submodule "vim/bundle/deoplete"]
-	path = vim/bundle/deoplete
-	url = https://github.com/Shougo/deoplete.nvim.git
 [submodule "vim/bundle/snippets"]
 	path = vim/bundle/snippets
 	url = gh:honza/vim-snippets
@@ -289,3 +286,21 @@
 [submodule "vim/bundle/lspconfig"]
 	path = vim/bundle/lspconfig
 	url = https://github.com/neovim/nvim-lspconfig.git
+[submodule "vim/bundle/nvim-cmp"]
+	path = vim/bundle/nvim-cmp
+	url = https://github.com/hrsh7th/nvim-cmp.git
+[submodule "vim/bundle/cmp-nvim-lsp"]
+	path = vim/bundle/cmp-nvim-lsp
+	url = https://github.com/hrsh7th/cmp-nvim-lsp.git
+[submodule "vim/bundle/cmp-buffer"]
+	path = vim/bundle/cmp-buffer
+	url = https://github.com/hrsh7th/cmp-buffer.git
+[submodule "vim/bundle/cmp-path"]
+	path = vim/bundle/cmp-path
+	url = https://github.com/hrsh7th/cmp-path.git
+[submodule "vim/bundle/cmp-cmdline"]
+	path = vim/bundle/cmp-cmdline
+	url = https://github.com/hrsh7th/cmp-cmdline.git
+[submodule "vim/bundle/cmp-nvim-ultisnips"]
+	path = vim/bundle/cmp-nvim-ultisnips
+	url = https://github.com/quangnguyen30192/cmp-nvim-ultisnips

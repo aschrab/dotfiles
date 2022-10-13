@@ -55,7 +55,7 @@ if (v:version >= 700)
   endif
 
   if !has('nvim') || !has('python3')
-    let g:pathogen_blacklist += [ 'deoplete' ]
+    let g:pathogen_blacklist += [ 'deoplete', 'nvim-cmp' ]
   else
     let g:pathogen_blacklist += [ 'tsuquyomi' ]
   endif
