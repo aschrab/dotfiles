@@ -9,6 +9,7 @@ function! s:MapListing()
     silent map | call feedkeys("\<CR>")
     redir END                          " end output redirection
     vnew                               " new buffer in vertical window
+    setlocal buftype=nofile            " don't complain about it not getting saved
     put a                              " put content of register
     " Sort on 4th character column which is the key(s)
     %!sort -k1.4,1.4
