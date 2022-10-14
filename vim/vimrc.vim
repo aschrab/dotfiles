@@ -193,23 +193,6 @@ omap i' :normal vT'ot'<CR>
 omap a' :normal vF'of'<CR>
 :endif
 
-map ,x :w<C-M>:r!chmod +x <C-R>=expand('%:S')<C-M><C-M>:w!<C-M>
-
-:if has('digraphs')
-"dig 00 176 " ∞
-dig dg 176 " °
-dig oo 176 " °
-dig !! 161 " ¡
-dig ?? 191 " ¿
-dig SS 167 " §
-dig ?! 8253 " Interrobang ‽
-dig .. 8230 " Ellipsis …
-dig eu 8364 " Euro sign
-dig mt 8709 " Empty set ∅
-dig nl 9216 " null ␀
-dig nb 160 " non-breaking space
-endif
-
 set cinoptions+=l1,(0,t0
 set cinkeys=0{,0}:,!^F,o,O,e
 
