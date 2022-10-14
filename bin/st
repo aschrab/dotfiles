@@ -3,7 +3,7 @@
 # Helper for attaching to a remote tmux session
 
 st () {
-  if [[ -n "$TMUX" ]]; then
+  if [[ -n "${TMUX:-}" ]]; then
     # shellcheck disable=SC2016
     echo 'Already in a tmux session (unset $TMUX to nest)' >&2
     return 1
