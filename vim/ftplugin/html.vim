@@ -13,4 +13,4 @@ let b:html_mode = 1
 runtime ftplugin/xml.vim
 
 " Don't include <:> in matchpairs, interferes with the XML autoclosing
-let b:delimitMate_matchpairs = "(:),[:],{:}"
+" let b:delimitMate_matchpairs = "(:),[:],{:}"
