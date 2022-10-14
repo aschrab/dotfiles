@@ -23,7 +23,7 @@ st () {
     shift
   fi
 
-  local remote=()
+  local remote=(env) # bash on Mac OS views empty arrays as unbound
   if [ -n "$host" ] && [ "-" != "$host" ]; then
     # Sometimes an explicit xclient is needed for clipboard sharing to be activated.
     # Invoke `xrefresh` to satisfy that.
