@@ -1,4 +1,4 @@
-source $HOME/.vim/vimrc.vim
+source $XDG_CONFIG_HOME/nvim/vimrc.vim
 
 lua <<EOF
 -- ==================== nvim-cmp =========================
