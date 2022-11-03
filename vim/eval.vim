@@ -92,7 +92,7 @@ if (v:version >= 700)
     let g:ale_linters_ignore = {}
   endif
   let g:ale_linters_ignore['javascript'] = ['tslint', 'tsserver']
-  let g:ale_linters_ignore['typescript'] = ['eslint']
+  let g:ale_linters_ignore['typescript'] = ['tslint']
 
   if !exists('g:ale_fixers')
     let g:ale_fixers = {}

@@ -1,36 +1,33 @@
 #!/bin/bash
+set -ueo pipefail
 
 # Helper for attaching to a remote tmux session
 
-st () {
-  if [[ -n "$TMUX" ]]; then
-    # shellcheck disable=SC2016
-    echo 'Already in a tmux session (unset $TMUX to nest)' >&2
-    return 1
-  fi
+if [[ -n "${TMUX:-}" ]]; then
+  # shellcheck disable=SC2016
+  echo 'Already in a tmux session (unset $TMUX to nest)' >&2
+  return 1
+fi
 
-  if [[ -z "$1"  ]] ; then
-    echo "Usage: $0 <HOST> [<SESSION>] [<COMMAND> ...OPTIONS]" >&2
-    return 1
-  fi
+if [[ -z "$1"  ]] ; then
+  echo "Usage: $0 <HOST> [<SESSION>] [<COMMAND> ...OPTIONS]" >&2
+  return 1
+fi
 
-  local host=$1
+host=$1
+shift
+
+session=0 # default
+if [ -n "${1:-}" ] ; then
+  session=${1}
   shift
+fi
 
-  local session=0 # default
-  if [ -n "${1:-}" ] ; then
-    session=${1}
-    shift
-  fi
+remote=(env) # bash on Mac OS views empty arrays as unbound
+if [ -n "$host" ] && [ "-" != "$host" ]; then
+  # Sometimes an explicit xclient is needed for clipboard sharing to be activated.
+  # Invoke `xrefresh` to satisfy that.
+  remote=(ssh -t "$host" 'xrefresh; exec')
+fi
 
-  local remote=()
-  if [ -n "$host" ] && [ "-" != "$host" ]; then
-    # Sometimes an explicit xclient is needed for clipboard sharing to be activated.
-    # Invoke `xrefresh` to satisfy that.
-    remote=(ssh -t "$host" 'xrefresh; exec')
-  fi
-
-  exec "${remote[@]}" tmux -u new -ADs "$session" "$@"
-}
-
-st "$@"
+exec "${remote[@]}" tmux -u new -ADs "$session" "$@"
