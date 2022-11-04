@@ -60,7 +60,9 @@ if (v:version >= 700)
     let g:pathogen_blacklist += [ 'tsuquyomi' ]
   endif
 
-  if !has('nvim') || !has('python3')
+  if has('nvim') && has('python3')
+    let g:pathogen_blacklist += [ 'tern' ]
+  else
     let g:pathogen_blacklist += [ 'nvim-lspconfig' ]
   endif
 
