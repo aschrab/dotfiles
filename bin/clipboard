@@ -14,7 +14,7 @@ elif [ -n "${WAYLAND_DISPLAY:-}" ]; then
   paste() {
     wl-paste
   }
-else
+elif [ -n "${DISPLAY:-}" ]; then
   selection=clipboard
   #selection=primary
   copy() {
@@ -22,6 +22,14 @@ else
   }
   paste() {
     xclip -out -selection $selection
+  }
+else # Use terminal escape sequence to set clipboard
+  copy() {
+    printf '\e]52;%s;%s\a' pc "$(base64)"
+  }
+  paste() {
+    echo "Paste not supported in current environment" >&2
+    exit 1
   }
 fi
 
