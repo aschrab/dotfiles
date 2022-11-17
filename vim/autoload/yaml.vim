@@ -10,7 +10,7 @@ function! yaml#Fold(line) "{{{1
   endwhile
 
   " Determine fold level for line based on indent
-  let width = &shiftwidth ||  &tabstop
+  let width = &shiftwidth || &tabstop
   let level = strlen(matchstr(line, '\v^\s*')) / width
 
   " Don't allow nesting past setting of max requested
