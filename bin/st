@@ -9,7 +9,7 @@ if [[ -n "${TMUX:-}" ]]; then
   return 1
 fi
 
-if [[ -z "$1"  ]] ; then
+if [[ -z "${1:-}"  ]] ; then
   echo "Usage: $0 <HOST> [<SESSION>] [<COMMAND> ...OPTIONS]" >&2
   return 1
 fi
