@@ -116,35 +116,6 @@ Host vagrant
 # IdentitiesOnly yes
   LogLevel FATAL
 
-Host niq-aaron
-  Port 4030
-  User aschrab
-  LocalForward localhost:3000 0:3000
-
-Host niq-*
-  HostName durrhc1sn02-stg.corp.netapp.com
-  User netappiq
-  ForwardAgent yes
-  XForward
-
-Host niq-build niq-build-2
-  Port 3222
-
-Host niq-build-3
-  Port 3322
-
-Host niq-build-host
-
-Host niq-template
-  Port 4020
-
-Host datalakegw
-  HostName phyrhcgws02-prd.corp.netapp.com
-
-Host burtview*.netapp.com
-  ForwardAgent yes
-  XForward
-
 # EC2 nodes
 Host 172.30.*
   User ubuntu
