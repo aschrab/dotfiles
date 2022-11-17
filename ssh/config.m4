@@ -9,6 +9,12 @@ AddKeysToAgent yes
 
 ifelse(OS, {Darwin}, {
 XAuthLocation /opt/X11/bin/xauth
+define({XForward}, {})dnl
+}, {
+define({XForward}, {dnl
+ForwardX11 yes
+ForwardX11Trusted yes
+})dnl
 })dnl
 
 HashKnownHosts no
@@ -76,8 +82,7 @@ User aschrab
 Host *.qqx.org *.lan *.local proxy 172.17.*
 User ats
 ForwardAgent yes
-ForwardX11 yes
-ForwardX11Trusted yes
+XForward
 #ForwardX11Timeout 3w
 Port 222
 
@@ -94,8 +99,7 @@ ForwardX11 no
 ForwardAgent no
 
 Host *.netapp.com
-ForwardX11 yes
-ForwardAgent yes
+XForward
 
 Host *.github.com github.com
   CheckHostIP no
@@ -121,8 +125,7 @@ Host niq-*
   HostName durrhc1sn02-stg.corp.netapp.com
   User netappiq
   ForwardAgent yes
-  ForwardX11 yes
-  ForwardX11Trusted yes
+  XForward
 
 Host niq-build niq-build-2
   Port 3222
@@ -139,9 +142,8 @@ Host datalakegw
   HostName phyrhcgws02-prd.corp.netapp.com
 
 Host burtview*.netapp.com
-  ForwardX11 yes
-  ForwardX11Trusted yes
   ForwardAgent yes
+  XForward
 
 # EC2 nodes
 Host 172.30.*
