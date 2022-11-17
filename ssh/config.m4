@@ -149,4 +149,7 @@ Host meilisearch-dev
   ForwardAgent no
   AddKeysToAgent no
 
+Host *
+  PubkeyAcceptedAlgorithms ecdsa-sha2-nistp256,ecdsa-sha2-nistp256-cert-v01@openssh.com,rsa-sha2-512,rsa-sha2-256
+
 # vim: ft=sshconfig
