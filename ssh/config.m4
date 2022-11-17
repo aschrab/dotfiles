@@ -151,5 +151,6 @@ Host meilisearch-dev
 
 Host *
   PubkeyAcceptedAlgorithms ecdsa-sha2-nistp256,ecdsa-sha2-nistp256-cert-v01@openssh.com,rsa-sha2-512,rsa-sha2-256
+  ServerAliveCountMax 2
 
 # vim: ft=sshconfig
