@@ -53,9 +53,9 @@ else # Command line args
 fi
 
 # Actually do things. Copy first, then paste so that data will flow through.
-if [ "x$do_copy" = xy ]; then
+if [ "$do_copy" = y ]; then
   copy
 fi
-if [ "x$do_paste" = xy ]; then
+if [ "$do_paste" = y ]; then
   paste
 fi
