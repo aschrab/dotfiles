@@ -1,5 +1,7 @@
 load_brew_prefix() {
 	local package="$1"
+  local added_bin="${2:-}"
+
 	local top="/usr/local/Cellar/${package}"
 
 	if ! [ -d "$top" ]; then
@@ -15,4 +17,8 @@ load_brew_prefix() {
 	fi
 
 	load_prefix "${top}/${dir}"
+
+  if [ -n "${added_bin}" ]; then
+    PATH_add "${top}/${dir}/${added_bin}"
+  fi
 }

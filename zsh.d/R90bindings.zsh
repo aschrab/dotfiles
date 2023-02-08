@@ -74,9 +74,9 @@ autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 
-autoload -Uz insert-files
-zle -N insert-files
-bindkey -M viins '^F' insert-files
+# autoload -Uz insert-files
+# zle -N insert-files
+# bindkey -M viins '^F' insert-files
 
 ###################
 # Common bindings #

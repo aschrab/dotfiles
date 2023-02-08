@@ -26,3 +26,5 @@ export FZF_TMUX=1
     fi
   done
 }
+
+bindmodes emacs,viins fzf-file-widget '^F'
