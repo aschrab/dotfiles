@@ -198,7 +198,7 @@ for_window [title="^xfce4-notifyd"] floating enable
 for_window [title="^Edit Scheduled Transaction"] resize set 1000 547, move position center
 
 assign [class="Gnucash"] → "3:cash"
-workspace "3:cash" output <%= displays.last['name'] %>
+workspace "3:cash" output <%= (displays[1] || displays[0])['name'] %>
 
 <% if @wm == 'i3' %>
 exec --no-startup-id "<%= DOTFILE_DIR %>/i3/startup"
