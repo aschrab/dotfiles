@@ -164,8 +164,8 @@ bindsym $mod+r mode "resize"
   displays = JSON.parse(`i3-msg -t get_outputs`) rescue [{}]
   displays.select!{ |m| m['active'] }
 
-  # Put tray on display that extends farthest down, preferring right-most display if tie
-  tray = displays.sort_by{ |m| m['rect'].values_at('y','x') }.last['name']
+  # Put tray on display that extends farthest left, preferring top-most display if tie
+  tray = displays.sort_by{ |m| m['rect'].values_at('x','y') }.first['name']
 
   # Put status on display with highest bottom, preferring left-most if tie
   status = displays.sort_by{ |m| m['rect'].values_at('y','x') }.first['name']
