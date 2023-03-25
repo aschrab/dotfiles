@@ -45,6 +45,7 @@ set nostrict_threads
 set sort_aux=last-date-received
 
 set folder_format="%2C%t %5N %8s %d %f"
+set message_id_format="<%Y%02m%02dT%02H%02M%02SZ.%r%r%r@%f>"
 
 # Settings for viewing messages
 set pager_index_lines=8
