@@ -10,8 +10,8 @@ md2html &
 converter=$!
 trap 'kill "$converter"' EXIT
 
-if command -v live-server >/dev/null 2>&1 ; then
-  live-server --no-browser --ignore=.git "$@" .
+if command -v npx >/dev/null 2>&1 ; then
+  npx live-server --no-browser --ignore=.git "$@" .
 elif command -v python3; then
   python3 -m http.server
 else
