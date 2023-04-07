@@ -5,5 +5,11 @@ function npm {
     echo "Use yarn instead (yarn.lock found)" >&2
     return 1
   fi
+
+  if [[ -r pnpm-lock.yaml ]]; then
+    echo "Use pnpm instead (pnpm-lock.yaml found)"
+    return 1
+  fi
+
   command npm "$@"
 }
