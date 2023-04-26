@@ -24,19 +24,6 @@ ControlPersist 30
 #VerifyHostKeyDNS=ask
 ServerAliveInterval=5
 
-Host niq.qqx.org ng.qqx.org
-Port 22
-User aschrab
-LocalForward localhost:27017 0:27017
-# LocalForward localhost:4200 0:4200
-# LocalForward localhost:5000 0:5000
-# LocalForward localhost:9229 0:9229
-
-Host aschrab-mbp.lan
-User aschrab
-Port 22
-ForwardAgent yes
-
 Host pug.qqx.org proxy
 #Port 443
 
@@ -94,13 +81,6 @@ Host lish
 User qqx
 HostName lish-atlanta.linode.com
 
-Host ngage.netapp.com atla-app*.netapp.com
-ForwardX11 no
-ForwardAgent no
-
-Host *.netapp.com
-XForward
-
 Host *.github.com github.com
   CheckHostIP no
 
@@ -115,39 +95,6 @@ Host vagrant
 # IdentityFile /home/ats/.vagrant.d/insecure_private_key
 # IdentitiesOnly yes
   LogLevel FATAL
-
-# EC2 nodes
-Host 172.30.*
-  User ubuntu
-  UserKnownHostsFile /dev/null
-  StrictHostKeyChecking no
-  ChallengeResponseAuthentication no
-  KbdInteractiveAuthentication no
-
-# New IT EC2 nodes
-Host 10.105.132.*
-  User ubuntu
-  UserKnownHostsFile /dev/null
-  StrictHostKeyChecking no
-  ChallengeResponseAuthentication no
-  KbdInteractiveAuthentication no
-
-# IT EC2 nodes
-Host 10.105.*
-  User root
-  UserKnownHostsFile /dev/null
-  StrictHostKeyChecking no
-  ChallengeResponseAuthentication no
-  KbdInteractiveAuthentication no
-
-Host meilisearch-dev
-  HostName 10.105.88.51
-  User admin
-  IdentityAgent none
-  IdentitiesOnly yes
-  IdentityFile ~/.ssh/meilisearch.pem
-  ForwardAgent no
-  AddKeysToAgent no
 
 Host *
   PubkeyAcceptedAlgorithms ecdsa-sha2-nistp256,ecdsa-sha2-nistp256-cert-v01@openssh.com,rsa-sha2-512,rsa-sha2-256
