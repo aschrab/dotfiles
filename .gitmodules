@@ -301,3 +301,6 @@
 [submodule "vim/bundle/cmp-nvim-ultisnips"]
 	path = vim/bundle/cmp-nvim-ultisnips
 	url = https://github.com/quangnguyen30192/cmp-nvim-ultisnips
+[submodule "nodenv/plugins/nodenv-default-packages"]
+	path = nodenv/plugins/nodenv-default-packages
+	url = https://github.com/nodenv/nodenv-default-packages.git
