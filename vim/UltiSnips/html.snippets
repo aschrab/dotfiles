@@ -1,11 +1,11 @@
 snippet <
-<${1:tag}${2:}>${VISUAL}$3</$1>
+<${1:tag}>${VISUAL}$2</${1/\s.*//}>
 endsnippet
 
 snippet << "Multiline element" A
-<${1:tag}${2:}>
-	${VISUAL}$3
-</$1>
+<${1:tag}>
+	${VISUAL}$2
+</${1/\s.*//}>
 endsnippet
 
 # The snippet for links from upstream includes the **evil** target="_blank" by default
