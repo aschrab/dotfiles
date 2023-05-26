@@ -4,6 +4,8 @@ function code {
   if [ -c /dev/machtrace ] ; then
     # On a Mac
     open -a 'Visual Studio Code' "$@"
+  elif [ -x /usr/share/codium/bin/codium ] ; then
+    /usr/share/codium/bin/codium "$@"
   else
     command code "$@"
   fi
