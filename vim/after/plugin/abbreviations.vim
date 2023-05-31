@@ -16,6 +16,7 @@ Abolish lable label
 Abolish shfit{,ed,ing} shift{}
 Abolish lenght length
 Abolish errror error
+Abolish cosnt const
 endif
 
 iabbrev ube unsolicited bulk email
