@@ -19,9 +19,6 @@ function set_paths {
     /usr/sbin
     /sbin
     /usr/X11/bin
-    /usr/software/bin
-    /usr/software/rats/bin
-    /usr/software/utils/bin
     /usr/games
   )
   export PATH
