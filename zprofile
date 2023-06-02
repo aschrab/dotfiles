@@ -1,7 +1,7 @@
 # vim: ft=zsh
-#
-if [[ -r ~/.gnupg/gpg-agent.conf ]] ; then
-  [[ -r ~/.gnupg/env ]] && [[ ! -s ~/.gnupg/env ]] && killall -9 gpg-agent
+
+if (( $+commands[gpg-agent] )) && [[ -r ~/.gnupg/gpg-agent.conf ]] ; then
+  [[ -r ~/.gnupg/env ]] && [[ ! -s ~/.gnupg/env ]] && killall -9 gpg-agent 2>/dev/null
   gpg-agent &>/dev/null ||
     gpg-agent --homedir ~/.gnupg --daemon --sh >| ~/.gnupg/env
 fi
