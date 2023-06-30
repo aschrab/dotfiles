@@ -55,7 +55,7 @@
     "editor.lineNumbers": "relative",
     "editor.overviewRulerBorder": false,
     "editor.renderControlCharacters": true,
-    "editor.renderFinalNewline": false,
+    "editor.renderFinalNewline": "off",
     "editor.renderLineHighlight": "gutter",
     "editor.tabCompletion": "onlySnippets",
     "editor.formatOnPaste": true,
