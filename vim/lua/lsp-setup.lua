@@ -40,7 +40,7 @@ require('lspconfig')['tsserver'].setup{
   capabilities = capabilities,
 }
 
-require('lspconfig')['vuels'].setup{
+require('lspconfig')['volar'].setup{
   on_attach = on_attach,
   flags = lsp_flags,
   capabilities = capabilities,
