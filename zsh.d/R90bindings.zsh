@@ -1,6 +1,6 @@
 bindkey -v
 
-bindmodes emacs,viins $'\t' complete-word
+bindmodes emacs,viins complete-word $'\t'
 
 bindmodes emacs,viins,vicmd up-line-or-search '\e[A' '\eOA' # Up arrow
 bindmodes emacs,viins,vicmd backward-word '\e[5D' '\e[1;5D' # ctrl + left-arrow
