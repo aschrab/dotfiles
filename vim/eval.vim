@@ -117,14 +117,16 @@ if (v:version >= 700)
   let g:polyglot_disabled += ['bzl'] " claims any file named `build`
 endif
 
-" Screen/tmux can also handle xterm mousiness, but Vim doesn't detect it by default.
-if &term ==? 'screen'
-  set ttymouse=xterm2
-endif
+if !has('nvim') " Neovim removed the ttymouse option
+  " Screen/tmux can also handle xterm mousiness, but Vim doesn't detect it by default.
+  if &term ==? 'screen'
+    set ttymouse=xterm2
+  endif
 
-if v:version >= 704 && &term =~? '^screen'
-  " Odds are good that this is a modern tmux, so let's pick the best mouse-handling mode.
-  set ttymouse=sgr
+  if v:version >= 704 && &term =~? '^screen'
+    " Odds are good that this is a modern tmux, so let's pick the best mouse-handling mode.
+    set ttymouse=sgr
+  endif
 endif
 
 runtime macros/matchit.vim

@@ -55,7 +55,7 @@
     "editor.lineNumbers": "relative",
     "editor.overviewRulerBorder": false,
     "editor.renderControlCharacters": true,
-    "editor.renderFinalNewline": false,
+    "editor.renderFinalNewline": "off",
     "editor.renderLineHighlight": "gutter",
     "editor.tabCompletion": "onlySnippets",
     "editor.formatOnPaste": true,
@@ -165,5 +165,10 @@
     "gitlens.views.repositories.showStashes": false,
     "gitlens.views.repositories.showRemotes": false,
     "gitlens.views.stashes.reveal": false,
-    "gitlens.views.repositories.showWorktrees": false
+    "gitlens.views.repositories.showWorktrees": false,
+    "ruby.languageServer": {},
+    "ruby.useLanguageServer": true,
+    "ruby.useBundler": true,
+    "ruby.intellisense": "rubyLocate",
+    "ruby.codeCompletion": "rcodetools"
 }

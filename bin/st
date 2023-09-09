@@ -6,12 +6,12 @@ set -ueo pipefail
 if [[ -n "${TMUX:-}" ]]; then
   # shellcheck disable=SC2016
   echo 'Already in a tmux session (unset $TMUX to nest)' >&2
-  return 1
+  exit 1
 fi
 
 if [[ -z "${1:-}"  ]] ; then
   echo "Usage: $0 <HOST> [<SESSION>] [<COMMAND> ...OPTIONS]" >&2
-  return 1
+  exit 1
 fi
 
 host=$1
