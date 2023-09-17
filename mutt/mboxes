@@ -24,17 +24,12 @@ mailboxes + +Credit
 <%= mlist '=L/ug/trilug', :address => 'trilug@trilug', :subjectrx => '[TriLUG]' %>
 <%= mlist '=L/ug/trilug/ham', :address => 'linux-ham@trilug', :subjectrx => '[Linux-ham]' %>
 
-<%= mlist '=L/ug/raleigh-pm', :subjectrx => '[Raleigh-pm]' %>
-
 <%= mlist '=L/mail/mutt-dev', :from => 'aaron+mutt@schrab.com' %>
+<%= mlist '=L/mail/mutt-dev/issues', :from => 'aaron+mutt@schrab.com' %>
 <%= mlist '=L/dev/zsh', :address => 'zsh-(users|workers)@zsh.org' %>
 <%= mlist '=L/dev/git', :address => 'git@vger.kernel.org', :followup_to => false %>
 <%= mlist '=L/dev/tmux', :address => 'tmux-users@lists.(sourceforge|sf).net' %>
 <%= mlist '=L/dev/i3', :address => 'i3-discuss@freelists.org', :subjectrx => '[i3-discuss]' %>
-<%= mlist '+L/ruby/sequel', :account => :gmail, :address => 'sequel-talk@googlegroups.com' %>
-
-<%= mlist '=L/mail/mailman3', subjectrx: '[MM3-users]', address: 'mailman-users@mailman3.org' %>
-<%= mlist '=L/mail/sympa', subjectrx: '[sympa-users]', address: 'sympa-users' %>
 
 # Debian lists
 <%= mlist '=L/debian/ruby', :address => 'debian-ruby' %>
@@ -49,6 +44,7 @@ mailboxes + +Credit
 <%= mlist '=L/debian/qa-packages', :address => 'debian-qa-packages' %>
 lists debian-.*@lists\.debian\.org
 
-<%= mlist '=L/bugtraq' %>
+<%= mlist '=L/mail/aerc/aerc-discuss' %>
+<%= mlist '=L/mail/aerc/aerc-devel' %>
 
 # vim: filetype=eruby.muttrc
