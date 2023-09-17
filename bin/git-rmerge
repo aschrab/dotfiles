@@ -20,17 +20,17 @@ src_id=$(git rev-parse HEAD)
 tgt_id=$(git rev-parse "${@:$#}")
 
 f="$(git rev-parse --git-dir)/COMMIT_EDITMSG"
-msg="Merge ${src_name} into ${tgt_name}" 
+printf 'Merge %s into %s\n\n' "${src_name}" "${tgt_name}" >"$f"
+git log --format='- %s' "${tgt_name}..${src_name}" >>"$f"
+$EDITOR "$f"
+
 if [ -z "$(git rev-list -n 1 "${src_id}".."${tgt_id}")" ]; then
   # Fast forward
-  printf %s "$msg" >"$f"
-  $EDITOR "$f"
   merge=$(git commit-tree -p "${src_id}" -p "${tgt_id}" -F "$f" 'HEAD^{tree}')
   git merge --ff-only "${merge}"
 else
   # Need a real merge
-  # FIXME Handle creating default message and editing ourselves
-  git merge --edit -m "${msg}" "$@"
+  git merge ---no-edit -F "$f" "$@"
 
   [ "$(git rev-parse 'HEAD^1')" = "${src_id}" ] || die "Expected first parent of HEAD to be ${src_id}"
   [ "$(git rev-parse 'HEAD^2')" = "${tgt_id}" ] || die "Expected second parent of HEAD to be ${tgt_id}"
