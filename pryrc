@@ -12,14 +12,14 @@ def prompt_color(name, text) #{{{
   end
 end #}}}
 
-Pry.config.prompt = [
+Pry.config.prompt = Pry::Prompt.new('custom', 'My prompt', [
   proc do |object, nest_level, pry|
     prompt  = prompt_color :magenta, Pry.view_clip(object)
     prompt += ":#{nest_level}" if nest_level > 0
     prompt += prompt_color :cyan, ' » '
   end,
   proc { |object,nest_level,pry| prompt_color :cyan, '» ' }
-]
+])
 
 # use awesome print for output if available
 begin
