@@ -345,6 +345,8 @@ imap <C-A>tl 2000-01-01 12:34:56 -0400<Left><C-O>d<C-X><Right>
 let g:Gitv_DoNotMapCtrlKey = 1
 let g:Gitv_TruncateCommitSubjects = 1
 
+let g:vim_markdown_frontmatter = 1
+
 let g:vorax_output_window_default_funnel = 2
 
 if exists('g:loaded_unicodePlugin')
