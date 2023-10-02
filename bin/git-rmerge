@@ -21,7 +21,7 @@ tgt_id=$(git rev-parse "${@:$#}")
 
 f="$(git rev-parse --git-dir)/COMMIT_EDITMSG"
 printf 'Merge %s into %s\n\n' "${src_name}" "${tgt_name}" >"$f"
-git log --format='- %s' "${tgt_name}..${src_name}" >>"$f"
+git log --reverse --format='- %s' "${tgt_name}..${src_name}" >>"$f"
 $EDITOR "$f"
 
 if [ -z "$(git rev-list -n 1 "${src_id}".."${tgt_id}")" ]; then
