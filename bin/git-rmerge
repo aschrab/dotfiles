@@ -30,7 +30,7 @@ if [ -z "$(git rev-list -n 1 "${src_id}".."${tgt_id}")" ]; then
   git merge --ff-only "${merge}"
 else
   # Need a real merge
-  git merge ---no-edit -F "$f" "$@"
+  git merge --no-edit -F "$f" "$@"
 
   [ "$(git rev-parse 'HEAD^1')" = "${src_id}" ] || die "Expected first parent of HEAD to be ${src_id}"
   [ "$(git rev-parse 'HEAD^2')" = "${tgt_id}" ] || die "Expected second parent of HEAD to be ${tgt_id}"
