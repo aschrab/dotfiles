@@ -18,6 +18,7 @@ tab.selected.bold=true
 dirlist*.selected.bg=#005f87
 dirlist*.selected.fg=white
 dirlist*.selected.bold=true
+dirlist_unread.fg=#64A6B3
 
 *error.bold=true
 *error.fg=red
