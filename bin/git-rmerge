@@ -26,7 +26,7 @@ $EDITOR "$f"
 
 if [ -z "$(git rev-list -n 1 "${src_id}".."${tgt_id}")" ]; then
   # Fast forward
-  merge=$(git commit-tree -p "${src_id}" -p "${tgt_id}" -F "$f" 'HEAD^{tree}')
+  merge=$(git commit-tree -p "${tgt_id}" -p "${src_id}" -F "$f" 'HEAD^{tree}')
   git merge --ff-only "${merge}"
 else
   # Need a real merge
@@ -37,7 +37,7 @@ else
   # TODO check for octopus merge
 
   git show --no-patch --pretty=format:%s%n%n%b HEAD >"$f"
-  merge=$(git commit-tree -p "${src_id}" -p "${tgt_id}" -F "$f" 'HEAD^{tree}')
+  merge=$(git commit-tree -p "${tgt_id}" -p "${src_id}" -F "$f" 'HEAD^{tree}')
 fi
 
 git push . HEAD:"${tgt_name}" || die "Failed to update ${tgt_name}"
