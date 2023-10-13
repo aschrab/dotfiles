@@ -337,6 +337,8 @@ let delimitMate_expand_cr = 2
 let delimitMate_balance_matchpairs = 1
 let delimitMate_matchpairs = '(:),[:],{:}'
 
+" Insert current date in local time
+imap <C-A>td 01 January 2000<Left><C-O>d<C-A><Right>
 " Insert current timestamp in UTC, ISO format
 imap <C-A>tu 2000-01-01T12:34:56<Left><C-O>d<C-A><Right>Z
 " Insert current timestamp in local time
