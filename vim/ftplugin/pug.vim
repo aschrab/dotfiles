@@ -1,0 +1,1 @@
+setlocal foldtext=pug#foldText()
