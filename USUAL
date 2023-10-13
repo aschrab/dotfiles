@@ -21,6 +21,7 @@ re.pl
 quiltrc
 screenrc
 ssh/config
+tidyrc
 tmux.conf
 config/tmux
 undo/.gitignore
