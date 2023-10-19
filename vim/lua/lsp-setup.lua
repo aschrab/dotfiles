@@ -57,3 +57,5 @@ require('lspconfig')['solargraph'].setup{
   flags = lsp_flags,
   capabilities = capabilities,
 }
+
+require'lspconfig'.pylyzer.setup{}
