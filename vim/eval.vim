@@ -337,6 +337,8 @@ let delimitMate_expand_cr = 2
 let delimitMate_balance_matchpairs = 1
 let delimitMate_matchpairs = '(:),[:],{:}'
 
+" Insert current date in local time
+imap <C-A>td 01 January 2000<Left><C-O>d<C-A><Right>
 " Insert current timestamp in UTC, ISO format
 imap <C-A>tu 2000-01-01T12:34:56<Left><C-O>d<C-A><Right>Z
 " Insert current timestamp in local time
@@ -345,8 +347,7 @@ imap <C-A>tl 2000-01-01 12:34:56 -0400<Left><C-O>d<C-X><Right>
 let g:Gitv_DoNotMapCtrlKey = 1
 let g:Gitv_TruncateCommitSubjects = 1
 
-" Use my own fold expression and settings for markdown
-let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_frontmatter = 1
 
 let g:vorax_output_window_default_funnel = 2
 

@@ -1,0 +1,5 @@
+#compdef git-rmerge
+#description Merge current HEAD into other branch
+
+_arguments -w -C -s \
+  '*:Branch:__git_heads'

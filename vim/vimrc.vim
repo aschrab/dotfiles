@@ -87,6 +87,9 @@ endif
 if exists('+completeopt')
 set completeopt=longest,menuone
 endif
+if exists('+spelloptions')
+  set spelloptions=camel
+endif
 set tags=tags,TAGS,./tags;,./TAGS;
 "set diffopt+=iwhite
 silent! set diffopt+=vertical

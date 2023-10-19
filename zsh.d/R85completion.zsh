@@ -78,6 +78,7 @@ zstyle ':completion:*:*:kill:*:processes' list-colors "=(#b) #([0-9]#)*=36=31"
 
 zstyle ':completion:*:*:git:*' user-commands \
   reintegrate:'Rebuild integration branch' \
+  rmerge:'Merge into other branch' \
   pr-update:'Update local checkout of a PR' \
   default:'Switch to default branch' \
 

@@ -1,0 +1,45 @@
+#!/bin/bash
+# Do a "reverse" merge - merge current branch into named branch
+# and once done switch to named branch and delete the just-merged branch.
+set -ueo pipefail
+
+die() {
+  echo "$@"
+  exit 1
+}
+
+set -x
+
+if [ $# -lt 1 ]; then
+  die "Usage: $1 branch"
+fi
+
+src_name=$(git branch --show-current || git rev-parse --short HEAD)
+tgt_name=$(git rev-parse --symbolic "${@:$#}")
+src_id=$(git rev-parse HEAD)
+tgt_id=$(git rev-parse "${@:$#}")
+
+f="$(git rev-parse --git-dir)/COMMIT_EDITMSG"
+printf 'Merge %s into %s\n\n' "${src_name}" "${tgt_name}" >"$f"
+git log --reverse --format='- %s' "${tgt_name}..${src_name}" >>"$f"
+$EDITOR "$f"
+
+if [ -z "$(git rev-list -n 1 "${src_id}".."${tgt_id}")" ]; then
+  # Fast forward
+  merge=$(git commit-tree -p "${tgt_id}" -p "${src_id}" -F "$f" 'HEAD^{tree}')
+  git merge --ff-only "${merge}"
+else
+  # Need a real merge
+  git merge --no-edit -F "$f" "$@"
+
+  [ "$(git rev-parse 'HEAD^1')" = "${src_id}" ] || die "Expected first parent of HEAD to be ${src_id}"
+  [ "$(git rev-parse 'HEAD^2')" = "${tgt_id}" ] || die "Expected second parent of HEAD to be ${tgt_id}"
+  # TODO check for octopus merge
+
+  git show --no-patch --pretty=format:%s%n%n%b HEAD >"$f"
+  merge=$(git commit-tree -p "${tgt_id}" -p "${src_id}" -F "$f" 'HEAD^{tree}')
+fi
+
+git push . HEAD:"${tgt_name}" || die "Failed to update ${tgt_name}"
+git switch "${tgt_name}"
+git branch -d "${src_name}"
