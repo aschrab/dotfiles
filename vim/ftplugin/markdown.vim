@@ -5,3 +5,4 @@ setlocal expandtab
 setlocal tabstop=4
 
 setlocal foldlevel=1
+let b:delimitMate_matchpairs = "(:),[:],<:>"
