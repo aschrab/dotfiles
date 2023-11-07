@@ -27,4 +27,5 @@ if exists(':Alias')
   Alias mv Move
 
   Alias weq wq
+  Alias Wq wq
 endif
