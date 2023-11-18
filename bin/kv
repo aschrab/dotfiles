@@ -1,10 +1,4 @@
 #!/bin/bash
 set -ueo pipefail
 
-if [[ $TERM = xterm-kitty ]]
-then
-  exec kitty +icat "$@"
-else
-  echo "Not a kitty window" >&2
-  exit 1
-fi
+exec kitty +icat "$@"
