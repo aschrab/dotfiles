@@ -13,7 +13,7 @@ export FZF_TMUX=1
   fi
 
   local fzf f
-  for fzf in /usr/local/opt/fzf/shell /usr/share/doc/fzf/examples
+  for fzf in /usr/share/doc/fzf/examples /opt/homebrew/opt/fzf/shell /usr/local/opt/fzf/shell
   do
     if [ -d "$fzf" ]; then
       for f in key-bindings completion
