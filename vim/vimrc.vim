@@ -122,7 +122,7 @@ set updatetime=200
 "}}}
 
 silent! set mouse=a
-:if $DISPLAY !=# ''
+:if has('mac') || $DISPLAY !=# ''
   :if has('unnamedplus')
     set clipboard=unnamedplus
   :else
