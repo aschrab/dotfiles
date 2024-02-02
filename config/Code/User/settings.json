@@ -130,7 +130,7 @@
     "java.implementationsCodeLens.enabled": true,
     "java.requirements.JDK11Warning": false,
     "java.semanticHighlighting.enabled": true,
-    "python.languageServer": "Microsoft",
+    "python.languageServer": "Default",
     "remote.SSH.remoteServerListenOnSocket": true,
     "remote.SSH.remotePlatform": {
         "niq.qqx.org": "linux",
