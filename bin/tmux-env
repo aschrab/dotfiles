@@ -1,0 +1,18 @@
+#!/bin/bash
+set -ueo pipefail
+
+env | sort >/tmp/orig.env
+
+if [[ -n "${TMUX:-}" ]]
+then
+  # shellcheck source=../functions/update_env_from_tmux
+  source ~/.functions/update_env_from_tmux
+
+  update_env_from_tmux
+fi
+
+env | sort >/tmp/updated.env
+
+echo "PID=$$ DISPLAY='${DISPLAY:-}'" >>/tmp/env.log
+
+"$@"

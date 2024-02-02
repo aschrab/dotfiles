@@ -138,6 +138,7 @@ macro index	'<F2>'	'<enter-command>toggle narrow_tree<enter>' 'Toggle narrow tre
 
 macro attach	"\Ck"	"|pgp -kaf\n"
 macro attach    i       "<pipe-entry>gpg --import<enter>"
+macro attach	C	"<pipe-entry>tmux-env clip<enter>" 'Copy current message part to clipboard'
 
 macro compose	E	"Ge"
 macro compose	"\eS"	"<filter-entry>gpg --armor --no-verbose --clearsign --local-user $pgp_sign_as\ny<edit-type><kill-line>application/pgp; format=text; x-action=sign\n" "Traditional PGP signature"

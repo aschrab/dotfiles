@@ -3,7 +3,7 @@
 update_env_from_tmux() {
   local line var val
 
-  tmux showenv | while read line
+  while read line
   do
     case "$line" in
       (-*)
@@ -17,5 +17,5 @@ update_env_from_tmux() {
         eval "export $var='$val'"
         ;;
     esac
-  done
+  done < <(tmux showenv)
 }
