@@ -198,11 +198,6 @@
 	pushInsteadOf = https://bitbucket.org/aschrab/
 [url "git@gitlab.com:aschrab/"]
 	pushInsteadOf = https://gitlab.com/aschrab/
-[url "https://aschrab@bitbucket.ngage.netapp.com/scm/"]
-	insteadOf = https://aschrab@ngage.netapp.com/stash/scm/
-	insteadOf = https://ngage.netapp.com/stash/scm/
-	insteadOf = ssh://git@ngage.netapp.com:7999/
-	insteadOf = ssh://ngage.netapp.com:7999/
 
 [include]
 	path = ~/.gitconfig.local
