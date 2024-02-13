@@ -171,7 +171,7 @@
 	url = https://github.com/diepm/vim-rest-console.git
 [submodule "vim/bundle/airline-themes"]
 	path = vim/bundle/airline-themes
-	url = gh:vim-airline/vim-airline-themes
+	url = https://github.com/vim-airline/vim-airline-themes
 [submodule "vim/bundle/tsuquyomi"]
 	path = vim/bundle/tsuquyomi
 	url = https://github.com/Quramy/tsuquyomi.git
@@ -192,7 +192,7 @@
 	url = https://github.com/w0rp/ale.git
 [submodule "vim/bundle/snippets"]
 	path = vim/bundle/snippets
-	url = gh:honza/vim-snippets
+	url = https://github.com/honza/vim-snippets
 [submodule "vim/bundle/autoread"]
 	path = vim/bundle/autoread
 	url = https://github.com/djoshea/vim-autoread.git
