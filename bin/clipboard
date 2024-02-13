@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ -c /dev/machtrace ]; then
+if expr "$OSTYPE" : darwin >/dev/null ; then
   copy() {
     reattach-to-user-namespace pbcopy
   }

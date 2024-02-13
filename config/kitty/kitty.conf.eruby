@@ -1,4 +1,5 @@
-% OS_X = File.exists? '/dev/machtrace'
+%require 'rbconfig'
+% OS_X = RbConfig::CONFIG['target_vendor'] == 'apple'
 
 include Kibble.conf
 
