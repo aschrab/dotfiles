@@ -4,11 +4,8 @@ colors
 fColor=$reset_color
 pColor=$fg[green]
 case "$USERNAME" in
-  aarons|ats|aschrab)
+  aarons|ats|aschrab|aaron)
     pColor=$fg[cyan]
-    ;;
-  aaron)
-    pColor=$fg[magenta]
     ;;
   michael|backup|lsm|bofh)
     pColor=$fg[yellow]
