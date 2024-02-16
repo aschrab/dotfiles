@@ -4,7 +4,6 @@ certs
 colordiffrc
 editorconfig
 eslintrc.yml
-gitconfig
 git_template
 functions
 infokey
