@@ -4,6 +4,12 @@ resolve() {
   setopt localoptions extended_glob #xtrace
   local res cmd continuation lookup_alias=y
 
+  if [[ "${1:-}" = -p ]]; then
+    shift
+    command resolve "$@"
+    return
+  fi
+
   if [[ "${1:-}" = -c ]]; then
     continuation='=> '
     shift
