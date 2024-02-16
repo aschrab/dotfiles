@@ -170,5 +170,6 @@
     "ruby.useLanguageServer": true,
     "ruby.useBundler": true,
     "ruby.intellisense": "rubyLocate",
-    "ruby.codeCompletion": "rcodetools"
+    "ruby.codeCompletion": "rcodetools",
+    "update.mode": "none"
 }
