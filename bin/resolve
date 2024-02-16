@@ -7,6 +7,13 @@ then
   resolve-link() {
     cd "$(dirname "$1")" && realpath -s "$(readlink "$1")"
   }
+elif grealpath -s /dev/null >&/dev/null
+then
+  # Try using `g` prefix to get GNU version
+  # Homebrew's coreutil prefix uses this to avoid shadowing version shipped with OS
+  resolve-link() {
+    cd "$(dirname "$1")" && grealpath -s "$(readlink "$1")"
+  }
 else
   # fallback to using perl's abs_path which will fully resolve symlinks to a final path
   resolve-link() {
