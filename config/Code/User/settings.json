@@ -171,5 +171,13 @@
     "ruby.useBundler": true,
     "ruby.intellisense": "rubyLocate",
     "ruby.codeCompletion": "rcodetools",
-    "update.mode": "none"
+    "[ruby]": {
+        "editor.defaultFormatter": "Shopify.ruby-lsp",
+        "editor.rulers": [
+            120
+        ],
+        "editor.semanticHighlighting.enabled": true
+    },
+    "update.mode": "none",
+    "ruby.rubocop.useBundler": true
 }
