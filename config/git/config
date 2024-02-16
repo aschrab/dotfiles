@@ -208,5 +208,5 @@
 	path = ~/.gitconfig.local
 	path = local
 
-[includeIf "gitdir:/Users/aschrab/"]
+[includeIf "gitdir:/Users/"]
 	path = mac
