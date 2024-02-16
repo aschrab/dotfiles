@@ -1,11 +1,18 @@
 #!/bin/bash
 set -ueo pipefail
 
-if command -v realpath >&/dev/null
+if realpath -s /dev/null >&/dev/null
 then
   # If realpath is available use it and readlink to follow symlinks one at a time
   resolve-link() {
     cd "$(dirname "$1")" && realpath -s "$(readlink "$1")"
+  }
+elif grealpath -s /dev/null >&/dev/null
+then
+  # Try using `g` prefix to get GNU version
+  # Homebrew's coreutil prefix uses this to avoid shadowing version shipped with OS
+  resolve-link() {
+    cd "$(dirname "$1")" && grealpath -s "$(readlink "$1")"
   }
 else
   # fallback to using perl's abs_path which will fully resolve symlinks to a final path
