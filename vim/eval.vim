@@ -54,8 +54,8 @@ if (v:version >= 700)
     let g:pathogen_blacklist += [ 'tern', 'editorconfig' ]
   endif
 
-  if !has('nvim') || !has('python3')
-    let g:pathogen_blacklist += [ 'deoplete', 'nvim-cmp', 'cmp-buffer', 'cmp-cmdline', 'cmp-nvim-lsp', 'cmp-nvim-ultisnips', 'cmp-path' ]
+  if !has('nvim')
+    let g:pathogen_blacklist += [ 'nvim-cmp', 'cmp-buffer', 'cmp-cmdline', 'cmp-nvim-lsp', 'cmp-nvim-ultisnips', 'cmp-path' ]
   else
     let g:pathogen_blacklist += [ 'tsuquyomi' ]
   endif
