@@ -304,3 +304,6 @@
 [submodule "nodenv/plugins/nodenv-default-packages"]
 	path = nodenv/plugins/nodenv-default-packages
 	url = https://github.com/nodenv/nodenv-default-packages.git
+[submodule "vim/bundle/jdtls"]
+	path = vim/bundle/jdtls
+	url = https://github.com/mfussenegger/nvim-jdtls.git
