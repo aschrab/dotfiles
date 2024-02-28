@@ -404,6 +404,11 @@ if filereadable(node_host)
   let g:node_host_prog = node_host
 endif
 
+let python_host = expand('~/.nvim-venv/bin/python3')
+if (filereadable(python_host))
+  let g:python3_host_prog = python_host
+endif
+
 " Disable perl provider. I don't use it for anything, and healthcheck
 " complains when needed module isn't found.
 let g:loaded_perl_provider = 0
