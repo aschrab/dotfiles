@@ -9,13 +9,8 @@ if [[ -n "${TMUX:-}" ]]; then
   exit 1
 fi
 
-if [[ -z "${1:-}"  ]] ; then
-  echo "Usage: $0 <HOST> [<SESSION>] [<COMMAND> ...OPTIONS]" >&2
-  exit 1
-fi
-
-host=$1
-shift
+host="${1:--}"
+shift || :
 
 session=0 # default
 if [ -n "${1:-}" ] ; then
