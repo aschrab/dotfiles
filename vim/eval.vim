@@ -22,6 +22,11 @@ endif
 
 let g:deoplete#enable_at_startup = 1
 
+let python_host = expand('~/.nvim-venv/bin/python3')
+if (filereadable(python_host))
+  let g:python3_host_prog = python_host
+endif
+
 " Older versions of vim don't support data structures
 if (v:version >= 700)
   " Setup blacklist of plugins that are unavailable or incompatible
@@ -402,11 +407,6 @@ vmap <unique> Dl <Plug>SchleppDupRight
 let node_host = expand('~/.nodenv/versions/default/bin/neovim-node-host')
 if filereadable(node_host)
   let g:node_host_prog = node_host
-endif
-
-let python_host = expand('~/.nvim-venv/bin/python3')
-if (filereadable(python_host))
-  let g:python3_host_prog = python_host
 endif
 
 " Disable perl provider. I don't use it for anything, and healthcheck
