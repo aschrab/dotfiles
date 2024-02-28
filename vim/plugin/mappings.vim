@@ -45,10 +45,10 @@ omap <BS> <Del>
 " capitol P can be used to paste before cursor
 nnoremap [p ]p
 
-nnoremap <silent> [k :ALEPrevious<CR>
-nnoremap <silent> ]k :ALENext<CR>
-nnoremap <silent> [K :ALEFirst<CR>
-nnoremap <silent> ]K :ALELast<CR>
+nnoremap <silent> [k :ALEPrevious<CR>zx
+nnoremap <silent> ]k :ALENext<CR>zx
+nnoremap <silent> [K :ALEFirst<CR>zx
+nnoremap <silent> ]K :ALELast<CR>zx
 
 " In command line, expand %% to the directory containing the current file
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
