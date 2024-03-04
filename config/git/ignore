@@ -21,3 +21,4 @@ tags-??
 .envrc
 .vscode/
 Session.vim
+default.profraw
