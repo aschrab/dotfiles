@@ -1,8 +1,0 @@
-#autoload
-
-if [ -f Gemfile ] && command -v bundle >&/dev/null
-then
-  bundle exec "$0" "$@"
-else
-  command "$0" "$@"
-fi
