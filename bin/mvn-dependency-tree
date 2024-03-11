@@ -11,10 +11,13 @@ while(<$mvn>) {
   s/^\[\w+\]\s//;
 
   # Ignore anything not in the block from the dependency plugin
-  next unless /^--- maven-dependency-plugin/../^----/;
+  next unless /^--- (maven-dependency-plugin|dependency:[\d.]+:tree )/../^----/;
 
   # Don't print block markers themselves
   next if /^---/;
+
+  # Ignore information about dowloading packages
+  next if /^(Downloading|Progress) /;
 
   # If we get here print the result
   print;
