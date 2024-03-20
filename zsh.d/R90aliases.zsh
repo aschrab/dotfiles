@@ -62,8 +62,8 @@ fi
 
 alias cls='clear'
 alias sz='sz -e'
-alias l='ls -F'
-alias la='ls -aF'
+alias l='ls -HF'
+alias la='ls -aHF'
 case "$OSTYPE" in
   (*bsd*|darwin*)
     alias ll='ls -lhoF'
