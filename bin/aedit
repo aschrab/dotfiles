@@ -14,7 +14,7 @@ cleanup() {
 trap cleanup EXIT
 
 cmd=ack
-if command -v ag
+if command -v ag >/dev/null
 then
   cmd=ag
 fi
