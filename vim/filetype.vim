@@ -12,4 +12,5 @@ augroup filetypedetect
 
 	au BufNewFile,BufRead *.as setf javascript
 	au BufNewFile,BufRead .eslintrc setf javascript
+	au BufNewFile,BufRead __*.java setf eruby
 augroup END
