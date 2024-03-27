@@ -91,10 +91,11 @@ if exists('+spelloptions')
   set spelloptions=camel
 endif
 set tags=tags,TAGS,./tags;,./TAGS;
-"set diffopt+=iwhite
+
 silent! set diffopt+=vertical
 silent! set diffopt+=algorithm:patience
 silent! set diffopt+=indent-heuristic
+silent! set diffopt+=linematch:60
 
 set history=1000
 
