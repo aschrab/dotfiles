@@ -412,5 +412,7 @@ endif
 " Disable perl provider. I don't use it for anything, and healthcheck
 " complains when needed module isn't found.
 let g:loaded_perl_provider = 0
+" Same for Ruby provider
+let g:loaded_ruby_provider = 0
 
 let g:man_hardwrap=1
