@@ -114,8 +114,8 @@
 	ds          = diff --staged
 	id          = log --no-walk --format=%h
 	reference   = log --no-walk --format=reference
-	sh          = show
-	sho         = show
+	sh          = show -b
+	sho         = show -b
 	st          = status -sb
 	sw          = switch
 	b           = branch
