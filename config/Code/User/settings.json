@@ -21,7 +21,7 @@
     ],
     "vim.insertModeKeyBindings": [
         { "before": [ "<C-d>" ], "commands": [ "editor.action.outdentLines" ] },
-        { "before": [ "<C-t>" ], "commands": [ "editor.action.indentLines" ] },
+        { "before": [ "<C-t>" ], "commands": [ "editor.action.indentLines" ] }
     ],
     "vim.normalModeKeyBindings": [
         { "before": ["<C-h>"], "after": ["<C-w>", "h"]},
@@ -39,7 +39,7 @@
     "vim.visualModeKeyBindingsNonRecursive": [
         { "before": [ ">" ], "commands": [ "editor.action.indentLines" ] },
         { "before": [ "<" ], "commands": [ "editor.action.outdentLines" ] },
-        { "before": [ "p", ], "after": [ "p", "g", "v", "y" ] }
+        { "before": [ "p" ], "after": [ "p", "g", "v", "y" ] }
     ],
     "vim.enableNeovim": true,
     "vim.neovimPath": "/usr/local/bin/nvim",
