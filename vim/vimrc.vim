@@ -106,7 +106,9 @@ set foldminlines=2
 
 :if has('persistent_undo')
   set undofile
-  set undodir=~/.undo,.
+  if !has('nvim')
+    set undodir=~/.undo,.
+  endif
 :endif
 
 set viewoptions-=options
