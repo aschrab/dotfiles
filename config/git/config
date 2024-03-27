@@ -78,7 +78,7 @@
 	autocorrect = 15
 
 [mergetool "fugitive"]
-	cmd = vim -f -c "Gdiff!" "$MERGED"
+	cmd = nvim -f -c "Gdiff!" "$MERGED"
 
 [mergetool "vimdiff"]
 	layout = "LOCAL,@MERGED,REMOTE + BASE,REMOTE + BASE,LOCAL"
