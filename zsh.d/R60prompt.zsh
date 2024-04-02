@@ -74,6 +74,12 @@ PS1='
 %{$pColor%}${vcs_info_msg_0_}%E${vcs_info_msg_0_:+$nl}%{$pColor%}%!${(r:$SHLVL::'"$terminator"':)}%{$fColor%} '
 
 PS2='%{$pColor%}%_>%{$fColor%} '
+
+if [[ -n $VSCODE_INJECTION ]]; then
+  setopt PROMPT_SUBST
+  prompt_color=cyan
+  PS1="%F{\$prompt_color}%S%!%s %D{%d%b%H:%M:%S}${terminator}%f "
+fi
 }
 
 # Output trace info (set -x) in a form where the entire line can be copy+pasted at a prompt.
