@@ -1,6 +1,7 @@
 #autoload
 
 function code {
+  local TMUX=
   if expr "$OSTYPE" : darwin >/dev/null ; then
     # On a Mac
     open -a 'Visual Studio Code' "$@"
