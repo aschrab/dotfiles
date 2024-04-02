@@ -2,10 +2,8 @@
 
 function code {
   local TMUX=
-  if expr "$OSTYPE" : darwin >/dev/null ; then
-    # On a Mac
-    open -a 'Visual Studio Code' "$@"
-  elif [ -x /usr/share/codium/bin/codium ] ; then
+  local PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
+  if [ -x /usr/share/codium/bin/codium ] ; then
     /usr/share/codium/bin/codium "$@"
   else
     command code "$@"
