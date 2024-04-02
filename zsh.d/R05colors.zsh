@@ -2,18 +2,19 @@ autoload -U colors
 colors
 
 fColor=$reset_color
-pColor=$fg[green]
+prompt_color=green
 case "$USERNAME" in
   aarons|ats|aschrab|aaron)
-    pColor=$fg[cyan]
+    prompt_color=cyan
     ;;
   michael|backup|lsm|bofh)
-    pColor=$fg[yellow]
+    prompt_color=yellow
     ;;
   root|administrator)
-    pColor=$fg[red]
+    prompt_color=red
     ;;
   *)
-    pColor=$fg[green]
+    prompt_color=green
     ;;
 esac
+pColor=$fg[$prompt_color]
