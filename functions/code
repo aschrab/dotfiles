@@ -1,10 +1,12 @@
 #autoload
 
 function code {
+  local mac='/Applications/Visual Studio Code.app/Contents/Resources/app/bin'
   local TMUX=
-  local PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
   if [ -x /usr/share/codium/bin/codium ] ; then
     /usr/share/codium/bin/codium "$@"
+  elif [ -x "$mac/code" ] ; then
+    "$mac/code" "$@"
   else
     command code "$@"
   fi
