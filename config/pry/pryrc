@@ -1,5 +1,18 @@
+# frozen_string_literal: true
+
 Pry.config.editor = 'vim'
 Pry.config.color = true
+
+class Pry
+  class Pager
+    # Override options that are passed to `less`
+    class SystemPager
+      def self.default_pager
+        'less -F -r'
+      end
+    end
+  end
+end
 
 def term_color(name, text) #{{{
   Pry.color ? Pry::Helpers::Text.send(name, text) : text
