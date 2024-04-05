@@ -81,6 +81,11 @@ Host lish
 User qqx
 HostName lish-atlanta.linode.com
 
+Host *.rsync.net
+BatchMode yes
+PasswordAuthentication no
+PreferredAuthentications publickey
+
 Host *.github.com github.com
   CheckHostIP no
 
