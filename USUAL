@@ -35,12 +35,12 @@ fonts/PowerlineSymbols.otf
 config/direnv/lib/
 config/fontconfig/conf.d/10-powerline-symbols.conf
 config/git
-config/powerline
 config/nvim
+config/powerline
+config/pry
 config/rofi
 config/yamllint
 python
 nodenv
 rbenv
-pryrc
 local/share/fonts
