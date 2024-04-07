@@ -148,10 +148,11 @@ module Where
       source_locations = is_class(klass)
       if source_locations.empty?
         methods = defined_methods(klass)
-        raise ArgumentError, (methods.empty? ?
-          "# {klass} has no methods" :
-          "# {klass} only has built-in methods (#{methods.size} in total)"
-        )
+        raise ArgumentError, (if methods.empty?
+                                "#{klass} has no methods"
+                              else
+                                "#{klass} only has built-in methods (#{methods.size} in total)"
+                              end)
       end
       source_locations[0]
     end
@@ -176,7 +177,7 @@ module Where
 
     def defined_methods(klass)
       methods = klass.methods(false).map { |m| klass.method(m) } +
-        klass.instance_methods(false).map { |m| klass.instance_method(m) }
+                klass.instance_methods(false).map { |m| klass.instance_method(m) }
       methods.map!(&:source_location)
       methods.compact!
       methods
