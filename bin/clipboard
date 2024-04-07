@@ -1,6 +1,7 @@
 #!/bin/sh
 
-if expr "$OSTYPE" : darwin >/dev/null ; then
+# shellcheck disable=SC3028
+if expr "${OSTYPE:-}" : darwin >/dev/null ; then
   copy() {
     reattach-to-user-namespace pbcopy
   }
