@@ -296,6 +296,9 @@ if exists('##TermOpen')
   autocmd TermOpen * nmap <buffer> <C-p> a<C-p>
   autocmd TermOpen * nmap <buffer> <C-r> a<C-r>
   autocmd TermOpen * nmap <buffer> <Return> a<Return>
+
+  " Allow using C-\ + C-\ to paste unnamed register
+  autocmd TermOpen * tnoremap <buffer> <C-\><C-\> <C-\><C-n>pi
   augroup END
 endif
 
