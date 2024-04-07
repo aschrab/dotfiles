@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# rubocop:disable Style/CommentedKeyword
+# rubocop:disable Naming/PredicateName
+
 Pry.config.editor = 'vim'
 Pry.config.color = true
 
@@ -193,4 +196,6 @@ def where_is(klass, method = nil)
   end
 end
 
+# rubocop:enable Style/CommentedKeyword
+# rubocop:enable Naming/PredicateName
 # vim: ft=ruby
