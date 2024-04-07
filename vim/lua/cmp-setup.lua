@@ -1,6 +1,8 @@
 local status, cmp = pcall(require, 'cmp')
 if (status) then
 
+  require('cmp_nvim_ultisnips')
+
   cmp.setup({
     window = {
       completion = cmp.config.window.bordered(),
@@ -14,6 +16,7 @@ if (status) then
       ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     }),
     sources = cmp.config.sources({
+      { name = 'ultisnips' },
       { name = 'nvim_lsp' },
     }, {
       { name = 'buffer' },
