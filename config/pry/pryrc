@@ -17,16 +17,17 @@ class Pry
   end
 end
 
-def term_color(name, text) #{{{
+def term_color(name, text) # {{{
   Pry.color ? Pry::Helpers::Text.send(name, text) : text
-end #}}}
-def prompt_color(name, text) #{{{
+end # }}}
+
+def prompt_color(name, text) # {{{
   if Pry.color
-    "\001#{term_color(name, '{text}')}\002".sub( '{text}', "\002#{text}\001" )
+    "\001#{term_color(name, '{text}')}\002".sub('{text}', "\002#{text}\001")
   else
     text
   end
-end #}}}
+end # }}}
 
 Pry.config.prompt = Pry::Prompt.new('custom', 'My prompt', [
   proc do |object, nest_level, pry|
@@ -71,10 +72,10 @@ if defined? Hirb
 end
 
 if defined?(PryByebug)
-  #Pry.commands.alias_command 'c', 'continue'
-  #Pry.commands.alias_command 's', 'step'
-  #Pry.commands.alias_command 'n', 'next'
-  #Pry.commands.alias_command 'f', 'finish'
+  # Pry.commands.alias_command 'c', 'continue'
+  # Pry.commands.alias_command 's', 'step'
+  # Pry.commands.alias_command 'n', 'next'
+  # Pry.commands.alias_command 'f', 'finish'
   # Hit Enter to repeat last command
   Pry::Commands.command(/^$/, "repeat last command") do
     _pry_.run_command Pry.history.to_a.last
@@ -82,30 +83,30 @@ if defined?(PryByebug)
 end
 
 # Methods to generate "toy" Hash or Array objects{{{
-  # Copied from https://gist.github.com/807492
-  class Array
-    def self.toy(n=10, &block)
-      block_given? ? Array.new(n,&block) : Array.new(n) {|i| i+1}
-    end
+# Copied from https://gist.github.com/807492
+class Array
+  def self.toy(n = 10, &block)
+    block_given? ? Array.new(n,&block) : Array.new(n) {|i| i+1}
   end
+end
 
-  class Hash
-    def self.toy(n=10)
-      Hash[Array.toy(n){|c| (96+(c+1)).chr.to_sym }.zip(Array.toy(n))]
-    end
+class Hash
+  def self.toy(n = 10)
+    Hash[Array.toy(n) { |c| (96 + (c + 1)).chr.to_sym }.zip(Array.toy(n))]
   end
-#}}}
+end
+# }}}
 
 class Integer
   def inspect
-    to_s.split('').reverse.each_slice(3).map{ |x| x.reverse.join '' }.reverse.join('_')
+    to_s.split('').reverse.each_slice(3).map { |x| x.reverse.join '' }.reverse.join('_')
   end
 end
 
 # Add `where_is` method to show location where a method or class is defined
 # From https://gist.github.com/wtaysom/1236979
 module Where
-  class <<self
+  class << self
     def is_proc(proc)
       source_location(proc)
     end
@@ -128,15 +129,15 @@ module Where
 
     def is_class(klass)
       methods = defined_methods(klass)
-      file_groups = methods.group_by{|sl| sl[0]}
+      file_groups = methods.group_by { |sl| sl[0] }
       file_counts = file_groups.map do |file, sls|
-        lines = sls.map{|sl| sl[1]}
+        lines = sls.map { |sl| sl[1] }
         count = lines.size
         line = lines.min
-        {file: file, count: count, line: line}
+        { file: file, count: count, line: line }
       end
-      file_counts.sort_by!{|fc| fc[:count]}
-      source_locations = file_counts.map{|fc| [fc[:file], fc[:line]]}
+      file_counts.sort_by! { |fc| fc[:count] }
+      source_locations = file_counts.map { |fc| [fc[:file], fc[:line]] }
       source_locations
     end
 
@@ -146,14 +147,14 @@ module Where
       if source_locations.empty?
         methods = defined_methods(klass)
         raise ArgumentError, (methods.empty? ?
-          "#{klass} has no methods" :
-          "#{klass} only has built-in methods (#{methods.size} in total)"
+          "# {klass} has no methods" :
+          "# {klass} only has built-in methods (#{methods.size} in total)"
         )
       end
       source_locations[0]
     end
 
-  private
+    private
 
     def source_location(method)
       method.source_location || (
@@ -176,14 +177,15 @@ module Where
     end
 
     def defined_methods(klass)
-      methods = klass.methods(false).map{|m| klass.method(m)} +
-        klass.instance_methods(false).map{|m| klass.instance_method(m)}
+      methods = klass.methods(false).map { |m| klass.method(m) } +
+        klass.instance_methods(false).map { |m| klass.instance_method(m) }
       methods.map!(&:source_location)
       methods.compact!
       methods
     end
   end
 end
+
 def where_is(klass, method = nil)
   if method
     begin
