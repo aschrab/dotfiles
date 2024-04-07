@@ -304,3 +304,6 @@
 [submodule "vim/bundle/jdtls"]
 	path = vim/bundle/jdtls
 	url = https://github.com/mfussenegger/nvim-jdtls.git
+[submodule "vim/bundle/obsession"]
+	path = vim/bundle/obsession
+	url = https://github.com/tpope/vim-obsession.git
