@@ -130,6 +130,10 @@ begin
       $stderr.print "\e]52;pc;#{to_base64}\a"
       self
     end
+
+    def browse
+      system 'open', '-u', self
+    end
   end
 rescue StandardError
   # Oh, well
