@@ -10,10 +10,10 @@ dotfile_dir=$(dirname "$realname")
 
 defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
 
-vscode="$HOME/Library/Application Support/Code/User"
+vscode="$HOME/Library/Application Support/Code"
 mkdir -p "$vscode"
 [ -e "$vscode/settings.json" ] ||
-	ln -s "$dotfile_dir/config/Code/User/settings.json" "$vscode"
+	ln -is "$dotfile_dir/config/Code/User" "$vscode"
 
 cat <<EOF
 # Add following to top of /etc/pam.d/sudo
