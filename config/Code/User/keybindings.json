@@ -31,3 +31,4 @@
     "when": "editorTextFocus && vim.active && vim.use<C-h> && !inDebugRepl"
   }
 ]
+// vim: filetype=jsonc
