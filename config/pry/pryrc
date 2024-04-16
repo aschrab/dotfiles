@@ -49,6 +49,12 @@ rescue LoadError
   # Missing goodies, bummer
 end
 
+begin
+  require 'json'
+rescue LoadError
+  # Oh, well
+end
+
 # Setup hirb if it's available
 begin
   require 'hirb'
