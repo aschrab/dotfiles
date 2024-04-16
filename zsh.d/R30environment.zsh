@@ -120,3 +120,6 @@ export PYTHONSTARTUP=~/.pythonrc.py
 
 # Have gdb automatically fetch debugging symbols when on a Debina system
 [[ -r /etc/dpkg/origins/debian ]] && export DEBUGINFOD_URLS='https://debuginfod.debian.net'
+
+# Have httpie and other users of Python `request` library use personal CA bundle if it exists
+[ -r ~/.certs/ca.bundle ] && export REQUESTS_CA_BUNDLE=~/.certs/ca.bundle
