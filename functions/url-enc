@@ -1,0 +1,5 @@
+#autoload
+
+function url-enc {
+  jq -rn --arg x "$1" '$x|@uri'
+}
