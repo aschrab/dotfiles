@@ -26,7 +26,7 @@ end # }}}
 
 def prompt_color(name, text) # {{{
   if Pry.color
-    "\001#{term_color(name, '{text}')}\002".sub('{text}', "\002#{text}\001")
+    term_color name, text
   else
     text
   end
