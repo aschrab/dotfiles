@@ -1,0 +1,4 @@
+#compdef api-key
+
+_arguments -S : \
+  '*:Token File:_path_files -g "*.key" -W $HOME/keys'
