@@ -1,7 +1,7 @@
 local status, cmp = pcall(require, 'cmp')
 if (status) then
 
-  require('cmp_nvim_ultisnips')
+  require('cmp_nvim_ultisnips').setup{}
 
   cmp.setup({
     window = {
