@@ -1,3 +1,4 @@
 bundler
 neovim
 pry
+pry-stack_explorer
