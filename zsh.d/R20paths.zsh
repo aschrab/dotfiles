@@ -5,6 +5,7 @@ fpath=(
   /usr/share/zsh/vendor-completions/
   $zshrc_dir/../upstreams/completions/src/
   /usr/local/share/zsh/site-functions/
+  /opt/homebrew/share/zsh/site-functions
   /usr/share/zsh/site-functions/
   /usr/local/share/zsh/functions/
 )
