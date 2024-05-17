@@ -29,21 +29,28 @@ it "${1:description}" do
 end
 endsnippet
 
-snippet do| "do block" !s
+snippet do| "do block" A!s
 do `!p snip.rv = "|" if t[1] else""`${1:args}`!p snip.rv = "|" if t[1] else""`
-	$0
+	${0:# TODO}
 end
 endsnippet
 
 snippet do "do block" !s
 do
-	$0
+	${0:# TODO}
 end
 endsnippet
 
-#clearsnippets def
 snippet def "def <name>..." s
 def ${1:function_name} ${2:*args}
 	${0:# TODO}
 end
+endsnippet
+
+snippet pry
+::Kernel.binding.pry
+endsnippet
+
+snippet .pry "Tap and pry" iA
+$2.tap { |${1:pried_object}| ::Kernel.binding.pry }$0
 endsnippet
