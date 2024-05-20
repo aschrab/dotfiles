@@ -307,3 +307,6 @@
 [submodule "vim/bundle/obsession"]
 	path = vim/bundle/obsession
 	url = https://github.com/tpope/vim-obsession.git
+[submodule "vim/bundle/extract-variable"]
+	path = vim/bundle/extract-variable
+	url = https://github.com/fvictorio/vim-extract-variable.git
