@@ -1,0 +1,35 @@
+#compdef vcs-jump
+
+local context state state_descr line
+typeset -A opt_args
+
+# _arguments \
+#   ':command:command:(diff merge grep)'
+#
+#
+# case "$state" in
+# esac
+
+local commands=(
+  'diff:diff hunks'
+  'merge:merge conflicts'
+  'grep:pattern matchs'
+)
+
+if [[ $CURRENT -le 2 ]]
+then
+  _describe "command$CURRENT" commands
+else
+  local cmd=$words[2]
+
+  case "$cmd" in
+    merge)
+      _message "merge takes no arguments"
+      ;;
+    *)
+      shift words
+      (( CURRENT-- ))
+      _git-"$cmd"
+      ;;
+  esac
+fi
