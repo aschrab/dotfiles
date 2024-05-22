@@ -1,5 +1,8 @@
 #compdef annotate-output
 
+local context state state_descr line
+typeset -A opt_args
+
 _arguments -A \
   '--help[Show usage information and quit]' \
   '--version[Show version information and quit]' \

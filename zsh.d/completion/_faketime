@@ -9,7 +9,7 @@
 #
 # Completion done based on version 0.8
 
-local context state line
+local context state state_descr line
 typeset -A opt_args
 
 _arguments -A \

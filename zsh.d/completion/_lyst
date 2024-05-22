@@ -1,6 +1,6 @@
 #compdef lyst
 
-local context state line
+local context state state_descr line
 typeset -A opt_args
 local components
 
