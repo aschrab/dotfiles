@@ -423,3 +423,7 @@ let g:man_hardwrap=1
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
+
+" Ask fugitive to not setup legacy commands. I find having them in completion
+" results causes confusion.
+let g:fugitive_legacy_commands = 0
