@@ -2,6 +2,7 @@ if exists(':Alias')
   let g:cmdaliasCmdPrefixes .= ' vert'
 
   Alias ack Ack
+  Alias aedit Ack
   Alias New new
   Alias gitk Flog
   Alias gv Flog
