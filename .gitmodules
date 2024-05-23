@@ -310,3 +310,6 @@
 [submodule "vim/bundle/extract-variable"]
 	path = vim/bundle/extract-variable
 	url = https://github.com/fvictorio/vim-extract-variable.git
+[submodule "vim/bundle/gitlab-fugitive"]
+	path = vim/bundle/gitlab-fugitive
+	url = https://github.com/shumphrey/fugitive-gitlab.vim.git
