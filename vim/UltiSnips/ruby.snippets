@@ -54,3 +54,17 @@ endsnippet
 snippet .pry "Tap and pry" iA
 $2.tap { |${1:pried_object}| ::Kernel.binding.pry }$0
 endsnippet
+
+snippet class
+class ${1:`!v ruby#class_name_for_file()`}
+	$0
+end
+endsnippet
+
+snippet class< "Class with inheritance" A
+class ${1:`!v ruby#class_name_for_file()`} < ${2:Object}
+	def ${3:initialize}
+		$4
+	end$0
+end
+endsnippet

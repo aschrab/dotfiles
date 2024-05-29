@@ -123,4 +123,16 @@ function! ruby#SyntaxFoldText ()
 	return printf( '+%s%4d lines: %s ', v:folddashes, v:foldend-v:foldstart+1, line )
 endfunction
 
+function! ruby#class_name_for_file ()
+  try
+    let file = fugitive#buffer().path()
+  catch
+    let file = expand('%:p')
+  endtry
+
+  let klass = g:Abolish.mixedcase(fnamemodify(file, ':t:r'))
+
+  return klass
+endfunction
+
 " vim: foldmethod=marker foldmarker=[[[,]]]
