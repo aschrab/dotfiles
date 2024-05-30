@@ -22,7 +22,10 @@ end
 
 # Issue beep at start of session to set terminal urgent hint.
 # This will be mostly unnoticed in active session, but useful if I hit a `binding.pry` somewhere unseen.
-Pry.hooks.add_hook(:before_session, 'beep') { |output, _binding, _pry| output.print "\a" }
+require 'tzinfo'
+Pry.hooks.add_hook(:before_session, 'start-notice') do |output, _binding, _pry|
+  output.puts "\a🔔 Session started at #{TZInfo::Timezone.get('America/New_York').now}"
+end
 
 def term_color(name, text) # {{{
   Pry.color ? Pry::Helpers::Text.send(name, text) : text
