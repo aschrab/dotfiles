@@ -313,3 +313,6 @@
 [submodule "vim/bundle/gitlab-fugitive"]
 	path = vim/bundle/gitlab-fugitive
 	url = https://github.com/shumphrey/fugitive-gitlab.vim.git
+[submodule "zsh.d/plugins/vim-exchange"]
+	path = zsh.d/plugins/vim-exchange
+	url = https://github.com/okapia/zsh-viexchange.git
