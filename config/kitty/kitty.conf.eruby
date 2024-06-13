@@ -12,7 +12,7 @@ tab_title_template {index}:{title}
 
 enable_audio_bell no
 
-mouse_hide_wait 2.0
+mouse_hide_wait -1
 
 macos_option_as_alt both
 macos_quit_when_last_window_closed no
