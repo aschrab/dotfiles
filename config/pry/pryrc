@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+# rubocop:disable Lint/MissingCopEnableDirective
 # rubocop:disable Style/CommentedKeyword
 # rubocop:disable Style/OptionalBooleanParameter
 # rubocop:disable Naming/PredicateName
 # rubocop:disable Lint/UselessAssignment
 # rubocop:disable Metrics/AbcSize
+# rubocop:disable Style/Documentation
+# rubocop:disable Metrics/MethodLength
 
 Pry.config.editor = 'vim'
 Pry.config.color = true
@@ -247,9 +250,4 @@ def where_is(klass, method = nil)
   end
 end
 
-# rubocop:enable Style/CommentedKeyword
-# rubocop:enable Style/OptionalBooleanParameter
-# rubocop:enable Naming/PredicateName
-# rubocop:enable Lint/UselessAssignment
-# rubocop:enable Metrics/AbcSize
 # vim: ft=ruby
