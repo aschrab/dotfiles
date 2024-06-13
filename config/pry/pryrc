@@ -253,4 +253,25 @@ def where_is(klass, method = nil)
   end
 end
 
+Pry::Commands.create_command 'where_defined' do
+  description 'Look for definition of method'
+
+  command_options keep_retval: true
+
+  def process
+    klass = args[1] || target_self.class
+
+    if (name = args.first)
+      name = name.sub(/^:/, '')
+      begin
+        Where.is_instance_method(klass, name)
+      rescue NameError
+        Where.is_method(klass, name)
+      end
+    else
+      Where.is_class_primarily(klass)
+    end
+  end
+end
+
 # vim: ft=ruby
