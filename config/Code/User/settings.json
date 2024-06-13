@@ -145,7 +145,7 @@
     "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
     "git.suggestSmartCommit": false,
     "diffEditor.codeLens": true,
-    "git.inputValidation": "always",
+    "git.inputValidation": true,
     "git.untrackedChanges": "separate",
     "editor.minimap.enabled": false,
     "workbench.editor.highlightModifiedTabs": true,
@@ -180,10 +180,13 @@
     },
     "update.mode": "none",
     "ruby.rubocop.useBundler": true,
-    "terminal.integrated.enableBell": true,
     "terminal.integrated.stickyScroll.enabled": true,
     "git.openRepositoryInParentFolders": "never",
     "editor.inlayHints.enabled": "onUnlessPressed",
     "editor.inlayHints.fontSize": 7,
-    "editor.inlayHints.padding": true
+    "editor.inlayHints.padding": true,
+    "accessibility.signals.terminalBell": {
+        "sound": "on"
+    },
+    "terminal.integrated.enableVisualBell": true
 }
