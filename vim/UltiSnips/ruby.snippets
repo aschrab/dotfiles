@@ -1,3 +1,6 @@
+clearsnippets
+priority 100
+
 snippet '^#!' "shebang line" r!
 #!/usr/bin/env ruby
 # frozen_string_literal: true
@@ -41,8 +44,8 @@ do
 end
 endsnippet
 
-snippet def "def <name>..." s
-def ${1:function_name} ${2:*args}
+snippet def "def <name>..."
+def ${1:method_name}`!p snip.rv = "(" if t[2] else""`${2:*args}`!p snip.rv = ")" if t[2] else""`
 	${0:# TODO}
 end
 endsnippet
@@ -57,14 +60,16 @@ endsnippet
 
 snippet class
 class ${1:`!v ruby#class_name_for_file()`}
-	$0
+	def ${2:initialize}`!p snip.rv = "(" if t[3] else""`${3:*args}`!p snip.rv = ")" if t[3] else""`
+		$4
+	end$0
 end
 endsnippet
 
 snippet class< "Class with inheritance" A
 class ${1:`!v ruby#class_name_for_file()`} < ${2:Object}
-	def ${3:initialize}
-		$4
+	def ${3:initialize}`!p snip.rv = "(" if t[4] else""`${4:*args}`!p snip.rv = ")" if t[4] else""`
+		$5
 	end$0
 end
 endsnippet
