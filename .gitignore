@@ -18,3 +18,4 @@
 /ssh/authorized_keys
 /ssh/known_hosts
 /gnupg/gpg-agent.conf
+/config/Code/User/workspaceStorage/*
