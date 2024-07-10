@@ -120,6 +120,12 @@ if (v:version >= 700)
 
   let g:polyglot_disabled += ['autoindent'] " Mimics vim-sleuth which I already use
   let g:polyglot_disabled += ['bzl'] " claims any file named `build`
+
+  " Hack to try to get endwise and delimitmate to play together
+  " From https://github.com/tpope/vim-endwise/issues/133#issuecomment-1087777576
+  " if empty(maparg('<CR>', 'i'))
+  "   imap <CR> <Plug>delimitMateCR
+  " endif
 endif
 
 if !has('nvim') " Neovim removed the ttymouse option
