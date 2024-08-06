@@ -9,6 +9,7 @@ function set_paths {
     ~/.rbenv/shims
     ~/.nodenv/shims
     ~/.cargo/bin
+    ~/.pyenv/bin
     ~/opt/*/default/bin(/N)
     /opt/homebrew/bin
     /usr/local/lib/ruby/gems/2.5.0/bin
