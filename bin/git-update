@@ -1,0 +1,29 @@
+#!/bin/bash
+set -ueo pipefail
+
+die () {
+  echo "$*" >&2
+  exit 1
+}
+
+usage () {
+  die "$0: [-f] branch"
+}
+
+fetch=n
+if [ "${1:-}" = '-f' ]; then
+  fetch=y
+  shift
+fi
+
+branch="${1:-}"
+[ -n "${branch}" ] || usage
+
+remote=origin
+rbranch=$branch
+
+if [ $fetch = y ]; then
+  git fetch "${remote}" "${rbranch}"
+fi
+
+git push . "${remote}/${rbranch}:${branch}"
