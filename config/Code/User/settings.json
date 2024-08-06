@@ -188,5 +188,6 @@
     "accessibility.signals.terminalBell": {
         "sound": "on"
     },
-    "terminal.integrated.enableVisualBell": true
+    "terminal.integrated.enableVisualBell": true,
+    "explorer.sortOrder": "mixed"
 }
