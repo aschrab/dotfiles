@@ -54,6 +54,12 @@ if (status) then
     capabilities = capabilities,
   }
 
+  require('lspconfig')['gopls'].setup{
+    on_attach = on_attach,
+    flags = lsp_flags,
+    capabilities = capabilities,
+  }
+
   require('lspconfig')['solargraph'].setup{
     on_attach = on_attach,
     flags = lsp_flags,
