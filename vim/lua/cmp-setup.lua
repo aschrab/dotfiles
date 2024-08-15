@@ -4,6 +4,11 @@ if (status) then
   require('cmp_nvim_ultisnips').setup{}
 
   cmp.setup({
+    snippet = {
+      expand = function(args)
+        vim.fn["UltiSnips#Anon"](args.body)
+      end,
+    },
     window = {
       completion = cmp.config.window.bordered(),
       documentation = cmp.config.window.bordered(),
