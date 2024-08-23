@@ -109,6 +109,7 @@
 	ci          = commit -v
 	cia         = commit -v -a
 	ad          = add
+	default     = "!f() { git branch --list --format='%(refname:short)' master main | sort | head -n 1; }; f"
 	d           = diff
 	dif         = diff
 	difff       = diff
