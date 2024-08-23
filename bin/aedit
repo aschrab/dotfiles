@@ -21,4 +21,4 @@ fi
 
 $cmd --column "$@" >"$matches" || die "No matches found"
 
-${EDITOR:-vim} -q "$matches"
+${EDITOR:-vim} +:cope -q "$matches"
