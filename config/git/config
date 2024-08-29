@@ -29,6 +29,7 @@
 	abbrevCommit = true
 	decorate = auto
 	mailmap = true
+	date = format-local:%T %a %d %b %Y
 
 [diff]
 	renames        = copies
