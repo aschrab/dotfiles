@@ -18,7 +18,7 @@ set t_Co=16
 :endif
 
 " Miscellaneous options {{{
-set viminfo=!,s1,%,'20,f1,c,h,r/tmp,r/media
+set viminfo=!,s1,%,'20,f1,c,h,<0,r/tmp,r/media
 :if !has('nvim')
   set viminfofile=~/.viminfo
 :endif
