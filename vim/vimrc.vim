@@ -18,10 +18,9 @@ set t_Co=16
 :endif
 
 " Miscellaneous options {{{
-:if has('nvim')
-  set viminfo=!,s1,%,'20,f1,c,h,r/tmp,r/media
-:else
-  set viminfo=!,s1,%,'20,f1,c,h,r/tmp,r/media,n~/.viminfo
+set viminfo=!,s1,%,'20,f1,c,h,r/tmp,r/media
+:if !has('nvim')
+  set viminfofile=~/.viminfo
 :endif
 set hidden
 set display+=lastline
