@@ -154,6 +154,12 @@ begin
       system 'open', '-u', self
     end
   end
+
+  class Class
+    def clip
+      tap { to_s.clip }
+    end
+  end
 rescue StandardError
   # Oh, well
 end
