@@ -168,13 +168,13 @@ endwhile
 
 if v:version >= 700
   if has('gui_running')
-    auto BufEnter * let &titlestring = "GVim : %{clean#CWD()}"
+    auto BufEnter * let &titlestring = "GVim : %{clean#buftitle()}"
     auto BufEnter * let &iconstring  = "GVim"
   else
     if exists('$TMUX')
-      auto BufEnter * let &titlestring = "Vim@ : %{clean#CWD()}"
+      auto BufEnter * let &titlestring = "Vim@ : %{clean#buftitle()}"
     else
-      auto BufEnter * let &titlestring = "Vim@%{$host} : %{clean#TTY()} : %{clean#CWD()}"
+      auto BufEnter * let &titlestring = "Vim@%{$host} : %{clean#TTY()} : %{clean#buftitle()}"
     endif
     auto BufEnter * let &iconstring  = "Vim@%{$host} : %f (%{clean#TTY()})"
   endif
