@@ -1,1 +1,1 @@
-LS_COLORS="$LS_COLORS:*.deb=33:*.jar=33"
+LS_COLORS="${LS_COLORS:+$LS_COLORS:}*.deb=33:*.jar=33"
