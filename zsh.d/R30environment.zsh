@@ -65,6 +65,14 @@ else
   EDITOR=vi
 fi
 
+$EDITOR() {
+  if [[ $# -eq 0 ]] && [[ -r Session.vim ]]
+  then
+    set -- -S Session.vim
+  fi
+  command "$EDITOR" "$@"
+}
+
 # Specify options for man-db
 export MANOPT='--no-justification --no-hyphenation'
 
