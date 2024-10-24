@@ -3,9 +3,6 @@
 
 include Kibble.conf
 
-font_family Fira Code
-font_size 12
-
 tab_bar_edge top
 tab_fade 0.5 1
 tab_title_template {index}:{title}
@@ -34,5 +31,14 @@ map cmd+w no_op
 map kitty_mod+space goto_tab -1
 
 map ctrl+shift+p>u kitten hints --type=url --program=- --add-trailing-space=always
+
+font_size 12
+
+# BEGIN_KITTY_FONTS
+font_family      family='Fira Code' style=Retina
+bold_font        auto
+italic_font      auto
+bold_italic_font auto
+# END_KITTY_FONTS
 
 # vim: ft=eruby
