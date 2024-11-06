@@ -112,14 +112,15 @@ end
 # Methods to generate "toy" Hash or Array objects{{{
 # Copied from https://gist.github.com/807492
 class Array
-  def self.toy(size = 10, &block)
-    block_given? ? Array.new(size, &block) : Array.new(size) { |i| i + 1 }
+  def self.toy(size: 10, start: 1, &block)
+    value = start
+    block_given? ? Array.new(size, &block) : Array.new(size) { value.tap { value = value.next } }
   end
 end
 
 class Hash
-  def self.toy(size = 10)
-    Hash[Array.toy(size) { |c| (96 + (c + 1)).chr.to_sym }.zip(Array.toy(size))]
+  def self.toy(size: 10)
+    Hash[Array.toy(size: size) { |c| (96 + (c + 1)).chr.to_sym }.zip(Array.toy(size: size))]
   end
 end
 # }}}
