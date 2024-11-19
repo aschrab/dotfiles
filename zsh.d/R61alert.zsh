@@ -36,7 +36,7 @@ alert_precmd() {
     esac
 
     if [[ $skip_alert == n ]]; then
-      echo -n '\a'
+      print -P "Finished at %D{%Y-%m-%d %T} after $(format-duration $SECONDS)\a"
     fi
   fi
   _LAST_ALERT=$HISTCMD
