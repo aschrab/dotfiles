@@ -170,7 +170,7 @@ rescue StandardError
 end
 
 def clip
-  open('|clip', &:gets)
+  open('|clip', &:gets).chomp
 end
 
 # Add `where_is` method to show location where a method or class is defined
