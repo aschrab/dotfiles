@@ -169,7 +169,7 @@ rescue StandardError
   # Oh, well
 end
 
-def clip
+def clipped
   IO.popen('clip', &:gets).chomp
 end
 
