@@ -151,8 +151,7 @@ begin
     end
 
     def clip
-      $stderr.print "\e]52;pc;#{to_base64}\a"
-      self
+      tap { $stderr.print "\e]52;pc;#{to_base64}\a" }
     end
 
     def browse
@@ -160,9 +159,21 @@ begin
     end
   end
 
-  class Class
+  class Object
     def clip
       tap { to_s.clip }
+    end
+  end
+
+  class Array
+    def clip
+      tap { to_json.clip }
+    end
+  end
+
+  class Hash
+    def clip
+      tap { to_json.clip }
     end
   end
 rescue StandardError
