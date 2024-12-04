@@ -1,0 +1,9 @@
+#!/bin/bash
+set -ueo pipefail
+
+die () {
+  echo "$*" >&2
+  exit 1
+}
+
+curl --silent -HHost:puma-dev localhost/status | jq
