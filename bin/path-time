@@ -1,0 +1,7 @@
+#!/bin/bash
+set -ueo pipefail
+
+# Generate a timestamp that can be included in timestamps for Mac OS
+# uses a colon look alike
+
+exec date +'%Y-%m-%dT%H﹕%M﹕%S'
