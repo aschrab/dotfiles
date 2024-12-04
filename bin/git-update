@@ -11,19 +11,17 @@ usage () {
 }
 
 fetch=n
-if [ "${1:-}" = '-f' ]; then
+if [[ "${1:-}" = '-f' ]]; then
   fetch=y
   shift
 fi
 
 branch="${1:-}"
-[ -n "${branch}" ] || usage
+[[ -n "${branch}" ]] || usage
 
 remote=origin
 rbranch=$branch
 
-if [ $fetch = y ]; then
-  git fetch "${remote}" "${rbranch}"
-fi
+[[ $fetch = y ]] && git fetch "${remote}"
 
 git push . "${remote}/${rbranch}:${branch}"
