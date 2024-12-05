@@ -3,22 +3,15 @@
 local context state state_descr line
 typeset -A opt_args
 
-# _arguments \
-#   ':command:command:(diff merge grep)'
-#
-#
-# case "$state" in
-# esac
-
 local commands=(
   'diff:diff hunks'
   'merge:merge conflicts'
-  'grep:pattern matchs'
+  'grep:pattern matches'
 )
 
 if [[ $CURRENT -le 2 ]]
 then
-  _describe "command$CURRENT" commands
+  _describe "command" commands
 else
   local cmd=$words[2]
 
