@@ -32,6 +32,9 @@ map kitty_mod+space goto_tab -1
 
 map ctrl+shift+p>u kitten hints --type=url --program=- --add-trailing-space=always
 
+# Convert shift+enter to F12 to allow mapping in programs
+map shift+0x24 send_text all \x1b[24~
+
 font_size 12
 
 # BEGIN_KITTY_FONTS
