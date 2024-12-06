@@ -31,7 +31,7 @@ remote="$1"
 url="$2"
 
 zero=$(git hash-object --stdin </dev/null | tr '0-9a-f' '0')
-empty=$(git hash-object -t tree /dev/null | tr '0-9a-f' '0')
+empty=$(git hash-object -t tree /dev/null)
 
 errors=0
 
@@ -41,10 +41,10 @@ reject() {
 }
 
 no-rspec-focus() {
-  [[ "$(git config --type=bool --default=no check.noRSpecFocus)" = true ]] || return
+  [[ "$(git config --type=bool --default=no check.noRSpecFocus)" != true ]] && return
   [[ "${remote_oid}" = "${zero}" ]] && return # Don't check deletes
 
-  if git diff "${base}..${local_oid}" spec | grep -q -E '^\+\s*f(it|describe|context)[[:>:]]'
+  if git diff "${base}..${local_oid}" -- spec | grep -q -E '^\+\s*f(it|describe|context)[[:>:]]'
   then
     reject "RSpec focus found in branch ${local_ref}"
   fi
