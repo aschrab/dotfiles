@@ -30,7 +30,7 @@ class ERuby
     puts "#{src} => #{dst}"
 
     b = binding
-    ERB.new(File.open(src, :read), safe_level: nil, trim_mode: '%-').result b
+    rendered = File.open(src, 'r') { |f| ERB.new(f.read, trim_mode: '%-').result b }
 
     Pathname.new(dst).dirname.mkpath
     File.open(dst, 'w') { |fh| fh.write rendered }
