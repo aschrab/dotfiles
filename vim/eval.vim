@@ -433,3 +433,5 @@ endif
 " Ask fugitive to not setup legacy commands. I find having them in completion
 " results causes confusion.
 let g:fugitive_legacy_commands = 0
+
+let g:sleuth_lsm_heuristics = 0
