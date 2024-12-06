@@ -65,3 +65,6 @@ map! <M-Esc>[65~ <S-MouseUp>
 "}}}
 
 map ,x :w<C-M>:r!chmod +x <C-R>=expand('%:S')<C-M><C-M>:w!<C-M>
+
+" Use shift+enter (mapped to F12 in kitty.conf) to create an empty line below the cursor
+inoremap <F12> <C-O>:call append(line('.'), '')<ENTER>
