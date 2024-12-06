@@ -35,15 +35,26 @@ empty=$(git hash-object -t tree /dev/null | tr '0-9a-f' '0')
 
 errors=0
 
+reject() {
+  echo "$*" >&2
+  (( errors++ ))
+}
+
 no-rspec-focus() {
   [[ "$(git config --type=bool --default=no check.noRSpecFocus)" = true ]] || return
   [[ "${remote_oid}" = "${zero}" ]] && return # Don't check deletes
 
   if git diff "${base}..${local_oid}" spec | grep -q -E '^\+\s*f(it|describe|context)[[:>:]]'
   then
-    echo "RSpec focus found in branch ${local_ref}" >&2
-    (( errors++ ))
+    reject "RSpec focus found in branch ${local_ref}"
   fi
+}
+
+no-wip-branches() {
+  case "$local_ref" in
+    */wip*)
+      reject "Refusing to push work in progress branch '$local_ref'"
+  esac
 }
 
 # shellcheck disable=SC2034
@@ -52,6 +63,7 @@ do
   base="${remote_oid}"
   [[ "${base}" = "${zero}" ]] && base="${empty}"
 
+  no-wip-branches
   no-rspec-focus
 done
 
