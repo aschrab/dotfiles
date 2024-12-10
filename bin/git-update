@@ -19,7 +19,8 @@ fi
 branch="${1:-}"
 [[ -n "${branch}" ]] || usage
 
-remote=origin
+set -x
+remote="$(git remote | head -n 1)"
 rbranch=$branch
 
 [[ $fetch = y ]] && git fetch "${remote}"
