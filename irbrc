@@ -22,6 +22,7 @@ IRB.conf[:AUTO_INDENT] = true
 begin
   require 'awesome_print'
   AwesomePrint.irb!
+rescue LoadError
 end
 
 
