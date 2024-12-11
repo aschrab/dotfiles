@@ -3,6 +3,15 @@
 local context state state_descr line
 typeset -A opt_args
 
+# Fake use of git completion to ensure it's loaded
+if ! (( $+functions[_git-diff] )); then
+  () {
+    local CURRENT=1
+    local words=(git diff)
+    _git
+  }
+fi
+
 local commands=(
   'diff:diff hunks'
   'merge:merge conflicts'
