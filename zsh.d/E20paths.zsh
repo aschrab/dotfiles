@@ -12,6 +12,7 @@ function set_paths {
     ~/.pyenv/bin
     ~/opt/*/default/bin(/N)
     /opt/homebrew/bin
+    /Applications/Xcode.app/Contents/Developer/usr/bin
     /usr/local/lib/ruby/gems/2.5.0/bin
     /usr/local/opt/ruby/bin
     /usr/local/bin
