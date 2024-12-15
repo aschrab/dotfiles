@@ -12,17 +12,12 @@ fi
 host="${1:--}"
 shift || :
 
-session=0 # default
-if [ -n "${1:-}" ] ; then
-  session=${1}
-  shift
-fi
+session="${1:-0}"
+shift || :
 
 remote=(env) # bash on Mac OS views empty arrays as unbound
 if [ -n "$host" ] && [ "-" != "$host" ]; then
-  # Sometimes an explicit xclient is needed for clipboard sharing to be activated.
-  # Invoke `xrefresh` to satisfy that.
-  remote=(ssh -t "$host" 'xrefresh; exec')
+  remote=(ssh -t "$host" 'exec')
 fi
 
 exec "${remote[@]}" tmux -u new -ADs "$session" "$@"
