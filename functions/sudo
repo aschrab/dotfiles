@@ -16,8 +16,8 @@ function sudo {
 
 
   if [[ $# -eq 0 ]]; then
-    set XDG_CONFIG_HOME="$XDG_CONFIG_HOME" ZDOTDIR="${ZDOTDIR:-$HOME}" EMAIL="$EMAIL" $vimsetup "$SHELL" -l
+    set SSH_AUTH_SOCK="$SSH_AUTH_SOCK" TMUX="$TMUX" XDG_CONFIG_HOME="$XDG_CONFIG_HOME" ZDOTDIR="${ZDOTDIR:-$HOME}" EMAIL="$EMAIL" $vimsetup "$SHELL" -l
   fi
 
-  command sudo -H $args SSH_AUTH_SOCK="$SSH_AUTH_SOCK" TMUX="$TMUX" "$@"
+  command sudo -H $args "$@"
 }
