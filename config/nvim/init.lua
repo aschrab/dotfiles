@@ -11,3 +11,5 @@ vim.opt.hlsearch = true
 vim.g.mapleader = ','
 
 vim.cmd.colorscheme('vividchalk')
+
+require("config.lazy")
