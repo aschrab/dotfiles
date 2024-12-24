@@ -15,4 +15,13 @@ vim.g.mapleader = ','
 
 vim.cmd.colorscheme('vividchalk')
 
+vim.opt.title = true
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = { "*" },
+  callback = function()
+    vim.opt.titlestring = "Vim@" -- FIXME
+  end
+
+})
+
 require("config.lazy")
