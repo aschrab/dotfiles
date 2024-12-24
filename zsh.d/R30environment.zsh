@@ -50,7 +50,7 @@ export CLICOLOR=1
 export EMAIL="aaron@schrab.com"
 export DEBEMAIL="$EMAIL"
 
-if (( $+commands[nvim] )); then
+if false && (( $+commands[nvim] )); then
   if [[ -S $NVIM ]] && (( $+commands[nvr] )); then
     EDITOR='nvr -cc split --remote-wait "+set bufhidden=wipe"'
   else
