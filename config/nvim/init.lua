@@ -8,6 +8,9 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.hlsearch = true
 
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+
 vim.g.mapleader = ','
 
 vim.cmd.colorscheme('vividchalk')
