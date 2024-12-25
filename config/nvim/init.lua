@@ -11,6 +11,8 @@ vim.opt.hlsearch = true
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
+vim.opt.clipboard = 'unnamedplus'
+
 vim.g.mapleader = ','
 
 vim.cmd.colorscheme('vividchalk')
