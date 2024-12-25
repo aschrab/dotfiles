@@ -29,6 +29,8 @@ vim.api.nvim_create_autocmd("BufEnter", {
 
 })
 
+vim.g.python3_host_prog = '/Users/ats/.local/venv/nvim/bin/python3'
+
 vim.api.nvim_set_keymap('c', '%%', "<C-R>=expand('%:h').'/'<CR>", {
     noremap = true,
     desc = "In command line, expand %% to the directory containing the current file"
