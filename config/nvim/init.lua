@@ -13,6 +13,9 @@ vim.opt.splitright = true
 
 vim.opt.clipboard = 'unnamedplus'
 
+-- Shorter time before updating swapfile and triggering CursorHold events
+vim.opt.updatetime=200
+
 vim.g.mapleader = ','
 
 vim.cmd.colorscheme('vividchalk')
