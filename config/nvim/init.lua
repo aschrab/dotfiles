@@ -29,4 +29,9 @@ vim.api.nvim_create_autocmd("BufEnter", {
 
 })
 
+vim.api.nvim_set_keymap('c', '%%', "<C-R>=expand('%:h').'/'<CR>", {
+    noremap = true,
+    desc = "In command line, expand %% to the directory containing the current file"
+})
+
 require("config.lazy")
