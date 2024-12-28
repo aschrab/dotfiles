@@ -18,6 +18,7 @@ vim.opt.updatetime=200
 
 vim.g.mapleader = ','
 
+vim.opt.termguicolors = true
 vim.cmd.colorscheme('vividchalk')
 
 vim.opt.title = true
