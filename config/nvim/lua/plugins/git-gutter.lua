@@ -1,5 +1,0 @@
-return {
-  {
-    "aschrab/vim-gitgutter",
-  }
-}
