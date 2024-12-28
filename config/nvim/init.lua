@@ -30,7 +30,11 @@ vim.api.nvim_create_autocmd("BufEnter", {
 
 })
 
-vim.g.python3_host_prog = '/Users/ats/.local/venv/nvim/bin/python3'
+local python = os.getenv('HOME') .. '/.local/venv/nvim/bin/python3'
+local stat, err, name = vim.uv.fs_stat(python)
+if (stat) then
+  vim.g.python3_host_prog = python
+end
 
 vim.api.nvim_set_keymap('c', '%%', "<C-R>=expand('%:h').'/'<CR>", {
     noremap = true,

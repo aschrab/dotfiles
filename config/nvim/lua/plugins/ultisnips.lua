@@ -1,9 +1,8 @@
 return {
   {
     "SirVer/ultisnips",
-    enabled = function()
-      return true
-      -- return vim.g.loaded_python3_provider == 1
+    cond = function()
+      return vim.g.python3_host_prog
     end,
     init = function()
       vim.g.UltiSnipsExpandTrigger = '<C-X><C-S>'
