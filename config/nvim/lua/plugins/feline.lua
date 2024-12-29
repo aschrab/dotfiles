@@ -15,7 +15,7 @@ component.vi_mode = {
   end,
 }
 
-component.file_type = { provider = { name = 'file_type' }, opts = { case = 'lowercase' } }
+component.file_type = { provider = { name = 'file_type', opts = { case = 'lowercase' } } }
 
 local git = {
   {
