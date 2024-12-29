@@ -68,6 +68,12 @@ return {
             },
           },
           {
+            {
+              -- cursor position
+              provider = function()
+                return '%3l/%L»%-3v'
+              end
+            },
             unpack(git)
           }
         },
