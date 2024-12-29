@@ -45,6 +45,19 @@ return {
             {
               left_sep = 'left_rounded',
               right_sep = 'right_rounded',
+              hl = { bg = 'yellow', fg = 'black' },
+              enabled = function()
+                local fenc = vim.opt.fileencoding:get()
+                if fenc == '' then return false end
+                if fenc == 'utf-8' then return false end
+              end,
+              provider = function()
+                return vim.opt.fileencoding:get()
+              end
+            },
+            {
+              left_sep = 'left_rounded',
+              right_sep = 'right_rounded',
               hl = { bg = 'red', fg = 'white' },
               enabled = function()
                 return vim.opt.fileformat:get() ~= 'unix'
@@ -52,7 +65,7 @@ return {
               provider = function()
                 return vim.opt.fileformat:get()
               end
-            }
+            },
           },
           {
             unpack(git)
