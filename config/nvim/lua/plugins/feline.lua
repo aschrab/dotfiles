@@ -15,7 +15,7 @@ component.vi_mode = {
   end,
 }
 
-component.file_type = { provider = { name = 'file_type' }, opts = { case = 'titlecase' } }
+component.file_type = { provider = { name = 'file_type' }, opts = { case = 'lowercase' } }
 
 local git = {
   {
@@ -42,6 +42,17 @@ return {
           },
           {
             component.file_type,
+            {
+              left_sep = 'left_rounded',
+              right_sep = 'right_rounded',
+              hl = { bg = 'red', fg = 'white' },
+              enabled = function()
+                return vim.opt.fileformat:get() ~= 'unix'
+              end,
+              provider = function()
+                return vim.opt.fileformat:get()
+              end
+            }
           },
           {
             unpack(git)
