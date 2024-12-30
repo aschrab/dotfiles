@@ -1,6 +1,6 @@
 % host = `hostname`.chomp
 # <%= host %>
-% laptop = %w<frak frell>.include? host
+% laptop = %w<frak frell fnord>.include? host
 % eth = host == 'zim' ? 'br0' : 'eth0'
 % wlan = host == 'frak' ? 'wlp4s0' : 'wlan'
 
