@@ -1,7 +1,5 @@
 local component = {}
 
-component.file_info = { provider = { name = 'file_info', opts = { type = 'relative-short' } } }
-
 component.vi_mode = {
   provider = 'vi_mode',
   -- icon = '',
@@ -14,8 +12,6 @@ component.vi_mode = {
     }
   end,
 }
-
-component.file_type = { provider = { name = 'file_type', opts = { case = 'lowercase' } } }
 
 local git = {
   {
@@ -38,10 +34,24 @@ return {
         active = {
           {
             component.vi_mode,
-            component.file_info,
+            {
+              provider = {
+                name = 'file_info',
+                opts = { type = 'relative-short' }
+              },
+              left_sep = { 'slant_left' },
+              right_sep = { 'slant_right' },
+              hl = { bg = 'oceanblue' },
+            },
+            { hl = { bg = 'black' } }
           },
           {
-            component.file_type,
+            {
+              provider = { name = 'file_type', opts = { case = 'lowercase' } },
+              hl = { bg = 'skyblue' },
+              left_sep = { 'slant_left_2' },
+              right_sep = { 'slant_right_2' },
+            },
             {
               left_sep = 'left_rounded',
               right_sep = 'right_rounded',
@@ -68,18 +78,27 @@ return {
             },
           },
           {
+            unpack(git),
             {
               -- cursor position
               provider = function()
                 return '%3l/%L»%-3v'
-              end
+              end,
+              hl = { bg = 'oceanblue' },
+              left_sep = 'left_filled',
             },
-            unpack(git)
           }
         },
         inactive = {
           {
-            component.file_info,
+            {
+              provider = {
+                name = 'file_info',
+                opts = { type = 'relative-short' }
+              },
+              left_sep = { 'slant_left' },
+              right_sep = { 'slant_right' },
+            },
           },
           {
             unpack(git)
