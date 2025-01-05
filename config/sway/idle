@@ -4,8 +4,8 @@ lock='swaylock -f --color 000000'
 
 events=(
     timeout 300 "$lock"
-    timeout 600 'swaymsg "output * dpms off"'
-         resume 'swaymsg "output * dpms on"'
+    timeout 600 'swaymsg "output * power off"'
+         resume 'swaymsg "output * power on"'
     before-sleep "$lock"
 )
 

@@ -30,10 +30,17 @@ vim.api.nvim_create_autocmd("BufEnter", {
 
 })
 
-local python = os.getenv('HOME') .. '/.local/venv/nvim/bin/python3'
-local stat, err, name = vim.uv.fs_stat(python)
-if (stat) then
-  vim.g.python3_host_prog = python
+
+local uv = vim.uv
+-- Before nvim 0.10 need to look to vim.loop for the uv module
+if (uv == nil) then uv = vim.loop end
+
+if (uv and uv.fs_stat) then
+  local python = os.getenv('HOME') .. '/.local/venv/nvim/bin/python3'
+  local stat, err, name = uv.fs_stat(python)
+  if (stat) then
+    vim.g.python3_host_prog = python
+  end
 end
 
 vim.api.nvim_set_keymap('c', '%%', "<C-R>=expand('%:h').'/'<CR>", {
