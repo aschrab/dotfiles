@@ -18,3 +18,13 @@ if exists('##TermOpen')
   autocmd TermOpen * tnoremap <buffer> <C-\><C-\> <C-\><C-n>pi
   augroup END
 endif
+
+if exists(':tnoremap')  " Neovim
+  tnoremap <silent> <c-h> <c-\><c-n>:TmuxNavigateLeft<cr>
+  tnoremap <silent> <c-j> <c-\><c-n>:TmuxNavigateDown<cr>
+  tnoremap <silent> <c-k> <c-\><c-n>:TmuxNavigateUp<cr>
+  tnoremap <silent> <c-l> <c-\><c-n>:TmuxNavigateRight<cr>
+  tnoremap <silent> <expr> <A-r> '<c-\><c-n>"' . nr2char(getchar()) . 'pi'
+  " Cannot use <c-\> here.
+  " tnoremap <silent> <c-\> <c-\><c-n>:TmuxNavigatePrevious<cr>
+endif
