@@ -1,5 +1,6 @@
 {
   "CamelCaseMotion": { "branch": "master", "commit": "de439d7c06cffd0839a29045a103fe4b44b15cdc" },
+  "ack.vim": { "branch": "master", "commit": "36e40f9ec91bdbf6f1adf408522a73a6925c3042" },
   "bufexplorer": { "branch": "master", "commit": "d9905ad260b8abce5b3cd1df465aba9cbca05943" },
   "cmp-buffer": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },
   "cmp-cmdline": { "branch": "main", "commit": "d250c63aa13ead745e3a40f61fdd3470efde3923" },
@@ -10,7 +11,7 @@
   "feline.nvim": { "branch": "master", "commit": "3587f57480b88e8009df7b36dc84e9c7ff8f2c49" },
   "fzf": { "branch": "master", "commit": "5ae60e2e806adba1652bec64a62caa473004d7ed" },
   "gitsigns.nvim": { "branch": "main", "commit": "5f808b5e4fef30bd8aca1b803b4e555da07fc412" },
-  "lazy.nvim": { "branch": "main", "commit": "72aa3a2624be5dc240646084f7b6a38eb99eb2ce" },
+  "lazy.nvim": { "branch": "main", "commit": "7e6c863bc7563efbdd757a310d17ebc95166cef3" },
   "nvim-cmp": { "branch": "main", "commit": "4c1ca8268569bfc6d487473cd17b167560e5bed2" },
   "nvim-lspconfig": { "branch": "master", "commit": "8121483b8132b7053120fafd83728178fb3febf6" },
   "nvim-web-devicons": { "branch": "master", "commit": "5740b7382429d20b6ed0bbdb0694185af9507d44" },
@@ -19,6 +20,7 @@
   "tcomment_vim": { "branch": "master", "commit": "48ab639a461d9b8344f7fee06cb69b4374863b13" },
   "ultisnips": { "branch": "master", "commit": "49dc8cb2086db19d385791c8e1635723b0fd95c7" },
   "unicode.vim": { "branch": "master", "commit": "9da92ffe08b90200dcb499fdfecb234326f5514c" },
+  "vcs-jump": { "branch": "main", "commit": "167374e341cbc7bbda284cdf51ebb5804cd875b0" },
   "vim-abolish": { "branch": "master", "commit": "dcbfe065297d31823561ba787f51056c147aa682" },
   "vim-alias": { "branch": "master", "commit": "2acc37348d744fc600ba91cec6aa34a24ed77d42" },
   "vim-css-color": { "branch": "master", "commit": "14fd934cdd9ca1ac0e53511094e612eb9bace373" },
