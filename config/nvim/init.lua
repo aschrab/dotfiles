@@ -59,4 +59,11 @@ autocmd('TextYankPost', {
   end
 })
 
+autocmd({ 'BufRead', 'BufNewFile' }, {
+  pattern = '.envrc',
+  callback = function()
+    vim.opt.filetype = 'bash'
+  end
+})
+
 require("config.lazy")
