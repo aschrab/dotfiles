@@ -28,7 +28,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
     vim.opt.titlestring = "Vim@" -- FIXME
   end
-
 })
 
 vim.opt.shada = "!,s1,%,'20,f1,c,h,<0,r/tmp,r/media"
@@ -71,6 +70,32 @@ if (uv and uv.fs_stat) then
     vim.g.python3_host_prog = python
   end
 end
+
+-- Open new tab with new window for current buffer
+vim.keymap.set('n', '<C-W>t', ':<C-U>tab split<CR>', { noremap = true, silent = true })
+
+-- List contents of all registers (that typically contain pasteable text).
+vim.keymap.set('n', '""', ':registers "0123456789abcdefghijklmnopqrstuvwxyz*+.<CR>', { noremap = true, silent = true })
+
+-- Visually select text most recently edited or pasted
+vim.keymap.set('n', 'gV', '`[v`]', { noremap = true })
+
+-- Preserve visual selection after indenting
+vim.keymap.set('v', '<', '<gv', { noremap = true })
+vim.keymap.set('v', '>', '>gv', { noremap = true })
+vim.keymap.set('v', '=', '=gv', { noremap = true })
+
+-- Setup unimpaired-style mappings for jumplist,
+-- since using ^O for tmux prefix makes the default awkward.
+vim.keymap.set('n', '[j', '<C-O>', { noremap = true })
+vim.keymap.set('n', ']j', '<C-I>', { noremap = true })
+
+-- Using a bracket with lower-case p should always paste after cursor
+-- capitol P can be used to paste before cursor
+vim.keymap.set('n', '[p', ']p', { noremap = true })
+
+-- Use shift+enter (mapped to F12 in kitty.conf) to create an empty line below the cursor
+vim.keymap.set('i', '<F12>', "<C-O>:call append(line('.'), '')<ENTER>", { noremap = true })
 
 vim.api.nvim_set_keymap('c', '%%', "<C-R>=expand('%:h').'/'<CR>", {
     noremap = true,
