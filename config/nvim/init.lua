@@ -6,6 +6,7 @@ vim.opt.sidescrolloff = 10
 
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+vim.opt.infercase = true
 vim.opt.hlsearch = true
 
 vim.opt.splitbelow = true
@@ -30,6 +31,34 @@ vim.api.nvim_create_autocmd("BufEnter", {
 
 })
 
+vim.opt.shada = "!,s1,%,'20,f1,c,h,<0,r/tmp,r/media"
+vim.opt.shiftwidth = 0 -- use tabstop
+vim.opt.expandtab = true
+vim.opt.tabstop = 2
+vim.opt.title = true
+vim.opt.showmatch = true
+vim.opt.showmode = false
+
+vim.opt.formatoptions:append('2r')
+vim.opt.nrformats = 'hex'
+vim.opt.matchpairs = '(:),{:},[:],<:>'
+vim.opt.fileformats = 'unix,dos,mac'
+vim.opt.fixeol = false
+vim.opt.wildignore:append('*.o,*~,*.pyc')
+vim.opt.wildignorecase = true
+vim.opt.completeopt = 'longest,menuone,preview'
+vim.opt.spelloptions:append('camel')
+vim.opt.tags = 'tags,TAGS,./tags;,./TAGS;'
+
+vim.opt.diffopt:append('vertical,algorithm:patience,indent-heuristic,linematch:60')
+vim.opt.isfname:remove('=')
+
+vim.opt.listchars:append('tab:→·,trail:∙,nbsp:_')
+vim.opt.listchars:append('precedes:«,extends:»') -- Color controlled by hl-NonText
+vim.opt.list = true
+
+vim.opt.showbreak = '↪'
+vim.opt.cinoptions:append('l1,(0,t0')
 
 local uv = vim.uv
 -- Before nvim 0.10 need to look to vim.loop for the uv module
