@@ -120,4 +120,11 @@ autocmd({ 'BufRead', 'BufNewFile' }, {
   end
 })
 
+autocmd('BufWritePre', {
+    pattern = { '/tmp/*', 'COMMIT_EDITMSG' },
+    callback = function()
+      vim.opt_local.undofile = false
+    end
+  })
+
 require("config.lazy")
