@@ -8,3 +8,5 @@ vim.opt_local.formatoptions:append('aw')
 vim.opt_local.modeline = false
 vim.opt_local.foldlevel = 99
 vim.opt_local.colorcolumn = '73'
+
+vim.fn.setpos('.', { 0, 1, 1, 0 })
