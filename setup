@@ -1,0 +1,27 @@
+#!/bin/bash
+set -ueo pipefail
+
+die () {
+  echo "$*" >&2
+  exit 1
+}
+
+venv() (
+  root="$1"
+  shift
+
+  [ -x "${root}/bin/python3" ] && return
+
+  python3 -m venv "$root"
+
+  source "${root}/bin/activate"
+
+  local mod
+  for mod in "$@"
+  do
+    pip3 install "$mod"
+    : "$mod"
+  done
+)
+
+venv ~/.local/venv/nvim pynvim

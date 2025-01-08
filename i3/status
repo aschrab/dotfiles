@@ -1,6 +1,6 @@
 % host = `hostname`.chomp
 # <%= host %>
-% laptop = %w<frak frell>.include? host
+% laptop = %w<frak frell fnord>.include? host
 % eth = host == 'zim' ? 'br0' : 'eth0'
 % wlan = host == 'frak' ? 'wlp4s0' : 'wlan'
 
@@ -22,6 +22,7 @@ order += "battery 0"
 % end
 order += "load"
 order += "time"
+order += "volume master"
 
 wireless <%= wlan %> {
         format_up = "W: (%quality at %essid) %ip"
@@ -57,6 +58,14 @@ load {
 
 disk "/" {
         format = "%free"
+}
+
+volume master {
+        format = "♪: %volume"
+        format_muted = "♪: muted (%volume)"
+        device = "default"
+        mixer = "Master"
+        mixer_idx = 0
 }
 
 # vim: filetype=eruby.conf

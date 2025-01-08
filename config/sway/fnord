@@ -1,6 +1,7 @@
 # Builtin
 output eDP-1 {
   position 0 1560
+  scale 1
 }
 bar {
   output eDP-1
@@ -39,7 +40,11 @@ bindsym $mod+Control+1 move workspace to output eDP-1
 bindsym $mod+Control+2 move workspace to output DP-2
 bindsym $mod+Control+3 move workspace to output DP-3
 
-font pango:Fira Code 12
-
 for_window [shell="xdg_shell"] title_format "Ⓦ %title"
 for_window [shell="xwayland"] title_format "Ⓧ %title"
+
+bindsym $mod+shift+v exec pavucontrol
+for_window [app_id="pavucontrol"] floating enable
+
+exec exec gpg-connect-agent updatestartuptty /bye
+exec exec wl-paste -t text --watch clipman store --no-persist

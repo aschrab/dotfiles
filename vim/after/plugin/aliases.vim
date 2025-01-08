@@ -1,5 +1,7 @@
 if exists(':Alias')
-  let g:cmdaliasCmdPrefixes .= ' vert'
+  if exists('g:cmdaliasCmdPrefixes')
+    let g:cmdaliasCmdPrefixes .= ' vert'
+  endif
 
   Alias ack Ack
   Alias aedit Ack
@@ -28,5 +30,6 @@ if exists(':Alias')
   Alias mv Move
 
   Alias weq wq
+  Alias qw wq
   Alias Wq wq
 endif

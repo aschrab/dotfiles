@@ -3,8 +3,7 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 % DOTFILE_DIR = File.dirname(File.absolute_path(__FILE__))
-
-<%
+<%-
 DIRS = {
   Left: %w<j J>,
   Down: %w<k K>,
@@ -27,12 +26,16 @@ def bind_dir binding
     "bindsym #{mods}#{k} #{cmd}"
   end.join("\n")
 end
-%>
+-%>
 
 set $mod Mod4
 
 # font for window titles. ISO 10646 = Unicode
+<%- if @wm == 'i3' -%>
 font -misc-fixed-medium-r-normal--20-200-*-*-c-100-iso10646-1
+<% else -%>
+font pango:Fira Code 12
+<% end -%>
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -197,14 +200,13 @@ for_window [title="^xfce4-notifyd"] floating enable
 # but the template transaction tab needs to be much wider.
 for_window [title="^Edit Scheduled Transaction"] resize set 1000 547, move position center
 
-assign [class="Gnucash"] → "3:cash"
-workspace "3:cash" output <%= (displays[1] || displays[0])['name'] %>
-
 <% if @wm == 'i3' %>
 exec --no-startup-id "<%= DOTFILE_DIR %>/i3/startup"
 <% end %>
 <% if @wm == 'sway' %>
 exec --no-startup-id "exec <%= DOTFILE_DIR %>/config/sway/idle"
 <% end %>
+
+exec --no-startup-id "gpg-connect-agent updatestartuptty /bye"
 
 # vim: filetype=eruby.i3
