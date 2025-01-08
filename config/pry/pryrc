@@ -12,6 +12,8 @@
 Pry.config.editor = 'vim'
 Pry.config.color = true
 
+Pry.commands.alias_command '..', 'cd ..'
+
 class Pry
   class Pager
     # Override options that are passed to `less`
