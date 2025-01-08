@@ -1,0 +1,3 @@
+return {
+  { "Konfekt/vim-alias" }
+}

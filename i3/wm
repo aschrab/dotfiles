@@ -207,4 +207,6 @@ exec --no-startup-id "<%= DOTFILE_DIR %>/i3/startup"
 exec --no-startup-id "exec <%= DOTFILE_DIR %>/config/sway/idle"
 <% end %>
 
+exec --no-startup-id "gpg-connect-agent updatestartuptty /bye"
+
 # vim: filetype=eruby.i3

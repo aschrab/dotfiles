@@ -110,6 +110,12 @@ set foldminlines=2
   endif
 :endif
 
+:if has('nvim')
+  set directory=~/.cache/nvim//
+:else
+  set directory=~/.cache/vim//
+:endif
+
 set viewoptions-=options
 
 " Shorter time before updating swapfile and triggering CursorHold events

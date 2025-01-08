@@ -1,0 +1,1 @@
+../../../vim/autoload/ruby.vim
