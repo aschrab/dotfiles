@@ -1,3 +1,31 @@
+local lsp_kinds = {
+  Class = ' ',
+  Color = ' ',
+  Constant = ' ',
+  Constructor = ' ',
+  Enum = ' ',
+  EnumMember = ' ',
+  Event = ' ',
+  Field = ' ',
+  File = ' ',
+  Folder = ' ',
+  Function = ' ',
+  Interface = ' ',
+  Keyword = ' ',
+  Method = ' ',
+  Module = ' ',
+  Operator = ' ',
+  Property = ' ',
+  Reference = ' ',
+  Snippet = ' ',
+  Struct = ' ',
+  Text = ' ',
+  TypeParameter = ' ',
+  Unit = ' ',
+  Value = ' ',
+  Variable = ' ',
+}
+
 return {
   {
     "hrsh7th/nvim-cmp",
@@ -13,6 +41,22 @@ return {
         window = {
           completion = cmp.config.window.bordered(),
           documentation = cmp.config.window.bordered(),
+        },
+        formatting = {
+          format = function(entry, vim_item)
+            -- Set `kind` to "$icon $kind".
+            vim_item.kind = string.format('%s %s', lsp_kinds[vim_item.kind], vim_item.kind)
+            vim_item.menu = ({
+              buffer = '[Buffer]',
+              nvim_lsp = '[LSP]',
+              luasnip = '[LuaSnip]',
+              ultisnips = '[UltiSnips]',
+              nvim_lua = '[Lua]',
+              latex_symbols = '[LaTeX]',
+            })[entry.source.name]
+            -- vim_item.menu = entry.source.name -- for debugging
+            return vim_item
+          end
         },
         mapping = cmp.mapping.preset.insert({
           ['<C-b>'] = cmp.mapping.scroll_docs(-4),
