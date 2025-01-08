@@ -102,6 +102,8 @@ vim.api.nvim_set_keymap('c', '%%', "<C-R>=expand('%:h').'/'<CR>", {
     desc = "In command line, expand %% to the directory containing the current file"
 })
 
+vim.keymap.set('n', 'yfa', ':let @+=expand("%:p")<CR>', { silent = true, desc = 'Yank full path to current file' })
+
 local augroup = vim.api.nvim_create_augroup   -- Create/get autocommand group
 local autocmd = vim.api.nvim_create_autocmd   -- Create autocommand
 -- Highlight on yank
