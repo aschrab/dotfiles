@@ -1,1 +1,1 @@
-au! BufRead lsm.* setf lsm
+au! BufRead lsm.20*,LSM.* setf lsm
