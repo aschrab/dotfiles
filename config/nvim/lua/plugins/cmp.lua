@@ -69,6 +69,7 @@ return {
           { name = 'ultisnips' },
           { name = 'nvim_lsp' },
           { name = 'path' },
+          { name = 'emoji' },
         }, {
           { name = 'buffer' },
         })
@@ -106,6 +107,7 @@ return {
   { "hrsh7th/cmp-buffer" },
   { "hrsh7th/cmp-path" },
   { "hrsh7th/cmp-cmdline" },
+  { "hrsh7th/cmp-emoji" },
   {
     "quangnguyen30192/cmp-nvim-ultisnips",
     cond = function()
