@@ -65,7 +65,7 @@ else
   EDITOR=vi
 fi
 
-$EDITOR() {
+${EDITOR%% *}() {
   if [[ $# -eq 0 ]] && [[ -r Session.vim ]]
   then
     set -- -S Session.vim
