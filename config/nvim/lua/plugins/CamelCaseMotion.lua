@@ -1,3 +1,8 @@
 return {
-  { "bkad/CamelCaseMotion" }
+  {
+    "bkad/CamelCaseMotion",
+    init = function()
+      vim.g.camelcasemotion_key = ','
+    end
+  }
 }
