@@ -1,3 +1,5 @@
+# vim: ft=bash
+
 java_version() {
 	plutil -extract JavaVM json -o - "${1}/Contents/Info.plist" | jq -r .JVMPlatformVersion
 }

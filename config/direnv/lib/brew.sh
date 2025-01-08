@@ -1,3 +1,5 @@
+# vim: ft=bash
+
 load_brew_prefix() {
   local package="$1"
   local added_bin="${2:-}"
