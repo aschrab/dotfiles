@@ -19,5 +19,3 @@ fpath=(
   done
   fpath=($fpaths $fpath)
 } "$zshrc_dir/functions" "${ZDOTDIR:-$HOME}/.functions"
-
-path+=$(dirname $(perl -MCwd -e 'print Cwd::abs_path($ARGV[0])' $zshrc_dir))/upstreams/powerline/scripts/
