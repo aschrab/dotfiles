@@ -104,6 +104,9 @@ vim.api.nvim_set_keymap('c', '%%', "<C-R>=expand('%:h').'/'<CR>", {
 
 vim.keymap.set('n', 'yfa', ':let @+=expand("%:p")<CR>', { silent = true, desc = 'Yank full path to current file' })
 
+vim.keymap.set('n', ']k', vim.diagnostic.goto_next, { desc = 'Goto next diagnostic' })
+vim.keymap.set('n', '[k', vim.diagnostic.goto_prev, { desc = 'Goto prev diagnostic' })
+
 local augroup = vim.api.nvim_create_augroup   -- Create/get autocommand group
 local autocmd = vim.api.nvim_create_autocmd   -- Create autocommand
 -- Highlight on yank
