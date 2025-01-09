@@ -9,4 +9,5 @@ vim.opt_local.modeline = false
 vim.opt_local.foldlevel = 99
 vim.opt_local.colorcolumn = '73'
 
+vim.b.nojump = 1
 vim.fn.setpos('.', { 0, 1, 1, 0 })
