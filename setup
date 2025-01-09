@@ -6,11 +6,24 @@ die () {
   exit 1
 }
 
+deb-install() {
+  local pkg=$1
+  dpkg -l $pkg | grep -qi '^i' || sudo apt install $pkg
+}
+
 venv() (
   root="$1"
   shift
 
   [ -x "${root}/bin/python3" ] && return
+
+  py=$(python3 --version)
+  py=${py#* }
+  py=${py%.*}
+
+  if [[ -r /etc/debian_version ]]; then
+    deb-install "python${py}-venv"
+  fi
 
   python3 -m venv "$root"
 
@@ -20,7 +33,6 @@ venv() (
   for mod in "$@"
   do
     pip3 install "$mod"
-    : "$mod"
   done
 )
 
