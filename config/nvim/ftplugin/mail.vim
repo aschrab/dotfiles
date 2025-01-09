@@ -1,0 +1,1 @@
+../../../vim/ftplugin/mail.vim
