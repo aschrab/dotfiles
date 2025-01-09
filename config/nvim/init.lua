@@ -23,12 +23,7 @@ vim.opt.termguicolors = true
 vim.cmd.colorscheme('vividchalk')
 
 vim.opt.title = true
-vim.api.nvim_create_autocmd("BufEnter", {
-  pattern = { "*" },
-  callback = function()
-    vim.opt.titlestring = "Vim@" -- FIXME
-  end
-})
+vim.opt.titlestring = 'Vim@%{clean#CWD()}'
 
 vim.opt.shada = "!,s1,%,'20,f1,c,h,<0,r/tmp,r/media"
 vim.opt.shiftwidth = 0 -- use tabstop
