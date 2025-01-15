@@ -39,6 +39,7 @@ config/nvim
 config/powerline
 config/pry
 config/rofi
+config/shellcheckrc
 config/yamllint
 python
 nodenv

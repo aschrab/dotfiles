@@ -1,0 +1,2 @@
+# I *know* that no single quotes disable expansions
+disable=SC2016
