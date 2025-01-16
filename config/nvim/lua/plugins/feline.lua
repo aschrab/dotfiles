@@ -42,8 +42,8 @@ return {
                   if path == '' then return '(No name)' end
 
                   -- Replace fugitive info with just `git:`
-                  path = path:gsub('fugitive://.*%.git//', 'git:')
-                  path = path:gsub('git:%x+/', 'git:')
+                  path = path:gsub('^fugitive://.*%.git//', 'git:')
+                  path = path:gsub('^git:%x+/', 'git:')
 
                   -- Convert to be relative to current dir
                   path = vim.fn.fnamemodify(path, ':~:.')
