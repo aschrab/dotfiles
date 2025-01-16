@@ -25,6 +25,19 @@ local git = {
   { provider = 'git_diff_changed', hl = { fg = 'oceanblue', } },
 }
 
+local shortenPath = function(path)
+  if path == '' then return '(No name)' end
+
+  -- Replace fugitive info with just `git:`
+  path = path:gsub('^fugitive://.*%.git//', 'git:')
+  path = path:gsub('^git:%x+/', 'git:')
+
+  -- Convert to be relative to current dir
+  path = vim.fn.fnamemodify(path, ':~:.')
+
+  return path
+end
+
 return {
   { "nvim-tree/nvim-web-devicons" },
   {
@@ -38,19 +51,7 @@ return {
             {
               provider = {
                 name = 'file_info',
-                opts = { type = function(path)
-                  if path == '' then return '(No name)' end
-
-                  -- Replace fugitive info with just `git:`
-                  path = path:gsub('^fugitive://.*%.git//', 'git:')
-                  path = path:gsub('^git:%x+/', 'git:')
-
-                  -- Convert to be relative to current dir
-                  path = vim.fn.fnamemodify(path, ':~:.')
-
-                  return path
-                end
-                }
+                opts = { type = shortenPath }
               },
               left_sep = { 'slant_left' },
               right_sep = { 'slant_right' },
@@ -107,7 +108,7 @@ return {
             {
               provider = {
                 name = 'file_info',
-                opts = { type = 'relative-short' }
+                opts = { type = shortenPath }
               },
               left_sep = { 'slant_left' },
               right_sep = { 'slant_right' },
