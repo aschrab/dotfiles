@@ -110,17 +110,19 @@ alias trt=traceroute
 }
 
 () {
-  local gtar
-  gtar=`whence gtar`
-  if [ -n "$gtar" ]; then
-    alias tar=$gtar
-  elif [ -x /usr/local/gnu/bin/tar ]; then
-    alias tar=/usr/local/gnu/bin/tar
-  elif [ -x /usr/local/gnu/bin/gtar ]; then
-    alias tar=/usr/local/gnu/bin/gtar
-  elif [ -x /usr/local/bin/tar ]; then
-    alias tar=/usr/local/bin/tar
-  fi
+  # Prefer GNU versions of some commands
+  local cmds=(
+    ln # for --relative
+    rmdir # for --parents & --ignore-fail-on-non-empty
+    date # Default Mac OS version of this is awful
+    tar
+  )
+  local cmd
+  for cmd in $cmds; do
+    if ! alias "$cmd" >/dev/null; then
+      command -v "g$cmd" >/dev/null && alias $cmd="g$cmd"
+    fi
+  done
 }
 
 # Tell rcsdiff to checkout revisions without putting in version numbers
