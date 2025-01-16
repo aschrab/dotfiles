@@ -1,0 +1,20 @@
+#!/bin/bash
+set -ueo pipefail
+
+die () {
+  echo "$*" >&2
+  exit 1
+}
+
+image="${DOCKER_IMAGE:-}"
+
+if [ "$1" == -- ]; then
+  shift
+elif [ $# -gt 2 ] && [ "$2" = -- ]; then
+  image="$1"
+  shift; shift
+fi
+
+[ -n "${image}" ] || die 'No image specified (set $DOCKER_IMAGE)'
+
+docker run -it -v "${PWD}:${PWD}" -w "${PWD}" "${image}" "$@"
