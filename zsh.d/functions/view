@@ -1,3 +1,0 @@
-#autoload
-
-ARGV0=view vim "$@"

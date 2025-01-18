@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -ueo pipefail
+shopt -s extglob
+
+set -x
+case "${EDITOR:-}" in
+  ?(*/)@(vim|nvim|vimx))
+    if [ "${*: -1}" = '-' ]; then
+      opt=buftype=nofile
+    else
+      opt=readonly
+    fi
+    exec "${EDITOR}" +"setlocal $opt" "$@"
+    ;;
+  *)
+    exec "${PAGER:-less}" "$@"
+    ;;
+esac
