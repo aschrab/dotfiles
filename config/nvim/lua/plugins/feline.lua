@@ -53,6 +53,7 @@ return {
                 name = 'file_info',
                 opts = { type = shortenPath }
               },
+              icon = '',
               left_sep = { 'slant_left' },
               right_sep = { 'slant_right' },
               hl = { bg = 'oceanblue' },
@@ -61,8 +62,8 @@ return {
           },
           {
             {
-              provider = { name = 'file_type', opts = { case = 'lowercase' } },
-              hl = { bg = 'skyblue' },
+              provider = { name = 'file_type', opts = { case = 'lowercase', filetype_icon = true } },
+              hl = { fg = 'skyblue' },
               left_sep = { 'slant_left_2' },
               right_sep = { 'slant_right_2' },
             },
