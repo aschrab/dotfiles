@@ -34,4 +34,9 @@ esac
 
 xinput set-prop --type=float 'SynPS/2 Synaptics TouchPad' 'libinput Accel Speed' 0.7
 
-unclutter -idle 5 -root -noevents &
+if command -v unclutter-xfixes >/dev/null
+then
+  unclutter-xfixes --timeout 5 --exclude-root --ignore-scrolling --jitter 5 --fork
+else
+  unclutter -idle 5 -root -noevents &
+fi
