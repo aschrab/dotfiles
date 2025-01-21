@@ -1,12 +1,12 @@
 #autoload
 
 function npm {
-  if [[ -r yarn.lock ]]; then
+  if [[ -r yarn.lock ]] && [[ "${*: -1}" != yarn ]]; then
     echo "Use yarn instead (yarn.lock found)" >&2
     return 1
   fi
 
-  if [[ -r pnpm-lock.yaml ]]; then
+  if [[ -r pnpm-lock.yaml ]] && [[ "${*: -1}" != pnpm ]]; then
     echo "Use pnpm instead (pnpm-lock.yaml found)"
     return 1
   fi
