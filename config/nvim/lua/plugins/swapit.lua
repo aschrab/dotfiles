@@ -1,3 +1,3 @@
 return {
-  { "mjbrownie/swapit" }
+  { "mjbrownie/swapit", dependencies = 'tpope/vim-speeddating' }
 }
