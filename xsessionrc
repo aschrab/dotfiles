@@ -3,6 +3,10 @@
 script=$(readlink -f "${BASH_SOURCE-$HOME/.xsessionrc}")
 dotfiles=$(dirname "${script}")
 
+export LANG=en_US.UTF-8
+export LC_TIME=en_DK.UTF8
+export LC_COLLATE=C.UTF8
+
 export GTK_IM_MODULE=xim
 export PYTHONPATH="$HOME/.python"
 
