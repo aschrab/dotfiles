@@ -263,34 +263,34 @@ command! -nargs=1 RiExpand :call Ri('<args>', 1)
 " Prompt for search term
 
 if !hasmapto('<Plug>Ri')
-  nnoremap <unique> <Plug>Ri :call Ri('', 0)<CR>
+  nnoremap <buffer> <unique> <Plug>Ri :call Ri('', 0)<CR>
 endif
 if !hasmapto('<Plug>Ri')
-  nmap <unique> <Leader>ri <Plug>Ri
+  nmap <buffer> <unique> <Leader>ri <Plug>Ri
 endif
 
 if !hasmapto('<M-i>')
-  noremap <M-i> :call Ri('', 0)<CR>
+  noremap <buffer> <M-i> :call Ri('', 0)<CR>
 endif
 
 " Expand class/module if possible and prompt
 if !hasmapto('<Plug>Rx')
-  nnoremap <unique> <Plug>Rx :call Ri('', 1)<CR>
+  nnoremap <buffer> <unique> <Plug>Rx :call Ri('', 1)<CR>
 endif
 if !hasmapto('<Plug>Rx')
-  nmap <unique> <Leader>rx <Plug>Rx
+  nmap <buffer> <unique> <Leader>rx <Plug>Rx
 endif
 
 if !hasmapto('<M-I>')
-  noremap <M-I> :call Ri('', 1)<CR>
+  noremap <buffer> <M-I> :call Ri('', 1)<CR>
 endif
 
 " Tag-like greedy invoking
 if !hasmapto('<M-]>')
-  noremap <M-]> :call Ri(expand('<cWORD>'), 0)<cr>
+  noremap <buffer> <M-]> :call Ri(expand('<cWORD>'), 0)<cr>
 endif
 
 " Not so greedy invoking.
 if !hasmapto('<M-[>')
-  noremap <M-[> :call Ri(expand('<cword>'), 1)<cr>
+  noremap <buffer> <M-[> :call Ri(expand('<cword>'), 1)<cr>
 endif
