@@ -1,5 +1,7 @@
-\set QUIET 1
+\set QUIET yes
+
 \set HISTCONTROL ignoredups
+\set HISTFILE ~/.psql_history- :DBNAME
 
 \set ON_ERROR_STOP 1
 \set ON_ERROR_ROLLBACK interactive
@@ -10,15 +12,16 @@ SET timezone TO 'America/New_York';
 \set SHELLHOST `echo $host`
 \set PROMPT1 '%[%033[0;35m%]%x%n@%m @%:SHELLHOST::%/%R%#%[%033[0;22m%] '
 \set PROMPT2 '%[%033[0;35m%]%x%/%R#%[%033[0;22m%] ' 
+\set COMP_KEYWORD_CASE upper
 
 \pset linestyle unicode
-
 \pset null '␀'
 -- \pset pager always
-\x
-\set HISTFILE ~/.psql_history- :DBNAME
+
+\x auto
 \timing
-\unset QUIET
 
 \set rtsize '(select table_schema, table_name, pg_relation_size( quote_ident( table_schema ) || \'.\' || quote_ident( table_name ) ) as size, pg_total_relation_size( quote_ident( table_schema ) || \'.\' || quote_ident( table_name ) ) as total_size  from information_schema.tables where table_type = \'BASE TABLE\' and table_schema not in (\'information_schema\', \'pg_catalog\') order by pg_relation_size( quote_ident( table_schema ) || \'.\' || quote_ident( table_name ) ) desc, table_schema, table_name)'
 \set tsize '(select table_schema, table_name, pg_size_pretty(size) as size, pg_size_pretty(total_size) as total_size from (:rtsize) x order by x.size desc, x.total_size desc, table_schema, table_name)'
+
+\unset QUIET
