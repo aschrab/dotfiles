@@ -6,7 +6,7 @@ then
   exit 1
 fi
 
-if [ "$(git config --type=bool --default=no commit.allowedOnMain)" = false ]
+if [ "$(git config --type=bool --default=no commit.allowedOnMain)" = false ] && ! git rev-list -1 MERGE_HEAD -- >/dev/null 2>&1
 then
   ref=$(git symbolic-ref -q HEAD)
   if [ -z "$ref" ]; then
