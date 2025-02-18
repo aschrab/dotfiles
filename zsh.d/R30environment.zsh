@@ -83,7 +83,6 @@ export MANOPT='--no-justification --no-hyphenation'
 
 unset VISUAL
 export EDITOR
-export PSQL_EDITOR="$EDITOR +'set ft=sql'"
 
 () {
   local pager_setup
