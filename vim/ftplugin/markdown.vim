@@ -1,4 +1,6 @@
-setlocal formatoptions+=awn
+setlocal formatoptions+=want
+setlocal formatoptions-=l
+setlocal textwidth=80
 setlocal nojoinspaces
 setlocal spell
 setlocal expandtab
