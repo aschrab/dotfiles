@@ -40,9 +40,17 @@
 	indentHeuristic = yes
 	colorMoved = yes
 	colorMovedWS = ignore-space-at-eol,ignore-space-change
+	tool = fugitive
 
 [diff "ini"]
 	xfuncname = "^\\[.*\\]"
+
+[difftool]
+	prompt = false
+
+[difftool "kitty"]
+	cmd = kitty +kitten diff $LOCAL $REMOTE
+	trustExitCode = true
 
 [commit]
 	verbose = yes
@@ -84,14 +92,6 @@
 
 [mergetool "vimdiff"]
 	layout = "LOCAL,@MERGED,REMOTE + BASE,REMOTE + BASE,LOCAL"
-
-[diff]
-	tool = fugitive
-[difftool]
-	prompt = false
-[difftool "kitty"]
-	cmd = kitty +kitten diff $LOCAL $REMOTE
-	trustExitCode = true
 
 [rerere]
 	enabled = yes
