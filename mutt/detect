@@ -6,6 +6,10 @@
 %   end
 % end
 
+% if File.exist? "#{ENV['HOME']}/.mutt/secrets.gpg"
+    source "gpg --decrypt --quiet < ~/.mutt/secrets.gpg |"
+% end
+
 account-hook 'ats@pug.qqx.org' 'set tunnel="exec <%= Dir.pwd %>/imapwrap qqx"'
 account-hook '@(mail\.)?trilug.org' 'set tunnel="exec <%= Dir.pwd %>/imapwrap trilug"'
 
