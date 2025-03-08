@@ -60,6 +60,8 @@
 
 [fetch]
 	prune = yes
+	pruneTags = yes
+	all = yes
 
 [pull]
 	ff = only
