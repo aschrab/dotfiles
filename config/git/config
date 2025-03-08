@@ -72,7 +72,7 @@
 	autoSetupRemote = true
 
 [merge]
-	conflictstyle = diff3
+	conflictstyle = zdiff3
 	defaultToUpstream = yes
 	log = 999
 	tool = vimdiff
