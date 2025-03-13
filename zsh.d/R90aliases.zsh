@@ -140,3 +140,4 @@ alias magit="vim -c MagitOnly"
 (( $+commands[http] )) && alias https='http --default-scheme=https'
 
 alias be='bundle exec'
+alias pnpmx='pnpm dlx'
