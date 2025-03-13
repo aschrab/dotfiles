@@ -3,7 +3,9 @@ return {
     "neovim/nvim-lspconfig",
     init = function()
       local opts = { noremap=true, silent=true }
-      vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
+      vim.keymap.set('n', '<space>e', function()
+        vim.diagnostic.open_float({ header = 'Diagnostics', border = 'rounded' })
+      end, opts)
 
       -- Use an on_attach function to only map the following keys
       -- after the language server attaches to the current buffer
