@@ -1,6 +1,19 @@
+# rubocop:disable Lint/MissingCopEnableDirective
+# rubocop:disable Style/RedundantPercentQ
+# rubocop:disable Style/PercentLiteralDelimiters
+# rubocop:disable Style/RegexpLiteral
+# rubocop:disable Style/RedundantReturn
+# rubocop:disable Style/CommentedKeyword
+# rubocop:disable Metrics/CyclomaticComplexity
+# rubocop:disable Metrics/PerceivedComplexity
+# rubocop:disable Metrics/MethodLength
+# rubocop:disable Metrics/AbcSize
+# rubocop:disable Style/GlobalVars
+# rubocop:enable Lint/MissingCopEnableDirective
+
 class String
   def quote
-    %q<'> + gsub( %q<'>, %q<'\\\\''>) + %q<'>
+    "'#{gsub(%q<'>, %q<'\\\\''>)}'"
   end
 end
 
@@ -9,7 +22,7 @@ def subjectrx?
   return true if mutt_patch %r<mailboxrx>
 end
 
-def mlist mbox, opts={} #{{{
+def mlist mbox, opts = {} # {{{
   case mbox
   when Hash
     opts = mbox
@@ -21,54 +34,44 @@ def mlist mbox, opts={} #{{{
     opts[:address] =
       case opts[:mbox]
       when %r<^debian/>
-        opts[:mbox].sub(%r</>,'-')
+        opts[:mbox].sub(%r</>, '-')
       else
-        opts[:mbox].sub(%r<.*/>,'')
+        opts[:mbox].sub(%r<.*/>, '')
       end
   end
 
-  unless mutt_patch(%r<mailbox_prefix>)
-    opts[:mbox].sub!(/^\+/, 'imaps://aaron.schrab@gmail.com@imap.gmail.com/')
-  end
+  opts[:mbox].sub!(/^\+/, 'imaps://aaron.schrab@gmail.com@imap.gmail.com/') unless mutt_patch(%r<mailbox_prefix>)
 
-  unless opts[:mbox] =~ /^[+=\[]/
-    opts[:mbox] = "=L/#{opts[:mbox]}"
-  end
+  opts[:mbox] = "=L/#{opts[:mbox]}" unless opts[:mbox] =~ /^[+=\[]/
 
   out = []
   out << "mailboxes #{opts[:mbox]}"
   out << "subscribe #{opts[:address]}"
   out << "mbox-hook #{opts[:mbox]} #{opts[:mbox].sub('L', 'Read')}"
-  if opts[:from]
-    out << "send-hook #{opts[:address]} my_hdr From: #{opts[:from]}"
-  end
+  out << "send-hook #{opts[:address]} my_hdr From: #{opts[:from]}" if opts[:from]
 
-  if opts[:nomove]
-    out << "folder-hook L(ists)?/#{opts[:mbox]} 'set move=no'"
-  end
+  out << "folder-hook L(ists)?/#{opts[:mbox]} 'set move=no'" if opts[:nomove]
 
-  unless opts.fetch :followup_to, true
-    out << "folder-hook L(ists)?/#{opts[:mbox]} 'set followup_to=no'"
-  end
+  out << "folder-hook L(ists)?/#{opts[:mbox]} 'set followup_to=no'" unless opts.fetch :followup_to, true
 
-  if rx = opts[:subjectrx] and subjectrx?
+  if (rx = opts[:subjectrx]) && subjectrx?
     rx = case rx
-           when String
-             Regexp.escape(rx) + '\\s*'
-           when Regexp
-             rx.to_s
-           end
+         when String
+           "#{Regexp.escape(rx)}\\s*"
+         when Regexp
+           rx.to_s
+         end
     command = "subjectrx #{rx.quote} '%L%R'"
-    out << %Q<folder-hook #{opts[:mbox]} #{command.quote}>
+    out << %<folder-hook #{opts[:mbox]} #{command.quote}>
   end
 
   out << ''
 
   out.join "\n"
-end #}}}
+end # }}}
 
 # Find the currently executing mutt binary
-def mutt_binary #{{{
+def mutt_binary # {{{
   return ENV['MUTT_BINARY'] if ENV['MUTT_BINARY']
 
   begin
@@ -78,57 +81,58 @@ def mutt_binary #{{{
     # a "mutt" directory.
     return link if File.readlink(link)[%r{mutt[^/]*$}i]
   rescue Errno::ENOENT
+    # Ignore
   end
 
   'mutt'
-end #}}}
+end # }}}
 
 # Return a comparable version number for the given string.
 # If no string is given, uses version of #mutt_binary
-def mutt_version vers=nil #{{{
-  vers ||= mutt_verbose_version[/\AMutt\s+([\d.]+)(?:\+\d+)?\s/,1]
-  vers = vers.split('.').map{ |x| x.to_i }
+def mutt_version vers = nil # {{{
+  vers ||= mutt_verbose_version[/\AMutt\s+([\d.]+)(?:\+\d+)?\s/, 1]
+  vers = vers.split('.').map(&:to_i)
   vers.extend Comparable
-end #}}}
+end # }}}
 
 # Get output of calling #mutt_binary with given flags
-def mutt_output flags #{{{
-  IO.popen("#{mutt_binary} -F /dev/null #{flags} 2> /dev/null"){ |x| x.read }
-end #}}}
+def mutt_output flags # {{{
+  IO.popen("#{mutt_binary} -F /dev/null #{flags} 2> /dev/null", &:read)
+end # }}}
 
 # Get results of mutt -v
-def mutt_verbose_version #{{{
+def mutt_verbose_version # {{{
   $mutt_verbose_version ||= mutt_output '-v'
-end #}}}
+end # }}}
 
 # Get list of all mutt settings
-def mutt_settings #{{{
+def mutt_settings # {{{
   $mutt_settings ||= mutt_output '-D'
-end #}}}
+end # }}}
 
 # Check if current mutt was compiled with the named feature
 # by looking for "+#{name}" in `mutt -v` output
-def mutt_feature name #{{{
+def mutt_feature name # {{{
   mutt_verbose_version[/\+#{name.to_s.upcase}(\s|$)/]
-end #}}}
+end # }}}
 
 # Check if current mutt was compiled with the named patch
-def mutt_patch match #{{{
+def mutt_patch match # {{{
   mutt_verbose_version[match]
-end #}}}
+end # }}}
 
 # Check if current mutt knows about the named variable
-def mutt_variable name #{{{
+def mutt_variable name # {{{
   mutt_settings[/^#{name}[ =]/]
-end #}}}
+end # }}}
 
 # Check if current mutt recognizes named command {{{
-CHECKED_COMMANDS = Hash.new do |hash,command|
+CHECKED_COMMANDS = Hash.new do |hash, command|
   output = mutt_output "-e '#{command}' </dev/null"
   hash[command] = !output[/unknown command/]
 end
 def mutt_has_command? name
   CHECKED_COMMANDS[name]
-end #}}}
+end # }}}
 
-# vim: foldmethod=marker
+# vim: foldmethod=marker filetype=ruby
