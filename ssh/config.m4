@@ -2,8 +2,9 @@ include(`macros.m4')dnl
 define({atleast}, {ifelse(sh({perl -E '$_ = `ssh -V 2>&1`; chomp; s/^OpenSSH_//; s/p.*//; say version->parse($_) > v$1 ? "New" : "Old"'}), {New}, $2, $3)})dnl
 define({RUNDIR}, ifelse(OS, {Darwin}, {ENV(HOME)/.}, {/run/user/1000/}))dnl
 atleast({6.3}, {dnl
-IgnoreUnknown AddKeysToAgent
+IgnoreUnknown AddKeysToAgent{,}UseKeychain
 AddKeysToAgent yes
+UseKeychain yes
 })dnl
 # VisualHostKey yes
 
