@@ -1,0 +1,81 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'open3'
+
+def get_serial edid
+  stdin, stdout, wait_thr = Open3.popen2 'edid-decode'
+
+  edid.each do |line|
+    stdin.puts line[/\S+/]
+  end
+  stdin.close
+
+  serial = nil
+  stdout.each do |line|
+    # puts "Decoded: #{line}"
+    case line
+    when /^\s*Serial Number:\s*(.*)/
+      serial = $1
+    end
+  end
+
+  return serial
+end
+
+def serial2output
+  edid = nil
+  output = nil
+  monitors = {}
+  IO.popen('xrandr --properties').each do |line|
+    case line
+    when /^(\w+-\d+)/
+      output = $1
+    when /^\s+EDID:/
+      edid = []
+    when /:/
+      if edid
+        serial = get_serial edid
+        monitors[serial] = output if serial
+
+        edid = nil
+      end
+    else
+      edid << line if edid
+    end
+  end
+
+  monitors
+end
+
+def position2name
+  mapping = serial2output
+
+  {
+    builtin: 'eDP-1',
+    top: mapping['204796'],
+    bottom: mapping['435'], # mapping['8706'],
+  }
+end
+
+monitors = position2name
+
+def run cmd
+  p cmd
+  system cmd
+end
+
+
+width = 3840
+height = 2400
+scale = 0.6
+run "xrandr --output #{monitors[:builtin]} --mode #{width}x#{height} --pos 0x#{( (2160 * 2 - height * scale)/2 ).to_int} --rotate normal --scale #{scale}"
+
+left = (width * scale).to_int
+if monitors[:top]
+  run "xrandr --output #{monitors[:top]} --mode 3840x2160 --pos #{left}x0 --rotate inverted"
+end
+
+if monitors[:bottom]
+  run "xrandr --output #{monitors[:bottom]} --primary --mode 3840x2160 --pos #{left}x2160 --rotate normal"
+end
