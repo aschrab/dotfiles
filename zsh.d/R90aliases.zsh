@@ -141,3 +141,9 @@ alias magit="vim -c MagitOnly"
 
 alias be='bundle exec'
 alias pnpmx='pnpm dlx'
+
+if (( $+commands[git] )); then
+  alias diff='git diff --no-index -W --no-prefix'
+else
+  alias diff='diff -u'
+fi
