@@ -10,6 +10,7 @@
 --type-set=wiki=.www
 --type-set=snippets=.snippets
 --type-set=svg=.svg
+--type-set=pug=.pug
 --type-set=tags:is:tags
 
 --notags

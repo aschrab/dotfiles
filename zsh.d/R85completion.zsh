@@ -5,7 +5,7 @@ zmodload zsh/complist
 
 zstyle ':completion:*' rehash yes
 zstyle ':completion:*' auto-description 'specify: %d'
-zstyle ':completion:*' completer _show_ambiguity _expand _complete _ignored _match _correct _approximate _prefix
+zstyle ':completion:*' completer _oldlist _show_ambiguity _expand _complete _ignored _match _correct _approximate _prefix
 zstyle ':completion:*' completions 'NUMERIC==3'
 zstyle ':completion:*' format "$fg[blue]%SCompleting %d%s${fColor}"
 zstyle ':completion:*' glob 'NUMERIC==1'
@@ -80,6 +80,7 @@ zstyle ':completion:*:*:git:*' user-commands \
   reintegrate:'Rebuild integration branch' \
   rmerge:'Merge into other branch' \
   pr-update:'Update local checkout of a PR' \
+  update:'Update local branch from remote' \
   default:'Switch to default branch' \
 
 # Include the fake `ARGV0` when completing parameters

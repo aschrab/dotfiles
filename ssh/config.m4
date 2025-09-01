@@ -2,8 +2,9 @@ include(`macros.m4')dnl
 define({atleast}, {ifelse(sh({perl -E '$_ = `ssh -V 2>&1`; chomp; s/^OpenSSH_//; s/p.*//; say version->parse($_) > v$1 ? "New" : "Old"'}), {New}, $2, $3)})dnl
 define({RUNDIR}, ifelse(OS, {Darwin}, {ENV(HOME)/.}, {/run/user/1000/}))dnl
 atleast({6.3}, {dnl
-IgnoreUnknown AddKeysToAgent
+IgnoreUnknown AddKeysToAgent{,}UseKeychain
 AddKeysToAgent yes
+UseKeychain yes
 })dnl
 # VisualHostKey yes
 
@@ -102,7 +103,7 @@ Host vagrant
   LogLevel FATAL
 
 Host *
-  PubkeyAcceptedAlgorithms ecdsa-sha2-nistp256,ecdsa-sha2-nistp256-cert-v01@openssh.com,rsa-sha2-512,rsa-sha2-256
+  PubkeyAcceptedAlgorithms sk-ssh-ed25519@openssh.com,ecdsa-sha2-nistp256,ecdsa-sha2-nistp256-cert-v01@openssh.com,rsa-sha2-512,rsa-sha2-256
   ServerAliveCountMax 2
 
 # vim: ft=sshconfig
