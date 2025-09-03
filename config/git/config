@@ -206,11 +206,6 @@
 [url "git@gitlab.com:aschrab/"]
 	pushInsteadOf = https://gitlab.com/aschrab/
 
-[url "ssh://git@gitlab.av/repository/"]
-	insteadOf = https://gitlab.av/repository/
-[includeIf "gitdir:vc/files/"]
-	path = files.com
-
 [include]
 	path = ~/.gitconfig.local
 	path = local
