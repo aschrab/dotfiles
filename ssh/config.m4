@@ -1,11 +1,9 @@
 include(`macros.m4')dnl
 define({atleast}, {ifelse(sh({perl -E '$_ = `ssh -V 2>&1`; chomp; s/^OpenSSH_//; s/p.*//; say version->parse($_) > v$1 ? "New" : "Old"'}), {New}, $2, $3)})dnl
 define({RUNDIR}, ifelse(OS, {Darwin}, {ENV(HOME)/.}, {/run/user/1000/}))dnl
-atleast({6.3}, {dnl
 IgnoreUnknown AddKeysToAgent{,}UseKeychain
 AddKeysToAgent yes
 UseKeychain yes
-})dnl
 # VisualHostKey yes
 
 ifelse(OS, {Darwin}, {
@@ -20,7 +18,7 @@ ForwardX11Trusted yes
 
 HashKnownHosts no
 ControlMaster auto
-ControlPath ~/.ssh/.master.atleast({6.7}, {%C}, {%r@%h:%p})
+ControlPath ~/.ssh/.master.%C
 ControlPersist 30
 #VerifyHostKeyDNS=ask
 ServerAliveInterval=5
@@ -34,7 +32,7 @@ HostKeyAlias pug.qqx.org
 DynamicForward 9876
 
 Host proxy pug.qqx.org
-atleast({6.7}, {RemoteForward /run/user/1000/gnupg/S.gpg-agent RUNDIR{}gnupg/S.gpg-agent.extra})
+RemoteForward /run/user/1000/gnupg/S.gpg-agent RUNDIR{}gnupg/S.gpg-agent.extra
 
 Host gay-deceiver.qqx.org
 
