@@ -32,5 +32,7 @@ function set_paths {
   ld_library_path=()
 }
 
-[[ $SHLVL = 1 ]] && set_paths
-:
+if [[ "${PATH_SETUP:-}" != complete ]]; then
+  set_paths
+  export PATH_SETUP=complete
+fi
