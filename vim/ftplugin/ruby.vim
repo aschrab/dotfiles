@@ -11,3 +11,5 @@ runtime ftplugin/ri.vim
 let b:surround_100 = "do\n\t\r\nend"
 
 compiler rspec
+
+let b:lint_ignore = '# rubocop:disable'
