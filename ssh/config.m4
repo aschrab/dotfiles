@@ -5,16 +5,6 @@ AddKeysToAgent yes
 UseKeychain yes
 # VisualHostKey yes
 
-ifelse(OS, {Darwin}, {
-XAuthLocation /opt/X11/bin/xauth
-define({XForward}, {})dnl
-}, {
-define({XForward}, {dnl
-ForwardX11 yes
-ForwardX11Trusted yes
-})dnl
-})dnl
-
 HashKnownHosts no
 ControlMaster auto
 ControlPath ~/.ssh/.master.%C
