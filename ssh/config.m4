@@ -1,6 +1,5 @@
 include(`macros.m4')dnl
 define({atleast}, {ifelse(sh({perl -E '$_ = `ssh -V 2>&1`; chomp; s/^OpenSSH_//; s/p.*//; say version->parse($_) > v$1 ? "New" : "Old"'}), {New}, $2, $3)})dnl
-define({RUNDIR}, ifelse(OS, {Darwin}, {ENV(HOME)/.}, {/run/user/1000/}))dnl
 IgnoreUnknown AddKeysToAgent{,}UseKeychain
 AddKeysToAgent yes
 UseKeychain yes
@@ -30,9 +29,6 @@ Host proxy
 HostName pug.qqx.org
 HostKeyAlias pug.qqx.org
 DynamicForward 9876
-
-Host proxy pug.qqx.org
-RemoteForward /run/user/1000/gnupg/S.gpg-agent RUNDIR{}gnupg/S.gpg-agent.extra
 
 Host gay-deceiver.qqx.org
 
