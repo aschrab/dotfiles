@@ -10,6 +10,10 @@ ControlPersist 30
 #VerifyHostKeyDNS=ask
 ServerAliveInterval=5
 
+Match tagged XForward
+  ForwardX11 yes
+  ForwardX11Trusted yes
+
 Host pug.qqx.org proxy
 #Port 443
 
@@ -43,7 +47,7 @@ User aschrab
 Host *.qqx.org *.lan *.local proxy 172.17.*
 User ats
 ForwardAgent yes
-XForward
+Tag XForward
 #ForwardX11Timeout 3w
 Port 222
 
