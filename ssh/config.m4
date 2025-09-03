@@ -20,15 +20,6 @@ HostName pug.qqx.org
 HostKeyAlias pug.qqx.org
 DynamicForward 9876
 
-Host gay-deceiver.qqx.org
-
-Host zim.qqx.org
-#ProxyCommand ssh home.qqx.org nc zim.dyn.qqx.org %p
-
-Host kahlan*
-ForwardX11 no
-Port 22
-
 Host moya.trilug.org
 Port 622
 
