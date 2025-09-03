@@ -9,9 +9,10 @@ imports = ['os', 'sys', 'atexit']
 
 try:
     import readline
-    imports.push('readline')
+    imports.append('readline')
     import rlcompleter
-    imports.push('rlcompleter')
+    imports.append('rlcompleter')
+
     # Avoid errors about unused imports
     assert rlcompleter
     assert p
@@ -20,12 +21,12 @@ try:
     histfile = os.path.join(os.environ['HOME'], '.pythonhistory')
     try:
         readline.read_history_file(histfile)
-    except IOError:
+    except IOError as err:
         pass
 
     atexit.register(readline.write_history_file, histfile)
-except Exception:
-    print("!!!! Failed to setup readline history")
+except Exception as err:
+    print("!!!! Failed to setup readline history", err)
 
 # Report non-default imports
 print("Imported " + ", ".join(imports))
