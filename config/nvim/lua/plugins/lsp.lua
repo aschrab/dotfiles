@@ -45,37 +45,47 @@ return {
         capabilities = lsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
       end
 
-      require('lspconfig')['ts_ls'].setup{
-        on_attach = on_attach,
-        flags = lsp_flags,
-        capabilities = capabilities,
-      }
+      vim.lsp.config('ts_ls', {
+          settings = {
+            on_attach = on_attach,
+            flags = lsp_flags,
+            capabilities = capabilities,
+          }
+      })
 
-      require('lspconfig')['volar'].setup{
-        on_attach = on_attach,
-        flags = lsp_flags,
-        capabilities = capabilities,
-      }
+      vim.lsp.config('volar', {
+          settings = {
+            on_attach = on_attach,
+            flags = lsp_flags,
+            capabilities = capabilities,
+          }
+      })
 
-      require('lspconfig')['bashls'].setup{
-        on_attach = on_attach,
-        flags = lsp_flags,
-        capabilities = capabilities,
-      }
+      vim.lsp.config('bashls', {
+          settings = {
+            on_attach = on_attach,
+            flags = lsp_flags,
+            capabilities = capabilities,
+          }
+      })
 
-      require('lspconfig')['gopls'].setup{
-        on_attach = on_attach,
-        flags = lsp_flags,
-        capabilities = capabilities,
-      }
+      vim.lsp.config('gopls', {
+          settings = {
+            on_attach = on_attach,
+            flags = lsp_flags,
+            capabilities = capabilities,
+          }
+      })
 
-      require('lspconfig')['solargraph'].setup{
-        on_attach = on_attach,
-        flags = lsp_flags,
-        capabilities = capabilities,
-      }
+      vim.lsp.config('solargraph', {
+          settings = {
+            on_attach = on_attach,
+            flags = lsp_flags,
+            capabilities = capabilities,
+          }
+      })
 
-      require'lspconfig'.pylyzer.setup{}
+      vim.lsp.enable('pylyzer')
     end
   }
 }
