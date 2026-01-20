@@ -14,3 +14,7 @@ brew "the_silver_searcher"
 cask "docker-desktop"
 cask "witch"
 mas "BitWarden", id: 1352778147
+
+cask "spotify"
+cask "zoom"
+cask "microsoft-teams"
