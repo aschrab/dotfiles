@@ -10,6 +10,7 @@ function set_paths {
     ~/.nodenv/shims
     ~/.cargo/bin
     ~/.pyenv/bin
+    ~/.docker/bin
     ~/opt/*/default/bin(/N)
     /opt/homebrew/bin
     /Applications/Xcode.app/Contents/Developer/usr/bin
