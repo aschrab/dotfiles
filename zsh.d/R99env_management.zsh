@@ -26,4 +26,4 @@ if [[ -x ~/.nodenv/bin/nodenv ]]; then
   [[ -d ~/.nodenv/shims ]] && nodenv_setup
 fi
 
-(( $+commands[direnv] )) && eval "$(direnv hook zsh)" && direnv reload 2>/dev/null
+(( UID )) && (( $+commands[direnv] )) && eval "$(direnv hook zsh)" && direnv reload 2>/dev/null
