@@ -1,3 +1,5 @@
+# To be used by `brew bundle`
+
 brew "tmux"
 brew "neovim"
 brew "reattach-to-user-namespace"
@@ -8,9 +10,11 @@ brew "gnupg"
 brew "bash"
 brew "direnv"
 brew "httpie"
+brew "entr"
 brew "ripgrep"
 brew "fzf"
 brew "the_silver_searcher"
+brew "ruby-build"
 cask "docker-desktop"
 cask "witch"
 mas "BitWarden", id: 1352778147
@@ -18,3 +22,4 @@ mas "BitWarden", id: 1352778147
 cask "spotify"
 cask "zoom"
 cask "microsoft-teams"
+cask "visual-studio-code"
