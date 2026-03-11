@@ -26,7 +26,7 @@ if [[ -x ~/.nodenv/bin/nodenv ]]; then
   [[ -d ~/.nodenv/shims ]] && nodenv_setup
 fi
 
-(( $+commands[direnv] )) && eval "$(direnv hook zsh)" && direnv reload 2>/dev/null
+(( UID )) && (( $+commands[direnv] )) && eval "$(direnv hook zsh)" && direnv reload 2>/dev/null
 
 if (( $+commands[brew] )); then
   HOMEBREW_COMMAND_NOT_FOUND_HANDLER="$(brew --repository)/Library/Homebrew/command-not-found/handler.sh"
