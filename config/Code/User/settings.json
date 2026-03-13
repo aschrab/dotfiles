@@ -189,5 +189,8 @@
         "sound": "on"
     },
     "terminal.integrated.enableVisualBell": true,
-    "explorer.sortOrder": "mixed"
+    "explorer.sortOrder": "mixed",
+    "chat.agent.enabled": false,
+    "chat.agent.codeBlockProgress": false,
+    "workbench.editor.empty.hint": "hidden"
 }
