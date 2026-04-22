@@ -34,3 +34,8 @@ if (( $+commands[brew] )); then
     source "$HOMEBREW_COMMAND_NOT_FOUND_HANDLER";
   fi
 fi
+
+export TRY_PATH=~/vc/tries
+if (( $+commands[try] )); then
+  eval "$(try init)"
+fi
