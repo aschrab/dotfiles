@@ -17,6 +17,7 @@ brew "git"
 brew "the_silver_searcher"
 brew "ruby-build"
 brew "try"
+cask "karabiner-elements"
 cask "docker-desktop"
 cask "witch"
 mas "BitWarden", id: 1352778147
