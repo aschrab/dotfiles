@@ -18,6 +18,7 @@ brew "the_silver_searcher"
 brew "ruby-build"
 brew "try"
 brew "gh"
+brew "yq"
 
 cask "secretive"
 cask "karabiner-elements"
