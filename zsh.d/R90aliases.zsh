@@ -14,7 +14,7 @@ alias man='noglob man'
 () {
   local v
   for v in ri ri1.8 ri1.9; do
-    if [[ -n "$(whence $v)" ]]; then
+    if (( $+commands[$v] )); then
       alias $v='LESS="$LESS -fR"'" noglob command $v -fansi"
     fi
   done
@@ -82,16 +82,14 @@ alias trt=traceroute
 [ -x /usr/lib/sendmail ] && alias sendmail=/usr/lib/sendmail
 [ -x /usr/ucb/ps ] && alias ps=/usr/ucb/ps
 
-[[ -z $(whence gcc)    ]] && alias gcc=cc
-[[ -n $(whence gsed)   ]] && alias sed=gsed
-#[[ -n $(whence gmake)  ]] && alias make=gmake
-[[ -n $(whence pinfo)  ]] && alias info=pinfo
-[[ -n $(whence screen) ]] && alias screen='screen -a -A'
-[[ -n $(whence htop) ]] && alias top=htop
+(( $+commands[gsed] )) && alias sed=gsed
+(( $+commands[pinfo] )) && alias info=pinfo
+(( $+commands[screen] )) && alias screen='screen -a -A'
+(( $+commands[htop] )) && alias top=htop
 
 () {
   local LS
-  LS=$(whence gnuls)
+  LS=$commands[gnuls]
   if [[ -n $LS ]]; then
     LS=gnuls
     alias ls=$LS
@@ -121,8 +119,8 @@ alias trt=traceroute
   )
   local cmd
   for cmd in $cmds; do
-    if ! alias "$cmd" >/dev/null; then
-      command -v "g$cmd" >/dev/null && alias $cmd="g$cmd"
+    if ! (( $+aliases[$cmd] )); then
+      (( $+commands[g$cmd] )) && alias $cmd="g$cmd"
     fi
   done
 }
