@@ -22,3 +22,5 @@ tags-??
 .vscode/
 Session.vim
 default.profraw
+
+**/.claude/settings.local.json
