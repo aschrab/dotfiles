@@ -52,11 +52,13 @@ else
 	alias grep=egrep
 fi
 
-if (( $+commands[ack-grep] )); then
-  if (( $+commands[ack] )) && [[ $(ack) == *PATTERN* ]]; then
-    :
-  else
+if (( $+commands[ack] )) && [[ $(ack) == *PATTERN* ]]; then
+  :
+else
+  if (( $+commands[ack-grep] )); then
     alias ack=ack-grep
+  elif (( $+commands[ag] )); then
+    alias ack=ag
   fi
 fi
 
