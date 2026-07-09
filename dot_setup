@@ -10,10 +10,9 @@ Create symlinks in home directory to files in directory which contains this
 script.  Symlink names will be same as the target name, but with a C<.>
 prepended.
 
-Files to be linked to are listed as command line arguments.  If the name
-C<USUAL> is given as an argument, that file in the target directory will be
-opened, and each line in it will be added to the files specified on the command
-line.
+Files to be linked to are listed as command line arguments. File names starting
+with C<,> will be opened and each line found there will be treated as if it was
+passed as an argument.
 
 =cut
 
@@ -36,7 +35,7 @@ $src = "$ENV{PWD}/$src" unless $src =~ m{^/};
 1 while $src =~ s{/[^/]+/\.\./}{/};
 # Remove script filename to get just dir name
 $src =~ s{/[^/]+$}{};
-# Copy of absolute for opening USUAL file
+# Copy of absolute for opening list files
 my $source = $src;
 # Convert to being relative to home
 $src =~ s{^$home/?}{};
@@ -55,13 +54,16 @@ foreach my $f (@ARGV) {
 		next;
 	}
 
-	# IF "USUAL" is used as name to link, actually each line in that file as a name to link
-	if( $f =~ /USUAL/ ) {
-		open USUAL, '<', "$source/$f" or die "Couldn't open '$source/$f': $!\n";
-		push @ARGV, <USUAL>;
-		close USUAL;
+	# IF file name starts with a `,` character treat each line within as an argument
+	if ($f =~ /^,/) {
+		open LIST, '<', "$source/$f" or die "Couldn't open '$source/$f': $!\n";
+		push @ARGV, <LIST>;
+		close LIST;
 		next;
 	}
+
+	# Ignore names that start with hash sign to allow comments
+	if ($f =~ /^#/) { next; }
 
 	my $dest = ".$f"; # Name of link to use, relative to home directory
 	$dest =~ s{/$}{}; # Remove trailing slash to avoid creating an empty directory where we want a symlink.
