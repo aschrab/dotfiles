@@ -26,12 +26,9 @@ config/tmux
 undo/.gitignore
 vim
 vimrc
-XCompose
 zshenv
 zshrc
 zsh.d
-fonts/Monoisome-Regular.ttf
-fonts/PowerlineSymbols.otf
 config/direnv/lib/
 config/fontconfig/conf.d/10-powerline-symbols.conf
 config/git
@@ -39,10 +36,8 @@ config/karabiner
 config/nvim
 config/powerline
 config/pry
-config/rofi
 config/shellcheckrc
 config/yamllint
 python
 nodenv
 rbenv
-local/share/fonts
