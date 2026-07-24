@@ -10,10 +10,9 @@ Create symlinks in home directory to files in directory which contains this
 script.  Symlink names will be same as the target name, but with a C<.>
 prepended.
 
-Files to be linked to are listed as command line arguments.  If the name
-C<USUAL> is given as an argument, that file in the target directory will be
-opened, and each line in it will be added to the files specified on the command
-line.
+Files to be linked to are listed as command line arguments. File names starting
+with C<,> will be opened and each line found there will be treated as if it was
+passed as an argument.
 
 =cut
 
@@ -23,6 +22,7 @@ use File::Compare;
 
 my $use_exit = 0;
 my $merge = 0;
+my $dry_run = 0;
 my $home = $ENV{HOME};
 
 # Get location of files from script location
@@ -35,7 +35,7 @@ $src = "$ENV{PWD}/$src" unless $src =~ m{^/};
 1 while $src =~ s{/[^/]+/\.\./}{/};
 # Remove script filename to get just dir name
 $src =~ s{/[^/]+$}{};
-# Copy of absolute for opening USUAL file
+# Copy of absolute for opening list files
 my $source = $src;
 # Convert to being relative to home
 $src =~ s{^$home/?}{};
@@ -47,19 +47,23 @@ foreach my $f (@ARGV) {
 	next if $f =~ /dot_setup/; # Never link this script
 
 	if ($f eq '-m') { $merge = 1; next; }
+	if ($f eq '-n') { $dry_run = 1; next; }
 
 	if ($f eq '-e') {
 		$use_exit = 1;
 		next;
 	}
 
-	# IF "USUAL" is used as name to link, actually each line in that file as a name to link
-	if( $f =~ /USUAL/ ) {
-		open USUAL, '<', "$source/$f" or die "Couldn't open '$source/$f': $!\n";
-		push @ARGV, <USUAL>;
-		close USUAL;
+	# IF file name starts with a `,` character treat each line within as an argument
+	if ($f =~ /^,/) {
+		open LIST, '<', "$source/$f" or die "Couldn't open '$source/$f': $!\n";
+		push @ARGV, <LIST>;
+		close LIST;
 		next;
 	}
+
+	# Ignore names that start with hash sign to allow comments
+	if ($f =~ /^#/) { next; }
 
 	my $dest = ".$f"; # Name of link to use, relative to home directory
 	$dest =~ s{/$}{}; # Remove trailing slash to avoid creating an empty directory where we want a symlink.
@@ -72,7 +76,7 @@ foreach my $f (@ARGV) {
 	while( $dest =~ m{([^/]+/)}g ) {
 		$dirs .= $1;
 		$parents .= "../";
-		unless ( -d "$home/$dirs" ) {
+		unless ( $dry_run || -d "$home/$dirs" ) {
 			mkdir "$home/$dirs" or die;
 		}
 	}
@@ -92,7 +96,8 @@ foreach my $f (@ARGV) {
 	if ($status eq '!') {
 		foreach my $try (1,2) {
 			if (compare($dest, $f)) {
-				system "vimdiff", $dest, $f if $try == $merge;
+				if ($dry_run) { print "Would merge $f\n"; last; }
+				else { system "vimdiff", $dest, $f if $try == $merge; }
 			}
 			else {
 				$status = '=';
@@ -108,8 +113,10 @@ foreach my $f (@ARGV) {
 	print "$status $f\n";
 	next unless $add;
 
-	unlink $dest if $status eq '=';
-	symlink $target => $dest or die "Couldn't create link $dest: $!";
+	unless ($dry_run) {
+		unlink $dest if $status eq '=';
+		symlink $target => $dest or die "Couldn't create link $dest: $!";
+	}
 }
 
 if ($use_exit) {
