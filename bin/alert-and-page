@@ -15,4 +15,4 @@ if (-t STDOUT) {
 }
 
 # Run less to do actual paging
-exec 'less';
+exec 'less', @ARGV;
