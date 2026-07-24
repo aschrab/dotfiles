@@ -16,11 +16,20 @@ brew "fzf"
 brew "git"
 brew "the_silver_searcher"
 brew "ruby-build"
+brew "try"
+brew "gh"
+brew "yq"
+
+cask "secretive"
+cask "karabiner-elements"
 cask "docker-desktop"
 cask "witch"
-mas "BitWarden", id: 1352778147
-
 cask "spotify"
 cask "zoom"
 cask "microsoft-teams"
 cask "visual-studio-code"
+cask "codex"
+cask "t3-code"
+cask "polypane"
+
+mas "BitWarden", id: 1352778147
