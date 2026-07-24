@@ -15,17 +15,18 @@ venv() (
   root="$1"
   shift
 
-  [ -x "${root}/bin/python3" ] && return
+  pybin="${root}/bin/python3"
+  if ! [ -x "$pybin" ]; then
+    py=$(python3 --version)
+    py=${py#* }
+    py=${py%.*}
 
-  py=$(python3 --version)
-  py=${py#* }
-  py=${py%.*}
+    if [[ -r /etc/debian_version ]]; then
+      deb-install "python${py}-venv"
+    fi
 
-  if [[ -r /etc/debian_version ]]; then
-    deb-install "python${py}-venv"
+    python3 -m venv "$root"
   fi
-
-  python3 -m venv "$root"
 
   source "${root}/bin/activate"
 
