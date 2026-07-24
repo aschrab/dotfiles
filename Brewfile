@@ -20,6 +20,12 @@ brew "try"
 brew "gh"
 brew "yq"
 
+if File.directory? "#{ENV['HOME']}/vc/oss/git"
+  brew "rust"
+  brew "asciidoc"
+  brew "xmlto"
+end
+
 cask "secretive"
 cask "karabiner-elements"
 cask "docker-desktop"
