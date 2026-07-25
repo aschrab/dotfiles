@@ -12,13 +12,5 @@ NO_CURL=
 SKIP_DASHED_BUILT_INS:=y
 
 ifeq ($(prefix),$(HOME))
-  ifeq ($(CURRENT_BRANCH),next)
-    prefix = $(HOME)/opt/git/next
-  endif
-  ifeq ($(CURRENT_BRANCH),seen)
-    prefix = $(HOME)/opt/git/seen
-  endif
-  ifeq ($(CURRENT_BRANCH),master)
-    prefix = $(HOME)/opt/git/master
-  endif
+  prefix = $(HOME)/opt/git/$(CURRENT_BRANCH)
 endif
