@@ -24,6 +24,11 @@ Requirements:
 default expectation is 5 commits unless the user explicitly approves combining
 them.
 
+Do not push commits unless explicitly asked to do so or to open a pull/merge 
+request. Existence of a pull/merge request does **not** mean that you should 
+automatically update it. You are not allowed to force push unless explicitly 
+demanded to do so, with confirmation.
+
 ## Commit Message Authoring
 
 - Do not use `git commit -m` for commit messages.
