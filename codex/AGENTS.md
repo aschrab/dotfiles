@@ -24,14 +24,22 @@ Requirements:
 default expectation is 5 commits unless the user explicitly approves combining
 them.
 
-## Commit Message Wrapping
+## Commit Message Authoring
 
-- Wrap commit message body paragraphs to 76 columns where practical.
-- When drafting commit messages, prefer wording that naturally wraps cleanly 
-  instead of relying on later correction.
-- Avoid including long unbreakable strings in commit bodies unless they are 
-  necessary.
-- If an exception is necessary, keep it as narrow as possible and do not reflow 
-  surrounding text awkwardly just to satisfy the limit.
-- Before committing, check the message for obvious wrapping problems and revise 
-  the wording if needed.
+- Do not use `git commit -m` for commit messages.
+- Write every commit message to a temporary file and pass it with
+  `git commit --file <path>`.
+- This applies to both normal commits and amended commits.
+- Use the temporary file approach even for short messages so shell
+  escaping is never part of commit message authoring.
+- When a commit message contains backticks, quotes, backslashes, or
+  other shell-sensitive characters, treat that as ordinary text in the
+  file rather than trying to escape it for the shell.
+- After writing the message file, inspect its contents before running
+  `git commit`.
+- The message file should contain:
+  - a single-line subject
+  - a blank line
+  - one or more explanatory body paragraphs wrapped to 76 columns where
+    practical
+- Remove the temporary file after the commit succeeds.
