@@ -18,6 +18,7 @@ brew "the_silver_searcher"
 brew "ruby-build"
 brew "try"
 brew "gh"
+brew "glab"
 brew "yq"
 
 if File.directory? "#{ENV['HOME']}/vc/oss/git"
