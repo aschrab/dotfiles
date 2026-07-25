@@ -1,6 +1,7 @@
 ackrc
 bin
 certs
+codex/AGENTS.md
 colordiffrc
 editorconfig
 eslintrc.yml
