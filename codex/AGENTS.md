@@ -4,6 +4,8 @@ proceeding.
 Pushes to git remotes should only be done over ssh; if that fails it's likely 
 because the local computer is locked, wait for confirmation before retrying.
 
+When opening pull/merge requests make sure to reference relevant issue numbers.
+
 ## Commit Discipline
 
 Multi-step implementations must be split into separate commits, one commit per
@@ -48,3 +50,5 @@ demanded to do so, with confirmation.
   - one or more explanatory body paragraphs wrapped to 76 columns where
     practical
 - Remove the temporary file after the commit succeeds.
+- When the commit is being made as part of addressing an issue, reference the 
+  issue in th commit message.
