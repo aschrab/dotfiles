@@ -5,6 +5,8 @@ Pushes to git remotes should only be done over ssh; if that fails it's likely
 because the local computer is locked, wait for confirmation before retrying.
 
 When opening pull/merge requests make sure to reference relevant issue numbers.
+If the request addresses all of the remaining parts of the issue the reference 
+should be `Closes #n` (with `n` being the issue number).
 
 ## Commit Discipline
 
@@ -51,4 +53,5 @@ demanded to do so, with confirmation.
     practical
 - Remove the temporary file after the commit succeeds.
 - When the commit is being made as part of addressing an issue, reference the 
-  issue in th commit message.
+  issue in the commit message. If the commit addresses the last parts of the 
+  issue the reference should be `Closes #n` (with `n` being the issue number).
