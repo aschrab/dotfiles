@@ -15,10 +15,7 @@ brew "ripgrep"
 brew "fzf"
 brew "git"
 brew "the_silver_searcher"
-brew "ruby-build"
 brew "try"
-brew "gh"
-brew "glab"
 brew "yq"
 
 if File.directory? "#{ENV['HOME']}/vc/oss/git"
@@ -34,9 +31,15 @@ cask "witch"
 cask "spotify"
 cask "zoom"
 cask "microsoft-teams"
-cask "visual-studio-code"
+
+mas "BitWarden", id: 1352778147
+
+# Consider making the following conditional on machine being for development (somehow)
+brew "gh"
+brew "glab"
+brew "pylyzer"
+brew "ruby-build"
 cask "codex"
 cask "t3-code"
 cask "polypane"
-
-mas "BitWarden", id: 1352778147
+cask "visual-studio-code"
