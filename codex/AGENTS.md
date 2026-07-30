@@ -11,6 +11,10 @@ should be `Closes #n` (with `n` being the issue number).
 When asked to create a new project that uses NPM packages, prefer to use `pnpm` 
 as the package manager unless directed otherwise.
 
+Script files should have a proper `#!` line at the start, and have the 
+executable bit set. Their filenames should not include an extension unless that 
+is absolutely required for it to work.
+
 ## Commit Discipline
 
 Multi-step implementations must be split into separate commits, one commit per
