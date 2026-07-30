@@ -15,6 +15,11 @@ Script files should have a proper `#!` line at the start, and have the
 executable bit set. Their filenames should not include an extension unless that 
 is absolutely required for it to work.
 
+When presented with an error message, unless told otherwise just give a 
+diagnosis and present possible fixes but don't make any changes. Being told to 
+fix one thing doesn't mean that you can fix other things without asking, even if 
+the other fixes are required to verify the correctness of the first fix.
+
 ## Commit Discipline
 
 Multi-step implementations must be split into separate commits, one commit per
