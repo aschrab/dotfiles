@@ -8,6 +8,9 @@ When opening pull/merge requests make sure to reference relevant issue numbers.
 If the request addresses all of the remaining parts of the issue the reference 
 should be `Closes #n` (with `n` being the issue number).
 
+When asked to create a new project that uses NPM packages, prefer to use `pnpm` 
+as the package manager unless directed otherwise.
+
 ## Commit Discipline
 
 Multi-step implementations must be split into separate commits, one commit per
