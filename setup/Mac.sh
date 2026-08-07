@@ -23,8 +23,10 @@ mkdir -p "$vscode"
 
 defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
 
-# cat <<EOF
-# # Add following to top of /etc/pam.d/sudo
-# auth       optional       /usr/local/lib/pam/pam_reattach.so
-# auth       sufficient     pam_tid.so
-# EOF
+sudo_local=/etc/pam.d/sudo_local.template
+grep -q pam_reattach $sudo_local || cat <<EOF
+# Add following to $sudo_local (to survive updates)
+# and copy to same location without .template for immediate effect
+auth       optional       /opt/homebrew/lib/pam/pam_reattach.so
+auth       sufficient     pam_tid.so
+EOF

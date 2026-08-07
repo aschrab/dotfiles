@@ -3,6 +3,7 @@
 brew "tmux"
 brew "neovim"
 brew "reattach-to-user-namespace"
+brew "pam-reattach"
 cask "kitty"
 brew "mas"
 brew "coreutils"
