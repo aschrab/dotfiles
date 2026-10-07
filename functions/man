@@ -10,6 +10,8 @@ function man {
 
   if ! [[ -t 1 ]]; then
     command man "$@"
+  elif [[ "${1:-}" = -* ]]; then
+    command man "$@"
   elif [[ "$MANPAGER" = *vi* ]]; then
     MANWIDTH="$MANWIDTH" "$EDITOR" -c "Man $*" -c only
   else
