@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+# Switch to a different branch (defaults to main branch for repository)
+# then delete the branch which had been checked out.
+
+set -ueo pipefail
+
+die () {
+  echo "$*" >&2
+  exit 1
+}
+
+# ATtempt to determine default branch name by looking at HEAD from remote(s)
+for remote in $(git remote); do
+  default=$(git rev-parse --verify --symbolic-full-name "$remote/HEAD" 2>/dev/null || :)
+  if [[ -n "$default" ]]; then
+    default=${default#refs/remotes/$remote/}
+    break
+  fi
+done
+
+# Fallback to defaultbranch option or `master` as a last resort
+[[ -z "$default" ]] && default=$(git config init.defaultbranch || echo master)
+
+current=$(git branch --show-current || git rev-parse --short HEAD)
+
+[[ "$current" = "$default" ]] && die "Refusing to delete default branch ($default)"
+
+target="${1:-$default}"
+
+[[ -z "$(git rev-list -n 1 "${target}..HEAD")" ]] || die "Current branch ($current) has commits not in $target"
+
+echo "Switching to branch '$target' and deleting branch '$current'"
+
+git switch "$target" || die "Failed to switch to branch '$target'"
+
+git branch -d "$current" || die "Failed to delete branch '$current'"
