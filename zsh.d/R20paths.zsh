@@ -1,5 +1,7 @@
 typeset -aU fpath
 fpath=(
+  $HOME/.local/share/zsh/functions/
+  $HOME/.local/share/zsh/completion/
   $zshrc_dir/completion
   $fpath
   /usr/share/zsh/vendor-completions/
