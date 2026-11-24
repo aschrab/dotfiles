@@ -23,7 +23,9 @@ the other fixes are required to verify the correctness of the first fix.
 ## Commit Discipline
 
 Multi-step implementations must be split into separate commits, one commit per
-step/phase. Do not batch unrelated or later planned steps into the same diff.
+step/phase. Do not batch unrelated or later planned steps into the same diff. 
+Each commit should be able to stand on its own; do NOT commit changes that break 
+existing functionality without further changes.
 
 If you present or adopt a multi-step implementation plan, each plan step must
 be completed as its own commit.
@@ -67,3 +69,10 @@ demanded to do so, with confirmation.
 - When the commit is being made as part of addressing an issue, reference the 
   issue in the commit message. If the commit addresses the last parts of the 
   issue the reference should be `Closes #n` (with `n` being the issue number).
+- Commits implemented with AI should include text with the template `This change 
+  was implemented with AI assistance from **[model]** using **[underlying agent 
+  harness]**.` in the commit message.
+
+  `[underlying agent harness]` means the agent runtime that manages the 
+  model/tool loop (for example, Codex or Claude Code), not the UI through which 
+  it was used.
