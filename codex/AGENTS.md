@@ -70,8 +70,8 @@ demanded to do so, with confirmation.
   issue in the commit message. If the commit addresses the last parts of the 
   issue the reference should be `Closes #n` (with `n` being the issue number).
 - Commits implemented with AI should include text with the template `This change 
-  was implemented with AI assistance from **[model]** using **[underlying agent 
-  harness]**.` in the commit message.
+  was implemented with AI assistance from [model] using [underlying agent 
+  harness].` in the commit message.
 
   `[underlying agent harness]` means the agent runtime that manages the 
   model/tool loop (for example, Codex or Claude Code), not the UI through which 
